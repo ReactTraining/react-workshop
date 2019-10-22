@@ -1,8 +1,12 @@
 import React from "react"
-// import Foo from "src/thing"
+import Foo from "src/thing"
 
 function App() {
-  return <div>App</div>
+  return (
+    <div>
+      <Foo></Foo>
+    </div>
+  )
 }
 
 export default App
