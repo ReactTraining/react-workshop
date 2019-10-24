@@ -293,7 +293,7 @@ module.exports = function(webpackEnv) {
               loader: require.resolve("eslint-loader")
             }
           ],
-          include: [paths.appSrc, paths.lessonsSrc]
+          include: [paths.appSrc, paths.coursesSrc]
         },
         {
           // "oneOf" will traverse all following loaders until one will
@@ -315,7 +315,7 @@ module.exports = function(webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: [paths.appSrc, paths.lessonsSrc],
+              include: [paths.appSrc, paths.coursesSrc],
               loader: require.resolve("babel-loader"),
               options: {
                 customize: require.resolve("babel-preset-react-app/webpack-overrides"),
@@ -608,36 +608,99 @@ module.exports = function(webpackEnv) {
 }
 
 function getLessonAliases() {
-  // const type = process.argv[2] || "exercise"
-  // if (!["exercise", "lecture"].includes(type)) {
-  //   console.error("Invalid argument for `npm start`. Did you mean `npm start lecture`?")
-  //   process.exit(1)
-  // }
+  /**
+   * Course Selection
+   */
+  let selectedCourse = process.argv[2]
 
-  const lessonsPath = path.resolve(__dirname, "..", "lessons/fundamentals")
-  // const lessons = fs.readdirSync(lessonsPath).filter(item => {
-  //   return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
-  // })
+  const coursesPath = path.resolve(__dirname, "..", "courses")
+  const courseOptions = fs.readdirSync(coursesPath).filter(item => {
+    return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
+  })
 
-  // console.log(`Which ${type}?`)
-  // const choice = readlineSync.keyInSelect(lessons, null, {
-  //   cancel: "THE FULL APP!"
-  // })
-  // if (choice === -1) {
-  //   return
-  // }
-  // const lesson = lessons[choice]
-  // const lessonPath = path.resolve(lessonsPath, lesson, type)
+  if (!courseOptions.includes(selectedCourse)) {
+    console.clear()
+    console.log("Which Course?")
+    const choice = readlineSync.keyInSelect(courseOptions)
+    if (choice === -1) {
+      process.exit(0)
+    }
+    selectedCourse = courseOptions[choice]
+  }
 
+  /**
+   * Lesson Selection
+   */
+  let selectedLesson = process.argv[3]
+
+  const lessonsPath = path.resolve(__dirname, "..", `courses/${selectedCourse}`)
+  const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
+    return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
+  })
+  if (lessonOptions.length === 0) {
+    console.log(`There are no lessons in ${selectedCourse}`)
+    process.exit(0)
+  }
+
+  // Allow pre-selection from cli: `npm start advanced 4`
+  if (!isNaN(selectedLesson) && lessonOptions.length <= selectedLesson) {
+    selectedLesson = lessonOptions[selectedLesson - 1]
+    // Otherwise, if they
+  } else if (!lessonOptions.includes(selectedLesson)) {
+    console.clear()
+    console.log(`Which Lesson of ${selectedCourse}?`)
+    const choice = readlineSync.keyInSelect(lessonOptions)
+    if (choice === -1) {
+      process.exit(0)
+    }
+    selectedLesson = lessonOptions[choice]
+  }
+
+  /**
+   * Exercise/Lecture Selection
+   */
+
+  const lessonVersionOptions = ["exercise", "lecture"]
+  const options = [process.argv[2], process.argv[3], process.argv[4]]
+  let selectedLessonVersion
+
+  if (options.includes("exercise")) {
+    selectedLessonVersion = "exercise"
+  } else if (options.includes("lecture")) {
+    selectedLessonVersion = "lecture"
+  } else {
+    console.clear()
+    console.log(`Which version of ${selectedCourse}/${selectedLesson}?`)
+    const choice = readlineSync.keyInSelect(lessonVersionOptions)
+    if (choice === -1) {
+      process.exit(0)
+    }
+    selectedLessonVersion = lessonVersionOptions[choice]
+  }
+
+  /**
+   * Build Aliases
+   */
+  const selectedPath = path.resolve(
+    __dirname,
+    "..",
+    "courses",
+    selectedCourse,
+    selectedLesson,
+    selectedLessonVersion
+  )
   // const aliases = {}
   // fs.readdirSync(lessonPath).forEach(file => {
   //   const name = path.basename(file, ".js")
-  //   aliases[`app/${name}`] = path.join(lessonPath, file)
+  //   aliases[`src/${name}`] = path.join(lessonPath, file)
   // })
 
-  const aliases = {
-    "src/thing": path.resolve(__dirname, "..", "lessons/fundamentals/01-rendering/foo.js")
-  }
+  console.log(selectedPath)
+  process.exit(0)
+
+  // const aliases = {
+  //   "src/thing": path.resolve(__dirname, "..", "lessons/fundamentals/01-rendering/foo.js")
+  // }
 
   return aliases
 }
