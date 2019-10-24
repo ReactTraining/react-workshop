@@ -126,7 +126,7 @@ module.exports = function(webpackEnv) {
       // require.resolve('webpack/hot/dev-server'),
       isEnvDevelopment && require.resolve("react-dev-utils/webpackHotDevClient"),
       // Finally, this is your app's code:
-      paths.appIndexJs
+      getEntry()
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -247,7 +247,9 @@ module.exports = function(webpackEnv) {
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      modules: ["node_modules", paths.appNodeModules].concat(modules.additionalModulePaths || []),
+      modules: ["modules", "node_modules", paths.appNodeModules].concat(
+        modules.additionalModulePaths || []
+      ),
       // These are the reasonable defaults supported by the Node ecosystem.
       // We also include JSX as a common component filename extension to support
       // some tools, although we do not recommend using it, see:
@@ -257,7 +259,6 @@ module.exports = function(webpackEnv) {
       extensions: paths.moduleFileExtensions
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes("ts")),
-      alias: getLessonAliases(),
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
@@ -607,7 +608,7 @@ module.exports = function(webpackEnv) {
   }
 }
 
-function getLessonAliases() {
+function getEntry() {
   /**
    * Course Selection
    */
@@ -679,28 +680,17 @@ function getLessonAliases() {
   }
 
   /**
-   * Build Aliases
+   * Entry
    */
-  const selectedPath = path.resolve(
+  const entry = path.resolve(
     __dirname,
     "..",
     "courses",
     selectedCourse,
     selectedLesson,
-    selectedLessonVersion
+    selectedLessonVersion,
+    "index.js"
   )
-  // const aliases = {}
-  // fs.readdirSync(lessonPath).forEach(file => {
-  //   const name = path.basename(file, ".js")
-  //   aliases[`src/${name}`] = path.join(lessonPath, file)
-  // })
 
-  console.log(selectedPath)
-  process.exit(0)
-
-  // const aliases = {
-  //   "src/thing": path.resolve(__dirname, "..", "lessons/fundamentals/01-rendering/foo.js")
-  // }
-
-  return aliases
+  return entry
 }

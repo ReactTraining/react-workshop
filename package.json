@@ -2,6 +2,10 @@
   "name": "hooks-workshop",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js"
+  },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^1.7.0",
     "prettier": "^1.18.2",
@@ -57,11 +61,6 @@
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.1.1",
     "workbox-webpack-plugin": "4.3.1"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app",
