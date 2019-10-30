@@ -24,7 +24,7 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin")
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin")
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter")
 const eslint = require("eslint")
-const readlineSync = require("readline-sync")
+const getEntry = require("./getEntry")
 
 const appPackageJson = require(paths.appPackageJson)
 
@@ -606,91 +606,4 @@ module.exports = function(webpackEnv) {
     // our own hints via the FileSizeReporter
     performance: false
   }
-}
-
-function getEntry() {
-  /**
-   * Course Selection
-   */
-  let selectedCourse = process.argv[2]
-
-  const coursesPath = path.resolve(__dirname, "..", "courses")
-  const courseOptions = fs.readdirSync(coursesPath).filter(item => {
-    return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
-  })
-
-  if (!courseOptions.includes(selectedCourse)) {
-    console.clear()
-    console.log("Which Course?")
-    const choice = readlineSync.keyInSelect(courseOptions)
-    if (choice === -1) {
-      process.exit(0)
-    }
-    selectedCourse = courseOptions[choice]
-  }
-
-  /**
-   * Lesson Selection
-   */
-  let selectedLesson = process.argv[3]
-
-  const lessonsPath = path.resolve(__dirname, "..", `courses/${selectedCourse}`)
-  const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
-    return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
-  })
-  if (lessonOptions.length === 0) {
-    console.log(`There are no lessons in ${selectedCourse}`)
-    process.exit(0)
-  }
-
-  // Allow pre-selection from cli: `npm start advanced 4`
-  if (!isNaN(selectedLesson) && lessonOptions.length <= selectedLesson) {
-    selectedLesson = lessonOptions[selectedLesson - 1]
-    // Otherwise, if they
-  } else if (!lessonOptions.includes(selectedLesson)) {
-    console.clear()
-    console.log(`Which Lesson of ${selectedCourse}?`)
-    const choice = readlineSync.keyInSelect(lessonOptions)
-    if (choice === -1) {
-      process.exit(0)
-    }
-    selectedLesson = lessonOptions[choice]
-  }
-
-  /**
-   * Exercise/Lecture Selection
-   */
-
-  const lessonVersionOptions = ["exercise", "lecture"]
-  const options = [process.argv[2], process.argv[3], process.argv[4]]
-  let selectedLessonVersion
-
-  if (options.includes("exercise")) {
-    selectedLessonVersion = "exercise"
-  } else if (options.includes("lecture")) {
-    selectedLessonVersion = "lecture"
-  } else {
-    console.clear()
-    console.log(`Which version of ${selectedCourse}/${selectedLesson}?`)
-    const choice = readlineSync.keyInSelect(lessonVersionOptions)
-    if (choice === -1) {
-      process.exit(0)
-    }
-    selectedLessonVersion = lessonVersionOptions[choice]
-  }
-
-  /**
-   * Entry
-   */
-  const entry = path.resolve(
-    __dirname,
-    "..",
-    "courses",
-    selectedCourse,
-    selectedLesson,
-    selectedLessonVersion,
-    "index.js"
-  )
-
-  return entry
 }
