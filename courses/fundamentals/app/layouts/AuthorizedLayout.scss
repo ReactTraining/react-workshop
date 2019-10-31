@@ -1,0 +1,28 @@
+@import 'workshop/styles/_theme.scss';
+
+.app-authorized-layout {
+  padding: 0 1em;
+
+  > div {
+    margin: 0 auto;
+    min-height: 100vh;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Has .primary-header sibling flex item
+  .primary-content {
+    // Take up the rest of the vertical space that .primary-header doesn't use
+    flex: 1;
+    display: flex;
+    margin-top: $gutter;
+    margin-bottom: $gutter;
+  }
+
+  // Has .primary-aside sibling flex item
+  main {
+    // Take up the rest of the horizontal space that .primary-aside doesn't use
+    flex: 1;
+  }
+}

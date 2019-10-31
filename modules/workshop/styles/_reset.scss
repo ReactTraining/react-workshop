@@ -1,0 +1,26 @@
+// See this explanation for details
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+
+html {
+  box-sizing: border-box;
+  color: #444;
+  font-family: 'Arial';
+  font-size: 12pt;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}

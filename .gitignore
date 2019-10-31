@@ -21,6 +21,9 @@
 # React Training Preferences
 preferences.json
 
+# For any personal notes any instructores want to take
+notes.md
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
