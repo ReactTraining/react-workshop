@@ -4,9 +4,9 @@
 html {
   box-sizing: border-box;
   color: #444;
-  font-family: 'Arial';
-  font-size: 12pt;
-  font-weight: 300;
+  font-family: $font-family, Arial;
+  font-size: $font-size;
+  font-weight: $font-weight;
   line-height: 1.5em;
 }
 
@@ -21,6 +21,9 @@ body {
 }
 
 a {
-  color: $blue;
+  color: $bright-blue;
   text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }

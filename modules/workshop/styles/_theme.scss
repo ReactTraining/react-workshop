@@ -1,5 +1,15 @@
-// Colors
-$blue: lightblue;
+// Literal Color Names
+$bright-blue: #04b3ff;
+
+// Semantic Colors
+$line-color: #edf2f7;
+
+// Copy
+$font-family: 'Nunito Sans';
+$font-weight: 300;
+$font-size: 14pt;
+$heading-font-family: $font-family;
+$heading-font-weight: 700;
 
 // Layout
 $gutter: 1em;

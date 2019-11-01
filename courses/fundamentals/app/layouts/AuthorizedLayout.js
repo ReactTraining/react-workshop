@@ -1,9 +1,11 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Browse from '../browse/Browse'
 import PrimaryHeader from '../ui/PrimaryHeader'
-import PrimarySidebar from '../ui/PrimarySidebar'
 import './AuthorizedLayout.scss'
+
+// Pages and Sub Layouts
+import Home from '../Home'
+import Products from '../products/Products'
 
 function AuthorizedLayout() {
   return (
@@ -11,12 +13,10 @@ function AuthorizedLayout() {
       <div>
         <PrimaryHeader />
         <div className="primary-content">
-          <PrimarySidebar></PrimarySidebar>
-          <main>
-            <Switch>
-              <Route path="/browse" component={Browse} />
-            </Switch>
-          </main>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/products" component={Products} />
+          </Switch>
         </div>
       </div>
     </div>

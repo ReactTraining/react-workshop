@@ -1,0 +1,26 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Super Nintendo NES",
+      "description": "The Super Nintendo Entertainment System (SNES),[b] also known as the Super NES[c] or Super Nintendo,[d] is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea",
+      "inventory": 8,
+      "price": 120.0,
+      "year": "1990",
+      "condition": "fair",
+      "brand": "Nintendo",
+      "category": "games"
+    },
+    {
+      "id": 2,
+      "name": "Donkey Kong Country",
+      "description": "Donkey Kong Country[α] is a 1994 platform game developed by Rare and published by Nintendo for the Super Nintendo Entertainment System, as part of the Donkey Kong franchise created by Shigeru Miyamoto. The game centers on the duo of Donkey Kong and his nephew Diddy Kong, who are on a quest to recover their stolen banana hoard from King K. Rool and his henchmen Kremlings.",
+      "inventory": 8,
+      "price": 56.0,
+      "year": "1994",
+      "condition": "excellent",
+      "brand": "Nintendo",
+      "category": "games"
+    }
+  ]
+}

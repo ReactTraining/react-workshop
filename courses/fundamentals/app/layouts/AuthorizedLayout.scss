@@ -15,14 +15,12 @@
   .primary-content {
     // Take up the rest of the vertical space that .primary-header doesn't use
     flex: 1;
-    display: flex;
     margin-top: $gutter;
     margin-bottom: $gutter;
   }
 
-  // Has .primary-aside sibling flex item
-  main {
-    // Take up the rest of the horizontal space that .primary-aside doesn't use
-    flex: 1;
+  // A className that can be applied to <Column>
+  .primary-sidebar {
+    border-right: 1px solid $line-color;
   }
 }
