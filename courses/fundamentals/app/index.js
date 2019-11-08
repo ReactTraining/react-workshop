@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppStateProvider } from './state/AppState'
+import { AuthStateProvider } from './state/AuthState'
 import App from './App'
 
 ReactDOM.render(
-  <AppStateProvider>
+  <AuthStateProvider>
     <App />
-  </AppStateProvider>,
+  </AuthStateProvider>,
   document.getElementById('root')
 )

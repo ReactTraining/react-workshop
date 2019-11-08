@@ -1,12 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import LoginForm from 'workshop/LoginForm'
+import { login } from './utils/auth'
+import { useAuthState } from './state/AuthState'
 
 function Home() {
+  const { loginUser } = useAuthState()
+
+  function handleLogin(email, password) {
+    login(email, password).then(user => {
+      loginUser(user)
+    })
+  }
+
   return (
     <div>
       Home Page
       <br />
-      <Link to="/products">Products</Link>
+      <LoginForm onSubmit={handleLogin} />
     </div>
   )
 }

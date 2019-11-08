@@ -3,9 +3,9 @@ import classnames from 'classnames'
 import './Avatar.scss'
 
 function Avatar({ src, size = 3, className, ...rest }) {
-  console.log(src)
+  const Element = src ? 'img' : 'div'
   return (
-    <img
+    <Element
       src={src}
       alt="Avatar"
       style={{ fontSize: `${size}em` }}
