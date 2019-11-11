@@ -1,17 +1,20 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext, useReducer, useEffect } from 'react'
 
 const AuthStateContext = React.createContext()
 
 const initialState = {
   authenticated: false,
-  user: null,
+  user: {},
 }
+
+const LOCAL_STORAGE_KEY = 'reacttraining-workshop-auth'
 
 export function AuthStateProvider({ children }) {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'LOGIN': {
-        return { ...state, authenticated: true, user: action.user }
+        const { username, name, avatarUrl } = action
+        return { ...state, authenticated: true, user: { username, name, avatarUrl } }
       }
       case 'LOGOUT': {
         return initialState
@@ -23,11 +26,13 @@ export function AuthStateProvider({ children }) {
 
   const value = {
     ...state,
-    loginUser(user) {
-      dispatch({ type: 'LOGIN', user })
+    setAuthenticatedUser(username, name, avatarUrl) {
+      dispatch({ type: 'LOGIN', username, name, avatarUrl })
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ username, name, avatarUrl }))
     },
-    logoutUser() {
-      dispatch({ type: 'LOGOUT ' })
+    removeAuthenticatedUser() {
+      dispatch({ type: 'LOGOUT' })
+      localStorage.setItem(LOCAL_STORAGE_KEY, null)
     },
   }
 
@@ -35,5 +40,21 @@ export function AuthStateProvider({ children }) {
 }
 
 export function useAuthState() {
-  return useContext(AuthStateContext)
+  const authState = useContext(AuthStateContext)
+
+  useEffect(() => {
+    if (!authState.user.username) {
+      const localStorageUser = localStorage.getItem(LOCAL_STORAGE_KEY)
+      if (!localStorageUser) return
+      try {
+        const { username, name, avatarUrl } = JSON.parse(localStorageUser)
+        authState.setAuthenticatedUser(username, name, avatarUrl)
+      } catch (e) {
+        return
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return authState
 }

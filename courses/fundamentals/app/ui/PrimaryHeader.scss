@@ -2,6 +2,30 @@
 
 .primary-header {
   border-bottom: 1px solid $line-color;
-  margin-top: 3em;
-  padding-bottom: $gutter;
+  margin-top: 0.5em;
+  padding-bottom: 0.5rem;
+}
+
+.primary-nav-item {
+  vertical-align: middle;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+  color: #333 !important;
+  font-weight: bold !important;
+  letter-spacing: 0.1em !important;
+
+  &.active {
+    text-decoration: underline;
+  }
+}
+
+.primary-nav-item-signup {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background-color: $bright-blue;
+  padding: 0.2em 1em;
+  border-radius: 0.4em;
 }

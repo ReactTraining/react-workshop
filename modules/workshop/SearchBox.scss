@@ -1,0 +1,39 @@
+@import 'workshop/styles/_theme.scss';
+
+.search-box {
+  position: relative;
+  svg {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    fill: $blue;
+  }
+
+  input {
+    padding: 0.4rem;
+    padding-left: 1.6rem;
+    border-radius: 0.3rem;
+    width: 15rem;
+    border: 1px solid transparent;
+    background-color: #f0faff;
+    color: $bright-blue;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: $blue;
+      font-style: italic;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      border-color: $bright-blue;
+      background-color: #fff;
+      width: 25rem;
+      outline: 0;
+      &::placeholder {
+        color: #ddd;
+      }
+    }
+  }
+}

@@ -1,16 +1,23 @@
 // Literal Color Names
+$blue: #2084b0;
 $bright-blue: #04b3ff;
+$green: #3cbf3c;
+$red: red;
 
 // Semantic Colors
 $line-color: #edf2f7;
+$warn: $red;
+$success: $green;
 
 // Copy
+$text-color: #444;
 $font-family: 'Nunito Sans';
 $font-weight: 300;
 $font-size: 14pt;
+$link-color: $bright-blue;
 $heading-font-family: $font-family;
 $heading-font-weight: 700;
 
 // Layout
 $gutter: 1em;
-$gutter-small: 0.6em;
+$gutter-small: 0.4em;

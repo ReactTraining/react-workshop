@@ -1,11 +1,18 @@
 {
   "users": [
     {
-      "name": "Brad",
+      "name": "Brad Westfall",
       "username": "bradwestfall",
-      "password": "abc12",
+      "password": "abc123",
+      "avatarUrl": "https://avatars3.githubusercontent.com/u/2272118?v=4",
+      "id": 2
+    },
+    {
+      "username": "",
+      "name": "",
+      "password": "",
       "avatarUrl": "",
-      "id": 1
+      "id": 3
     }
   ],
   "products": [
@@ -13,6 +20,7 @@
       "id": 1,
       "name": "Super Nintendo NES",
       "description": "The Super Nintendo Entertainment System (SNES),[b] also known as the Super NES[c] or Super Nintendo,[d] is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea",
+      "imagePath": "/images/products/nintendo-nes.png",
       "inventory": 8,
       "price": 120,
       "year": "1990",
@@ -24,10 +32,23 @@
       "id": 2,
       "name": "Donkey Kong Country",
       "description": "Donkey Kong Country[α] is a 1994 platform game developed by Rare and published by Nintendo for the Super Nintendo Entertainment System, as part of the Donkey Kong franchise created by Shigeru Miyamoto. The game centers on the duo of Donkey Kong and his nephew Diddy Kong, who are on a quest to recover their stolen banana hoard from King K. Rool and his henchmen Kremlings.",
+      "imagePath": "/images/products/donkey-kong-country.jpg",
       "inventory": 8,
       "price": 56,
       "year": "1994",
       "condition": "excellent",
+      "brand": "Nintendo",
+      "category": "games"
+    },
+    {
+      "id": 3,
+      "name": "Mario Kart",
+      "description": "Mario Kart[a] is a series of go-kart-style racing video games developed and published by Nintendo as spin-offs from its trademark Super Mario series. The first in the series, Super Mario Kart, was launched in 1992 on the Super Nintendo Entertainment System to critical and commercial success.",
+      "imagePath": "/images/products/mario-kart.jpg",
+      "inventory": 9,
+      "price": 67,
+      "year": "1992",
+      "condition": "fair",
       "brand": "Nintendo",
       "category": "games"
     }

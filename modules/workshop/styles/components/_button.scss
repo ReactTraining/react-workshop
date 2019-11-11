@@ -1,0 +1,43 @@
+.button,
+.icon-button,
+.reset-button,
+button.as-link {
+  all: unset;
+  cursor: pointer;
+  > * {
+    vertical-align: middle;
+  }
+}
+
+.button {
+  font-size: 0.8rem;
+  border-radius: 0.2rem;
+  color: #fff;
+  background-color: $bright-blue;
+  border: 1px solid transparent;
+  padding: 0.2rem 1.2rem;
+
+  // These normalize anchors with .button to behave more like buttons
+  display: inline-block;
+  text-decoration: none !important;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($bright-blue, 0.3);
+  }
+
+  [disabled] {
+    background-color: #aaa;
+  }
+}
+
+.button-action {
+  background-color: $green;
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($green, 0.3);
+  }
+}
+
+button.as-link {
+  color: $link-color;
+}

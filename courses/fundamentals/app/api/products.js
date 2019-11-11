@@ -5,7 +5,7 @@ export function getProducts() {
 }
 
 export function getProduct(productId) {
-  return get(`/products${productId}`)
+  return get(`/products/${productId}`)
 }
 
 export function addProduct(data) {

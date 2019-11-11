@@ -8,7 +8,7 @@ function Avatar({ src, size = 3, className, ...rest }) {
     <Element
       src={src}
       alt="Avatar"
-      style={{ fontSize: `${size}em` }}
+      style={{ fontSize: `${size}rem` }}
       className={classnames('avatar', className)}
       {...rest}
     />

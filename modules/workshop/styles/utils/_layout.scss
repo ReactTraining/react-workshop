@@ -19,6 +19,9 @@
 .horizontal-spacing {
   @include spacing($gutter, true);
 }
+.horizontal-spacing-large {
+  @include spacing($gutter * 2, true);
+}
 
 /**
  * Alignment
@@ -28,14 +31,14 @@
   vertical-align: middle;
 }
 
-.left-content {
+.align-left {
   text-align: left;
 }
 
-.center-content {
+.align-center {
   text-align: center;
 }
 
-.right-content {
+.align-right {
   text-align: right;
 }

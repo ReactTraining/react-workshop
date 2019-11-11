@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@babel/core": "7.6.0",
+    "@reach/menu-button": "^0.5.4",
+    "@reach/visually-hidden": "^0.5.0",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
@@ -66,6 +68,7 @@
     "react-dev-utils": "^9.1.0",
     "react-dom": "^16.10.2",
     "react-flex-columns": "^0.4.2",
+    "react-icons": "^3.8.0",
     "resolve": "1.12.0",
     "resolve-url-loader": "3.1.0",
     "semver": "6.3.0",

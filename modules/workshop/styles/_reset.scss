@@ -3,7 +3,7 @@
 
 html {
   box-sizing: border-box;
-  color: #444;
+  color: $text-color;
   font-family: $font-family, Arial;
   font-size: $font-size;
   font-weight: $font-weight;
@@ -20,8 +20,14 @@ body {
   margin: 0;
 }
 
+hr {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid $line-color;
+}
+
 a {
-  color: $bright-blue;
+  color: $link-color;
   text-decoration: none;
   &:hover {
     text-decoration: underline;

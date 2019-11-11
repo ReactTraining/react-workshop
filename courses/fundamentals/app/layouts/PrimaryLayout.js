@@ -5,10 +5,12 @@ import { useAuthState } from '../state/AuthState'
 import './PrimaryLayout.scss'
 
 // Pages and Sub Layouts
-import Home from '../Home'
-import Signup from '../signup/Signup'
-import Account from '../account/Account'
-import Products from '../products/Products'
+import Home from '../pages/Home'
+import Signup from '../pages/Signup'
+import Login from '../pages/Login'
+import Account from '../pages/account/Account'
+import Products from '../pages/products/Products'
+import Cart from '../pages/Cart'
 
 function PrimaryLayout() {
   const { authenticated } = useAuthState()
@@ -21,7 +23,9 @@ function PrimaryLayout() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/signup" exact component={Signup} />
+            <Route path="/login" exact component={Login} />
             <Route path="/products" component={Products} />
+            <Route path="/cart" component={Cart} />
             {authenticated && <Route path="/account" component={Account} />}
           </Switch>
         </div>

@@ -2,7 +2,9 @@
 
 .product-image {
   display: block;
-  width: 100%;
-  height: auto;
-  background-color: #eee; // temporary
+
+  // Size of image will be controlled by font-size to preserve perspective
+  width: 1em;
+  height: 0.7em;
+  object-fit: cover;
 }
