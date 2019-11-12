@@ -6,7 +6,7 @@ import SubNav from '../../ui/SubNav'
 import { useShoppingCartState } from '../../state/ShoppingCartState'
 
 // Pages
-import BrowseProducts from './browse/BrowseProducts'
+import BrowseProducts from './BrowseProducts'
 import ProductProfile from './ProductProfile'
 
 function Products() {
@@ -18,14 +18,14 @@ function Products() {
         <Columns split middle>
           <Column>
             {cart.length > 0 ? (
-              <Link to="/cart">View Cart: {cart.length} Items</Link>
+              <Link to="/checkout">Checkout ({cart.length} Items)</Link>
             ) : (
               <span>Cart is Empty</span>
             )}
           </Column>
           <Column>
             <div className="align-right">
-              <SearchBox placeholder="Search Products" />
+              <SearchBox placeholder="Search Products" path="/products" />
             </div>
           </Column>
         </Columns>

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Heading } from 'workshop'
 
-function Cart() {
+function Checkout() {
   return (
     <div>
-      <Heading>Cart</Heading>
+      <Heading>Checkout</Heading>
     </div>
   )
 }
 
-export default Cart
+export default Checkout

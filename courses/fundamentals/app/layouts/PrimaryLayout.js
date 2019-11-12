@@ -10,7 +10,7 @@ import Signup from '../pages/Signup'
 import Login from '../pages/Login'
 import Account from '../pages/account/Account'
 import Products from '../pages/products/Products'
-import Cart from '../pages/Cart'
+import Checkout from '../pages/Checkout'
 
 function PrimaryLayout() {
   const { authenticated } = useAuthState()
@@ -25,7 +25,7 @@ function PrimaryLayout() {
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
             <Route path="/products" component={Products} />
-            <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
             {authenticated && <Route path="/account" component={Account} />}
           </Switch>
         </div>

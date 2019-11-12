@@ -16,6 +16,7 @@
     // Take up the rest of the vertical space that .primary-header doesn't use
     flex: 1;
     margin-bottom: $gutter;
+    min-height: 15em;
   }
 
   // A className that can be applied to <Column>

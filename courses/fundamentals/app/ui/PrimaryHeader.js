@@ -35,7 +35,7 @@ function PrimaryHeader() {
                   <MenuLink to="/account" as={Link}>
                     My Account
                   </MenuLink>
-                  <MenuItem onClick={removeAuthenticatedUser}>Logout</MenuItem>
+                  <MenuItem onSelect={removeAuthenticatedUser}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             ) : (

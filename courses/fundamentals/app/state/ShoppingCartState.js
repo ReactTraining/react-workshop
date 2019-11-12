@@ -44,8 +44,6 @@ export function ShoppingCartStateProvider({ children }) {
     }
   }, initialState)
 
-  console.log('CART', state.cart)
-
   const value = {
     ...state,
     addToCart(productId, quantity) {

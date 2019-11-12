@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Quantity } from 'workshop'
-import ProductImage from '../../../ui/ProductImage'
-import ShoppingCartButton from '../../../ui/ShoppingCartButton'
-import { useShoppingCartState } from '../../../state/ShoppingCartState'
+import ProductImage from '../../ui/ProductImage'
+import ShoppingCartButton from '../../ui/ShoppingCartButton'
+import { useShoppingCartState } from '../../state/ShoppingCartState'
 import './BrowseProductItem.scss'
 
 function BrowseProductItem({
