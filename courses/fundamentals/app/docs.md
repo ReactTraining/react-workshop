@@ -2,7 +2,15 @@
 
 Just some starter info to help us all stay on the same page.
 
-## Where is stuff
+```sh
+npm start
+
+# Select
+# - Fundamentals
+# - App
+```
+
+## Where can I find stuff?
 
 The folder structure is pretty strait forward. `pages` should only have components that are used by routes. General components can either go in `/courses/fundamentals/app/ui` or in `/modules/workshop`. In general, lets try to put lots of re-usable things in `/modules/workshop` so they can be used on other mock apps or in lessons. If something is so specific to this app and not very reusable for lessons, then it gan go in `app/ui`
 
