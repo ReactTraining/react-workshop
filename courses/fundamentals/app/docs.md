@@ -29,7 +29,7 @@ There's an `api` folder which organizes all possible API requests into a single 
 ```js
 import api from '../api
 
-api.users.getUser(1)
+api.users.getUser(1).then()
 ```
 
 The underlying tech is `fetch`
