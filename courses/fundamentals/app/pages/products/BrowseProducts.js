@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import api from '../../api'
-import BrowseProductItem from './BrowseProductItem'
+import BrowseProductItem from '../../ui/BrowseProductItem'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading } from 'workshop'
 
@@ -29,18 +29,20 @@ function BrowseProducts() {
           <Heading size={1}>Browse Products</Heading>
         </Column>
         <Column>
-          <div className="horizontal-spacing text-small">
-            <span>
-              Showing 1 - 1 of {`${totalResults} `}
-              {search.q && (
-                <span>
-                  {' '}
-                  from search: <strong>{search.q}</strong>
-                </span>
-              )}
-            </span>
-            {search.q && <Link to="/products">Clear</Link>}
-          </div>
+          {Array.isArray(products) > 0 && (
+            <div className="horizontal-spacing text-small">
+              <span>
+                Showing 1 - 1 of {`${totalResults} `}
+                {search.q && (
+                  <span>
+                    {' '}
+                    from search: <strong>{search.q}</strong>
+                  </span>
+                )}
+              </span>
+              {search.q && <Link to="/products">Clear</Link>}
+            </div>
+          )}
         </Column>
       </Columns>
 

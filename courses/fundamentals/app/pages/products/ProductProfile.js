@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
 import api from '../../api'
-import { Heading, Quantity } from 'workshop'
+import { Heading, Quantity, Tiles } from 'workshop'
 import ProductImage from '../../ui/ProductImage'
 import ShoppingCartButton from '../../ui/ShoppingCartButton'
 import { useShoppingCartState } from '../../state/ShoppingCartState'
+import ProductTile from '../../ui/ProductTile'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)
@@ -53,7 +54,16 @@ function ProductProfile({ match }) {
         </Column>
       </Columns>
       <hr />
-      <div>[Related Products Here?]</div>
+      <div>
+        <Heading as="h2" size={4}>
+          Related Products
+        </Heading>
+        <Tiles>
+          <ProductTile />
+          <ProductTile />
+          <ProductTile />
+        </Tiles>
+      </div>
     </div>
   )
 }
