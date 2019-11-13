@@ -1,20 +1,5 @@
 {
-  "users": [
-    {
-      "name": "Brad Westfall",
-      "username": "bradwestfall",
-      "password": "abc123",
-      "avatarUrl": "https://avatars3.githubusercontent.com/u/2272118?v=4",
-      "id": 2
-    },
-    {
-      "username": "",
-      "name": "",
-      "password": "",
-      "avatarUrl": "",
-      "id": 3
-    }
-  ],
+  "users": [],
   "products": [
     {
       "id": 1,

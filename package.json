@@ -8,7 +8,9 @@
     "test": "node scripts/test.js",
     "db": "json-server --watch db.json --port 3333",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "reset-data": "",
+    "postinstall": "npm run reset-data"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.2.5",

@@ -116,8 +116,8 @@ function getEntry() {
   /**
    * See if we need to load a database
    */
-  let dbPath = path.resolve(rootPath, 'db.json')
-  let dbPathAlt = path.resolve(rootPath, 'db.js')
+  let dbPath = path.resolve(rootPath, 'database', 'db.json')
+  let dbPathAlt = path.resolve(rootPath, 'database', 'db.js')
   dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
 
   if (dbPath) {
