@@ -24,6 +24,9 @@ preferences.json
 # For any personal notes any instructors want to take
 notes.md
 
+# Ignore json-server database files
+db.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
