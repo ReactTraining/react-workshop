@@ -8,7 +8,7 @@
     "test": "node scripts/test.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "reset-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
+    "reset-db": "find courses -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
     "postinstall": "npm run reset-db"
   },
   "devDependencies": {

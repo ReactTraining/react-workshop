@@ -1,4 +1,4 @@
-# Developer Docs for this App
+# Docs for development on YesterTech app (for the fundamentals course)
 
 Just some starter info to help us all stay on the same page.
 
@@ -18,9 +18,9 @@ When adding files to `/modules/workshop`, be sure to add them to the `index` fil
 
 ## Database
 
-We're using `json-server` which makes an Express API against a JSON powered database. It gives us a RESTful interface to the JSON file to feel like a real persistency layer.
-
 json-server is automatically fired up along with the app because the presence of `db.json` is at the root of the app folder. Currently there are two "collections" (tables) in the database for `products` and `users`. We'll add more later for things like comments
+
+Also, see our [database docs](./database.md)
 
 ## Client-side API requests
 
