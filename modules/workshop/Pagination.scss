@@ -1,0 +1,16 @@
+@import 'workshop/styles/_theme.scss';
+
+.pagination {
+  .pagination-link {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0 0.5rem;
+    border: 1px solid #eee;
+
+    &.active {
+      border-color: $blue;
+      background-color: $blue;
+      color: #fff;
+    }
+  }
+}

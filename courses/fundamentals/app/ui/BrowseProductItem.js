@@ -10,6 +10,7 @@ import './BrowseProductItem.scss'
 function BrowseProductItem({
   productId,
   name,
+  price,
   imagePath,
   year = 'unknown',
   condition = 'n/a',
@@ -27,15 +28,18 @@ function BrowseProductItem({
       </Column>
       <Column flex className="spacing-small">
         <Heading as="h1" size={3}>
-          {name} ({year})
+          <Link to={`/products/${productId}`}>
+            {name} ({year})
+          </Link>
         </Heading>
+        <div className="horizontal-spacing">
+          <span>Price:</span>
+          <strong>${price.toFixed(2)}</strong>
+        </div>
         <div className="text-small horizontal-spacing">
           <span>Brand: {brand}</span>
           <span>Category: {category}</span>
           <span>Condition: {condition}</span>
-        </div>
-        <div>
-          <Link to={`/products/${productId}`}>More Info</Link>
         </div>
       </Column>
       <Column className="spacing-small">
