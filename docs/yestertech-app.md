@@ -18,9 +18,9 @@ When adding files to `/modules/workshop`, be sure to add them to the `index` fil
 
 ## Database
 
-json-server is automatically fired up along with the app because the presence of `db.json` is at the root of the app folder. Currently there are two "collections" (tables) in the database for `products` and `users`. We'll add more later for things like comments
+json-server is automatically fired up when the app starts. Currently there are two "collections" (tables) in the database for `products` and `users`. We'll add more later for things like comments
 
-Also, see our [database docs](./database.md)
+Also, see our [database docs](./databases.md)
 
 ## Client-side API requests
 

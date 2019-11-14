@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import queryString from 'query-string'
 import { IoIosSearch } from 'react-icons/io'
 import './SearchBox.scss'
@@ -21,6 +21,11 @@ function SearchBox({ placeholder, path, history }) {
     history.push(`${path}?${search}`)
   }
 
+  function clear() {
+    setQuery('') // Optimistic
+    history.push(path)
+  }
+
   return (
     <form onSubmit={handleSubmit} className="search-box">
       <IoIosSearch />
@@ -30,6 +35,9 @@ function SearchBox({ placeholder, path, history }) {
         value={query}
         onChange={e => setQuery(e.target.value)}
       />
+      <button className="clear-search" type="button" onClick={clear}>
+        Clear
+      </button>
     </form>
   )
 }
