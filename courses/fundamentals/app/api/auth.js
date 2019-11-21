@@ -2,8 +2,10 @@ import { get } from './utils'
 
 export function login(username, password) {
   return get(`/users?username=${username}&password=${password}`).then(results => {
-    if (results.length === 1) {
-      return results[0]
+    if (results.length > 0) {
+      const user = results[0]
+      delete user.password
+      return user
     } else {
       return Promise.reject('User not found')
     }

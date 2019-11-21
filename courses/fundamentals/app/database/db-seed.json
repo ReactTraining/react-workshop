@@ -3,12 +3,12 @@
   "products": [
     {
       "id": 1,
-      "name": "Super Nintendo NES",
-      "description": "The Super Nintendo Entertainment System (SNES),[b] also known as the Super NES[c] or Super Nintendo,[d] is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea",
+      "name": "Nintendo NES",
+      "description": "The Nintendo Entertainment System (NES) is an 8-bit third-generation home video game console produced, released, and marketed by Nintendo. It is a remodelled export version of the company's Family Computer[a] (FC) platform in Japan, commonly known as the Famicom[b], which was launched on July 15, 1983",
       "imagePath": "/images/products/nintendo-nes.png",
       "inventory": 8,
       "price": 120,
-      "year": "1990",
+      "year": "1985",
       "condition": "fair",
       "brand": "Nintendo",
       "category": "games"

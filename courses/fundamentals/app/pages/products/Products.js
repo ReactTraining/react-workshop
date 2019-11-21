@@ -17,7 +17,7 @@ function Products() {
       <SubNav>
         <Columns split middle>
           <Column>
-            {cart.length > 0 ? (
+            {Array.isArray(cart) && cart.length > 0 ? (
               <Link to="/checkout">Checkout ({cart.length} Items)</Link>
             ) : (
               <span>Cart is Empty</span>

@@ -1,16 +1,21 @@
 import React, { Fragment } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
-import { useAuthState } from '../state/AuthState'
+import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
+import useAuth from '../hooks/useAuth'
 import { Avatar } from 'workshop'
 import Logo from '../ui/Logo'
+import { logout } from '../utils/localStorage'
 import './PrimaryHeader.scss'
-
-import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
 import '@reach/menu-button/styles.css'
 
 function PrimaryHeader() {
-  const { authenticated, user, removeAuthenticatedUser } = useAuthState()
+  const { authenticated, user, dispatch } = useAuth()
+
+  function handleLogout() {
+    logout()
+    dispatch({ type: 'LOGOUT' })
+  }
 
   return (
     <div className="primary-header">
@@ -29,13 +34,13 @@ function PrimaryHeader() {
             {authenticated ? (
               <Menu>
                 <MenuButton className="primary-nav-item reset-button">
-                  <Avatar src={user.avatarUrl} size={1.5} />
+                  <Avatar src={user && user.avatarUrl} size={1.5} />
                 </MenuButton>
                 <MenuList>
                   <MenuLink to="/account" as={Link}>
                     My Account
                   </MenuLink>
-                  <MenuItem onSelect={removeAuthenticatedUser}>Logout</MenuItem>
+                  <MenuItem onSelect={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             ) : (

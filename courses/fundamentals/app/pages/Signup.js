@@ -3,10 +3,10 @@ import { Columns, Column } from 'react-flex-columns'
 import VisuallyHidden from '@reach/visually-hidden'
 import { Heading, Avatar } from 'workshop'
 import api from '../api'
-import { useAuthState } from '../state/AuthState'
+import useAuth from '../hooks/useAuth'
 
 function Signup({ history }) {
-  const { setAuthenticatedUser } = useAuthState()
+  const { dispatch } = useAuth()
   const [useGithub, setUseGithub] = useState(true)
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
@@ -15,8 +15,8 @@ function Signup({ history }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    api.users.registerUser({ username, name, password, avatarUrl }).then(response => {
-      setAuthenticatedUser(username, name, avatarUrl)
+    api.users.registerUser({ username, name, password, avatarUrl }).then(() => {
+      dispatch({ type: 'LOGIN', user: { username, name, password, avatarUrl } })
       history.push('/products')
     })
   }
@@ -24,11 +24,10 @@ function Signup({ history }) {
   useEffect(() => {
     let isCurrent = true
     if (useGithub && username.length > 5) {
-      console.log('here')
       api.auth.getGithubUser(username).then(user => {
         if (user && isCurrent) {
-          setName(user.name)
-          setAvatarUrl(user.avatar_url)
+          setName(user.name || '')
+          setAvatarUrl(user.avatar_url || '')
         }
       })
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PrimaryHeader from '../ui/PrimaryHeader'
-import { useAuthState } from '../state/AuthState'
+import useAuth from '../hooks/useAuth'
 import './PrimaryLayout.scss'
 
 // Pages and Sub Layouts
@@ -13,7 +13,7 @@ import Products from '../pages/products/Products'
 import Checkout from '../pages/Checkout'
 
 function PrimaryLayout() {
-  const { authenticated } = useAuthState()
+  const { authenticated } = useAuth()
 
   return (
     <div className="primary-layout">

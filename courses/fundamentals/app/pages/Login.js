@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { FormField, Heading, Notice, Centered } from 'workshop'
 import { MdKeyboardArrowRight } from 'react-icons/md'
+import { login } from '../utils/localStorage'
+import useAuth from '../hooks/useAuth'
 import api from '../api'
-import { useAuthState } from '../state/AuthState'
 
 function Login({ history }) {
-  const { setAuthenticatedUser } = useAuthState()
+  const { dispatch } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -16,8 +17,9 @@ function Login({ history }) {
     setLoading(true)
     api.auth
       .login(username, password)
-      .then(({ username, name, avatarUrl }) => {
-        setAuthenticatedUser(username, name, avatarUrl)
+      .then(user => {
+        login(user)
+        dispatch({ type: 'LOGIN', user })
         history.push('/')
       })
       .catch(error => {
