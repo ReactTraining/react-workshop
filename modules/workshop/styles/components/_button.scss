@@ -23,8 +23,18 @@ button.as-link {
   display: inline-block;
   text-decoration: none !important;
 
-  > svg:first-child {
-    margin-right: 0.3em;
+  // Icon Size and Alignment
+  > * {
+    vertical-align: middle;
+  }
+  > svg {
+    font-size: 1rem;
+  }
+  > span + svg {
+    margin-left: 0.3em;
+  }
+  > svg + span {
+    margin-left: 0.5em;
   }
 
   &:focus {
@@ -37,7 +47,7 @@ button.as-link {
   }
 }
 
-.button-action {
+.cta-button {
   background-color: $green;
   &:focus {
     box-shadow: 0 0 0 3px rgba($green, 0.3);

@@ -13,7 +13,7 @@ function ProductSubNav() {
       <Columns split middle>
         <Column>
           {Array.isArray(cart) && cart.length > 0 ? (
-            <Link to="/checkout">Checkout ({cart.length} Items)</Link>
+            <Link to="/checkout">View Cart ({cart.length} Items)</Link>
           ) : (
             <span>Cart is Empty</span>
           )}

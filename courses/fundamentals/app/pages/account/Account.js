@@ -2,7 +2,11 @@ import React from 'react'
 import { Heading } from 'workshop'
 
 function Account() {
-  return <Heading>Account</Heading>
+  return (
+    <div className="spacing">
+      <Heading>Account</Heading>
+    </div>
+  )
 }
 
 export default Account

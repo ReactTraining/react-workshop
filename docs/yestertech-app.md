@@ -98,4 +98,4 @@ There are some other utilities including
 - `.text-small` - Smaller Text
 - `.text-large` - Larger text
 - `.text-xlarge` - Larger Larger Text
-- `.confine` - Doesn't let text wrap, creates an ellipses instead
+- `.no-wrap` - Doesn't let text wrap, creates an ellipses instead

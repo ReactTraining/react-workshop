@@ -15,6 +15,8 @@ export function ShoppingCartStateProvider({ children }) {
               cart: state.cart.concat({
                 productId: action.productId,
                 quantity: action.quantity,
+                name: action.name || '',
+                price: action.price || 0,
               }),
             }
           } else {
@@ -50,8 +52,8 @@ export function ShoppingCartStateProvider({ children }) {
 
   const value = {
     ...state,
-    addToCart(productId, quantity) {
-      dispatch({ type: 'ADD', productId, quantity })
+    addToCart(productId, quantity, name, price) {
+      dispatch({ type: 'ADD', productId, quantity, name, price })
     },
     removeFromCart(productId) {
       dispatch({ type: 'REMOVE', productId })

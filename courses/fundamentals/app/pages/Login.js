@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Heading, Notice, Centered } from 'workshop'
 import VisuallyHidden from '@reach/visually-hidden'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { login } from '../utils/localStorage'
 import useAuth from '../hooks/useAuth'
 import api from '../api'
@@ -33,14 +33,19 @@ function Login({ history }) {
     <Centered className="spacing">
       <Heading>Login</Heading>
       <form onSubmit={handleLogin} className="spacing">
-        {error && <Notice type="error">{error}</Notice>}
+        {error && (
+          <Notice type="error">
+            <FaExclamationCircle />
+            <span>{error}</span>
+          </Notice>
+        )}
 
         <div className="form-field">
           <VisuallyHidden>
-            <label htmlFor="signup:username">Username</label>
+            <label htmlFor="login:username">Username</label>
           </VisuallyHidden>
           <input
-            id="signup:username"
+            id="login:username"
             onChange={e => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
@@ -48,10 +53,10 @@ function Login({ history }) {
         </div>
         <div className="form-field">
           <VisuallyHidden>
-            <label htmlFor="signup:password">Password</label>
+            <label htmlFor="login:password">Password</label>
           </VisuallyHidden>
           <input
-            id="signup:password"
+            id="login:password"
             onChange={e => setPassword(e.target.value)}
             type="password"
             placeholder="Password"

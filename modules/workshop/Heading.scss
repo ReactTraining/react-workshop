@@ -18,4 +18,12 @@
   &.size-4 {
     font-size: 0.7em;
   }
+
+  > * {
+    vertical-align: middle;
+  }
+
+  > svg {
+    fill: $bright-blue;
+  }
 }

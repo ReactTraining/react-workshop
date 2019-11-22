@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import PrimaryHeader from '../ui/PrimaryHeader'
 import useAuth from '../hooks/useAuth'
 import './PrimaryLayout.scss'
@@ -11,10 +11,12 @@ import Login from '../pages/Login'
 import Account from '../pages/account/Account'
 import Products from '../pages/products/Products'
 import ProductSubNav from '../ui/ProductSubNav'
-import Checkout from '../pages/Checkout'
+import Checkout from '../pages/checkout/Checkout'
+import { useShoppingCartState } from '../state/ShoppingCartState'
 
 function PrimaryLayout() {
   const { authenticated } = useAuth()
+  const { cart } = useShoppingCartState()
 
   return (
     <div className="primary-layout">
@@ -27,8 +29,9 @@ function PrimaryLayout() {
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
             <Route path="/products" component={Products} />
-            <Route path="/checkout" component={Checkout} />
+            {cart.length > 0 && <Route path="/checkout" component={Checkout} />}
             {authenticated && <Route path="/account" component={Account} />}
+            <Redirect to="/" />
           </Switch>
         </main>
       </div>

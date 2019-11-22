@@ -26,7 +26,7 @@ function ProductTile({ productId }) {
           <ProductImage src={product.imagePath} name={product && product.name} size={5} />
         </Column>
         <Column flex className="spacing-small">
-          <Heading as="h2" size={4} className="confine">
+          <Heading as="h2" size={4} className="no-wrap">
             {product.name}
           </Heading>
           <div className="text-small">

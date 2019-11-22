@@ -9,7 +9,7 @@ import ProductTile from '../../ui/ProductTile'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState(null)
 
   // Cart
   const { addToCart, getQuantity } = useShoppingCartState()
@@ -24,11 +24,13 @@ function ProductProfile({ match }) {
     return () => (isCurrent = false)
   }, [productId])
 
+  if (!product) return <div>Loading...</div>
+
   return (
     <div className="product-profile spacing">
       <Columns gutters>
         <Column>
-          <ProductImage src={product.imagePath} name={product && product.name} size={15} />
+          <ProductImage src={product.imagePath} name={product.name} size={15} />
         </Column>
         <Column flex className="spacing">
           <Heading>{product.name}</Heading>
@@ -42,7 +44,8 @@ function ProductProfile({ match }) {
               </div>
             </Column>
             <Column className="spacing-small">
-              <ShoppingCartButton productId={productId} />
+              <ShoppingCartButton productId={productId} name={product.name} price={product.price} />
+
               {quantity > 0 && (
                 <div className="align-right">
                   <Quantity onChange={q => addToCart(productId, q)} quantity={quantity} />
