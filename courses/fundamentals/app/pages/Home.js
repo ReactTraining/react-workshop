@@ -4,12 +4,9 @@ import ProductTile from '../ui/ProductTile'
 
 function Home() {
   return (
-    <div>
+    <div className="spacing">
       <Heading>Home</Heading>
-      <br />
-      <br />
-      <br />
-      <br />
+      <section className="hero"></section>
 
       <section className="spacing">
         <Heading as="h2" size={4}>

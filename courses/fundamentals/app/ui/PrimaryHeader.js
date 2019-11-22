@@ -48,7 +48,7 @@ function PrimaryHeader() {
                 <NavLink to="/login" className="primary-nav-item">
                   Login
                 </NavLink>
-                <NavLink to="/signup" className="primary-nav-item-signup">
+                <NavLink to="/signup" className="button">
                   Signup
                 </NavLink>
               </Fragment>

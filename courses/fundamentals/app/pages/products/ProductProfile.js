@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
 import api from '../../api'
 import { Heading, Quantity, Tiles } from 'workshop'
@@ -53,17 +53,22 @@ function ProductProfile({ match }) {
           <p>{product.description}</p>
         </Column>
       </Columns>
-      <hr />
-      <div>
-        <Heading as="h2" size={4}>
-          Related Products
-        </Heading>
-        <Tiles>
-          <ProductTile />
-          <ProductTile />
-          <ProductTile />
-        </Tiles>
-      </div>
+
+      {Array.isArray(product.relatedProducts) && (
+        <Fragment>
+          <hr />
+          <div>
+            <Heading as="h2" size={4}>
+              Related Products
+            </Heading>
+            <Tiles>
+              {product.relatedProducts.map(productId => (
+                <ProductTile key={productId} productId={productId} />
+              ))}
+            </Tiles>
+          </div>
+        </Fragment>
+      )}
     </div>
   )
 }

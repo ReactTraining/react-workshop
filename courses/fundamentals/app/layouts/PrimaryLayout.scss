@@ -15,6 +15,7 @@
   .primary-content {
     // Take up the rest of the vertical space that .primary-header doesn't use
     flex: 1;
+    margin-top: $gutter;
     margin-bottom: $gutter;
     min-height: 15em;
   }

@@ -10,16 +10,22 @@ button.as-link {
 }
 
 .button {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   border-radius: 0.2rem;
   color: #fff;
   background-color: $bright-blue;
   border: 1px solid transparent;
-  padding: 0.2rem 1.2rem;
+  padding: 0.4rem 1rem;
 
   // These normalize anchors with .button to behave more like buttons
   display: inline-block;
   text-decoration: none !important;
+
+  > svg:first-child {
+    margin-right: 0.3em;
+  }
 
   &:focus {
     outline: none;

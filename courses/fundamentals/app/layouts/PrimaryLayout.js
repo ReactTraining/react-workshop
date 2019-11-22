@@ -4,12 +4,13 @@ import PrimaryHeader from '../ui/PrimaryHeader'
 import useAuth from '../hooks/useAuth'
 import './PrimaryLayout.scss'
 
-// Pages and Sub Layouts
+// Route Targets
 import Home from '../pages/Home'
 import Signup from '../pages/Signup'
 import Login from '../pages/Login'
 import Account from '../pages/account/Account'
 import Products from '../pages/products/Products'
+import ProductSubNav from '../ui/ProductSubNav'
 import Checkout from '../pages/Checkout'
 
 function PrimaryLayout() {
@@ -19,7 +20,8 @@ function PrimaryLayout() {
     <div className="primary-layout">
       <div>
         <PrimaryHeader />
-        <div className="primary-content">
+        <Route path="/products" component={ProductSubNav} />
+        <main className="primary-content">
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/signup" exact component={Signup} />
@@ -28,7 +30,7 @@ function PrimaryLayout() {
             <Route path="/checkout" component={Checkout} />
             {authenticated && <Route path="/account" component={Account} />}
           </Switch>
-        </div>
+        </main>
       </div>
     </div>
   )

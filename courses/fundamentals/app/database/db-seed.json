@@ -11,7 +11,8 @@
       "year": "1985",
       "condition": "fair",
       "brand": "Nintendo",
-      "category": "games"
+      "category": "games",
+      "relatedProducts": [2, 3]
     },
     {
       "id": 2,

@@ -3,9 +3,9 @@ import { Heading } from 'workshop'
 
 function Checkout() {
   return (
-    <div>
+    <main>
       <Heading>Checkout</Heading>
-    </div>
+    </main>
   )
 }
 

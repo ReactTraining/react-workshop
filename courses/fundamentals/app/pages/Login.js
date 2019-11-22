@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
-import { FormField, Heading, Notice, Centered } from 'workshop'
-import { MdKeyboardArrowRight } from 'react-icons/md'
+import { Heading, Notice, Centered } from 'workshop'
+import VisuallyHidden from '@reach/visually-hidden'
+import { FaSignInAlt } from 'react-icons/fa'
 import { login } from '../utils/localStorage'
 import useAuth from '../hooks/useAuth'
 import api from '../api'
@@ -29,27 +30,39 @@ function Login({ history }) {
   }
 
   return (
-    <Centered>
+    <Centered className="spacing">
       <Heading>Login</Heading>
       <form onSubmit={handleLogin} className="spacing">
         {error && <Notice type="error">{error}</Notice>}
-        <FormField
-          name="username"
-          placeholder="Username"
-          onChange={e => setUsername(e.target.value)}
-        />
-        <FormField
-          name="password"
-          placeholder="Password"
-          type="password"
-          onChange={e => setPassword(e.target.value)}
-        />
+
+        <div className="form-field">
+          <VisuallyHidden>
+            <label htmlFor="signup:username">Username</label>
+          </VisuallyHidden>
+          <input
+            id="signup:username"
+            onChange={e => setUsername(e.target.value)}
+            type="text"
+            placeholder="Username"
+          />
+        </div>
+        <div className="form-field">
+          <VisuallyHidden>
+            <label htmlFor="signup:password">Password</label>
+          </VisuallyHidden>
+          <input
+            id="signup:password"
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
 
         <footer>
           <button type="submit" className="button">
             {!loading ? (
               <Fragment>
-                <MdKeyboardArrowRight /> <span>Submit</span>
+                <FaSignInAlt /> <span>Login</span>
               </Fragment>
             ) : (
               <span>Loading ...</span>

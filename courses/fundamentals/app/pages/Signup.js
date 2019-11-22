@@ -39,7 +39,7 @@ function Signup({ history }) {
       <Column>
         <Avatar size={8} src={avatarUrl} />
       </Column>
-      <Column flex>
+      <Column flex className="spacing">
         <Heading>Signup</Heading>
         <form onSubmit={handleSubmit} className="spacing">
           <div>
@@ -55,10 +55,10 @@ function Signup({ history }) {
           <hr />
           <div className="form-field">
             <VisuallyHidden>
-              <label htmlFor="form-field:username">Username</label>
+              <label htmlFor="signup:username">Username</label>
             </VisuallyHidden>
             <input
-              id="form-field:username"
+              id="signup:username"
               onChange={e => setUsername(e.target.value)}
               value={username}
               type="text"
@@ -67,10 +67,10 @@ function Signup({ history }) {
           </div>
           <div className="form-field">
             <VisuallyHidden>
-              <label htmlFor="form-field:password">Password</label>
+              <label htmlFor="signup:password">Password</label>
             </VisuallyHidden>
             <input
-              id="form-field:password"
+              id="signup:password"
               onChange={e => setPassword(e.target.value)}
               value={password}
               type="password"
@@ -79,10 +79,10 @@ function Signup({ history }) {
           </div>
           <div className="form-field">
             <VisuallyHidden>
-              <label htmlFor="form-field:name">Full Name</label>
+              <label htmlFor="signup:name">Full Name</label>
             </VisuallyHidden>
             <input
-              id="form-field:name"
+              id="signup:name"
               onChange={e => setName(e.target.value)}
               value={name}
               type="text"
@@ -92,10 +92,10 @@ function Signup({ history }) {
           </div>
           <div className="form-field">
             <VisuallyHidden>
-              <label htmlFor="form-field:avatar-url">Avatar URL</label>
+              <label htmlFor="signup:avatar-url">Avatar URL</label>
             </VisuallyHidden>
             <input
-              id="form-field:avatar-url"
+              id="signup:avatar-url"
               onChange={e => setAvatarUrl(e.target.value)}
               value={avatarUrl}
               type="text"
@@ -105,7 +105,7 @@ function Signup({ history }) {
           </div>
           <footer>
             <button type="submit" className="button">
-              Submit
+              Signup
             </button>
           </footer>
         </form>

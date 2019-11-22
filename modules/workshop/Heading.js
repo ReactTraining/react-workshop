@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import './Heading.scss'
 
-function Heading({ as: Component = 'h1', size = 1, ...rest }) {
-  return <Component className={classnames('heading', `size-${size}`)} {...rest} />
+function Heading({ as: Component = 'h1', size = 1, className, ...rest }) {
+  return <Component className={classnames('heading', `size-${size}`, className)} {...rest} />
 }
 
 Heading.propTypes = {
