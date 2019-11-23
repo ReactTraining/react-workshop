@@ -27,3 +27,9 @@
     text-decoration: underline;
   }
 }
+
+.nav-user-dropdown {
+  [data-reach-menu-item][data-selected] {
+    background: $bright-blue;
+  }
+}
