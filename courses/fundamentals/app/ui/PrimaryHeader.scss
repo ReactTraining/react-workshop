@@ -6,6 +6,15 @@
   padding-bottom: 0.5rem;
 }
 
+.nav-logo {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $bright-blue;
+  }
+}
+
 .primary-nav-item {
   vertical-align: middle;
   text-transform: uppercase !important;
