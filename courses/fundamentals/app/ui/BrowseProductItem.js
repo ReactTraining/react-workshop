@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Quantity } from 'workshop'
 import ProductImage from './ProductImage'
+import ProductRating from './ProductRating'
 import ShoppingCartButton from './ShoppingCartButton'
 import { useShoppingCartState } from '../state/ShoppingCartState'
 import './BrowseProductItem.scss'
@@ -16,6 +17,7 @@ function BrowseProductItem({
   condition = 'n/a',
   brand = 'n/a',
   category = 'n/a',
+  rating,
 }) {
   // Cart
   const { addToCart, getQuantity } = useShoppingCartState()
@@ -32,6 +34,7 @@ function BrowseProductItem({
             {name} ({year})
           </Link>
         </Heading>
+        <ProductRating rating={rating} />
         <div className="horizontal-spacing">
           <span>Price:</span>
           <strong>${price.toFixed(2)}</strong>

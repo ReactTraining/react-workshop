@@ -54,6 +54,7 @@ function BrowseProducts() {
               brand={product.brand}
               category={product.category}
               condition={product.condition}
+              rating={product.rating}
             />
           ))}
         </div>
