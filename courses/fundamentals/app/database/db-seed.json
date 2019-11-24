@@ -13,7 +13,7 @@
       "brand": "Nintendo",
       "category": "games",
       "relatedProducts": [2, 3],
-      "rating": 3.5
+      "rating": 4.5
     },
     {
       "id": 2,
@@ -26,7 +26,7 @@
       "condition": "excellent",
       "brand": "Nintendo",
       "category": "games",
-      "rating": 4
+      "rating": 3.5
     },
     {
       "id": 3,
@@ -40,6 +40,19 @@
       "brand": "Nintendo",
       "category": "games",
       "rating": 4.5
+    },
+    {
+      "id": 4,
+      "name": "Google Glass",
+      "description": "Google Glass is a brand of smart glasses—an optical head-mounted display designed in the shape of a pair of eyeglasses, developed by X (previously Google X). It has an integral 5 megapixel still/720p video camera.",
+      "imagePath": "/images/products/google-glass.jpg",
+      "inventory": 20,
+      "price": 415,
+      "year": "2013",
+      "condition": "excellent",
+      "brand": "Google",
+      "category": "gadgets",
+      "rating": 3
     }
   ]
 }
