@@ -65,7 +65,7 @@ export function ShoppingCartStateProvider({ children }) {
     getCartSize() {
       if (!Array.isArray(state.cart)) return 0
       let size = 0
-      state.cart.map(item => {
+      state.cart.forEach(item => {
         size += item.quantity
       })
       return size
