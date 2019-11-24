@@ -1,29 +1,21 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React from 'react'
 import { Columns, Column } from 'react-flex-columns'
-import api from '../../api'
 import { Heading, Quantity, Tiles } from 'workshop'
+
 import ProductImage from '../../ui/ProductImage'
 import ProductRating from '../../ui/ProductRating'
 import ShoppingCartButton from '../../ui/ShoppingCartButton'
 import { useShoppingCartState } from '../../state/ShoppingCartState'
 import ProductTile from '../../ui/ProductTile'
+import useProduct from '../../hooks/useProduct'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)
-  const [product, setProduct] = useState(null)
+  const product = useProduct(productId)
 
   // Cart
   const { addToCart, getQuantity } = useShoppingCartState()
   const quantity = getQuantity(productId)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.products.getProduct(productId).then(product => {
-      if (!isCurrent) return
-      setProduct(product)
-    })
-    return () => (isCurrent = false)
-  }, [productId])
 
   if (!product) return <div>Loading...</div>
 
@@ -60,7 +52,7 @@ function ProductProfile({ match }) {
       </Columns>
 
       {Array.isArray(product.relatedProducts) && (
-        <Fragment>
+        <>
           <hr />
           <div>
             <Heading as="h2" size={4}>
@@ -72,7 +64,7 @@ function ProductProfile({ match }) {
               ))}
             </Tiles>
           </div>
-        </Fragment>
+        </>
       )}
     </div>
   )

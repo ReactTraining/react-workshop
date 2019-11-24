@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
@@ -59,14 +59,14 @@ function PrimaryHeader() {
                 </MenuList>
               </Menu>
             ) : (
-              <Fragment>
+              <>
                 <NavLink to="/login" className="primary-nav-item">
                   Login
                 </NavLink>
                 <NavLink to="/signup" className="button">
                   Signup
                 </NavLink>
-              </Fragment>
+              </>
             )}
           </nav>
         </Column>
