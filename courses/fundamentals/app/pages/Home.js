@@ -9,10 +9,6 @@ function Home() {
       <section className="hero"></section>
 
       <section className="spacing">
-        <Heading as="h2" size={4}>
-          Home
-        </Heading>
-
         <Tiles>
           <ProductTile />
           <ProductTile />

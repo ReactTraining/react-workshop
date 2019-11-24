@@ -62,6 +62,14 @@ export function ShoppingCartStateProvider({ children }) {
       if (!Array.isArray(state.cart)) return 0
       return (state.cart.filter(p => p.productId === productId)[0] || {}).quantity || 0
     },
+    getCartSize() {
+      if (!Array.isArray(state.cart)) return 0
+      let size = 0
+      state.cart.map(item => {
+        size += item.quantity
+      })
+      return size
+    },
   }
 
   return <ShoppingCartContext.Provider value={value} children={children} />

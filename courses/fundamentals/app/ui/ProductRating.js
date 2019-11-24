@@ -16,7 +16,7 @@ function ProductRating({ rating }) {
   // Add empty star(s)
   while (stars.length < 5) stars.push(<FaRegStar key={`star-empty-${stars.length}`} />)
 
-  return <span>{stars}</span>
+  return <span className="product-rating">{stars}</span>
 }
 
 export default ProductRating

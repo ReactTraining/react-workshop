@@ -16,15 +16,35 @@
 }
 
 .primary-nav-item {
-  vertical-align: middle;
-  text-transform: uppercase !important;
-  font-size: 0.7rem !important;
-  color: #333 !important;
-  font-weight: bold !important;
-  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: $text-color;
+  font-weight: bold;
+  letter-spacing: 0.1em;
 
   &.active {
     text-decoration: underline;
+  }
+}
+
+.nav-cart {
+  position: relative;
+
+  svg {
+    width: 1.8em;
+    height: 1.8em;
+  }
+
+  .label {
+    position: absolute;
+    bottom: 3px;
+    left: 12px;
+    padding: 2px 4px;
+    background: $red;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.5rem;
+    text-align: center;
   }
 }
 
