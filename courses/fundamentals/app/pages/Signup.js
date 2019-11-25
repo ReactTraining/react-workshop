@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
-import VisuallyHidden from '@reach/visually-hidden'
 import { Heading, Avatar } from 'workshop'
 import api from '../api'
 import useAuth from '../hooks/useAuth'
@@ -54,11 +53,8 @@ function Signup({ history }) {
           </div>
           <hr />
           <div className="form-field">
-            <VisuallyHidden>
-              <label htmlFor="signup:username">Username</label>
-            </VisuallyHidden>
             <input
-              id="signup:username"
+              aria-label="username"
               onChange={e => setUsername(e.target.value)}
               value={username}
               type="text"
@@ -66,11 +62,8 @@ function Signup({ history }) {
             />
           </div>
           <div className="form-field">
-            <VisuallyHidden>
-              <label htmlFor="signup:password">Password</label>
-            </VisuallyHidden>
             <input
-              id="signup:password"
+              aria-label="password"
               onChange={e => setPassword(e.target.value)}
               value={password}
               type="password"
@@ -78,11 +71,8 @@ function Signup({ history }) {
             />
           </div>
           <div className="form-field">
-            <VisuallyHidden>
-              <label htmlFor="signup:name">Full Name</label>
-            </VisuallyHidden>
             <input
-              id="signup:name"
+              aria-label="name"
               onChange={e => setName(e.target.value)}
               value={name}
               type="text"
@@ -91,11 +81,8 @@ function Signup({ history }) {
             />
           </div>
           <div className="form-field">
-            <VisuallyHidden>
-              <label htmlFor="signup:avatar-url">Avatar URL</label>
-            </VisuallyHidden>
             <input
-              id="signup:avatar-url"
+              aria-label="avatar-url"
               onChange={e => setAvatarUrl(e.target.value)}
               value={avatarUrl}
               type="text"

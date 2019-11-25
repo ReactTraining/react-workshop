@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Heading, Notice, Centered } from 'workshop'
-import VisuallyHidden from '@reach/visually-hidden'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { login } from '../utils/localStorage'
 import useAuth from '../hooks/useAuth'
@@ -41,22 +40,16 @@ function Login({ history }) {
         )}
 
         <div className="form-field">
-          <VisuallyHidden>
-            <label htmlFor="login:username">Username</label>
-          </VisuallyHidden>
           <input
-            id="login:username"
+            aria-label="Username"
             onChange={e => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
           />
         </div>
         <div className="form-field">
-          <VisuallyHidden>
-            <label htmlFor="login:password">Password</label>
-          </VisuallyHidden>
           <input
-            id="login:password"
+            aria-label="Password"
             onChange={e => setPassword(e.target.value)}
             type="password"
             placeholder="Password"

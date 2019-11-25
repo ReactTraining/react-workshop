@@ -31,6 +31,7 @@ function SearchBox({ placeholder, path, history }) {
       <IoIosSearch />
       <input
         type="text"
+        aria-label="Keyword Search"
         placeholder={placeholder}
         value={query}
         onChange={e => setQuery(e.target.value)}
