@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
+import ProductFilters from '../../ui/ProductFilters'
 
 // Pages
 import BrowseProducts from './BrowseProducts'
@@ -10,7 +11,7 @@ function Products() {
   return (
     <Columns gutters>
       <Column size={10} className="primary-sidebar">
-        sidebar
+        <ProductFilters />
       </Column>
       <Column flex>
         <Switch>

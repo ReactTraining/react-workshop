@@ -42,6 +42,10 @@ button.as-link {
     box-shadow: 0 0 0 3px rgba($bright-blue, 0.3);
   }
 
+  &:hover {
+    background-color: darken($bright-blue, 8%);
+  }
+
   [disabled] {
     background-color: #aaa;
   }
@@ -51,6 +55,9 @@ button.as-link {
   background-color: $green;
   &:focus {
     box-shadow: 0 0 0 3px rgba($green, 0.3);
+  }
+  &:hover {
+    background-color: darken($green, 8%);
   }
 }
 

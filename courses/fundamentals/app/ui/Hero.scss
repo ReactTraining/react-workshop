@@ -1,0 +1,23 @@
+.hero {
+  position: relative;
+  min-height: 300px;
+  background-image: url('/images/vintage-tech.svg'),
+    radial-gradient(circle at top left, #f4fff4, #e7f8ff);
+  background-size: 60%, 100%;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  border-radius: 0.5rem;
+
+  .message {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    max-width: 35%;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+}
