@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading } from 'workshop'
 
-import ProductImage from '../ui/ProductImage'
-import useProduct from '../hooks/useProduct'
+import ProductImage from './ProductImage'
+import useProduct from './useProduct'
 
 function ProductTile({ productId }) {
   const product = useProduct(productId)

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AuthStateProvider } from './state/AuthState'
-import { ShoppingCartStateProvider } from './state/ShoppingCartState'
+import { AuthStateProvider } from './AuthState'
+import { ShoppingCartStateProvider } from './ShoppingCartState'
 import App from './App'
 
 ReactDOM.render(

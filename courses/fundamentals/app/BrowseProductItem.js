@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
+
 import { Heading, Quantity } from 'workshop'
 import ProductImage from './ProductImage'
 import ProductRating from './ProductRating'
 import ShoppingCartButton from './ShoppingCartButton'
-import { useShoppingCartState } from '../state/ShoppingCartState'
+import { useShoppingCartState } from './ShoppingCartState'
 import './BrowseProductItem.scss'
 
 function BrowseProductItem({

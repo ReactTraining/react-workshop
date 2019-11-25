@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa'
+
 import './ProductRating.scss'
 
 function ProductRating({ rating }) {

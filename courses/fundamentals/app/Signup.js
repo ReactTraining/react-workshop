@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
+
 import { Heading, Avatar } from 'workshop'
-import api from '../api'
-import useAuth from '../hooks/useAuth'
+import api from './api'
+import useAuth from './useAuth'
 
 function Signup({ history }) {
   const { dispatch } = useAuth()

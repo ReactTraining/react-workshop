@@ -4,9 +4,9 @@ import queryString from 'query-string'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Pagination, PaginationRange, NoResults } from 'workshop'
 
-import api from '../../api'
-import useApi from '../../hooks/useApi'
-import BrowseProductItem from '../../ui/BrowseProductItem'
+import api from './api'
+import useApi from './useApi'
+import BrowseProductItem from './BrowseProductItem'
 
 function BrowseProducts() {
   const urlQuery = window.location.search

@@ -2,13 +2,13 @@ import React, { useCallback } from 'react'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Quantity, Tiles } from 'workshop'
 
-import ProductImage from '../../ui/ProductImage'
-import ProductRating from '../../ui/ProductRating'
-import ShoppingCartButton from '../../ui/ShoppingCartButton'
-import { useShoppingCartState } from '../../state/ShoppingCartState'
-import ProductTile from '../../ui/ProductTile'
-import useApi from '../../hooks/useApi'
-import api from '../../api'
+import ProductImage from './ProductImage'
+import ProductRating from './ProductRating'
+import ShoppingCartButton from './ShoppingCartButton'
+import { useShoppingCartState } from './ShoppingCartState'
+import ProductTile from './ProductTile'
+import useApi from './useApi'
+import api from './api'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)

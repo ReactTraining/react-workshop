@@ -1,0 +1,42 @@
+.form-field {
+  // Label
+  label {
+    margin-bottom: 0.2em;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+
+  // Input Fields
+  input[type='text'],
+  input[type='submit'],
+  input[type='password'] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    width: 100%;
+    &:focus {
+      outline: none;
+      border-color: $bright-blue;
+    }
+  }
+
+  input[disabled] {
+    background-color: #eee;
+  }
+
+  ::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+
+  // Prevents Chrome's yellow background on autofill
+  // https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    -webkit-transition-delay: 9999s;
+  }
+}

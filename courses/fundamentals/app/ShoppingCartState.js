@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useEffect } from 'react'
-import * as storage from '../utils/localStorage'
+import * as storage from './localStorage'
 
 const ShoppingCartContext = React.createContext()
 

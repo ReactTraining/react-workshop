@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
-import { FaAngleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
+import { FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
+
 import { Heading, Quantity } from 'workshop'
-import { useShoppingCartState } from '../../state/ShoppingCartState'
+import { useShoppingCartState } from './ShoppingCartState'
 
 function ViewCart() {
   const { cart, addToCart, getCartTotal } = useShoppingCartState()

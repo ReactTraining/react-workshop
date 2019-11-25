@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+
 import './ProductImage.scss'
 
 function ProductImage({ name, size = 7, className, ...rest }) {

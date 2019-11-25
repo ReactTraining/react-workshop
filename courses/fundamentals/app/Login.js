@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Heading, Notice, Centered } from 'workshop'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { login } from '../utils/localStorage'
-import useAuth from '../hooks/useAuth'
-import api from '../api'
+import { login } from './localStorage'
+import useAuth from './useAuth'
+import api from './api'
 
 function Login({ history }) {
   const { dispatch } = useAuth()

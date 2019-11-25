@@ -1,9 +1,10 @@
 import React from 'react'
 import { Columns, Column } from 'react-flex-columns'
+
 import { Heading, Tiles } from 'workshop'
-import Hero from '../ui/Hero'
-import ProductCategories from '../ui/ProductCategories'
-import ProductTile from '../ui/ProductTile'
+import Hero from './Hero'
+import ProductCategories from './ProductCategories'
+import ProductTile from './ProductTile'
 
 function Home() {
   return (

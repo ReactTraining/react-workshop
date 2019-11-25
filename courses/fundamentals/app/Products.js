@@ -1,9 +1,8 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
-import ProductFilters from '../../ui/ProductFilters'
 
-// Pages
+import ProductFilters from './ProductFilters'
 import BrowseProducts from './BrowseProducts'
 import ProductProfile from './ProductProfile'
 

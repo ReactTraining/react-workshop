@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import PrimaryLayout from './layouts/PrimaryLayout'
+
+import PrimaryLayout from './PrimaryLayout'
 import 'workshop/styles/global-styles.scss'
 
 function App() {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { useAuthState } from '../state/AuthState'
-import { getLoggedUser } from '../utils/localStorage'
+
+import { useAuthState } from './AuthState'
+import { getLoggedUser } from './localStorage'
 
 export default function useAuth() {
   const authState = useAuthState()

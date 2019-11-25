@@ -2,8 +2,9 @@ import React from 'react'
 import { SearchBox } from 'workshop'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
+
 import SubNav from './SubNav'
-import { useShoppingCartState } from '../state/ShoppingCartState'
+import { useShoppingCartState } from './ShoppingCartState'
 
 function ProductSubNav() {
   const { cart } = useShoppingCartState()

@@ -1,6 +1,5 @@
 import Avatar from './Avatar'
 import Centered from './Centered'
-import FormField from './FormField'
 import Heading from './Heading'
 import NoResults from './NoResults'
 import Notice from './Notice'
@@ -12,7 +11,6 @@ import Tiles from './Tiles'
 export {
   Centered,
   Avatar,
-  FormField,
   Heading,
   NoResults,
   Notice,

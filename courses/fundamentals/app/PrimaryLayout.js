@@ -1,18 +1,19 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import PrimaryHeader from '../ui/PrimaryHeader'
-import useAuth from '../hooks/useAuth'
+
+import PrimaryHeader from './PrimaryHeader'
+import useAuth from './useAuth'
 import './PrimaryLayout.scss'
 
 // Route Targets
-import Home from '../pages/Home'
-import Signup from '../pages/Signup'
-import Login from '../pages/Login'
-import Account from '../pages/account/Account'
-import Products from '../pages/products/Products'
-import ProductSubNav from '../ui/ProductSubNav'
-import Checkout from '../pages/checkout/Checkout'
-import { useShoppingCartState } from '../state/ShoppingCartState'
+import Home from './Home'
+import Signup from './Signup'
+import Login from './Login'
+import Account from './Account'
+import Products from './Products'
+import ProductSubNav from './ProductSubNav'
+import Checkout from './Checkout'
+import { useShoppingCartState } from './ShoppingCartState'
 
 function PrimaryLayout() {
   const { authenticated } = useAuth()
