@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading } from 'workshop'
 
 import ProductImage from './ProductImage'
-import useProduct from './useProduct'
+import useApi from './useApi'
+import api from './api'
 
 function ProductTile({ productId }) {
-  const product = useProduct(productId)
+  const getProduct = useCallback(() => api.products.getProduct(productId), [productId])
+  const [product] = useApi(getProduct)
 
   if (!product) return null
 
