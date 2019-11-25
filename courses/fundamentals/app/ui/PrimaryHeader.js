@@ -28,9 +28,9 @@ function PrimaryHeader() {
     <div className="primary-header">
       <Columns gutters middle>
         <Column flex>
-          <NavLink to="/" exact className="nav-logo">
+          <Link to="/" exact className="nav-logo">
             <Logo />
-          </NavLink>
+          </Link>
         </Column>
         <Column className="spacing-small">
           <nav className="horizontal-spacing-large align-right flex-parent align-center">
