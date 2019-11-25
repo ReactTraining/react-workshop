@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { Heading, Notice, Centered } from 'workshop'
 import VisuallyHidden from '@reach/visually-hidden'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
@@ -66,9 +66,9 @@ function Login({ history }) {
         <footer>
           <button type="submit" className="button">
             {!loading ? (
-              <Fragment>
+              <>
                 <FaSignInAlt /> <span>Login</span>
-              </Fragment>
+              </>
             ) : (
               <span>Loading ...</span>
             )}

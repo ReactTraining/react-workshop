@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import api from '../api'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading } from 'workshop'
+
 import ProductImage from '../ui/ProductImage'
+import useProduct from '../hooks/useProduct'
 
 function ProductTile({ productId }) {
-  const [product, setProduct] = useState(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.products.getProduct(productId).then(product => {
-      if (!isCurrent) return
-      setProduct(product)
-    })
-    return () => (isCurrent = false)
-  }, [productId])
+  const product = useProduct(productId)
 
   if (!product) return null
 

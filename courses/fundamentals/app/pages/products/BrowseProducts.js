@@ -1,27 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
-import api from '../../api'
-import BrowseProductItem from '../../ui/BrowseProductItem'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Pagination, PaginationRange, NoResults } from 'workshop'
 
+import BrowseProductItem from '../../ui/BrowseProductItem'
+import useProducts from '../../hooks/useProducts'
+
 function BrowseProducts() {
-  const [products, setProducts] = useState(null)
-  const [totalResults, setTotalResults] = useState(0)
   const urlQuery = window.location.search
   const search = useMemo(() => queryString.parse(urlQuery), [urlQuery])
   const page = parseInt(search.page, 10) || 1
 
-  useEffect(() => {
-    let isCurrent = true
-    api.products.getProducts(search).then(({ products, total }) => {
-      if (!isCurrent) return
-      setProducts(products)
-      setTotalResults(total)
-    })
-    return () => (isCurrent = false)
-  }, [search])
+  let { products, totalResults } = useProducts(search)
 
   return (
     <div className="browse-products spacing">
@@ -54,6 +45,7 @@ function BrowseProducts() {
               brand={product.brand}
               category={product.category}
               condition={product.condition}
+              rating={product.rating}
             />
           ))}
         </div>
