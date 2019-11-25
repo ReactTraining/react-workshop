@@ -44,33 +44,33 @@ function Home() {
           <hr />
           <ul>
             <li>
-              <a href="#">IE6 will change the Web forever!</a>
+              <a href="/">IE6 will change the Web forever!</a>
             </li>
             <li>
-              <a href="#">
+              <a href="/">
                 JavaScript - It's like Java's cute little brother. You probably don't need it.
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/">
                 This year's "Best 56k Modem" reviews are in. Did you ever think the Internet could
                 be so fast?
               </a>
             </li>
             <li>
-              <a href="#">How to tell if your kid is using Napster?</a>
+              <a href="/">How to tell if your kid is using Napster?</a>
             </li>
             <li>
-              <a href="#">How Microsoft and AOL will someday rule the World!</a>
+              <a href="/">How Microsoft and AOL will someday rule the World!</a>
             </li>
             <li>
-              <a href="#">Upgrade your RAM to 8MB.</a>
+              <a href="/">Upgrade your RAM to 8MB.</a>
             </li>
             <li>
-              <a href="#">HP buys Compaq Computer.</a>
+              <a href="/">HP buys Compaq Computer.</a>
             </li>
             <li>
-              <a href="#">Did you know you can get a free email from your ISP, probably?</a>
+              <a href="/">Did you know you can get a free email from your ISP, probably?</a>
             </li>
           </ul>
         </Column>
