@@ -9,7 +9,7 @@ export async function getProducts(search, page = 1) {
   const products = await res.json()
   return {
     products,
-    total: parseInt(res.headers.get('x-total-count'), 10),
+    totalResults: parseInt(res.headers.get('x-total-count'), 10),
   }
 }
 

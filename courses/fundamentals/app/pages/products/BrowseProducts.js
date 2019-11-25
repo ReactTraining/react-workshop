@@ -1,18 +1,23 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Pagination, PaginationRange, NoResults } from 'workshop'
 
+import api from '../../api'
+import useApi from '../../hooks/useApi'
 import BrowseProductItem from '../../ui/BrowseProductItem'
-import useProducts from '../../hooks/useProducts'
 
 function BrowseProducts() {
   const urlQuery = window.location.search
   const search = useMemo(() => queryString.parse(urlQuery), [urlQuery])
   const page = parseInt(search.page, 10) || 1
 
-  let { products, totalResults } = useProducts(search)
+  // Get Products (Paginated) and Total
+  const getProducts = useCallback(() => api.products.getProducts(search), [search])
+  const [response, loading] = useApi(getProducts)
+  const products = response && response.products
+  const totalResults = response && response.totalResults
 
   return (
     <div className="browse-products spacing">
@@ -32,7 +37,7 @@ function BrowseProducts() {
         </Column>
       </Columns>
 
-      {Array.isArray(products) && products.length > 0 ? (
+      {!loading && Array.isArray(products) && products.length > 0 ? (
         <div className="spacing">
           {products.map(product => (
             <BrowseProductItem
@@ -61,13 +66,15 @@ function BrowseProducts() {
         </NoResults>
       )}
 
-      <Pagination
-        as="footer"
-        path="/products"
-        totalResults={totalResults}
-        page={page}
-        resultsPerPage={10}
-      />
+      {!loading && (
+        <Pagination
+          as="footer"
+          path="/products"
+          totalResults={totalResults}
+          page={page}
+          resultsPerPage={10}
+        />
+      )}
     </div>
   )
 }

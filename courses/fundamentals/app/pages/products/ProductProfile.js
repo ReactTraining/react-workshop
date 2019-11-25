@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Quantity, Tiles } from 'workshop'
 
@@ -7,11 +7,13 @@ import ProductRating from '../../ui/ProductRating'
 import ShoppingCartButton from '../../ui/ShoppingCartButton'
 import { useShoppingCartState } from '../../state/ShoppingCartState'
 import ProductTile from '../../ui/ProductTile'
-import useProduct from '../../hooks/useProduct'
+import useApi from '../../hooks/useApi'
+import api from '../../api'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)
-  const product = useProduct(productId)
+  const getProduct = useCallback(() => api.products.getProduct(productId), [productId])
+  const [product] = useApi(getProduct)
 
   // Cart
   const { addToCart, getQuantity } = useShoppingCartState()

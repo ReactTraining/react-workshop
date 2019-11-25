@@ -27,7 +27,7 @@ function PrimaryHeader() {
     <div className="primary-header">
       <Columns gutters middle>
         <Column flex>
-          <Link to="/" exact className="nav-logo">
+          <Link to="/" className="nav-logo">
             <Logo />
           </Link>
         </Column>
