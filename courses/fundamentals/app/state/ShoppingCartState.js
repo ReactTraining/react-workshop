@@ -64,11 +64,11 @@ export function ShoppingCartStateProvider({ children }) {
     },
     getCartSize() {
       if (!Array.isArray(state.cart)) return 0
-      let size = 0
-      state.cart.forEach(item => {
-        size += item.quantity
-      })
-      return size
+      return state.cart.reduce((size, item) => size + item.quantity, 0)
+    },
+    getCartTotal() {
+      if (!Array.isArray(state.cart)) return 0
+      return state.cart.reduce((total, item) => total + item.quantity * item.price, 0)
     },
   }
 

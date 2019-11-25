@@ -16,8 +16,7 @@ import '@reach/menu-button/styles.css'
 function PrimaryHeader() {
   const { authenticated, user, dispatch } = useAuth()
   const { getCartSize } = useShoppingCartState()
-
-  let cartSize = getCartSize()
+  const cartSize = getCartSize()
 
   function handleLogout() {
     logout()

@@ -7,8 +7,7 @@ import { Heading, Quantity } from 'workshop'
 import { useShoppingCartState } from '../../state/ShoppingCartState'
 
 function ViewCart() {
-  const { cart, addToCart } = useShoppingCartState()
-  const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
+  const { cart, addToCart, getCartTotal } = useShoppingCartState()
 
   return (
     <div className="spacing">
@@ -37,7 +36,7 @@ function ViewCart() {
           <strong>Total</strong>
         </Column>
         <Column>
-          <strong>${total.toFixed(2)}</strong>
+          <strong>${getCartTotal().toFixed(2)}</strong>
         </Column>
       </Columns>
 
