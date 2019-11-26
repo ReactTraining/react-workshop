@@ -12,7 +12,7 @@ npm start
 
 ## Where can I find stuff?
 
-The folder structure is pretty strait forward. `pages` should only have components that are used by routes. General components can either go in `app/ui` or in `/modules/workshop`. In general, lets try to put lots of re-usable things in `/modules/workshop` so they can be used on other mock apps or in lessons. If something is so specific to this app and not very reusable for lessons, then it gan go in `app/ui`
+The folder structure is pretty strait forward. With a few small acceptions, it's a flat folder structure for `app/`. If the files aren't very re-usable beyond this app, they stay there, otherwise components that can be useful for other apps can go in `/modules/workshop`.
 
 When adding files to `/modules/workshop`, be sure to add them to the `index` file so all those files can be used via named imports.
 

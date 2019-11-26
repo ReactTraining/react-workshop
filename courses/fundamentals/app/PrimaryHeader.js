@@ -31,7 +31,7 @@ function PrimaryHeader() {
             <Logo />
           </Link>
         </Column>
-        <Column className="spacing-small">
+        <Column className="spacing-small vertical-middle">
           <nav className="horizontal-spacing-large align-right flex-parent align-center">
             <NavLink to="/" exact className="primary-nav-item">
               Home
