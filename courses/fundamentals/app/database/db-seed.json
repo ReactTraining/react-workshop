@@ -165,6 +165,71 @@
       "brand": "Bellmark",
       "category": "music",
       "rating": 3.0
+    },
+    {
+      "id": 14,
+      "name": "Stretch Armstrong",
+      "description": "Stretch Armstrong is a large, gel-filled action figure first introduced in 1976 by Kenner.[1] In 2016, at the New York Toy Fair, Hasbro announced the return of the Stretch Armstrong toy in its original 1976 design.",
+      "imagePath": "/images/products/stretch-armstrong.jpg",
+      "inventory": 15,
+      "price": 26.38,
+      "year": "1976",
+      "condition": "stretch-cellent",
+      "brand": "Hasbro",
+      "category": "Toy",
+      "rating": 4
+    },
+    {
+      "id": 15,
+      "name": "View-Master",
+      "description": "Stereoscopic photo viewer",
+      "imagePath": "/images/products/view-master.jpg",
+      "inventory": 50,
+      "price": 5,
+      "year": "1939",
+      "condition": "excellent",
+      "brand": "Sawyer’s",
+      "category": "gadgets",
+      "rating": 4.5
+    },
+    {
+      "id": 16,
+      "name": "Newton",
+      "description": "Personal digital assistant",
+      "imagePath": "/images/products/newton-2000.jpg",
+      "inventory": 30,
+      "price": 499,
+      "year": "1993",
+      "condition": "good",
+      "brand": "Apple",
+      "category": "computers",
+      "rating": 4
+    },
+    {
+      "id": 17,
+      "name": "Flux Capacitor",
+      "description": "Time travel with 1.21 Gigawatts",
+      "imagePath": "/images/products/flux-capacitor.jpg",
+      "inventory": 1,
+      "price": 10000,
+      "year": "1985",
+      "condition": "fair",
+      "brand": "Emmett Brown Custom Manufacturing",
+      "category": "gadgets",
+      "rating": 5
+    },
+    {
+      "id": 18,
+      "name": "iBook G3 \"Clamshell\"",
+      "description": "Laptop computer, with Wi-Fi",
+      "imagePath": "/images/products/clamshell.png",
+      "inventory": 5,
+      "price": 199,
+      "year": "1999",
+      "condition": "good",
+      "brand": "Apple",
+      "category": "computers",
+      "rating": 4.5
     }
   ]
 }
