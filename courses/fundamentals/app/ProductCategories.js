@@ -30,7 +30,7 @@ export function CategoryComputers(props) {
 export function CategoryAccessories(props) {
   return (
     <CategoryTile {...props} icon={GiKeyboard}>
-      Accessories
+      Gadgets
     </CategoryTile>
   )
 }
@@ -45,7 +45,7 @@ export function CategoryStorage(props) {
 export function CategoryGaming(props) {
   return (
     <CategoryTile {...props} icon={FaGamepad}>
-      Gaming
+      Games
     </CategoryTile>
   )
 }

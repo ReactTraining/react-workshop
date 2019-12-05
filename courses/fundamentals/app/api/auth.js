@@ -12,6 +12,6 @@ export function login(username, password) {
   })
 }
 
-export function getGithubUser(username) {
+export function getGitHubUser(username) {
   return fetch(`https://api.github.com/users/${username}`).then(res => res.json())
 }

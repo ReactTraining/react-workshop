@@ -7,11 +7,12 @@ import useAuth from './useAuth'
 
 function Signup({ history }) {
   const { dispatch } = useAuth()
-  const [useGithub, setUseGithub] = useState(true)
+  const [useGitHub, setUseGitHub] = useState(true)
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -21,10 +22,14 @@ function Signup({ history }) {
     })
   }
 
+  function handleShowPassword() {
+    setShowPassword(!showPassword)
+  }
+
   useEffect(() => {
     let isCurrent = true
-    if (useGithub && username.length > 5) {
-      api.auth.getGithubUser(username).then(user => {
+    if (useGitHub && username.length > 5) {
+      api.auth.getGitHubUser(username).then(user => {
         if (user && isCurrent) {
           setName(user.name || '')
           setAvatarUrl(user.avatar_url || '')
@@ -32,7 +37,7 @@ function Signup({ history }) {
       })
     }
     return () => (isCurrent = false)
-  }, [useGithub, username])
+  }, [useGitHub, username])
 
   return (
     <Columns gutters>
@@ -46,10 +51,10 @@ function Signup({ history }) {
             <label>
               <input
                 type="checkbox"
-                defaultChecked={useGithub}
-                onChange={() => setUseGithub(!useGithub)}
+                defaultChecked={useGitHub}
+                onChange={() => setUseGitHub(!useGitHub)}
               />{' '}
-              Use Github
+              Use GitHub
             </label>
           </div>
           <hr />
@@ -59,7 +64,7 @@ function Signup({ history }) {
               onChange={e => setUsername(e.target.value)}
               value={username}
               type="text"
-              placeholder={useGithub ? 'Github Username' : 'Username'}
+              placeholder={useGitHub ? 'GitHub Username' : 'Username'}
             />
           </div>
           <div className="form-field">
@@ -67,9 +72,18 @@ function Signup({ history }) {
               aria-label="password"
               onChange={e => setPassword(e.target.value)}
               value={password}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password (This will not be encrypted)"
             />
+            <label>
+              <input
+                onChange={handleShowPassword}
+                defaultChecked={showPassword}
+                className="passwordCheckbox"
+                type="checkbox"
+              />{' '}
+              show password
+            </label>
           </div>
           <div className="form-field">
             <input
@@ -78,7 +92,7 @@ function Signup({ history }) {
               value={name}
               type="text"
               placeholder="Full Name"
-              disabled={useGithub}
+              disabled={useGitHub}
             />
           </div>
           <div className="form-field">
@@ -88,7 +102,7 @@ function Signup({ history }) {
               value={avatarUrl}
               type="text"
               placeholder="Avatar URL: https://"
-              disabled={useGithub}
+              disabled={useGitHub}
             />
           </div>
           <footer>

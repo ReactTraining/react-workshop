@@ -11,6 +11,7 @@ function Login({ history }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   function handleLogin(event) {
     event.preventDefault()
@@ -26,6 +27,10 @@ function Login({ history }) {
         setError(error)
         setLoading(false)
       })
+  }
+
+  function handleShowPassword() {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -51,9 +56,18 @@ function Login({ history }) {
           <input
             aria-label="Password"
             onChange={e => setPassword(e.target.value)}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
           />
+          <label>
+            <input
+              onChange={handleShowPassword}
+              defaultChecked={showPassword}
+              className="passwordCheckbox"
+              type="checkbox"
+            />{' '}
+            show password
+          </label>
         </div>
 
         <footer>
