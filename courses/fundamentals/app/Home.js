@@ -30,13 +30,13 @@ function Home() {
           <hr />
 
           <Heading as="h2" size={3}>
-            Our most popular CDs
+            Our most popular gadgets
           </Heading>
           <hr />
-          {/* <Tiles>
-            <ProductTile productId={2} />
-            <ProductTile productId={3} />
-          </Tiles> */}
+          <Tiles>
+            <ProductTile productId={15} />
+            <ProductTile productId={4} />
+          </Tiles>
         </Column>
         <Column className="spacing" size={20}>
           <Heading as="h2" size={3}>

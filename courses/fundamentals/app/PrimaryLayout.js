@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import PrimaryHeader from './PrimaryHeader'
+import PrimaryFooter from './PrimaryFooter'
 import useAuth from './useAuth'
 import './PrimaryLayout.scss'
 
@@ -35,6 +36,7 @@ function PrimaryLayout() {
             <Redirect to="/" />
           </Switch>
         </main>
+        <PrimaryFooter />
       </div>
     </div>
   )

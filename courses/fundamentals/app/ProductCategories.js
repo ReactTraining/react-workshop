@@ -63,7 +63,7 @@ export default function ProductCategories() {
     <Centered size={40}>
       <Tiles minSize={7}>
         <CategoryComputers to={`/products?category=computers`} />
-        <CategoryAccessories to={`/products?category=accessories`} />
+        <CategoryAccessories to={`/products?category=gadgets`} />
         <CategoryStorage to={`/products?category=storage`} />
         <CategoryGaming to={`/products?category=games`} />
         <CategoryMusic to={`/products?category=music`} />
