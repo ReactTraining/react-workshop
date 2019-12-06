@@ -51,6 +51,7 @@ function CheckoutBilling({ history }) {
             </div>
           </Column>
         </Columns>
+
         <Columns split gutters middle>
           <Column className="spacing">
             <Heading as="h2" size={3}>
@@ -68,35 +69,40 @@ function CheckoutBilling({ history }) {
             </label>
           </Column>
         </Columns>
-        <hr />
-        <div className="form-field">
-          <label htmlFor="shipping:name">Name</label>
-          <input id="shipping:name" type="text" />
-        </div>
-        <div className="form-field">
-          <label htmlFor="shipping:address">Address</label>
-          <input id="shipping:address" type="text" />
-        </div>
-        <Columns gutters>
-          <Column>
+
+        {!sameAsBilling && (
+          <>
+            <hr />
             <div className="form-field">
-              <label htmlFor="shipping:city">City</label>
-              <input id="shipping:city" type="text" />
+              <label htmlFor="shipping:name">Name</label>
+              <input id="shipping:name" type="text" />
             </div>
-          </Column>
-          <Column>
             <div className="form-field">
-              <label htmlFor="shipping:state">State</label>
-              <input id="shipping:state" type="text" />
+              <label htmlFor="shipping:address">Address</label>
+              <input id="shipping:address" type="text" />
             </div>
-          </Column>
-          <Column>
-            <div className="form-field">
-              <label htmlFor="shipping:postal">Postal Code</label>
-              <input id="shipping:postal" type="text" />
-            </div>
-          </Column>
-        </Columns>
+            <Columns gutters>
+              <Column>
+                <div className="form-field">
+                  <label htmlFor="shipping:city">City</label>
+                  <input id="shipping:city" type="text" />
+                </div>
+              </Column>
+              <Column>
+                <div className="form-field">
+                  <label htmlFor="shipping:state">State</label>
+                  <input id="shipping:state" type="text" />
+                </div>
+              </Column>
+              <Column>
+                <div className="form-field">
+                  <label htmlFor="shipping:postal">Postal Code</label>
+                  <input id="shipping:postal" type="text" />
+                </div>
+              </Column>
+            </Columns>
+          </>
+        )}
 
         <hr />
 
