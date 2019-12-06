@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { Columns, Column } from 'react-flex-columns'
 import { Heading, Pagination, PaginationRange, NoResults } from 'workshop'
@@ -9,7 +9,7 @@ import useApi from './useApi'
 import BrowseProductItem from './BrowseProductItem'
 
 function BrowseProducts() {
-  const urlQuery = window.location.search
+  const urlQuery = useLocation().search
   const search = useMemo(() => queryString.parse(urlQuery), [urlQuery])
   const page = parseInt(search.page, 10) || 1
 

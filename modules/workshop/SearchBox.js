@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { IoIosSearch } from 'react-icons/io'
 import './SearchBox.scss'
 
 function SearchBox({ placeholder, path, history }) {
-  const search = window.location.search
+  const search = useLocation().search
   const [query, setQuery] = useState(queryString.parse(search).q || '')
 
   useEffect(() => {
