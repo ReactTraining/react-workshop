@@ -1,9 +1,9 @@
 import React from 'react'
 import { Heading } from 'workshop'
-import useAuth from './useAuth'
+// import useAuth from './useAuth'
 
 function Account() {
-  const { authenticated, user, dispatch } = useAuth()
+  // const { authenticated, user, dispatch } = useAuth()
   return (
     <div className="spacing">
       <Heading>Account</Heading>

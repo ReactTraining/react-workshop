@@ -1,23 +1,37 @@
-import React, { useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useState, useMemo } from 'react'
+import { withRouter, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { Heading } from 'workshop'
 
-function ProductFilters() {
+function ProductFilters({ path, history }) {
   const urlQuery = useLocation().search
   const search = useMemo(() => queryString.parse(urlQuery), [urlQuery])
-
-  console.log(urlQuery)
-  console.log(search.category)
+  const [categories, setCategories] = useState(search.category || '')
 
   const isChecked = c => {
-    if (search.category.includes(c)) return true
+    if (search.category && categories.includes(c)) return true
     return false
   }
 
-  const addCategory = () => {
-    console.log('hey ya')
+  const toggleCategory = e => {
+    let toggled = e.target.name
+    let selectedCategories = categories.split(',')
+    if (selectedCategories.includes(toggled)) {
+      selectedCategories = selectedCategories.filter(e => e !== toggled)
+    } else {
+      selectedCategories.push(toggled)
+    }
+
+    setCategories(selectedCategories.toString())
+    // TODO: append to the url so it's like category=computers,gadgets
+    // replace existing category=whatever
+    // history.push(`${path}?`)
   }
+
+  console.log(history.location)
+  console.log(categories)
+
+  let catNames = ['computers', 'gadgets', 'storage', 'games', 'music'] // TODO: pull from data
 
   return (
     <div className="spacing">
@@ -28,42 +42,25 @@ function ProductFilters() {
             <input type="checkbox" defaultChecked={urlQuery === ''} /> All
           </label>
         </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              onChange={addCategory}
-              defaultChecked={() => {
-                console.log('ahh')
-                return isChecked('computers')
-              }}
-            />{' '}
-            Computers (0)
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" defaultChecked={() => isChecked('gadgets')} /> Gadgets (8)
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" defaultChecked={() => isChecked('storage')} /> Storage (3)
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" defaultChecked={() => isChecked('games')} /> Games (3)
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" defaultChecked={() => isChecked('music')} /> Music (10)
-          </label>
-        </div>
+        {catNames.map(category => {
+          let checked = isChecked(category)
+          return (
+            <div key={category + 'sidebar'}>
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={toggleCategory}
+                  defaultChecked={checked}
+                  name={category}
+                />{' '}
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </label>
+            </div>
+          )
+        })}
       </section>
     </div>
   )
 }
 
-export default ProductFilters
+export default withRouter(ProductFilters)
