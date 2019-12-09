@@ -25,6 +25,7 @@ function Home() {
           <Tiles>
             <ProductTile productId={2} />
             <ProductTile productId={3} />
+            <ProductTile productId={10} />
           </Tiles>
 
           <hr />
@@ -36,6 +37,7 @@ function Home() {
           <Tiles>
             <ProductTile productId={15} />
             <ProductTile productId={4} />
+            <ProductTile productId={6} />
           </Tiles>
         </Column>
         <Column className="spacing" size={20}>
@@ -44,14 +46,6 @@ function Home() {
           </Heading>
           <hr />
           <ul>
-            <li>
-              <a href="/">IE6 will change the Web forever!</a>
-            </li>
-            <li>
-              <a href="/">
-                JavaScript - It's like Java's cute little brother. You probably don't need it.
-              </a>
-            </li>
             <li>
               <a href="/">
                 This year's "Best 56k Modem" reviews are in. Did you ever think the Internet could

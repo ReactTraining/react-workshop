@@ -14,7 +14,7 @@ function BrowseProducts() {
   const page = parseInt(search.page, 10) || 1
 
   // Get Products (Paginated) and Total
-  const getProducts = useCallback(() => api.products.getProducts(search), [search])
+  const getProducts = useCallback(() => api.products.getProducts(search, page), [search, page])
   const [response, loading] = useApi(getProducts)
   const products = response && response.products
   const totalResults = response && response.totalResults

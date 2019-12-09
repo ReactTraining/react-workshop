@@ -28,8 +28,8 @@ function ProductFilters({ path, history }) {
     // history.push(`${path}?`)
   }
 
-  console.log(history.location)
-  console.log(categories)
+  // console.log(history.location)
+  // console.log(categories)
 
   let catNames = ['computers', 'gadgets', 'storage', 'games', 'music'] // TODO: pull from data
 
