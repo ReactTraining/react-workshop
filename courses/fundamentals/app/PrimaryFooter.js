@@ -1,13 +1,19 @@
 import React from 'react'
 import { GoVersions } from 'react-icons/go'
+import { Columns, Column } from 'react-flex-columns'
 import './PrimaryFooter.scss'
 
 function PrimaryFooter() {
   return (
-    <div className="primary-footer">
-      <GoVersions />
-      <div>Copyright &copy; 2020 YesterTech Inc</div>
-    </div>
+    <footer className="primary-footer spacing">
+      <hr />
+      <Columns split>
+        <Column>
+          <GoVersions />
+        </Column>
+        <Column className="text-small">Copyright &copy; 2020 YesterTech Inc</Column>
+      </Columns>
+    </footer>
   )
 }
 
