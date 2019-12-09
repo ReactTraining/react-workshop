@@ -2,7 +2,9 @@ import { get, getRaw, post } from './utils'
 import queryString from 'query-string'
 
 export async function getProducts(search, page = 1) {
-  search = { ...search, _page: page, _limit: 10 }
+  search = { ...search, _page: page, category: search.categories.split(','), _limit: 10 }
+  delete search.categories
+  delete search.page
   const query = queryString.stringify(search || {})
 
   const res = await getRaw(`/products?${query}`)
@@ -19,4 +21,12 @@ export function getProduct(productId) {
 
 export function addProduct(data) {
   return post(`/products`, data)
+}
+
+export function getCategories() {
+  return get('/products')
+    .then(products =>
+      products.reduce((categories, product) => categories.concat([product.category || '']), [])
+    )
+    .then(categories => [...new Set(categories)])
 }
