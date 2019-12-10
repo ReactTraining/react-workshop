@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
-import { useShoppingCartState } from './ShoppingCartState'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function CheckoutReview() {
   const { cart, getCartTotal } = useShoppingCartState()

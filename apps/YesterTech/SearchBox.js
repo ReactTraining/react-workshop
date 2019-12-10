@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { IoIosSearch } from 'react-icons/io'
-import './SearchBox.scss'
+import 'YesterTech/SearchBox.scss'
 
 function SearchBox({ placeholder, path, history }) {
   const search = useLocation().search

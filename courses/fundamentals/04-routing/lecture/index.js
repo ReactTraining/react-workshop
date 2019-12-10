@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'workshop/styles/global-styles.scss'
+import PrimaryHeader from 'YesterTech/PrimaryHeader'
+import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
 function App() {
   return (
     <div className="primary-layout">
-      {/* <div>
+      <div>
         <PrimaryHeader />
-        <Route path="/products" component={ProductSubNav} />
+        {/* <Route path="/products" component={ProductSubNav} />
         <main className="primary-content">
           <Switch>
             <Route path="/" exact component={Home} />
@@ -20,8 +21,8 @@ function App() {
             <Redirect to="/" />
           </Switch>
         </main>
-        <PrimaryFooter />
-      </div> */}
+        <PrimaryFooter /> */}
+      </div>
     </div>
   )
 }

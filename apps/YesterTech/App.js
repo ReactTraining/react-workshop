@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import PrimaryLayout from './PrimaryLayout'
-import './styles/global-styles.scss'
+import PrimaryLayout from 'YesterTech/PrimaryLayout'
+import 'YesterTech/styles/global-styles.scss'
 
 function App() {
   return (

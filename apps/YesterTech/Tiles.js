@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Tiles.scss'
+import 'YesterTech/Tiles.scss'
 
 function Tiles({ children, minSize = 10, ...rest }) {
   // https://codepen.io/bradwestfall/pen/qLJoqK

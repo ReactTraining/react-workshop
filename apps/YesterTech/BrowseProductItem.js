@@ -5,10 +5,10 @@ import { Columns, Column } from 'react-flex-columns'
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
 import StarRatings from 'YesterTech/StarRatings'
-import ProductImage from './ProductImage'
-import ShoppingCartButton from './ShoppingCartButton'
-import { useShoppingCartState } from './ShoppingCartState'
-import './BrowseProductItem.scss'
+import ProductImage from 'YesterTech/ProductImage'
+import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import 'YesterTech/BrowseProductItem.scss'
 
 function BrowseProductItem({
   productId,

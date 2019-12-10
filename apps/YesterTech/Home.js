@@ -3,9 +3,9 @@ import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'
 import Tiles from 'YesterTech/Tiles'
-import Hero from './Hero'
-import ProductCategories from './ProductCategories'
-import ProductTile from './ProductTile'
+import Hero from 'YesterTech/Hero'
+import ProductCategories from 'YesterTech/ProductCategories'
+import ProductTile from 'YesterTech/ProductTile'
 
 function Home() {
   return (

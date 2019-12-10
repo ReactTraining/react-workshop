@@ -3,8 +3,8 @@ import SearchBox from 'YesterTech/SearchBox'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 
-import SubNav from './SubNav'
-import { useShoppingCartState } from './ShoppingCartState'
+import SubNav from 'YesterTech/SubNav'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function ProductSubNav() {
   const { cart } = useShoppingCartState()

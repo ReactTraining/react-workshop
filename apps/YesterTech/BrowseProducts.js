@@ -6,9 +6,9 @@ import Heading from 'YesterTech/Heading'
 import { Pagination, PaginationRange } from 'YesterTech/Pagination'
 import NoResults from 'YesterTech/NoResults'
 
-import api from './api'
-import useApi from './useApi'
-import BrowseProductItem from './BrowseProductItem'
+import api from 'YesterTech/api'
+import useApi from 'YesterTech/useApi'
+import BrowseProductItem from 'YesterTech/BrowseProductItem'
 
 function BrowseProducts() {
   const urlQuery = useLocation().search

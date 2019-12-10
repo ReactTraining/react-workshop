@@ -2,9 +2,9 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 
-import ProductFilters from './ProductFilters'
-import BrowseProducts from './BrowseProducts'
-import ProductProfile from './ProductProfile'
+import ProductFilters from 'YesterTech/ProductFilters'
+import BrowseProducts from 'YesterTech/BrowseProducts'
+import ProductProfile from 'YesterTech/ProductProfile'
 
 function Products() {
   return (

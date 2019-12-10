@@ -5,46 +5,6 @@ const concurrently = require('concurrently')
 
 const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
 
-function getAppEntry() {
-  const appsPath = path.resolve(__dirname, '..', `apps`)
-  const appOptions = fs.readdirSync(appsPath).filter(item => {
-    return fs.lstatSync(path.resolve(appsPath, item)).isDirectory()
-  })
-
-  console.log(`\nWhich App?`)
-  const choice = readlineSync.keyInSelect(appOptions)
-  if (choice === -1) {
-    process.exit(0)
-  }
-  const selectedApp = appOptions[choice]
-
-  /**
-   * App Path
-   */
-  const appPath = path.resolve(__dirname, '..', 'apps', selectedApp)
-
-  /**
-   * See if we need to load a database
-   */
-  let dbPath = path.resolve(appPath, 'database', 'db.json')
-  let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
-  dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
-
-  if (dbPath) {
-    concurrently([
-      {
-        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
-        name: 'json-server database',
-      },
-    ]).catch(err => {
-      console.error('JSON Server Error\n\n', err)
-      process.exit(1)
-    })
-  }
-
-  return path.resolve(appPath, 'index.js')
-}
-
 function getEntry() {
   console.clear()
 
@@ -163,6 +123,54 @@ function getEntry() {
     selectedLessonVersion,
     'index.js'
   )
+}
+
+function getAppEntry() {
+  const appsPath = path.resolve(__dirname, '..', `apps`)
+  const appOptions = fs.readdirSync(appsPath).filter(item => {
+    return fs.lstatSync(path.resolve(appsPath, item)).isDirectory()
+  })
+
+  /**
+   * Select which app
+   */
+  let selectedApp
+  if (appOptions.length === 1) {
+    selectedApp = appOptions[0]
+  } else {
+    console.log(`\nWhich App?`)
+    const choice = readlineSync.keyInSelect(appOptions)
+    if (choice === -1) {
+      process.exit(0)
+    }
+    selectedApp = appOptions[choice]
+  }
+
+  /**
+   * App Path
+   */
+  const appPath = path.resolve(__dirname, '..', 'apps', selectedApp)
+
+  /**
+   * See if we need to load a database
+   */
+  let dbPath = path.resolve(appPath, 'database', 'db.json')
+  let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
+  dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
+
+  if (dbPath) {
+    concurrently([
+      {
+        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
+        name: 'json-server database',
+      },
+    ]).catch(err => {
+      console.error('JSON Server Error\n\n', err)
+      process.exit(1)
+    })
+  }
+
+  return path.resolve(appPath, 'index.js')
 }
 
 module.exports = getEntry

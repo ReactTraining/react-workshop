@@ -1,20 +1,20 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import PrimaryHeader from './PrimaryHeader'
-import PrimaryFooter from './PrimaryFooter'
-import useAuth from './useAuth'
-import './PrimaryLayout.scss'
+import PrimaryHeader from 'YesterTech/PrimaryHeader'
+import PrimaryFooter from 'YesterTech/PrimaryFooter'
+import useAuth from 'YesterTech/useAuth'
+import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
-import Home from './Home'
-import Signup from './Signup'
-import Login from './Login'
-import Account from './Account'
-import Products from './Products'
-import ProductSubNav from './ProductSubNav'
-import Checkout from './Checkout'
-import { useShoppingCartState } from './ShoppingCartState'
+import Home from 'YesterTech/Home'
+import Signup from 'YesterTech/Signup'
+import Login from 'YesterTech/Login'
+import Account from 'YesterTech/Account'
+import Products from 'YesterTech/Products'
+import ProductSubNav from 'YesterTech/ProductSubNav'
+import Checkout from 'YesterTech/Checkout'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function PrimaryLayout() {
   const { authenticated } = useAuth()

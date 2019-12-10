@@ -3,9 +3,9 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // Route Targets
-import ViewCart from './ViewCart'
-import CheckoutBilling from './CheckoutBilling'
-import CheckoutReview from './CheckoutReview'
+import ViewCart from 'YesterTech/ViewCart'
+import CheckoutBilling from 'YesterTech/CheckoutBilling'
+import CheckoutReview from 'YesterTech/CheckoutReview'
 
 function Checkout({ match }) {
   return (

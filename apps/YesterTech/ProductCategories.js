@@ -7,7 +7,7 @@ import { MdSpeaker } from 'react-icons/md'
 import Tiles from 'YesterTech/Tiles'
 import Centered from 'YesterTech/Centered'
 
-import './ProductCategories.scss'
+import 'YesterTech/ProductCategories.scss'
 
 function CategoryTile({ children, icon: Icon, ...rest }) {
   return (

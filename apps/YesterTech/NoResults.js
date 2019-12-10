@@ -1,5 +1,5 @@
 import React from 'react'
-import './NoResults.scss'
+import 'YesterTech/NoResults.scss'
 
 function NoResults({ children }) {
   return (

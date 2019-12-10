@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import './Quantity.scss'
+import 'YesterTech/Quantity.scss'
 
 function Quantity({ onChange, quantity = 1 }) {
   function subtract() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoVersions } from 'react-icons/go'
-import './Logo.scss'
+import 'YesterTech/Logo.scss'
 
 function Logo() {
   return (

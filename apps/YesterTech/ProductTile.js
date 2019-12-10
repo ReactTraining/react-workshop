@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import Heading from 'YesterTech/Heading'
 
-import ProductImage from './ProductImage'
-import useApi from './useApi'
-import api from './api'
+import ProductImage from 'YesterTech/ProductImage'
+import useApi from 'YesterTech/useApi'
+import api from 'YesterTech/api'
 
 function ProductTile({ productId }) {
   const getProduct = useCallback(() => api.products.getProduct(productId), [productId])

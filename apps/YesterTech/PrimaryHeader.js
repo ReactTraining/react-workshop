@@ -4,13 +4,13 @@ import { Columns, Column } from 'react-flex-columns'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
 import { MdShoppingCart } from 'react-icons/md'
 
-import useAuth from './useAuth'
-import { useShoppingCartState } from './ShoppingCartState'
+import useAuth from 'YesterTech/useAuth'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 import Avatar from 'YesterTech/Avatar'
-import Logo from './Logo'
-import { logout } from './localStorage'
+import Logo from 'YesterTech/Logo'
+import { logout } from 'YesterTech/localStorage'
 
-import './PrimaryHeader.scss'
+import 'YesterTech/PrimaryHeader.scss'
 import '@reach/menu-button/styles.css'
 
 function PrimaryHeader() {

@@ -6,7 +6,7 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
-import { useShoppingCartState } from './ShoppingCartState'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function ViewCart() {
   const { cart, addToCart, getCartTotal } = useShoppingCartState()

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import BrowseProductItem from './BrowseProductItem'
 // import BrowseProductItem from './BrowseProductItem.final'
 import { updateCart } from './utils'
-import 'workshop/styles/global-styles.scss'
+import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
 const products = [

@@ -3,9 +3,9 @@ import Heading from 'YesterTech/Heading'
 import Notice from 'YesterTech/Notice'
 import Centered from 'YesterTech/Centered'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { login } from './localStorage'
-import useAuth from './useAuth'
-import api from './api'
+import { login } from 'YesterTech/localStorage'
+import useAuth from 'YesterTech/useAuth'
+import api from 'YesterTech/api'
 
 function Login({ history }) {
   const { dispatch } = useAuth()

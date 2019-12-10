@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'workshop/Quantity.scss'
+import 'YesterTech/Quantity.scss'
 
 export default function Quantity() {
   const quantity = 1

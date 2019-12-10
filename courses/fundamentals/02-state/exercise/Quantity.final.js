@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'workshop/Quantity.scss'
+import 'YesterTech/Quantity.scss'
 
 export default function Quantity({ quantity, setQuantity }) {
   const tooSmall = quantity < 0

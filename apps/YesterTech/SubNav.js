@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './SubNav.scss'
+import 'YesterTech/SubNav.scss'
 
 function SubNav({ children }) {
   return <nav className="sub-nav">{children}</nav>

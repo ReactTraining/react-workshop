@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import './Heading.scss'
+import 'YesterTech/Heading.scss'
 
 function Heading({ as: Component = 'h1', size = 1, className, ...rest }) {
   return <Component className={classnames('heading', `size-${size}`, className)} {...rest} />

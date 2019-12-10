@@ -5,12 +5,12 @@ import Quantity from 'YesterTech/Quantity'
 import Tiles from 'YesterTech/Tiles'
 import StarRatings from 'YesterTech/StarRatings'
 
-import ProductImage from './ProductImage'
-import ShoppingCartButton from './ShoppingCartButton'
-import { useShoppingCartState } from './ShoppingCartState'
-import ProductTile from './ProductTile'
-import useApi from './useApi'
-import api from './api'
+import ProductImage from 'YesterTech/ProductImage'
+import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import ProductTile from 'YesterTech/ProductTile'
+import useApi from 'YesterTech/useApi'
+import api from 'YesterTech/api'
 
 function ProductProfile({ match }) {
   const productId = parseInt(match.params.productId, 10)

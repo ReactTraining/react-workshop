@@ -1,6 +1,6 @@
 import React from 'react'
 import Heading from 'YesterTech/Heading'
-// import useAuth from './useAuth'
+// import useAuth from 'YesterTech/useAuth'
 
 function Account() {
   // const { authenticated, user, dispatch } = useAuth()

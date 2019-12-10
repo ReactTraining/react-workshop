@@ -3,8 +3,8 @@ import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'
 import Avatar from 'YesterTech/Avatar'
-import api from './api'
-import useAuth from './useAuth'
+import api from 'YesterTech/api'
+import useAuth from 'YesterTech/useAuth'
 
 function Signup({ history }) {
   const { dispatch } = useAuth()

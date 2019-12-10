@@ -1,13 +1,13 @@
-import Avatar from './Avatar'
-import Centered from './Centered'
-import Heading from './Heading'
-import NoResults from './NoResults'
-import Notice from './Notice'
-import { Pagination, PaginationRange } from './Pagination'
-import Quantity from './Quantity'
-import SearchBox from './SearchBox'
-import StarRatings from './StarRatings'
-import Tiles from './Tiles'
+import Avatar from 'YesterTech/Avatar'
+import Centered from 'YesterTech/Centered'
+import Heading from 'YesterTech/Heading'
+import NoResults from 'YesterTech/NoResults'
+import Notice from 'YesterTech/Notice'
+import { Pagination, PaginationRange } from 'YesterTech/Pagination'
+import Quantity from 'YesterTech/Quantity'
+import SearchBox from 'YesterTech/SearchBox'
+import StarRatings from 'YesterTech/StarRatings'
+import Tiles from 'YesterTech/Tiles'
 
 export {
   Centered,
