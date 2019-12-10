@@ -1,0 +1,56 @@
+@import 'yestertech/styles/_theme.scss';
+
+.primary-header {
+  border-bottom: 1px solid $line-color;
+  margin-top: 0.5em;
+  padding-bottom: 0.5rem;
+}
+
+.nav-logo {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $bright-blue;
+  }
+}
+
+.primary-nav-item {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: $text-color;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+
+  &.active {
+    text-decoration: underline;
+  }
+}
+
+.nav-cart {
+  position: relative;
+
+  svg {
+    width: 1.8em;
+    height: 1.8em;
+  }
+
+  .label {
+    position: absolute;
+    bottom: 3px;
+    left: 12px;
+    padding: 2px 4px;
+    background: $red;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.5rem;
+    text-align: center;
+    letter-spacing: 0em; // reset from parent;
+  }
+}
+
+.nav-user-dropdown {
+  [data-reach-menu-item][data-selected] {
+    background: $bright-blue;
+  }
+}

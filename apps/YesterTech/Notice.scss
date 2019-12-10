@@ -1,0 +1,26 @@
+@import 'yestertech/styles/_theme.scss';
+
+.notice {
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  padding: 0.7rem;
+  border-radius: 0.2rem;
+
+  &.notice-type-error {
+    color: $red;
+  }
+
+  // Icon Size and Alignment
+  > * {
+    vertical-align: middle;
+  }
+  > svg {
+    font-size: 1rem;
+  }
+  > span + svg {
+    margin-left: 0.3em;
+  }
+  > svg + span {
+    margin-left: 0.5em;
+  }
+}

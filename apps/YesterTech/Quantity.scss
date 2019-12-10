@@ -1,0 +1,41 @@
+@import 'yestertech/styles/_theme.scss';
+
+.quantity-picker {
+  display: inline-block;
+  max-width: 5em;
+
+  > div {
+    display: flex;
+  }
+
+  .input-container {
+    flex: 1;
+    margin: 0 0.5em;
+    input {
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+
+      &:focus {
+        outline: none;
+        border-color: $bright-blue;
+      }
+    }
+  }
+
+  &.quantity-picker-error {
+    color: red;
+  }
+
+  svg {
+    fill: $bright-blue;
+  }
+
+  button:focus {
+    svg {
+      fill: $blue;
+    }
+  }
+}

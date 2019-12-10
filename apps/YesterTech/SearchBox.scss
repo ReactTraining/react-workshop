@@ -1,0 +1,66 @@
+@import 'yestertech/styles/_theme.scss';
+
+.search-box {
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    fill: $blue;
+  }
+
+  input {
+    padding: 0.4rem 3rem 0.4rem 1.6rem;
+    border-radius: 0.3rem;
+    width: 15rem;
+    border: 1px solid transparent;
+    background-color: #f0faff;
+    color: $bright-blue;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: $blue;
+      font-style: italic;
+    }
+
+    &:not(:placeholder-shown) + .clear-search {
+      display: inline-block;
+    }
+  }
+
+  &:focus-within input,
+  input:not(:placeholder-shown) {
+    border-color: $bright-blue;
+    background-color: #fff;
+    width: 25rem;
+    outline: 0;
+
+    &::placeholder {
+      color: #ddd;
+    }
+  }
+
+  .clear-search {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    background-color: red;
+    border: none;
+    font-size: 0.6em;
+    color: #fff;
+    background-color: $blue;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    border-radius: 0.2em;
+
+    &:focus {
+      outline: none;
+      background-color: $bright-blue;
+      box-shadow: 0 0 0 3px inset rgba(#fff, 0.3);
+    }
+  }
+}
