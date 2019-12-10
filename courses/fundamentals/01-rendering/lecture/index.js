@@ -1,8 +1,23 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa'
+
+const products = [
+  { id: 1, name: 'Mario Kart' },
+  { id: 2, name: 'Donkey Kong' },
+  { id: 3, name: 'Nintendo NES' },
+]
 
 function App() {
-  return <div>01 rendering lecture</div>
+  return (
+    <span>
+      <FaRegStar />
+      <FaRegStar />
+      <FaRegStar />
+      <FaRegStar />
+      <FaRegStar />
+    </span>
+  )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById('root'))

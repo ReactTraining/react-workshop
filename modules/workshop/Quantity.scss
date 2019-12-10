@@ -25,6 +25,10 @@
     }
   }
 
+  &.quantity-picker-error {
+    color: red;
+  }
+
   svg {
     fill: $bright-blue;
   }

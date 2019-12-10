@@ -3,7 +3,7 @@ import { Columns, Column } from 'react-flex-columns'
 import { Heading, Quantity, Tiles } from 'workshop'
 
 import ProductImage from './ProductImage'
-import ProductRating from './ProductRating'
+import StarRatings from './StarRatings'
 import ShoppingCartButton from './ShoppingCartButton'
 import { useShoppingCartState } from './ShoppingCartState'
 import ProductTile from './ProductTile'
@@ -29,7 +29,7 @@ function ProductProfile({ match }) {
         </Column>
         <Column flex className="spacing">
           <Heading>{product.name}</Heading>
-          <ProductRating rating={product.rating} />
+          <StarRatings rating={product.rating} />
           <hr />
           <Columns split>
             <Column>

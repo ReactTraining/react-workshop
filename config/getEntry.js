@@ -90,7 +90,7 @@ function getEntry() {
   /**
    * Exercise or Lecture Selection
    * Choose `exercise` unless they specify `lecture` in the CLI
-   * But, only use that logic if the lesson starts with a number. In other words,
+   * But only use that logic if the lesson starts with a number. In other words,
    * We don't want to have to do `app/exercise/stuff` when we can just do `app/stuff`
    */
 

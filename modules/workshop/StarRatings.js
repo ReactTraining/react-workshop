@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa'
 
-import './ProductRating.scss'
+import './StarRatings.scss'
 
 function ProductRating({ rating }) {
   let stars = []
@@ -17,7 +17,7 @@ function ProductRating({ rating }) {
   // Add empty star(s)
   while (stars.length < 5) stars.push(<FaRegStar key={`star-empty-${stars.length}`} />)
 
-  return <span className="product-rating">{stars}</span>
+  return <span className="star-ratings">{stars}</span>
 }
 
 export default ProductRating
