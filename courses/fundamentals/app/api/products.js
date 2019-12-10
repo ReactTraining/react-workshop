@@ -2,9 +2,14 @@ import { get, getRaw, post } from './utils'
 import queryString from 'query-string'
 
 export async function getProducts(search, page = 1) {
-  search = { ...search, _page: page, category: search.categories.split(','), _limit: 10 }
-  delete search.categories
-  delete search.page
+  search = {
+    ...search,
+    _limit: 10,
+    _page: page,
+    page: undefined,
+    category: search.categories ? search.categories.split(',') : undefined,
+  }
+
   const query = queryString.stringify(search || {})
 
   const res = await getRaw(`/products?${query}`)

@@ -70,7 +70,7 @@ function BrowseProducts() {
         <Pagination
           as="footer"
           path="/products"
-          totalResults={totalResults}
+          totalResults={totalResults || 0}
           page={page}
           resultsPerPage={10}
         />
