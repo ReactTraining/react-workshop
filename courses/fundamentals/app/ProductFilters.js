@@ -6,62 +6,67 @@ import api from './api'
 import useApi from './useApi'
 import { Heading } from 'workshop'
 
-function ProductFilters({ location, history }) {
+function FilterList({ location, history, urlKey, items, label }) {
   const search = queryString.parse(useLocation().search) || null
-  const selectedCategories = search.categories ? search.categories.split(',') : []
+  const selected = search[urlKey] ? search[urlKey].split(',') : []
 
-  // Database Categories
-  const getCategories = useCallback(api.products.getCategories, [])
-  const [categories, loading] = useApi(getCategories)
-
-  if (loading) {
-    return null
+  function isSelected(item) {
+    return selected && selected.includes(item)
   }
 
-  function isSelected(category) {
-    return selectedCategories && selectedCategories.includes(category)
-  }
-
-  function toggleCategory(e) {
-    const selected = e.target.name
+  function toggleItem(e) {
+    const item = e.target.name
     // Remove or Add
-    const categories = isSelected(selected)
-      ? selectedCategories.filter(c => c !== selected)
-      : selectedCategories.concat([selected])
-    const newSearch = { ...search, page: undefined, categories: categories.join(',') }
+    const newSelected = isSelected(item)
+      ? selected.filter(c => c !== item)
+      : selected.concat([item])
+    const newSearch = { ...search, page: undefined, [urlKey]: newSelected.join(',') }
     history.push(`${location.pathname}?${queryString.stringify(newSearch)}`)
   }
 
   function getClearLink() {
-    const newSearch = { ...search, page: undefined, categories: undefined }
+    const newSearch = { ...search, page: undefined, [urlKey]: undefined }
     return `${location.pathname}?${queryString.stringify(newSearch)}`
   }
 
   return (
     <section className="spacing-small">
-      <Heading size={3}>Category</Heading>
-      {categories.map(category => {
+      <Heading size={3}>{label}</Heading>
+      {items.map(item => {
         return (
-          <div key={category}>
-            <label>
-              <input
-                type="checkbox"
-                onChange={toggleCategory}
-                checked={isSelected(category)}
-                name={category}
-              />{' '}
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+          <div key={item} className="no-wrap">
+            <label title={item}>
+              <input type="checkbox" onChange={toggleItem} checked={isSelected(item)} name={item} />{' '}
+              <span>{item.charAt(0).toUpperCase() + item.slice(1)}</span>
             </label>
           </div>
         )
       })}
-      {selectedCategories.length > 0 && (
-        <div>
-          <Link to={getClearLink()}>clear</Link>
+      {selected.length > 0 && (
+        <div className="text-small">
+          <Link to={getClearLink()}>Show all {label}</Link>
         </div>
       )}
     </section>
   )
 }
 
-export default withRouter(ProductFilters)
+const FilterListEnhanced = withRouter(FilterList)
+
+function ProductFilters() {
+  const getMetaData = useCallback(api.products.getMetaData, [])
+  const [meta, loading] = useApi(getMetaData)
+  if (loading) return null
+
+  const conditions = ['excellent', 'good', 'fair', 'poor']
+
+  return (
+    <div className="spacing">
+      <FilterListEnhanced items={meta.categories} urlKey="categories" label="Categories" />
+      <FilterListEnhanced items={meta.brands} urlKey="brands" label="Brands" />
+      <FilterListEnhanced items={conditions} urlKey="conditions" label="Conditions" />
+    </div>
+  )
+}
+
+export default ProductFilters

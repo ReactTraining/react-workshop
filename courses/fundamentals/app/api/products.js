@@ -8,6 +8,8 @@ export async function getProducts(search, page = 1) {
     _page: page,
     page: undefined,
     category: search.categories ? search.categories.split(',') : undefined,
+    brand: search.brands ? search.brands.split(',') : undefined,
+    condition: search.conditions ? search.conditions.split(',') : undefined,
   }
 
   const query = queryString.stringify(search || {})
@@ -28,10 +30,14 @@ export function addProduct(data) {
   return post(`/products`, data)
 }
 
-export function getCategories() {
-  return get('/products')
-    .then(products =>
-      products.reduce((categories, product) => categories.concat([product.category || '']), [])
-    )
-    .then(categories => [...new Set(categories)])
+export function getMetaData() {
+  return get('/products').then(products => {
+    const categories = products.reduce((c, p) => c.concat([p.category || '']), [])
+    const brands = products.reduce((b, p) => b.concat([p.brand || '']), [])
+
+    return {
+      categories: [...new Set(categories)],
+      brands: [...new Set(brands)],
+    }
+  })
 }
