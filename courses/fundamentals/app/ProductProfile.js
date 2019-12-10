@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react'
 import { Columns, Column } from 'react-flex-columns'
-import { Heading, Quantity, Tiles } from 'workshop'
+import { Heading, Quantity, Tiles, StarRatings } from 'workshop'
 
 import ProductImage from './ProductImage'
-import StarRatings from './StarRatings'
 import ShoppingCartButton from './ShoppingCartButton'
 import { useShoppingCartState } from './ShoppingCartState'
 import ProductTile from './ProductTile'

@@ -6,6 +6,7 @@ import Notice from './Notice'
 import { Pagination, PaginationRange } from './Pagination'
 import Quantity from './Quantity'
 import SearchBox from './SearchBox'
+import StarRatings from './StarRatings'
 import Tiles from './Tiles'
 
 export {
@@ -17,6 +18,7 @@ export {
   Pagination,
   PaginationRange,
   Quantity,
+  StarRatings,
   SearchBox,
   Tiles,
 }

@@ -1,0 +1,9 @@
+// Centers the content for lecture purposes
+#root {
+  display: flex;
+  min-height: 100vh;
+
+  > * {
+    margin: auto;
+  }
+}
