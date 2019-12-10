@@ -16,7 +16,7 @@ function getEntry() {
     const data = fs.readFileSync(preferencesPath, 'utf8')
     preferences = JSON.parse(data)
   } catch (err) {
-    // noop
+    // no-op
   }
 
   /**
