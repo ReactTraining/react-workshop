@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
-import Heading from 'YesterTech/Heading'
 
+import Heading from 'YesterTech/Heading'
 import ProductImage from 'YesterTech/ProductImage'
 import useApi from 'YesterTech/useApi'
 import api from 'YesterTech/api'

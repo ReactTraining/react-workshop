@@ -1,5 +1,4 @@
 import React from 'react'
-
 import 'YesterTech/SubNav.scss'
 
 function SubNav({ children }) {

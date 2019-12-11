@@ -1,7 +1,7 @@
 import queryString from 'query-string'
 import { get, getRaw, post } from './utils'
 
-export async function getProducts(search, page = 1) {
+export async function getProducts(search = {}, page = 1) {
   search = {
     ...search,
     _limit: 10,

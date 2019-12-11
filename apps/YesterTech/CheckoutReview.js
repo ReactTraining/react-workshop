@@ -3,6 +3,7 @@ import { MdShoppingCart } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft } from 'react-icons/fa'
+
 import Heading from 'YesterTech/Heading'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 

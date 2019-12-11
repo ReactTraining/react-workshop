@@ -4,9 +4,9 @@ import { FaGamepad, FaDesktop } from 'react-icons/fa'
 import { GiKeyboard } from 'react-icons/gi'
 import { IoIosSave } from 'react-icons/io'
 import { MdSpeaker } from 'react-icons/md'
+
 import Tiles from 'YesterTech/Tiles'
 import Centered from 'YesterTech/Centered'
-
 import 'YesterTech/ProductCategories.scss'
 
 function CategoryTile({ children, icon: Icon, ...rest }) {

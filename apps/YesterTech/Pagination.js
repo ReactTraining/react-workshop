@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import queryString from 'query-string'
+
 import 'YesterTech/Pagination.scss'
 
 export function Pagination({

@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
 import { Columns, Column } from 'react-flex-columns'
+
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
 import Tiles from 'YesterTech/Tiles'
 import StarRatings from 'YesterTech/StarRatings'
-
 import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'

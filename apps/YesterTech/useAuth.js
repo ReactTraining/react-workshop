@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-
 import { useAuthState } from 'YesterTech/AuthState'
 import { getLoggedUser } from 'YesterTech/localStorage'
 

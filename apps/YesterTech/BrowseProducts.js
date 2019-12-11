@@ -2,10 +2,10 @@ import React, { useMemo, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { Columns, Column } from 'react-flex-columns'
+
 import Heading from 'YesterTech/Heading'
 import { Pagination, PaginationRange } from 'YesterTech/Pagination'
 import NoResults from 'YesterTech/NoResults'
-
 import api from 'YesterTech/api'
 import useApi from 'YesterTech/useApi'
 import BrowseProductItem from 'YesterTech/BrowseProductItem'

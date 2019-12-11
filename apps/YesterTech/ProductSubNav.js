@@ -1,8 +1,8 @@
 import React from 'react'
-import SearchBox from 'YesterTech/SearchBox'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 
+import SearchBox from 'YesterTech/SearchBox'
 import SubNav from 'YesterTech/SubNav'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 

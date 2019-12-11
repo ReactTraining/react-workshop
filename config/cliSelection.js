@@ -3,14 +3,49 @@ const fs = require('fs')
 const readlineSync = require('readline-sync')
 const concurrently = require('concurrently')
 
-const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
-
-function selectLesson() {
+module.exports = function() {
   console.clear()
 
+  // Are we trying to choose an app or a lesson to load
+  const { appPath, alias } = process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
+
+  /**
+   * Does the app use a json-server database
+   */
+  let dbPath = path.resolve(appPath, 'database', 'db.json')
+  let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
+  dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
+
+  // Even though we're not "concurrently" launching json-server and
+  // our app with `concurrently`, this allows the database to run
+  // in the background
+  if (dbPath) {
+    concurrently([
+      {
+        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
+        name: 'json-server database',
+      },
+    ]).catch(err => {
+      console.error('JSON Server Error\n\n', err)
+      process.exit(1)
+    })
+  }
+
+  return {
+    appEntry: path.resolve(appPath, 'entry.js'),
+    alias: alias || {},
+  }
+}
+
+/****************************************
+  Select Lesson
+*****************************************/
+
+function selectLesson() {
   /**
    * Load Preferences
    */
+  const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
   let preferences = {}
   try {
     const data = fs.readFileSync(preferencesPath, 'utf8')
@@ -22,6 +57,8 @@ function selectLesson() {
   /**
    * See if we're loading an app instead of course material
    */
+
+  // Since the user isn't loading a lesson, ask them which app they way to load.
   if (process.argv[2] === 'app') {
     return { appEntry: getAppEntry(), alias: null }
   }
@@ -124,18 +161,18 @@ function selectLesson() {
     aliases[`YesterTech/${name}`] = path.join(lessonPath, file)
   })
 
-  const appEntries = {
-    fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech', 'entry'),
+  const appPaths = {
+    fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   }
 
-  return { appEntry: appEntries[selectedCourse], alias: aliases }
+  return { appPath: appPaths[selectedCourse], alias: aliases }
 }
 
-/**
- * Select an App instead of a lesson
- */
+/****************************************
+  Get appPath
+*****************************************/
 
-function getAppEntry() {
+function getAppPath() {
   const appsPath = path.resolve(__dirname, '..', `apps`)
   const appOptions = fs.readdirSync(appsPath).filter(item => {
     return fs.lstatSync(path.resolve(appsPath, item)).isDirectory()
@@ -160,30 +197,5 @@ function getAppEntry() {
    * App Path
    */
   const appPath = path.resolve(__dirname, '..', 'apps', selectedApp)
-
-  /**
-   * See if we need to load a database
-   */
-  let dbPath = path.resolve(appPath, 'database', 'db.json')
-  let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
-  dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
-
-  // Even though we're not "concurrently" launching json-server and
-  // our app with `concurrently`, this allows the database to run
-  // in the background
-  if (dbPath) {
-    concurrently([
-      {
-        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
-        name: 'json-server database',
-      },
-    ]).catch(err => {
-      console.error('JSON Server Error\n\n', err)
-      process.exit(1)
-    })
-  }
-
-  return path.resolve(appPath, 'entry.js')
+  return appPath
 }
-
-module.exports = selectLesson

@@ -9,7 +9,6 @@ import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 import Avatar from 'YesterTech/Avatar'
 import Logo from 'YesterTech/Logo'
 import { logout } from 'YesterTech/localStorage'
-
 import 'YesterTech/PrimaryHeader.scss'
 import '@reach/menu-button/styles.css'
 

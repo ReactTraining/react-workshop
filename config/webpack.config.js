@@ -46,8 +46,8 @@ const sassModuleRegex = /\.module\.(scss|sass)$/
  START CUSTOM
  *****************************************/
 
-const selectLesson = require('./selectLesson')
-const { appEntry, alias } = selectLesson()
+const cliSelection = require('./cliSelection')
+const { appEntry, alias } = cliSelection()
 
 /****************************************
   END CUSTOM
