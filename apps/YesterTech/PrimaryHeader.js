@@ -32,7 +32,7 @@ function PrimaryHeader() {
           </Link>
         </Column>
         <Column className="spacing-small vertical-middle">
-          <nav className="horizontal-spacing-large align-right flex-parent align-center">
+          <nav className="horizontal-spacing-large align-right flex-parent flex-align-center">
             <NavLink to="/" exact className="primary-nav-item">
               Home
             </NavLink>

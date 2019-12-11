@@ -49,22 +49,26 @@
 
 .flex-parent {
   display: flex;
-  &.align-center {
+
+  &.flex-align-center {
     align-items: center;
   }
-  &.align-start {
+  &.flex-align-start {
     align-items: flex-start;
   }
-  &.align-end {
+  &.flex-align-end {
     align-items: flex-end;
   }
-  &.justify-center {
+  &.flex-justify-center {
     justify-content: center;
   }
-  &.justify-space-around {
+  &.flex-justify-space-around {
     justify-content: space-around;
   }
-  &.justify-space-between {
+  &.flex-justify-space-between {
     justify-content: space-between;
+  }
+  .flex {
+    flex: 1;
   }
 }

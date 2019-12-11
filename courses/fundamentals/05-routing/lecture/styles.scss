@@ -1,0 +1,16 @@
+.products-page {
+  display: flex;
+  width: 100%;
+
+  > .primary-sidebar {
+    width: 10rem;
+  }
+  > div {
+    flex: 1;
+    margin-left: 1rem;
+  }
+
+  label {
+    display: block;
+  }
+}

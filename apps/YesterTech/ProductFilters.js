@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import { withRouter, useLocation, Link } from 'react-router-dom'
 import queryString from 'query-string'
 
-import api from './api'
-import useApi from './useApi'
+import api from 'YesterTech/api'
+import useApi from 'YesterTech/useApi'
 import Heading from 'YesterTech/Heading'
 
 function FilterList({ location, history, urlKey, items, label }) {
