@@ -25,7 +25,7 @@ function App() {
       {products.map(product => {
         return (
           <BrowseProductItem
-            key={product.key}
+            key={product.id}
             id={product.id}
             name={product.name}
             addToCart={addToCart}

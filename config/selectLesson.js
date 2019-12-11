@@ -5,7 +5,7 @@ const concurrently = require('concurrently')
 
 const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
 
-function getEntry() {
+function selectLesson() {
   console.clear()
 
   /**
@@ -23,18 +23,21 @@ function getEntry() {
    * See if we're loading an app instead of course material
    */
   if (process.argv[2] === 'app') {
-    return getAppEntry()
+    return { appEntry: getAppEntry(), alias: null }
   }
 
   /**
    * Course Selection
    */
 
+  // Read course options and make list
   const coursesPath = path.resolve(__dirname, '..', 'courses')
   const courseOptions = fs.readdirSync(coursesPath).filter(item => {
     return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
   })
 
+  // See if the user made a pre-selection in cli: `npm start fundamentals`
+  // or if they have one listed in their `preferences.json` file
   let selectedCourse = null
   if (courseOptions.includes(process.argv[2])) {
     selectedCourse = process.argv[2]
@@ -45,6 +48,7 @@ function getEntry() {
     )
   }
 
+  // If nothing was found from above, show a menu so they can choose
   if (!selectedCourse) {
     console.log('Which Course?')
     const choice = readlineSync.keyInSelect(courseOptions)
@@ -54,10 +58,7 @@ function getEntry() {
     selectedCourse = courseOptions[choice]
   }
 
-  /**
-   * Remember Choice for Course
-   */
-
+  // See if they want to save their choice to `preferences.json`
   if (!preferences.course) {
     if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
       try {
@@ -74,8 +75,8 @@ function getEntry() {
   /**
    * Lesson Selection
    */
-  let selectedLesson = process.argv[3]
 
+  // Read lesson options and make a list
   const lessonsPath = path.resolve(__dirname, '..', `courses/${selectedCourse}`)
   const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
     return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
@@ -85,10 +86,13 @@ function getEntry() {
     process.exit(0)
   }
 
-  // Allow pre-selection from cli: `npm start advanced 4`
+  // See if the user made a pre-selection in cli: `npm start fundamentals 2`
+  let selectedLesson = process.argv[3]
   if (!isNaN(selectedLesson) && lessonOptions.length <= selectedLesson) {
     selectedLesson = lessonOptions[selectedLesson - 1]
-    // Otherwise, if they
+
+    // Or they can do: `npm start fundamentals state`.
+    // If they didn't do either of those, then we'll show them a menu:
   } else if (!lessonOptions.includes(selectedLesson)) {
     console.log(`\nWhich Lesson of ${selectedCourse}?`)
     const choice = readlineSync.keyInSelect(lessonOptions)
@@ -99,31 +103,37 @@ function getEntry() {
   }
 
   /**
-   * Exercise or Lecture Selection
-   * Choose `exercise` unless they specify `lecture` in the CLI
-   * But only use that logic if the lesson starts with a number.
+   * Exercise or Lecture (Type)
    */
 
-  let selectedLessonVersion = ''
+  const options = [process.argv[2], process.argv[3], process.argv[4]]
+  const selectedLessonType = options.includes('lecture') ? 'lecture' : 'exercise'
 
-  if (!isNaN(selectedLesson.substr(0, 2))) {
-    const options = [process.argv[2], process.argv[3], process.argv[4]]
-    selectedLessonVersion = options.includes('lecture') ? 'lecture' : 'exercise'
-  }
-
-  /**
-   * Entry
-   */
-  return path.resolve(
+  const lessonPath = path.resolve(
     __dirname,
     '..',
     'courses',
     selectedCourse,
     selectedLesson,
-    selectedLessonVersion,
-    'index.js'
+    selectedLessonType
   )
+
+  const aliases = {}
+  fs.readdirSync(lessonPath).forEach(file => {
+    const name = path.basename(file, '.js')
+    aliases[`YesterTech/${name}`] = path.join(lessonPath, file)
+  })
+
+  const appEntries = {
+    fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech', 'entry'),
+  }
+
+  return { appEntry: appEntries[selectedCourse], alias: aliases }
 }
+
+/**
+ * Select an App instead of a lesson
+ */
 
 function getAppEntry() {
   const appsPath = path.resolve(__dirname, '..', `apps`)
@@ -158,6 +168,9 @@ function getAppEntry() {
   let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
   dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
 
+  // Even though we're not "concurrently" launching json-server and
+  // our app with `concurrently`, this allows the database to run
+  // in the background
   if (dbPath) {
     concurrently([
       {
@@ -170,7 +183,7 @@ function getAppEntry() {
     })
   }
 
-  return path.resolve(appPath, 'index.js')
+  return path.resolve(appPath, 'entry.js')
 }
 
-module.exports = getEntry
+module.exports = selectLesson
