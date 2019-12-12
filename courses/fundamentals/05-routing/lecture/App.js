@@ -1,8 +1,16 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+
 import Logo from 'YesterTech/Logo'
 import Avatar from 'YesterTech/Avatar'
 import Heading from 'YesterTech/Heading'
+import ProductImage from 'YesterTech/ProductImage'
+import StarRatings from 'YesterTech/StarRatings'
+// import ProductsSidebar from 'YesterTech/ProductsSidebar'
+// import BrowseProducts from 'YesterTech/BrowseProducts'
+// import ProductProfile from 'YesterTech/ProductProfile'
+import 'YesterTech/ProductsLayout.scss'
 
 function Home() {
   return (
@@ -12,9 +20,9 @@ function Home() {
   )
 }
 
-function Products() {
+function ProductsLayout() {
   return (
-    <div className="products-page">
+    <div className="products-layout">
       <aside className="primary-sidebar spacing">
         <section className="spacing-small">
           <Heading size={3}>Categories</Heading>
@@ -29,17 +37,30 @@ function Products() {
           </label>
         </section>
       </aside>
-      <div className="spacing">
-        <Heading>Browse Products</Heading>
-      </div>
+      <div>Product Profile Goes Here</div>
     </div>
   )
 }
 
-function ProductProfile({ productId }) {
+function ProductProfile() {
   return (
     <div className="spacing">
-      <Heading>Product Profile</Heading>
+      <Columns gutters>
+        <Column>
+          <ProductImage src="/images/products/mario-kart.jpg" alt="Mario Kart" size={15} />
+        </Column>
+        <Column flex className="spacing">
+          <Heading>Mario Kart</Heading>
+          <StarRatings rating={4.5} />
+          <hr />
+
+          <div className="text-small">
+            <div>Brand: Nintendo</div>
+            <div>Category: Games</div>
+            <div>Condition: Good</div>
+          </div>
+        </Column>
+      </Columns>
     </div>
   )
 }
@@ -69,9 +90,7 @@ export default function App() {
         </header>
 
         <main className="primary-content">
-          {/* <Home /> */}
-          {/* <Products /> */}
-          <ProductProfile />
+          <Home />
         </main>
 
         <footer className="primary-footer spacing">

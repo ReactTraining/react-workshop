@@ -6,7 +6,7 @@ import BrowseProducts from 'YesterTech/BrowseProducts'
 import ProductProfile from 'YesterTech/ProductProfile'
 import './ProductsLayout.scss'
 
-function Products() {
+function ProductsLayout() {
   return (
     <div className="products-layout">
       <ProductsSidebar />
@@ -21,4 +21,4 @@ function Products() {
   )
 }
 
-export default Products
+export default ProductsLayout
