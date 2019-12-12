@@ -1,25 +1,23 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { Columns, Column } from 'react-flex-columns'
 
-import ProductFilters from 'YesterTech/ProductFilters'
+import ProductsSidebar from 'YesterTech/ProductsSidebar'
 import BrowseProducts from 'YesterTech/BrowseProducts'
 import ProductProfile from 'YesterTech/ProductProfile'
+import './ProductsLayout.scss'
 
 function Products() {
   return (
-    <Columns gutters>
-      <Column size={10} className="primary-sidebar">
-        <ProductFilters />
-      </Column>
-      <Column flex>
+    <div className="products-layout">
+      <ProductsSidebar />
+      <div>
         <Switch>
           <Route path="/products" exact component={BrowseProducts} />
           <Route path="/products/:productId" component={ProductProfile} />
           <Redirect to="/products" />
         </Switch>
-      </Column>
-    </Columns>
+      </div>
+    </div>
   )
 }
 

@@ -11,7 +11,7 @@ import Home from 'YesterTech/Home'
 import Signup from 'YesterTech/Signup'
 import Login from 'YesterTech/Login'
 import Account from 'YesterTech/Account'
-import Products from 'YesterTech/Products'
+import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 import Checkout from 'YesterTech/Checkout'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
@@ -30,7 +30,7 @@ function PrimaryLayout() {
             <Route path="/" exact component={Home} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/login" exact component={Login} />
-            <Route path="/products" component={Products} />
+            <Route path="/products" component={ProductsLayout} />
             {cart.length > 0 && <Route path="/checkout" component={Checkout} />}
             {authenticated && <Route path="/account" component={Account} />}
             <Redirect to="/" />

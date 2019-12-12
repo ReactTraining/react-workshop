@@ -1,0 +1,17 @@
+@import 'YesterTech/styles/_theme.scss';
+
+.products-layout {
+  display: flex;
+
+  > aside {
+    width: 10em;
+    border-right: 1px solid $line-color;
+    margin-right: $gutter;
+  }
+
+  // The main column in the products layout. Will take up full width
+  // after aside's width
+  > div {
+    flex: 1;
+  }
+}

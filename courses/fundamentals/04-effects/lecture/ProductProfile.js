@@ -1,9 +1,8 @@
-import React, { useCallback } from 'react'
-import { Columns, Column } from 'react-flex-columns'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
 
 import api from 'YesterTech/api'
-import useApi from 'YesterTech/useApi'
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
 import Tiles from 'YesterTech/Tiles'
@@ -17,14 +16,11 @@ function ProductProfile() {
   let { productId } = useParams()
   productId = parseInt(productId, 10)
 
+  const product = null
+
   // Cart
   const { addToCart, getQuantity } = useShoppingCartState()
   const quantity = getQuantity(productId)
-
-  // Get Product
-  const getProduct = useCallback(() => api.products.getProduct(productId), [productId])
-  const [product] = useApi(getProduct)
-
   if (!product) return <div>Loading...</div>
 
   return (
@@ -58,7 +54,6 @@ function ProductProfile() {
           <p>{product.description}</p>
         </Column>
       </Columns>
-
       {Array.isArray(product.relatedProducts) && (
         <>
           <hr />

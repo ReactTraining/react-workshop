@@ -28,7 +28,7 @@ function BrowseProductItem({
   return (
     <Columns gutters className="browse-product-item">
       <Column>
-        <ProductImage src={imagePath} name={name} />
+        <ProductImage src={imagePath} alt={name} />
       </Column>
       <Column flex className="spacing-small">
         <Heading as="h1" size={3}>

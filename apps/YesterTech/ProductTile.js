@@ -17,7 +17,7 @@ function ProductTile({ productId }) {
     <div className="product-tile">
       <Columns gutterSize={0.5}>
         <Column>
-          <ProductImage src={product.imagePath} name={product && product.name} size={5} />
+          <ProductImage src={product.imagePath} alt={product && product.name} size={5} />
         </Column>
         <Column flex className="spacing-small">
           <Heading as="h2" size={4} className="no-wrap">
