@@ -52,6 +52,8 @@ useEffect(() => {
 }, [])
 ```
 
+NOTE: That the fact that the product profile page has "related products" allows you to change pages and if the dependency array of the effect has the `productId`, then the new product is loaded. Doing this lecture with this product profile page was chosen for this main reason.
+
 ## Custom Hooks
 
 - Refactor each to be custom hooks
