@@ -1,6 +1,6 @@
 # Lecture Notes
 
-## Route, Link, Switch, Redirect (and nested layout concepts)
+## `Route`, `Link`, `Switch`, `Redirect` (and nested layout concepts)
 
 The `PrimaryLayout` starts with several components that might resemble what the graphic design team has given to us in terms of static HTML. Our task is you use them to explain React Router with layouts and sub layouts involved.
 
@@ -63,7 +63,7 @@ The `PrimaryLayout` starts with several components that might resemble what the 
 
 - Introduce the `useParams` hook in `ProductProfile`
 
-## BrowserRouter
+## `BrowserRouter`
 
 - Open `App.js`
 - Just briefly explain that anything that uses React Router components needs to be wrapped in this provider. We haven't even explained context yet so we can gloss over some details and come back to this thought later after context.

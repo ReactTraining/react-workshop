@@ -11,9 +11,15 @@ function Checkout({ match }) {
   return (
     <Centered>
       <Switch>
-        <Route path={`${match.path}/cart`} exact component={ViewCart} />
-        <Route path={`${match.path}/billing`} exact component={CheckoutBilling} />
-        <Route path={`${match.path}/review`} exact component={CheckoutReview} />
+        <Route path={`${match.path}/cart`} exact>
+          <ViewCart />
+        </Route>
+        <Route path={`${match.path}/billing`}>
+          <CheckoutBilling />
+        </Route>
+        <Route path={`${match.path}/review`}>
+          <CheckoutReview />
+        </Route>
         <Redirect to={`${match.path}/cart`} />
       </Switch>
     </Centered>

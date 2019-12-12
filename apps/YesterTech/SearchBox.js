@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import { IoIosSearch } from 'react-icons/io'
 
 import 'YesterTech/SearchBox.scss'
 
-function SearchBox({ placeholder, path, history }) {
+function SearchBox({ placeholder, path }) {
+  const history = useHistory()
   const search = useLocation().search
   const [query, setQuery] = useState(queryString.parse(search).q || '')
 
@@ -44,4 +45,4 @@ function SearchBox({ placeholder, path, history }) {
   )
 }
 
-export default withRouter(SearchBox)
+export default SearchBox

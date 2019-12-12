@@ -1,12 +1,14 @@
 import React from 'react'
-import { withRouter, useLocation, Link } from 'react-router-dom'
+import { useLocation, useHistory, Link } from 'react-router-dom'
 import queryString from 'query-string'
 
 import Heading from 'YesterTech/Heading'
 import ProductFilterItem from 'YesterTech/ProductFilterItem'
 
-function ProductFilterList({ location, history, urlKey, list, label }) {
-  const search = queryString.parse(useLocation().search) || null
+function ProductFilterList({ urlKey, list, label }) {
+  const location = useLocation()
+  const history = useHistory()
+  const search = queryString.parse(location.search) || null
   const selected = search[urlKey] ? search[urlKey].split(',') : []
 
   function isSelected(item) {
@@ -51,4 +53,4 @@ function ProductFilterList({ location, history, urlKey, list, label }) {
   )
 }
 
-export default withRouter(ProductFilterList)
+export default ProductFilterList

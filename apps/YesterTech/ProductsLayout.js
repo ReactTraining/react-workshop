@@ -12,8 +12,12 @@ function ProductsLayout() {
       <ProductsSidebar />
       <div>
         <Switch>
-          <Route path="/products" exact component={BrowseProducts} />
-          <Route path="/products/:productId" component={ProductProfile} />
+          <Route path="/products" exact>
+            <BrowseProducts />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductProfile />
+          </Route>
           <Redirect to="/products" />
         </Switch>
       </div>

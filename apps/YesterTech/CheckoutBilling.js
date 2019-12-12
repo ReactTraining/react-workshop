@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ history }) {
+function CheckoutBilling() {
+  const history = useHistory()
   const [sameAsBilling, setSameAsBilling] = useState(true)
 
   function handleSubmit(event) {

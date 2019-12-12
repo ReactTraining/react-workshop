@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
+import { useHistory } from 'react-router-dom'
 
 import Heading from 'YesterTech/Heading'
 import Notice from 'YesterTech/Notice'
@@ -8,7 +9,8 @@ import { login } from 'YesterTech/localStorage'
 import useAuth from 'YesterTech/useAuth'
 import api from 'YesterTech/api'
 
-function Login({ history }) {
+function Login() {
+  const history = useHistory()
   const { dispatch } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

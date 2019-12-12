@@ -24,15 +24,33 @@ function PrimaryLayout() {
     <div className="primary-layout">
       <div>
         <PrimaryHeader />
-        <Route path="/products" component={ProductSubNav} />
+        <Route path="/products">
+          <ProductSubNav />
+        </Route>
         <main className="primary-content">
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/products" component={ProductsLayout} />
-            {cart.length > 0 && <Route path="/checkout" component={Checkout} />}
-            {authenticated && <Route path="/account" component={Account} />}
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/signup" exact>
+              <Signup />
+            </Route>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
+            <Route path="/products">
+              <ProductsLayout />
+            </Route>
+            {cart.length > 0 && (
+              <Route path="/checkout">
+                <Checkout />
+              </Route>
+            )}
+            {authenticated && (
+              <Route path="/account">
+                <Account />
+              </Route>
+            )}
             <Redirect to="/" />
           </Switch>
         </main>

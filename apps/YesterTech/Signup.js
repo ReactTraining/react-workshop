@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
+import { useHistory } from 'react-router-dom'
 
 import Heading from 'YesterTech/Heading'
 import Avatar from 'YesterTech/Avatar'
 import api from 'YesterTech/api'
 import useAuth from 'YesterTech/useAuth'
 
-function Signup({ history }) {
+function Signup() {
+  const history = useHistory()
   const { dispatch } = useAuth()
   const [useGitHub, setUseGitHub] = useState(true)
   const [username, setUsername] = useState('')
