@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // Route Targets
@@ -7,7 +7,9 @@ import ViewCart from 'YesterTech/ViewCart'
 import CheckoutBilling from 'YesterTech/CheckoutBilling'
 import CheckoutReview from 'YesterTech/CheckoutReview'
 
-function Checkout({ match }) {
+function Checkout() {
+  const match = useRouteMatch()
+
   return (
     <Centered>
       <Switch>
