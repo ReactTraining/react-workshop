@@ -1,0 +1,109 @@
+import React, { useState, useEffect } from 'react'
+import { Columns, Column } from 'react-flex-columns'
+import { useHistory } from 'react-router-dom'
+
+import Heading from 'YesterTech/Heading'
+import Avatar from 'YesterTech/Avatar'
+import api from 'YesterTech/api'
+import useAuth from 'YesterTech/useAuth'
+
+function Signup() {
+  const history = useHistory()
+  const { dispatch } = useAuth()
+  const [useGitHub, setUseGitHub] = useState(true)
+  const [username, setUsername] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    api.users.registerUser({ username, name, password, avatarUrl }).then(() => {
+      dispatch({ type: 'LOGIN', user: { username, name, password, avatarUrl } })
+      history.push('/products')
+    })
+  }
+
+  function handleShowPassword() {
+    setShowPassword(!showPassword)
+  }
+
+  return (
+    <Columns gutters>
+      <Column>
+        <Avatar size={8} src={avatarUrl} />
+      </Column>
+      <Column flex className="spacing">
+        <Heading>Signup</Heading>
+        <form onSubmit={handleSubmit} className="spacing">
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                defaultChecked={useGitHub}
+                onChange={() => setUseGitHub(!useGitHub)}
+              />{' '}
+              Use GitHub
+            </label>
+          </div>
+          <hr />
+          <div className="form-field">
+            <input
+              aria-label="username"
+              onChange={e => setUsername(e.target.value)}
+              value={username}
+              type="text"
+              placeholder={useGitHub ? 'GitHub Username' : 'Username'}
+            />
+          </div>
+          <div className="form-field">
+            <input
+              aria-label="password"
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password (This will not be encrypted)"
+            />
+            <label>
+              <input
+                onChange={handleShowPassword}
+                defaultChecked={showPassword}
+                className="passwordCheckbox"
+                type="checkbox"
+              />{' '}
+              show password
+            </label>
+          </div>
+          <div className="form-field">
+            <input
+              aria-label="name"
+              onChange={e => setName(e.target.value)}
+              value={name}
+              type="text"
+              placeholder="Full Name"
+              disabled={useGitHub}
+            />
+          </div>
+          <div className="form-field">
+            <input
+              aria-label="avatar-url"
+              onChange={e => setAvatarUrl(e.target.value)}
+              value={avatarUrl}
+              type="text"
+              placeholder="Avatar URL: https://"
+              disabled={useGitHub}
+            />
+          </div>
+          <footer>
+            <button type="submit" className="button">
+              Signup
+            </button>
+          </footer>
+        </form>
+      </Column>
+    </Columns>
+  )
+}
+
+export default Signup
