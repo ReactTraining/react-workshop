@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
-import serializeForm from 'form-serialize'
 
 import Heading from 'YesterTech/Heading'
 
@@ -15,7 +14,7 @@ function CheckoutBilling() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const values = serializeForm(event.target, { hash: true })
+    const values = { billingName, billingAddress, shippingName, shippingAddress }
     console.log(values)
   }
 
@@ -34,7 +33,6 @@ function CheckoutBilling() {
           <input
             id="billing:name"
             type="text"
-            name="billingName"
             defaultValue={billingName}
             onChange={event => setBillingName(event.target.value)}
           />
@@ -44,7 +42,6 @@ function CheckoutBilling() {
           <input
             id="billing:address"
             type="text"
-            name="billingAddress"
             defaultValue={billingAddress}
             onChange={event => setBillingAddress(event.target.value)}
           />
@@ -70,7 +67,6 @@ function CheckoutBilling() {
           <input
             id="shipping:name"
             type="text"
-            name="shippingName"
             value={sameAsBilling ? billingName : shippingName}
             onChange={event => setShippingName(event.target.value)}
             disabled={sameAsBilling}
@@ -81,7 +77,6 @@ function CheckoutBilling() {
           <input
             id="shipping:address"
             type="text"
-            name="shippingAddress"
             value={sameAsBilling ? billingAddress : shippingAddress}
             onChange={event => setShippingAddress(event.target.value)}
             disabled={sameAsBilling}

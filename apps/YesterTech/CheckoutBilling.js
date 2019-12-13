@@ -1,18 +1,42 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling() {
-  const history = useHistory()
+function CheckoutBilling({ onSubmit }) {
   const [sameAsBilling, setSameAsBilling] = useState(true)
+
+  // Billing
+  const [billingName, setBillingName] = useState()
+  const [billingAddress, setBillingAddress] = useState()
+  const [billingCity, setBillingCity] = useState()
+  const [billingState, setBillingState] = useState()
+  const [billingPostal, setBillingPostal] = useState()
+
+  // Shipping
+  const [shippingName, setShippingName] = useState()
+  const [shippingAddress, setShippingAddress] = useState()
+  const [shippingCity, setShippingCity] = useState()
+  const [shippingState, setShippingState] = useState()
+  const [shippingPostal, setShippingPostal] = useState()
 
   function handleSubmit(event) {
     event.preventDefault()
-    history.push('/checkout/review')
+    onSubmit({
+      billingName,
+      billingAddress,
+      billingCity,
+      billingState,
+      billingPostal,
+      shippingName,
+      shippingAddress,
+      shippingCity,
+      shippingState,
+      shippingPostal,
+    })
   }
 
   return (
@@ -27,29 +51,54 @@ function CheckoutBilling() {
         <hr />
         <div className="form-field">
           <label htmlFor="billing:name">Name</label>
-          <input id="billing:name" type="text" />
+          <input
+            id="billing:name"
+            type="text"
+            defaultValue={billingName}
+            onChange={event => setBillingName(event.target.value)}
+          />
         </div>
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
-          <input id="billing:address" type="text" />
+          <input
+            id="billing:address"
+            type="text"
+            defaultValue={billingAddress}
+            onChange={event => setBillingAddress(event.target.value)}
+          />
         </div>
         <Columns gutters>
           <Column>
             <div className="form-field">
               <label htmlFor="billing:city">City</label>
-              <input id="billing:city" type="text" />
+              <input
+                id="billing:city"
+                type="text"
+                defaultValue={billingCity}
+                onChange={event => setBillingCity(event.target.value)}
+              />
             </div>
           </Column>
           <Column>
             <div className="form-field">
               <label htmlFor="billing:state">State</label>
-              <input id="billing:state" type="text" />
+              <input
+                id="billing:state"
+                type="text"
+                defaultValue={billingState}
+                onChange={event => setBillingState(event.target.value)}
+              />
             </div>
           </Column>
           <Column>
             <div className="form-field">
               <label htmlFor="billing:postal">Postal Code</label>
-              <input id="billing:postal" type="text" />
+              <input
+                id="billing:postal"
+                type="text"
+                defaultValue={billingPostal}
+                onChange={event => setBillingPostal(event.target.value)}
+              />
             </div>
           </Column>
         </Columns>
@@ -77,29 +126,59 @@ function CheckoutBilling() {
             <hr />
             <div className="form-field">
               <label htmlFor="shipping:name">Name</label>
-              <input id="shipping:name" type="text" />
+              <input
+                id="shipping:name"
+                type="text"
+                value={sameAsBilling ? billingName : shippingName}
+                onChange={event => setShippingName(event.target.value)}
+                disabled={sameAsBilling}
+              />
             </div>
             <div className="form-field">
               <label htmlFor="shipping:address">Address</label>
-              <input id="shipping:address" type="text" />
+              <input
+                id="shipping:address"
+                type="text"
+                value={sameAsBilling ? billingAddress : shippingAddress}
+                onChange={event => setShippingAddress(event.target.value)}
+                disabled={sameAsBilling}
+              />
             </div>
             <Columns gutters>
               <Column>
                 <div className="form-field">
                   <label htmlFor="shipping:city">City</label>
-                  <input id="shipping:city" type="text" />
+                  <input
+                    id="shipping:city"
+                    type="text"
+                    value={sameAsBilling ? billingCity : shippingCity}
+                    onChange={event => setShippingCity(event.target.value)}
+                    disabled={sameAsBilling}
+                  />
                 </div>
               </Column>
               <Column>
                 <div className="form-field">
                   <label htmlFor="shipping:state">State</label>
-                  <input id="shipping:state" type="text" />
+                  <input
+                    id="shipping:state"
+                    type="text"
+                    value={sameAsBilling ? billingState : shippingState}
+                    onChange={event => setShippingState(event.target.value)}
+                    disabled={sameAsBilling}
+                  />
                 </div>
               </Column>
               <Column>
                 <div className="form-field">
                   <label htmlFor="shipping:postal">Postal Code</label>
-                  <input id="shipping:postal" type="text" />
+                  <input
+                    id="shipping:postal"
+                    type="text"
+                    value={sameAsBilling ? billingPostal : shippingPostal}
+                    onChange={event => setShippingPostal(event.target.value)}
+                    disabled={sameAsBilling}
+                  />
                 </div>
               </Column>
             </Columns>

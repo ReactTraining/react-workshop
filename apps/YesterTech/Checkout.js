@@ -1,5 +1,5 @@
-import React from 'react'
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // Route Targets
@@ -9,6 +9,13 @@ import CheckoutReview from 'YesterTech/CheckoutReview'
 
 function Checkout() {
   const match = useRouteMatch()
+  const history = useHistory()
+  const [billing, setBilling] = useState({})
+
+  function handleBillingSubmit(billing) {
+    setBilling(billing)
+    history.push(`${match.path}/review`)
+  }
 
   return (
     <Centered>
@@ -17,7 +24,7 @@ function Checkout() {
           <ViewCart />
         </Route>
         <Route path={`${match.path}/billing`}>
-          <CheckoutBilling />
+          <CheckoutBilling onSubmit={handleBillingSubmit} />
         </Route>
         <Route path={`${match.path}/review`}>
           <CheckoutReview />
