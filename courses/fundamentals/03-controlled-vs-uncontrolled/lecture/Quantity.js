@@ -13,7 +13,9 @@ export default function Quantity() {
             <FaMinusCircle />
           </button>
         </div>
-        <div className="input-container">{quantity}</div>
+        <div className="input-container">
+          <input type="text" defaultValue={quantity} />
+        </div>
         <div>
           <button type="button" className="icon-button">
             <FaPlusCircle />

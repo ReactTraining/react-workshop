@@ -13,4 +13,4 @@ Hint: If the user types something into shipping, then checks the checkbox, then 
 
 # Bonus:
 
-Instead of disabling the shipping information when `sameAsBilling` is `true`, use the `sameAsBilling` to determine if we even mount the shipping part of the form (to make it hidden).
+Instead of disabling the shipping information when `sameAsBilling` is `true`, use the `sameAsBilling` to determine if we even mount the shipping part of the form (to make it hidden or visible).

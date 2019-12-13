@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa'
+import './styles.scss'
 
 const products = [
   { id: 1, name: 'Mario Kart' },
