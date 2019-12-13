@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductFilters from 'YesterTech/ProductFilters'
 
-function ProductsSide() {
+function ProductsSidebar() {
   return (
     <aside>
       <ProductFilters />
@@ -9,4 +9,4 @@ function ProductsSide() {
   )
 }
 
-export default ProductsSide
+export default ProductsSidebar

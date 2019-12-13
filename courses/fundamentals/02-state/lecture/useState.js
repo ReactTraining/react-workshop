@@ -1,26 +1,26 @@
 // For Reference
 
-// const states = []
-// let calls = -1
+const states = []
+let calls = -1
 
-// function useState(value) {
-//   const call = ++calls
+function useState(value) {
+  const call = ++calls
 
-//   if (states[call]) {
-//     return states[call]
-//   }
+  if (states[call]) {
+    return states[call]
+  }
 
-//   function setState(newValue) {
-//     states[call][0] = newValue
-//     reRender()
-//   }
+  function setState(newValue) {
+    states[call][0] = newValue
+    reRender()
+  }
 
-//   const state = [value, setState]
-//   states[call] = state
-//   return state
-// }
+  const state = [value, setState]
+  states[call] = state
+  return state
+}
 
-// function reRender() {
-//   calls = -1
-//   ReactDOM.render(<Quantity />, document.getElementById('root'))
-// }
+function reRender() {
+  calls = -1
+  ReactDOM.render(<Quantity />, document.getElementById('root'))
+}

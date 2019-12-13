@@ -3,6 +3,9 @@
   display: flex;
   min-height: 100vh;
 
+  // Just so everything is bigger
+  font-size: 25pt;
+
   > * {
     margin: auto;
   }

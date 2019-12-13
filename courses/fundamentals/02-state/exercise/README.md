@@ -11,15 +11,15 @@ Notice that the Quantity picker's state is not aligned to the parent BrowseProdu
 
 5. Use the `BrowseProductItem`'s state as the state for quantity by passing `quantity` and `setQuantity` down as props.
 
-Now the `Quantity` component can have it's local state removed. It's no longer in charge of it's own state, it will always expect the parent who implements it to pass down state as props.
+Now the `Quantity` component can have it's local state removed. It's no longer in charge of it's own state, it will always expect the parent who implements it to pass down state as props. This is called "Lifting State".
 
-## Bonus
+## Bonus Task
 
 Lift state again!
 
-1. Open `index.js`
-2. Notice what props are being passed down into `BrowseProductItem`? The `App` has been programmed to manage all the shopping cart state in one place.
-3. Remove the `quantity` state from `BrowseProductItem` and instead us the `quantity` and `addToCart` props. It might be nicer to do parameter destructuring at this point:
+6. Open `index.js`
+7. Notice what props are being passed down into `BrowseProductItem`? The `App` has been programmed to manage all the shopping cart state in one place.
+8. Remove the `quantity` state from `BrowseProductItem` and instead us the `quantity` and `addToCart` props. It might be nicer to do parameter destructuring at this point:
 
 ```js
 // Go From
