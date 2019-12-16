@@ -1,31 +1,40 @@
-import React, { useState } from 'react'
-import Quantity from './Quantity.final'
+import React, { useState, Fragment } from 'react'
+import Quantity from './Quantity'
+import ProductImage from 'YesterTech/ProductImage'
 import { MdShoppingCart } from 'react-icons/md'
 
 function BrowseProductItem(props) {
-  const [quantity, setQuantity] = useState(0)
-
-  function addToCart() {
-    setQuantity(1)
-  }
+  const [inCart, setInCart] = useState(false)
 
   return (
     <div className="browse-product-item">
+      <ProductImage src={props.imagePath} size={7} alt={props.name} />
+      <div>{props.name}</div>
       <div>
-        {props.name} {quantity > 0 && `(${quantity})`}
-      </div>
-      <div>
-        <button className="button" onClick={addToCart}>
-          {!quantity ? (
-            <span>Add To Cart</span>
+        <button
+          className={'button' + (inCart ? ' cta-button' : '')}
+          onClick={() => setInCart(true)}
+        >
+          {!inCart ? (
+            'Add To Cart'
           ) : (
-            <span>
-              <MdShoppingCart /> Checkout
-            </span>
+            <Fragment>
+              <MdShoppingCart /> In Cart
+            </Fragment>
           )}
         </button>
+        <div className="align-right">
+          {inCart && (
+            <Quantity
+              onChange={quantity => {
+                if (quantity < 1) {
+                  setInCart(false)
+                }
+              }}
+            />
+          )}
+        </div>
       </div>
-      {quantity > 0 && <Quantity quantity={quantity} setQuantity={setQuantity} />}
     </div>
   )
 }

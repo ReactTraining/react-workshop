@@ -4,7 +4,7 @@
   min-height: 100vh;
 
   // Just so everything is bigger
-  font-size: 20pt;
+  font-size: 16pt;
 
   > * {
     margin: auto;
@@ -13,12 +13,12 @@
 
 .browse-product-item {
   display: flex;
-  width: 25em;
+  width: 35rem;
 
-  > :first-child {
-    width: 10em;
-  }
   > :nth-child(2) {
+    margin-left: 1rem;
     flex: 1;
+  }
+  > :nth-child(3) {
   }
 }

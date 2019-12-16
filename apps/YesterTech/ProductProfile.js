@@ -3,7 +3,7 @@ import { Columns, Column } from 'react-flex-columns'
 import { useParams } from 'react-router-dom'
 
 import api from 'YesterTech/api'
-import useApi from 'YesterTech/useApi'
+import usePromise from 'YesterTech/usePromise'
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
 import Tiles from 'YesterTech/Tiles'
@@ -23,7 +23,7 @@ function ProductProfile() {
 
   // Get Product
   const getProduct = useCallback(() => api.products.getProduct(productId), [productId])
-  const [product] = useApi(getProduct)
+  const [product] = usePromise(getProduct)
 
   if (!product) return <div>Loading...</div>
 

@@ -7,7 +7,7 @@ import Heading from 'YesterTech/Heading'
 import { Pagination, PaginationRange } from 'YesterTech/Pagination'
 import NoResults from 'YesterTech/NoResults'
 import api from 'YesterTech/api'
-import useApi from 'YesterTech/useApi'
+import usePromise from 'YesterTech/usePromise'
 import BrowseProductItem from 'YesterTech/BrowseProductItem'
 
 function BrowseProducts() {
@@ -17,7 +17,7 @@ function BrowseProducts() {
 
   // Get Products (Paginated) and Total
   const getProducts = useCallback(() => api.products.getProducts(search, page), [search, page])
-  const [response, loading] = useApi(getProducts)
+  const [response, loading] = usePromise(getProducts)
   const products = response && response.products
   const totalResults = response && response.totalResults
 

@@ -30,7 +30,12 @@ function Quantity({ onChange, quantity = 1 }) {
           </button>
         </div>
         <div className="input-container">
-          <input type="text" onChange={e => handleChange(e.target.value)} value={quantity} />
+          <input
+            type="text"
+            aria-label="quantity"
+            onChange={e => handleChange(e.target.value)}
+            value={quantity}
+          />
         </div>
         <div>
           <button type="button" className="icon-button" onClick={add}>

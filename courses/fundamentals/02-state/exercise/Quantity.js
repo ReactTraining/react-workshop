@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import 'YesterTech/Quantity.scss'
 
-export default function Quantity() {
+export default function Quantity({ onChange }) {
   const [quantity, setQuantity] = useState(1)
   const tooSmall = quantity < 0
 
   function subtract() {
     setQuantity(quantity - 1)
+    if (onChange) {
+      onChange(quantity - 1)
+    }
   }
 
   function add() {
     setQuantity(quantity + 1)
+    if (onChange) {
+      onChange(quantity + 1)
+    }
   }
 
   return (
@@ -31,4 +38,8 @@ export default function Quantity() {
       </div>
     </div>
   )
+}
+
+Quantity.propTypes = {
+  onChange: PropTypes.func,
 }

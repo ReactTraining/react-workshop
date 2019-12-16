@@ -6,7 +6,7 @@ import ProductFilterList from 'YesterTech/ProductFilterList'
 function ProductFilters() {
   const categories = null
 
-  if (!categories) return null
+  if (!categories) return <div>Loading Filters...</div>
 
   return (
     <div className="spacing">

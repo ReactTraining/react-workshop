@@ -14,7 +14,7 @@ export default function Quantity() {
           </button>
         </div>
         <div className="input-container">
-          <input type="text" defaultValue={quantity} />
+          <input type="text" aria-label="quantity" defaultValue={quantity} />
         </div>
         <div>
           <button type="button" className="icon-button">

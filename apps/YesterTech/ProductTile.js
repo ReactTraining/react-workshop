@@ -4,12 +4,12 @@ import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'
 import ProductImage from 'YesterTech/ProductImage'
-import useApi from 'YesterTech/useApi'
+import usePromise from 'YesterTech/usePromise'
 import api from 'YesterTech/api'
 
 function ProductTile({ productId }) {
   const getProduct = useCallback(() => api.products.getProduct(productId), [productId])
-  const [product] = useApi(getProduct)
+  const [product] = usePromise(getProduct)
 
   if (!product) return null
 
