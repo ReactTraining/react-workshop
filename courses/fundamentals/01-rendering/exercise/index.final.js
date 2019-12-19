@@ -12,27 +12,18 @@ const products = [
 
 function ProductProfile() {
   return (
-    <span>
+    <div>
       {products.map(product => (
         <div>
           <Heading>{product.name}</Heading>
-
-          {/* Add the star rating logic here */}
-          <span className="star-ratings">
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaRegStar />
-            <FaRegStar />
-          </span>
-
+          <StarRatings rating={product.rating} />
           <div className="text-small">
             <div>Brand: {product.brand}</div>
             <div>Condition: {product.condition}</div>
           </div>
         </div>
       ))}
-    </span>
+    </div>
   )
 }
 
