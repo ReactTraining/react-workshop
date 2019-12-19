@@ -1,17 +1,12 @@
 import React, { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom'
 
 import Heading from 'YesterTech/Heading'
 import Notice from 'YesterTech/Notice'
 import Centered from 'YesterTech/Centered'
-import { login } from 'YesterTech/localStorage'
-import useAuth from 'YesterTech/useAuth'
 import api from 'YesterTech/api'
 
-function Login() {
-  const history = useHistory()
-  const { dispatch } = useAuth()
+function Login({ login }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -23,19 +18,11 @@ function Login() {
     setLoading(true)
     api.auth
       .login(username, password)
-      .then(user => {
-        login(user)
-        dispatch({ type: 'LOGIN', user })
-        history.push('/')
-      })
+      .then(login)
       .catch(error => {
         setError(error)
         setLoading(false)
       })
-  }
-
-  function handleShowPassword() {
-    setShowPassword(!showPassword)
   }
 
   return (
@@ -55,7 +42,6 @@ function Login() {
             onChange={e => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
-            required
           />
         </div>
         <div className="form-field">
@@ -64,11 +50,10 @@ function Login() {
             onChange={e => setPassword(e.target.value)}
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
-            required
           />
           <label>
             <input
-              onChange={handleShowPassword}
+              onChange={() => setShowPassword(!showPassword)}
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"

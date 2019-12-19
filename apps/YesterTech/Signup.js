@@ -76,7 +76,7 @@ function Signup() {
               onChange={e => setPassword(e.target.value)}
               value={password}
               type={showPassword ? 'text' : 'password'}
-              placeholder="Password (This will not be encrypted)"
+              placeholder={useGitHub ? 'Password (Not Your GitHub Password)' : 'Password'}
             />
             <label>
               <input

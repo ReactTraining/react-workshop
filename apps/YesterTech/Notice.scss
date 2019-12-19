@@ -1,13 +1,16 @@
 @import 'YesterTech/styles/_theme.scss';
 
 .notice {
+  font-size: 0.8rem;
   border: 1px solid #ddd;
   background-color: #fafafa;
-  padding: 0.7rem;
-  border-radius: 0.2rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
 
   &.notice-type-error {
     color: $red;
+    border-color: $red;
+    background-color: lighten($red, 55%);
   }
 
   // Icon Size and Alignment
