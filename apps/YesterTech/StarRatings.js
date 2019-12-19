@@ -3,7 +3,7 @@ import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa'
 
 import 'YesterTech/StarRatings.scss'
 
-function ProductRating({ rating }) {
+function StarRatings({ rating }) {
   let stars = []
 
   // Add filled in star(s)
@@ -20,4 +20,4 @@ function ProductRating({ rating }) {
   return <span className="star-ratings">{stars}</span>
 }
 
-export default ProductRating
+export default StarRatings

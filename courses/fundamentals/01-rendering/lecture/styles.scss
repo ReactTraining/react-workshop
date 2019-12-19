@@ -10,3 +10,23 @@
     margin: auto;
   }
 }
+
+.render_button {
+  background: rgb(249, 73, 73);
+  color: white;
+  font: inherit;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.8rem;
+  display: block;
+  width: 100%;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.15);
+  margin: 1rem 0;
+}
+
+.render_button:active {
+  box-shadow: none;
+  position: relative;
+  top: 1px;
+  right: 1px;
+}
