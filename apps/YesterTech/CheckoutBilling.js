@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
@@ -6,37 +6,46 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ onSubmit }) {
-  const [sameAsBilling, setSameAsBilling] = useState(true)
+function CheckoutBilling({ onSubmit, defaultValues = {} }) {
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'CHANGE_FIELD': {
+          const fields = { ...state.fields, [action.field]: action.value }
+          return { ...state, fields }
+        }
+        case 'TOGGLE_SAME_AS_BILLING':
+          return { ...state, sameAsBilling: !state.sameAsBilling }
+        default:
+          return state
+      }
+    },
+    {
+      sameAsBilling: true,
+      fields: {
+        billingName: defaultValues.billingName || '',
+        billingAddress: defaultValues.billingAddress || '',
+        billingCity: defaultValues.billingCity || '',
+        billingState: defaultValues.billingState || '',
+        billingPostal: defaultValues.billingPostal || '',
+        shippingName: defaultValues.shippingName || '',
+        shippingAddress: defaultValues.shippingAddress || '',
+        shippingCity: defaultValues.shippingCity || '',
+        shippingState: defaultValues.shippingState || '',
+        shippingPostal: defaultValues.shippingPostal || '',
+      },
+    }
+  )
 
-  // Billing
-  const [billingName, setBillingName] = useState()
-  const [billingAddress, setBillingAddress] = useState()
-  const [billingCity, setBillingCity] = useState()
-  const [billingState, setBillingState] = useState()
-  const [billingPostal, setBillingPostal] = useState()
-
-  // Shipping
-  const [shippingName, setShippingName] = useState()
-  const [shippingAddress, setShippingAddress] = useState()
-  const [shippingCity, setShippingCity] = useState()
-  const [shippingState, setShippingState] = useState()
-  const [shippingPostal, setShippingPostal] = useState()
+  const { fields, sameAsBilling } = state
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit({
-      billingName,
-      billingAddress,
-      billingCity,
-      billingState,
-      billingPostal,
-      shippingName,
-      shippingAddress,
-      shippingCity,
-      shippingState,
-      shippingPostal,
-    })
+    onSubmit(fields)
+  }
+
+  function changeField(field, value) {
+    dispatch({ type: 'CHANGE_FIELD', field, value })
   }
 
   return (
@@ -54,8 +63,8 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:name"
             type="text"
-            defaultValue={billingName}
-            onChange={event => setBillingName(event.target.value)}
+            defaultValue={fields.billingName}
+            onChange={event => changeField('billingName', event.target.value)}
           />
         </div>
         <div className="form-field">
@@ -63,8 +72,8 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:address"
             type="text"
-            defaultValue={billingAddress}
-            onChange={event => setBillingAddress(event.target.value)}
+            defaultValue={fields.billingAddress}
+            onChange={event => changeField('billingAddress', event.target.value)}
           />
         </div>
         <Columns gutters>
@@ -74,8 +83,8 @@ function CheckoutBilling({ onSubmit }) {
               <input
                 id="billing:city"
                 type="text"
-                defaultValue={billingCity}
-                onChange={event => setBillingCity(event.target.value)}
+                defaultValue={fields.billingCity}
+                onChange={event => changeField('billingCity', event.target.value)}
               />
             </div>
           </Column>
@@ -85,8 +94,8 @@ function CheckoutBilling({ onSubmit }) {
               <input
                 id="billing:state"
                 type="text"
-                defaultValue={billingState}
-                onChange={event => setBillingState(event.target.value)}
+                defaultValue={fields.billingState}
+                onChange={event => changeField('billingState', event.target.value)}
               />
             </div>
           </Column>
@@ -96,8 +105,8 @@ function CheckoutBilling({ onSubmit }) {
               <input
                 id="billing:postal"
                 type="text"
-                defaultValue={billingPostal}
-                onChange={event => setBillingPostal(event.target.value)}
+                defaultValue={fields.billingPostal}
+                onChange={event => changeField('billingPostal', event.target.value)}
               />
             </div>
           </Column>
@@ -114,76 +123,72 @@ function CheckoutBilling({ onSubmit }) {
               <input
                 type="checkbox"
                 defaultChecked={sameAsBilling}
-                onChange={() => setSameAsBilling(!sameAsBilling)}
+                onChange={() => dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })}
               />{' '}
               Same as Billing
             </label>
           </Column>
         </Columns>
 
-        {!sameAsBilling && (
-          <>
-            <hr />
+        <hr />
+        <div className="form-field">
+          <label htmlFor="shipping:name">Name</label>
+          <input
+            id="shipping:name"
+            type="text"
+            value={sameAsBilling ? fields.billingName : fields.shippingName}
+            onChange={event => changeField('shippingName', event.target.value)}
+            disabled={sameAsBilling}
+          />
+        </div>
+        <div className="form-field">
+          <label htmlFor="shipping:address">Address</label>
+          <input
+            id="shipping:address"
+            type="text"
+            value={sameAsBilling ? fields.billingAddress : fields.shippingAddress}
+            onChange={event => changeField('shippingAddress', event.target.value)}
+            disabled={sameAsBilling}
+          />
+        </div>
+        <Columns gutters>
+          <Column>
             <div className="form-field">
-              <label htmlFor="shipping:name">Name</label>
+              <label htmlFor="shipping:city">City</label>
               <input
-                id="shipping:name"
+                id="shipping:city"
                 type="text"
-                value={sameAsBilling ? billingName : shippingName}
-                onChange={event => setShippingName(event.target.value)}
+                value={sameAsBilling ? fields.billingCity : fields.shippingCity}
+                onChange={event => changeField('shippingCity', event.target.value)}
                 disabled={sameAsBilling}
               />
             </div>
+          </Column>
+          <Column>
             <div className="form-field">
-              <label htmlFor="shipping:address">Address</label>
+              <label htmlFor="shipping:state">State</label>
               <input
-                id="shipping:address"
+                id="shipping:state"
                 type="text"
-                value={sameAsBilling ? billingAddress : shippingAddress}
-                onChange={event => setShippingAddress(event.target.value)}
+                value={sameAsBilling ? fields.billingState : fields.shippingState}
+                onChange={event => changeField('shippingState', event.target.value)}
                 disabled={sameAsBilling}
               />
             </div>
-            <Columns gutters>
-              <Column>
-                <div className="form-field">
-                  <label htmlFor="shipping:city">City</label>
-                  <input
-                    id="shipping:city"
-                    type="text"
-                    value={sameAsBilling ? billingCity : shippingCity}
-                    onChange={event => setShippingCity(event.target.value)}
-                    disabled={sameAsBilling}
-                  />
-                </div>
-              </Column>
-              <Column>
-                <div className="form-field">
-                  <label htmlFor="shipping:state">State</label>
-                  <input
-                    id="shipping:state"
-                    type="text"
-                    value={sameAsBilling ? billingState : shippingState}
-                    onChange={event => setShippingState(event.target.value)}
-                    disabled={sameAsBilling}
-                  />
-                </div>
-              </Column>
-              <Column>
-                <div className="form-field">
-                  <label htmlFor="shipping:postal">Postal Code</label>
-                  <input
-                    id="shipping:postal"
-                    type="text"
-                    value={sameAsBilling ? billingPostal : shippingPostal}
-                    onChange={event => setShippingPostal(event.target.value)}
-                    disabled={sameAsBilling}
-                  />
-                </div>
-              </Column>
-            </Columns>
-          </>
-        )}
+          </Column>
+          <Column>
+            <div className="form-field">
+              <label htmlFor="shipping:postal">Postal Code</label>
+              <input
+                id="shipping:postal"
+                type="text"
+                value={sameAsBilling ? fields.billingPostal : fields.shippingPostal}
+                onChange={event => changeField('shippingPostal', event.target.value)}
+                disabled={sameAsBilling}
+              />
+            </div>
+          </Column>
+        </Columns>
 
         <hr />
 

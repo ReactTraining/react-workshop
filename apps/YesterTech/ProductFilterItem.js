@@ -10,7 +10,7 @@ function ProductFilterItem({ children, item, onChange, selected = false }) {
         <input
           type="checkbox"
           onChange={onChange ? e => onChange(e.target.name) : null}
-          checked={onChange ? selected : undefined}
+          checked={onChange ? selected : null}
           name={item}
         />{' '}
         <span>{children}</span>

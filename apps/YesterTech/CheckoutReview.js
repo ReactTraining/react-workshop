@@ -7,8 +7,14 @@ import { FaAngleLeft } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
-function CheckoutReview() {
+function CheckoutReview({ billingFields }) {
   const { cart, getCartTotal } = useShoppingCartState()
+
+  function placeOrder() {
+    // Todo
+    console.log(billingFields)
+  }
+
   return (
     <div className="spacing">
       <Heading>
@@ -49,7 +55,9 @@ function CheckoutReview() {
           </Link>
         </Column>
         <Column>
-          <button className="button cta-button">Place Order</button>
+          <button className="button cta-button" onClick={placeOrder}>
+            Place Order
+          </button>
         </Column>
       </Columns>
     </div>

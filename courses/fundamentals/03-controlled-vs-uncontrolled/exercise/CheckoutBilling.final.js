@@ -4,7 +4,7 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling() {
+function CheckoutBilling({ onSubmit }) {
   const [sameAsBilling, setSameAsBilling] = useState(false)
 
   const [billingName, setBillingName] = useState('')
@@ -14,8 +14,8 @@ function CheckoutBilling() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const values = { billingName, billingAddress, shippingName, shippingAddress }
-    console.log(values)
+    const fields = { billingName, billingAddress, shippingName, shippingAddress }
+    onSubmit(fields)
   }
 
   return (
