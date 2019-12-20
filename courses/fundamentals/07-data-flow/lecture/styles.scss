@@ -1,0 +1,41 @@
+@import 'YesterTech/styles/_theme.scss';
+
+// Centers the content for lecture purposes
+#root {
+  display: flex;
+  min-height: 100vh;
+
+  > * {
+    margin: auto;
+    width: 35rem;
+  }
+}
+
+.primary-header {
+  padding: 2rem 0;
+  nav {
+    text-align: right;
+    padding-bottom: 0.5rem;
+  }
+
+  a {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: $text-color;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.browse-product-item {
+  display: flex;
+
+  > :nth-child(2) {
+    margin-left: 1rem;
+    flex: 1;
+  }
+}

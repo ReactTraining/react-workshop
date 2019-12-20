@@ -42,7 +42,10 @@ function ProductProfile() {
               </div>
             </Column>
             <Column className="spacing-small">
-              <ShoppingCartButton productId={productId} name={product.name} price={product.price} />
+              <ShoppingCartButton
+                onClick={() => addToCart(productId, 1, product.name, product.price)}
+                getQuantity={quantity}
+              />
 
               {quantity > 0 && (
                 <div className="align-right">

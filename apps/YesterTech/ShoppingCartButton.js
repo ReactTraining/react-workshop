@@ -1,33 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { MdShoppingCart } from 'react-icons/md'
 
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
-
-function ShoppingCartButton({ productId, name, price }) {
-  const { addToCart, getQuantity } = useShoppingCartState()
-
-  function handleAddToCart() {
-    addToCart(productId, 1, name, price)
-  }
-
-  return getQuantity(productId) > 0 ? (
+function ShoppingCartButton({ quantity, onClick }) {
+  return quantity > 0 ? (
     <Link to="/checkout" className="button cta-button">
       <MdShoppingCart />
       <span>Checkout</span>
     </Link>
   ) : (
-    <button className="button" onClick={handleAddToCart}>
+    <button className="button" onClick={onClick}>
       Add To Cart
     </button>
   )
-}
-
-ShoppingCartButton.propTypes = {
-  productId: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
 }
 
 export default ShoppingCartButton

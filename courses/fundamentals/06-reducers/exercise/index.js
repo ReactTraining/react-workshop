@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import CheckoutBilling from './CheckoutBilling'
-import CheckoutBilling from './CheckoutBilling.final'
+import CheckoutBilling from './CheckoutBilling'
+// import CheckoutBilling from './CheckoutBilling.final'
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 

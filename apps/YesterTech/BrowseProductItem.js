@@ -48,7 +48,10 @@ function BrowseProductItem({
         </div>
       </Column>
       <Column className="spacing-small">
-        <ShoppingCartButton productId={productId} name={name} price={price} />
+        <ShoppingCartButton
+          onClick={() => addToCart(productId, 1, name, price)}
+          quantity={quantity}
+        />
         {quantity > 0 && (
           <div className="align-right">
             <Quantity onChange={q => addToCart(productId, q)} quantity={quantity} />

@@ -3,12 +3,12 @@ import Quantity from './Quantity'
 import ProductImage from 'YesterTech/ProductImage'
 import { MdShoppingCart } from 'react-icons/md'
 
-function BrowseProductItem(props) {
+function BrowseProductItem({ name, imagePath }) {
   return (
     <div className="browse-product-item">
-      <ProductImage src={props.imagePath} size={7} alt={props.name} />
-      <div>{props.name}</div>
-      <div>
+      <ProductImage src={imagePath} size={7} alt={name} />
+      <div>{name}</div>
+      <div className="spacing-small">
         <button className="button">Add To Cart</button>
         <div className="align-right">
           <Quantity />

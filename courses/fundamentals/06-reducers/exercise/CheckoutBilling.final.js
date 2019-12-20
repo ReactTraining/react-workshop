@@ -1,5 +1,4 @@
-import React, { useState, useReducer } from 'react'
-import { FaAngleRight } from 'react-icons/fa'
+import React, { useReducer } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'

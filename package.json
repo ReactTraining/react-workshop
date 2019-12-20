@@ -8,6 +8,7 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "kill-db-port": "kill -9 $(lsof -ti :3333);",
     "reset-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
     "postinstall": "npm run reset-db"
   },
