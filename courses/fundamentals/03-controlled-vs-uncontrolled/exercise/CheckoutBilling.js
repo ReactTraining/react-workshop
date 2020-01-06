@@ -19,14 +19,14 @@ function CheckoutBilling({ onSubmit }) {
       <Heading>
         <MdShoppingCart /> Billing & Shipping
       </Heading>
-      <form onSubmit={handleSubmit} className="spacing">
+      <form onSubmit={handleSubmit} className="spacing" autoComplete="off">
         <Heading as="h2" size={3}>
           Billing Info
         </Heading>
         <hr />
         <div className="form-field">
           <label htmlFor="billing:name">Name</label>
-          <input id="billing:name" type="text" name="billingName" />
+          <input id="billing:name" type="text" name="billingName" autoComplete="off" />
         </div>
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
@@ -52,11 +52,11 @@ function CheckoutBilling({ onSubmit }) {
 
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
-          <input id="shipping:name" type="text" name="shippingName" />
+          <input id="shipping:name" type="text" name="shippingName" autoComplete="off" />
         </div>
         <div className="form-field">
           <label htmlFor="shipping:address">Address</label>
-          <input id="shipping:address" type="text" name="shippingAddress" />
+          <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
         </div>
 
         <hr />

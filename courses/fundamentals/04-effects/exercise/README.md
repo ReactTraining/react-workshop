@@ -1,6 +1,6 @@
 # Effects
 
-In this exercise, we have an easier task and a more difficult one. Do either one you want, or both!
+In this exercise there are two tasks, one is easier and one is a little bit more difficult. Do either one you want, or both!
 
 ## Task One: Query for Product Categories (Easier)
 
@@ -16,7 +16,7 @@ getCategories().then(categories => {
 }
 ```
 
-Hey! Are you getting this error "useEffect is called conditionally"? Remember, we can't conditionally call our hooks. You might be doing the effect after that early-return if-statement which is also version of "conditionalizing hooks". So just move the effect above the if-statement
+Hey! Are you getting this error "useEffect is called conditionally"? Remember, we can't conditionally call hooks. You might be doing the effect after that early-return `if` statement which is also version of "conditionalizing hooks". So just move the effect above the early return.
 
 ## Task Two: Implement the "Use GitHub" feature for signup (Slightly more difficult)
 

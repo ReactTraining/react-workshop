@@ -1,4 +1,4 @@
-# Lecture Notes
+# Notes for Lecturer
 
 ## `Route`, `Link`, `Switch`, `Redirect` (and nested layout concepts)
 

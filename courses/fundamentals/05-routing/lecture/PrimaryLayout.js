@@ -8,6 +8,8 @@ import Heading from 'YesterTech/Heading'
 import ProductImage from 'YesterTech/ProductImage'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductFilterItem from 'YesterTech/ProductFilterItem'
+
+// After we implement the fake versions of these below, we can swap them out for these real ones:
 // import ProductsSidebar from 'YesterTech/ProductsSidebar'
 // import BrowseProducts from 'YesterTech/BrowseProducts'
 // import ProductProfile from 'YesterTech/ProductProfile'
@@ -68,7 +70,10 @@ function ProductsLayout() {
           <ProductFilterItem>Music</ProductFilterItem>
         </section>
       </aside>
-      <div>Product Related Pages Go Here</div>
+      <div>
+        <BrowseProducts />
+        {/* <ProductProfile /> */}
+      </div>
     </div>
   )
 }

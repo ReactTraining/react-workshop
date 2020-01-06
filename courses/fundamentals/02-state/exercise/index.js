@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import BrowseProductItem from './BrowseProductItem'
-import BrowseProductItem from './BrowseProductItem.final'
+import BrowseProductItem from './BrowseProductItem'
+// import BrowseProductItem from './BrowseProductItem.final'
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 

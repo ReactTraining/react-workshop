@@ -1,4 +1,4 @@
-# Lecture Notes
+# Notes for Lecturer
 
 ## Side Effects with a subscription
 
@@ -52,13 +52,18 @@ useEffect(() => {
 }, [])
 ```
 
-NOTE: That the fact that the product profile page has "related products" allows you to change pages and if the dependency array of the effect has the `productId`, then the new product is loaded. Doing this lecture with this product profile page was chosen for this main reason.
+NOTE: The fact that the product profile page has "related products" allows you to change pages and if the dependency array of the effect has the `productId`, then the new product is loaded. The product profile page was designed to teach this concept.
 
 ## Custom Hooks
 
 - Refactor each to be custom hooks
-- Note that `wide` and `isWide` might have been clearer when it's not a custom hook yet. But the variable in the hook should be refactored to something like `matches`
+- The state variable names `wide` and `isWide` were good when it's not a custom hook yet. But in the custom hook using `matches` probably makes more sense
 
 ```js
+function useMedia(query) {
+  const [matches, setMatches] = useState(window.matchMedia(query).matches)
+  // ...
+}
+
 const isWide = useMedia('(min-width: 800px)')
 ```
