@@ -16,16 +16,29 @@ export default function App() {
 }
 
 function PrimaryLayout() {
-  // const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([])
 
-  // function addToCart(productId, quantity, name, price) {
-  //   setCart([{ productId, quantity, name, price }])
-  // }
+  function addToCart(productId, quantity, name, price) {
+    const newCart = cart.concat([{ productId, quantity, name, price }])
+    setCart(newCart)
+  }
 
-  // function getQuantity(productId) {
-  //   if (!Array.isArray(cart)) return 0
-  //   return (cart.filter(p => p.productId === productId)[0] || {}).quantity || 0
-  // }
+  function updateQuantity(productId, quantity) {
+    let newCart
+    if (quantity > 0) {
+      newCart = cart.map(product => {
+        return product.productId === productId ? { ...product, quantity } : product
+      })
+    } else {
+      newCart = cart.filter(product => product.productId !== productId)
+    }
+    setCart(newCart)
+  }
+
+  function getQuantity(productId) {
+    if (!Array.isArray(cart)) return 0
+    return (cart.find(p => p.productId === productId) || {}).quantity || 0
+  }
 
   return (
     <BrowserRouter>
@@ -86,7 +99,6 @@ function BrowseProducts() {
 
 function BrowseProductItem({ productId, name, price, imagePath }) {
   const quantity = 0
-
   return (
     <div className="browse-product-item">
       <ProductImage src={imagePath} size={7} alt={name} />
@@ -94,18 +106,16 @@ function BrowseProductItem({ productId, name, price, imagePath }) {
       <div className="spacing-small">
         <ShoppingCartButton
           onClick={() => {
-            // addToCart(productId, 1, name, price)
-            // I don't know if I want to have addToCart be the same function this uses
-            // and the checkout. Maybe re-evaluate the real app and see if we need an updateQuantity
-            // or something
+            // Add to Cart
           }}
           quantity={quantity}
         />
         <div className="align-right">
           {quantity > 0 && (
             <Quantity
+              quantity={quantity}
               onChange={quantity => {
-                // Change In Cart
+                // Update Cart
               }}
             />
           )}

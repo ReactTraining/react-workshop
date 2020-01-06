@@ -20,6 +20,9 @@ export default function PrimaryLayout() {
   const { authenticated } = useAuth()
   const { cart } = useShoppingCartState()
 
+  // Use these values to conditionally render some of the routes
+  console.log(authenticated, cart.length)
+
   return (
     <div className="primary-layout">
       <div>

@@ -2,7 +2,7 @@
 
 ## Task One: Implement React Router for `Home`, `Signup`, `Login`, and `ProductsLayout`
 
-1. `<div class="primary-content"></div>` Should always be present.
+1. `<main class="primary-content"></main>` Should always be present since it's meant to be the container for the pages.
 2. Within it, create a `Switch` and several `Route`s for `Home`, `Signup`, `Login`, and `ProductsLayout`.
 3. Use `Redirect` for when no `Routes` match in the `Switch`.
 

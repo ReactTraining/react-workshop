@@ -1,1 +1,1 @@
-# Notes for Lecturer
+# Notes for Instructor

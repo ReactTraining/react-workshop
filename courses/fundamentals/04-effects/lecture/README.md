@@ -1,4 +1,4 @@
-# Notes for Lecturer
+# Notes for Instructor
 
 ## Side Effects with a subscription
 
