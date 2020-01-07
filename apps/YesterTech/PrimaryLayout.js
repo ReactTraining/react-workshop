@@ -1,5 +1,5 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
@@ -19,6 +19,12 @@ import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 function PrimaryLayout() {
   const { authenticated } = useAuth()
   const { cart } = useShoppingCartState()
+  const pathname = useLocation().pathname
+
+  // Scroll to the top of the page when pages change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <div className="primary-layout">
