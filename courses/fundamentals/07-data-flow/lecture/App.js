@@ -16,30 +16,6 @@ export default function App() {
 }
 
 function PrimaryLayout() {
-  const [cart, setCart] = useState([])
-
-  function addToCart(productId, quantity, name, price) {
-    const newCart = cart.concat([{ productId, quantity, name, price }])
-    setCart(newCart)
-  }
-
-  function updateQuantity(productId, quantity) {
-    let newCart
-    if (quantity > 0) {
-      newCart = cart.map(product => {
-        return product.productId === productId ? { ...product, quantity } : product
-      })
-    } else {
-      newCart = cart.filter(product => product.productId !== productId)
-    }
-    setCart(newCart)
-  }
-
-  function getQuantity(productId) {
-    if (!Array.isArray(cart)) return 0
-    return (cart.find(p => p.productId === productId) || {}).quantity || 0
-  }
-
   return (
     <BrowserRouter>
       <div className="primary-layout">
@@ -78,9 +54,33 @@ function PrimaryHeader() {
 
 function BrowseProducts() {
   const products = useProducts()
+  // const [cart, setCart] = useState([])
+
+  // function addToCart(productId, name, price) {
+  //   const newCart = cart.concat([{ productId, quantity: 1, name, price }])
+  //   setCart(newCart)
+  // }
+
+  // function updateQuantity(productId, quantity) {
+  //   let newCart
+  //   if (quantity > 0) {
+  //     newCart = cart.map(product => {
+  //       return product.productId === productId ? { ...product, quantity } : product
+  //     })
+  //   } else {
+  //     newCart = cart.filter(product => product.productId !== productId)
+  //   }
+  //   setCart(newCart)
+  // }
+
+  // function getQuantity(productId) {
+  //   if (!Array.isArray(cart)) return 0
+  //   return (cart.find(p => p.productId === productId) || {}).quantity || 0
+  // }
 
   return (
     <div className="spacing">
+      <div>In Cart: 0</div>
       {Array.isArray(products) &&
         products.map(product => {
           return (
@@ -98,7 +98,8 @@ function BrowseProducts() {
 }
 
 function BrowseProductItem({ productId, name, price, imagePath }) {
-  const quantity = 0
+  const [quantity, setQuantity] = useState(0)
+
   return (
     <div className="browse-product-item">
       <ProductImage src={imagePath} size={7} alt={name} />
@@ -106,7 +107,7 @@ function BrowseProductItem({ productId, name, price, imagePath }) {
       <div className="spacing-small">
         <ShoppingCartButton
           onClick={() => {
-            // Add to Cart
+            setQuantity(1)
           }}
           quantity={quantity}
         />
@@ -115,7 +116,7 @@ function BrowseProductItem({ productId, name, price, imagePath }) {
             <Quantity
               quantity={quantity}
               onChange={quantity => {
-                // Update Cart
+                setQuantity(quantity)
               }}
             />
           )}

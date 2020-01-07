@@ -36,6 +36,7 @@ useEffect(() => {
 ## Side Effects with Network Requests
 
 - Open `ProductProfile.js`
+- Browser: `http://localhost:3000/products/1` (or any valid Product ID)
 - Query for product and explain the basics of effects
 - Api: `api.products.getProduct(productId)`
 
@@ -49,10 +50,10 @@ useEffect(() => {
     setProduct(product)
   })
   return () => (isCurrent = false)
-}, [])
+}, [productId])
 ```
 
-NOTE: The fact that the product profile page has "related products" allows you to change pages and if the dependency array of the effect has the `productId`, then the new product is loaded. The product profile page was designed to teach this concept.
+NOTE: To help demonstrate the value of the `productId` in the dependency array, this example was chosen because the product profile page has "related products" and you can click one to change the profile and see the new data load.
 
 ## Custom Hooks
 
