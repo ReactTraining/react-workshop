@@ -9,7 +9,7 @@ import Quantity from 'YesterTech/Quantity'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function ViewCart() {
-  const { cart, addToCart, getCartTotal } = useShoppingCartState()
+  const { cart, updateQuantity, getCartTotal } = useShoppingCartState()
 
   return (
     <div className="spacing">
@@ -22,7 +22,10 @@ function ViewCart() {
           <Fragment key={item.productId}>
             <Columns gutters middle>
               <Column>
-                <Quantity onChange={q => addToCart(item.productId, q)} quantity={item.quantity} />
+                <Quantity
+                  onChange={q => updateQuantity(item.productId, q)}
+                  quantity={item.quantity}
+                />
               </Column>
               <Column flex>
                 <span className="no-wrap">{item.name}</span>

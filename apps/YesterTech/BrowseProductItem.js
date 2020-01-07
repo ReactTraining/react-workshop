@@ -22,7 +22,7 @@ function BrowseProductItem({
   rating,
 }) {
   // Cart
-  const { addToCart, getQuantity } = useShoppingCartState()
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCartState()
   const quantity = getQuantity(productId)
 
   return (
@@ -48,13 +48,10 @@ function BrowseProductItem({
         </div>
       </Column>
       <Column className="spacing-small">
-        <ShoppingCartButton
-          onClick={() => addToCart(productId, 1, name, price)}
-          quantity={quantity}
-        />
+        <ShoppingCartButton onClick={() => addToCart(productId, name, price)} quantity={quantity} />
         {quantity > 0 && (
           <div className="align-right">
-            <Quantity onChange={q => addToCart(productId, q)} quantity={quantity} />
+            <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />
           </div>
         )}
       </Column>

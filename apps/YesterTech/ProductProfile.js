@@ -18,7 +18,7 @@ function ProductProfile() {
   productId = parseInt(productId, 10)
 
   // Cart
-  const { addToCart, getQuantity } = useShoppingCartState()
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCartState()
   const quantity = getQuantity(productId)
 
   // Get Product
@@ -47,13 +47,13 @@ function ProductProfile() {
             </Column>
             <Column className="spacing-small">
               <ShoppingCartButton
-                onClick={() => addToCart(productId, 1, product.name, product.price)}
+                onClick={() => addToCart(productId, product.name, product.price)}
                 quantity={quantity}
               />
 
               {quantity > 0 && (
                 <div className="align-right">
-                  <Quantity onChange={q => addToCart(productId, q)} quantity={quantity} />
+                  <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />
                 </div>
               )}
             </Column>

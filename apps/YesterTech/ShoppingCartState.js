@@ -8,32 +8,35 @@ export function ShoppingCartStateProvider({ children }) {
     (state, action) => {
       switch (action.type) {
         case 'ADD': {
-          const found = state.cart.find(p => p.productId === action.productId)
+          const found = state.cart.find(p => p.productId === parseInt(action.productId, 10))
           if (!found) {
             return {
               ...state,
               cart: state.cart.concat({
-                productId: action.productId,
-                quantity: action.quantity,
+                productId: parseInt(action.productId, 10),
+                quantity: 1,
                 name: action.name || '',
                 price: action.price || 0,
               }),
             }
           } else {
-            // Update existing cart item with new quantity
-            const c = state.cart
-            const index = c.findIndex(p => p.productId === action.productId)
-            const updatedProduct =
-              action.quantity > 0
-                ? Object.assign({}, c[index], { quantity: action.quantity })
-                : false
-            const updatedCart = [
-              ...c.slice(0, index),
-              updatedProduct,
-              ...c.slice(index + 1),
-            ].filter(Boolean)
-            return { ...state, cart: updatedCart }
+            return state
           }
+        }
+        case 'UPDATE': {
+          let cart
+          if (action.quantity > 0) {
+            cart = state.cart.map(product => {
+              return product.productId === parseInt(action.productId, 10)
+                ? { ...product, quantity: parseInt(action.quantity, 10) }
+                : product
+            })
+          } else {
+            cart = state.cart.filter(
+              product => product.productId !== parseInt(action.productId, 10)
+            )
+          }
+          return { ...state, cart }
         }
         case 'REMOVE': {
           const c = state.cart
@@ -52,8 +55,11 @@ export function ShoppingCartStateProvider({ children }) {
 
   const value = {
     ...state,
-    addToCart(productId, quantity, name, price) {
-      dispatch({ type: 'ADD', productId, quantity, name, price })
+    addToCart(productId, name, price) {
+      dispatch({ type: 'ADD', productId, name, price })
+    },
+    updateQuantity(productId, quantity) {
+      dispatch({ type: 'UPDATE', productId, quantity })
     },
     removeFromCart(productId) {
       dispatch({ type: 'REMOVE', productId })

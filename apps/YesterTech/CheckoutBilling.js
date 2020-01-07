@@ -10,34 +10,31 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
-        case 'CHANGE_FIELD': {
-          const fields = { ...state.fields, [action.field]: action.value }
-          return { ...state, fields }
-        }
         case 'TOGGLE_SAME_AS_BILLING':
           return { ...state, sameAsBilling: !state.sameAsBilling }
+        case 'CHANGE_FIELD':
+          return { ...state, [action.field]: action.value }
         default:
           return state
       }
     },
     {
       sameAsBilling: true,
-      fields: {
-        billingName: defaultValues.billingName || '',
-        billingAddress: defaultValues.billingAddress || '',
-        billingCity: defaultValues.billingCity || '',
-        billingState: defaultValues.billingState || '',
-        billingPostal: defaultValues.billingPostal || '',
-        shippingName: defaultValues.shippingName || '',
-        shippingAddress: defaultValues.shippingAddress || '',
-        shippingCity: defaultValues.shippingCity || '',
-        shippingState: defaultValues.shippingState || '',
-        shippingPostal: defaultValues.shippingPostal || '',
-      },
+      // Form Fields
+      billingName: defaultValues.billingName || '',
+      billingAddress: defaultValues.billingAddress || '',
+      billingCity: defaultValues.billingCity || '',
+      billingState: defaultValues.billingState || '',
+      billingPostal: defaultValues.billingPostal || '',
+      shippingName: defaultValues.shippingName || '',
+      shippingAddress: defaultValues.shippingAddress || '',
+      shippingCity: defaultValues.shippingCity || '',
+      shippingState: defaultValues.shippingState || '',
+      shippingPostal: defaultValues.shippingPostal || '',
     }
   )
 
-  const { fields, sameAsBilling } = state
+  const { sameAsBilling, ...fields } = state
 
   function handleSubmit(event) {
     event.preventDefault()
