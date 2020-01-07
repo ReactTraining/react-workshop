@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from 'react'
-import Quantity from './Quantity'
+import Quantity from 'YesterTech/Quantity'
 import ProductImage from 'YesterTech/ProductImage'
 import { MdShoppingCart } from 'react-icons/md'
 
 function BrowseProductItem({ name, imagePath }) {
-  const [inCart, setInCart] = useState(false)
+  const [quantity, setQuantity] = useState(0)
 
   return (
     <div className="browse-product-item">
@@ -12,24 +12,23 @@ function BrowseProductItem({ name, imagePath }) {
       <div>{name}</div>
       <div className="spacing-small">
         <button
-          className={'button' + (inCart ? ' cta-button' : '')}
-          onClick={() => setInCart(true)}
+          className={'button' + (quantity > 0 ? ' cta-button' : '')}
+          onClick={() => (quantity === 0 ? setQuantity(1) : null)}
         >
-          {!inCart ? (
+          {quantity === 0 ? (
             'Add To Cart'
           ) : (
             <Fragment>
-              <MdShoppingCart /> In Cart
+              <MdShoppingCart /> Checkout
             </Fragment>
           )}
         </button>
         <div className="align-right">
-          {inCart && (
+          {quantity > 0 && (
             <Quantity
+              quantity={quantity}
               onChange={quantity => {
-                if (quantity < 1) {
-                  setInCart(false)
-                }
+                setQuantity(quantity)
               }}
             />
           )}

@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import Quantity from './Quantity'
+import Quantity from 'YesterTech/Quantity'
 import ProductImage from 'YesterTech/ProductImage'
 import { MdShoppingCart } from 'react-icons/md'
 
