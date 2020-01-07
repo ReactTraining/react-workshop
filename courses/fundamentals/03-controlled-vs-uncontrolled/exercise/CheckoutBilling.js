@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
 import serializeForm from 'form-serialize'
-
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
@@ -62,8 +60,7 @@ function CheckoutBilling({ onSubmit }) {
         <hr />
 
         <button type="submit" className="button">
-          <span>Review</span>
-          <FaAngleRight />
+          Submit
         </button>
       </form>
     </div>

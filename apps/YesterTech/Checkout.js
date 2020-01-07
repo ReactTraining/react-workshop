@@ -10,10 +10,10 @@ import CheckoutReview from 'YesterTech/CheckoutReview'
 function Checkout() {
   const match = useRouteMatch()
   const history = useHistory()
-  const [billingFields, setBillingFields] = useState({})
+  const [fields, setFields] = useState({})
 
-  function handleBillingSubmit(billingFields) {
-    setBillingFields(billingFields)
+  function handleBillingSubmit(fields) {
+    setFields(fields)
     history.push(`${match.path}/review`)
   }
 
@@ -24,10 +24,10 @@ function Checkout() {
           <ViewCart />
         </Route>
         <Route path={`${match.path}/billing`}>
-          <CheckoutBilling onSubmit={handleBillingSubmit} defaultValues={billingFields} />
+          <CheckoutBilling onSubmit={handleBillingSubmit} defaultValues={fields} />
         </Route>
         <Route path={`${match.path}/review`}>
-          <CheckoutReview billingFields={billingFields} />
+          <CheckoutReview billingFields={fields} />
         </Route>
         <Redirect to={`${match.path}/cart`} />
       </Switch>

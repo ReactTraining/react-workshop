@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import { FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
-
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
   const [sameAsBilling, setSameAsBilling] = useState(false)
-
   const [billingName, setBillingName] = useState('')
   const [billingAddress, setBillingAddress] = useState('')
   const [shippingName, setShippingName] = useState('')
@@ -86,8 +83,7 @@ function CheckoutBilling({ onSubmit }) {
         <hr />
 
         <button type="submit" className="button">
-          <span>Review</span>
-          <FaAngleRight />
+          Submit
         </button>
       </form>
     </div>

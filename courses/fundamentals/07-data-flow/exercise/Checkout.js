@@ -4,7 +4,7 @@ import Centered from 'YesterTech/Centered'
 
 // Route Targets
 import ViewCart from 'YesterTech/ViewCart'
-import CheckoutBilling from 'YesterTech/CheckoutBilling'
+import CheckoutBilling from './CheckoutBilling'
 import CheckoutReview from 'YesterTech/CheckoutReview'
 
 function Checkout() {

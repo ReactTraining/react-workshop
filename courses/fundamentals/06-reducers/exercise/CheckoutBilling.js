@@ -1,6 +1,5 @@
 import React, { useState, useReducer } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
-
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {

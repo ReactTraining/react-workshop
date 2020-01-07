@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
-
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
@@ -24,11 +23,10 @@ function CheckoutBilling({ onSubmit }) {
     }
   )
 
-  const { sameAsBilling, billingName, billingAddress, shippingName, shippingAddress } = state
+  const { sameAsBilling, ...fields } = state
 
   function handleSubmit(event) {
     event.preventDefault()
-    const fields = { billingName, billingAddress, shippingName, shippingAddress }
     onSubmit(fields)
   }
 
@@ -51,7 +49,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:name"
             type="text"
-            defaultValue={billingName}
+            defaultValue={fields.billingName}
             onChange={event => changeField('billingName', event.target.value)}
           />
         </div>
@@ -60,7 +58,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:address"
             type="text"
-            defaultValue={billingAddress}
+            defaultValue={fields.billingAddress}
             onChange={event => changeField('billingAddress', event.target.value)}
           />
         </div>
@@ -85,7 +83,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="shipping:name"
             type="text"
-            value={sameAsBilling ? billingName : shippingName}
+            value={sameAsBilling ? fields.billingName : fields.shippingName}
             onChange={event => changeField('shippingName', event.target.value)}
             disabled={sameAsBilling}
           />
@@ -95,7 +93,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="shipping:address"
             type="text"
-            value={sameAsBilling ? billingAddress : shippingAddress}
+            value={sameAsBilling ? fields.billingAddress : fields.shippingAddress}
             onChange={event => changeField('shippingAddress', event.target.value)}
             disabled={sameAsBilling}
           />
