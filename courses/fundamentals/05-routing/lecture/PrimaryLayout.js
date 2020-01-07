@@ -40,6 +40,7 @@ export default function PrimaryLayout() {
 
         <main className="primary-content">
           <Home />
+          {/* Put other pages here */}
         </main>
 
         <footer className="primary-footer spacing">
@@ -72,6 +73,7 @@ function ProductsLayout() {
       </aside>
       <div>
         <BrowseProducts />
+        {/* Other pages that could go here: */}
         {/* <ProductProfile /> */}
       </div>
     </div>

@@ -4,6 +4,8 @@ In this exercise there are two tasks, one is easier and one is a little bit more
 
 ## Task One: Query for Product Categories (Easier)
 
+In the browser, navigate to: http://localhost:3000/products
+
 1. Open `ProductFilters.js`.
 2. Currently `categories` is `null` so we need to make it stateful.
 3. Then use an effect to query for the categories using the `getCategories` function.
@@ -19,6 +21,8 @@ getCategories().then(categories => {
 Hey! Are you getting this error "useEffect is called conditionally"? Remember, we can't conditionally call hooks. You might be doing the effect after that early-return `if` statement which is also version of "conditionalizing hooks". So just move the effect above the early return.
 
 ## Task Two: Implement the "Use GitHub" feature for signup (Slightly more difficult)
+
+In the browser, navigate to: http://localhost:3000/signup
 
 1. Open `Singup.js`
 2. Everything is already working except when `Use GitHub` is checked, we need to populate the Full Name and Avatar from a network request to GitHub's API. First, create a `useEffect`.

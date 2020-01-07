@@ -2,6 +2,8 @@
 
 ## `Route`, `Link`, `Switch`, `Redirect` (and nested layout concepts)
 
+Browser: http://localhost:3000
+
 The `PrimaryLayout` starts with several components that might resemble what the graphic design team has given to us in terms of static HTML. Our task is you use them to explain React Router with layouts and sub layouts involved.
 
 1. First, start by showing how the `PrimaryLayout` is currently hard-coded to display the `Home` page. Swap that out for the `ProductProfile` page to start a conversation about SPA's and how the transition between two pages in React is really just mounting and un-mounting components.

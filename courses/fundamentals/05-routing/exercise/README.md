@@ -1,5 +1,7 @@
 # Routing
 
+In the browser, navigate to: http://localhost:3000
+
 ## Task One: Implement React Router for `Home`, `Signup`, `Login`, and `ProductsLayout`
 
 1. `<main class="primary-content"></main>` Should always be present since it's meant to be the container for the pages.

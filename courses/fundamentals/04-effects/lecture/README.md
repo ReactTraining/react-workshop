@@ -3,6 +3,7 @@
 ## Side Effects with a subscription
 
 - Open `ProductsSidebar.js`
+- Browser: http://localhost:3000/products
 - Create an effect with a subscription to see if the screen is wider than `800px`
 - Hide the sidebar when the screen is too small
 
@@ -36,7 +37,7 @@ useEffect(() => {
 ## Side Effects with Network Requests
 
 - Open `ProductProfile.js`
-- Browser: `http://localhost:3000/products/1` (or any valid Product ID)
+- Browser: http://localhost:3000/products/1 (or any valid Product ID)
 - Query for product and explain the basics of effects
 - Api: `api.products.getProduct(productId)`
 

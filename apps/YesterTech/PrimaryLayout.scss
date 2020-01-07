@@ -18,11 +18,5 @@
     margin-top: $gutter;
     margin-bottom: $gutter;
     min-height: 15em;
-
-    // This helps ensure the primary content goes down to the footer
-    display: flex;
-    > * {
-      width: 100%;
-    }
   }
 }
