@@ -1,6 +1,6 @@
 # Notes for Instructor
 
-## `Route`, `Link`, `Switch`, `Redirect` (and nested layout concepts)
+## Teach `Route`, `Link`, `Switch`, `Redirect` (and nested layout concepts)
 
 Browser: http://localhost:3000
 
