@@ -1,0 +1,22 @@
+// Centers the content for lecture purposes
+#root {
+  display: flex;
+  min-height: 100vh;
+
+  // Make everything bigger for this example
+  font-size: 16pt;
+
+  > * {
+    margin: auto;
+  }
+}
+
+.browse-product-item {
+  display: flex;
+  width: 35rem;
+
+  > :nth-child(2) {
+    margin-left: 1rem;
+    flex: 1;
+  }
+}

@@ -5,29 +5,29 @@
   display: flex;
   min-height: 100vh;
 
+  // Make everything bigger for this example
+  font-size: 14pt;
+
   > * {
     margin: auto;
-    width: 35rem;
   }
 }
 
+.primary-layout {
+  width: 35rem;
+}
+
 .primary-header {
-  padding: 2rem 0;
-  nav {
-    text-align: right;
-    padding-bottom: 0.5rem;
-  }
-
+  text-align: right;
   a {
-    text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.8em;
     color: $text-color;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-
-    &.active {
-      text-decoration: underline;
-    }
+  }
+  a.active {
+    text-decoration: underline;
+  }
+  a + a {
+    margin-left: 0.5em;
   }
 }
 

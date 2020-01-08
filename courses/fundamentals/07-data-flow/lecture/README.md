@@ -1,40 +1,136 @@
 # Notes for Instructor
 
-## Teach "prop-drilling", "lifting state", "context" and related topics.
-
-Browser: http://localhost:3000
-
-The main idea of this lecture is to start with local state and lift it as needed. Eventually the state will be lifted all the way to the top of the application which can start a conversation about lifted state and prop drilling vs context.
-
-In `App.js`, there are several components that would ordinarily be in separate files. The easiest way to understand the relationships between them is to open `flow.png`. This was made with our interactive tree-visualizer tool: https://reacttraining.com/tree
-
-### Update the value of "In Cart: 0"
-
-Start by reviewing the `BrowseProductItem`. It is very similar to the same component they worked on in 02-state exercise where the programmed the component's state for quantity. However, when you look at the UI you'll notice "In Cart: 0" is in the parent component `BrowseProducts`. Teach that we need to lift state and pass down props to `BrowseProductItem`:
+## Teach "lifting state"
 
 ```js
-//                                        ▼ State is currently here
-App -> PrimaryLayout -> BrowseProducts -> BrowseProductItem
-//                      ▲ Lift state to here
+//                                                      ▼ State is currently here
+PrimaryLayout -> BrowseProducts -> BrowseProductItem -> Quantity
+//                                 ▲ Lift state to here
+//
+PrimaryLayout -> BrowseProducts -> BrowseProductItem -> Quantity
+// ▲ Eventually lift state here
 ```
 
-Before, `BrowseProductItem` was simply managing quantity for itself, but now that `BrowseProducts` will have the shopping cart state of all items, it needs to be an array. In `BrowseProducts` there's already state and utility functions appropriate for maintaining an array of shopping cart items. Enable the code and pass down the necessary props to `BrowseProductItem` to refactor it to work. Then display the number of items in the cart instead of "In Cart: 0"
+Start with the `Quantity` component which should resemble where it was left off in the lecture for 03-controlled-vs-uncontrolled. Then show it's parent `BrowseProductItem` which doesn't work when the button is clicked. We'll need to lift state in order to get the two working the way we need them to.
 
-### Prevent checkout if the cart is empty
+1. Lift the `quantity` state up to `BrowseProductItem`.
+2. When the user clicks "Add to Cart", set the quantity to `1`.
+3. Only show `<Quantity />` if `quantity > 0`.
+4. Pass down `quantity` and an `onChange` function to <Quantity /> so that it can update its parent's quantity.
+5. This can open up a conversation about how "controlled vs uncontrolled" can apply to our custom components as well.
 
-Now we want to conditionally render the route for `/checkout` and only display the primary navigation's "Checkout" link if there are items in the cart. Now we need to lift the state and utility functions to `PrimaryLayout` because we need to know what's in the cart in order to implement this feature.
+Here's what `BrowseProductItem` could look like after the refactor
 
 ```js
-//                      ▼ State is currently here
-App -> PrimaryLayout -> BrowseProducts -> BrowseProductItem
-//     ▲ Lift state to here
+function BrowseProductItem({ name, imagePath }) {
+  const [quantity, setQuantity] = useState(0)
+
+  return (
+    <div className="browse-product-item">
+      <ProductImage src={imagePath} size={7} alt={name} />
+      <div>{name}</div>
+      <div className="spacing-small">
+        <button
+          className={'button' + (quantity > 0 ? ' cta-button' : '')}
+          onClick={() => (quantity === 0 ? setQuantity(1) : null)}
+        >
+          {quantity === 0 ? (
+            'Add To Cart'
+          ) : (
+            <Fragment>
+              <MdShoppingCart /> Checkout
+            </Fragment>
+          )}
+        </button>
+        <div className="align-right">
+          {quantity > 0 && (
+            <Quantity
+              quantity={quantity}
+              onChange={quantity => {
+                setQuantity(quantity)
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
 ```
 
-This starts a good conversation about prop drilling and lifting state for adjacent components that need to share state.
+## Lift State Again
 
-### Refactor to Context
+Now we need know the number of items in the cart one level up in `BrowseProducts` so we an code the "View Cart (3 Items)" section.
 
-Refactor `PrimaryLayout` to use context instead. Start by creating a `<ShoppingCart.Provider>` directly inside of `PrimaryLayout`. Have a conversation about context in general and how an app will probably have multiple context providers. Sometimes students will assume this means we'll eventually put all the top-level application state in one component. So refactor the code like this:
+This state lift is a little unique because we need to aggregate all the cart items into an array. This comes with some extra work to manage the array. So if you look in `BrowseProducts` you'll see some utility functions already made for this.
+
+## Lift State Yet Again
+
+Now we need to lift the `cart` array and it's utility functions up one level to `PrimaryLayout` so we can hide the "Checkout" link in the `primary-header` and also so we can make the route to `/checkout` conditioned on whether we have items in the cart.
+
+`PrimaryLayout` might end up looking something like this:
+
+```jsx
+function PrimaryLayout() {
+  const [cart, setCart] = useState([])
+
+  function addToCart(productId, name, price) {
+    const newCart = cart.concat([{ productId, quantity: 1, name, price }])
+    setCart(newCart)
+  }
+
+  function updateQuantity(productId, quantity) {
+    let newCart
+    if (quantity > 0) {
+      newCart = cart.map(product => {
+        return product.productId === productId ? { ...product, quantity } : product
+      })
+    } else {
+      newCart = cart.filter(product => product.productId !== productId)
+    }
+    setCart(newCart)
+  }
+
+  function getQuantity(productId) {
+    if (!Array.isArray(cart)) return 0
+    return (cart.find(p => p.productId === productId) || {}).quantity || 0
+  }
+
+  return (
+    <div className="primary-layout">
+      <div>
+        <header className="primary-header">
+          <NavLink to="/products">Products</NavLink>
+          {cart.length > 0 && <NavLink to="/checkout">Checkout</NavLink>}
+        </header>
+        <main className="primary-content">
+          <Switch>
+            <Route path="/products">
+              <BrowseProducts
+                addToCart={addToCart}
+                updateQuantity={updateQuantity}
+                getQuantity={getQuantity}
+              />
+            </Route>
+            {cart.length > 0 && (
+              <Route path="/checkout">
+                <Checkout />
+              </Route>
+            )}
+            <Redirect to="/products" />
+          </Switch>
+        </main>
+      </div>
+    </div>
+  )
+}
+```
+
+## Teach Context
+
+Now refactor `PrimaryLayout` to use context instead.
+
+Start by creating a `<ShoppingCart.Provider>` directly inside of `PrimaryLayout`. Have a conversation about context in general and how an app will probably have multiple context providers. Sometimes students will assume this means we'll eventually put all the top-level application state in one component. So refactor the code like this:
 
 ```js
 ////////////////////////////////////////////////////

@@ -1,46 +1,54 @@
 # Reducers
 
-## Task: Convert the existing state to `useReducer` instead of `useState`
+## Task One: Convert `useState` state to `useReducer`
 
-If you think it will be easier, just do the `showPassword` first and leave the state for the form fields until you finish the `showPassword`.
-
-1. First, setup the reducer's body with some initial state. Be sure to keep the same names and default values as before:
+1. Open `CheckoutBilling.js`.
+2. Use the reducer pattern with `useReducer` to start to migrate the old state into `useReducer`. Start by only migrating `showPassword` just to get started. Here's a template for useReducer if you need it.
 
 ```js
 const [state, dispatch] = useReducer(
   (state, action) => {
     switch (action.type) {
-      case '???': {
-        return { ...state }
-      }
+      case 'TOGGLE_SAME_AS_BILLING':
+        return { ...state, sameAsBilling: !state.sameAsBilling }
       default:
         return state
     }
   },
   {
-    // ???
+    sameAsBilling: false,
   }
 )
 ```
 
-2. Since reducer returns a `state` object, you'll need to update all the code to be things like `state.billingName` or you can do destructuring like this:
+3. See if you can get the form working with only `showPassword` refactored first. You might notice that the code uses the variable `showPassword` in several places and those might need to be converted to `state.showPassword`. Or, you can do some destructuring:
 
 ```js
-const { billingName, billingAddress } = state
+const { showPassword } = state
 ```
 
-3. Choosing your action types might require some thought. Since this is a form, you could have an action type for each field. This might be easier for you to reason about at first. But you could also do one action type for all fields like this:
+## Task Two: Convert the the form's input values
+
+1. Once you have the basic ideas down from task one, now you can start to convert the form fields. Should you have a different action type for each field? You could, or you could have one action like this for all fields:
 
 ```js
 case 'CHANGE_FIELD': {
-  return { ...state, [action.field]: action.value }
-  //                 ^            ^
   // The square brackets in the parameter name allow us to do dynamic parameter names
+  //                 ▼            ▼
+  return { ...state, [action.field]: action.value }
 }
 ```
 
-If you did it this way, your dispatches would look like this:
+The idea here is that now you can do your dispatches like this where you specify the value AND the field it goes to:
 
 ```js
 dispatch({ type: 'CHANGE_FIELD', field: 'billingName', value: 'Cassidy' })
 ```
+
+2. You can also add each field to the destructure that we did earlier. Or you can just do this if you want:
+
+```js
+const { showPassword, ...fields } = state
+```
+
+See how it's implemented in the solution.

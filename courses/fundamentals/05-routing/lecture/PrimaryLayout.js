@@ -75,8 +75,7 @@ function ProductsLayout() {
       </aside>
       <div>
         <BrowseProducts />
-        {/* Other pages that could go here: */}
-        {/* <ProductProfile /> */}
+        {/* BrowseProducts is the page being shown, but other pages could go here like ProductProfile */}
       </div>
     </div>
   )

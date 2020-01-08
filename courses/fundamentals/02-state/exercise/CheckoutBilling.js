@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import serializeForm from 'form-serialize'
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
-  const [sameAsBilling, setSameAsBilling] = useState(false)
+  const sameAsBilling = false
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -17,7 +17,7 @@ function CheckoutBilling({ onSubmit }) {
       <Heading>
         <MdShoppingCart /> Billing & Shipping
       </Heading>
-      <form onSubmit={handleSubmit} className="spacing">
+      <form onSubmit={handleSubmit} className="spacing" autoComplete="off">
         <Heading as="h2" size={3}>
           Billing Info
         </Heading>
@@ -36,12 +36,7 @@ function CheckoutBilling({ onSubmit }) {
         </Heading>
 
         <label>
-          <input
-            type="checkbox"
-            defaultChecked={sameAsBilling}
-            onChange={() => setSameAsBilling(!sameAsBilling)}
-          />{' '}
-          Same as Billing
+          <input type="checkbox" /> Same as Billing
         </label>
 
         <hr />
@@ -54,6 +49,7 @@ function CheckoutBilling({ onSubmit }) {
           <label htmlFor="shipping:address">Address</label>
           <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
         </div>
+
         <hr />
 
         <button type="submit" className="button">

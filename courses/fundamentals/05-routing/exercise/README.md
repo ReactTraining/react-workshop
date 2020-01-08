@@ -1,21 +1,14 @@
 # Routing
 
-In the browser, navigate to: http://localhost:3000
+## Task One: Create Routes for the Pages
 
-## Task One: Implement React Router for `Home`, `Signup`, `Login`, and `ProductsLayout`
+1. `<main class="primary-content"></main>` is the container for all pages. Within it, create a `Switch` and several routes for `Home`, `Signup`, `Login`, and `ProductsLayout`.
+2. Use `Redirect` for when no `Routes` match in the `Switch`.
+3. Create a conditional route for `Checkout`. Only provide the checkout route if the cart has items (`cart.length`)
+4. Create a conditional route for `Account`. Only provide the account route if `authenticated` is `true`.
 
-1. `<main class="primary-content"></main>` Should always be present since it's meant to be the container for the pages.
-2. Within it, create a `Switch` and several `Route`s for `Home`, `Signup`, `Login`, and `ProductsLayout`.
-3. Use `Redirect` for when no `Routes` match in the `Switch`.
+## Task Two: Conditionally render `ProductSubNav` if the path is `/products`
 
-## Task Two: Conditional Routing for `Checkout`
+1. Only route to `ProductSubNav` if the path is `/products`
 
-4. Only create routing for `Checkout` if `cart.length` shows that we have items in the cart.
-
-## Task Three: Conditional Routing for `Account`
-
-5. Only create routing for `Account` if `authenticated` is `true`.
-
-## Task Four: Conditional Routing for `ProductSubNav`
-
-6. Only route to `ProductSubNav` if the path is `/products` (without the `exact` prop)
+Hint. Not all routes need to go in a `<Switch>`
