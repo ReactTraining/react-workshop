@@ -36,16 +36,10 @@ function ViewCart() {
           </Fragment>
         ))}
       </div>
-      <Columns split>
-        <Column>
-          <strong>Total</strong>
-        </Column>
-        <Column>
-          <strong>${getCartTotal().toFixed(2)}</strong>
-        </Column>
-      </Columns>
 
-      <hr />
+      <div className="align-right">
+        <strong>Total: ${getCartTotal().toFixed(2)}</strong>
+      </div>
 
       <Columns split>
         <Column />

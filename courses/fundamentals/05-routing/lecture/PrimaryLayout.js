@@ -45,7 +45,9 @@ export default function PrimaryLayout() {
 
         <footer className="primary-footer spacing">
           <hr />
-          <div className="text-small">Copyright &copy; 2020 YesterTech Inc</div>
+          <div className="text-small">
+            Copyright &copy; {new Date().getFullYear()} YesterTech Inc
+          </div>
         </footer>
       </div>
     </div>

@@ -38,7 +38,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit(fields)
+    onSubmit(sameAsBilling, fields)
   }
 
   function changeField(field, value) {
@@ -58,6 +58,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
         <div className="form-field">
           <label htmlFor="billing:name">Name</label>
           <input
+            required
             id="billing:name"
             type="text"
             defaultValue={fields.billingName}
@@ -67,6 +68,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
           <input
+            required
             id="billing:address"
             type="text"
             defaultValue={fields.billingAddress}
@@ -78,6 +80,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="billing:city">City</label>
               <input
+                required
                 id="billing:city"
                 type="text"
                 defaultValue={fields.billingCity}
@@ -89,6 +92,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="billing:state">State</label>
               <input
+                required
                 id="billing:state"
                 type="text"
                 defaultValue={fields.billingState}
@@ -100,6 +104,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="billing:postal">Postal Code</label>
               <input
+                required
                 id="billing:postal"
                 type="text"
                 defaultValue={fields.billingPostal}

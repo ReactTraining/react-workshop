@@ -12,7 +12,9 @@ function PrimaryFooter() {
         <Column>
           <GoVersions />
         </Column>
-        <Column className="text-small">Copyright &copy; 2020 YesterTech Inc</Column>
+        <Column className="text-small">
+          Copyright &copy; {new Date().getFullYear()} YesterTech Inc
+        </Column>
       </Columns>
     </footer>
   )

@@ -7,18 +7,55 @@ import { FaAngleLeft } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
-function CheckoutReview({ billingFields }) {
+function CheckoutReview({ sameAsBilling, fields }) {
   const { cart, getCartTotal } = useShoppingCartState()
 
   function placeOrder() {
-    // Todo
-    console.log(billingFields)
+    console.log(fields)
   }
 
   return (
     <div className="spacing">
       <Heading>
         <MdShoppingCart /> Review Your Order
+      </Heading>
+
+      <Columns>
+        <Column className="spacing-small" flex>
+          <Heading as="h2" size={4}>
+            Billing Address
+          </Heading>
+          <span>{fields.billingName}</span>
+          <br />
+          <span>{fields.billingAddress}</span>
+          <br />
+          <span>
+            {fields.billingCity}, {fields.billingState} {fields.billingPostal}
+          </span>
+        </Column>
+        <Column className="spacing-small" flex>
+          <Heading as="h2" size={4}>
+            Shipping Address
+          </Heading>
+          {sameAsBilling ? (
+            <em>Same As Billing</em>
+          ) : (
+            <Fragment>
+              <span>{fields.shippingName}</span>
+              <br />
+              <span>{fields.shippingAddress}</span>
+              <br />
+              <span>
+                {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
+              </span>
+            </Fragment>
+          )}
+        </Column>
+      </Columns>
+
+      <hr />
+      <Heading as="h2" size={2}>
+        Items
       </Heading>
 
       <div className="spacing-small">
@@ -36,16 +73,10 @@ function CheckoutReview({ billingFields }) {
           </Fragment>
         ))}
       </div>
-      <Columns split>
-        <Column>
-          <strong>Total</strong>
-        </Column>
-        <Column>
-          <strong>${getCartTotal().toFixed(2)}</strong>
-        </Column>
-      </Columns>
 
-      <hr />
+      <div className="align-right">
+        <strong>Total: ${getCartTotal().toFixed(2)}</strong>
+      </div>
 
       <Columns split>
         <Column>

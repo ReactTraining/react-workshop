@@ -1,34 +1,22 @@
-import React, { useReducer } from 'react'
+import React, { useState } from 'react'
 import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // Route Targets
 import ViewCart from 'YesterTech/ViewCart'
-import CheckoutBilling from 'YesterTech/CheckoutBilling'
+import CheckoutBilling from './CheckoutBilling'
 import CheckoutReview from 'YesterTech/CheckoutReview'
 
 function Checkout() {
   const match = useRouteMatch()
   const history = useHistory()
 
-  const [state, dispatch] = useReducer(
-    (state, action) => {
-      switch (action.type) {
-        case 'SUBMIT_BILLING': {
-          return { ...state, sameAsBilling: action.sameAsBilling, fields: action.fields }
-        }
-        default:
-          return state
-      }
-    },
-    {
-      sameAsBilling: false,
-      fields: {},
-    }
-  )
+  const [sameAsBilling, setSameAsBilling] = useState(false)
+  const [fields, setFields] = useState({})
 
   function handleBillingSubmit(sameAsBilling, fields) {
-    dispatch({ type: 'SUBMIT_BILLING', sameAsBilling, fields })
+    setSameAsBilling(sameAsBilling)
+    setFields(fields)
     history.push(`${match.path}/review`)
   }
 
@@ -39,11 +27,11 @@ function Checkout() {
           <ViewCart />
         </Route>
         <Route path={`${match.path}/billing`}>
-          <CheckoutBilling onSubmit={handleBillingSubmit} defaultValues={state.fields} />
+          <CheckoutBilling onSubmit={handleBillingSubmit} defaultValues={fields} />
         </Route>
-        {Object.keys(state.fields).length > 0 && (
+        {Object.keys(fields).length > 0 && (
           <Route path={`${match.path}/review`}>
-            <CheckoutReview sameAsBilling={state.sameAsBilling} fields={state.fields} />
+            <CheckoutReview sameAsBilling={sameAsBilling} fields={fields} />
           </Route>
         )}
         <Redirect to={`${match.path}/cart`} />
