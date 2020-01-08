@@ -1,0 +1,31 @@
+@import 'YesterTech/styles/_theme.scss';
+
+// Centers the content for lecture purposes
+#root {
+  background-color: #eee;
+  padding-top: 2em;
+  min-height: 100vh;
+  > * {
+    width: 20em;
+    margin: 0 auto;
+  }
+}
+
+[data-reach-tab] {
+  display: inline-block;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  color: $blue;
+
+  &.active {
+    color: #fff;
+    background-color: $blue;
+  }
+}
+
+[data-reach-tab-panels] {
+  background-color: #fff;
+  padding: 1em;
+  border-top: 2px solid $blue;
+  border-bottom: 2px solid $blue;
+}
