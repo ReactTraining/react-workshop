@@ -1,25 +1,39 @@
-import { useState, useEffect } from 'react'
+import { useReducer, useEffect } from 'react'
 
 export default function usePromise(api) {
-  const [response, setResponse] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [state, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'LOADING':
+          return { ...state, loading: true }
+        case 'RESOLVED':
+          return { ...state, loading: false, response: action.response, error: null }
+        case 'ERROR':
+          return { ...state, loading: false, response: null, error: action.error }
+        default:
+          return state
+      }
+    },
+    {
+      loading: false,
+      response: null,
+      error: null,
+    }
+  )
 
   useEffect(() => {
     let isCurrent = true
-    setLoading(true)
+    dispatch({ type: 'LOADING' })
     api()
       .then(response => {
         if (!isCurrent) return
-        setResponse(response)
-        setLoading(false)
+        dispatch({ type: 'RESOLVED', response })
       })
       .catch(error => {
-        setError(error)
-        setLoading(false)
+        dispatch({ type: 'ERROR', error })
       })
     return () => (isCurrent = false)
   }, [api])
 
-  return [response, loading, error]
+  return [state.response, state.loading, state.error]
 }

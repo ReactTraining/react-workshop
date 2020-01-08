@@ -32,18 +32,19 @@ function ProductFilterList({ urlKey, list, label }) {
   return (
     <section className="spacing-small">
       <Heading size={3}>{label}</Heading>
-      {list.map(item => {
-        return (
-          <ProductFilterItem
-            key={item}
-            item={item}
-            onChange={toggleItem}
-            selected={isSelected(item)}
-          >
-            {item.charAt(0).toUpperCase() + item.slice(1)}
-          </ProductFilterItem>
-        )
-      })}
+      {Array.isArray(list) &&
+        list.map(item => {
+          return (
+            <ProductFilterItem
+              key={item}
+              item={item}
+              onChange={toggleItem}
+              selected={isSelected(item)}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </ProductFilterItem>
+          )
+        })}
       {selected.length > 0 && (
         <div className="text-small">
           <Link to={getClearLink()}>Show all {label}</Link>

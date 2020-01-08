@@ -13,8 +13,8 @@ function ProductFilters() {
 
   return (
     <div className="spacing">
-      <ProductFilterList list={meta.categories} urlKey="categories" label="Categories" />
-      <ProductFilterList list={meta.brands} urlKey="brands" label="Brands" />
+      <ProductFilterList list={meta?.categories} urlKey="categories" label="Categories" />
+      <ProductFilterList list={meta?.brands} urlKey="brands" label="Brands" />
       <ProductFilterList list={conditions} urlKey="conditions" label="Conditions" />
     </div>
   )
