@@ -3,7 +3,7 @@
 Refactor `index` to use `useApi` instead of `useProduct` for more general use:
 
 ```js
-export default function useApi(api) {
+function useApi(api) {
   const [response, setResponse] = useState(null)
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function ProductProfile({ productId }) {
 Before when `useProduct` was simply passed a `productId`, it was easy to include that into the dependency array. But now that `useApi` is more general, we'll be passing in a callback for the promise-based API call, so what do we add to the dependency array?
 
 - If we leave it empty, we'll get that lint error that says it wants us to `api` in it.
-- If we put api in it with the way we're passing a function into `useApi`, that function is guaranteed to change it's identity each time ProductProfile re-renders for any reason.
+- If we put api in it with the way we're passing a function into `useApi`, that function is guaranteed to change its identity each time `ProductProfile` re-renders for any reason.
 
 Look at it from the perspective of this line:
 
@@ -37,7 +37,9 @@ Look at it from the perspective of this line:
 const products = useApi(() => api.products.getProduct(productId))
 ```
 
-How are we going to re-run the effect if `productId` changes? We could try something like this:
+How are we going to re-run the effect if `productId` changes?
+
+We could try something like this:
 
 ```js
 const products = useApi(() => api.products.getProduct(productId), [productId])
