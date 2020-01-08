@@ -33,6 +33,7 @@ function BrowseProducts() {
       <nav>
         <span>View Cart (3 Items)</span>
       </nav>
+      <hr />
       {Array.isArray(products) &&
         products.map(product => {
           return (

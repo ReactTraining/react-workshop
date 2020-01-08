@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import serializeForm from 'form-serialize'
 import Heading from 'YesterTech/Heading'
@@ -47,7 +47,7 @@ function CheckoutBilling({ onSubmit }) {
         <hr />
 
         {!sameAsBilling && (
-          <Fragment>
+          <div className="spacing">
             <div className="form-field">
               <label htmlFor="shipping:name">Name</label>
               <input id="shipping:name" type="text" name="shippingName" autoComplete="off" />
@@ -57,7 +57,7 @@ function CheckoutBilling({ onSubmit }) {
               <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
             </div>
             <hr />
-          </Fragment>
+          </div>
         )}
 
         <button type="submit" className="button">
