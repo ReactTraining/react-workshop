@@ -56,15 +56,6 @@ function selectLesson() {
   }
 
   /**
-   * See if we're loading an app instead of course material
-   */
-
-  // Since the user isn't loading a lesson, ask them which app they way to load.
-  if (process.argv[2] === 'app') {
-    return { appEntry: getAppEntry(), alias: null }
-  }
-
-  /**
    * Course Selection
    */
 
@@ -141,11 +132,12 @@ function selectLesson() {
   }
 
   /**
-   * Exercise or Lecture (Type)
+   * Exercise or Lecture
    */
 
-  const options = [process.argv[2], process.argv[3], process.argv[4]]
-  const selectedLessonType = options.includes('lecture') ? 'lecture' : 'exercise'
+  const selectedLessonType = [process.argv[2], process.argv[3], process.argv[4]].includes('lecture')
+    ? 'lecture'
+    : 'exercise'
 
   const lessonPath = path.resolve(
     __dirname,
@@ -155,6 +147,15 @@ function selectLesson() {
     selectedLesson,
     selectedLessonType
   )
+
+  // See if path doesn't exist
+  if (!fs.existsSync(lessonPath)) {
+    console.error(
+      `\nWe can't find this ${selectedLessonType}. Maybe \`${selectedLesson}\` doesn't have a ${selectedLessonType}?`
+    )
+    console.error(`Check this path: ${lessonPath}\n\n`)
+    process.exit(0)
+  }
 
   const aliases = {}
   fs.readdirSync(lessonPath).forEach(file => {
