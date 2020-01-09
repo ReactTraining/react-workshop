@@ -18,25 +18,7 @@ export default function PrimaryLayout() {
   return (
     <div className="primary-layout">
       <div>
-        <header className="primary-header flex-parent flex-justify-space-between flex-align-center">
-          <div>
-            <Logo />
-          </div>
-          <nav className="horizontal-spacing-large align-right">
-            <a href="/" className="primary-nav-item">
-              Home
-            </a>
-            <a href="/products" className="primary-nav-item">
-              Products
-            </a>
-            <a href="/login" className="primary-nav-item">
-              Login
-            </a>
-            <button>
-              <Avatar src="" size={1.5} />
-            </button>
-          </nav>
-        </header>
+        <PrimaryHeader />
 
         <main className="primary-content">
           <Home />
@@ -51,6 +33,30 @@ export default function PrimaryLayout() {
         </footer>
       </div>
     </div>
+  )
+}
+
+function PrimaryHeader() {
+  return (
+    <header className="primary-header flex-parent flex-justify-space-between flex-align-center">
+      <div>
+        <Logo />
+      </div>
+      <nav className="horizontal-spacing-large align-right">
+        <a href="/" className="primary-nav-item">
+          Home
+        </a>
+        <a href="/products" className="primary-nav-item">
+          Products
+        </a>
+        <a href="/login" className="primary-nav-item">
+          Login
+        </a>
+        <button>
+          <Avatar src="" size={1.5} />
+        </button>
+      </nav>
+    </header>
   )
 }
 
