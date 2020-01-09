@@ -1,8 +1,6 @@
 @import 'YesterTech/styles/_theme.scss';
 
 .primary-layout {
-  padding-bottom: 5rem;
-
   > div {
     margin: 0 auto;
     min-height: 100vh;
@@ -17,6 +15,5 @@
     flex: 1;
     margin-top: $gutter;
     margin-bottom: $gutter;
-    min-height: 15em;
   }
 }

@@ -21,7 +21,7 @@ function PrimaryLayout() {
               <BrowseProducts />
             </Route>
             <Route path="/checkout">
-              <Checkout />
+              <Checkout cart={[]} />
             </Route>
             <Redirect to="/products" />
           </Switch>

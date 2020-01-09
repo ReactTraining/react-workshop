@@ -8,8 +8,8 @@ import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
 import Home from 'YesterTech/Home'
-import Signup from 'YesterTech/Signup'
-import Login from 'YesterTech/Login'
+import SignupForm from 'YesterTech/SignupForm'
+import LoginForm from 'YesterTech/LoginForm'
 import Account from 'YesterTech/Account'
 import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'

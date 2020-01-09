@@ -6,7 +6,7 @@ import Notice from 'YesterTech/Notice'
 import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
-function Login({ login }) {
+function LoginForm({ onAuthenticated }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -18,11 +18,19 @@ function Login({ login }) {
     setLoading(true)
     api.auth
       .login(username, password)
-      .then(login)
+      .then(user => {
+        if (typeof onAuthenticated === 'function') {
+          onAuthenticated(user)
+        }
+      })
       .catch(error => {
         setError(error)
         setLoading(false)
       })
+  }
+
+  function handleShowPassword() {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -42,6 +50,7 @@ function Login({ login }) {
             onChange={e => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
+            required
           />
         </div>
         <div className="form-field">
@@ -50,10 +59,11 @@ function Login({ login }) {
             onChange={e => setPassword(e.target.value)}
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
+            required
           />
           <label>
             <input
-              onChange={() => setShowPassword(!showPassword)}
+              onChange={handleShowPassword}
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"
@@ -78,4 +88,4 @@ function Login({ login }) {
   )
 }
 
-export default Login
+export default LoginForm

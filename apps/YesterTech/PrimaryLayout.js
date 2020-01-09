@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react'
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
+import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom'
 
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
 import useAuth from 'YesterTech/useAuth'
+import { login } from 'YesterTech/localStorage'
+import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
 import Home from 'YesterTech/Home'
-import Signup from 'YesterTech/Signup'
-import Login from 'YesterTech/Login'
+import SignupForm from 'YesterTech/SignupForm'
+import LoginForm from 'YesterTech/LoginForm'
 import Account from 'YesterTech/Account'
 import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 import Checkout from 'YesterTech/Checkout'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function PrimaryLayout() {
-  const { authenticated } = useAuth()
+  const history = useHistory()
+  const { authenticated, dispatch } = useAuth()
   const { cart } = useShoppingCartState()
   const pathname = useLocation().pathname
 
@@ -39,10 +41,21 @@ function PrimaryLayout() {
               <Home />
             </Route>
             <Route path="/signup" exact>
-              <Signup />
+              <SignupForm
+                onSignup={user => {
+                  dispatch({ type: 'LOGIN', user })
+                  history.push('/products')
+                }}
+              />
             </Route>
             <Route path="/login" exact>
-              <Login />
+              <LoginForm
+                onAuthenticated={user => {
+                  login(user)
+                  dispatch({ type: 'LOGIN', user })
+                  history.push('/')
+                }}
+              />
             </Route>
             <Route path="/products">
               <ProductsLayout />

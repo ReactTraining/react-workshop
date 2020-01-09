@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Columns, Column } from 'react-flex-columns'
-import { useHistory } from 'react-router-dom'
 
 import Heading from 'YesterTech/Heading'
 import Avatar from 'YesterTech/Avatar'
 import api from 'YesterTech/api'
-import useAuth from 'YesterTech/useAuth'
 
-function Signup() {
-  const history = useHistory()
-  const { dispatch } = useAuth()
+function SignupForm({ onSignup }) {
   const [useGitHub, setUseGitHub] = useState(true)
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
@@ -19,9 +15,11 @@ function Signup() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    api.users.registerUser({ username, name, password, avatarUrl }).then(() => {
-      dispatch({ type: 'LOGIN', user: { username, name, password, avatarUrl } })
-      history.push('/products')
+    const user = { username, name, password, avatarUrl }
+    api.users.registerUser(user).then(() => {
+      if (typeof onSignup === 'function') {
+        onSignup(user)
+      }
     })
   }
 
@@ -106,4 +104,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default SignupForm

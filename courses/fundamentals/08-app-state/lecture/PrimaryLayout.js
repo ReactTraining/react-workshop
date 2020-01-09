@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
 
 import { getLoggedUser } from 'YesterTech/localStorage'
+// import useAuth from 'YesterTech/useAuth'
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
-// import useAuth from 'YesterTech/useAuth'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
 import Home from 'YesterTech/Home'
-import Signup from 'YesterTech/Signup'
-import Login from 'YesterTech/Login'
+import SignupForm from 'YesterTech/SignupForm'
+import LoginForm from 'YesterTech/LoginForm'
 import Account from 'YesterTech/Account'
 import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
@@ -43,10 +43,20 @@ function PrimaryLayout() {
               <Home />
             </Route>
             <Route path="/signup" exact>
-              <Signup />
+              <SignupForm
+                onSignup={user => {
+                  console.log(user)
+                  // what now?
+                }}
+              />
             </Route>
             <Route path="/login" exact>
-              <Login />
+              <LoginForm
+                onAuthenticated={user => {
+                  console.log(user)
+                  // what now?
+                }}
+              />
             </Route>
             <Route path="/products">
               <ProductsLayout />

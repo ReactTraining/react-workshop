@@ -49,12 +49,6 @@ function PrimaryHeader() {
         <a href="/products" className="primary-nav-item">
           Products
         </a>
-        <a href="/login" className="primary-nav-item">
-          Login
-        </a>
-        <button>
-          <Avatar src="" size={1.5} />
-        </button>
       </nav>
     </header>
   )

@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import Login from './Login'
+import LoginForm from './LoginForm'
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
 function App() {
-  const [authorized, setAuthorized] = useState(false)
+  const [user, setUser] = useState(null)
   return (
     <div>
-      {authorized ? (
+      {user ? (
         <div className="align-center">You are logged in</div>
       ) : (
-        <Login login={() => setAuthorized(true)} />
+        <LoginForm onAuthenticated={setUser} />
       )}
     </div>
   )

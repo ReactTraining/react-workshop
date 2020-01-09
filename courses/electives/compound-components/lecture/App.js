@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext, Children } from 'react'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
+import LoginForm from 'YesterTech/LoginForm'
+import SignupForm from 'YesterTech/SignupForm'
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
