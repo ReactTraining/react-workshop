@@ -40,6 +40,9 @@ function ProductProfile() {
           <Columns split>
             <Column>
               <div className="text-small">
+                <div>
+                  <strong>Price: ${product.price.toFixed(2)}</strong>
+                </div>
                 <div>Brand: {product.brand}</div>
                 <div>Category: {product.category}</div>
                 <div>Condition: {product.condition}</div>

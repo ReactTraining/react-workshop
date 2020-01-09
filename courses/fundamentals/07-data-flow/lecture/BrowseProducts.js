@@ -31,7 +31,7 @@ function BrowseProducts() {
   return (
     <div className="spacing">
       <nav>
-        <span>View Cart (3 Items)</span>
+        <span>View Cart (3)</span>
       </nav>
       <hr />
       {Array.isArray(products) &&

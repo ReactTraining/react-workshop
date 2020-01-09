@@ -60,7 +60,7 @@ function BrowseProductItem({ name, imagePath }) {
 
 ## Lift State Again
 
-Now we need know the number of items in the cart one level up in `BrowseProducts` so we an code the "View Cart (3 Items)" section.
+Now we need know the number of items in the cart one level up in `BrowseProducts` so we an code the "View Cart (3)" section.
 
 This state lift is a little unique because we need to aggregate all the cart items into an array. This comes with some extra work to manage the array. So if you look in `BrowseProducts` you'll see some utility functions already made for this.
 

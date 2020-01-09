@@ -7,14 +7,15 @@ import SubNav from 'YesterTech/SubNav'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function ProductSubNav() {
-  const { cart } = useShoppingCartState()
+  const { getCartSize } = useShoppingCartState()
+  const cartSize = getCartSize()
 
   return (
     <SubNav>
       <Columns split middle>
         <Column>
-          {Array.isArray(cart) && cart.length > 0 ? (
-            <Link to="/checkout">View Cart ({cart.length} Items)</Link>
+          {cartSize ? (
+            <Link to="/checkout">View Cart ({cartSize})</Link>
           ) : (
             <span>Cart is Empty</span>
           )}
