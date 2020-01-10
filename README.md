@@ -72,6 +72,12 @@ Choose option "a" to run the full app, then open a web browser to [http://localh
 
 During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
 
+## Database
+
+When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
+
+There are some rare times when you quit the app the background process for port `3333` remains open and this will mean you cant start the app again until the port is closed. So we made `npm run kill-db` as a command for you in case this happens.
+
 ## Updating
 
 If you've already cloned the repo but you need to get updated code, then follow these steps:
@@ -128,7 +134,7 @@ $ sudo rm -rf /usr/local/lib/node_modules
 $ npm install
 ```
 
-- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a node_modules folder at the root. If you can't you need to run `npm install` from the root of the directory. If that's not the issue, if you've ran the app before but now it's not running, try `npm run kill-db`. We run a small local database on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
+- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db`. We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
 ## License
 
