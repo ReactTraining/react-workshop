@@ -8,13 +8,27 @@ Before attending the training, please make sure you can run this repository.
 First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/). Then:
 
 ```sh
-$ git clone https://github.com/ReactTraining/______.git
-$ cd _________
+$ git clone https://github.com/ReactTraining/react-workshop.git
+$ cd react-workshop
 $ npm install
 $ npm start
 ```
 
-You'll be prompted with the exercise you'd like to run:
+The first time you run this, you'll be asked which course, and if you want to save your preferences. You'll likely want `2` and `y`.
+
+```
+Which Course?
+
+[1] electives
+[2] fundamentals
+[0] CANCEL
+
+Choose one from list [1, 2, 0]: 2
+
+Do you want us to remember this course selection? [y/n]: y
+```
+
+From this point on, you'll be prompted with the exercise you'd like to run:
 
 ```
 $ npm start
@@ -23,22 +37,20 @@ Which exercise?
 
 [1] 01-rendering
 [2] 02-state
-[3] 03-controlled-components
+[3] 03-controlled-vs-uncontrolled
 [4] 04-effects
-[5] 05-data-loading
-[6] 06-data-flow
-[7] 07-compound-components
+[5] 05-routing
+[6] 06-reducers
+[7] 07-data-flow
 [8] 08-app-state
-[9] 09-flicker
-[a] 10-the-feed
-[b] 11-animation
-[c] 12-optimization
-[0] THE FULL APP!
+[9] 09-hooks-composition
+[a] app
+[0] CANCEL
 
-Choose one from list [1...9, a, b, c, 0]:
+Choose one from list [1...9, a, 0]:
 ```
 
-Choose option "0" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
+Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
 
 ## We took notes for you!
 
