@@ -68,10 +68,6 @@ Choose one from list [1...9, a, 0]:
 
 Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
 
-## We took notes for you!
-
-During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
-
 ## Database
 
 When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
@@ -98,6 +94,10 @@ Then you should be able to do your `npm start` again.
 
 **IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop.
 It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
+
+## We took notes for you!
+
+During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
 
 ## Troubleshooting
 
