@@ -5,7 +5,7 @@ Before attending the training, please make sure you can run this repository.
 
 ## Install
 
-First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/). Then:
+First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/). You can tell if node is installed by doing `node -v` and seeing a version number. Then:
 
 ```sh
 $ git clone https://github.com/ReactTraining/react-workshop.git
@@ -14,13 +14,14 @@ $ npm install
 $ npm start
 ```
 
-The first time you run this, you'll be asked which course, and if you want to save your preferences. You'll likely want `2` and `y`.
+The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
 ```
 Which Course?
 
-[1] electives
-[2] fundamentals
+[1] advanced
+[2] electives
+[3] fundamentals
 [0] CANCEL
 
 Choose one from list [1, 2, 0]: 2
@@ -44,7 +45,7 @@ Which exercise?
 [7] 07-data-flow
 [8] 08-app-state
 [9] 09-hooks-composition
-[a] app
+[a] Full App
 [0] CANCEL
 
 Choose one from list [1...9, a, 0]:

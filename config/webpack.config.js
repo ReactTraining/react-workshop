@@ -43,11 +43,11 @@ const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
 
 /****************************************
- START CUSTOM
- *****************************************/
+  START CUSTOM
+*****************************************/
 
-const cliSelection = require('./cliSelection')
-const { appEntry, alias } = cliSelection()
+const cli = require('./cli')
+const { appEntry, alias } = cli()
 
 /****************************************
   END CUSTOM

@@ -1,24 +1,8 @@
 # Docs for development on YesterTech app (for the fundamentals course)
 
-Just some starter info to help us all stay on the same page.
-
-```sh
-npm start
-
-# Select
-# - Fundamentals
-# - App
-```
-
-## Where can I find stuff?
-
-The folder structure is pretty strait forward. With a few small acceptions, it's a flat folder structure for `app/`. If the files aren't very re-usable beyond this app, they stay there, otherwise components that can be useful for other apps can go in `/modules/workshop`.
-
-When adding files to `/modules/workshop`, be sure to add them to the `index` file so all those files can be used via named imports.
-
 ## Database
 
-json-server is automatically fired up when the app starts. Currently there are two "collections" (tables) in the database for `products` and `users`. We'll add more later for things like comments
+json-server is automatically started when the app starts. Currently there are two "collections" (tables) in the database for `products` and `users`. We'll add more later for things like comments
 
 Also, see our [database docs](./databases.md)
 
@@ -29,40 +13,17 @@ There's an `api` folder which organizes all possible API requests into a single 
 ```js
 import api from '../api
 
+// Wraps `fetch`
 api.users.getUser(1).then()
 ```
-
-The underlying tech is `fetch`
 
 ## Users (Signup and Login)
 
 There are signup and login capabilities. Note that auth details like passwords are stored in plaintext in `json-server` database.
 
-## Authentication State
-
-We're using context to store auth details. This file also syncs your logged-in status to localStorage. It's weird to couple these to things together (the context file and localStorage) but for the purposes of it being a workshop, it's nice for the user to have a simple API into auth stuff.
-
-## Shopping Cart State
-
-We're using context to store the shopping cart. Currently this does not persist the cart to anywhere on refresh (like localStorage) but we can fix that later.
-
 ## Styles
 
 We're using Sass Modules. We decided on an approach of having the `.scss` file be named the exact same way as the React component file that it serves and in the same folder. We're using "semantic looking" legible classnames as an approach which prevents the JSX from getting too cluttered (since we're teaching React and not trying to make the perfect CSS strategy)
-
-Naming collisions are easily prevented when this strategy is followed:
-
-- If a component is called `Avatar`, make sure it's wrapping element has a class name that's similarly named: `<div className="avatar"></div>`
-- The JS file and the SCSS file will be `Avatar.js` and `Avatar.scss`
-- In the SCSS file, wrap all rules in an `.avatar` namespace:
-
-```scss
-.avatar {
-  // Now that this is nested it won't collide with any other "sub-thing"
-  .sub-thing {
-  }
-}
-```
 
 ### Global Styles
 
@@ -72,9 +33,9 @@ There are some CSS utility classes which are layout and design-system in nature.
 
 ## Design System
 
-I'll eventually document a lot more things with storybook, but this is a small amount of info to get people started
+I'll eventually document a lot more things with storybook, but this is a small amount of info to get people started.
 
-### Columns (flexbox)
+### `<Columns />` (flexbox)
 
 For any content that is "side-by-side" and could benefit from flexbox, we use `react-flex-columns` which gives an abstraction over flexbox. Just think of it as something that gives you a lot of the flexbox API but in a way that feels symantec in JSX and doesn't require custom CSS
 
