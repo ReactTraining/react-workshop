@@ -1,11 +1,24 @@
 # Welcome to React Training!
 
 This repo contains the latest fundamentals course material for [React Training](https://reacttraining.com/).
-Before attending the training, please make sure you can run this repository.
+
+Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
 
 ## Install
 
-First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/). You can tell if node is installed by doing `node -v` and seeing a version number. Then:
+First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/).
+
+```sh
+# Verify Git and Node are installed
+$ git --version
+$ node --version
+```
+
+Windows Machine?
+
+We'll be running commands like the ones from the install/update instructions above. These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool. If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
+
+Then install and run the app:
 
 ```sh
 $ git clone https://github.com/ReactTraining/react-workshop.git
@@ -16,7 +29,7 @@ $ npm start app
 
 If the app runs then you're all set for the workshop.
 
-While in the workshop, you will be asked to do `npm start` (without app) to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
+While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
 ```
 Which Course?
@@ -80,12 +93,6 @@ Then you should be able to do your `npm start` again.
 **IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop.
 It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
 
-### Windows Machine?
-
-We'll be running commands like the ones from the install/update instructions above.
-These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool.
-If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
-
 ## Troubleshooting
 
 A few common problems:
@@ -120,6 +127,8 @@ $ sudo rm -rf /usr/local/lib/node_modules
 # Then (look ma, no sudo!):
 $ npm install
 ```
+
+- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a node_modules folder at the root. If you can't you need to run `npm install` from the root of the directory. If that's not the issue, if you've ran the app before but now it's not running, try `npm run kill-db`. We run a small local database on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
 ## License
 
