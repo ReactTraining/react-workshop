@@ -11,10 +11,12 @@ First, install [git](http://git-scm.com/downloads) and the LTS version of [node]
 $ git clone https://github.com/ReactTraining/react-workshop.git
 $ cd react-workshop
 $ npm install
-$ npm start
+$ npm start app
 ```
 
-The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
+If the app runs then you're all set for the workshop.
+
+While in the workshop, you will be asked to do `npm start` (without app) to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
 ```
 Which Course?

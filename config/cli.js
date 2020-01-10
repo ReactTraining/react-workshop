@@ -37,7 +37,7 @@ module.exports = function() {
         name: 'json-server database',
       },
     ]).catch(err => {
-      console.error('JSON Server Error. Try `npm run kill-db-port` and try again.\n\n')
+      console.error('JSON Server Error. Try `npm run kill-db` and try again.\n\n')
       console.error(err)
       process.exit(1)
     })
