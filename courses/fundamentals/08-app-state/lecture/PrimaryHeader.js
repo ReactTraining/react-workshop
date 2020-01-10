@@ -18,7 +18,9 @@ function PrimaryHeader() {
   const cartSize = getCartSize()
 
   function handleLogout() {
-    api.auth.logout().then(() => dispatch({ type: 'LOGOUT' }))
+    api.auth.logout().then(() => {
+      // dispatch logout
+    })
   }
 
   return (

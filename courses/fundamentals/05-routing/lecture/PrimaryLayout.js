@@ -3,7 +3,6 @@ import { Switch, Route, Link, Redirect, useRouteMatch, useParams } from 'react-r
 import { Columns, Column } from 'react-flex-columns'
 
 import Logo from 'YesterTech/Logo'
-import Avatar from 'YesterTech/Avatar'
 import Heading from 'YesterTech/Heading'
 import ProductImage from 'YesterTech/ProductImage'
 import StarRatings from 'YesterTech/StarRatings'

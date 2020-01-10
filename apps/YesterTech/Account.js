@@ -1,14 +1,16 @@
 import React from 'react'
 import Heading from 'YesterTech/Heading'
-// import useAuth from 'YesterTech/useAuth'
+import { useAuthState } from 'YesterTech/AuthState'
 
 function Account() {
-  // const { authenticated, user, dispatch } = useAuth()
+  const { user } = useAuthState()
   return (
     <div className="spacing">
-      <Heading>Account</Heading>
-      <div>Let's dance</div>
-      <h2>Browse Order History</h2>
+      <Heading>My Account</Heading>
+      <div>
+        Welcome to your account management page, {user.name}. Unfortunately, we have not finished it
+        yet 😟
+      </div>
     </div>
   )
 }
