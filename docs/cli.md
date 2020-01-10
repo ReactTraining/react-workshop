@@ -29,7 +29,8 @@ The CLI will ask if you want to save your course selection so you don't have to 
 
 ```json
 {
-  "course": "fundamentals" // advanced | electives | fundamentals
+  // advanced | electives | fundamentals
+  "course": "fundamentals"
 }
 ```
 
