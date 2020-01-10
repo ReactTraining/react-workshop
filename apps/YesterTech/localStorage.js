@@ -12,7 +12,7 @@ export function logout() {
   localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, null)
 }
 
-export function getLoggedUser() {
+export function getAuthenticatedUser() {
   try {
     const localStorageUser = localStorage.getItem(LOCAL_STORAGE_KEY_AUTH)
     if (!localStorageUser) return

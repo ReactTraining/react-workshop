@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom'
 
+import api from 'YesterTech/api'
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
-import useAuth from 'YesterTech/useAuth'
-import { login } from 'YesterTech/localStorage'
+import { useAuthState } from 'YesterTech/AuthState'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/PrimaryLayout.scss'
 
@@ -19,14 +19,27 @@ import Checkout from 'YesterTech/Checkout'
 
 function PrimaryLayout() {
   const history = useHistory()
-  const { authenticated, dispatch } = useAuth()
+  const { authenticated, dispatch } = useAuthState()
   const { cart } = useShoppingCartState()
-  const pathname = useLocation().pathname
+  const { key } = useLocation()
+
+  // Get the authenticated user
+  useEffect(() => {
+    let isCurrent = true
+    if (!authenticated) {
+      api.auth.getAuthenticatedUser().then(user => {
+        if (user && isCurrent) {
+          dispatch({ type: 'LOGIN', user })
+        }
+      })
+      return () => (isCurrent = false)
+    }
+  }, [authenticated, dispatch])
 
   // Scroll to the top of the page when pages change
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [pathname])
+  }, [key])
 
   return (
     <div className="primary-layout">
@@ -51,7 +64,6 @@ function PrimaryLayout() {
             <Route path="/login" exact>
               <LoginForm
                 onAuthenticated={user => {
-                  login(user)
                   dispatch({ type: 'LOGIN', user })
                   history.push('/')
                 }}

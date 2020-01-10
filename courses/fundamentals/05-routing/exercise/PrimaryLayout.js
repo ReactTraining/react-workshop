@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
-import useAuth from 'YesterTech/useAuth'
+import { useAuthState } from 'YesterTech/AuthState'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
@@ -17,7 +17,7 @@ import Checkout from 'YesterTech/Checkout'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 export default function PrimaryLayout() {
-  const { authenticated } = useAuth()
+  const { authenticated } = useAuthState()
   const { cart } = useShoppingCartState()
 
   return (

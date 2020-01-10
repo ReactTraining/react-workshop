@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
 
-import { getLoggedUser } from 'YesterTech/localStorage'
-// import useAuth from 'YesterTech/useAuth'
-import PrimaryHeader from 'YesterTech/PrimaryHeader'
+import api from 'YesterTech/api'
+import PrimaryHeader from './PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
+import { useAuthState } from 'YesterTech/AuthState'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
@@ -18,17 +18,12 @@ import Checkout from 'YesterTech/Checkout'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
 function PrimaryLayout() {
+  const history = useHistory()
   const { cart } = useShoppingCartState()
-  const [authenticated, setAuthenticated] = useState(false)
+  const { authenticated, dispatch } = useAuthState()
 
-  useEffect(() => {
-    if (!authenticated) {
-      const user = getLoggedUser()
-      if (user) {
-        setAuthenticated(true)
-      }
-    }
-  }, [authenticated])
+  // Get the current authenticated user (for first loads and refreshes)
+  // api.auth.getAuthenticatedUser()
 
   return (
     <div className="primary-layout">
@@ -46,7 +41,7 @@ function PrimaryLayout() {
               <SignupForm
                 onSignup={user => {
                   console.log(user)
-                  // what now?
+                  // dispatch login
                 }}
               />
             </Route>
@@ -54,7 +49,7 @@ function PrimaryLayout() {
               <LoginForm
                 onAuthenticated={user => {
                   console.log(user)
-                  // what now?
+                  // dispatch login
                 }}
               />
             </Route>

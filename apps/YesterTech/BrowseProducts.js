@@ -18,8 +18,10 @@ function BrowseProducts() {
   // Get Products (Paginated) and Total
   const getProducts = useCallback(() => api.products.getProducts(search, page), [search, page])
   const [response, loading] = usePromise(getProducts)
-  const products = response && response.products
-  const totalResults = response && response.totalResults
+  const products = response?.products
+  const totalResults = response?.totalResults
+
+  console.log(response?.products, loading)
 
   return (
     <div className="browse-products spacing">
@@ -39,7 +41,7 @@ function BrowseProducts() {
         </Column>
       </Columns>
 
-      {!loading && Array.isArray(products) && products.length > 0 ? (
+      {Array.isArray(products) && products.length > 0 ? (
         <div className="spacing">
           {products.map(product => (
             <BrowseProductItem

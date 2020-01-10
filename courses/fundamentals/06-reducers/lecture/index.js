@@ -6,6 +6,7 @@ import './styles.scss'
 
 function App() {
   const [user, setUser] = useState(null)
+
   return (
     <div>
       {user ? (
