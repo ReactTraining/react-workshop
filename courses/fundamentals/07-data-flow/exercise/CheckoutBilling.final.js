@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ onSubmit }) {
+function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -15,11 +15,11 @@ function CheckoutBilling({ onSubmit }) {
       }
     },
     {
-      sameAsBilling: false,
-      billingName: '',
-      billingAddress: '',
-      shippingName: '',
-      shippingAddress: '',
+      sameAsBilling: defaultSameAsBilling,
+      billingName: fields.billingName || '',
+      billingAddress: fields.billingAddress || '',
+      shippingName: fields.shippingName || '',
+      shippingAddress: fields.shippingAddress || '',
     }
   )
 

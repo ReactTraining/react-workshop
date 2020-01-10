@@ -6,7 +6,7 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ onSubmit, defaultValues = {} }) {
+function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultValues = {} }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -19,7 +19,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
       }
     },
     {
-      sameAsBilling: true,
+      sameAsBilling: defaultSameAsBilling,
       // Form Fields
       billingName: defaultValues.billingName || '',
       billingAddress: defaultValues.billingAddress || '',
@@ -136,6 +136,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input
+            required
             id="shipping:name"
             type="text"
             value={sameAsBilling ? fields.billingName : fields.shippingName}
@@ -146,6 +147,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
         <div className="form-field">
           <label htmlFor="shipping:address">Address</label>
           <input
+            required
             id="shipping:address"
             type="text"
             value={sameAsBilling ? fields.billingAddress : fields.shippingAddress}
@@ -158,6 +160,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="shipping:city">City</label>
               <input
+                required
                 id="shipping:city"
                 type="text"
                 value={sameAsBilling ? fields.billingCity : fields.shippingCity}
@@ -170,6 +173,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="shipping:state">State</label>
               <input
+                required
                 id="shipping:state"
                 type="text"
                 value={sameAsBilling ? fields.billingState : fields.shippingState}
@@ -182,6 +186,7 @@ function CheckoutBilling({ onSubmit, defaultValues = {} }) {
             <div className="form-field">
               <label htmlFor="shipping:postal">Postal Code</label>
               <input
+                required
                 id="shipping:postal"
                 type="text"
                 value={sameAsBilling ? fields.billingPostal : fields.shippingPostal}

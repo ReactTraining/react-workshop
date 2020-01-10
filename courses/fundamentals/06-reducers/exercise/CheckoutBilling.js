@@ -62,6 +62,7 @@ function CheckoutBilling({ onSubmit }) {
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input
+            required
             id="shipping:name"
             type="text"
             value={sameAsBilling ? billingName : shippingName}
@@ -72,6 +73,7 @@ function CheckoutBilling({ onSubmit }) {
         <div className="form-field">
           <label htmlFor="shipping:address">Address</label>
           <input
+            required
             id="shipping:address"
             type="text"
             value={sameAsBilling ? billingAddress : shippingAddress}
