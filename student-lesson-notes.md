@@ -109,6 +109,8 @@ useEffect(() => {
 - `useReducer` Format: `const [state, dispatch] = useReducer(reducerFunction, initialState)`.
 - `useReducer` is the reducer pattern for local state. It's an alternative to using `useState`. `useReducer` can be good for complex local state.
 
+- `useReducer` docs: https://reactjs.org/docs/hooks-reference.html#usereducer
+
 ---
 
 ## Lesson 7: Data Flow
@@ -123,8 +125,7 @@ useEffect(() => {
 - A good mental model is that the provider passes data over many of its children down to a lower level child component. Then the child component consuming the context could communicate back up to the provider via callbacks.
 
 - Docs on "Lifting State": https://reactjs.org/docs/lifting-state-up.html
-
-// TODO: Add useContext things
+- `useContext` docs: https://reactjs.org/docs/hooks-reference.html#usecontext
 
 ---
 
@@ -140,4 +141,4 @@ useEffect(() => {
 
 - When you want to make your own hook, that just means wrapping React hooks with your code together. Writing generic hooks that can encapsulate logic that you often re-write (for example, a `useEffect` with a basic cleanup function) is a great way to clean up your components.
 
-// TODO add `useCallback`
+- `useCallback` docs: https://reactjs.org/docs/hooks-reference.html#usecallback
