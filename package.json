@@ -1,14 +1,15 @@
 {
-  "name": "hooks-workshop",
+  "name": "react-training-workshop",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node scripts/start.js",
     "app": "npm start app",
-    "test": "jest",
+    "test": "NODE_PATH=./apps jest",
+    "clean": "git clean -fdX .",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "kill-db-port": "kill -9 $(lsof -ti :3333);",
+    "kill-db": "lsof -ti :3333 | xargs kill",
     "reset-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
     "postinstall": "npm run reset-db"
   },
@@ -18,9 +19,12 @@
     "@storybook/addon-links": "^5.2.5",
     "@storybook/addons": "^5.2.5",
     "@storybook/react": "^5.2.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
     "concurrently": "^5.0.0",
     "css-loader": "^2.1.1",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
     "json-server": "^0.15.1",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
@@ -57,7 +61,6 @@
     "html-webpack-plugin": "4.0.0-beta.5",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
-    "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.0",
@@ -106,7 +109,19 @@
       "last 1 safari version"
     ]
   },
-  "jest": {},
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "trailingComma": true
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "babel": {
     "presets": [
       "react-app"

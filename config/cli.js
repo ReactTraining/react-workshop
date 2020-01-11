@@ -3,6 +3,17 @@ const fs = require('fs')
 const readlineSync = require('readline-sync')
 const concurrently = require('concurrently')
 
+/**
+ * Docs are at /docs/cli.md
+ */
+
+const appPaths = {
+  fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+  electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+  // Unless we want advanced to have it's own app
+  advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+}
+
 module.exports = function() {
   console.clear()
 
@@ -26,7 +37,7 @@ module.exports = function() {
         name: 'json-server database',
       },
     ]).catch(err => {
-      console.error('JSON Server Error. Try `npm run kill-db-port` and try again.\n\n')
+      console.error('JSON Server Error. Try `npm run kill-db` and try again.\n\n')
       console.error(err)
       process.exit(1)
     })
@@ -95,6 +106,7 @@ function selectLesson() {
           preferencesPath,
           JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
         )
+        console.log('\nPreferences are saved in `preferences.json`')
       } catch (err) {
         console.error(`\nCould not save preferences to ${preferencesPath}`)
       }
@@ -115,20 +127,37 @@ function selectLesson() {
     process.exit(0)
   }
 
-  // See if the user made a pre-selection in cli: `npm start fundamentals 2`
-  let selectedLesson = process.argv[3]
-  if (!isNaN(selectedLesson) && lessonOptions.length <= selectedLesson) {
-    selectedLesson = lessonOptions[selectedLesson - 1]
+  // Lesson arg would always be the last arg
+  const selectedLessonArg = process.argv[process.argv.length - 1]
+  const selectByOptionWord = lessonOptions.find(lesson => {
+    const regex = new RegExp(selectedLessonArg, 'i')
+    return regex.test(lesson)
+  })
 
-    // Or they can do: `npm start fundamentals state`.
-    // If they didn't do either of those, then we'll show them a menu:
-  } else if (!lessonOptions.includes(selectedLesson)) {
+  let selectedLesson
+
+  // See the third or fourth cli argument was meant to be a selectedOption by number
+  // This is for doing `npm start fundamentals 2` or `npm start 2` (assuming they have preferences for course)
+  if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
+    selectedLesson = lessonOptions[selectedLessonArg - 1]
+
+    // Or they can do `npm start fundamentals state` or `npm start state` (assuming they have preferences for course)
+  } else if (selectByOptionWord) {
+    selectedLesson = selectByOptionWord
+
+    // Show Menu
+  } else {
     console.log(`\nWhich Lesson of ${selectedCourse}?`)
-    const choice = readlineSync.keyInSelect(lessonOptions)
+    const choice = readlineSync.keyInSelect(lessonOptions.concat(['Full App']))
     if (choice === -1) {
       process.exit(0)
     }
     selectedLesson = lessonOptions[choice]
+  }
+
+  // If selectedLesson is still falsy, they must have selected the full app
+  if (!selectedLesson) {
+    return { appPath: appPaths[selectedCourse] }
   }
 
   /**
@@ -162,13 +191,6 @@ function selectLesson() {
     const name = path.basename(file, '.js')
     aliases[`YesterTech/${name}`] = path.join(lessonPath, file)
   })
-
-  const appPaths = {
-    fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-    electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-    // Unless we want advanced to have it's own app
-    advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  }
 
   return { appPath: appPaths[selectedCourse], alias: aliases }
 }

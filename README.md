@@ -1,26 +1,42 @@
 # Welcome to React Training!
 
 This repo contains the latest fundamentals course material for [React Training](https://reacttraining.com/).
-Before attending the training, please make sure you can run this repository.
+
+Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
 
 ## Install
 
-First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/). Then:
+First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/).
+
+```sh
+# Verify Git and Node are installed
+$ git --version
+$ node --version
+```
+
+Windows Machine?
+
+We'll be running commands like the ones from the install/update instructions above. These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool. If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
+
+Then install and run the app:
 
 ```sh
 $ git clone https://github.com/ReactTraining/react-workshop.git
 $ cd react-workshop
 $ npm install
-$ npm start
+$ npm start app
 ```
 
-The first time you run this, you'll be asked which course, and if you want to save your preferences. You'll likely want `2` and `y`.
+If the app runs then you're all set for the workshop.
+
+While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
 ```
 Which Course?
 
-[1] electives
-[2] fundamentals
+[1] advanced
+[2] electives
+[3] fundamentals
 [0] CANCEL
 
 Choose one from list [1, 2, 0]: 2
@@ -44,7 +60,7 @@ Which exercise?
 [7] 07-data-flow
 [8] 08-app-state
 [9] 09-hooks-composition
-[a] app
+[a] Full App
 [0] CANCEL
 
 Choose one from list [1...9, a, 0]:
@@ -52,9 +68,20 @@ Choose one from list [1...9, a, 0]:
 
 Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
 
+## Be Prepared
+
+**IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop.
+It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
+
 ## We took notes for you!
 
 During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
+
+## Database
+
+When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
+
+There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db` as a command for you in case this happens.
 
 ## Updating
 
@@ -71,17 +98,6 @@ npm install
 ```
 
 Then you should be able to do your `npm start` again.
-
-## Be Prepared
-
-**IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop.
-It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
-
-### Windows Machine?
-
-We'll be running commands like the ones from the install/update instructions above.
-These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool.
-If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
 
 ## Troubleshooting
 
@@ -117,6 +133,8 @@ $ sudo rm -rf /usr/local/lib/node_modules
 # Then (look ma, no sudo!):
 $ npm install
 ```
+
+- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db`. We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
 ## License
 

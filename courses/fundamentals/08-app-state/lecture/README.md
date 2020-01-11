@@ -4,7 +4,7 @@
 
 This one is pretty straightforward because most of the work is already done. It's mostly explaining the code.
 
-1. You'll probably want to make sure you're logged out to start this one. When the app launches, the logout will work.
+1. You'll probably want to make sure you're logged out to start this one (before you launch the app since logout needs to be programmed, see below)
 2. If context wasn't explained in `07-data-flow`, then now is the time to do it. Perhaps start with a basic add-hoc example.
 3. Once context is understood, open `AuthState.js` and go over its parts.
 
@@ -33,7 +33,7 @@ api.auth.logout().then(() => dispatch({ type: 'LOGOUT' }))
 
 ## Login and Refresh, how do we stay logged in?
 
-In the `PrimaryLayout`, do an effect to get the current logged in user. Then dispatch them if one exists:
+In the `PrimaryLayout`, do an network request to get the current logged in user. Then dispatch them if one exists:
 
 ```js
 useEffect(() => {
