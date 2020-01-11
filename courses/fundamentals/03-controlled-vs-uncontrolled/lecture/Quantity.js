@@ -14,7 +14,7 @@ function Quantity() {
           </button>
         </div>
         <div className="input-container">
-          <input type="text" aria-label="quantity" defaultValue={quantity} />
+          <input type="number" aria-label="quantity" defaultValue={quantity} />
         </div>
         <div>
           <button type="button" className="icon-button">
