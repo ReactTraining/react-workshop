@@ -29,7 +29,7 @@ function ProductProfile({ productId }) {
 Before when `useProduct` was simply passed a `productId`, it was easy to include that into the dependency array. But now that `useApi` is more general, we'll be passing in a callback for the promise-based API call, so what do we add to the dependency array?
 
 - If we leave it empty, we'll get that lint error that says it wants us to `api` in it.
-- If we put api in it with the way we're passing a function into `useApi`, that function is guaranteed to change its identity each time `ProductProfile` re-renders for any reason.
+- If we put API in it with the way we're passing a function into `useApi`, that function is guaranteed to change its identity each time `ProductProfile` re-renders for any reason.
 
 Look at it from the perspective of this line:
 
