@@ -28,7 +28,7 @@ useEffect(() => {
   if (media.matches !== isWide) {
     setIsWide(media.matches)
   }
-  const listener = () => setMatches(media.matches)
+  const listener = () => setIsWide(media.matches)
   media.addListener(listener)
   return () => media.removeListener(listener)
 }, [isWide])
