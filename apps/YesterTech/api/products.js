@@ -2,6 +2,8 @@ import queryString from 'query-string'
 import { get, getRaw, post } from './utils'
 
 export async function getProducts(search = {}, page = 1) {
+  // If setting up this search object seems a little weird, we're
+  // just conforming to the funky API or JSON-Server
   search = {
     ...search,
     _limit: 10,
