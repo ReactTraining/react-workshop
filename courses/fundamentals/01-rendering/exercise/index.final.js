@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { FaRegStar, FaStar } from 'react-icons/fa'
+import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import StarRatings from 'YesterTech/StarRatings'
 
@@ -14,7 +14,7 @@ function ProductProfile() {
   return (
     <div>
       {products.map(product => (
-        <div>
+        <div key={`product-${product.id}`}>
           <Heading>{product.name}</Heading>
           <StarRatings rating={product.rating} />
           <div className="text-small">

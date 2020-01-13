@@ -24,7 +24,7 @@ Hey! Are you getting this error "useEffect is called conditionally"? Remember, w
 
 In the browser, navigate to: http://localhost:3000/signup
 
-1. Open `SingupForm.js`
+1. Open `SignupForm.js`
 2. Everything is already working except when `Use GitHub` is checked, we need to populate the Full Name and Avatar from a network request to GitHub's API. First, create a `useEffect`.
 3. In the effect, query for the user information based on their `username`:
 

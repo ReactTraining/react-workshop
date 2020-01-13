@@ -28,7 +28,7 @@ useEffect(() => {
   if (media.matches !== isWide) {
     setIsWide(media.matches)
   }
-  const listener = () => setMatches(media.matches)
+  const listener = () => setIsWide(media.matches)
   media.addListener(listener)
   return () => media.removeListener(listener)
 }, [isWide])
@@ -39,7 +39,7 @@ useEffect(() => {
 - Open `ProductProfile.js`
 - Browser: http://localhost:3000/products/1 (or any valid Product ID)
 - Query for product and explain the basics of effects
-- Api: `api.products.getProduct(productId)`
+- API: `api.products.getProduct(productId)`
 
 ```js
 const [product, setProduct] = useState(null)
