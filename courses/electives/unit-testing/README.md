@@ -4,8 +4,7 @@
 
 - What is Jest?
 - Explain basics of testing in React
-  - test behavior (clicks, key presses, etc.)
-  - best practices: Don't dip down into the component to manipulate the state
+  - best practices: Don't dip down into the component to manipulate the state. Test the component the way the user uses it, by behavior (clicks, key presses, etc.) and then expecting to see what they see.
 - Red-green testing (make the tests fail first)
 - Snapshot Testing
 - Conversation about React Test Utils vs React Testing Library vs Enzyme
