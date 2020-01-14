@@ -14,7 +14,7 @@ $ git --version
 $ node --version
 ```
 
-Windows Machine?
+### Windows Machine?
 
 We'll be running commands like the ones from the install/update instructions above. These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool. If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
 
@@ -24,10 +24,10 @@ Then install and run the app:
 $ git clone https://github.com/ReactTraining/react-workshop.git
 $ cd react-workshop
 $ npm install
-$ npm start app
+$ npm start
 ```
 
-If the app runs then you're all set for the workshop.
+If the app runs then you should be all set for the workshop. To make it run, hit 3 for the `fundamentals` course, and hit `a` for the full application to load.
 
 While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
