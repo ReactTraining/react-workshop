@@ -10,7 +10,10 @@ const [state, dispatch] = useReducer(
   (state, action) => {
     switch (action.type) {
       case 'TOGGLE_SAME_AS_BILLING':
-        return { ...state, sameAsBilling: !state.sameAsBilling }
+        return {
+          ...state,
+          sameAsBilling: !state.sameAsBilling,
+        }
       default:
         return state
     }
@@ -42,7 +45,11 @@ case 'CHANGE_FIELD': {
 The idea here is that now you can do your dispatches like this where you specify the value AND the field it goes to:
 
 ```js
-dispatch({ type: 'CHANGE_FIELD', field: 'billingName', value: 'Cassidy' })
+dispatch({
+  type: 'CHANGE_FIELD',
+  field: 'billingName',
+  value: 'Cassidy',
+})
 ```
 
 2. You can also add each field to the destructure that we did earlier. Or you can just do this if you want:
@@ -51,4 +58,4 @@ dispatch({ type: 'CHANGE_FIELD', field: 'billingName', value: 'Cassidy' })
 const { showPassword, ...fields } = state
 ```
 
-See how it's implemented in the solution.
+See how it's implemented in the solution if you need help.
