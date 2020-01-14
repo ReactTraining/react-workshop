@@ -9,7 +9,9 @@ Have a quick conversation about responsive design and how we all probably know m
 - Create an effect with a subscription to see if the screen is wider than `800px`
 - Hide the sidebar when the screen is too small
 
-This could be how the code migrates through the lecture
+This could be how the code migrates through the lecture:
+
+Maybe start by just showing this code. I think it's reasonable that people will try to do this when they learn react (to not use useEffect) so this is a good place to start to have that conversation:
 
 ```js
 function ProductsSidebar() {
@@ -20,7 +22,7 @@ function ProductsSidebar() {
 }
 ```
 
-We're doing a side effect but this effect is going to run every time this component re-renders (even when it doesn't need to) and it's NOT going to run when the browser size changes. We need to subscribe:
+We're doing a side effect but this effect is going to run every time this component re-renders (even when it doesn't need to) and it's NOT going to run when the browser size changes since we're not subscribed to it:
 
 ```js
 function ProductsSidebar() {
@@ -37,7 +39,7 @@ function ProductsSidebar() {
 }
 ```
 
-The side effect still runs after every re-render (if there were other state or the parent were to re-render this component) but at least we're responding to the browser size changing. We just don't have anywhere to put the new data. Also, we would end up being multiple subscribed since we're always subscribing
+The side effect still runs after every re-render (if there were other state or the parent were to re-render this component) but at least we're responding to the browser size changing. We just don't have anywhere to put the new data. Also, we would end up being multiple subscribed since we're always subscribing:
 
 ```js
 function ProductsSidebar() {
@@ -61,7 +63,7 @@ Now:
 2. We only subscribe once.
 3. We have a way to update `isWide`
 
-The new problem is that if this component were to unmount and then re-mount, we would have these subscriptions floating around in JS memory. So we need to "clean them up"
+The new problem is that if this component were to unmount and then re-mount, we would have these subscriptions floating around in JS memory. So we need to "clean them up":
 
 ```js
 useEffect(() => {

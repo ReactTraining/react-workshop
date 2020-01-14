@@ -3,7 +3,7 @@
 ## Task One: Convert `useState` state to `useReducer`
 
 1. Open `CheckoutBilling.js`.
-2. Use the reducer pattern with `useReducer` to start to migrate the old state into `useReducer`. Start by only migrating `showPassword` just to get started. Here's a template for useReducer if you need it.
+2. Use the reducer pattern with `useReducer` to start to migrate the old state into `useReducer`. Start by only migrating `sameAsBilling` just to get started. Here's a template for useReducer if you need it.
 
 ```js
 const [state, dispatch] = useReducer(
@@ -21,10 +21,10 @@ const [state, dispatch] = useReducer(
 )
 ```
 
-3. See if you can get the form working with only `showPassword` refactored first. You might notice that the code uses the variable `showPassword` in several places and those might need to be converted to `state.showPassword`. Or, you can do some destructuring:
+3. See if you can get the form working with only `sameAsBilling` refactored first. You might notice that the code uses the variable `sameAsBilling` in several places and those might need to be converted to `state.sameAsBilling`. Or, you can do some destructuring:
 
 ```js
-const { showPassword } = state
+const { sameAsBilling } = state
 ```
 
 ## Task Two: Convert the the form's input values
@@ -48,7 +48,7 @@ dispatch({ type: 'CHANGE_FIELD', field: 'billingName', value: 'Cassidy' })
 2. You can also add each field to the destructure that we did earlier. Or you can just do this if you want:
 
 ```js
-const { showPassword, ...fields } = state
+const { sameAsBilling, ...fields } = state
 ```
 
 See how it's implemented in the solution.
