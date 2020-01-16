@@ -1,12 +1,12 @@
 # Data Flow
 
-## Task One: Keep the form state for populating on revisits
+## Task One: Track the form state in `Checkout` for populating `CheckoutBilling` on revisits
 
 The checkout flow is three pages and the Billing/Shipping form is the second of those three. When the form is submitted, we need to track that information until later when the user is on the last review page and they're ready to submit their transaction. We also need to keep the form information around in case the user goes back to the form and we want to re-populate it.
 
 1. Open `Checkout.js`.
-2. Create two pieces of state `fields` and `sameAsBilling` - decide if you want to use `useState` or `useReducer`.
-3. You can see that when the billing form is submitted, there's a `handleSubmit`. Use that to persist the form's state into `Checkout`.
+2. Create two pieces of state `sameAsBilling` and `fields` - decide if you want to use `useState` or `useReducer`.
+3. You can see that when the billing form is submitted, there's a `handleSubmit`. Use that to persist the form's state into your newly created state in `Checkout`.
 4. In `Checkout` there is a route for `CheckoutReview`. That component takes two props: `fields` and `sameAsBilling`. Pass those props in and try filling out the form and then seeing if you can go to the review page to see the state get there.
 5. If it works, conditionality make the route for `CheckoutReview` so that the route is only available if `fields` has data. In other words, you shouldn't be able to hard-link over to the path `/checkout/review` if you haven't filled out the form. You can use this for the condition:
 

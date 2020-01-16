@@ -21,8 +21,6 @@ function BrowseProducts() {
   const products = response?.products
   const totalResults = response?.totalResults
 
-  console.log(response?.products, loading)
-
   return (
     <div className="browse-products spacing">
       <Columns split middle>

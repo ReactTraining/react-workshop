@@ -27,6 +27,8 @@ const [state, dispatch] = useReducer(
 3. See if you can get the form working with only `sameAsBilling` refactored first. You might notice that the code uses the variable `sameAsBilling` in several places and those might need to be converted to `state.sameAsBilling`. Or, you can do some destructuring:
 
 ```js
+// hint, we think you should do this instead of using state.sameAsBilling. It also
+// helps make Task Two easier:
 const { sameAsBilling } = state
 ```
 
@@ -52,10 +54,4 @@ dispatch({
 })
 ```
 
-2. You can also add each field to the destructure that we did earlier. Or you can just do this if you want:
-
-```js
-const { sameAsBilling, ...fields } = state
-```
-
-See how it's implemented in the solution if you need help.
+2. Make sure you edit the `const { sameAsBilling } = state` to include the form fields. See the final solution if you need to see what we mean.

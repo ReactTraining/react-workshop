@@ -11,8 +11,13 @@ function CheckoutBilling({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const fields = { billingName, billingAddress, shippingName, shippingAddress }
-    onSubmit(fields)
+    const fields = {
+      billingName,
+      billingAddress,
+      shippingName: sameAsBilling ? billingName : shippingName,
+      shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
+    }
+    onSubmit(sameAsBilling, fields)
   }
 
   return (
@@ -30,6 +35,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:name"
             type="text"
+            required
             defaultValue={billingName}
             onChange={event => setBillingName(event.target.value)}
           />
@@ -39,6 +45,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:address"
             type="text"
+            required
             defaultValue={billingAddress}
             onChange={event => setBillingAddress(event.target.value)}
           />
@@ -64,6 +71,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="shipping:name"
             type="text"
+            required
             value={sameAsBilling ? billingName : shippingName}
             onChange={event => setShippingName(event.target.value)}
             disabled={sameAsBilling}
@@ -74,6 +82,7 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="shipping:address"
             type="text"
+            required
             value={sameAsBilling ? billingAddress : shippingAddress}
             onChange={event => setShippingAddress(event.target.value)}
             disabled={sameAsBilling}

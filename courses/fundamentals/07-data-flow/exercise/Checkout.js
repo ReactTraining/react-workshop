@@ -2,6 +2,10 @@ import React from 'react'
 import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
+// To run the final solution: Comment this in and the rest out
+// import Checkout from './Checkout.final'
+// export default Checkout
+
 // Route Targets
 import ViewCart from 'YesterTech/ViewCart'
 import CheckoutBilling from './CheckoutBilling'
@@ -12,6 +16,7 @@ function Checkout() {
   const history = useHistory()
 
   function handleBillingSubmit(sameAsBilling, fields) {
+    console.log(sameAsBilling, fields)
     history.push(`${match.path}/review`)
   }
 
@@ -24,9 +29,15 @@ function Checkout() {
         <Route path={`${match.path}/billing`}>
           <CheckoutBilling onSubmit={handleBillingSubmit} />
         </Route>
+
+        {/*
+          Hint: We shouldn't be able to visit this route unless we have
+          values inside of our state for `fields`. See the README
+        */}
         <Route path={`${match.path}/review`}>
           <CheckoutReview />
         </Route>
+
         <Redirect to={`${match.path}/cart`} />
       </Switch>
     </Centered>

@@ -15,7 +15,8 @@ function Checkout() {
     (state, action) => {
       switch (action.type) {
         case 'SUBMIT_BILLING': {
-          return { ...state, sameAsBilling: action.sameAsBilling, fields: action.fields }
+          const { sameAsBilling, fields } = action
+          return { ...state, sameAsBilling, fields }
         }
         default:
           return state
@@ -39,7 +40,11 @@ function Checkout() {
           <ViewCart />
         </Route>
         <Route path={`${match.path}/billing`}>
-          <CheckoutBilling onSubmit={handleBillingSubmit} defaultValues={state.fields} />
+          <CheckoutBilling
+            onSubmit={handleBillingSubmit}
+            defaultSameAsBilling={state.sameAsBilling}
+            defaultFields={state.fields}
+          />
         </Route>
         {Object.keys(state.fields).length > 0 && (
           <Route path={`${match.path}/review`}>

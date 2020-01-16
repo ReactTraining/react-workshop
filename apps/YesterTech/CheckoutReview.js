@@ -7,11 +7,16 @@ import { FaAngleLeft } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
 
-function CheckoutReview({ sameAsBilling, fields }) {
+function CheckoutReview({ sameAsBilling, fields = {} }) {
   const { cart, getCartTotal } = useShoppingCartState()
 
   function placeOrder() {
     console.log(fields)
+  }
+
+  if (Object.keys(fields).length === 0) {
+    // For the lessons
+    return <div>Oops, did you forget you conditionally render the route for CheckoutReview?</div>
   }
 
   return (

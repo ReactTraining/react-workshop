@@ -23,11 +23,17 @@ function CheckoutBilling({ onSubmit }) {
     }
   )
 
-  const { sameAsBilling, ...fields } = state
+  const { sameAsBilling, billingName, billingAddress, shippingName, shippingAddress } = state
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit(fields)
+    const fields = {
+      billingName,
+      billingAddress,
+      shippingName: sameAsBilling ? billingName : shippingName,
+      shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
+    }
+    onSubmit(sameAsBilling, fields)
   }
 
   function changeField(field, value) {
@@ -49,7 +55,8 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:name"
             type="text"
-            defaultValue={fields.billingName}
+            required
+            defaultValue={billingName}
             onChange={event => changeField('billingName', event.target.value)}
           />
         </div>
@@ -58,7 +65,8 @@ function CheckoutBilling({ onSubmit }) {
           <input
             id="billing:address"
             type="text"
-            defaultValue={fields.billingAddress}
+            required
+            defaultValue={billingAddress}
             onChange={event => changeField('billingAddress', event.target.value)}
           />
         </div>
@@ -81,10 +89,10 @@ function CheckoutBilling({ onSubmit }) {
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input
-            required
             id="shipping:name"
             type="text"
-            value={sameAsBilling ? fields.billingName : fields.shippingName}
+            required
+            value={sameAsBilling ? billingName : shippingName}
             onChange={event => changeField('shippingName', event.target.value)}
             disabled={sameAsBilling}
           />
@@ -92,10 +100,10 @@ function CheckoutBilling({ onSubmit }) {
         <div className="form-field">
           <label htmlFor="shipping:address">Address</label>
           <input
-            required
             id="shipping:address"
             type="text"
-            value={sameAsBilling ? fields.billingAddress : fields.shippingAddress}
+            required
+            value={sameAsBilling ? billingAddress : shippingAddress}
             onChange={event => changeField('shippingAddress', event.target.value)}
             disabled={sameAsBilling}
           />

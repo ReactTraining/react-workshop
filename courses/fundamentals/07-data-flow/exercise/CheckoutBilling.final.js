@@ -1,8 +1,11 @@
 import React, { useReducer } from 'react'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }) {
+function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields = {} }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -16,18 +19,24 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }
     },
     {
       sameAsBilling: defaultSameAsBilling,
-      billingName: fields.billingName || '',
-      billingAddress: fields.billingAddress || '',
-      shippingName: fields.shippingName || '',
-      shippingAddress: fields.shippingAddress || '',
+      billingName: defaultFields.billingName || '',
+      billingAddress: defaultFields.billingAddress || '',
+      shippingName: defaultFields.shippingName || '',
+      shippingAddress: defaultFields.shippingAddress || '',
     }
   )
 
-  const { sameAsBilling, ...fields } = state
+  const { sameAsBilling, billingName, billingAddress, shippingName, shippingAddress } = state
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit(fields)
+    const fields = {
+      billingName,
+      billingAddress,
+      shippingName: sameAsBilling ? billingName : shippingName,
+      shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
+    }
+    onSubmit(sameAsBilling, fields)
   }
 
   function changeField(field, value) {
@@ -49,7 +58,8 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }
           <input
             id="billing:name"
             type="text"
-            defaultValue={fields.billingName}
+            required
+            defaultValue={billingName}
             onChange={event => changeField('billingName', event.target.value)}
           />
         </div>
@@ -58,33 +68,39 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }
           <input
             id="billing:address"
             type="text"
-            defaultValue={fields.billingAddress}
+            required
+            defaultValue={billingAddress}
             onChange={event => changeField('billingAddress', event.target.value)}
           />
         </div>
 
-        <Heading as="h2" size={3}>
-          Shipping Info
-        </Heading>
-
-        <label>
-          <input
-            type="checkbox"
-            defaultChecked={sameAsBilling}
-            onChange={() => dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })}
-          />{' '}
-          Same as Billing
-        </label>
+        <Columns split gutters middle>
+          <Column className="spacing">
+            <Heading as="h2" size={3}>
+              Shipping Info
+            </Heading>
+          </Column>
+          <Column>
+            <label>
+              <input
+                type="checkbox"
+                defaultChecked={sameAsBilling}
+                onChange={() => dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })}
+              />{' '}
+              Same as Billing
+            </label>
+          </Column>
+        </Columns>
 
         <hr />
 
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input
-            required
             id="shipping:name"
             type="text"
-            value={sameAsBilling ? fields.billingName : fields.shippingName}
+            required
+            value={sameAsBilling ? billingName : shippingName}
             onChange={event => changeField('shippingName', event.target.value)}
             disabled={sameAsBilling}
           />
@@ -92,10 +108,10 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }
         <div className="form-field">
           <label htmlFor="shipping:address">Address</label>
           <input
-            required
             id="shipping:address"
             type="text"
-            value={sameAsBilling ? fields.billingAddress : fields.shippingAddress}
+            required
+            value={sameAsBilling ? billingAddress : shippingAddress}
             onChange={event => changeField('shippingAddress', event.target.value)}
             disabled={sameAsBilling}
           />
@@ -103,9 +119,20 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, fields = {} }
 
         <hr />
 
-        <button type="submit" className="button">
-          Submit
-        </button>
+        <Columns split>
+          <Column>
+            <Link className="button" to="/checkout/cart">
+              <FaAngleLeft />
+              <span>Cart</span>
+            </Link>
+          </Column>
+          <Column>
+            <button type="submit" className="button">
+              <span>Review</span>
+              <FaAngleRight />
+            </button>
+          </Column>
+        </Columns>
       </form>
     </div>
   )

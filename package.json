@@ -10,8 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "kill-db": "lsof -ti :3333 | xargs kill",
-    "reset-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
-    "postinstall": "npm run reset-db"
+    "create-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
+    "postinstall": "npm run create-db"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",

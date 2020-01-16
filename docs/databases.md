@@ -8,4 +8,4 @@ BUT WAIT!
 
 Don't actually make that file. Instead make a `db-seed.json` file which can be used to establish and/or reset your database. When someone does an `npm install`, the `postinstall` script will seek and copy `db-seed.json` files to `db.json`.
 
-You can also run `npm run reset-db` which resets ALL `db.json` files from their respective seed files.
+You can also run `npm run create-db` which resets ALL `db.json` files from their respective seed files.

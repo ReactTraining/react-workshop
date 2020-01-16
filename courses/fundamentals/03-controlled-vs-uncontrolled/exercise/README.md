@@ -10,6 +10,6 @@ Tip: Remember, a field is said to be "controlled" if it has a `value` prop (whic
 
 Hint. Each form field should have it's own `useState` state. If you try to use one `useState` with an object for all the fields at once (mimicking the older class-based React), you might run into problems. Ask the instructor for more details on this if you're interested.
 
-4. The `fields` variable in `handleSubmit` can get it's value from state now instead of a utility like `serializeForm`.
+4. The `fields` variable in `handleSubmit` can get it's value from state now instead of a utility like `serializeForm`. See the solution if you're not sure what this means.
 
 Hint. The shipping fields need to be "controlled" but do the billing fields need to be?
