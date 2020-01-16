@@ -20,7 +20,11 @@ function ProductFilterList({ urlKey, list, label }) {
     const newSelected = isSelected(item)
       ? selected.filter(c => c !== item)
       : selected.concat([item])
-    const newSearch = { ...search, page: undefined, [urlKey]: newSelected.join(',') }
+    const newSearch = {
+      ...search,
+      page: undefined,
+      [urlKey]: newSelected.length ? newSelected.join(',') : undefined,
+    }
     history.push(`${location.pathname}?${queryString.stringify(newSearch)}`)
   }
 
