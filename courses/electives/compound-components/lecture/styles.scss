@@ -2,11 +2,11 @@
 
 // Centers the content for lecture purposes
 #root {
-  background-color: #eee;
+  background-color: #d8e2e6;
   padding-top: 2em;
   min-height: 100vh;
   > * {
-    width: 20em;
+    width: 35em;
     margin: 0 auto;
   }
 }
@@ -17,9 +17,16 @@
   cursor: pointer;
   color: $blue;
 
+  background-color: #fff;
+
   &.active {
     color: #fff;
     background-color: $blue;
+  }
+
+  &.disabled {
+    background-color: #ccc;
+    color: #777;
   }
 }
 
