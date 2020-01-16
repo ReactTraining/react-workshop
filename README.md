@@ -60,7 +60,8 @@ Which exercise?
 [7] 07-data-flow
 [8] 08-app-state
 [9] 09-hooks-composition
-[a] Full App
+[a] FULL APP
+[b] BACK TO COURSE SELECTION
 [0] CANCEL
 
 Choose one from list [1...9, a, 0]:

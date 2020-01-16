@@ -67,97 +67,108 @@ function selectLesson() {
   }
 
   /**
-   * Course Selection
+   * Choose a Course and Lesson
    */
 
-  // Read course options and make list
-  const coursesPath = path.resolve(__dirname, '..', 'courses')
-  const courseOptions = fs.readdirSync(coursesPath).filter(item => {
-    return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
-  })
-
-  // See if the user made a pre-selection in cli: `npm start fundamentals`
-  // or if they have one listed in their `preferences.json` file
-  let selectedCourse = null
-  if (courseOptions.includes(process.argv[2])) {
-    selectedCourse = process.argv[2]
-  } else if (preferences.course && courseOptions.includes(preferences.course)) {
-    selectedCourse = preferences.course
-    console.log(
-      `Using course from preferences.json. Remove that file to choose a difference course or select with CLI: npm start advanced\n`
-    )
-  }
-
-  // If nothing was found from above, show a menu so they can choose
-  if (!selectedCourse) {
-    console.log('Which Course?')
-    const choice = readlineSync.keyInSelect(courseOptions)
-    if (choice === -1) {
-      process.exit(0)
-    }
-    selectedCourse = courseOptions[choice]
-  }
-
-  // See if they want to save their choice to `preferences.json`
-  if (!preferences.course) {
-    if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
-      try {
-        fs.writeFileSync(
-          preferencesPath,
-          JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
-        )
-        console.log('\nPreferences are saved in `preferences.json`')
-      } catch (err) {
-        console.error(`\nCould not save preferences to ${preferencesPath}`)
-      }
-    }
-  }
-
-  /**
-   * Lesson Selection
-   */
-
-  // Read lesson options and make a list
-  const lessonsPath = path.resolve(__dirname, '..', `courses/${selectedCourse}`)
-  const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
-    return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
-  })
-  if (lessonOptions.length === 0) {
-    console.log(`\nThere are no lessons in ${selectedCourse}`)
-    process.exit(0)
-  }
-
-  // Lesson arg would always be the last arg
-  const selectedLessonArg = process.argv[process.argv.length - 1]
-  const selectByOptionWord = lessonOptions.find(lesson => {
-    const regex = new RegExp(selectedLessonArg, 'i')
-    return regex.test(lesson)
-  })
-
+  let selectedCourse
   let selectedLesson
 
-  // See the third or fourth cli argument was meant to be a selectedOption by number
-  // This is for doing `npm start fundamentals 2` or `npm start 2` (assuming they have preferences for course)
-  if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
-    selectedLesson = lessonOptions[selectedLessonArg - 1]
+  // So we can start over with course selection
+  while (!selectedLesson) {
+    /**
+     * Course Selection
+     */
 
-    // Or they can do `npm start fundamentals state` or `npm start state` (assuming they have preferences for course)
-  } else if (selectByOptionWord) {
-    selectedLesson = selectByOptionWord
+    // Read course options and make list
+    const coursesPath = path.resolve(__dirname, '..', 'courses')
+    const courseOptions = fs.readdirSync(coursesPath).filter(item => {
+      return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
+    })
 
-    // Show Menu
-  } else {
-    console.log(`\nWhich Lesson of ${selectedCourse}?`)
-    const choice = readlineSync.keyInSelect(lessonOptions.concat(['Full App']))
-    if (choice === -1) {
+    // See if the user made a pre-selection in cli: `npm start fundamentals`
+    // or if they have one listed in their `preferences.json` file
+    if (courseOptions.includes(process.argv[2])) {
+      selectedCourse = process.argv[2]
+    } else if (preferences.course && courseOptions.includes(preferences.course)) {
+      selectedCourse = preferences.course
+      console.log(
+        `Using course from preferences.json. Remove that file to choose a difference course or select with CLI: npm start advanced\n`
+      )
+    }
+
+    // If nothing was found from above, show a menu so they can choose
+    if (!selectedCourse) {
+      console.log('Which Course?')
+      const choice = readlineSync.keyInSelect(courseOptions)
+      if (choice === -1) {
+        process.exit(0)
+      }
+      selectedCourse = courseOptions[choice]
+    }
+
+    // See if they want to save their choice to `preferences.json`
+    if (!preferences.course) {
+      if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
+        try {
+          fs.writeFileSync(
+            preferencesPath,
+            JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
+          )
+          console.log('\nPreferences are saved in `preferences.json`')
+        } catch (err) {
+          console.error(`\nCould not save preferences to ${preferencesPath}`)
+        }
+      }
+    }
+
+    /**
+     * Lesson Selection
+     */
+
+    // Read lesson options and make a list
+    const lessonsPath = path.resolve(__dirname, '..', `courses/${selectedCourse}`)
+    const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
+      return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
+    })
+    if (lessonOptions.length === 0) {
+      console.log(`\nThere are no lessons in ${selectedCourse}`)
       process.exit(0)
     }
-    selectedLesson = lessonOptions[choice]
-  }
 
-  // If selectedLesson is still falsy, they must have selected the full app
-  if (!selectedLesson) {
-    return { appPath: appPaths[selectedCourse] }
+    // Lesson arg would always be the last arg
+    const selectedLessonArg = process.argv[process.argv.length - 1]
+    const selectByOptionWord = lessonOptions.find(lesson => {
+      const regex = new RegExp(selectedLessonArg, 'i')
+      return regex.test(lesson)
+    })
+
+    // See the third or fourth cli argument was meant to be a selectedOption by number
+    // This is for doing `npm start fundamentals 2` or `npm start 2` (assuming they have preferences for course)
+    if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
+      selectedLesson = lessonOptions[selectedLessonArg - 1]
+
+      // Or they can do `npm start fundamentals state` or `npm start state` (assuming they have preferences for course)
+    } else if (selectByOptionWord) {
+      selectedLesson = selectByOptionWord
+
+      // Show Menu
+    } else {
+      console.log(`\nWhich Lesson of ${selectedCourse}?`)
+      const modifiedLessonOptions = lessonOptions.concat(['FULL APP', 'BACK TO COURSE SELECTION'])
+      const choice = readlineSync.keyInSelect(modifiedLessonOptions)
+      if (choice === -1) {
+        process.exit(0)
+      } else if (modifiedLessonOptions[choice] === 'FULL APP') {
+        return { appPath: appPaths[selectedCourse] }
+      } else if (modifiedLessonOptions[choice] === 'BACK TO COURSE SELECTION') {
+        preferences.course = null
+        selectedCourse = null
+        // Starts CLI menu over
+        continue
+      } else {
+        selectedLesson = modifiedLessonOptions[choice]
+      }
+    }
   }
 
   /**
@@ -186,13 +197,13 @@ function selectLesson() {
     process.exit(0)
   }
 
-  const aliases = {}
+  const alias = {}
   fs.readdirSync(lessonPath).forEach(file => {
     const name = path.basename(file, '.js')
-    aliases[`YesterTech/${name}`] = path.join(lessonPath, file)
+    alias[`YesterTech/${name}`] = path.join(lessonPath, file)
   })
 
-  return { appPath: appPaths[selectedCourse], alias: aliases }
+  return { appPath: appPaths[selectedCourse], alias }
 }
 
 /****************************************
