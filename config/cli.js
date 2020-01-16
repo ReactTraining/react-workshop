@@ -75,6 +75,8 @@ function selectLesson() {
 
   // So we can start over with course selection
   while (!selectedLesson) {
+    console.clear()
+
     /**
      * Course Selection
      */
