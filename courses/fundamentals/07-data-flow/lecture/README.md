@@ -9,6 +9,7 @@ PrimaryLayout -> BrowseProducts -> BrowseProductItem -> Quantity
 //
 PrimaryLayout -> BrowseProducts -> BrowseProductItem -> Quantity
 // ▲ Eventually lift state here
+// ▲ And then at the end we can convert to context
 ```
 
 Start with the `Quantity` component which should resemble where it was left off in the lecture for 03-controlled-vs-uncontrolled. Then show it's parent `BrowseProductItem` which doesn't work when the button is clicked. We'll need to lift state in order to get the two working the way we need them to.
