@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import classnames from 'classnames'
 import queryString from 'query-string'
 
@@ -14,7 +14,7 @@ export function Pagination({
   resultsPerPage = 10,
   ...rest
 }) {
-  const query = queryString.parse(window.location.search)
+  const query = queryString.parse(useLocation().search)
   const pages = Math.ceil(totalResults / resultsPerPage)
 
   return (
