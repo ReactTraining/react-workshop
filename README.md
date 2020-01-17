@@ -174,9 +174,9 @@ $ npm install
 
 If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
 
-Also, if these instructions for Windows can be improved, please let us know.
+Also, if these instructions for Windows can be improved please let us know.
 
-Most of our instructors using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which works great with our repo for other commands that aren't just related to git.
+Most of our instructors are using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which works great with our repo for other commands that aren't just related to git.
 
 Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([but this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
 
