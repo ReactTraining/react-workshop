@@ -32,12 +32,14 @@ Then install and run the app:
 
 ```sh
 $ git clone https://github.com/ReactTraining/react-workshop.git
+# Whichever directory you run the above command from, that directory should
+# now have a folder called `react-workshop`. Now go into `react-workshop`:
 $ cd react-workshop
 $ npm install
 $ npm run app
 ```
 
-> Some of the commands we have in the instructions assume bash (like `cd`). If you're using PowerShell, use whichever appropriate command that is equivalent.
+> Some of the commands we have in the instructions assume bash (like `cd`). If you're using PowerShell, use whichever appropriate command that is equivalent. Also make sure you run the `$ npm install` and `$ npm run app` from within the `react-workshop` folder. Check which folder you're in by doing `$ pwd`
 
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
