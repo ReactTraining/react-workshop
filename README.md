@@ -17,9 +17,9 @@ $ node --version
 If one of those commands doesn't work, then you don't have that tool installed. Go to these pages and follow the instructions for your operating system:
 
 - [Git](http://git-scm.com/downloads)
-- [Node](https://nodejs.org/)
+- [Node](https://nodejs.org/) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
 
-** Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
+**Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
 
 Then install and run the app:
 
