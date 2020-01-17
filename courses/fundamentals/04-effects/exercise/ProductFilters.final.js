@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-
-import { getCategories } from './utils'
 import ProductFilterList from 'YesterTech/ProductFilterList'
+import { getCategories } from './utils'
 
 function ProductFilters() {
   const [categories, setCategories] = useState(null)

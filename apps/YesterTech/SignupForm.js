@@ -13,6 +13,11 @@ function SignupForm({ onSignup }) {
   const [avatarUrl, setAvatarUrl] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
+  // This is meant to stay here as a reminder
+  useEffect(() => {
+    console.log('Keep in mind for workshops, GitHub has a rate limit of 60 requests per hour')
+  }, [])
+
   function handleSubmit(event) {
     event.preventDefault()
     const user = { username, name, password, avatarUrl }
@@ -27,18 +32,14 @@ function SignupForm({ onSignup }) {
     setShowPassword(!showPassword)
   }
 
-  useEffect(() => {
-    let isCurrent = true
-    if (useGitHub && username.length > 5) {
-      api.auth.getGitHubUser(username).then(user => {
-        if (user && isCurrent) {
-          setName(user.name || '')
-          setAvatarUrl(user.avatar_url || '')
-        }
-      })
-    }
-    return () => (isCurrent = false)
-  }, [useGitHub, username])
+  function searchGitHub() {
+    api.auth.getGitHubUser(username).then(user => {
+      if (user) {
+        setName(user.name || '')
+        setAvatarUrl(user.avatar_url || '')
+      }
+    })
+  }
 
   return (
     <Columns gutters>
@@ -59,22 +60,39 @@ function SignupForm({ onSignup }) {
             </label>
           </div>
           <hr />
-          <div className="form-field">
-            <input
-              aria-label="username"
-              onChange={e => setUsername(e.target.value)}
-              value={username}
-              type="text"
-              placeholder={useGitHub ? 'GitHub Username' : 'Username'}
-            />
-          </div>
+          <Columns gutters middle>
+            <Column flex>
+              <div className="form-field">
+                <input
+                  aria-label="username"
+                  onChange={e => setUsername(e.target.value)}
+                  value={username}
+                  type="text"
+                  placeholder={useGitHub ? 'GitHub Username' : 'Username'}
+                  onKeyPress={event => {
+                    if (event.key === 'Enter' && useGitHub) {
+                      event.preventDefault()
+                      searchGitHub()
+                    }
+                  }}
+                />
+              </div>
+            </Column>
+            {useGitHub && (
+              <Column>
+                <button type="button" className="button" onClick={searchGitHub}>
+                  Search
+                </button>
+              </Column>
+            )}
+          </Columns>
           <div className="form-field">
             <input
               aria-label="password"
               onChange={e => setPassword(e.target.value)}
               value={password}
               type={showPassword ? 'text' : 'password'}
-              placeholder={useGitHub ? 'Password (Not Your GitHub Password)' : 'Password'}
+              placeholder={useGitHub ? 'Create a YesterTech Password (Not GitHub)' : 'Password'}
             />
             <label>
               <input
