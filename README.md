@@ -6,7 +6,7 @@ Before attending the training, please make sure you install the code (not just c
 
 ## Install
 
-First, install [git](http://git-scm.com/downloads) and the LTS version of [node](https://nodejs.org/).
+You need to have Git and Node installed. You might already so verify with these commands:
 
 ```sh
 # Verify Git and Node are installed
@@ -14,9 +14,12 @@ $ git --version
 $ node --version
 ```
 
-### Windows Machine?
+If one of those commands doesn't work, then you don't have that tool installed. Go to these pages and follow the instructions for your operating system:
 
-We'll be running commands like the ones from the install/update instructions above. These are _bash_ commands which means if you're on Windows you'll need a bash-enabled command-line tool. If you've installed [Git For Windows](https://gitforwindows.org) then you'll have a command-line tool called Git Bash already, or if you use VSCode you can use the built-in terminal.
+- [Git](http://git-scm.com/downloads)
+- [Node](https://nodejs.org/)
+
+** Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
 
 Then install and run the app:
 
@@ -24,10 +27,14 @@ Then install and run the app:
 $ git clone https://github.com/ReactTraining/react-workshop.git
 $ cd react-workshop
 $ npm install
-$ npm start
+$ npm run app
 ```
 
-If the app runs then you should be all set for the workshop. To make it run, hit 3 for the `fundamentals` course, and hit `a` for the full application to load.
+When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even start your browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
+
+If something goes wrong, you may beed to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
+
+<hr />
 
 While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
@@ -39,7 +46,7 @@ Which Course?
 [3] fundamentals
 [0] CANCEL
 
-Choose one from list [1, 2, 0]: 2
+Choose one from list [1, 2, 0]: 3
 
 Do you want us to remember this course selection? [y/n]: y
 ```
@@ -136,6 +143,16 @@ $ npm install
 ```
 
 - **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db` (Mac/Linux) or `npm run kill-db-powershell` (PowerShell on Windows). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
+
+## Windows Users
+
+If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
+
+Most of our instructors using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell. With PowerShell you should be able to follow the above install/setup instructions for Git and Node and be able to verify with the verification commands above.
+
+Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
+
+If you're not on PowerShell or it's just not working, consider installing [Git For Windows](https://gitforwindows.org) which gives you a command-line tool called Git Bash, or if you use VSCode you can use the built-in terminal.
 
 ## License
 
