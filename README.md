@@ -34,7 +34,7 @@ When you do `npm run app` you should eventually see a message that says "Compile
 
 If something goes wrong, you may beed to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
 
-<hr />
+## Running the Course and Lesson Material
 
 While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
