@@ -6,6 +6,8 @@ Before attending the training, please make sure you install the code (not just c
 
 ## Install
 
+**Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
+
 You need to have Git and Node installed. You might already so verify with these commands:
 
 ```sh
@@ -18,8 +20,6 @@ If one of those commands doesn't work, then you don't have that tool installed. 
 
 - [Git](http://git-scm.com/downloads)
 - [Node](https://nodejs.org/) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
-
-**Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
 
 Then install and run the app:
 
