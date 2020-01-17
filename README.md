@@ -1,19 +1,23 @@
 # Welcome to React Training!
 
-This repo contains the latest fundamentals course material for [React Training](https://reacttraining.com/).
+This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
 Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
 
 ## The "What do I need to do before attending React Training" Checklist:
 
 - [ ] Bring a laptop (don't forget a long power cord).
-- [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet)
+- [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
 - [ ] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
 
 ## Install
 
-**Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
+If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
+
+**Windows Users!** We have a special [Windows Troubleshooting Section](#windows-users) so please read that as well.
+
+<hr />
 
 You need to have Git and Node installed. You might already so verify with these commands:
 
@@ -28,18 +32,23 @@ If one of those commands doesn't work, then you don't have that tool installed. 
 - [Git](http://git-scm.com/downloads)
 - [Node](https://nodejs.org/) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
 
-Then install and run the app:
+Then **install** and **run** the app:
 
 ```sh
+# Clone the repo to your local machine (This just clones, it does not "install")
 $ git clone https://github.com/ReactTraining/react-workshop.git
 # Whichever directory you run the above command from, that directory should
-# now have a folder called `react-workshop`. Now go into `react-workshop`:
+# now have a folder called `react-workshop`.
+
+# Change directory to the `react-workshop` folder:
 $ cd react-workshop
+
+# Install and run. Make sure you do these two commands from within the `react-workshop` folder:
 $ npm install
 $ npm run app
 ```
 
-> Some of the commands we have in the instructions assume Bash so If you're using PowerShell then use whichever appropriate command is equivalent. Also make sure you run the `$ npm install` and `$ npm run app` from within the `react-workshop` folder. Check which folder you're in by doing `$ pwd`.
+> Some of the commands we have in the instructions assume you're using Bash so If you're using PowerShell then use whichever appropriate command is equivalent.
 
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
