@@ -4,6 +4,13 @@ This repo contains the latest fundamentals course material for [React Training](
 
 Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
 
+## What do I need to do before attending React Training?
+
+- Bring a laptop (don't forget a long power cord).
+- Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet)
+- Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
+- You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
+
 ## Install
 
 **Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
@@ -32,7 +39,7 @@ $ npm run app
 
 > Some of the commands we have in the instructions assume bash (like `cd`). If you're using PowerShell, use whichever appropriate command that is equivalent.
 
-When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even start your browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
+When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
 If something goes wrong, you may beed to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
 
