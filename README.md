@@ -99,6 +99,8 @@ During the lectures, feel free to take notes. We also have some [pre-made notes]
 
 ## Prettier Plugin
 
+(not required, but nice)
+
 You might notice as we save our code that we have a tool called "Prettier" which is automatically formatting things for us. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
 
 ## Database
