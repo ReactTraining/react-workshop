@@ -11,11 +11,11 @@ Before attending the training, please make sure you install the code (not just c
 - [ ] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
 
-## Install
+## Install & Setup
 
 If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
 
-**Windows Users!** We have a special [Windows Troubleshooting Section](#windows-users) so please read that as well.
+**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. Particularly, you might not want to use PowerShell.
 
 <hr />
 
@@ -115,7 +115,7 @@ You might notice as the instructors save their code that a tool called "Prettier
 
 When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
-There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db` (Mac/Linux) or `npm run kill-db-powershell` (PowerShell on Windows) as a command for you in case this happens.
+There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db` (Bash) as a command for you in case this happens. This won't work on Windows PowerShell. All the command does is quit the processes associated with port 3333. If you're using PowerShell you can do that manually.
 
 ## Updating
 
@@ -176,13 +176,24 @@ If you're a Windows user who already does active JS/Node development then you sh
 
 Also, if these instructions for Windows can be improved, please let us know.
 
-Most of our instructors using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell. With PowerShell you should be able to follow the above install/setup instructions for Git and Node and be able to verify with the verification commands above.
+Most of our instructors using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which works great with our repo for other commands that aren't just related to git.
 
-Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
-
-If you're not on PowerShell or it's just not working, consider installing [Git For Windows](https://gitforwindows.org) which gives you a command-line tool called Git Bash, or if you use VSCode you can use the built-in terminal.
+Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([but this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
 
 If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
+
+### PowerShell
+
+While we recommend GitBash instead (see above), If you insist on using PowerShell, you'll probably get an error after you do `npm install`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
+
+```sh
+# Copy
+./apps/YesterTech/database/db-seed.json
+# Paste as
+./apps/YesterTech/database/db.json
+```
+
+If you're having issues with our database or running `npm run kill-db`, see the [Database](#database) section above.
 
 ## License
 
