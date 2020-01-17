@@ -49,8 +49,6 @@ $ npm install
 $ npm run app
 ```
 
-> Some of the commands we have in the instructions assume you're using Bash so If you're using PowerShell then use whichever appropriate command is equivalent.
-
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
 If something goes wrong, you may beed to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
@@ -111,7 +109,7 @@ During the lectures, feel free to take notes. We also have some [pre-made notes]
 
 (not required, but nice)
 
-You might notice as we save our code that we have a tool called "Prettier" which is automatically formatting things for us. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
+You might notice as the instructors save their code that a tool called "Prettier" is automatically formatting things. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. Clicking the install button on the website will open VSCode and install it as a plugin. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
 
 ## Database
 
