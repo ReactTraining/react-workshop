@@ -32,11 +32,12 @@ If one of those commands doesn't work, then you don't have that tool installed. 
 - [Git](http://git-scm.com/downloads)
 - [Node](https://nodejs.org/) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
 
-Then **install** and **run** the app:
+Then **clone**, **install**, and **run** the app:
 
 ```sh
 # Clone the repo to your local machine (This just clones, it does not "install")
 $ git clone https://github.com/ReactTraining/react-workshop.git
+
 # Whichever directory you run the above command from, that directory should
 # now have a folder called `react-workshop`.
 
