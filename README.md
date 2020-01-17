@@ -4,12 +4,12 @@ This repo contains the latest fundamentals course material for [React Training](
 
 Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
 
-## What do I need to do before attending React Training?
+## The "What do I need to do before attending React Training" Checklist:
 
-- Bring a laptop (don't forget a long power cord).
-- Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet)
-- Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
-- You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
+- [] Bring a laptop (don't forget a long power cord).
+- [] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet)
+- [] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
+- [] You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
 
 ## Install
 
@@ -39,7 +39,7 @@ $ npm install
 $ npm run app
 ```
 
-> Some of the commands we have in the instructions assume bash (like `cd`). If you're using PowerShell, use whichever appropriate command that is equivalent. Also make sure you run the `$ npm install` and `$ npm run app` from within the `react-workshop` folder. Check which folder you're in by doing `$ pwd`
+> Some of the commands we have in the instructions assume Bash so If you're using PowerShell then use whichever appropriate command is equivalent. Also make sure you run the `$ npm install` and `$ npm run app` from within the `react-workshop` folder. Check which folder you're in by doing `$ pwd`.
 
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
@@ -93,9 +93,13 @@ Choose option "a" to run the full app, then open a web browser to [http://localh
 
 If you know JS really well, it will take 3 minutes to skim through. If you don't know the topics from the article, study it if you can. We can answer JavaScript questions or explain any syntax we're writing in the workshop, but obviously if everyone is caught up on some of these pre-requisite JS things, then we can stay focused on React.
 
-## We took notes for you!
+### We took notes for you!
 
 During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
+
+## Prettier Plugin
+
+You might notice as we save our code that we have a tool called "Prettier" which is automatically formatting things for us. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
 
 ## Database
 
@@ -160,11 +164,15 @@ $ npm install
 
 If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
 
+Also, if these instructions for Windows can be improved, please let us know.
+
 Most of our instructors using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell. With PowerShell you should be able to follow the above install/setup instructions for Git and Node and be able to verify with the verification commands above.
 
 Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
 
 If you're not on PowerShell or it's just not working, consider installing [Git For Windows](https://gitforwindows.org) which gives you a command-line tool called Git Bash, or if you use VSCode you can use the built-in terminal.
+
+If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
 
 ## License
 
