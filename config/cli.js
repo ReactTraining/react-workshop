@@ -37,7 +37,9 @@ module.exports = function() {
         name: 'json-server database',
       },
     ]).catch(err => {
-      console.error('JSON Server Error. Try `npm run kill-db` and try again.\n\n')
+      console.error(
+        'JSON Server Error. Try `npm run kill-db` for bash users (Mac/Linux) or `npm run kill-db-powershell` for Windows users on PowerShell. Then try again.\n\n'
+      )
       console.error(err)
       process.exit(1)
     })

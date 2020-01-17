@@ -10,6 +10,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "kill-db": "lsof -ti :3333 | xargs kill",
+    "kill-db-powershell": "Stop-Process -Id (Get-NetTCPConnection -LocalPort 3333).OwningProcess -Force",
     "create-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
     "postinstall": "npm run create-db"
   },
