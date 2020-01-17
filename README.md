@@ -19,7 +19,7 @@ If one of those commands doesn't work, then you don't have that tool installed. 
 - [Git](http://git-scm.com/downloads)
 - [Node](https://nodejs.org/) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
 
-[Windows Logo](https://46c4ts1tskv22sdav81j9c69-wpengine.netdna-ssl.com/wp-content/themes/windows-blogs/images/favicon.ico) **Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
+**Windows Users!** Please see our [Windows Troubleshooting Section Below](#windows-users) while doing this setup.
 
 Then install and run the app:
 
