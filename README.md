@@ -78,8 +78,9 @@ Choose option "a" to run the full app, then open a web browser to [http://localh
 
 ## Be Prepared
 
-**IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop.
-It's a refresher on some of the newer bits of JavaScript you'll want to be familiar with in order to get the most out of the experience.
+**IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop. We wrote this to be as concise as possible while covering just the right types of JS syntax that are seen most often in React (and newer JS syntax which you may not have learned yet).
+
+If you know JS really well, it will take 3 minutes to skim through. If you don't know the topics from the article, study it if you can. We can answer JavaScript questions or explain any syntax we're writing in the workshop, but obviously if everyone is caught up on some of these pre-requisite JS things, then we can stay focused on React.
 
 ## We took notes for you!
 
