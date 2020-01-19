@@ -59,9 +59,10 @@ function ProductsSidebar() {
 
 Now:
 
-1. The effect doesn't run with each re-render (explain the dep array) so we only subscribe once
+1. The effect doesn't run with each re-render (explain the dep array) so we only subscribe once.
 2. We only subscribe once.
-3. We have a way to update `isWide`
+3. We have a way to update `isWide`.
+4. Even if we kept the code before, it would have ran in SSR to which there is no `window`. React's side effects are always intended for the front-end. `useEffect` doesn't run in SSR, it only runs in front-end.
 
 The new problem is that if this component were to unmount and then re-mount, we would have these subscriptions floating around in JS memory. So we need to "clean them up":
 
