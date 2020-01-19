@@ -8,7 +8,7 @@ The workshop has lectures followed by exercises. The exercises are your chance t
 
 - We like React because it's Composable and Declarative
   - Composable: You can build small re-usable parts which can be used to build bigger, more complex things
-  - Declarative: We write in a style where we say "what" we want. In other words `<StarRatings>` is declarative because we said we want star ratings on the page, but we didn't have to program "how" they work. Whoever did program the internals of <StarRatings> programmed "how" they work. All declarative code that we write has imperative code somewhere else that someone else wrote.
+  - Declarative: We write in a style where we say "what" we want. In other words `<StarRatings>` is declarative because we said we want star ratings on the page, but we didn't have to program "how" they work. Whoever did program the internals of `<StarRatings>` programmed "how" they work. All declarative code that we write has imperative code somewhere else that someone else wrote.
 - JSX is a syntax for easily creating nested elements. Babel is a Webpack plugin that converts each JSX "tag" into `React.createElement`
 - The return value of a component (JSX turned into `React.createElement`) is like an "instruction manual" for how to create DOM elements.
 - In a typical React application, `ReactDOM.render()` is only used once. As React changes our JSX responses from our components, React will also take care of updating the DOM to reflect those JSX changes.

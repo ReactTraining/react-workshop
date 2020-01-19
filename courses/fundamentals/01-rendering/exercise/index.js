@@ -11,7 +11,7 @@ const products = [
 ]
 
 function ProductProfile() {
-  return <span>{/* Exercise code goes here! */}</span>
+  return <div>{/* Exercise code goes here! */}</div>
 }
 
 ReactDOM.render(<ProductProfile />, document.getElementById('root'))

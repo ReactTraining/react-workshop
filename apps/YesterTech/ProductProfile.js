@@ -53,7 +53,6 @@ function ProductProfile() {
                 onClick={() => addToCart(productId, product.name, product.price)}
                 quantity={quantity}
               />
-
               {quantity > 0 && (
                 <div className="align-right">
                   <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />

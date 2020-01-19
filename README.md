@@ -170,7 +170,9 @@ $ npm install
 
 - **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db` (Mac/Linux). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
-- **After you install on Windows, you get an error about `xargs`**. This is because you're probably not using Bash (perhaps PowerShell instead). See [PowerShell](#powershell) below
+- **After you install on Windows, you get an error about `xargs`**. This is because you're probably not using Bash (perhaps PowerShell instead). See [PowerShell](#powershell) below.
+
+- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` (Bash) and see if that fixes it. If you're on Windows, see the [PowerShell](#powershell) section below.
 
 ## Windows Users
 
@@ -186,7 +188,7 @@ If you want, you can go into Windows' settings to turn on file extensions. In Ja
 
 ### PowerShell
 
-While we recommend GitBash instead (see above), If you insist on using PowerShell, you'll probably get an error after you do `npm install`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
+While we recommend GitBash instead (see [Windows Users](#windows-users) section), If you insist on using PowerShell, you'll probably get an error after you do `npm install` that mentions `xargs`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
 
 ```sh
 # Copy
