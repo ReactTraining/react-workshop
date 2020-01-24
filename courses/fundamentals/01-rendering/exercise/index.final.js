@@ -10,7 +10,7 @@ const products = [
   { id: 3, name: 'Nintendo NES', rating: 4, brand: 'Nintendo', condition: 'fair' },
 ]
 
-function ProductProfile() {
+function BrowseProducts() {
   return (
     <div>
       {products.map(product => (
@@ -27,4 +27,4 @@ function ProductProfile() {
   )
 }
 
-ReactDOM.render(<ProductProfile />, document.getElementById('root'))
+ReactDOM.render(<BrowseProducts />, document.getElementById('root'))

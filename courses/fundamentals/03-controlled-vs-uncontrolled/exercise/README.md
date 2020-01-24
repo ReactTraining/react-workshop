@@ -2,6 +2,8 @@
 
 Tip: Remember, a field is said to be "controlled" if it has a `value` prop (which means it also needs an `onChange`). However, in some cases a field could have an `onChange` without a `value` prop and that would NOT be considered "controlled" since it doesn't have a `value` prop.
 
+Also, did you remember to shut down the exercise from #2 and start #3? Easy mistake since the exercises are on similar UI.
+
 ## Task:
 
 1. Open `CheckoutBilling.js`. This file has almost the same ending point as the final for the state exercise we did earlier. The only difference is that it doesn't hide the shipping form when `sameAsBilling` is `true`.
