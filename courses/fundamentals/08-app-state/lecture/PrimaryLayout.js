@@ -23,7 +23,9 @@ function PrimaryLayout() {
   const { authenticated, dispatch } = useAuthState()
 
   // Get the current authenticated user (for first loads and refreshes)
-  // api.auth.getAuthenticatedUser()
+  useEffect(() => {
+    // api.auth.getAuthenticatedUser().then(user => {})
+  }, [])
 
   return (
     <div className="primary-layout">
@@ -40,16 +42,18 @@ function PrimaryLayout() {
             <Route path="/signup" exact>
               <SignupForm
                 onSignup={user => {
-                  console.log(user)
-                  // dispatch login
+                  // dispatch login so the frontend is aware
+                  // then redirect:
+                  history.push('/')
                 }}
               />
             </Route>
             <Route path="/login" exact>
               <LoginForm
                 onAuthenticated={user => {
-                  console.log(user)
-                  // dispatch login
+                  // dispatch login so the frontend is aware
+                  // then redirect:
+                  history.push('/')
                 }}
               />
             </Route>

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useCallback } from 'react'
+import React, { useContext, useReducer } from 'react'
 
 const AuthStateContext = React.createContext()
 
@@ -23,7 +23,7 @@ export function AuthStateProvider({ children }) {
 
   const value = {
     ...state,
-    dispatch: useCallback(dispatch, []),
+    dispatch,
   }
 
   return <AuthStateContext.Provider value={value} children={children} />
