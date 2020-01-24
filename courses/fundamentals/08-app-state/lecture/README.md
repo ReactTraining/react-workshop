@@ -1,39 +1,20 @@
 # Notes for Instructor
 
-## Teach basic context
+If context wasn't explained in `07-data-flow`, then now is the time to do it. Perhaps start with a basic add-hoc example.
 
-This one is pretty straightforward because most of the work is already done. It's mostly explaining the code.
+In this lesson we already have authentication state in a context provider, we just need to wire up login, logout, signup, and when the user refreshes the page to dispatch the auth state.
 
-1. You'll probably want to make sure you're logged out to start this one (before you launch the app since logout needs to be programmed, see below)
-2. If context wasn't explained in `07-data-flow`, then now is the time to do it. Perhaps start with a basic add-hoc example.
-3. Once context is understood, open `AuthState.js` and go over its parts.
+tldr;
 
-## Login
+- Add `dispatch({ type: 'LOGIN', user })` for signup, login, and the effect (for refreshes) of `PrimaryLayout.js`.
+- Add `dispatch({ type: 'LOGOUT' })` to `PrimaryHeader.js`.
+- Explain the basic flow of the client's ability to know about authentication status with context.
 
-1. Open `PrimaryLayout.js` and the first thing to show is the `<LoginForm />`
-2. The form works and will call the `onAuthenticated` callback with a `user`
-3. From here, you just need to do this:
+## PrimaryLayout.js
 
-```js
-dispatch({ type: 'LOGIN', user })
-history.push('/')
-```
+Program the effect to get the current authentication status to then dispatch into the auth state context. Then if you scroll down there is a callback for the `<LoginForm />` and `<SignupForm>` which will give you the `user` object so you can do a similar `dispatch` to tell the front-end the login status after those forms are successfully submitted.
 
-4. Go through the flow of the dispatch leading to state changes in the context and how that will rend up causing a re-render on `PrimaryLayout` because it uses `useAuthState()`
-5. Now routes that weren't available before are suddenly available. You should be able to click the Avatar and go to the "My Account" section once logged in.
-6. You can do the same two lines of code for the `<SignupForm />` callback.
-
-## Logout
-
-1. Open `PrimaryHeader.js`. When the logout handler runs, do this:
-
-```js
-api.auth.logout().then(() => dispatch({ type: 'LOGOUT' }))
-```
-
-## Login and Refresh, how do we stay logged in?
-
-In the `PrimaryLayout`, do an network request to get the current logged in user. Then dispatch them if one exists:
+Here's what the effect might look like:
 
 ```js
 useEffect(() => {
@@ -48,3 +29,7 @@ useEffect(() => {
   }
 }, [authenticated, dispatch])
 ```
+
+## Logout `PrimaryHeader.js`
+
+In the callback from the "Logout" button being clicked, do an API request to logout from the server-side, and then dispatch an event to logout from the client-side

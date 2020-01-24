@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react'
 
-export default function usePromise(api) {
+export default function usePromise(promise) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -24,7 +24,7 @@ export default function usePromise(api) {
   useEffect(() => {
     let isCurrent = true
     dispatch({ type: 'LOADING' })
-    api()
+    promise()
       .then(response => {
         if (!isCurrent) return
         dispatch({ type: 'RESOLVED', response })
@@ -33,7 +33,7 @@ export default function usePromise(api) {
         dispatch({ type: 'ERROR', error })
       })
     return () => (isCurrent = false)
-  }, [api])
+  }, [promise])
 
   return [state.response, state.loading, state.error]
 }
