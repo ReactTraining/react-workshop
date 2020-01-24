@@ -35,6 +35,7 @@ function Checkout() {
           values inside of our state for `fields`. See the README
         */}
         <Route path={`${match.path}/review`}>
+          {/* The README also tells you what props you need to pass into CheckoutReview */}
           <CheckoutReview />
         </Route>
 

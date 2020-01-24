@@ -36,7 +36,7 @@ function CheckoutBilling({ onSubmit }) {
       shippingName: sameAsBilling ? billingName : shippingName,
       shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
     }
-    onSubmit(fields)
+    onSubmit(sameAsBilling, fields)
   }
 
   function changeField(field, value) {
