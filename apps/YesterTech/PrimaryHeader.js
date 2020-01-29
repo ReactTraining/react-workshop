@@ -6,7 +6,7 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import api from 'YesterTech/api'
 import { useAuthState } from 'YesterTech/AuthState'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import Avatar from 'YesterTech/Avatar'
 import Logo from 'YesterTech/Logo'
 import 'YesterTech/PrimaryHeader.scss'
@@ -14,7 +14,7 @@ import '@reach/menu-button/styles.css'
 
 function PrimaryHeader() {
   const { authenticated, user, dispatch } = useAuthState()
-  const { getCartSize } = useShoppingCartState()
+  const { getCartSize } = useShoppingCart()
   const cartSize = getCartSize()
 
   function handleLogout() {

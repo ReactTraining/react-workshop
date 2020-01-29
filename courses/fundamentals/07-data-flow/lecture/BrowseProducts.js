@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useProducts } from './utils'
+// import { useShoppingCart } from './ShoppingCartState'
 import BrowseProductItem from './BrowseProductItem'
 
 function BrowseProducts() {

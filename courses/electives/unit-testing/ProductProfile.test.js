@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 // Mock modules
 import api from 'YesterTech/api'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import ProductProfile from 'YesterTech/ProductProfile'
 
 /**
@@ -21,7 +21,7 @@ jest.mock('react-router-dom', () => ({
 jest.mock('YesterTech/ShoppingCartState')
 jest.mock('YesterTech/api')
 
-useShoppingCartState.mockReturnValue({
+useShoppingCart.mockReturnValue({
   addToCart: () => null,
   updateQuantity: () => null,
   getQuantity: () => null,

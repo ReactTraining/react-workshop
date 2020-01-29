@@ -7,7 +7,7 @@ import Quantity from 'YesterTech/Quantity'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/BrowseProductItem.scss'
 
 function BrowseProductItem({
@@ -22,7 +22,7 @@ function BrowseProductItem({
   rating,
 }) {
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCartState()
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
   const quantity = getQuantity(productId)
 
   return (

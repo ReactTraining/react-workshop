@@ -129,36 +129,8 @@ function PrimaryLayout() {
 
 ## Teach Context
 
-Now refactor `PrimaryLayout` to use context instead.
+Have a conversation with the students about how this state could be lifted all the way to `App`. If you want to and have time, you can even setup context directly in `App` to start the conversation about context.
 
-Start by creating a `<ShoppingCart.Provider>` directly inside of `PrimaryLayout`. Have a conversation about context in general and how an app will probably have multiple context providers. Sometimes students will assume this means we'll eventually put all the top-level application state in one component. So refactor the code like this:
+But before you get too far, you might want to start a conversation about organizing each type of context into it's own custom Provider. We've already started to create that for you at `ShoppingCartState.js`.
 
-```js
-////////////////////////////////////////////////////
-// This would be it's own file: ShoppingCartState.js
-import React, { useState, useContext } from 'react'
-const Context = React.createContext()
-
-export function ShoppingCartProvider({ children }) {
-  const [cart, setCart] = useState([])
-  // ...
-  return <Context.Provider value={/* stuff */}>{children}</Context.Provider>
-}
-
-export function useShoppingCartState() {
-  return useContext(Context)
-}
-
-///////////////////
-// App.js
-import React from 'react'
-import { ShoppingCartProvider } from './ShoppingCartState'
-
-function App() {
-  return (
-    <ShoppingCartProvider>
-      <PrimaryLayout />
-    </ShoppingCartProvider>
-  )
-}
-```
+Move the `cart` and utility functions into that file and re-wire the app to use the context provider and `useShoppingCart` instead of passing props all over.

@@ -10,7 +10,7 @@ import Tiles from 'YesterTech/Tiles'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import ProductTile from 'YesterTech/ProductTile'
 
 function ProductProfile() {
@@ -18,7 +18,7 @@ function ProductProfile() {
   productId = parseInt(productId, 10)
 
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCartState()
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
   const quantity = getQuantity(productId)
 
   // Get Product

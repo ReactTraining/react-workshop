@@ -14,11 +14,11 @@ import Account from 'YesterTech/Account'
 import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 import Checkout from 'YesterTech/Checkout'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 
 function PrimaryLayout() {
   const { authenticated } = useAuthState()
-  const { cart } = useShoppingCartState()
+  const { cart } = useShoppingCart()
 
   return (
     <div className="primary-layout">

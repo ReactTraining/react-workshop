@@ -3,7 +3,7 @@ import * as storage from 'YesterTech/localStorage'
 
 const ShoppingCartContext = React.createContext()
 
-export function ShoppingCartStateProvider({ children }) {
+export function ShoppingCartProvider({ children }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -81,7 +81,7 @@ export function ShoppingCartStateProvider({ children }) {
   return <ShoppingCartContext.Provider value={value} children={children} />
 }
 
-export function useShoppingCartState() {
+export function useShoppingCart() {
   const cartState = useContext(ShoppingCartContext)
 
   useEffect(() => {

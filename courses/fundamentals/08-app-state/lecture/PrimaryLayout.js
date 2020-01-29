@@ -15,11 +15,11 @@ import Account from 'YesterTech/Account'
 import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 import Checkout from 'YesterTech/Checkout'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 
 function PrimaryLayout() {
   const history = useHistory()
-  const { cart } = useShoppingCartState()
+  const { cart } = useShoppingCart()
   const { authenticated, dispatch } = useAuthState()
 
   // Get the current authenticated user (for first loads and refreshes)

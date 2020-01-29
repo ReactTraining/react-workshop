@@ -5,7 +5,7 @@ import api from 'YesterTech/api'
 import PrimaryHeader from 'YesterTech/PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
 import { useAuthState } from 'YesterTech/AuthState'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
@@ -20,7 +20,7 @@ import Checkout from 'YesterTech/Checkout'
 function PrimaryLayout() {
   const history = useHistory()
   const { authenticated, dispatch } = useAuthState()
-  const { cart } = useShoppingCartState()
+  const { cart } = useShoppingCart()
   const { key } = useLocation()
 
   // Get the authenticated user

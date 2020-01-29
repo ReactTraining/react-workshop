@@ -5,10 +5,10 @@ import { Columns, Column } from 'react-flex-columns'
 import { FaAngleLeft } from 'react-icons/fa'
 
 import Heading from 'YesterTech/Heading'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 
 function CheckoutReview({ sameAsBilling, fields = {} }) {
-  const { cart, getCartTotal } = useShoppingCartState()
+  const { cart, getCartTotal } = useShoppingCart()
 
   function placeOrder() {
     console.log(fields)

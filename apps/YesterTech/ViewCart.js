@@ -6,10 +6,10 @@ import { MdShoppingCart } from 'react-icons/md'
 
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 
 function ViewCart() {
-  const { cart, updateQuantity, getCartTotal } = useShoppingCartState()
+  const { cart, updateQuantity, getCartTotal } = useShoppingCart()
 
   return (
     <div className="spacing">

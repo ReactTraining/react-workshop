@@ -4,10 +4,10 @@ import { Columns, Column } from 'react-flex-columns'
 
 import SearchBox from 'YesterTech/SearchBox'
 import SubNav from 'YesterTech/SubNav'
-import { useShoppingCartState } from 'YesterTech/ShoppingCartState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 
 function ProductSubNav() {
-  const { getCartSize } = useShoppingCartState()
+  const { getCartSize } = useShoppingCart()
   const cartSize = getCartSize()
 
   return (
