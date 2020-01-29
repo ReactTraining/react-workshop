@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import Quantity from './Quantity'
 import ProductImage from 'YesterTech/ProductImage'
-import { MdShoppingCart } from 'react-icons/md'
 
 function BrowseProductItem({ productId, name, price, imagePath }) {
   return (

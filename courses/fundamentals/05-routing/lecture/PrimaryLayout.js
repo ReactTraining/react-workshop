@@ -7,6 +7,7 @@ import Heading from 'YesterTech/Heading'
 import ProductImage from 'YesterTech/ProductImage'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductFilterItem from 'YesterTech/ProductFilterItem'
+import ProductSubNav from 'YesterTech/ProductSubNav'
 
 // After we implement the fake versions of these below, we can swap them out for these real ones:
 // import ProductsSidebar from 'YesterTech/ProductsSidebar'
@@ -18,12 +19,11 @@ export default function PrimaryLayout() {
     <div className="primary-layout">
       <div>
         <PrimaryHeader />
-
+        <ProductSubNav />
         <main className="primary-content">
           <Home />
           {/* Put other pages here */}
         </main>
-
         <footer className="primary-footer spacing">
           <hr />
           <div className="text-small">
