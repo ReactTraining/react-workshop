@@ -101,6 +101,8 @@ Choose option "a" to run the full app, then open a web browser to [http://localh
 
 If you know JS really well, it will take 3 minutes to skim through. If you don't know the topics from the article, study it if you can. We can answer JavaScript questions or explain any syntax we're writing in the workshop, but obviously if everyone is caught up on some of these pre-requisite JS things, then we can stay focused on React.
 
+There's also a document in this repo called [Prerequisites](./prerequisites.md) if you're newer to the JS/Node ecosystem which helps explain modern tooling like Webpack and Babel, their relationship to React, and what is React.
+
 ### We took notes for you!
 
 During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
