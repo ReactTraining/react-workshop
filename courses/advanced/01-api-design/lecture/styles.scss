@@ -1,0 +1,24 @@
+@import 'YesterTech/styles/center-lesson';
+
+#root {
+  font-size: 25pt;
+}
+
+.disclosure-button,
+[data-disclosure-target] {
+  all: unset;
+  background-color: #ccc;
+  padding: 0.2rem;
+  width: 100%;
+  > * {
+    vertical-align: middle;
+  }
+}
+
+.disclosure-button + .disclosure-panel {
+  margin-top: 0.8rem;
+}
+
+[data-disclosure-target] + [data-disclosure-panel] {
+  margin-top: 0.8rem;
+}
