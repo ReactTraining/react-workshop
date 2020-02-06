@@ -39,8 +39,6 @@ function CheckoutBilling({ onSubmit }) {
           <input type="checkbox" /> Same as Billing
         </label>
 
-        <hr />
-
         <div className="spacing">
           <div className="form-field">
             <label htmlFor="shipping:name">Name</label>
@@ -50,7 +48,6 @@ function CheckoutBilling({ onSubmit }) {
             <label htmlFor="shipping:address">Address</label>
             <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
           </div>
-          <hr />
         </div>
 
         <button type="submit" className="button">

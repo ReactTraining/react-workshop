@@ -64,8 +64,6 @@ function CheckoutBilling({ onSubmit }) {
           Same as Billing
         </label>
 
-        <hr />
-
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input
@@ -88,8 +86,6 @@ function CheckoutBilling({ onSubmit }) {
             disabled={sameAsBilling}
           />
         </div>
-
-        <hr />
 
         <button type="submit" className="button">
           Submit

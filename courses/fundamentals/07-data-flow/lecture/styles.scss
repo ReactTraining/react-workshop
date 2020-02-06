@@ -1,16 +1,9 @@
 @import 'YesterTech/styles/_theme.scss';
+@import 'YesterTech/styles/center-lesson';
 
-// Centers the content for lecture purposes
 #root {
-  display: flex;
-  min-height: 100vh;
-
-  // Make everything bigger for this example
+  width: auto; // reset
   font-size: 14pt;
-
-  > * {
-    margin: auto;
-  }
 }
 
 .primary-layout {

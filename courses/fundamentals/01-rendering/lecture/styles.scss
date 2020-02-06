@@ -1,14 +1,8 @@
-// Centers the content for lecture purposes
+@import 'YesterTech/styles/center-lesson';
+
 #root {
-  display: flex;
-  min-height: 100vh;
-
-  // Just so everything is bigger
+  // Just so everything is a little bigger
   font-size: 25pt;
-
-  > * {
-    margin: auto;
-  }
 }
 
 .render_button {

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import StarRatings from 'YesterTech/StarRatings'
 import Heading from 'YesterTech/Heading'
 import api from 'YesterTech/api'
+import 'YesterTech/styles/center-lesson.scss'
 
 function useProduct(productId) {
   const [products, setProducts] = useState(null)

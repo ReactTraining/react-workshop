@@ -46,8 +46,6 @@ function CheckoutBilling({ onSubmit }) {
           Same as Billing
         </label>
 
-        <hr />
-
         <div className="form-field">
           <label htmlFor="shipping:name">Name</label>
           <input id="shipping:name" type="text" required name="shippingName" autoComplete="off" />
@@ -62,7 +60,6 @@ function CheckoutBilling({ onSubmit }) {
             autoComplete="off"
           />
         </div>
-        <hr />
 
         <button type="submit" className="button">
           Submit

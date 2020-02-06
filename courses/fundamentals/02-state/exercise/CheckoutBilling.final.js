@@ -44,8 +44,6 @@ function CheckoutBilling({ onSubmit }) {
           Same as Billing
         </label>
 
-        <hr />
-
         {!sameAsBilling && (
           <div className="spacing">
             <div className="form-field">
@@ -56,7 +54,6 @@ function CheckoutBilling({ onSubmit }) {
               <label htmlFor="shipping:address">Address</label>
               <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
             </div>
-            <hr />
           </div>
         )}
 
