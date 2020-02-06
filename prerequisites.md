@@ -1,4 +1,6 @@
-# Being Prepared
+# Prerequisites
+
+(These are nice-to-know things and are not actually required to know in order to be successful in our workshops)
 
 We know that there's a lot of things that go into learning React besides React itself. There's the DOM and other front-end concepts which you may or may not already be familiar with. Then there's also the tooling ecosystem around React just to setup a project. Also, what exactly is React? While you don't necessarily have to know all that stuff super well to take our workshop, sometimes it's good to have this extra knowledge. This document should at least help some to get you caught up.
 
