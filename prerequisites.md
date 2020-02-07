@@ -1,6 +1,6 @@
 # Prerequisites
 
-(These are nice-to-know things and are not actually required to know in order to be successful in our workshops)
+(These are nice-to-know things and are not actually required-to-know in order to be successful in our workshops)
 
 We know that there's a lot of things that go into learning React besides React itself. There's the DOM and other front-end concepts which you may or may not already be familiar with. Then there's also the tooling ecosystem around React just to setup a project. Also, what exactly is React? While you don't necessarily have to know all that stuff super well to take our workshop, sometimes it's good to have this extra knowledge. This document should at least help some to get you caught up.
 
@@ -14,7 +14,7 @@ Long story short, the DOM is an API that allows front-end JavaScript to manipula
 
 If we want to change elements based on events like button clicks, we need JavaScript to manipulate the DOM to do so. So besides being an API, the DOM is also talked about as being the full set of elements that are currently making up the web page. Certain tools like jQuery, Dojo, Backbone, Angular, Ember and Knockout have all focused their efforts on making DOM manipulation easier for the developer.
 
-# What is React
+# What is React?
 
 React could broadly be described as a DOM manipulation tool in a similar way to the others just mentioned. Each DOM manipulation tool comes from a certain era of the Web and has specific goals. For example, in 2006 jQuery was really good at normalizing browser consistency problems and making DOM manipulation approachable. Since then, browsers became much more consistent and new standards for JavaScript have made it easy to manipulate the DOM without jQuery.
 
