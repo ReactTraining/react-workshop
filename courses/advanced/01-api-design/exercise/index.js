@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '../lecture/styles.scss'
 import { FaAngleRight } from 'react-icons/fa'
+import '../lecture/styles.scss'
 
 // Create a reusable component in the Disclosure.js file. This is just
 // giving you the starting DOM structure you're aiming for:

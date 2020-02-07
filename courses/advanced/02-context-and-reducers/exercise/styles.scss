@@ -1,6 +1,7 @@
+@import 'YesterTech/styles/global-styles';
 @import 'YesterTech/styles/center-lesson';
 
-#root {
+html {
   font-size: 25pt;
 }
 
@@ -9,6 +10,8 @@
   background-color: #ccc;
   padding: 0.2rem;
   width: 100%;
+  cursor: pointer;
+
   > * {
     vertical-align: middle;
   }

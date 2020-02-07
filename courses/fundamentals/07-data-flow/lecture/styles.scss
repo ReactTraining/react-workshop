@@ -3,7 +3,6 @@
 
 #root {
   width: auto; // reset
-  font-size: 14pt;
 }
 
 .primary-layout {
@@ -13,14 +12,14 @@
 .primary-header {
   text-align: right;
   a {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: $text-color;
   }
   a.active {
     text-decoration: underline;
   }
   a + a {
-    margin-left: 0.5em;
+    margin-left: 0.5rem;
   }
 }
 

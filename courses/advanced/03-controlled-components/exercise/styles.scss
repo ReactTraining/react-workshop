@@ -5,7 +5,6 @@ html {
   font-size: 25pt;
 }
 
-.disclosure-target,
 [data-disclosure-target] {
   all: unset;
   background-color: #ccc;
@@ -16,10 +15,6 @@ html {
   > * {
     vertical-align: middle;
   }
-}
-
-.disclosure-target + .disclosure-panel {
-  margin-top: 0.8rem;
 }
 
 [data-disclosure-target] + [data-disclosure-panel] {

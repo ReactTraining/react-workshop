@@ -1,14 +1,10 @@
 @import 'YesterTech/styles/center-lesson';
 
-#root {
-  text-align: center;
-
+html {
   // Just so everything is a little bigger
   font-size: 25pt;
 }
 
-.quantity-picker {
-  input {
-    padding: 0.2rem 0;
-  }
+#root {
+  text-align: center;
 }
