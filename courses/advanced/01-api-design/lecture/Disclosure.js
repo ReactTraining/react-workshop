@@ -1,24 +1,22 @@
 import React, { useState, forwardRef } from 'react'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 
-export function Disclosure({ children, summary, defaultOpen = false }) {
-  const [open, setOpen] = useState(defaultOpen)
+export function Disclosure({ children, summary, defaultIsOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultIsOpen)
 
-  function onClick() {
-    setOpen(!open)
+  function onSelect() {
+    setIsOpen(!isOpen)
   }
 
   return (
     <div className="disclosure">
-      <button onClick={onClick} className="disclosure-target">
-        {open ? <FaAngleDown /> : <FaAngleRight />}
+      <button onClick={onSelect} className="disclosure-button">
+        {isOpen ? <FaAngleDown /> : <FaAngleRight />}
         <span>{summary}</span>
       </button>
-      <div className="disclosure-panel" hidden={!open}>
+      <div className="disclosure-panel" hidden={!isOpen}>
         {children}
       </div>
     </div>
   )
 }
-
-// Note: The span tag needs to be there for correct `vertical-align: middle` CSS to work.

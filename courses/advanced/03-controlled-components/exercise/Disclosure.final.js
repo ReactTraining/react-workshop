@@ -4,14 +4,26 @@ import { wrapEvent } from '../lecture/utils'
 
 const DisclosureContext = React.createContext()
 
-export function Disclosure({ children, onChange, defaultOpen = false }) {
+export function Disclosure({ children, open: controlledOpen, onChange, defaultOpen = false }) {
+  const isControlled = controlledOpen != null
+  const { current: wasControlled } = useRef(isControlled)
+  if ((!isControlled && wasControlled) || (isControlled && !wasControlled)) {
+    console.warn('Cannot change from controlled to uncontrolled or vice versa.')
+  }
+
+  if (isControlled && defaultOpen) {
+    console.warn('defaultOpen should only be used for uncontrolled components.')
+  }
+
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   const context = {
-    isOpen,
+    isOpen: isControlled ? controlledOpen : isOpen,
     onSelect: () => {
       onChange && onChange()
-      setIsOpen(!isOpen)
+      if (!isControlled) {
+        setIsOpen(!isOpen)
+      }
     },
   }
 
@@ -20,6 +32,7 @@ export function Disclosure({ children, onChange, defaultOpen = false }) {
 
 Disclosure.propTypes = {
   onChange: PropTypes.func,
+  open: PropTypes.bool,
 }
 
 export const DisclosureButton = forwardRef(({ children, onClick, ...props }, forwardedRef) => {

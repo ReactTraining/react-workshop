@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, forwardRef } from 'react'
+import React, { useState, useContext, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { wrapEvent } from '../lecture/utils'
 

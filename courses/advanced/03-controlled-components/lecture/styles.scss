@@ -6,31 +6,22 @@ html {
   font-size: 25pt;
 }
 
-#root {
-  text-align: center;
+[data-accordion-item] + [data-accordion-item] {
+  margin-top: 0.2rem;
 }
 
-[data-menu] {
-  text-align: left;
-  display: inline-block;
-  position: relative;
-}
-
-[data-menu-list] {
-  background-color: #fff;
-  border: 1px solid #eee;
-  position: absolute;
-  top: calc(100% + 0.2rem);
-  left: 0;
-  min-width: 8rem;
-}
-
-[data-menu-item] {
+[data-accordion-button] {
+  all: unset;
+  background-color: #ccc;
+  padding: 0.2rem;
+  width: 100%;
   cursor: pointer;
-  padding: 0.2rem 0.7rem;
 
-  &:hover {
-    background-color: $blue;
-    color: #fff;
+  > * {
+    vertical-align: middle;
   }
+}
+
+[data-accordion-button] + [data-accordion-panel] {
+  margin-top: 0.2rem;
 }

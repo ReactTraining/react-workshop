@@ -1,4 +1,5 @@
 import React, { useState, forwardRef } from 'react'
+import PropTypes from 'prop-types'
 
 export function Menu({ children, open: defaultIsOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
@@ -43,7 +44,7 @@ MenuList.displayName = 'MenuList'
 export const MenuItem = forwardRef(({ children, closeMenu, ...props }, forwardedRef) => {
   function onClick(e) {
     closeMenu()
-    typeof props.onSelect === 'function' && props.onSelect(e)
+    props.onSelect && props.onSelect(e)
   }
 
   return (
@@ -54,3 +55,6 @@ export const MenuItem = forwardRef(({ children, closeMenu, ...props }, forwarded
 })
 
 MenuItem.displayName = 'MenuItem'
+Menu.propTypes = {
+  onSelect: PropTypes.func,
+}

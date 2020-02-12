@@ -8,12 +8,12 @@ import '../lecture/styles.scss'
 
 function App() {
   return (
-    <div class="disclosure">
-      <button class="disclosure-target">
+    <div className="disclosure">
+      <button className="disclosure-button">
         <FaAngleRight />
         Click Me
       </button>
-      <div class="disclosure-panel">Panel Contents</div>
+      <div className="disclosure-panel">Panel Contents</div>
     </div>
   )
 }

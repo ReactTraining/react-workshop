@@ -5,8 +5,8 @@ html {
   font-size: 25pt;
 }
 
-.disclosure-target,
-[data-disclosure-target] {
+.disclosure-button,
+[data-disclosure-button] {
   all: unset;
   background-color: #ccc;
   padding: 0.2rem;
@@ -18,10 +18,10 @@ html {
   }
 }
 
-.disclosure-target + .disclosure-panel {
-  margin-top: 0.8rem;
+.disclosure-button + .disclosure-panel {
+  margin-top: 0.2rem;
 }
 
-[data-disclosure-target] + [data-disclosure-panel] {
-  margin-top: 0.8rem;
+[data-disclosure-button] + [data-disclosure-panel] {
+  margin-top: 0.2rem;
 }

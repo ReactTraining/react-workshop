@@ -1,4 +1,5 @@
 import React, { useReducer, forwardRef, useContext } from 'react'
+import PropTypes from 'prop-types'
 
 const MenuContext = React.createContext()
 
@@ -21,18 +22,9 @@ export function Menu({ children, open: defaultIsOpen = false }) {
     }
   )
 
-  function onSelect() {
-    dispatch({ type: 'TOGGLE' })
-  }
-
-  function closeMenu() {
-    dispatch({ type: 'CLOSE' })
-  }
-
   const context = {
-    isOpen: state.isOpen,
-    onSelect,
-    closeMenu,
+    state,
+    dispatch,
   }
 
   return (
@@ -43,10 +35,14 @@ export function Menu({ children, open: defaultIsOpen = false }) {
 }
 
 export const MenuButton = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { onSelect } = useContext(MenuContext)
+  const { dispatch } = useContext(MenuContext)
+
+  function handleClick() {
+    dispatch({ type: 'TOGGLE' })
+  }
 
   return (
-    <button onClick={onSelect} data-menu-target="" ref={forwardedRef} {...props}>
+    <button onClick={handleClick} data-menu-target="" ref={forwardedRef} {...props}>
       {children}
     </button>
   )
@@ -55,10 +51,10 @@ export const MenuButton = forwardRef(({ children, ...props }, forwardedRef) => {
 MenuButton.displayName = 'MenuButton'
 
 export const MenuList = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { isOpen } = useContext(MenuContext)
+  const { state } = useContext(MenuContext)
 
   return (
-    <div hidden={!isOpen} data-menu-list="" ref={forwardedRef} {...props}>
+    <div hidden={!state.isOpen} data-menu-list="" ref={forwardedRef} {...props}>
       {children}
     </div>
   )
@@ -67,18 +63,21 @@ export const MenuList = forwardRef(({ children, ...props }, forwardedRef) => {
 MenuList.displayName = 'MenuList'
 
 export const MenuItem = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { closeMenu } = useContext(MenuContext)
+  const { dispatch } = useContext(MenuContext)
 
-  function onClick(e) {
-    closeMenu()
-    typeof props.onSelect === 'function' && props.onSelect(e)
+  function handleClick(e) {
+    dispatch({ type: 'CLOSE' })
+    props.onSelect && props.onSelect(e)
   }
 
   return (
-    <div role="menuitem" onClick={onClick} data-menu-item="" ref={forwardedRef} {...props}>
+    <div role="menuitem" onClick={handleClick} data-menu-item="" ref={forwardedRef} {...props}>
       {children}
     </div>
   )
 })
 
 MenuItem.displayName = 'MenuItem'
+Menu.propTypes = {
+  onSelect: PropTypes.func,
+}

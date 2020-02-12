@@ -1,11 +1,16 @@
 @import 'YesterTech/styles/global-styles';
+@import 'YesterTech/styles/_theme';
 @import 'YesterTech/styles/center-lesson';
 
 html {
   font-size: 25pt;
 }
 
-[data-disclosure-target] {
+[data-accordion-item] + [data-accordion-item] {
+  margin-top: 0.2rem;
+}
+
+[data-accordion-button] {
   all: unset;
   background-color: #ccc;
   padding: 0.2rem;
@@ -17,6 +22,6 @@ html {
   }
 }
 
-[data-disclosure-target] + [data-disclosure-panel] {
-  margin-top: 0.8rem;
+[data-accordion-button] + [data-accordion-panel] {
+  margin-top: 0.2rem;
 }

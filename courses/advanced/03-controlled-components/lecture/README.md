@@ -1,16 +1,14 @@
 # Notes for Instructor
 
-## Explaining Context
+## Before Refactor:
 
-- You can explain it in terms of Compound Components from the start.
-- Another idea is to write some ad-hoc code that might resemble an application hierarchy of components and to talk about application state using context. Then explain it with compound components.
+❌ Accordion cannot be "controlled" from the owner's state
 
-## Context with Compound Components
+## Refactor
 
-Open `index.js` and `Menu.js`
+- Add an `index` prop to `<Accordion index={index} />` so it can be controlled.
+- Do a `console.warn` when the owner changes from controlled to uncontrolled and vice versa (this shouldn't be allowed)
 
-`Menu` works, but it's still missing lots of things that we'll teach later in the workshop. The main idea is that it's very similar to `Disclosure` in terms of its technique.
+## After Refactor
 
-- Familiarize the class with `Menu`
-- Review the shortcomings of not being able to arbitrarily wrap containers around things like `MenuItem` since iterating and `cloneElement` are sensitive to the hierarchy.
-- Refactor to context and useReducer (lets not get into state machines just yet).
+✅ Accordion can be "controlled" from the owner's state

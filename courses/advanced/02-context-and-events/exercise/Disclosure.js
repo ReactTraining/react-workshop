@@ -1,4 +1,6 @@
 import React, { useState, forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { wrapEvent } from '../lecture/utils'
 
 export function Disclosure({ children, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
@@ -10,13 +12,12 @@ export function Disclosure({ children, defaultOpen = false }) {
     })
   })
 
-  // Notice we don't need the wrapper div. It wasn't doing anything stylistically for us anyway
   return children
 }
 
+// We're getting a warning that says: React does not recognize the `isOpen` prop on a DOM element
 export const DisclosureButton = forwardRef(
   ({ children, isOpen, onSelect, ...props }, forwardedRef) => {
-    // Note, data attributes in React need to have an empty string in order to be created correctly.
     return (
       <button
         onClick={onSelect}
