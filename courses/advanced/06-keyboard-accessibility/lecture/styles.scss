@@ -1,0 +1,32 @@
+@import 'YesterTech/styles/global-styles';
+@import 'YesterTech/styles/_theme';
+@import 'YesterTech/styles/center-lesson';
+
+html {
+  font-size: 25pt;
+}
+
+#root {
+  min-height: 8rem;
+  width: 10rem;
+}
+
+// Style the non-portal (staring point) version
+[data-menu-button] + [data-menu-list] {
+  margin-top: 0.2rem;
+}
+
+[data-menu-list] {
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+
+[data-menu-item] {
+  cursor: pointer;
+  padding: 0.2rem 0.7rem;
+
+  &:hover {
+    background-color: $blue;
+    color: #fff;
+  }
+}
