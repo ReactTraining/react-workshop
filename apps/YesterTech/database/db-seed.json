@@ -6,6 +6,13 @@
       "name": "Brad Westfall",
       "password": "abc123",
       "avatarUrl": "https://avatars3.githubusercontent.com/u/2272118?v=4"
+    },
+    {
+      "id": 2,
+      "username": "brucelee",
+      "name": "Bruce Lee",
+      "password": "password",
+      "avatarUrl": "/images/bruce-lee.jpg"
     }
   ],
   "products": [

@@ -26,7 +26,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
     "json-server": "^0.15.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
     "readline-sync": "^1.4.10",
     "sass-loader": "^7.2.0",
