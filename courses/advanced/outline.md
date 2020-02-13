@@ -1,4 +1,6 @@
-# Topics
+# Advanced Outline
+
+## Overview
 
 The advanced curriculum is approxamently one day's worth of material and teaches:
 
@@ -10,7 +12,7 @@ The advanced curriculum is approxamently one day's worth of material and teaches
 - Advanced id management for accessibility
 - Controlled vs Uncontrolled Components (For custom component APIs)
 
-# Prerequisites
+## Prerequisites
 
 For taking our Advanced Workshop, attendees should:
 

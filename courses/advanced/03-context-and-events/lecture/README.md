@@ -43,9 +43,7 @@ function App() {
       <AccordionItem>
         <AccordionButton>
           {index === 1 ? <FaAngleDown /> : <FaAngleRight />}
-          <span>
-            What does <em>a11y</em> stand for?
-          </span>
+          <span>What does "a11y" stand for?</span>
         </AccordionButton>
         <AccordionPanel>
           A11y is short for "accessibility" since there are 11 characters between "a" and "y".

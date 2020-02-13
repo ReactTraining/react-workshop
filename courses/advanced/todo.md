@@ -1,25 +1,20 @@
-# Stuff let to do
+# Stuff left to do
 
-# 03
+# 04
 
 - Lecture
   - End with adding `multiple` and `collapsible` stuff
-  - The use-case for controlled can be FAQ with "see related"
 
-# 04 Tabs
-
-- Exercise only. Build Tabs based on what we've learned
-
-# 05 Keyboard Accessibility
+# 06 Keyboard Accessibility
 
 - Lecture is menu button
-  - Even though it's slightly off topic, do the dynamic portals stuff
+  - Add lost focus: In the real menu file it's like 828
   - keyboard events for navigating up and down the menu items
 - Exercise with Tabs
   - keyboard events for left and right on tabs
   - would be cool if each tab in the panel had disclosure and menu button elements
 
-# 06 Reusable ARIA
+# 07 Reusable ARIA
 
 - Lecture only
   - useId

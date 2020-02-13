@@ -14,9 +14,7 @@ function App() {
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
-        <AccordionButton>
-          What does <em>a11y</em> stand for?
-        </AccordionButton>
+        <AccordionButton>What does "a11y" stand for?</AccordionButton>
         <AccordionPanel>
           A11y is short for "accessibility" since there are 11 characters between "a" and "y".
         </AccordionPanel>

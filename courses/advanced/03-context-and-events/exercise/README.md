@@ -1,14 +1,11 @@
 # Context and Events
 
-## Task One: Improve A11y (Accessibility)
+## Task One: Refactor with context
 
-- Todo: add a strategy for unique id stuff
-
-## Task Two: Refactor with context
-
-Keep in mind that this is a matter of replacing the implicit props that were being passed done through the `React.cloneElement` technique to using context instead:
+In this task we replace the implicit props that were being passed done through the `React.cloneElement` technique to using context instead:
 
 ```jsx
+// This goes in `Disclosure`
 const context = {
   /* Put the props that we were passing down with cloneElement here instead */
 }
@@ -16,7 +13,7 @@ const context = {
 <DisclosureContext.Provider children={children} value={context} />
 ```
 
-## Task Three: Add an `onChange` to `Disclosure`
+## Task Two: Add an `onChange` to `Disclosure`
 
 - When the owner provides an `onChange` function, pass the new `isOpen` status.
 - In Disclosure, only call the `onChange` function if one was passed in.

@@ -1,6 +1,7 @@
-import React, { useState, forwardRef, useContext } from 'react'
+import React, { useRef, useState, forwardRef, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { wrapEvent } from '../../utils'
+import { Popover } from './Popover'
+import { wrapEvent, useForkedRef } from '../../utils'
 
 const MenuContext = React.createContext()
 
@@ -10,9 +11,11 @@ const MenuContext = React.createContext()
 
 export function Menu({ children, onChange, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
+  const buttonRef = useRef(null)
 
   const context = {
     isOpen,
+    buttonRef,
     onSelect: () => {
       onChange && onChange(!isOpen)
       setIsOpen(!isOpen)
@@ -35,7 +38,10 @@ Menu.propTypes = {
  */
 
 export const MenuButton = forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { isOpen, onSelect } = useContext(MenuContext)
+  const { isOpen, onSelect, buttonRef } = useContext(MenuContext)
+
+  // Combine Refs
+  const ref = useForkedRef(buttonRef, forwardedRef)
 
   return (
     <button
@@ -43,7 +49,7 @@ export const MenuButton = forwardRef(({ children, onClick, ...props }, forwarded
       data-menu-button=""
       data-state={isOpen ? 'open' : 'collapsed'}
       aria-expanded={isOpen}
-      ref={forwardedRef}
+      ref={ref}
       {...props}
     >
       {children}
@@ -60,13 +66,40 @@ MenuButton.propTypes = {
  * Menu List
  */
 
-export const MenuList = forwardRef(({ children, ...props }, forwardedRef) => {
+// Menu List composes MenuPopover and MenuItems in a common way
+export const MenuList = forwardRef((props, forwardedRef) => {
+  return (
+    <MenuPopover>
+      <MenuItems {...props} data-menu-list="" ref={forwardedRef} />
+    </MenuPopover>
+  )
+})
+
+MenuList.displayName = 'MenuList'
+
+/**
+ * Menu Popover
+ */
+
+export const MenuPopover = forwardRef((props, forwardedRef) => {
+  const { isOpen, buttonRef } = useContext(MenuContext)
+
+  return isOpen ? <Popover {...props} ref={forwardedRef} targetRef={buttonRef} /> : null
+})
+
+MenuPopover.displayName = 'MenuPopover'
+
+/**
+ * Menu Items
+ */
+
+export const MenuItems = forwardRef(({ children, ...props }, forwardedRef) => {
   const { isOpen } = useContext(MenuContext)
 
   return (
     <div
       hidden={!isOpen}
-      data-menu-list=""
+      data-menu-items=""
       data-state={isOpen ? 'open' : 'collapsed'}
       ref={forwardedRef}
       {...props}
@@ -76,7 +109,7 @@ export const MenuList = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-MenuList.displayName = 'MenuList'
+MenuItems.displayName = 'MenuItems'
 
 /**
  * Menu Item

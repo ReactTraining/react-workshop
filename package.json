@@ -35,6 +35,7 @@
   "dependencies": {
     "@babel/core": "7.6.0",
     "@reach/menu-button": "^0.5.4",
+    "@reach/rect": "^0.8.2",
     "@reach/tabs": "^0.7.0",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
