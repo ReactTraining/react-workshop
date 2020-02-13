@@ -83,7 +83,11 @@ a simple `<div>` with a variable thrown in.
 ```jsx
 function Pokemon() {
   let pokémon = null
-  return <div>Hello, {pokémon}!</div>
+  return (
+    <div className="pokemon">
+      Hello, <span>{pokémon}</span>!
+    </div>
+  )
 }
 
 const domElement = document.getElementById('root')
@@ -96,7 +100,11 @@ the `useState` hook.
 ```jsx
 function Pokemon() {
   const [pokémon, setPokémon] = useState(null)
-  return <div>Hello, {pokémon}!</div>
+  return (
+    <div className="pokemon">
+      Hello, <span>{pokémon}</span>!
+    </div>
+  )
 }
 ```
 
@@ -107,7 +115,11 @@ to call `useState` again.
 function Pokemon() {
   const [pokémon, setPokémon] = useState(null)
   const [error, setError] = useState(null)
-  return <div>Hello, {pokémon}!</div>
+  return (
+    <div className="pokemon">
+      Hello, <span>{pokémon}</span>!
+    </div>
+  )
 }
 ```
 
@@ -120,9 +132,9 @@ function Pokemon() {
   const [pokémon, setPokémon] = useState(null)
   const [error, setError] = useState(null)
   return (
-    <div>
+    <div className="pokemon">
       <input onChange={e => setPokémon(e.target.value)} value={inputValue} type="text" />
-      Hello, {pokémon}!
+      Hello, <span>{pokémon}</span>!
     </div>
   )
 }
@@ -176,9 +188,9 @@ function Pokemon() {
   }, [pokémon])
 
   return (
-    <div>
+    <div className="pokemon">
       <input onChange={e => setPokémon(e.target.value)} value={inputValue} type="text" />
-      Hello, {pokémon}!
+      Hello, <span>{pokémon}</span>!
     </div>
   )
 }
@@ -206,7 +218,7 @@ function Pokemon() {
       .then(res => res.json())
       .then(res => {
         if (isCurrent) {
-          let name = res.name.replace(/^\w/, c => c.toUpperCase()) // capitalizing name
+          let name = res.name
           let sprite = res.sprites.front_default
           setPokémon(name)
           setImg(sprite)
@@ -221,9 +233,9 @@ function Pokemon() {
   }, [pokémon])
 
   return (
-    <div>
+    <div className="pokemon">
       <input onChange={e => setPokémon(e.target.value)} defaultValue={pokémon} type="text" />
-      Hello, {pokémon}!
+      Hello, <span>{pokémon}</span>!
       <img src={img} />
     </div>
   )
@@ -234,9 +246,9 @@ We could also conditionally render the image to check if it's null or not:
 
 ```jsx
 return (
-  <div>
+  <div className="pokemon">
     <input onChange={e => setPokémon(e.target.value)} defaultValue={pokémon} type="text" />
-    Hello, {pokémon}! {img && <img src={img} />}
+    Hello, <span>{pokémon}</span>! {img && <img src={img} />}
   </div>
 )
 ```
@@ -273,9 +285,9 @@ function PokemonInput({ defaultValue, onChange }) {
       .then(res => res.json())
       .then(res => {
         if (isCurrent) {
-          let name = res.name.replace(/^\w/, c => c.toUpperCase())
+          let name = res.name
           let sprite = res.sprites.front_default
-          onChange({ name, sprite }) // this onChange comes from Pokemon
+          onChange({ name, sprite })
           setPokémon(name)
           setImg(sprite)
         }
@@ -293,7 +305,7 @@ function PokemonInput({ defaultValue, onChange }) {
       onChange={e => setPokémon(e.target.value)}
       defaultValue={defaultValue}
       type="text"
-      style={{ borderColor: error ? 'red' : '' }} // adding a style here
+      style={{ color: error ? '#d5615e' : '' }}
     />
   )
 }
@@ -306,13 +318,13 @@ function Pokemon() {
   useTitle('Saying hello to ' + pokémon.name)
 
   return (
-    <div>
+    <div className="pokemon">
       <PokemonInput
         onChange={fetchedPokemon => setPokémon(fetchedPokemon)}
         defaultValue={pokémon.name}
         type="text"
       />
-      Hello, {pokémon.name}! {pokémon.sprite && <img src={pokémon.sprite} />}
+      Hello, <span>{pokémon.name}</span>! {pokémon.sprite && <img src={pokémon.sprite} />}
     </div>
   )
 }
