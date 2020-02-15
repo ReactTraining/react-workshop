@@ -50,9 +50,11 @@ function CheckoutBilling({ onSubmit }) {
           </div>
         </div>
 
-        <button type="submit" className="button">
-          Submit
-        </button>
+        <footer>
+          <button type="submit" className="button">
+            Submit
+          </button>
+        </footer>
       </form>
     </div>
   )
