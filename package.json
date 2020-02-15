@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@babel/core": "7.6.0",
+    "@reach/descendants": "^0.8.2",
     "@reach/menu-button": "^0.5.4",
     "@reach/rect": "^0.8.2",
     "@reach/tabs": "^0.7.0",

@@ -28,9 +28,13 @@ When they're finished, this is a great opportunity to have a discussion on the v
   - `aria-controls`
   - `aria-expanded`
 
+In order for a unique ID to go on the panel which then gets used by `aria-controls` for the button, we need to manage the ID at the top of the Compound Component and pass it down through context. Also we need to plan on there being other instances of Disclosure so we need a universal "unique id" system. This is what `useId` does for us. Read all about it here: https://github.com/reach/reach-ui/tree/master/packages/auto-id
+
+We have a local implementation of `autoId` which is being imported. It might be fun to just make your own for the purposes of this lecture (without all the SSR stuff), but all other material uses the local one at the root of `/advanced`.
+
 ## After Refactor:
 
-✅ ❌ Now it's more accessible, but we can only use one per page (with a static ID). We'll fix later.
+✅ Basic ARIA is in place.
 ✅ We CAN change the arrangement: `<DisclosurePanel />` before `<DisclosureButton />` if we want.
 ✅ We CAN pass in our own props in a way that feels more natural without a sloppy API.
 ✅ We CAN forward refs

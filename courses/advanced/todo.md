@@ -1,25 +1,24 @@
 # Stuff left to do
 
+- now we're going to build in useId earlier
+
+  - This is now built into all the disclosures
+  - need to do the accordions, tab final (05), and 06
+
+- DisclosureButton was supposed to have a ref so onClick it could focus. See real one
+
 # 04
 
 - Lecture
   - End with adding `multiple` and `collapsible` stuff
 
-# 06 Keyboard Accessibility
+# 06 Popups and Keyboard Events
 
 - Lecture is menu button
   - Add lost focus: In the real menu file it's like 828
-  - keyboard events for navigating up and down the menu items
 - Exercise with Tabs
   - keyboard events for left and right on tabs
   - would be cool if each tab in the panel had disclosure and menu button elements
-
-# 07 Reusable ARIA
-
-- Lecture only
-  - useId
-  - useDescendent(s)
-  - The "as" prop
 
 Random notes
 

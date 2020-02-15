@@ -1,11 +1,14 @@
 import React, { useState, forwardRef } from 'react'
+import { useId } from '../../useId'
 
-export function Disclosure({ children, defaultOpen = false }) {
+export function Disclosure({ children, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
-
+  const id = useId(props.id != null ? String(props.id) : undefined) || 'disclosure'
+  const panelId = `panel-${id}`
   children = React.Children.map(children, child => {
     return React.cloneElement(child, {
       isOpen,
+      panelId,
       onSelect: () => setIsOpen(!isOpen),
     })
   })
@@ -15,17 +18,17 @@ export function Disclosure({ children, defaultOpen = false }) {
 }
 
 export const DisclosureButton = forwardRef(
-  ({ children, isOpen, onSelect, ...props }, forwardedRef) => {
+  ({ children, isOpen, panelId, onSelect, ...props }, forwardedRef) => {
     // Note, data attributes in React need to have an empty string in order to be created correctly.
     return (
       <button
+        {...props}
         onClick={onSelect}
         data-disclosure-button=""
         data-state={isOpen ? 'open' : 'collapsed'}
         aria-expanded={isOpen}
-        aria-controls="disclosure-panel"
+        aria-controls={panelId}
         ref={forwardedRef}
-        {...props}
       >
         {children}
       </button>
@@ -35,19 +38,21 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(({ children, isOpen, ...props }, forwardedRef) => {
-  return (
-    <div
-      id="disclosure-panel"
-      hidden={!isOpen}
-      data-disclosure-panel=""
-      data-state={isOpen ? 'open' : 'collapsed'}
-      ref={forwardedRef}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-})
+export const DisclosurePanel = forwardRef(
+  ({ children, isOpen, panelId, ...props }, forwardedRef) => {
+    return (
+      <div
+        {...props}
+        id={panelId}
+        hidden={!isOpen}
+        data-disclosure-panel=""
+        data-state={isOpen ? 'open' : 'collapsed'}
+        ref={forwardedRef}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 DisclosurePanel.displayName = 'DisclosurePanel'

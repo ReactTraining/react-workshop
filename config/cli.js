@@ -27,9 +27,7 @@ module.exports = function() {
   let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
   dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
 
-  // Even though we're not "concurrently" launching json-server and
-  // our app with `concurrently`, this allows the database to run
-  // in the background
+  // This allows the database to run in the background
   if (dbPath) {
     concurrently([
       {

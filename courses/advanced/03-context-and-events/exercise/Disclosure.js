@@ -1,13 +1,17 @@
 import React, { useState, forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
-export function Disclosure({ children, defaultOpen = false }) {
+export function Disclosure({ children, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
+  const id = useId(props.id != null ? String(props.id) : undefined) || 'disclosure'
+  const panelId = `panel-${id}`
 
   children = React.Children.map(children, child => {
     return React.cloneElement(child, {
       isOpen,
+      panelId,
       onSelect: () => setIsOpen(!isOpen),
     })
   })
@@ -15,16 +19,15 @@ export function Disclosure({ children, defaultOpen = false }) {
   return children
 }
 
-// We're getting a warning that says: React does not recognize the `isOpen` prop on a DOM element
 export const DisclosureButton = forwardRef(
-  ({ children, isOpen, onSelect, ...props }, forwardedRef) => {
+  ({ children, isOpen, panelId, onSelect, ...props }, forwardedRef) => {
     return (
       <button
         onClick={onSelect}
         data-disclosure-button=""
         data-state={isOpen ? 'open' : 'collapsed'}
         aria-expanded={isOpen}
-        aria-controls="disclosure-panel"
+        aria-controls={panelId}
         ref={forwardedRef}
         {...props}
       >
@@ -36,19 +39,21 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(({ children, isOpen, ...props }, forwardedRef) => {
-  return (
-    <div
-      id="disclosure-panel"
-      hidden={!isOpen}
-      data-disclosure-panel=""
-      data-state={isOpen ? 'open' : 'collapsed'}
-      ref={forwardedRef}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-})
+export const DisclosurePanel = forwardRef(
+  ({ children, isOpen, panelId, ...props }, forwardedRef) => {
+    return (
+      <div
+        id={panelId}
+        hidden={!isOpen}
+        data-disclosure-panel=""
+        data-state={isOpen ? 'open' : 'collapsed'}
+        ref={forwardedRef}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 DisclosurePanel.displayName = 'DisclosurePanel'

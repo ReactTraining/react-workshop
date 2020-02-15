@@ -24,9 +24,10 @@ html {
 [data-menu-item] {
   cursor: pointer;
   padding: 0.2rem 0.7rem;
+}
 
-  &:hover {
-    background-color: $blue;
-    color: #fff;
-  }
+[data-menu-item][data-selected] {
+  background-color: $blue;
+  color: #fff;
+  outline: none;
 }

@@ -38,5 +38,5 @@ export function assignRef(ref, value) {
 }
 
 export function isFunction(value) {
-  return !!(value && {}.toString.call(value) == '[object Function]')
+  return !!(value && {}.toString.call(value) === '[object Function]')
 }

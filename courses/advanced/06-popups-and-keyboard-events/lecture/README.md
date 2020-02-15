@@ -2,12 +2,13 @@
 
 Start by opening `index.js` and `Menu.js`
 
-This is a two-part lecture:
+This is a three-part lecture:
 
 1. Explaining how Reach uses portals to build the `Menu`'s dropdown.
-2. Explaining keyboard navigation with `MenuButton`.
+2. Explaining and how we get indexes with `useDescendant()` and `useDescendants()`
+3. Coding keyboard events for navigation and a11y.
 
-Number 1 can possibly be skipped or glossed over since it's not necessary for the exercise
+Number 1 and 2 can possibly be skipped or glossed over since it's not necessary for the exercise.
 
 ## 1. Menu Popup (and dynamic portals)
 
@@ -51,3 +52,28 @@ Main takeaways:
 - We need to get the target button's position. Since this is an imperative process to get DOM measurements, refs will be added
 - The internal ref for the button needs to be known in several places in the Compound Component. So we'll create it at the top where the provider is and we'll pass it around using context.
 - One issue is that we're already forwarding refs to the button, so we'll implement a utility for combining refs together so we can combine our internal ref with any possible refs forwarded to us.
+
+## 2. Indexes with `useDescendant()` and `useDescendants()`
+
+`useDescendants` is a way for a particular descendant (in our case `MenuItem`) to "register" itself with the top node of a Compound Component for the purposes of providing it's ref and index (order that it showed up). It's particularly useful since with Compound Components, children's indexes are unknown. See this page for a detailed explanation: https://github.com/reach/reach-ui/tree/master/packages/descendants
+
+## 3. Keyboard Events
+
+### `MenuButton`
+
+- Handle `onKeyDown` for "DownArrow" to open the menu and set the `activeIndex` to 0
+  - This might be a good chance to talk about useReducer and "jumbled state".
+
+### `MenuItems`
+
+- Handle `onKeyDown` for
+  - "Escape" - closes
+  - "Home" - selects first
+  - "End" - selects last
+  - "UpArrow" - moves up
+  - "DownArrow" - moves down
+  - "Tab" - `event.preventDefault` to prevent tabbing out when open
+
+### `MenuItem`
+
+- Handle `onKeyDown` for "Enter"
