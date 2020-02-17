@@ -3,8 +3,9 @@ import { useId } from '../../useId'
 
 export function Disclosure({ children, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
-  const id = useId(props.id != null ? String(props.id) : undefined) || 'disclosure'
+  const id = useId(props.id)
   const panelId = `panel-${id}`
+
   children = React.Children.map(children, child => {
     return React.cloneElement(child, {
       isOpen,

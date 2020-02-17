@@ -25,7 +25,6 @@ function App() {
 
 /*
 ✅ It works, but needs some improvements...
-❌ ARIA: We're violating the unique `id` rule.
 ❌ Can't add extra DOM container among the buttons, panels, or items.
 ❌ The way we refactored using `React.cloneElement` means that we could experience
    prop collisions with the owner. And mixed with how we're forwarding props means

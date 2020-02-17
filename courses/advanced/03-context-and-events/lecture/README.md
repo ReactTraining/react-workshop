@@ -2,7 +2,6 @@
 
 Before Refactor:
 
-❌ ARIA: We're violating the unique `id` rule.
 ❌ Can't add extra DOM container among the buttons, panels, or items.
 ❌ The way we refactored using `React.cloneElement` means that we could experience prop collisions with the owner. And mixed with how we're forwarding props means that we're sending props to DOM elements we didn't mean to. Can be fixed but it's a little bit of a pain.
 ❌ We don't know the state of `Accordion` in the owner. So we can't change an icon depending on open or not.
@@ -19,7 +18,6 @@ Either explain context in terms of Compound Components from the start or write s
 
 After Refactor:
 
-✅ Dynamic unique `id` for ARIA.
 ✅ ❌ Can have extra DOM containers except for around `AccordionItem` because `Accordion` still uses `cloneElement`.
 ✅ No more prop collisions or sending unwanted props to DOM.
 ✅ We can sync state to the owner with `onChange`.

@@ -1,9 +1,11 @@
+Check the fundamentals for this https://twitter.com/sophiebits/status/1228942768543686656
+
 # Stuff left to do
 
 - now we're going to build in useId earlier
 
   - This is now built into all the disclosures
-  - need to do the accordions, tab final (05), and 06
+  - need to do the accordions (I did 02, not final on Sat) , tab final (05), and 06
 
 - DisclosureButton was supposed to have a ref so onClick it could focus. See real one
 

@@ -24,7 +24,7 @@ export function Disclosure({
 
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
-  const id = useId(props.id != null ? String(props.id) : undefined) || 'disclosure'
+  const id = useId(props.id)
   const panelId = `panel-${id}`
 
   const context = {
