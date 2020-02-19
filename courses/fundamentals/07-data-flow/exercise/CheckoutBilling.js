@@ -46,7 +46,7 @@ function CheckoutBilling({ onSubmit }) {
   return (
     <div className="spacing">
       <Heading>
-        <MdShoppingCart /> Billing & Shipping
+        <MdShoppingCart /> Billing &amp; Shipping
       </Heading>
       <form onSubmit={handleSubmit} className="spacing">
         <Heading as="h2" size={3}>
