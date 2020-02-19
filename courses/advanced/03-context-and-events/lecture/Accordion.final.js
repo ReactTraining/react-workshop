@@ -102,13 +102,13 @@ export const AccordionPanel = forwardRef(({ children, ...props }, forwardedRef) 
 
   return (
     <div
+      role="region"
       {...props}
       id={panelId}
       aria-labelledby={buttonId}
       hidden={!selected}
       data-accordion-panel=""
       data-state={selected ? 'open' : 'collapsed'}
-      role="region"
       ref={forwardedRef}
     >
       {children}

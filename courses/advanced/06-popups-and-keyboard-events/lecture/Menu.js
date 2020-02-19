@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, forwardRef, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Popover } from './Popover'
+import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
 import {
   createDescendantContext,
@@ -16,13 +17,14 @@ const MenuContext = React.createContext()
  * Menu
  */
 
-export function Menu({ children, defaultOpen = false }) {
+export function Menu({ children, id, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [activeIndex, setActiveIndex] = useState(-1)
   const [descendants, setDescendants] = useDescendants()
   const buttonRef = useRef(null)
 
   const context = {
+    buttonId: `menu-button-${useId(id)}`,
     isOpen,
     setIsOpen,
     buttonRef,
@@ -46,7 +48,7 @@ Menu.propTypes = {
  */
 
 export const MenuButton = forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(MenuContext)
+  const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(MenuContext)
 
   // Combine Refs
   const ref = useForkedRef(buttonRef, forwardedRef)
@@ -66,10 +68,12 @@ export const MenuButton = forwardRef(({ children, onClick, ...props }, forwarded
     <button
       ref={ref}
       {...props}
+      id={buttonId}
       onClick={wrapEvent(onClick, handleClick)}
       data-menu-button=""
       data-state={isOpen ? 'open' : 'collapsed'}
       aria-expanded={isOpen}
+      aria-haspopup="menu"
     >
       {children}
     </button>
@@ -113,7 +117,7 @@ MenuPopover.displayName = 'MenuPopover'
  */
 
 export const MenuItems = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { isOpen } = useContext(MenuContext)
+  const { buttonId, isOpen } = useContext(MenuContext)
 
   // Notice how we can just tab into all the MenuItem descendants
   const { descendants } = useContext(DescendantContext)
@@ -126,6 +130,7 @@ export const MenuItems = forwardRef(({ children, ...props }, forwardedRef) => {
     <div
       role="menu"
       {...props}
+      aria-labelledby={buttonId}
       hidden={!isOpen}
       data-menu-items=""
       data-state={isOpen ? 'open' : 'collapsed'}

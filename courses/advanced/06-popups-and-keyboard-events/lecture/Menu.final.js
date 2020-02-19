@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, forwardRef, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Popover } from './Popover'
+import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
 import {
   createDescendantContext,
@@ -16,13 +17,14 @@ const MenuContext = React.createContext()
  * Menu
  */
 
-export function Menu({ children, defaultOpen = false }) {
+export function Menu({ children, id, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [activeIndex, setActiveIndex] = useState(-1)
   const [descendants, setDescendants] = useDescendants()
   const buttonRef = useRef(null)
 
   const context = {
+    buttonId: `menu-button-${useId(id)}`,
     isOpen,
     setIsOpen,
     buttonRef,
@@ -46,7 +48,7 @@ Menu.propTypes = {
  */
 
 export const MenuButton = forwardRef(({ children, onClick, onKeyDown, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(MenuContext)
+  const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(MenuContext)
 
   // Combine Refs
   const ref = useForkedRef(buttonRef, forwardedRef)
@@ -75,11 +77,13 @@ export const MenuButton = forwardRef(({ children, onClick, onKeyDown, ...props }
     <button
       ref={ref}
       {...props}
+      id={buttonId}
       onClick={wrapEvent(onClick, handleClick)}
       onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
       data-menu-button=""
       data-state={isOpen ? 'open' : 'collapsed'}
       aria-expanded={isOpen}
+      aria-haspopup="menu"
     >
       {children}
     </button>
@@ -123,7 +127,7 @@ MenuPopover.displayName = 'MenuPopover'
  */
 
 export const MenuItems = forwardRef(({ children, onKeyDown, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, activeIndex, setActiveIndex } = useContext(MenuContext)
+  const { buttonId, isOpen, setIsOpen, activeIndex, setActiveIndex } = useContext(MenuContext)
   const { descendants } = useContext(DescendantContext)
   const totalItems = descendants.length
 
@@ -161,6 +165,7 @@ export const MenuItems = forwardRef(({ children, onKeyDown, ...props }, forwarde
     <div
       role="menu"
       {...props}
+      aria-labelledby={buttonId}
       onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
       hidden={!isOpen}
       data-menu-items=""

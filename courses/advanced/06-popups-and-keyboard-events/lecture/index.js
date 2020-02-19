@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
-import { Menu, MenuButton, MenuList, MenuPopover, MenuItems, MenuItem } from './Menu.final'
+import { Menu, MenuButton, MenuList, MenuPopover, MenuItems, MenuItem } from './Menu'
 import './styles.scss'
 
 function App() {

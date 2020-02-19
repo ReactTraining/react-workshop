@@ -1,14 +1,9 @@
 @import 'YesterTech/styles/_theme.scss';
+@import 'YesterTech/styles/center-lesson';
 
-// Centers the content for lecture purposes
 #root {
-  background-color: #d8e2e6;
-  padding-top: 2em;
-  min-height: 100vh;
-  > * {
-    width: 35em;
-    margin: 0 auto;
-  }
+  width: 30em;
+  margin: 3em auto;
 }
 
 [data-reach-tab] {
@@ -21,18 +16,25 @@
 
   &.active {
     color: #fff;
-    background-color: $blue;
+    background-color: $bright-blue;
   }
 
   &.disabled {
     background-color: #ccc;
     color: #777;
+    cursor: default;
   }
 }
 
 [data-reach-tab-panels] {
-  background-color: #fff;
-  padding: 1em;
-  border-top: 2px solid $blue;
-  border-bottom: 2px solid $blue;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+[data-reach-tab-list] + [data-reach-tab-panels] {
+  border-top: 2px solid $bright-blue;
+}
+
+[data-reach-tab-panels] + [data-reach-tab-list] {
+  border-top: 2px solid $bright-blue;
 }

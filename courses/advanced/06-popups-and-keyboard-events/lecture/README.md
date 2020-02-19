@@ -4,9 +4,9 @@ Start by opening `index.js` and `Menu.js`
 
 This is a three-part lecture:
 
-1. Explaining how Reach uses portals to build the `Menu`'s dropdown.
-2. Explaining and how we get indexes with `useDescendant()` and `useDescendants()`
-3. Coding keyboard events for navigation and a11y.
+1. Code Walk through - Explain how Reach uses portals to build the `Menu`'s dropdown.
+2. Code Walk through - Explain and how we get indexes with `useDescendant()` and `useDescendants()`
+3. Live Code - Keyboard events for navigation and a11y.
 
 Number 1 and 2 can possibly be skipped or glossed over since it's not necessary for the exercise.
 

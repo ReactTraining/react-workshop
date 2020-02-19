@@ -2,12 +2,11 @@ Check the fundamentals for this https://twitter.com/sophiebits/status/1228942768
 
 # Stuff left to do
 
-- now we're going to build in useId earlier
-
-  - This is now built into all the disclosures
-  - need to do the accordions (I did 02, not final on Sat) , tab final (05), and 06
-
 - DisclosureButton was supposed to have a ref so onClick it could focus. See real one
+- Update the electives version of compound components to be more like advanced
+- tab-index="-1" on the panels of accordion and disclosure should be a conversation for keyboard events
+- Do we want to do "as"
+- `disabled` for tabs
 
 # 04
 
@@ -19,14 +18,8 @@ Check the fundamentals for this https://twitter.com/sophiebits/status/1228942768
 - Lecture is menu button
   - Add lost focus: In the real menu file it's like 828
 - Exercise with Tabs
-  - keyboard events for left and right on tabs
+  - How do I make the focus match the selection. In other words, if I am on the second tab and do shift-tab to go to the first, the focus works but the first tab is not selected.
   - would be cool if each tab in the panel had disclosure and menu button elements
-
-Random notes
-
-- Need to add dynamic id thing to according staring in final solution for 2 (and exercise)
-- tab-index="-1" on the panels of accordion and disclosure should be a conversation for keyboard events
-- The panel of accordion has a `role="region"` but the panel for disclosure doesn't - this is correct
 
 ```js
 let id = 0
