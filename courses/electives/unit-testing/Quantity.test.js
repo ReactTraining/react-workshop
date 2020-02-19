@@ -71,19 +71,18 @@ describe('Quantity', () => {
 import ReactDOM from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
-let container
-
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.appendChild(container)
-})
-
-afterEach(() => {
-  document.body.removeChild(container)
-  container = null
-})
-
 describe('Quantity', () => {
+  let container
+  beforeEach(() => {
+    container = document.createElement('div')
+    document.body.appendChild(container)
+  })
+
+  afterEach(() => {
+    document.body.removeChild(container)
+    container = null
+  })
+
   it('should start with 0', () => {
     act(() => {
       ReactDOM.render(<Quantity />, container)
