@@ -47,6 +47,8 @@ $ cd react-workshop
 # Install and run. Make sure you do these two commands from within the `react-workshop` folder:
 $ npm install
 $ npm run app
+
+# If you have issues, read below.
 ```
 
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
@@ -94,6 +96,8 @@ Choose one from list [1...9, a, 0]:
 ```
 
 Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
+
+If you don't want to deal with the CLI in the future as much, you can run `npm start 1` to go to your chosen exercise right away.
 
 ## Be Prepared
 
@@ -149,7 +153,7 @@ $ git config --global url."https://".insteadOf git://
   insteadOf = git://
 ```
 
-- **You're having trouble installing node.** We recommend using [nvm](https://github.com/creationix/nvm). nvm makes it really easy to use multiple versions of node on the same machine painlessly. After you install nvm, install the latest stable version of node with the following command:
+- **You're having trouble installing Node.** We recommend using [nvm](https://github.com/creationix/nvm). nvm makes it really easy to use multiple versions of node on the same machine painlessly. After you install nvm, install the latest stable version of node with the following command:
 
 ```sh
 $ nvm use default stable
@@ -178,19 +182,17 @@ $ npm install
 
 ## Windows Users
 
+**TL;DR: Generally speaking, we've seen the most problems occur when a user installs the repo with Powershell (they get an `xargs` error). What we recommend is that you run `npm install` in Git Bash, and then you can use Powershell/the VSCode Terminal for everything else.**
+
 If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
 
-Also, if these instructions for Windows can be improved please let us know.
-
-Most of our instructors are using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which in addition to giving you the ability to do git commands (which you might be able to also do with PowerShell), it will also give you the ability to do other bash commands which you cannot do with PowerShell. Our setup process runs some bash commands so that's why PowerShell doesn't work out so well. See the [PowerShell](#powershell) below.
+Most of our instructors are using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which in addition to giving you the ability to do git commands (which you might be able to also do with PowerShell), it will also give you the ability to do other bash commands which you cannot do with PowerShell. Our setup process runs some bash commands so that's why PowerShell doesn't work out so well.
 
 Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([but this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
 
 If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
 
-### PowerShell
-
-While we recommend GitBash instead (see [Windows Users](#windows-users) section), If you insist on using PowerShell, you'll probably get an error after you do `npm install` that mentions `xargs`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
+While we recommend GitBash instead (see [Windows Users](#windows-users) section), If you have to use PowerShell, you'll probably get an error after you do `npm install` that mentions `xargs`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
 
 ```sh
 # Copy
@@ -200,6 +202,8 @@ While we recommend GitBash instead (see [Windows Users](#windows-users) section)
 ```
 
 If you're having issues with our database or running `npm run kill-db`, see the [Database](#database) section above.
+
+If these instructions for Windows users can be improved, please let us know or make a PR!
 
 ## License
 
