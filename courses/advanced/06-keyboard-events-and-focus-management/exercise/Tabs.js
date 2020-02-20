@@ -1,6 +1,6 @@
-import React, { useState, useContext, forwardRef, useRef } from 'react'
+import React, { useState, useContext, forwardRef, useRef, useEffect } from 'react'
 import { useId } from '../../useId'
-import { wrapEvent } from '../../utils'
+import { wrapEvent, useForkedRef } from '../../utils'
 
 const TabsContext = React.createContext()
 const TabContext = React.createContext()
@@ -38,9 +38,8 @@ export const Tabs = forwardRef(
 )
 
 export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
-  const totalTabs = React.Children.count(children)
   children = React.Children.map(children, (child, index) => {
-    return <TabContext.Provider value={{ index, totalTabs }}>{child}</TabContext.Provider>
+    return <TabContext.Provider value={index} children={child} />
   })
 
   return (
@@ -50,39 +49,13 @@ export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-export const Tab = forwardRef(({ children, onClick, onKeyDown, ...props }, forwardedRef) => {
-  const { index, totalTabs } = useContext(TabContext)
+export const Tab = forwardRef(({ children, onClick, disabled, ...props }, forwardedRef) => {
+  const index = useContext(TabContext)
   const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
   const selected = index === selectedIndex
 
   function handleClick() {
     setSelectedIndex(index)
-  }
-
-  function handleKeyDown(event) {
-    switch (event.key) {
-      case 'Home':
-        setSelectedIndex(0)
-        break
-      case 'End':
-        setSelectedIndex(totalTabs - 1)
-        break
-      case 'ArrowLeft':
-        if (selectedIndex !== 0) {
-          setSelectedIndex(selectedIndex - 1)
-        }
-        break
-      case 'ArrowRight':
-        if (selectedIndex < totalTabs - 1) {
-          setSelectedIndex(selectedIndex + 1)
-        }
-        break
-      // case 'Tab':
-      //   event.preventDefault()
-      //   break
-      default:
-        break
-    }
   }
 
   return (
@@ -92,10 +65,12 @@ export const Tab = forwardRef(({ children, onClick, onKeyDown, ...props }, forwa
       id={`tabs-${tabsId}-tab-${index}`}
       aria-controls={`tabs-${tabsId}-panel-${index}`}
       aria-selected={selected}
+      aria-disabled={disabled}
+      data-disabled={disabled}
+      disabled={disabled}
       data-tab=""
       data-selected={selected ? '' : undefined}
       onClick={wrapEvent(onClick, handleClick)}
-      onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
       ref={forwardedRef}
     >
       {children}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 
-export function Tabs({ data }) {
+export function Tabs({ data, ...props }) {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
@@ -10,9 +10,12 @@ export function Tabs({ data }) {
           const selected = index === selectedIndex
           return (
             <button
-              data-reach-tab=""
               key={index}
-              className={selected ? 'active' : ''}
+              role="tab"
+              {...props}
+              aria-selected={selected}
+              data-reach-tab=""
+              data-selected={selected ? '' : undefined}
               onClick={() => setSelectedIndex(index)}
             >
               {tab.label}

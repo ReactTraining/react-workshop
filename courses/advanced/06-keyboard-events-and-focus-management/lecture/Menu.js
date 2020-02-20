@@ -21,13 +21,17 @@ export function Menu({ children, id, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [activeIndex, setActiveIndex] = useState(-1)
   const [descendants, setDescendants] = useDescendants()
+  const menuRef = useRef(null)
   const buttonRef = useRef(null)
+  const popoverRef = useRef(null)
 
   const context = {
     buttonId: `menu-button-${useId(id)}`,
     isOpen,
     setIsOpen,
+    menuRef,
     buttonRef,
+    popoverRef,
     activeIndex,
     setActiveIndex,
   }
@@ -104,10 +108,27 @@ MenuList.displayName = 'MenuList'
  * Menu Popover
  */
 
-export const MenuPopover = forwardRef((props, forwardedRef) => {
-  const { isOpen, buttonRef } = useContext(MenuContext)
+export const MenuPopover = forwardRef(({ onBlur, ...props }, forwardedRef) => {
+  const { isOpen, setIsOpen, menuRef, popoverRef, buttonRef } = useContext(MenuContext)
+  const ref = useForkedRef(popoverRef, forwardedRef)
 
-  return isOpen ? <Popover {...props} ref={forwardedRef} targetRef={buttonRef} /> : null
+  function handleBlur() {
+    const ownerDocument = popoverRef.current?.ownerDocument || document
+    requestAnimationFrame(() => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(ownerDocument.activeElement) &&
+        ownerDocument.activeElement !== menuRef.current &&
+        ownerDocument.activeElement !== buttonRef.current
+      ) {
+        setIsOpen(false)
+      }
+    })
+  }
+
+  return isOpen ? (
+    <Popover {...props} ref={ref} onBlur={wrapEvent(onBlur, handleBlur)} targetRef={buttonRef} />
+  ) : null
 })
 
 MenuPopover.displayName = 'MenuPopover'
@@ -117,9 +138,10 @@ MenuPopover.displayName = 'MenuPopover'
  */
 
 export const MenuItems = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { buttonId, isOpen } = useContext(MenuContext)
+  const { buttonId, menuRef, isOpen } = useContext(MenuContext)
+  const ref = useForkedRef(menuRef, forwardedRef)
 
-  // Notice how we can just tab into all the MenuItem descendants
+  // Notice how we can get all the MenuItem descendants
   const { descendants } = useContext(DescendantContext)
   const totalItems = descendants.length
 
@@ -134,7 +156,7 @@ export const MenuItems = forwardRef(({ children, ...props }, forwardedRef) => {
       hidden={!isOpen}
       data-menu-items=""
       data-state={isOpen ? 'open' : 'collapsed'}
-      ref={forwardedRef}
+      ref={ref}
       tabIndex={-1}
     >
       {children}

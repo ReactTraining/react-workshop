@@ -3,6 +3,7 @@ import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'
 import Avatar from 'YesterTech/Avatar'
+import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
 function SignupForm({ onSignup }) {
@@ -42,13 +43,13 @@ function SignupForm({ onSignup }) {
   }
 
   return (
-    <Columns gutters>
-      <Column>
-        <Avatar size={8} src={avatarUrl} />
-      </Column>
-      <Column flex className="spacing">
-        <Heading>Signup</Heading>
-        <form onSubmit={handleSubmit} className="spacing">
+    <Centered className="spacing">
+      <Columns gutters>
+        <Column>
+          <Avatar size={4} src={avatarUrl} />
+        </Column>
+        <Column flex className="spacing-small">
+          <Heading>Signup</Heading>
           <div>
             <label>
               <input
@@ -59,79 +60,80 @@ function SignupForm({ onSignup }) {
               Use GitHub
             </label>
           </div>
-          <hr />
-          <Columns gutters middle>
-            <Column flex>
-              <div className="form-field">
-                <input
-                  aria-label="username"
-                  onChange={e => setUsername(e.target.value)}
-                  value={username}
-                  type="text"
-                  placeholder={useGitHub ? 'GitHub Username' : 'Username'}
-                  onKeyPress={event => {
-                    if (event.key === 'Enter' && useGitHub) {
-                      event.preventDefault()
-                      searchGitHub()
-                    }
-                  }}
-                />
-              </div>
-            </Column>
-            {useGitHub && (
-              <Column>
-                <button type="button" className="button" onClick={searchGitHub}>
-                  Search
-                </button>
-              </Column>
-            )}
-          </Columns>
-          <div className="form-field">
-            <input
-              aria-label="password"
-              onChange={e => setPassword(e.target.value)}
-              value={password}
-              type={showPassword ? 'text' : 'password'}
-              placeholder={useGitHub ? 'Create a YesterTech Password (Not GitHub)' : 'Password'}
-            />
-            <label>
+        </Column>
+      </Columns>
+      <form onSubmit={handleSubmit} className="spacing">
+        <Columns gutters middle>
+          <Column flex>
+            <div className="form-field">
               <input
-                onChange={handleShowPassword}
-                defaultChecked={showPassword}
-                className="passwordCheckbox"
-                type="checkbox"
-              />{' '}
-              show password
-            </label>
-          </div>
-          <div className="form-field">
+                aria-label="username"
+                onChange={e => setUsername(e.target.value)}
+                value={username}
+                type="text"
+                placeholder={useGitHub ? 'GitHub Username' : 'Username'}
+                onKeyPress={event => {
+                  if (event.key === 'Enter' && useGitHub) {
+                    event.preventDefault()
+                    searchGitHub()
+                  }
+                }}
+              />
+            </div>
+          </Column>
+          {useGitHub && (
+            <Column>
+              <button type="button" className="button" onClick={searchGitHub}>
+                Search
+              </button>
+            </Column>
+          )}
+        </Columns>
+        <div className="form-field">
+          <input
+            aria-label="password"
+            onChange={e => setPassword(e.target.value)}
+            value={password}
+            type={showPassword ? 'text' : 'password'}
+            placeholder={useGitHub ? 'Create a YesterTech Password (Not GitHub)' : 'Password'}
+          />
+          <label>
             <input
-              aria-label="name"
-              onChange={e => setName(e.target.value)}
-              value={name}
-              type="text"
-              placeholder="Full Name"
-              disabled={useGitHub}
-            />
-          </div>
-          <div className="form-field">
-            <input
-              aria-label="avatar-url"
-              onChange={e => setAvatarUrl(e.target.value)}
-              value={avatarUrl}
-              type="text"
-              placeholder="Avatar URL: https://"
-              disabled={useGitHub}
-            />
-          </div>
-          <footer>
-            <button type="submit" className="button">
-              Signup
-            </button>
-          </footer>
-        </form>
-      </Column>
-    </Columns>
+              onChange={handleShowPassword}
+              defaultChecked={showPassword}
+              className="passwordCheckbox"
+              type="checkbox"
+            />{' '}
+            show password
+          </label>
+        </div>
+        <div className="form-field">
+          <input
+            aria-label="name"
+            onChange={e => setName(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="Full Name"
+            disabled={useGitHub}
+          />
+        </div>
+        <div className="form-field">
+          <input
+            aria-label="avatar-url"
+            onChange={e => setAvatarUrl(e.target.value)}
+            value={avatarUrl}
+            type="text"
+            placeholder="Avatar URL: https://"
+            disabled={useGitHub}
+          />
+        </div>
+        <footer>
+          <button type="submit" className="button">
+            Signup
+          </button>
+        </footer>
+      </form>
+    </Centered>
   )
 }
 

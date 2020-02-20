@@ -6,18 +6,16 @@ import './styles.scss'
 function App() {
   const logged = true
   return (
-    <div>
-      <Menu>
-        <MenuButton className="button">Menu</MenuButton>
-        <MenuPopover>
-          <MenuItems data-menu-list="">
-            <MenuItem onSelect={() => console.log('one')}>Item One</MenuItem>
-            <MenuItem onSelect={() => console.log('two')}>Item Two</MenuItem>
-            {logged && <AuthenticatedMenuItems />}
-          </MenuItems>
-        </MenuPopover>
-      </Menu>
-    </div>
+    <Menu>
+      <MenuButton className="button">Menu</MenuButton>
+      <MenuPopover>
+        <MenuItems data-menu-list="">
+          <MenuItem onSelect={() => console.log('one')}>Item One</MenuItem>
+          <MenuItem onSelect={() => console.log('two')}>Item Two</MenuItem>
+          {logged && <AuthenticatedMenuItems />}
+        </MenuItems>
+      </MenuPopover>
+    </Menu>
   )
 }
 

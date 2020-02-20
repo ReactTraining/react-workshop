@@ -39,7 +39,7 @@ export const Tabs = forwardRef(
 
 export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
   children = React.Children.map(children, (child, index) => {
-    return <TabContext.Provider value={index}>{child}</TabContext.Provider>
+    return <TabContext.Provider value={index} children={child} />
   })
 
   return (
@@ -49,7 +49,7 @@ export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-export const Tab = forwardRef(({ children, onClick, ...props }, forwardedRef) => {
+export const Tab = forwardRef(({ children, onClick, disabled, ...props }, forwardedRef) => {
   const index = useContext(TabContext)
   const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
   const selected = index === selectedIndex
@@ -65,6 +65,9 @@ export const Tab = forwardRef(({ children, onClick, ...props }, forwardedRef) =>
       id={`tabs-${tabsId}-tab-${index}`}
       aria-controls={`tabs-${tabsId}-panel-${index}`}
       aria-selected={selected}
+      aria-disabled={disabled}
+      data-disabled={disabled}
+      disabled={disabled}
       data-tab=""
       data-selected={selected ? '' : undefined}
       onClick={wrapEvent(onClick, handleClick)}

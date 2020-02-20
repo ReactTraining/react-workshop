@@ -16,8 +16,8 @@ button {
   border-radius: 0.2rem;
   color: #fff;
   background-color: $bright-blue;
-  border: 1px solid transparent;
-  padding: 0.4rem 1rem;
+  border: none;
+  padding: 0.5rem 1rem;
 
   // These normalize anchors with .button to behave more like buttons
   display: inline-block;
@@ -39,7 +39,7 @@ button {
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($bright-blue, 0.3);
+    box-shadow: inset 0 0 0 4px rgba(#fff, 0.5);
   }
 
   &:hover {

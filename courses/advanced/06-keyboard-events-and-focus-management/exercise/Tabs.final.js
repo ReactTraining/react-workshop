@@ -1,6 +1,6 @@
-import React, { useState, useContext, forwardRef, useRef } from 'react'
+import React, { useState, useContext, forwardRef, useRef, useEffect } from 'react'
 import { useId } from '../../useId'
-import { wrapEvent } from '../../utils'
+import { wrapEvent, useForkedRef } from '../../utils'
 
 const TabsContext = React.createContext()
 const TabContext = React.createContext()
@@ -38,8 +38,9 @@ export const Tabs = forwardRef(
 )
 
 export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
+  const totalTabs = React.Children.count(children)
   children = React.Children.map(children, (child, index) => {
-    return <TabContext.Provider value={index}>{child}</TabContext.Provider>
+    return <TabContext.Provider value={{ index, totalTabs }} children={child} />
   })
 
   return (
@@ -49,31 +50,74 @@ export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-export const Tab = forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const index = useContext(TabContext)
-  const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
-  const selected = index === selectedIndex
+export const Tab = forwardRef(
+  ({ children, onClick, onKeyDown, disabled, ...props }, forwardedRef) => {
+    const { index, totalTabs } = useContext(TabContext)
+    const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
+    const selected = index === selectedIndex
+    const tabRef = useRef(null)
 
-  function handleClick() {
-    setSelectedIndex(index)
+    // Combine Refs
+    const ref = useForkedRef(tabRef, forwardedRef)
+
+    useEffect(() => {
+      if (selected) {
+        tabRef.current.focus()
+      }
+    }, [selected])
+
+    function handleClick() {
+      setSelectedIndex(index)
+    }
+
+    function handleKeyDown(event) {
+      switch (event.key) {
+        case 'Home':
+          setSelectedIndex(0)
+          break
+        case 'End':
+          setSelectedIndex(totalTabs - 1)
+          break
+        case 'ArrowLeft':
+          if (selectedIndex !== 0) {
+            setSelectedIndex(selectedIndex - 1)
+          }
+          break
+        case 'ArrowRight':
+          if (selectedIndex < totalTabs - 1) {
+            setSelectedIndex(selectedIndex + 1)
+          }
+          break
+        default:
+          break
+      }
+    }
+
+    return (
+      <button
+        role="tab"
+        {...props}
+        id={`tabs-${tabsId}-tab-${index}`}
+        aria-controls={`tabs-${tabsId}-panel-${index}`}
+        aria-selected={selected}
+        aria-disabled={disabled}
+        data-disabled={disabled}
+        disabled={disabled}
+        data-tab=""
+        data-selected={selected ? '' : undefined}
+        onClick={wrapEvent(onClick, handleClick)}
+        onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
+        ref={ref}
+        // This is the trick to allowing the user to tab into the Tabs component
+        // at the currently selected tab without having to tab through all the non-
+        // selected tabs.
+        tabIndex={selected ? 0 : -1}
+      >
+        {children}
+      </button>
+    )
   }
-
-  return (
-    <button
-      role="tab"
-      {...props}
-      id={`tabs-${tabsId}-tab-${index}`}
-      aria-controls={`tabs-${tabsId}-panel-${index}`}
-      aria-selected={selected}
-      data-tab=""
-      data-selected={selected ? '' : undefined}
-      onClick={wrapEvent(onClick, handleClick)}
-      ref={forwardedRef}
-    >
-      {children}
-    </button>
-  )
-})
+)
 
 export const TabPanels = forwardRef(({ children, ...props }, forwardedRef) => {
   children = React.Children.map(children, (child, index) => {

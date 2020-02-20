@@ -50,6 +50,12 @@ export function TaskThree() {
   return (
     <ul>
       <li>Give the option for the owner to control the index by passing an `index` prop in.</li>
+      <li>
+        Implement `aria-controls` (The tab controls the panel) and `aria-labelledby` (the panel is
+        labeled by the tab). This requires a unique ID for all Tabs and Tab Panels. One idea is to
+        make a `tabsId` and then you can use this along with the indexes of Tabs and Tab Panels to
+        create a completely unique ID
+      </li>
     </ul>
   )
 }
