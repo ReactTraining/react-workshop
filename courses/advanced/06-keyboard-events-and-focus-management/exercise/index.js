@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs.final'
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
 import './styles.scss'
 
 function App() {
@@ -18,12 +18,8 @@ function App() {
             component and also change tabs in a way that the user would anticipate.
           </TabPanel>
           <TabPanel className="spacing">
-            <div className="form-field">
-              <input type="text" placeholder="Email" />
-            </div>
-            <div className="form-field">
-              <input type="text" placeholder="Password" />
-            </div>
+            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="Password" />
           </TabPanel>
         </TabPanels>
       </Tabs>

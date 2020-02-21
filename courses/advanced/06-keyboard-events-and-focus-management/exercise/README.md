@@ -1,4 +1,4 @@
-# Keyboard Events
+# Keyboard Events and Focus Management
 
 ## Task One: Basic Keyboard Events
 

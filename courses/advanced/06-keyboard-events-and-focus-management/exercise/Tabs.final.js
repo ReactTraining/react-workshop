@@ -60,6 +60,7 @@ export const Tab = forwardRef(
     // Combine Refs
     const ref = useForkedRef(tabRef, forwardedRef)
 
+    // solve with mounted ref
     useEffect(() => {
       if (selected) {
         tabRef.current.focus()
@@ -100,8 +101,6 @@ export const Tab = forwardRef(
         id={`tabs-${tabsId}-tab-${index}`}
         aria-controls={`tabs-${tabsId}-panel-${index}`}
         aria-selected={selected}
-        aria-disabled={disabled}
-        data-disabled={disabled}
         disabled={disabled}
         data-tab=""
         data-selected={selected ? '' : undefined}

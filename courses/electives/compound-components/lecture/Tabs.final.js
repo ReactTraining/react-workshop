@@ -43,8 +43,6 @@ export function Tab({ children, disabled, ...props }) {
       role="tab"
       {...props}
       aria-selected={selected}
-      aria-disabled={disabled}
-      data-disabled={disabled}
       disabled={disabled}
       data-reach-tab=""
       data-selected={selected ? '' : undefined}

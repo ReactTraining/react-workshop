@@ -19,6 +19,7 @@ function App() {
   )
 }
 
+// Since we're using `useDescendants`, we can now make abstractions like this:
 function AuthenticatedMenuItems() {
   return (
     <Fragment>
@@ -27,5 +28,14 @@ function AuthenticatedMenuItems() {
     </Fragment>
   )
 }
+
+/*
+✅ It uses a popup that knows how to avoid collisions with the viewport. It also
+   makes use of dynamic portals.
+✅ We can finally add extra DOM containers. The problem before was all those cases
+   of doing React.Children.map to manage indexes. But now we are using `useDescendants`
+   so each MenuItem will "register" itself and announce it's index to `Menu`.
+❌ Add Keyboard Events
+*/
 
 ReactDOM.render(<App />, document.getElementById('root'))
