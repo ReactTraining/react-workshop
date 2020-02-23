@@ -109,7 +109,10 @@ There's also a document in this repo called [Prerequisites](./prerequisites.md) 
 
 ### We took notes for you!
 
-During the lectures, feel free to take notes. We also have some [pre-made notes](/student-lesson-notes.md) for you in this repo that you can edit as you see fit.
+During the lectures, feel free to take notes. We also have some pre-made notes for you in this repo that you can edit as you see fit.
+
+- [student-lesson-notes-fundamentals.md](/student-lesson-notes-fundamentals.md)
+- student-lesson-notes-advanced (not ready yet)
 
 ## Prettier Plugin
 
@@ -121,7 +124,9 @@ You might notice as the instructors save their code that a tool called "Prettier
 
 When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
-There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db` (Bash) as a command for you in case this happens. This won't work on Windows PowerShell. All the command does is quit the processes associated with port 3333. If you're using PowerShell you can do that manually.
+When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/YesterTech/database`.
+
+There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db-port` as a command for you in case this happens. All this does is quit the processes associated with port 3333. If you have any problems you can do this manually.
 
 ## Updating
 
@@ -174,34 +179,27 @@ $ sudo rm -rf /usr/local/lib/node_modules
 $ npm install
 ```
 
-- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db` (Mac/Linux). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
+- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db-port` (Mac/Linux). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
-- **After you install on Windows, you get an error about `xargs`**. This is because you're probably not using Bash (perhaps PowerShell instead). See [PowerShell](#powershell) below.
-
-- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` (Bash) and see if that fixes it. If you're on Windows, see the [PowerShell](#powershell) section below.
+- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` and see if that fixes it. If you're on Windows, see the [PowerShell](#powershell) section below.
 
 ## Windows Users
 
-**TL;DR: Generally speaking, we've seen the most problems occur when a user installs the repo with Powershell (they get an `xargs` error). What we recommend is that you run `npm install` in Git Bash, and then you can use Powershell/the VSCode Terminal for everything else.**
+**TL;DR: You probably want to use PowerShell instead of GitBash**
+
+There are three problems that might arise in a Windows Environment:
+
+- Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details
+- If you're able to successfully run the app once but it doesn't start on the subsequent runs, chances are the database port didn't shut down when you recently stopped the app. See the [Database](#database) section above for details.
+- If you do `npm run app` or `npm start` and you get weird errors instead of our menu system, we don't know what that is yet but the only reporters have been using GitBash instead of PowerShell.
+
+<hr />
 
 If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
 
-Most of our instructors are using Mac which means our command-line tools are "Bash" (Linux users are also using Bash). On Windows, you probably have PowerShell by default. PowerShell will cause some small issues but we have some notes for you to hopefully get around them below. We strongly recommend installing [Git For Windows](https://gitforwindows.org) which you might already have. This will give you a bash emulator which in addition to giving you the ability to do git commands (which you might be able to also do with PowerShell), it will also give you the ability to do other bash commands which you cannot do with PowerShell. Our setup process runs some bash commands so that's why PowerShell doesn't work out so well.
-
-Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default ([but this can be changed in settings to Bash](https://medium.com/danielpadua/git-bash-with-vscode-593d5998f6be))
+Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default.
 
 If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
-
-While we recommend GitBash instead (see [Windows Users](#windows-users) section), If you have to use PowerShell, you'll probably get an error after you do `npm install` that mentions `xargs`. This is because after everything installs we run a little bash command that copies all instances of `db-seed.json` to `db.json` (in the same directory). You might have to do that manually:
-
-```sh
-# Copy
-./apps/YesterTech/database/db-seed.json
-# Paste as
-./apps/YesterTech/database/db.json
-```
-
-If you're having issues with our database or running `npm run kill-db`, see the [Database](#database) section above.
 
 If these instructions for Windows users can be improved, please let us know or make a PR!
 

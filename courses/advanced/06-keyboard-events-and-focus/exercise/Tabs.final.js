@@ -55,16 +55,18 @@ export const Tab = forwardRef(
     const { index, totalTabs } = useContext(TabContext)
     const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
     const selected = index === selectedIndex
+    const mountedRef = useRef(false)
     const tabRef = useRef(null)
 
     // Combine Refs
     const ref = useForkedRef(tabRef, forwardedRef)
 
-    // solve with mounted ref
     useEffect(() => {
-      if (selected) {
+      // Do not set the focus when we first mount
+      if (mountedRef.current && selected) {
         tabRef.current.focus()
       }
+      mountedRef.current = true
     }, [selected])
 
     function handleClick() {

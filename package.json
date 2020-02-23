@@ -9,8 +9,8 @@
     "clean": "git clean -fdX .",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "kill-db": "lsof -ti :3333 | xargs kill",
-    "create-db": "find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'",
+    "kill-db-port": "node scripts/kill-db-port 3333",
+    "create-db": "node scripts/create-db",
     "postinstall": "npm run create-db"
   },
   "devDependencies": {
@@ -24,12 +24,14 @@
     "concurrently": "^5.0.0",
     "css-loader": "^2.1.1",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "find-process": "^1.4.3",
     "jest": "^24.9.0",
     "json-server": "^0.15.1",
     "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
     "readline-sync": "^1.4.10",
     "sass-loader": "^7.2.0",
+    "shelljs": "^0.8.3",
     "style-loader": "^1.0.0"
   },
   "dependencies": {

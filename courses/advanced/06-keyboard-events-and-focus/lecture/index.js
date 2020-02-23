@@ -5,6 +5,7 @@ import './styles.scss'
 
 function App() {
   const logged = true
+
   return (
     <Menu>
       <MenuButton className="button">Menu</MenuButton>

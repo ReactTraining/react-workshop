@@ -13,11 +13,6 @@ Check the fundamentals for this https://twitter.com/sophiebits/status/1228942768
 - Lecture
   - End with adding `multiple` and `collapsible` stuff
 
-# 06 Popups and Keyboard Events
-
-- Lecture - Do the emoji list in the index
-- exercise: fix the fact that it auto focuses
-
 ```js
 let id = 0
 const getId = () => ++id

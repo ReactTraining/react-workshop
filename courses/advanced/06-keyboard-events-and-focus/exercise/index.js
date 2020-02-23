@@ -18,8 +18,8 @@ function App() {
             component and also change tabs in a way that the user would anticipate.
           </TabPanel>
           <TabPanel className="spacing">
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Password" />
+            <input type="text" placeholder="Email" aria-label="Email" />
+            <input type="text" placeholder="Password" aria-label="Password" />
           </TabPanel>
         </TabPanels>
       </Tabs>
