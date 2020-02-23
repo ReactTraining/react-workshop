@@ -15,7 +15,7 @@ Before attending the training, please make sure you install the code (not just c
 
 If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
 
-**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. Particularly, you might not want to use PowerShell.
+**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. Particularly, we have found that PowerShell works better.
 
 <hr />
 
