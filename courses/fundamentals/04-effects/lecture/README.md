@@ -28,7 +28,7 @@ We're doing a side effect but this effect is going to run every time this compon
 function ProductsSidebar() {
   const media = window.matchMedia('(min-width: 800px)')
 
-  const media.addListener(() => {
+  media.addListener(() => {
     console.log(media.matches)
     // What now? We don't have anywhere to save the new value to
   })
@@ -48,7 +48,7 @@ function ProductsSidebar() {
 
   useEffect(() => {
     const media = window.matchMedia(query)
-    const media.addListener(() => {
+    media.addListener(() => {
       setIsWide(media.matches)
     })
   }, [])
