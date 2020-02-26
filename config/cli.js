@@ -18,7 +18,10 @@ module.exports = function() {
   console.clear()
 
   // Are we trying to choose an app or a lesson to load
-  const { appPath, alias } = process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
+  const { appPath, alias } =
+    process.argv[2] === 'app'
+      ? { appPath: getAppPath() }
+      : selectLesson()
 
   /**
    * Does the app use a json-server database
@@ -35,7 +38,9 @@ module.exports = function() {
         name: 'json-server database',
       },
     ]).catch(err => {
-      console.error("JSON-SERVER was not able to start, or it's process was manually killed.\n\n")
+      console.error(
+        "JSON-SERVER was not able to start, or it's process was manually killed.\n\n"
+      )
       console.error(err)
       process.exit(1)
     })
@@ -55,7 +60,11 @@ function selectLesson() {
   /**
    * Load Preferences
    */
-  const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
+  const preferencesPath = path.resolve(
+    __dirname,
+    '..',
+    'preferences.json'
+  )
   let preferences = {}
   try {
     const data = fs.readFileSync(preferencesPath, 'utf8')
@@ -82,17 +91,22 @@ function selectLesson() {
     // Read course options and make list
     const coursesPath = path.resolve(__dirname, '..', 'courses')
     const courseOptions = fs.readdirSync(coursesPath).filter(item => {
-      return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
+      return fs
+        .lstatSync(path.resolve(coursesPath, item))
+        .isDirectory()
     })
 
     // See if the user made a pre-selection in cli: `npm start fundamentals`
     // or if they have one listed in their `preferences.json` file
     if (courseOptions.includes(process.argv[2])) {
       selectedCourse = process.argv[2]
-    } else if (preferences.course && courseOptions.includes(preferences.course)) {
+    } else if (
+      preferences.course &&
+      courseOptions.includes(preferences.course)
+    ) {
       selectedCourse = preferences.course
       console.log(
-        `Using course from preferences.json. Remove that file to choose a difference course or select with CLI: npm start advanced\n`
+        `Using the "${selectedCourse}" course as specified in preferences.json. To run a different course, remove that file or select it with the CLI: npm start advanced\n`
       )
     }
 
@@ -108,15 +122,25 @@ function selectLesson() {
 
     // See if they want to save their choice to `preferences.json`
     if (!preferences.course) {
-      if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
+      if (
+        readlineSync.keyInYN(
+          '\nDo you want us to remember this course selection?'
+        )
+      ) {
         try {
           fs.writeFileSync(
             preferencesPath,
-            JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
+            JSON.stringify(
+              { ...preferences, course: selectedCourse },
+              null,
+              2
+            )
           )
           console.log('\nPreferences are saved in `preferences.json`')
         } catch (err) {
-          console.error(`\nCould not save preferences to ${preferencesPath}`)
+          console.error(
+            `\nCould not save preferences to ${preferencesPath}`
+          )
         }
       }
     }
@@ -126,9 +150,15 @@ function selectLesson() {
      */
 
     // Read lesson options and make a list
-    const lessonsPath = path.resolve(__dirname, '..', `courses/${selectedCourse}`)
+    const lessonsPath = path.resolve(
+      __dirname,
+      '..',
+      `courses/${selectedCourse}`
+    )
     const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
-      return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
+      return fs
+        .lstatSync(path.resolve(lessonsPath, item))
+        .isDirectory()
     })
     if (lessonOptions.length === 0) {
       console.log(`\nThere are no lessons in ${selectedCourse}`)
@@ -144,7 +174,10 @@ function selectLesson() {
 
     // See the third or fourth cli argument was meant to be a selectedOption by number
     // This is for doing `npm start fundamentals 2` or `npm start 2` (assuming they have preferences for course)
-    if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
+    if (
+      !isNaN(selectedLessonArg) &&
+      lessonOptions[selectedLessonArg - 1]
+    ) {
       selectedLesson = lessonOptions[selectedLessonArg - 1]
 
       // Or they can do `npm start fundamentals state` or `npm start state` (assuming they have preferences for course)
@@ -154,13 +187,18 @@ function selectLesson() {
       // Show Menu
     } else {
       console.log(`\nWhich Lesson of ${selectedCourse}?`)
-      const modifiedLessonOptions = lessonOptions.concat(['FULL APP', 'BACK TO COURSE SELECTION'])
+      const modifiedLessonOptions = lessonOptions.concat([
+        'FULL APP',
+        'BACK TO COURSE SELECTION',
+      ])
       const choice = readlineSync.keyInSelect(modifiedLessonOptions)
       if (choice === -1) {
         process.exit(0)
       } else if (modifiedLessonOptions[choice] === 'FULL APP') {
         return { appPath: appPaths[selectedCourse] }
-      } else if (modifiedLessonOptions[choice] === 'BACK TO COURSE SELECTION') {
+      } else if (
+        modifiedLessonOptions[choice] === 'BACK TO COURSE SELECTION'
+      ) {
         preferences.course = null
         selectedCourse = null
         // Starts CLI menu over
@@ -175,7 +213,11 @@ function selectLesson() {
    * Exercise or Lecture
    */
 
-  const selectedLessonType = [process.argv[2], process.argv[3], process.argv[4]].includes('lecture')
+  const selectedLessonType = [
+    process.argv[2],
+    process.argv[3],
+    process.argv[4],
+  ].includes('lecture')
     ? 'lecture'
     : 'exercise'
 

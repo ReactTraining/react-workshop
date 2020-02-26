@@ -118,7 +118,7 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 70,
-    "trailingComma": true
+    "trailingComma": "es5"
   },
   "jest": {
     "moduleNameMapper": {
