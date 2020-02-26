@@ -59,7 +59,7 @@ function ProductsSidebar() {
 
 Now:
 
-1. The effect doesn't run with each re-render (explain the dep array) so we only subscribe once.
+1. The effect doesn't run with each re-render (explain the dep array).
 2. We only subscribe once.
 3. We have a way to update `isWide`.
 4. Even if we kept the code before, it would have ran in SSR to which there is no `window`. React's side effects are always intended for the front-end. `useEffect` doesn't run in SSR, it only runs in front-end.
