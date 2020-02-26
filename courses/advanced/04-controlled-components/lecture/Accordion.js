@@ -1,4 +1,9 @@
-import React, { useState, useContext, useRef, forwardRef } from 'react'
+import React, {
+  useState,
+  useContext,
+  useRef,
+  forwardRef,
+} from 'react'
 import PropTypes from 'prop-types'
 import { wrapEvent } from '../../utils'
 import { useId } from '../../useId'
@@ -10,7 +15,10 @@ const AccordionContext = React.createContext()
  */
 
 export const Accordion = forwardRef(
-  ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
+  (
+    { children, onChange, defaultIndex = 0, id, ...props },
+    forwardedRef
+  ) => {
     const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
     const accordionId = useId(id)
 
@@ -27,7 +35,9 @@ export const Accordion = forwardRef(
           setSelectedIndex(index)
         },
       }
-      return <AccordionContext.Provider value={context} children={child} />
+      return (
+        <AccordionContext.Provider value={context} children={child} />
+      )
     })
 
     return (
@@ -47,20 +57,22 @@ Accordion.propTypes = {
  * Accordion Item
  */
 
-export const AccordionItem = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { selected } = useContext(AccordionContext)
+export const AccordionItem = forwardRef(
+  ({ children, ...props }, forwardedRef) => {
+    const { selected } = useContext(AccordionContext)
 
-  return (
-    <div
-      {...props}
-      data-accordion-item=""
-      data-state={selected ? 'open' : 'collapsed'}
-      ref={forwardedRef}
-    >
-      {children}
-    </div>
-  )
-})
+    return (
+      <div
+        {...props}
+        data-accordion-item=""
+        data-state={selected ? 'open' : 'collapsed'}
+        ref={forwardedRef}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 AccordionItem.displayName = 'AccordionItem'
 
@@ -68,23 +80,27 @@ AccordionItem.displayName = 'AccordionItem'
  * Accordion Button
  */
 
-export const AccordionButton = forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { panelId, selected, selectPanel } = useContext(AccordionContext)
+export const AccordionButton = forwardRef(
+  ({ children, onClick, ...props }, forwardedRef) => {
+    const { panelId, selected, selectPanel } = useContext(
+      AccordionContext
+    )
 
-  return (
-    <button
-      {...props}
-      onClick={wrapEvent(onClick, selectPanel)}
-      data-accordion-button=""
-      data-state={selected ? 'open' : 'collapsed'}
-      aria-expanded={selected}
-      aria-controls={panelId}
-      ref={forwardedRef}
-    >
-      {children}
-    </button>
-  )
-})
+    return (
+      <button
+        {...props}
+        onClick={wrapEvent(onClick, selectPanel)}
+        data-accordion-button=""
+        data-state={selected ? 'open' : 'collapsed'}
+        aria-expanded={selected}
+        aria-controls={panelId}
+        ref={forwardedRef}
+      >
+        {children}
+      </button>
+    )
+  }
+)
 
 AccordionButton.displayName = 'AccordionButton'
 AccordionButton.propTypes = {
@@ -95,23 +111,27 @@ AccordionButton.propTypes = {
  * Accordion Panel
  */
 
-export const AccordionPanel = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected } = useContext(AccordionContext)
+export const AccordionPanel = forwardRef(
+  ({ children, ...props }, forwardedRef) => {
+    const { buttonId, panelId, selected } = useContext(
+      AccordionContext
+    )
 
-  return (
-    <div
-      role="region"
-      {...props}
-      id={panelId}
-      aria-labelledby={buttonId}
-      hidden={!selected}
-      data-accordion-panel=""
-      data-state={selected ? 'open' : 'collapsed'}
-      ref={forwardedRef}
-    >
-      {children}
-    </div>
-  )
-})
+    return (
+      <div
+        role="region"
+        {...props}
+        id={panelId}
+        aria-labelledby={buttonId}
+        hidden={!selected}
+        data-accordion-panel=""
+        data-state={selected ? 'open' : 'collapsed'}
+        ref={forwardedRef}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 AccordionPanel.displayName = 'AccordionPanel'

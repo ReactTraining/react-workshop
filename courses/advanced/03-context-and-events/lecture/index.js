@@ -1,6 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from './Accordion'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from './Accordion'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'
 
@@ -10,13 +15,15 @@ function App() {
       <AccordionItem>
         <AccordionButton>What is ARIA?</AccordionButton>
         <AccordionPanel>
-          A way to make web content more accessible: "Accessible Rich Internet Applications".
+          A way to make web content more accessible: "Accessible Rich
+          Internet Applications".
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
         <AccordionButton>What does "a11y" stand for?</AccordionButton>
         <AccordionPanel>
-          A11y is short for "accessibility" since there are 11 characters between "a" and "y".
+          A11y is short for "accessibility" since there are 11
+          characters between "a" and "y".
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

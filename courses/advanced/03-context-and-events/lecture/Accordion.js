@@ -39,7 +39,10 @@ Accordion.displayName = 'Accordion'
  */
 
 export const AccordionItem = forwardRef(
-  ({ children, buttonId, panelId, selected, selectPanel, ...props }, forwardedRef) => {
+  (
+    { children, buttonId, panelId, selected, selectPanel, ...props },
+    forwardedRef
+  ) => {
     children = React.Children.map(children, child => {
       return React.cloneElement(child, {
         buttonId,
@@ -69,7 +72,10 @@ AccordionItem.displayName = 'AccordionItem'
  */
 
 export const AccordionButton = forwardRef(
-  ({ children, buttonId, panelId, selected, selectPanel, ...props }, forwardedRef) => {
+  (
+    { children, buttonId, panelId, selected, selectPanel, ...props },
+    forwardedRef
+  ) => {
     return (
       <button
         {...props}
@@ -94,7 +100,10 @@ AccordionButton.displayName = 'AccordionButton'
  */
 
 export const AccordionPanel = forwardRef(
-  ({ children, buttonId, panelId, selected, ...props }, forwardedRef) => {
+  (
+    { children, buttonId, panelId, selected, ...props },
+    forwardedRef
+  ) => {
     // Since we're passing our internal implementations down through props,
     // and then also forwarding props, some unneeded things are being passed
     // to the DOM, like props.selectPanel in this case.

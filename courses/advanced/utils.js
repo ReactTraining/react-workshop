@@ -32,7 +32,9 @@ export function assignRef(ref, value) {
     try {
       ref.current = value
     } catch (error) {
-      throw new Error(`Cannot assign value "${value}" to ref "${ref}"`)
+      throw new Error(
+        `Cannot assign value "${value}" to ref "${ref}"`
+      )
     }
   }
 }

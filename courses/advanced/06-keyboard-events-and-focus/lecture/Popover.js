@@ -30,7 +30,10 @@ Popover.displayName = 'Popover'
  * up, so useRect needs to live down here not up in Popover
  */
 const PopoverImpl = forwardRef(
-  ({ targetRef, style, position = positionDefault, ...props }, forwardedRef) => {
+  (
+    { targetRef, style, position = positionDefault, ...props },
+    forwardedRef
+  ) => {
     const popoverRef = useRef(null)
     const popoverRect = useRect(popoverRef)
     const targetRect = useRect(targetRef)
@@ -74,14 +77,23 @@ export const positionDefault = (targetRect, popoverRect) => {
     return {}
   }
 
-  const { directionUp, directionRight } = getCollisions(targetRect, popoverRect)
+  const { directionUp, directionRight } = getCollisions(
+    targetRect,
+    popoverRect
+  )
   return {
     left: directionRight
-      ? `${targetRect.right - popoverRect.width + window.pageXOffset}px`
+      ? `${targetRect.right -
+          popoverRect.width +
+          window.pageXOffset}px`
       : `${targetRect.left + window.pageXOffset}px`,
     top: directionUp
-      ? `${targetRect.top - popoverRect.height + window.pageYOffset}px`
-      : `${targetRect.top + targetRect.height + window.pageYOffset}px`,
+      ? `${targetRect.top -
+          popoverRect.height +
+          window.pageYOffset}px`
+      : `${targetRect.top +
+          targetRect.height +
+          window.pageYOffset}px`,
   }
 }
 
@@ -89,11 +101,20 @@ export const positionDefault = (targetRect, popoverRect) => {
  * getCollisions
  */
 
-function getCollisions(targetRect, popoverRect, offsetLeft = 0, offsetBottom = 0) {
+function getCollisions(
+  targetRect,
+  popoverRect,
+  offsetLeft = 0,
+  offsetBottom = 0
+) {
   const collisions = {
     top: targetRect.top - popoverRect.height < 0,
-    right: window.innerWidth < targetRect.left + popoverRect.width - offsetLeft,
-    bottom: window.innerHeight < targetRect.bottom + popoverRect.height - offsetBottom,
+    right:
+      window.innerWidth <
+      targetRect.left + popoverRect.width - offsetLeft,
+    bottom:
+      window.innerHeight <
+      targetRect.bottom + popoverRect.height - offsetBottom,
     left: targetRect.left - popoverRect.width < 0,
   }
 

@@ -24,7 +24,9 @@ export function Tabs({ data, ...props }) {
         })}
       </div>
       <div data-reach-tab-panels="">
-        <div data-reach-tab-panel="">{data[selectedIndex].content}</div>
+        <div data-reach-tab-panel="">
+          {data[selectedIndex].content}
+        </div>
       </div>
     </div>
   )

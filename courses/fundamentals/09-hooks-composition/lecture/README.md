@@ -42,7 +42,9 @@ How are we going to re-run the effect if `productId` changes?
 We could try something like this:
 
 ```js
-const products = useApi(() => api.products.getProduct(productId), [productId])
+const products = useApi(() => api.products.getProduct(productId), [
+  productId,
+])
 ```
 
 ...and create our own concept of a dependency array. Then we'd take that argument and plug it into the effect's array? The linter will complain about that too since it cannot statically analyze that array. In other words:
@@ -59,7 +61,10 @@ export default function useApi(api, depArray) {
 The solution is `useCallback` like this:
 
 ```js
-const getProducts = useCallback(() => api.products.getProduct(productId), [productId])
+const getProducts = useCallback(
+  () => api.products.getProduct(productId),
+  [productId]
+)
 const products = useApi(getProducts)
 ```
 
@@ -68,7 +73,9 @@ And now the dependency array in the effect can just be `[api]`. Before we used `
 Hooks can also be composed, since their just functions (Hooks Composition):
 
 ```js
-const products = useApi(useCallback(() => api.products.getProduct(productId), [productId]))
+const products = useApi(
+  useCallback(() => api.products.getProduct(productId), [productId])
+)
 ```
 
 ## Refactor to `usePromise`
@@ -83,9 +90,19 @@ export default function usePromise(api) {
         case 'LOADING':
           return { ...state, loading: true }
         case 'RESOLVED':
-          return { ...state, loading: false, response: action.response, error: null }
+          return {
+            ...state,
+            loading: false,
+            response: action.response,
+            error: null,
+          }
         case 'ERROR':
-          return { ...state, loading: false, response: null, error: action.error }
+          return {
+            ...state,
+            loading: false,
+            response: null,
+            error: action.error,
+          }
         default:
           return state
       }

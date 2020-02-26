@@ -5,7 +5,9 @@ const ShoppingCartContext = React.createContext()
 export function ShoppingCartProvider({ children }) {
   // paste `cart` state here and utility functions
 
-  return <ShoppingCartContext.Provider value={{}} children={children} />
+  return (
+    <ShoppingCartContext.Provider value={{}} children={children} />
+  )
 }
 
 export function useShoppingCart() {

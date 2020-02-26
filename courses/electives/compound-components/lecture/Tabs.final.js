@@ -71,7 +71,12 @@ export function TabPanel({ children, ...props }) {
   const selected = selectedIndex === index
 
   return (
-    <div role="tabpanel" {...props} hidden={!selected} data-reach-tab-panel="">
+    <div
+      role="tabpanel"
+      {...props}
+      hidden={!selected}
+      data-reach-tab-panel=""
+    >
       {children}
     </div>
   )

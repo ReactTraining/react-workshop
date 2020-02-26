@@ -1,5 +1,11 @@
 import React, { useState, useReducer } from 'react'
-import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+  useHistory,
+} from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // To run the final solution: Comment this in and the rest out

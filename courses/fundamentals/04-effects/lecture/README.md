@@ -44,7 +44,9 @@ The side effect still runs after every re-render (if there were other state or t
 ```js
 function ProductsSidebar() {
   const query = '(min-width: 800px)'
-  const [isWide, setIsWide] = useState(window.matchMedia(query).matches)
+  const [isWide, setIsWide] = useState(
+    window.matchMedia(query).matches
+  )
 
   useEffect(() => {
     const media = window.matchMedia(query)
@@ -105,7 +107,9 @@ NOTE: To help demonstrate the value of the `productId` in the dependency array, 
 
 ```js
 function useMedia(query) {
-  const [matches, setMatches] = useState(window.matchMedia(query).matches)
+  const [matches, setMatches] = useState(
+    window.matchMedia(query).matches
+  )
   // ...
 }
 

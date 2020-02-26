@@ -2,7 +2,11 @@ import React, { useState, forwardRef } from 'react'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import { useId } from '../../useId'
 
-export function Disclosure({ children, summary, defaultIsOpen = false }) {
+export function Disclosure({
+  children,
+  summary,
+  defaultIsOpen = false,
+}) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
 
   function onSelect() {

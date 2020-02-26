@@ -27,7 +27,11 @@ function ProductProfile() {
     <div className="spacing">
       <Columns gutters>
         <Column>
-          <ProductImage src={product.imagePath} alt={product.name} size={15} />
+          <ProductImage
+            src={product.imagePath}
+            alt={product.name}
+            size={15}
+          />
         </Column>
         <Column flex className="spacing">
           <Heading>{product.name}</Heading>
@@ -43,13 +47,18 @@ function ProductProfile() {
             </Column>
             <Column className="spacing-small">
               <ShoppingCartButton
-                onClick={() => addToCart(productId, product.name, product.price)}
+                onClick={() =>
+                  addToCart(productId, product.name, product.price)
+                }
                 getQuantity={quantity}
               />
 
               {quantity > 0 && (
                 <div className="align-right">
-                  <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />
+                  <Quantity
+                    onChange={q => updateQuantity(productId, q)}
+                    quantity={quantity}
+                  />
                 </div>
               )}
             </Column>
