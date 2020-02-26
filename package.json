@@ -114,11 +114,10 @@
     ]
   },
   "prettier": {
-    "tabWidth": 2,
+    "printWidth": 100,
     "semi": false,
     "singleQuote": true,
-    "printWidth": 70,
-    "trailingComma": "es5"
+    "tabWidth": 2
   },
   "jest": {
     "moduleNameMapper": {

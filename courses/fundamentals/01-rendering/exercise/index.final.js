@@ -13,22 +13,22 @@ const products = [
     name: 'Mario Kart',
     rating: 5,
     brand: 'Nintendo',
-    condition: 'new',
+    condition: 'new'
   },
   {
     id: 2,
     name: 'Donkey Kong',
     rating: 3.5,
     brand: 'Nintendo',
-    condition: 'good',
+    condition: 'good'
   },
   {
     id: 3,
     name: 'Nintendo NES',
     rating: 4,
     brand: 'Nintendo',
-    condition: 'fair',
-  },
+    condition: 'fair'
+  }
 ]
 
 function BrowseProducts() {

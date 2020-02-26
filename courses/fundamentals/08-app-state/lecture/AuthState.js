@@ -4,7 +4,7 @@ const AuthStateContext = React.createContext()
 
 const initialState = {
   authenticated: false,
-  user: null,
+  user: null
 }
 
 export function AuthStateProvider({ children }) {
@@ -23,7 +23,7 @@ export function AuthStateProvider({ children }) {
 
   const value = {
     ...state,
-    dispatch,
+    dispatch
   }
 
   return (

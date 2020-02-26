@@ -43,7 +43,7 @@ We could try something like this:
 
 ```js
 const products = useApi(() => api.products.getProduct(productId), [
-  productId,
+  productId
 ])
 ```
 
@@ -94,14 +94,14 @@ export default function usePromise(api) {
             ...state,
             loading: false,
             response: action.response,
-            error: null,
+            error: null
           }
         case 'ERROR':
           return {
             ...state,
             loading: false,
             response: null,
-            error: action.error,
+            error: action.error
           }
         default:
           return state
@@ -110,7 +110,7 @@ export default function usePromise(api) {
     {
       loading: false,
       response: null,
-      error: null,
+      error: null
     }
   )
 

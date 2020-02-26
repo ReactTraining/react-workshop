@@ -24,7 +24,7 @@ function Checkout() {
     },
     {
       sameAsBilling: false,
-      fields: {},
+      fields: {}
     }
   )
 

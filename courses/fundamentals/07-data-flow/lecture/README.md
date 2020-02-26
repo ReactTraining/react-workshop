@@ -77,7 +77,7 @@ function PrimaryLayout() {
 
   function addToCart(productId, name, price) {
     const newCart = cart.concat([
-      { productId, quantity: 1, name, price },
+      { productId, quantity: 1, name, price }
     ])
     setCart(newCart)
   }

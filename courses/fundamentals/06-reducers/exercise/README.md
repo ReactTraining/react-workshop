@@ -12,14 +12,14 @@ const [state, dispatch] = useReducer(
       case 'TOGGLE_SAME_AS_BILLING':
         return {
           ...state,
-          sameAsBilling: !state.sameAsBilling,
+          sameAsBilling: !state.sameAsBilling
         }
       default:
         return state
     }
   },
   {
-    sameAsBilling: false,
+    sameAsBilling: false
   }
 )
 ```
@@ -50,7 +50,7 @@ The idea here is that now you can do your dispatches like this where you specify
 dispatch({
   type: 'CHANGE_FIELD',
   field: 'billingName',
-  value: 'Cassidy',
+  value: 'Cassidy'
 })
 ```
 

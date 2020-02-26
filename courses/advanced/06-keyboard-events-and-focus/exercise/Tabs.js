@@ -3,7 +3,7 @@ import React, {
   useContext,
   forwardRef,
   useRef,
-  useEffect,
+  useEffect
 } from 'react'
 import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
@@ -38,7 +38,7 @@ export const Tabs = forwardRef(
         if (!isControlled) {
           setSelectedIndex(index)
         }
-      },
+      }
     }
 
     return (

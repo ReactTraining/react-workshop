@@ -332,7 +332,7 @@ function Pokemon() {
   // Change state here to be a Pokemon object
   const [pokémon, setPokémon] = useState({
     name: 'Pikachu',
-    sprite: null,
+    sprite: null
   })
   useTitle('Saying hello to ' + pokémon.name)
 

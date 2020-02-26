@@ -8,7 +8,7 @@ import Heading from 'YesterTech/Heading'
 function CheckoutBilling({
   onSubmit,
   defaultSameAsBilling = false,
-  defaultFields = {},
+  defaultFields = {}
 }) {
   const [state, dispatch] = useReducer(
     (state, action) => {
@@ -26,7 +26,7 @@ function CheckoutBilling({
       billingName: defaultFields.billingName || '',
       billingAddress: defaultFields.billingAddress || '',
       shippingName: defaultFields.shippingName || '',
-      shippingAddress: defaultFields.shippingAddress || '',
+      shippingAddress: defaultFields.shippingAddress || ''
     }
   )
 
@@ -35,7 +35,7 @@ function CheckoutBilling({
     billingName,
     billingAddress,
     shippingName,
-    shippingAddress,
+    shippingAddress
   } = state
 
   function handleSubmit(event) {
@@ -46,7 +46,7 @@ function CheckoutBilling({
       shippingName: sameAsBilling ? billingName : shippingName,
       shippingAddress: sameAsBilling
         ? billingAddress
-        : shippingAddress,
+        : shippingAddress
     }
     onSubmit(sameAsBilling, fields)
   }

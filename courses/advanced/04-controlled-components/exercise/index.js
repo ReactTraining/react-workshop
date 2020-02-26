@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {
   Disclosure,
   DisclosureButton,
-  DisclosurePanel,
+  DisclosurePanel
 } from './Disclosure'
 import './styles.scss'
 

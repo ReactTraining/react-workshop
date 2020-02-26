@@ -5,7 +5,7 @@ import { useId } from '../../useId'
 export function Disclosure({
   children,
   summary,
-  defaultIsOpen = false,
+  defaultIsOpen = false
 }) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
 

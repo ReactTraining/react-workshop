@@ -2,7 +2,7 @@ import React, {
   useRef,
   useState,
   useLayoutEffect,
-  forwardRef,
+  forwardRef
 } from 'react'
 import { createPortal } from 'react-dom'
 

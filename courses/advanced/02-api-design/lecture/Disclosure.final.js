@@ -14,7 +14,7 @@ export function Disclosure({
     return React.cloneElement(child, {
       isOpen,
       panelId,
-      onSelect: () => setIsOpen(!isOpen),
+      onSelect: () => setIsOpen(!isOpen)
     })
   })
 

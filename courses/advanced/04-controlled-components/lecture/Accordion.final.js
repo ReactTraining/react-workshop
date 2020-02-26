@@ -2,7 +2,7 @@ import React, {
   useState,
   useContext,
   useRef,
-  forwardRef,
+  forwardRef
 } from 'react'
 import PropTypes from 'prop-types'
 import { wrapEvent } from '../../utils'
@@ -55,7 +55,7 @@ export const Accordion = forwardRef(
           if (!isControlled) {
             setSelectedIndex(index)
           }
-        },
+        }
       }
       return (
         <AccordionContext.Provider value={context} children={child} />
@@ -72,7 +72,7 @@ export const Accordion = forwardRef(
 
 Accordion.displayName = 'Accordion'
 Accordion.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 }
 
 /**
@@ -126,7 +126,7 @@ export const AccordionButton = forwardRef(
 
 AccordionButton.displayName = 'AccordionButton'
 AccordionButton.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 }
 
 /**

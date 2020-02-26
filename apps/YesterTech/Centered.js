@@ -5,7 +5,7 @@ function Centered({ as: Component = 'div', size = 30, children, ...rest }) {
     <Component
       style={{
         margin: `0 auto`,
-        maxWidth: `${size}rem`,
+        maxWidth: `${size}rem`
       }}
       {...rest}
     >

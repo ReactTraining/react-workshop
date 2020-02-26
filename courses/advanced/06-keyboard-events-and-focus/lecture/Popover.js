@@ -48,7 +48,7 @@ const PopoverImpl = forwardRef(
         style={{
           ...style,
           position: 'absolute',
-          ...getStyles(position, targetRect, popoverRect),
+          ...getStyles(position, targetRect, popoverRect)
         }}
         {...props}
       />
@@ -91,9 +91,7 @@ export const positionDefault = (targetRect, popoverRect) => {
       ? `${targetRect.top -
           popoverRect.height +
           window.pageYOffset}px`
-      : `${targetRect.top +
-          targetRect.height +
-          window.pageYOffset}px`,
+      : `${targetRect.top + targetRect.height + window.pageYOffset}px`
   }
 }
 
@@ -115,7 +113,7 @@ function getCollisions(
     bottom:
       window.innerHeight <
       targetRect.bottom + popoverRect.height - offsetBottom,
-    left: targetRect.left - popoverRect.width < 0,
+    left: targetRect.left - popoverRect.width < 0
   }
 
   const directionRight = collisions.right && !collisions.left

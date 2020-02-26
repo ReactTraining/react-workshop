@@ -4,7 +4,7 @@ import {
   Route,
   Redirect,
   useRouteMatch,
-  useHistory,
+  useHistory
 } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 

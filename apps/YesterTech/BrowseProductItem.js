@@ -19,7 +19,7 @@ function BrowseProductItem({
   condition = 'n/a',
   brand = 'n/a',
   category = 'n/a',
-  rating,
+  rating
 }) {
   // Cart
   const { addToCart, updateQuantity, getQuantity } = useShoppingCart()

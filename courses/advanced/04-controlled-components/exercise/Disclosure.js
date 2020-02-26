@@ -2,7 +2,7 @@ import React, {
   useState,
   useContext,
   useRef,
-  forwardRef,
+  forwardRef
 } from 'react'
 import PropTypes from 'prop-types'
 import { useId } from '../../useId'
@@ -26,7 +26,7 @@ export function Disclosure({
     onSelect: () => {
       onChange && onChange()
       setIsOpen(!isOpen)
-    },
+    }
   }
 
   return (
@@ -35,7 +35,7 @@ export function Disclosure({
 }
 
 Disclosure.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 }
 
 export const DisclosureButton = forwardRef(
@@ -62,7 +62,7 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 DisclosureButton.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 }
 
 export const DisclosurePanel = forwardRef(

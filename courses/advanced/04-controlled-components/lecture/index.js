@@ -4,7 +4,7 @@ import {
   Accordion,
   AccordionItem,
   AccordionButton,
-  AccordionPanel,
+  AccordionPanel
 } from './Accordion'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'

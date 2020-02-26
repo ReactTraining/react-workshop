@@ -18,7 +18,7 @@ function SearchBox({ placeholder, path }) {
     event.preventDefault()
     const search = queryString.stringify({
       ...queryString.parse(window.location.search),
-      q: query,
+      q: query
     })
     history.push(`${path}?${search}`)
   }

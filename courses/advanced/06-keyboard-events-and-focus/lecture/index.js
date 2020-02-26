@@ -6,7 +6,7 @@ import {
   MenuList,
   MenuPopover,
   MenuItems,
-  MenuItem,
+  MenuItem
 } from './Menu'
 import './styles.scss'
 

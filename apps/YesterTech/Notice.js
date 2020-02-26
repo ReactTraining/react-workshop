@@ -9,7 +9,7 @@ function Notice({ children, type = 'error' }) {
 }
 
 Notice.propTypes = {
-  type: PropTypes.oneOf(['error', 'success']),
+  type: PropTypes.oneOf(['error', 'success'])
 }
 
 export default Notice

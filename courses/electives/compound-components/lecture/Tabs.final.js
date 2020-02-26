@@ -9,7 +9,7 @@ export function Tabs({ children, ...props }) {
 
   const context = {
     selectedIndex,
-    setSelectedIndex,
+    setSelectedIndex
   }
 
   return (

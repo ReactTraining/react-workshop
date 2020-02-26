@@ -5,7 +5,7 @@ import {
   Link,
   Redirect,
   useRouteMatch,
-  useParams,
+  useParams
 } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 

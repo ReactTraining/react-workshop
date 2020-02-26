@@ -51,7 +51,7 @@ function PokemonInput({ defaultValue, onChange }) {
 function Pokemon() {
   const [pokémon, setPokémon] = useState({
     name: 'pikachu',
-    sprite: null,
+    sprite: null
   })
   useTitle('Saying hello to ' + pokémon.name)
 

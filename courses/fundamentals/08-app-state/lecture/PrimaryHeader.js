@@ -6,7 +6,7 @@ import {
   MenuList,
   MenuButton,
   MenuItem,
-  MenuLink,
+  MenuLink
 } from '@reach/menu-button'
 import { MdShoppingCart } from 'react-icons/md'
 

@@ -10,7 +10,7 @@ function Heading({ as: Component = 'h1', size = 1, className, ...rest }) {
 
 Heading.propTypes = {
   size: PropTypes.number,
-  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 }
 
 export default Heading

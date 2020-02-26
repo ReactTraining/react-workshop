@@ -3,7 +3,7 @@ import React, {
   useState,
   useEffect,
   forwardRef,
-  useContext,
+  useContext
 } from 'react'
 import PropTypes from 'prop-types'
 import { Popover } from './Popover'
@@ -13,7 +13,7 @@ import {
   createDescendantContext,
   DescendantProvider,
   useDescendant,
-  useDescendants,
+  useDescendants
 } from '@reach/descendants'
 
 const DescendantContext = createDescendantContext('DescendantContext')
@@ -39,7 +39,7 @@ export function Menu({ children, id, defaultOpen = false }) {
     buttonRef,
     popoverRef,
     activeIndex,
-    setActiveIndex,
+    setActiveIndex
   }
 
   return (
@@ -54,7 +54,7 @@ export function Menu({ children, id, defaultOpen = false }) {
 }
 
 Menu.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 }
 
 /**
@@ -68,7 +68,7 @@ export const MenuButton = forwardRef(
       isOpen,
       setIsOpen,
       setActiveIndex,
-      buttonRef,
+      buttonRef
     } = useContext(MenuContext)
 
     // Combine Refs
@@ -104,7 +104,7 @@ export const MenuButton = forwardRef(
 
 MenuButton.displayName = 'MenuButton'
 MenuButton.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 }
 
 /**
@@ -133,7 +133,7 @@ export const MenuPopover = forwardRef(
       setIsOpen,
       menuRef,
       popoverRef,
-      buttonRef,
+      buttonRef
     } = useContext(MenuContext)
     const ref = useForkedRef(popoverRef, forwardedRef)
 
@@ -210,7 +210,7 @@ export const MenuItem = forwardRef(
       menuRef,
       activeIndex,
       setIsOpen,
-      setActiveIndex,
+      setActiveIndex
     } = useContext(MenuContext)
     const menuItemRef = useRef(null)
 
@@ -219,7 +219,7 @@ export const MenuItem = forwardRef(
 
     const index = useDescendant({
       context: DescendantContext,
-      element: menuItemRef.current,
+      element: menuItemRef.current
     })
 
     const isSelected = index === activeIndex
@@ -260,5 +260,5 @@ export const MenuItem = forwardRef(
 
 MenuItem.displayName = 'MenuItem'
 Menu.propTypes = {
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.func
 }

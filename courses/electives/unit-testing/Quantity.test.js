@@ -157,7 +157,7 @@ describe('Quantity', () => {
       input.dispatchEvent(
         new KeyboardEvent('keydown', {
           key: 'ArrowUp',
-          bubbles: true,
+          bubbles: true
         })
       )
     })
@@ -173,7 +173,7 @@ describe('Quantity', () => {
       input.dispatchEvent(
         new KeyboardEvent('keydown', {
           key: 'ArrowUp',
-          bubbles: true,
+          bubbles: true
         })
       )
     })
@@ -181,7 +181,7 @@ describe('Quantity', () => {
       input.dispatchEvent(
         new KeyboardEvent('keydown', {
           key: 'ArrowDown',
-          bubbles: true,
+          bubbles: true
         })
       )
     })

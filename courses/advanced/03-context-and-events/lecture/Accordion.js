@@ -20,7 +20,7 @@ export const Accordion = forwardRef(
         buttonId,
         panelId,
         selected: selectedIndex === index,
-        selectPanel: () => setSelectedIndex(index),
+        selectPanel: () => setSelectedIndex(index)
       })
     })
 
@@ -48,7 +48,7 @@ export const AccordionItem = forwardRef(
         buttonId,
         panelId,
         selected,
-        selectPanel,
+        selectPanel
       })
     })
 

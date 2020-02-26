@@ -10,12 +10,12 @@ function App() {
   const tabData = [
     {
       label: 'Login',
-      content: <LoginForm />,
+      content: <LoginForm />
     },
     {
       label: 'Signup',
-      content: <SignupForm />,
-    },
+      content: <SignupForm />
+    }
   ]
 
   return <Tabs data={tabData} />

@@ -22,7 +22,7 @@ function CheckoutBilling({ onSubmit }) {
       billingName: '',
       billingAddress: '',
       shippingName: '',
-      shippingAddress: '',
+      shippingAddress: ''
     }
   )
 
@@ -31,7 +31,7 @@ function CheckoutBilling({ onSubmit }) {
     billingName,
     billingAddress,
     shippingName,
-    shippingAddress,
+    shippingAddress
   } = state
 
   function handleSubmit(event) {
@@ -42,7 +42,7 @@ function CheckoutBilling({ onSubmit }) {
       shippingName: sameAsBilling ? billingName : shippingName,
       shippingAddress: sameAsBilling
         ? billingAddress
-        : shippingAddress,
+        : shippingAddress
     }
     onSubmit(sameAsBilling, fields)
   }
