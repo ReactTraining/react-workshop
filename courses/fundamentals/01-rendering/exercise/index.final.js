@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa'
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import StarRatings from './StarRatings'
 import 'YesterTech/styles/center-lesson.scss'

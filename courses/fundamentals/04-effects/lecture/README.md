@@ -2,7 +2,7 @@
 
 ## Side Effects with a subscription
 
-Have a quick conversation about responsive design and how we all probably know media queries are for doing things like hiding UI when the screen in small. But here we have a sidebar that does network requests and with media queries we would still get those network requests if the page were loaded on something like a phone. For this reason, sometimes a JavaScript solution is better because we can actually "unmount" the sidebar if the screen is too small. Since it's unmounted, it will not do side-effects like media queries.
+Have a quick conversation about responsive design and how we all probably know media queries are for doing things like hiding UI when the screen is small. But here we have a sidebar that does network requests and with media queries we would still get those network requests if the page were loaded on something like a phone. For this reason, sometimes a JavaScript solution is better because we can actually "unmount" the sidebar if the screen is too small. Since it's unmounted, it will not do side-effects like media queries.
 
 - Open `ProductsSidebar.js`
 - Browser: http://localhost:3000/products
