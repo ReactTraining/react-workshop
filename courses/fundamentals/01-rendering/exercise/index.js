@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
+import 'YesterTech/styles/global-styles.scss'
 import 'YesterTech/StarRatings.scss'
 import 'YesterTech/styles/center-lesson.scss'
 

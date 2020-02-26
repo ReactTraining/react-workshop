@@ -1,6 +1,5 @@
 import React from 'react'
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
-import 'YesterTech/StarRatings.scss'
 
 function StarRatings({ rating, max = 5 }) {
   let stars = []

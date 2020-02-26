@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
 import Heading from 'YesterTech/Heading'
 import StarRatings from './StarRatings'
+import 'YesterTech/styles/global-styles.scss'
+import 'YesterTech/StarRatings.scss'
 import 'YesterTech/styles/center-lesson.scss'
 
 const products = [
