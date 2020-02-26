@@ -1,5 +1,7 @@
 # Notes for Instructor
 
+There is no `index.js` file for this one. When you run the lecture and change the two files, your supposed to see those changes in the real application which runs with these as substitutes.
+
 ## Side Effects with a subscription
 
 Have a quick conversation about responsive design and how we all probably know media queries are for doing things like hiding UI when the screen is small. But here we have a sidebar that does network requests and with media queries we would still get those network requests if the page were loaded on something like a phone. For this reason, sometimes a JavaScript solution is better because we can actually "unmount" the sidebar if the screen is too small. Since it's unmounted, it will not do side-effects like media queries.

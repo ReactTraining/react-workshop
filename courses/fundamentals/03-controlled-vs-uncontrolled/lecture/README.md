@@ -9,7 +9,3 @@ You can still set the initial state of an uncontrolled component with defaultVal
 A controlled component is one that does not own its state, but rather its state is controlled by the component that rendered it.
 
 In practical terms it means the state is controlled exclusively by the _programmer_.
-
-The only time you need a controlled component is when you need to change the value of an input by some other means than the user interacting with it.
-
-If you need the value of a component in your state, but you don't ever set the value of the component with anything other than the user interacting with it, you can use either controlled or uncontrolled, it's the same.
