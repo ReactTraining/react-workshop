@@ -18,3 +18,7 @@ getCategories().then(categories => {
 ```
 
 Hey! Are you getting this error "useEffect is called conditionally"? Remember, we can't conditionally call hooks. You might be doing the effect after that early-return `if` statement which is also version of "conditionalizing hooks". So just move the effect above the early return.
+
+## Bonus Task: Custom Hooks
+
+If you have time, try converting the code to a custom hook!
