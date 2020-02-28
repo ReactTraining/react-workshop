@@ -17,7 +17,7 @@ export default function usePromise(promise) {
     {
       loading: false,
       response: null,
-      error: null,
+      error: null
     }
   )
 

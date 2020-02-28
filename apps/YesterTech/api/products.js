@@ -11,7 +11,7 @@ export async function getProducts(search = {}, page = 1) {
     page: undefined,
     category: search.categories ? search.categories.split(',') : undefined,
     brand: search.brands ? search.brands.split(',') : undefined,
-    condition: search.conditions ? search.conditions.split(',') : undefined,
+    condition: search.conditions ? search.conditions.split(',') : undefined
   }
 
   const query = queryString.stringify(search || {})
@@ -20,7 +20,7 @@ export async function getProducts(search = {}, page = 1) {
   const products = await res.json()
   return {
     products,
-    totalResults: parseInt(res.headers.get('x-total-count'), 10),
+    totalResults: parseInt(res.headers.get('x-total-count'), 10)
   }
 }
 
@@ -39,7 +39,7 @@ export function getMetaData() {
 
     return {
       categories: [...new Set(categories)],
-      brands: [...new Set(brands)],
+      brands: [...new Set(brands)]
     }
   })
 }

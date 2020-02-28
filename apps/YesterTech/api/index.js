@@ -5,5 +5,5 @@ import * as users from './users'
 export default {
   auth,
   products,
-  users,
+  users
 }

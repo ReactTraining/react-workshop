@@ -30,7 +30,7 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
       shippingAddress: defaultFields.shippingAddress || '',
       shippingCity: defaultFields.shippingCity || '',
       shippingState: defaultFields.shippingState || '',
-      shippingPostal: defaultFields.shippingPostal || '',
+      shippingPostal: defaultFields.shippingPostal || ''
     }
   )
 
@@ -45,7 +45,7 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
     shippingAddress,
     shippingCity,
     shippingState,
-    shippingPostal,
+    shippingPostal
   } = state
 
   function handleSubmit(event) {
@@ -60,7 +60,7 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
       shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
       shippingCity: sameAsBilling ? billingCity : shippingCity,
       shippingState: sameAsBilling ? billingState : shippingState,
-      shippingPostal: sameAsBilling ? billingPostal : shippingPostal,
+      shippingPostal: sameAsBilling ? billingPostal : shippingPostal
     }
     onSubmit(sameAsBilling, fields)
   }

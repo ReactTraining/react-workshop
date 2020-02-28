@@ -19,7 +19,11 @@ function Quantity() {
     <div className="quantity-picker">
       <div>
         <div>
-          <button onClick={subtract} type="button" className="icon-button">
+          <button
+            onClick={subtract}
+            type="button"
+            className="icon-button"
+          >
             <FaMinusCircle />
           </button>
         </div>

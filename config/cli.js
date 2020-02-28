@@ -11,7 +11,7 @@ const appPaths = {
   fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   // Unless we want advanced to have it's own app
-  advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+  advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech')
 }
 
 module.exports = function() {
@@ -32,8 +32,8 @@ module.exports = function() {
     concurrently([
       {
         command: `json-server --watch ${dbPath} -p 3333 --quiet`,
-        name: 'json-server database',
-      },
+        name: 'json-server database'
+      }
     ]).catch(err => {
       console.error("JSON-SERVER was not able to start, or it's process was manually killed.\n\n")
       console.error(err)
@@ -43,7 +43,7 @@ module.exports = function() {
 
   return {
     appEntry: path.resolve(appPath, 'entry.js'),
-    alias: alias || {},
+    alias: alias || {}
   }
 }
 
@@ -92,7 +92,7 @@ function selectLesson() {
     } else if (preferences.course && courseOptions.includes(preferences.course)) {
       selectedCourse = preferences.course
       console.log(
-        `Using course from preferences.json. Remove that file to choose a difference course or select with CLI: npm start advanced\n`
+        `Using the "${selectedCourse}" course as specified in preferences.json. To run a different course, remove that file or select it with the CLI: npm start advanced\n`
       )
     }
 

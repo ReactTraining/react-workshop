@@ -11,7 +11,7 @@ function Tiles({ children, minSize = 10, ...rest }) {
   // do that to our arbitrary div
 
   const style = {
-    gridTemplateColumns: `repeat(auto-fill, minmax(${minSize}em, 1fr))`,
+    gridTemplateColumns: `repeat(auto-fill, minmax(${minSize}em, 1fr))`
   }
 
   return (
@@ -24,7 +24,7 @@ function Tiles({ children, minSize = 10, ...rest }) {
 }
 
 Tiles.propTypes = {
-  minSize: PropTypes.number,
+  minSize: PropTypes.number
 }
 
 export default Tiles

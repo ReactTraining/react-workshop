@@ -57,7 +57,12 @@ function Quantity() {
           />
         </div>
         <div>
-          <button onClick={add} type="button" className="icon-button" data-testid="add-button">
+          <button
+            onClick={add}
+            type="button"
+            className="icon-button"
+            data-testid="add-button"
+          >
             <FaPlusCircle />
           </button>
         </div>

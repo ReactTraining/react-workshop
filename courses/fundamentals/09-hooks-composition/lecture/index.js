@@ -33,4 +33,7 @@ function ProductProfile({ productId }) {
   )
 }
 
-ReactDOM.render(<ProductProfile productId={1} />, document.getElementById('root'))
+ReactDOM.render(
+  <ProductProfile productId={1} />,
+  document.getElementById('root')
+)

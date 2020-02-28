@@ -1,5 +1,11 @@
 import React, { useReducer } from 'react'
-import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+  useHistory
+} from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
 // Route Targets
@@ -24,7 +30,7 @@ function Checkout() {
     },
     {
       sameAsBilling: false,
-      fields: {},
+      fields: {}
     }
   )
 
@@ -48,7 +54,10 @@ function Checkout() {
         </Route>
         {Object.keys(state.fields).length > 0 && (
           <Route path={`${match.path}/review`}>
-            <CheckoutReview sameAsBilling={state.sameAsBilling} fields={state.fields} />
+            <CheckoutReview
+              sameAsBilling={state.sameAsBilling}
+              fields={state.fields}
+            />
           </Route>
         )}
         <Redirect to={`${match.path}/cart`} />

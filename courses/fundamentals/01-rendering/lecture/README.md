@@ -30,7 +30,11 @@ ReactDOM.render(reactElement, domElement)
 The first argument is the type, the second is the attributes, but we call them `props` in React (we’ll get back to that) and the rest of the arguments are the children.
 
 ```jsx
-const reactElement = React.createElement('button', { className: 'render_button' }, '+')
+const reactElement = React.createElement(
+  'button',
+  { className: 'render_button' },
+  '+'
+)
 const domElement = document.getElementById('root')
 
 ReactDOM.render(reactElement, domElement)
@@ -43,7 +47,11 @@ const reactElement = React.createElement(
   'button',
   { className: 'render_button' },
   '+',
-  React.createElement('span', { style: { fontWeight: 'bold', marginLeft: '5px' } }, 'Add')
+  React.createElement(
+    'span',
+    { style: { fontWeight: 'bold', marginLeft: '5px' } },
+    'Add'
+  )
 )
 
 const domElement = document.getElementById('root')
@@ -58,7 +66,11 @@ const reactElement = React.createElement(
   'button',
   { className: 'render_button' },
   '+',
-  React.createElement('span', { style: { fontWeight: 'bold', marginLeft: '5px' } }, title)
+  React.createElement(
+    'span',
+    { style: { fontWeight: 'bold', marginLeft: '5px' } },
+    title
+  )
 )
 
 const domElement = document.getElementById('root')
@@ -72,7 +84,9 @@ const getTitle = () => 'Add'
 const reactElement = (
   <button className="render_button">
     {' '}
-    +<span style={{ fontWeight: 'bold', marginLeft: '5px' }}>{getTitle()}</span>
+    +<span style={{ fontWeight: 'bold', marginLeft: '5px' }}>
+      {getTitle()}
+    </span>
   </button>
 )
 
@@ -87,7 +101,9 @@ const getTitle = () => 'Add'
 const reactElement = (
   <button className="render_button">
     <FaStar />
-    <span style={{ fontWeight: 'bold', marginLeft: '5px' }}>{getTitle()}</span>
+    <span style={{ fontWeight: 'bold', marginLeft: '5px' }}>
+      {getTitle()}
+    </span>
   </button>
 )
 

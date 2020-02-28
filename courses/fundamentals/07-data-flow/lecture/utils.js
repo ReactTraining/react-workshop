@@ -4,7 +4,7 @@ import queryString from 'query-string'
 
 function getProducts() {
   const query = queryString.stringify({
-    _limit: 3,
+    _limit: 3
   })
   return get(`/products?${query}`)
 }

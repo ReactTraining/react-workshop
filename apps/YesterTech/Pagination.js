@@ -25,7 +25,7 @@ export function Pagination({
           .map((_, i) => {
             const newQuery = queryString.stringify({
               ...query,
-              page: i + 1,
+              page: i + 1
             })
             const active = page === i + 1
             return (
@@ -46,7 +46,7 @@ Pagination.propTypes = {
   path: PropTypes.string.isRequired,
   totalResults: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
-  resultsPerPage: PropTypes.number.isRequired,
+  resultsPerPage: PropTypes.number.isRequired
 }
 
 export function PaginationRange({ resultsPerPage, page, totalResults, query }) {
@@ -72,5 +72,5 @@ PaginationRange.propTypes = {
   totalResults: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   resultsPerPage: PropTypes.number.isRequired,
-  query: PropTypes.string,
+  query: PropTypes.string
 }

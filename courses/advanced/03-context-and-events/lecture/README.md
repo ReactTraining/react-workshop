@@ -35,7 +35,8 @@ function App() {
           <span>What is ARIA?</span>
         </AccordionButton>
         <AccordionPanel>
-          A way to make web content more accessible: "Accessible Rich Internet Applications".
+          A way to make web content more accessible: "Accessible Rich
+          Internet Applications".
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -44,7 +45,8 @@ function App() {
           <span>What does "a11y" stand for?</span>
         </AccordionButton>
         <AccordionPanel>
-          A11y is short for "accessibility" since there are 11 characters between "a" and "y".
+          A11y is short for "accessibility" since there are 11
+          characters between "a" and "y".
         </AccordionPanel>
       </AccordionItem>
     </Accordion>

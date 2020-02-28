@@ -20,7 +20,7 @@ function ProductFilterItem({ children, item, onChange, selected = false }) {
 }
 
 ProductFilterItem.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 }
 
 export default ProductFilterItem

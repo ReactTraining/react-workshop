@@ -1,5 +1,12 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect, useRouteMatch, useParams } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useRouteMatch,
+  useParams
+} from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 
 import Logo from 'YesterTech/Logo'
@@ -85,7 +92,11 @@ function ProductProfile() {
     <div className="spacing">
       <Columns gutters>
         <Column>
-          <ProductImage src="/images/products/mario-kart.jpg" alt="Mario Kart" size={15} />
+          <ProductImage
+            src="/images/products/mario-kart.jpg"
+            alt="Mario Kart"
+            size={15}
+          />
         </Column>
         <Column flex className="spacing">
           <Heading>Mario Kart</Heading>

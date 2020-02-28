@@ -14,8 +14,8 @@ import ProductProfile from 'YesterTech/ProductProfile'
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useParams: () => ({
-    productId: 1,
-  }),
+    productId: 1
+  })
 }))
 
 jest.mock('YesterTech/ShoppingCartState')
@@ -24,12 +24,12 @@ jest.mock('YesterTech/api')
 useShoppingCart.mockReturnValue({
   addToCart: () => null,
   updateQuantity: () => null,
-  getQuantity: () => null,
+  getQuantity: () => null
 })
 
 const mockProductResponse = {
   name: 'TestProduct',
-  price: 10,
+  price: 10
 }
 
 api.products.getProduct.mockResolvedValue(mockProductResponse)

@@ -5,7 +5,11 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { MdShoppingCart } from 'react-icons/md'
 import Heading from 'YesterTech/Heading'
 
-function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields = {} }) {
+function CheckoutBilling({
+  onSubmit,
+  defaultSameAsBilling = false,
+  defaultFields = {}
+}) {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -22,11 +26,17 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
       billingName: defaultFields.billingName || '',
       billingAddress: defaultFields.billingAddress || '',
       shippingName: defaultFields.shippingName || '',
-      shippingAddress: defaultFields.shippingAddress || '',
+      shippingAddress: defaultFields.shippingAddress || ''
     }
   )
 
-  const { sameAsBilling, billingName, billingAddress, shippingName, shippingAddress } = state
+  const {
+    sameAsBilling,
+    billingName,
+    billingAddress,
+    shippingName,
+    shippingAddress
+  } = state
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -34,7 +44,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
       billingName,
       billingAddress,
       shippingName: sameAsBilling ? billingName : shippingName,
-      shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
+      shippingAddress: sameAsBilling
+        ? billingAddress
+        : shippingAddress
     }
     onSubmit(sameAsBilling, fields)
   }
@@ -60,7 +72,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
             type="text"
             required
             defaultValue={billingName}
-            onChange={event => changeField('billingName', event.target.value)}
+            onChange={event =>
+              changeField('billingName', event.target.value)
+            }
           />
         </div>
         <div className="form-field">
@@ -70,7 +84,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
             type="text"
             required
             defaultValue={billingAddress}
-            onChange={event => changeField('billingAddress', event.target.value)}
+            onChange={event =>
+              changeField('billingAddress', event.target.value)
+            }
           />
         </div>
 
@@ -85,7 +101,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
               <input
                 type="checkbox"
                 defaultChecked={sameAsBilling}
-                onChange={() => dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })}
+                onChange={() =>
+                  dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })
+                }
               />{' '}
               Same as Billing
             </label>
@@ -101,7 +119,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
             type="text"
             required
             value={sameAsBilling ? billingName : shippingName}
-            onChange={event => changeField('shippingName', event.target.value)}
+            onChange={event =>
+              changeField('shippingName', event.target.value)
+            }
             disabled={sameAsBilling}
           />
         </div>
@@ -112,7 +132,9 @@ function CheckoutBilling({ onSubmit, defaultSameAsBilling = false, defaultFields
             type="text"
             required
             value={sameAsBilling ? billingAddress : shippingAddress}
-            onChange={event => changeField('shippingAddress', event.target.value)}
+            onChange={event =>
+              changeField('shippingAddress', event.target.value)
+            }
             disabled={sameAsBilling}
           />
         </div>

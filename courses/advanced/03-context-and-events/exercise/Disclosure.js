@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
-export function Disclosure({ children, defaultOpen = false, ...props }) {
+export function Disclosure({
+  children,
+  defaultOpen = false,
+  ...props
+}) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const id = useId(props.id)
   const panelId = `panel-${id}`
@@ -12,7 +16,7 @@ export function Disclosure({ children, defaultOpen = false, ...props }) {
     return React.cloneElement(child, {
       isOpen,
       panelId,
-      onSelect: () => setIsOpen(!isOpen),
+      onSelect: () => setIsOpen(!isOpen)
     })
   })
 
@@ -20,7 +24,10 @@ export function Disclosure({ children, defaultOpen = false, ...props }) {
 }
 
 export const DisclosureButton = forwardRef(
-  ({ children, isOpen, panelId, onSelect, ...props }, forwardedRef) => {
+  (
+    { children, isOpen, panelId, onSelect, ...props },
+    forwardedRef
+  ) => {
     return (
       <button
         {...props}

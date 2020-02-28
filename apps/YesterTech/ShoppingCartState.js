@@ -16,8 +16,8 @@ export function ShoppingCartProvider({ children }) {
                 productId: parseInt(action.productId, 10),
                 quantity: 1,
                 name: action.name || '',
-                price: action.price || 0,
-              }),
+                price: action.price || 0
+              })
             }
           } else {
             return state
@@ -49,7 +49,7 @@ export function ShoppingCartProvider({ children }) {
       }
     },
     {
-      cart: storage.getCart() || [],
+      cart: storage.getCart() || []
     }
   )
 
@@ -75,7 +75,7 @@ export function ShoppingCartProvider({ children }) {
     getCartTotal() {
       if (!Array.isArray(state.cart)) return 0
       return state.cart.reduce((total, item) => total + item.quantity * item.price, 0)
-    },
+    }
   }
 
   return <ShoppingCartContext.Provider value={value} children={children} />

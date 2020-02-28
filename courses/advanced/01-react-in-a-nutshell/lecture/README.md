@@ -133,7 +133,11 @@ function Pokemon() {
   const [error, setError] = useState(null)
   return (
     <div className="pokemon">
-      <input onChange={e => setPokémon(e.target.value)} value={inputValue} type="text" />
+      <input
+        onChange={e => setPokémon(e.target.value)}
+        value={inputValue}
+        type="text"
+      />
       Hello, <span>{pokémon}</span>!
     </div>
   )
@@ -189,7 +193,11 @@ function Pokemon() {
 
   return (
     <div className="pokemon">
-      <input onChange={e => setPokémon(e.target.value)} value={inputValue} type="text" />
+      <input
+        onChange={e => setPokémon(e.target.value)}
+        value={inputValue}
+        type="text"
+      />
       Hello, <span>{pokémon}</span>!
     </div>
   )
@@ -234,7 +242,11 @@ function Pokemon() {
 
   return (
     <div className="pokemon">
-      <input onChange={e => setPokémon(e.target.value)} defaultValue={pokémon} type="text" />
+      <input
+        onChange={e => setPokémon(e.target.value)}
+        defaultValue={pokémon}
+        type="text"
+      />
       Hello, <span>{pokémon}</span>!
       <img src={img} />
     </div>
@@ -247,7 +259,11 @@ We could also conditionally render the image to check if it's null or not:
 ```jsx
 return (
   <div className="pokemon">
-    <input onChange={e => setPokémon(e.target.value)} defaultValue={pokémon} type="text" />
+    <input
+      onChange={e => setPokémon(e.target.value)}
+      defaultValue={pokémon}
+      type="text"
+    />
     Hello, <span>{pokémon}</span>! {img && <img src={img} />}
   </div>
 )
@@ -314,7 +330,10 @@ function PokemonInput({ defaultValue, onChange }) {
 
 function Pokemon() {
   // Change state here to be a Pokemon object
-  const [pokémon, setPokémon] = useState({ name: 'Pikachu', sprite: null })
+  const [pokémon, setPokémon] = useState({
+    name: 'Pikachu',
+    sprite: null
+  })
   useTitle('Saying hello to ' + pokémon.name)
 
   return (
