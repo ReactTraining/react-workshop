@@ -34,9 +34,11 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
           <br />
           <span>{fields.billingAddress}</span>
           <br />
-          <span>
-            {fields.billingCity}, {fields.billingState} {fields.billingPostal}
-          </span>
+          {fields.billingCity && (
+            <span>
+              {fields.billingCity}, {fields.billingState} {fields.billingPostal}
+            </span>
+          )}
         </Column>
         <Column className="spacing-small" flex>
           <Heading as="h2" size={4}>
@@ -50,9 +52,11 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
               <br />
               <span>{fields.shippingAddress}</span>
               <br />
-              <span>
-                {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
-              </span>
+              {fields.shippingCity && (
+                <span>
+                  {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
+                </span>
+              )}
             </Fragment>
           )}
         </Column>
