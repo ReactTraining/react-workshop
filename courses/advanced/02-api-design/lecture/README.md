@@ -14,6 +14,7 @@ When they're finished, this is a great opportunity to have a discussion on the v
 ❌ We can't rearrange to put the panel above the button or side-by-side.
 ❌ We can't add extra DOM container among the button and/or panel (like a `div` around the button).
 ❌ We can't pass the underlying button own props (like className, id, etc) unless we do strange API things like `buttonProps={}`
+❌ We're polluting the CSS global namespace.
 ❌ We can't forward refs to the panel or button. Even if we did do `forwardRef`, how would we know what element it goes to?
 ❌ We don't get to choose the icon or its position (to the left or right of text). Or what if we want no icon?
 
@@ -34,19 +35,21 @@ We have a local implementation of `autoId` which is being imported. It might be 
 
 ## After Refactor:
 
-✅ Basic ARIA is in place.
 ✅ We CAN change the arrangement: `<DisclosurePanel />` before `<DisclosureButton />` if we want.
 ✅ We CAN pass in our own props in a way that feels more natural without a sloppy API.
+✅ We're not using classnames which allows for easier prop forwarding of `className` and we don't pollute the global namespace for CSS classes.
 ✅ We CAN forward refs
+✅ Basic ARIA is in place.
 ❌ Even though we can compose an icon into the button, we don't know the state of `Disclosure` so we can't change the icon depending on open or not.
 ❌ Still, we can't add extra DOM containers around the compound component elements.
 
-Note that a `span` element around the text summary is necessary for good vertical-alignment with CSS:
-
 ```jsx
-// Not needed if no icon
+// Note that a `span` element around the text summary is necessary for good vertical-alignment with CSS:
+
+// Aligns well with span
 <DisclosureButton>
-  Click Me
+  <Icon />
+  <span>Click Me</span>
 </DisclosureButton>
 
 // Does not align well
@@ -55,10 +58,9 @@ Note that a `span` element around the text summary is necessary for good vertica
   Click Me
 </DisclosureButton>
 
-// Aligns well
+// Not needed if no icon
 <DisclosureButton>
-  <Icon />
-  <span>Click Me</span>
+  Click Me
 </DisclosureButton>
 ```
 
