@@ -16,7 +16,12 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
 
   if (Object.keys(fields).length === 0) {
     // For the lessons
-    return <div>Oops, did you forget you conditionally render the route for CheckoutReview?</div>
+    return (
+      <div>
+        Exercise Notice: Oops, did you forget you conditionally render the route for CheckoutReview?
+        We see that `fields` doesn't have an data.
+      </div>
+    )
   }
 
   return (
@@ -34,6 +39,7 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
           <br />
           <span>{fields.billingAddress}</span>
           <br />
+          {/* Exercise doesn't have all the same form fields */}
           {fields.billingCity && (
             <span>
               {fields.billingCity}, {fields.billingState} {fields.billingPostal}
@@ -52,6 +58,7 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
               <br />
               <span>{fields.shippingAddress}</span>
               <br />
+              {/* Exercise doesn't have all the same form fields */}
               {fields.shippingCity && (
                 <span>
                   {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
