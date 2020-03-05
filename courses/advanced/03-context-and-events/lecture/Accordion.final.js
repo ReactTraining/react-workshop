@@ -1,6 +1,6 @@
 import React, { useState, useContext, forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import { wrapEvent } from './utils'
+import { wrapEvent } from '../../utils'
 import { useId } from '../../useId'
 
 const AccordionContext = React.createContext()

@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react'
-import PropTypes from 'prop-types'
-import { wrapEvent } from '../../utils'
+// import PropTypes from 'prop-types'
+// import { wrapEvent } from '../../utils'
 import { useId } from '../../useId'
 
 /**
