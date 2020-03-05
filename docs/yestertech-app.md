@@ -1,4 +1,4 @@
-# Docs for development on YesterTech app (for the fundamentals course)
+# Docs for development on YesterTech app (for the core course)
 
 ## Database
 

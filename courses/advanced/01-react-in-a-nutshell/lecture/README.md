@@ -1,4 +1,4 @@
-# Fundamentals in an Hour
+# Core React in an Hour
 
 ## Rendering
 

@@ -6,18 +6,18 @@ npm start
 
 # You can also add a course to skip that part of the menu
 # Or even a lesson of that course (words like `state` search by regex):
-npm start fundamentals
-npm start fundamentals 3
-npm start fundamentals state
+npm start core
+npm start core 3
+npm start core state
 
 # For loading the full app or a lecture
 npm start lecture
 
 # You can also add a course to skip that part of the menu
 # Or even a lesson of that course (words like `state` search by regex):
-npm start lecture fundamentals
-npm start lecture fundamentals 3
-npm start lecture fundamentals state
+npm start lecture core
+npm start lecture core 3
+npm start lecture core state
 
 # A shortcut for going strait to a specific app
 npm start app
@@ -29,8 +29,8 @@ The CLI will ask if you want to save your course selection so you don't have to 
 
 ```json
 {
-  // advanced | electives | fundamentals
-  "course": "fundamentals"
+  // advanced | electives | core
+  "course": "core"
 }
 ```
 

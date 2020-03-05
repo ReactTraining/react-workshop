@@ -1,4 +1,4 @@
-Check the fundamentals for this https://twitter.com/sophiebits/status/1228942768543686656
+Check the core for this https://twitter.com/sophiebits/status/1228942768543686656
 
 # Stuff left to do
 

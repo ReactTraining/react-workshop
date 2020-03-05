@@ -8,7 +8,7 @@ const concurrently = require('concurrently')
  */
 
 const appPaths = {
-  fundamentals: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+  core: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   // Unless we want advanced to have it's own app
   advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech')
@@ -85,7 +85,7 @@ function selectLesson() {
       return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
     })
 
-    // See if the user made a pre-selection in cli: `npm start fundamentals`
+    // See if the user made a pre-selection in cli: `npm start core`
     // or if they have one listed in their `preferences.json` file
     if (courseOptions.includes(process.argv[2])) {
       selectedCourse = process.argv[2]
@@ -143,11 +143,11 @@ function selectLesson() {
     })
 
     // See the third or fourth cli argument was meant to be a selectedOption by number
-    // This is for doing `npm start fundamentals 2` or `npm start 2` (assuming they have preferences for course)
+    // This is for doing `npm start core 2` or `npm start 2` (assuming they have preferences for course)
     if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
       selectedLesson = lessonOptions[selectedLessonArg - 1]
 
-      // Or they can do `npm start fundamentals state` or `npm start state` (assuming they have preferences for course)
+      // Or they can do `npm start core state` or `npm start state` (assuming they have preferences for course)
     } else if (selectByOptionWord) {
       selectedLesson = selectByOptionWord
 

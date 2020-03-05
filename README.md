@@ -64,7 +64,7 @@ Which Course?
 
 [1] advanced
 [2] electives
-[3] fundamentals
+[3] core
 [0] CANCEL
 
 Choose one from list [1, 2, 0]: 3
@@ -111,7 +111,7 @@ There's also a document in this repo called [Prerequisites](./prerequisites.md) 
 
 During the lectures, feel free to take notes. We also have some pre-made notes for you in this repo that you can edit as you see fit.
 
-- [student-lesson-notes-fundamentals.md](/student-lesson-notes-fundamentals.md)
+- [student-lesson-notes-core.md](/student-lesson-notes-core.md)
 - student-lesson-notes-advanced (not ready yet)
 
 ## Prettier Plugin
