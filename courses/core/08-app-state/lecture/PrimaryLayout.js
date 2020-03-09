@@ -22,11 +22,6 @@ function PrimaryLayout() {
   const { cart } = useShoppingCart()
   const { authenticated, dispatch } = useAuthState()
 
-  // Get the current authenticated user (for first loads and refreshes)
-  useEffect(() => {
-    // api.auth.getAuthenticatedUser().then(user => {})
-  }, [])
-
   return (
     <div className="primary-layout">
       <div>
