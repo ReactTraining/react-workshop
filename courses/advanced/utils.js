@@ -1,6 +1,7 @@
+import { useMemo } from 'react'
+
 // These utils are similar (or identical) to the ones Reach UI uses
 
-import { useMemo } from 'react'
 export function wrapEvent(theirHandler, ourHandler) {
   return event => {
     theirHandler && theirHandler(event)
