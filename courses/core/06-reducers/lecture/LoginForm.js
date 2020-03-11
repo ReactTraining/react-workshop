@@ -43,7 +43,9 @@ function LoginForm({ onAuthenticated }) {
         <div className="form-field">
           <input
             aria-label="Username"
-            onChange={e => setUsername(e.target.value)}
+            onChange={e => {
+              setUsername(e.target.value)
+            }}
             type="text"
             placeholder="Username"
           />
@@ -51,7 +53,9 @@ function LoginForm({ onAuthenticated }) {
         <div className="form-field">
           <input
             aria-label="Password"
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => {
+              setPassword(e.target.value)
+            }}
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
           />
