@@ -14,7 +14,7 @@ function App() {
 ❌ Be able to pass the underlying button own props (like className, id, etc) unless we do strange API things like `buttonProps={}`
 ❌ Convert class-names to data-attributes
 ❌ Be able to forward refs to the panel or button.
-❌ No ARIA.
+❌ Add ARIA (aria-expanded and aria-controls on button).
 */
 
 ReactDOM.render(<App />, document.getElementById('root'))
