@@ -33,10 +33,9 @@ function App() {
 /*
 ✅ It works, but needs some improvements...
 ❌ Can't add extra DOM container among the buttons, panels, or items.
-❌ The way we refactored using `React.cloneElement` means that we could experience
-   prop collisions with the owner. And mixed with how we're forwarding props means
-   that we're sending props to DOM elements we didn't mean to. Can be fixed but it's
-   a little bit of a pain.
+❌ With `React.cloneElement` and passing props down, there's a high chance for prop
+   collisions when the user of our API (the owner) wants to pass in something that's
+   similar to what we passed. Fix this with context.
 ❌ We don't know the state of `Accordion` in the owner. So we can't change an icon
    depending on open or not.
 ❌ What if the owner wants to pass their on `onClick` to `AccordionButton`? How do
