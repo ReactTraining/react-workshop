@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 
 function App() {
   const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('The count is', count)
-    }, 3000)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const [message, setMessage] = useState(null)
 
   function saveToDatabase() {
     setTimeout(() => {
-      console.log('We saved a count of', count)
+      setMessage(`We saved a count of ${count}`)
     }, 3000)
   }
 
   return (
-    <div className="align-center spacing">
+    <div className="align-center spacing closure-basics">
       <button className="button" onClick={() => setCount(count + 1)}>
         Count: {count}
       </button>
@@ -26,8 +20,9 @@ function App() {
       <button className="button" onClick={saveToDatabase}>
         Save Count to Database
       </button>
+      {message && <p>{message}</p>}
     </div>
   )
 }
 
-export default App
+ReactDOM.render(<App />, document.getElementById('root'))

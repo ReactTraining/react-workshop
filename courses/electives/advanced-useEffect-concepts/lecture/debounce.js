@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import debounce from 'lodash.debounce'
 import { saveClapsToDatabase } from './utils'
 
@@ -30,7 +31,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="align-center spacing">
+      <div className="align-center spacing debounce">
         <button onClick={this.clap} className="button">
           Clap
         </button>
@@ -44,7 +45,7 @@ class App extends React.Component {
   }
 }
 
-export default App
+ReactDOM.render(<App />, document.getElementById('root'))
 
-// One of our instructors wrote a blog article on this:
+// One of our instructors wrote a blog article on this exact topic of "debouncing claps":
 // https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/

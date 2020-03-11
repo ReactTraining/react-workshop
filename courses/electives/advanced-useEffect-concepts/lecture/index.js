@@ -1,16 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import './styles.scss'
 
-// Which one do you want to teach?
+/**
+ * Which one do you want to teach?
+ */
 
-// useEffect Captures (Basic Example)
-// import App from './capturing-basics'
+// The closure of useEffect "captures" state (basic example)
+import './closure-basics'
 
-// useEffect Captures (Stopwatch)
-// import App from './capturing-stopwatch'
+// Another capturing example (Stopwatch)
+// import './stopwatch'
 
 // Debouncing
-import App from './debounce'
+// import './debounce'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+// Phony useEffect
+// import './phony-hooks'

@@ -8,3 +8,31 @@ html {
 hr {
   border-color: #444;
 }
+
+@mixin lesson-label {
+  position: fixed;
+  font-size: 0.5rem;
+  top: 1em;
+  left: 1em;
+  color: #aaa;
+}
+
+.closure-basics::before {
+  @include lesson-label;
+  content: 'Lesson: Closure Basics';
+}
+
+.stopwatch::before {
+  @include lesson-label;
+  content: 'Lesson: Stopwatch';
+}
+
+.debounce::before {
+  @include lesson-label;
+  content: 'Lesson: Debounce';
+}
+
+.phony-hooks::before {
+  @include lesson-label;
+  content: 'Lesson: Phony Hooks';
+}

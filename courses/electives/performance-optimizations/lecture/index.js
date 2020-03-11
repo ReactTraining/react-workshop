@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles.scss'
 
-// Which one do you want to teach?
+/**
+ * Which one do you want to teach?
+ */
 
 // Demonstrate useMemo Hook
 // import App from './useMemo'

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 
-function App() {
+export default function App() {
   const [active, setActive] = useState(false)
-  const [second, setSecond] = useState(0)
+  const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
     if (active) {
-      setInterval(() => {
-        console.log('setSecond')
-        setSecond(second + 1)
+      const id = setInterval(() => {
+        setSeconds(seconds => {
+          return seconds + 1
+        })
       }, 1000)
+      return () => clearInterval(id)
     }
   }, [active])
 
   return (
-    <div className="align-center spacing">
+    <div className="align-center spacing phony-hooks">
       <div className="horizontal-spacing">
         <button className="button" onClick={() => setActive(true)}>
           Start
@@ -24,9 +27,12 @@ function App() {
         </button>
       </div>
       <hr />
-      <div>Seconds: {second}</div>
+      <div>Seconds: {seconds}</div>
     </div>
   )
 }
 
-export default App
+function reRender() {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+reRender()
