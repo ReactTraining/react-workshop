@@ -22,6 +22,9 @@ function PrimaryLayout() {
   const { cart } = useShoppingCart()
   const { authenticated, dispatch } = useAuthState()
 
+  // Logout from server, then logout front-end
+  // api.auth.getAuthenticatedUser().then(user => {})
+
   return (
     <div className="primary-layout">
       <div>

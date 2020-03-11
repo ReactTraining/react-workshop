@@ -1,6 +1,16 @@
+# Notes for Instructor
+
+## Main Concepts taught
+
+- Assumes attendees already have a basic understanding of `useEffect`
+- Since `useEffect` has a callback that "closes" over state, it ends up "capturing" the values of that state the moment the effect is created. This can be confusing if someone is doing async stuff and uses the state after the async operation and expects it to be the recent state.
+- How to use `useEffect` correctly when other more complicated options might come to mind first.
+- Debouncing async operations when frequent state changes.
+- Phony `useEffect`. This requires phony `useState` and/or `useReducer` also since we need to have control over when a re-render happens because of a state change.
+
 ## Closure Basics
 
-- The lesson starts out with no `useEffect`. Use the starting point to explain how the callback to setTimeout "closes" over `count` and therefore captures it's value at the time the callback is made. Therefore, if you click "Save Count to Database" and then click the "Count" button a few times, you'll get a message after the async save that tries to show what count is, and it shows the "captured" count instead of the most recent count.
+- The lesson starts out with no `useEffect`. Use the starting point to explain how the callback to `setTimeout` "closes" over `count` and therefore captures it's value at the time the callback is made. Therefore, if you click "Save Count to Database" and then click the "Count" button a few times, you'll get a message after the async save that tries to show what count is, and it shows the "captured" count instead of the most recent count.
 - Refactor so the "Save Count to Database" button sets some state called `saving: true`. Then use a useEffect to run when `saving` is `true`. The effect will also capture the `count` value. See the `.final` for this implementation.
 - Once nice trick is to leave `count` out of the dependency array and then to add it in to see the difference.
 
