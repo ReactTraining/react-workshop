@@ -12,8 +12,8 @@ function App() {
         setSeconds(seconds + 1)
       }, 1000)
     }
-    // Maybe we should take "seconds" out of the array? See what happens...
-  }, [active, seconds])
+    // Show what happens when we add seconds to the dep array, or leave it out?
+  }, [active])
 
   return (
     <div className="align-center spacing stopwatch">
