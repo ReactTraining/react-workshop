@@ -11,7 +11,8 @@
     "build-storybook": "build-storybook",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",
-    "postinstall": "npm run create-db"
+    "postinstall": "npm run create-db",
+    "glossary": "node --no-warnings scripts/glossary-pdf.js"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
@@ -27,6 +28,7 @@
     "find-process": "^1.4.3",
     "jest": "^24.9.0",
     "json-server": "^0.15.1",
+    "md-to-pdf": "^3.1.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
     "readline-sync": "^1.4.10",
