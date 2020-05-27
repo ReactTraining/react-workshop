@@ -53,7 +53,7 @@ $ npm run app
 
 When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
 
-If something goes wrong, you may beed to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
+If something goes wrong, you may need to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
 
 ## Running the Course and Lesson Material
 
