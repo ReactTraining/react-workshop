@@ -7,10 +7,10 @@ import './styles.scss'
  */
 
 // Demonstrate useMemo Hook
-// import App from './useMemo'
+import App from './useMemo'
 
 // Demonstrate shouldComponentUpdate vs PureComponent vs React.memo
 // Then how useCallback helps
-import App from './reactMemo'
+// import App from './reactMemo'
 
 ReactDOM.render(<App />, document.getElementById('root'))
