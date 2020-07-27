@@ -21,7 +21,7 @@ Object.keys(fields).length > 0
 
 # Task Two: Re-populate the form
 
-If the user submits the form and then goes back to it, we need to re-populate its fields with whatever the user typed.
+If the user submits the form and then goes back to it, we need to re-populate its fields with whatever the user had in the form from before.
 
 1. Open `CheckoutBilling.js`.
 2. Create a prop that will be passed in called `defaultFields` and `defaultSameAsBilling`
