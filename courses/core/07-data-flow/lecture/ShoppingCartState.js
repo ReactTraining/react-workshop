@@ -6,7 +6,9 @@ export function ShoppingCartProvider({ children }) {
   // paste `cart` state here and utility functions
 
   return (
-    <ShoppingCartContext.Provider value={{}} children={children} />
+    <ShoppingCartContext.Provider value={}>
+      {children}
+    </ShoppingCartContext.Provider>
   )
 }
 
