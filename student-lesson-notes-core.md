@@ -106,9 +106,28 @@ useEffect(() => {
 
 ## Lesson 6: Reducers
 
-- `useReducer` Format: `const [state, dispatch] = useReducer(reducerFunction, initialState)`.
-- `useReducer` is the reducer pattern for local state. It's an alternative to using `useState`. `useReducer` can be good for complex local state.
+```js
+// Format:
+const [state, dispatch] = useReducer(reducerFunction, initialState)
 
+const [state, dispatch] = useReducer(
+  (oldState, action) => {
+    switch (action) {
+      case 'SOME_ACTION_TYPE':
+        return { ...oldState } // make any additional state changes
+      default:
+        return state
+    }
+  },
+  {
+    // initial state
+  }
+)
+
+dispatch({ type: 'SOME_ACTION_TYPE' })
+```
+
+- `useReducer` is the "reducer pattern" similarly found in Redux, but for local state. It's an alternative to using `useState`. `useReducer` can be good for complex local state.
 - `useReducer` docs: https://reactjs.org/docs/hooks-reference.html#usereducer
 
 ---
@@ -140,5 +159,4 @@ useEffect(() => {
 ## Lesson 9: Hooks Composition
 
 - When you want to make your own hook, that just means wrapping React hooks with your code together. Writing generic hooks that can encapsulate logic that you often re-write (for example, a `useEffect` with a basic cleanup function) is a great way to clean up your components.
-
 - `useCallback` docs: https://reactjs.org/docs/hooks-reference.html#usecallback

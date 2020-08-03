@@ -10,8 +10,5 @@ import './closure-basics'
 // Another capturing example (Stopwatch)
 // import './stopwatch'
 
-// Debouncing
-// import './debounce'
-
 // Phony useEffect
 // import './phony-hooks'

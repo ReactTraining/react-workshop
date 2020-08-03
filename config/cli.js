@@ -7,11 +7,14 @@ const concurrently = require('concurrently')
  * Docs are at /docs/cli.md
  */
 
+// Where does each curriculum get it's app files from
 const appPaths = {
+  advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   core: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  // Unless we want advanced to have it's own app
-  advanced: path.resolve(__dirname, '..', 'apps', 'YesterTech')
+
+  // This one is hidden by .gitignore
+  'coming-soon': path.resolve(__dirname, '..', 'apps', 'YesterTech')
 }
 
 module.exports = function() {

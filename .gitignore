@@ -21,6 +21,9 @@
 # React Training Preferences
 preferences.json
 
+# A place for instructors to design upcoming curriculum 
+courses/coming-soon
+
 # For any personal notes any instructors want to take
 notes.md
 

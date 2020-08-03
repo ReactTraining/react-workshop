@@ -27,11 +27,6 @@ hr {
   content: 'Lesson: Stopwatch';
 }
 
-.debounce::before {
-  @include lesson-label;
-  content: 'Lesson: Debounce';
-}
-
 .phony-hooks::before {
   @include lesson-label;
   content: 'Lesson: Phony Hooks';
