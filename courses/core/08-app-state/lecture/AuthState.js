@@ -10,12 +10,10 @@ const initialState = {
 export function AuthStateProvider({ children }) {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
-      case 'LOGIN': {
+      case 'LOGIN':
         return { ...state, authenticated: true, user: action.user }
-      }
-      case 'LOGOUT': {
+      case 'LOGOUT':
         return { ...initialState }
-      }
       default:
         return state
     }

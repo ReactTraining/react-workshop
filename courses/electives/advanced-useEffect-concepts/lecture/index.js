@@ -4,11 +4,11 @@ import './styles.scss'
  * Which one do you want to teach?
  */
 
-// The closure of useEffect "captures" state (basic example)
+// 1. The closure of useEffect "captures" state (basic example)
 import './closure-basics'
 
-// Another capturing example (Stopwatch)
+// 2. Another capturing example (Stopwatch)
 // import './stopwatch'
 
-// Phony useEffect
+// 3. Phony useEffect
 // import './phony-hooks'
