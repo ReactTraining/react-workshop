@@ -31,10 +31,6 @@ There are global styles in `modules/workshop/styles`. These are meant to be gene
 
 There are some CSS utility classes which are layout and design-system in nature. They're documented in the Design System section.
 
-## Design System
-
-I'll eventually document a lot more things with storybook, but this is a small amount of info to get people started.
-
 ### `<Columns />` (flexbox)
 
 For any content that is "side-by-side" and could benefit from flexbox, we use `react-flex-columns` which gives an abstraction over flexbox. Just think of it as something that gives you a lot of the flexbox API but in a way that feels symantec in JSX and doesn't require custom CSS
