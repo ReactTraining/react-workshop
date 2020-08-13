@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import debounce from 'lodash.debounce'
 import { saveClapsToDatabase } from './utils'
 
-class App extends React.Component {
+class ClapButton extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<ClapButton />, document.getElementById('root'))
 
 // One of our instructors wrote a blog article on this exact topic of "debouncing claps":
 // https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/

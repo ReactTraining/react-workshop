@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { saveClapsToDatabase } from './utils'
 
-function App() {
+function ClapButton() {
   const [claps, setClaps] = useState(0)
   const [queueClaps, setQueueClaps] = useState(0)
 
@@ -36,7 +36,7 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<ClapButton />, document.getElementById('root'))
 
 // One of our instructors wrote a blog article on this exact topic of "debouncing claps":
 // https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/
