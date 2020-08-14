@@ -179,7 +179,7 @@ component gets rendered or not, you just want something to happen, you use
 `useEffect`.
 
 The two parameters are a function and a dependency array. The return value of
-the function is a "cleaup function" which is something that runs when the
+the function is a "cleanup function" which is something that runs when the
 component is unmounted, or when state changes.
 
 ```jsx
