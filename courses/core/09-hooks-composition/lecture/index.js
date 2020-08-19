@@ -6,18 +6,18 @@ import api from 'YesterTech/api'
 import 'YesterTech/styles/center-lesson.scss'
 
 function useProduct(productId) {
-  const [products, setProducts] = useState(null)
+  const [product, setProduct] = useState(null)
 
   useEffect(() => {
     let isCurrent = true
-    api.products.getProduct(productId).then(products => {
+    api.products.getProduct(productId).then(product => {
       if (!isCurrent) return
-      setProducts(products)
+      setProduct(product)
     })
     return () => (isCurrent = false)
   }, [productId])
 
-  return products
+  return product
 }
 
 function ProductProfile({ productId }) {
