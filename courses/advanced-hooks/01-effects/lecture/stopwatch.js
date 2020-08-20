@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import './styles.scss'
 
-function App() {
+export default function App() {
   const [active, setActive] = useState(false)
   const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
     if (active) {
-      const id = setInterval(() => {
-        setSeconds(seconds => {
-          return seconds + 1
-        })
+      setInterval(() => {
+        console.log('Set Seconds')
+        setSeconds(seconds + 1)
       }, 1000)
-      return () => clearInterval(id)
     }
+    // Show what happens when we add seconds to
+    // the dep array, or leave it out ?
   }, [active])
 
   return (
@@ -31,5 +31,3 @@ function App() {
     </div>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))

@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import ReactDOM from 'react-dom'
 import StarRatings from 'YesterTech/StarRatings'
 import Heading from 'YesterTech/Heading'
 import api from 'YesterTech/api'
-import 'YesterTech/styles/center-lesson.scss'
 
 function useProduct(productId) {
-  const [products, setProducts] = useState(null)
+  const [product, setProduct] = useState(null)
 
   useEffect(() => {
     let isCurrent = true
-    api.products.getProduct(productId).then(products => {
+    api.products.getProduct(productId).then(product => {
       if (!isCurrent) return
-      setProducts(products)
+      setProduct(product)
     })
     return () => (isCurrent = false)
   }, [productId])
 
-  return products
+  return product
 }
 
 function ProductProfile({ productId }) {
@@ -26,14 +24,17 @@ function ProductProfile({ productId }) {
   if (!product) return <div>Loading...</div>
 
   return (
-    <div>
+    <div className="spacing">
       <Heading>{product.name}</Heading>
       <StarRatings rating={product.rating} />
     </div>
   )
 }
 
-ReactDOM.render(
-  <ProductProfile productId={1} />,
-  document.getElementById('root')
-)
+export default function App() {
+  return (
+    <div className="effects-in-custom-hooks">
+      <ProductProfile productId={1} />
+    </div>
+  )
+}

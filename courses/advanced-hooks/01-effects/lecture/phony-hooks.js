@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import './styles.scss'
 
-function App() {
+export default function App() {
   const [active, setActive] = useState(false)
   const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
     if (active) {
-      setInterval(() => {
-        console.log('Set Seconds')
-        setSeconds(seconds + 1)
+      const id = setInterval(() => {
+        setSeconds(seconds => {
+          return seconds + 1
+        })
       }, 1000)
+      return () => clearInterval(id)
     }
-    // Show what happens when we add seconds to the dep array, or leave it out?
   }, [active])
 
   return (
-    <div className="align-center spacing stopwatch">
+    <div className="align-center spacing phony-hooks">
       <div className="horizontal-spacing">
         <button className="button" onClick={() => setActive(true)}>
           Start
@@ -31,4 +33,7 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+function reRender() {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+reRender()
