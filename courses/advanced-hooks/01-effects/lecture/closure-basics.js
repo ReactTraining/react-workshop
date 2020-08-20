@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import './styles.scss'
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState(null)
 
   function saveToDatabase() {
     setTimeout(() => {
-      setMessage(`We saved a count of ${count}`)
+      setMessage(
+        `We saved a count of ${count}, but it is stale since the count state may have changed`
+      )
     }, 3000)
   }
 
@@ -24,5 +26,3 @@ function App() {
     </div>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))

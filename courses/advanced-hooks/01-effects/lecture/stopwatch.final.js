@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import './styles.scss'
 
 export default function App() {
   const [active, setActive] = useState(false)
@@ -17,7 +17,7 @@ export default function App() {
   }, [active])
 
   return (
-    <div className="align-center spacing phony-hooks">
+    <div className="align-center spacing stopwatch">
       <div className="horizontal-spacing">
         <button className="button" onClick={() => setActive(true)}>
           Start
@@ -32,7 +32,4 @@ export default function App() {
   )
 }
 
-function reRender() {
-  ReactDOM.render(<App />, document.getElementById('root'))
-}
-reRender()
+ReactDOM.render(<App />, document.getElementById('root'))

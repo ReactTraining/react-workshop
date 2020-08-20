@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import './styles.scss'
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState(null)
 
+  const countRef = useRef()
+  countRef.current = count
+
   useEffect(() => {
     if (saving) {
       setTimeout(() => {
-        setMessage(`We saved a count of ${count}`)
+        setMessage(
+          `We saved a count of ${count}, but this might be stale because count is currently ${countRef.current}`
+        )
         setSaving(false)
       }, 3000)
     }
@@ -34,5 +39,3 @@ function App() {
     </div>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))
