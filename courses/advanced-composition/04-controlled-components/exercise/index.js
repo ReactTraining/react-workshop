@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel
-} from './Disclosure'
+import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure'
 import './styles.scss'
 
 function App() {

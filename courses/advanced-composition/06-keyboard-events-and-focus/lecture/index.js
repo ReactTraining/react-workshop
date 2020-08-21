@@ -1,13 +1,6 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuPopover,
-  MenuItems,
-  MenuItem
-} from './Menu'
+import { Menu, MenuButton, MenuList, MenuPopover, MenuItems, MenuItem } from './Menu'
 import './styles.scss'
 
 function App() {
@@ -18,12 +11,8 @@ function App() {
       <MenuButton className="button">Menu</MenuButton>
       <MenuPopover>
         <MenuItems data-menu-list="">
-          <MenuItem onSelect={() => console.log('one')}>
-            Item One
-          </MenuItem>
-          <MenuItem onSelect={() => console.log('two')}>
-            Item Two
-          </MenuItem>
+          <MenuItem onSelect={() => console.log('one')}>Item One</MenuItem>
+          <MenuItem onSelect={() => console.log('two')}>Item Two</MenuItem>
           {logged && <AuthenticatedMenuItems />}
         </MenuItems>
       </MenuPopover>
@@ -35,12 +24,8 @@ function App() {
 function AuthenticatedMenuItems() {
   return (
     <Fragment>
-      <MenuItem onSelect={() => console.log('three')}>
-        Item Three
-      </MenuItem>
-      <MenuItem onSelect={() => console.log('four')}>
-        Item Four
-      </MenuItem>
+      <MenuItem onSelect={() => console.log('three')}>Item Three</MenuItem>
+      <MenuItem onSelect={() => console.log('four')}>Item Four</MenuItem>
     </Fragment>
   )
 }
