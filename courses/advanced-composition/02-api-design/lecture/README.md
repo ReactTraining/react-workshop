@@ -1,69 +1,28 @@
 # Notes for Instructor
 
-The advanced workshop starts with the attendees writing code first. Start with the exercise and have the students follow the README.
+1. First, have the students do the exercise before the lecture
 
-When they're finished, this is a great opportunity to have a discussion on the various ways that they may have implemented the `Disclosure` component. Many students will probably create an API with one element like:
+- The main idea is to get them thinking about how to write components. They will probably write a single element or maybe even a single element with a render props thing.
 
-## Before Refactor:
+2. Lecture
 
-```jsx
-<Disclosure summary="Click Me">Panel Info</Disclosure>`
-```
+- The index file for lectures will have a checklist at the bottom of what needs to be solved
+- Refactors:
+  - Make Compound Components
+    - Don't introduce context yet, the curriculum flows better if the know `React.Children.map` and `React.cloneElement` for the next lecture.
+  - Add an `<Disclosure onChange>` onChange so the owner component can know the disclosure state and adjust the icon
+  - adjust from class names to data-attributes
+  - Forward Props
+  - Forward Ref
+  - Add display name because of forwarding ref
+  - Add aria stuff (see checklist)
+    - `useId()` gives us something more dynamic that just `id="panel"`
+    - Show the real one being imported or just make one. The real one is a bit complex because of SSR and re-hydration.
 
-❌ No ARIA.
-❌ We can't rearrange to put the panel above the button or side-by-side.
-❌ We can't add extra DOM container among the button and/or panel (like a `div` around the button).
-❌ We can't pass the underlying button own props (like className, id, etc) unless we do strange API things like `buttonProps={}`
-❌ We're polluting the CSS global namespace.
-❌ We can't forward refs to the panel or button. Even if we did do `forwardRef`, how would we know what element it goes to?
-❌ We don't get to choose the icon or its position (to the left or right of text). Or what if we want no icon?
+A quick note on `propTypes`, we're not doing them because they take up so much space and lots of teams are using type systems anyways.
 
-## Refactor:
+This whole thing is a great primer for "controlled vs uncontrolled components". Not that we're doing or going to talk about controlled yet (that's in the lessons later), but we do have our own `onChange` and `defaultOpen`, thus "uncontrolled".
 
-- Compound Components using `React.cloneElement` approach
-- Use data-attributes instead of classnames so that way a forwarded prop for `className` won't clobber ours. Also so we don't pollute the global CSS namespace.
-  - `data-disclosure-button` and `data-disclosure-panel`
-  - `data-state="open|collapsed"`
-- Add `displayName` -- Devtools just says `<ForwardRef/>` or "Anonymous" (depending on version).
-- Add some basic a11y, see final solution for example:
-  - `aria-controls`
-  - `aria-expanded`
-
-In order for a unique ID to go on the panel which then gets used by `aria-controls` for the button, we need to manage the ID at the top of the Compound Component and pass it down through context. Also we need to plan on there being other instances of Disclosure so we need a universal "unique id" system. This is what `useId` does for us. Read all about it here: https://github.com/reach/reach-ui/tree/master/packages/auto-id
-
-We have a local implementation of `autoId` which is being imported. It might be fun to just make your own for the purposes of this lecture (without all the SSR stuff), but all other material uses the local one at the root of `/advanced`.
-
-## After Refactor:
-
-✅ We CAN change the arrangement: `<DisclosurePanel />` before `<DisclosureButton />` if we want.
-✅ We CAN pass in our own props in a way that feels more natural without a sloppy API.
-✅ We're not using classnames which allows for easier prop forwarding of `className` and we don't pollute the global namespace for CSS classes.
-✅ We CAN forward refs
-✅ Basic ARIA is in place.
-❌ Even though we can compose an icon into the button, we don't know the state of `Disclosure` so we can't change the icon depending on open or not.
-❌ Still, we can't add extra DOM containers around the compound component elements.
-
-```jsx
-// Note that a `span` element around the text summary is necessary for good vertical-alignment with CSS:
-
-// Aligns well with span
-<DisclosureButton>
-  <Icon />
-  <span>Click Me</span>
-</DisclosureButton>
-
-// Does not align well
-<DisclosureButton>
-  <Icon />
-  Click Me
-</DisclosureButton>
-
-// Not needed if no icon
-<DisclosureButton>
-  Click Me
-</DisclosureButton>
-```
-
-### Exercise
+3. Exercise
 
 Let the attendees refactor to get caught up to where we have our lecture code. Main lesson learned: React gives us the ability to make a composable API which offer more flexibility.

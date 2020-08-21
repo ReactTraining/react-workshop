@@ -1,21 +1,10 @@
-import React, {
-  useState,
-  useContext,
-  useRef,
-  forwardRef
-} from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useContext, useRef, forwardRef } from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
 const DisclosureContext = React.createContext()
 
-export function Disclosure({
-  children,
-  onChange,
-  defaultOpen = false,
-  ...props
-}) {
+export function Disclosure({ children, onChange, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const id = useId(props.id)
   const panelId = `panel-${id}`
@@ -29,20 +18,12 @@ export function Disclosure({
     }
   }
 
-  return (
-    <DisclosureContext.Provider children={children} value={context} />
-  )
-}
-
-Disclosure.propTypes = {
-  onChange: PropTypes.func
+  return <DisclosureContext.Provider children={children} value={context} />
 }
 
 export const DisclosureButton = forwardRef(
   ({ children, onClick, ...props }, forwardedRef) => {
-    const { isOpen, panelId, onSelect } = useContext(
-      DisclosureContext
-    )
+    const { isOpen, panelId, onSelect } = useContext(DisclosureContext)
 
     return (
       <button
@@ -61,27 +42,22 @@ export const DisclosureButton = forwardRef(
 )
 
 DisclosureButton.displayName = 'DisclosureButton'
-DisclosureButton.propTypes = {
-  onClick: PropTypes.func
-}
 
-export const DisclosurePanel = forwardRef(
-  ({ children, ...props }, forwardedRef) => {
-    const { isOpen, panelId } = useContext(DisclosureContext)
+export const DisclosurePanel = forwardRef(({ children, ...props }, forwardedRef) => {
+  const { isOpen, panelId } = useContext(DisclosureContext)
 
-    return (
-      <div
-        {...props}
-        id={panelId}
-        hidden={!isOpen}
-        data-disclosure-panel=""
-        data-state={isOpen ? 'open' : 'collapsed'}
-        ref={forwardedRef}
-      >
-        {children}
-      </div>
-    )
-  }
-)
+  return (
+    <div
+      {...props}
+      id={panelId}
+      hidden={!isOpen}
+      data-disclosure-panel=""
+      data-state={isOpen ? 'open' : 'collapsed'}
+      ref={forwardedRef}
+    >
+      {children}
+    </div>
+  )
+})
 
 DisclosurePanel.displayName = 'DisclosurePanel'

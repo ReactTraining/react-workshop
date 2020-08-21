@@ -1,11 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  forwardRef,
-  useContext
-} from 'react'
-import PropTypes from 'prop-types'
+import React, { useRef, useState, useEffect, forwardRef, useContext } from 'react'
 import { Popover } from './Popover'
 import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
@@ -53,23 +46,15 @@ export function Menu({ children, id, defaultOpen = false }) {
   )
 }
 
-Menu.propTypes = {
-  onChange: PropTypes.func
-}
-
 /**
  * Menu Button
  */
 
 export const MenuButton = forwardRef(
   ({ children, onClick, onKeyDown, ...props }, forwardedRef) => {
-    const {
-      buttonId,
-      isOpen,
-      setIsOpen,
-      setActiveIndex,
-      buttonRef
-    } = useContext(MenuContext)
+    const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(
+      MenuContext
+    )
 
     // Combine Refs
     const ref = useForkedRef(buttonRef, forwardedRef)
@@ -113,9 +98,6 @@ export const MenuButton = forwardRef(
 )
 
 MenuButton.displayName = 'MenuButton'
-MenuButton.propTypes = {
-  onClick: PropTypes.func
-}
 
 /**
  * Menu List
@@ -136,42 +118,33 @@ MenuList.displayName = 'MenuList'
  * Menu Popover
  */
 
-export const MenuPopover = forwardRef(
-  ({ onBlur, ...props }, forwardedRef) => {
-    const {
-      isOpen,
-      setIsOpen,
-      menuRef,
-      popoverRef,
-      buttonRef
-    } = useContext(MenuContext)
-    const ref = useForkedRef(popoverRef, forwardedRef)
+export const MenuPopover = forwardRef(({ onBlur, ...props }, forwardedRef) => {
+  const { isOpen, setIsOpen, menuRef, popoverRef, buttonRef } = useContext(MenuContext)
+  const ref = useForkedRef(popoverRef, forwardedRef)
 
-    function handleBlur() {
-      const ownerDocument =
-        popoverRef.current?.ownerDocument || document
-      requestAnimationFrame(() => {
-        if (
-          popoverRef.current &&
-          !popoverRef.current.contains(ownerDocument.activeElement) &&
-          ownerDocument.activeElement !== menuRef.current &&
-          ownerDocument.activeElement !== buttonRef.current
-        ) {
-          setIsOpen(false)
-        }
-      })
-    }
-
-    return isOpen ? (
-      <Popover
-        {...props}
-        ref={ref}
-        onBlur={wrapEvent(onBlur, handleBlur)}
-        targetRef={buttonRef}
-      />
-    ) : null
+  function handleBlur() {
+    const ownerDocument = popoverRef.current?.ownerDocument || document
+    requestAnimationFrame(() => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(ownerDocument.activeElement) &&
+        ownerDocument.activeElement !== menuRef.current &&
+        ownerDocument.activeElement !== buttonRef.current
+      ) {
+        setIsOpen(false)
+      }
+    })
   }
-)
+
+  return isOpen ? (
+    <Popover
+      {...props}
+      ref={ref}
+      onBlur={wrapEvent(onBlur, handleBlur)}
+      targetRef={buttonRef}
+    />
+  ) : null
+})
 
 MenuPopover.displayName = 'MenuPopover'
 
@@ -179,67 +152,65 @@ MenuPopover.displayName = 'MenuPopover'
  * Menu Items
  */
 
-export const MenuItems = forwardRef(
-  ({ children, onKeyDown, ...props }, forwardedRef) => {
-    const {
-      buttonId,
-      menuRef,
-      isOpen,
-      setIsOpen,
-      activeIndex,
-      setActiveIndex
-    } = useContext(MenuContext)
-    const ref = useForkedRef(menuRef, forwardedRef)
-    const { descendants } = useContext(DescendantContext)
-    const totalItems = descendants.length
+export const MenuItems = forwardRef(({ children, onKeyDown, ...props }, forwardedRef) => {
+  const {
+    buttonId,
+    menuRef,
+    isOpen,
+    setIsOpen,
+    activeIndex,
+    setActiveIndex
+  } = useContext(MenuContext)
+  const ref = useForkedRef(menuRef, forwardedRef)
+  const { descendants } = useContext(DescendantContext)
+  const totalItems = descendants.length
 
-    function handleKeyDown(event) {
-      if (!isOpen) return
-      switch (event.key) {
-        case 'Escape':
-          setIsOpen(false)
-          break
-        case 'Home':
-          setActiveIndex(0)
-          break
-        case 'End':
-          setActiveIndex(totalItems - 1)
-          break
-        case 'ArrowUp':
-          if (activeIndex !== 0) {
-            setActiveIndex(activeIndex - 1)
-          }
-          break
-        case 'ArrowDown':
-          if (activeIndex < totalItems - 1) {
-            setActiveIndex(activeIndex + 1)
-          }
-          break
-        case 'Tab':
-          event.preventDefault()
-          break
-        default:
-          break
-      }
+  function handleKeyDown(event) {
+    if (!isOpen) return
+    switch (event.key) {
+      case 'Escape':
+        setIsOpen(false)
+        break
+      case 'Home':
+        setActiveIndex(0)
+        break
+      case 'End':
+        setActiveIndex(totalItems - 1)
+        break
+      case 'ArrowUp':
+        if (activeIndex !== 0) {
+          setActiveIndex(activeIndex - 1)
+        }
+        break
+      case 'ArrowDown':
+        if (activeIndex < totalItems - 1) {
+          setActiveIndex(activeIndex + 1)
+        }
+        break
+      case 'Tab':
+        event.preventDefault()
+        break
+      default:
+        break
     }
-
-    return (
-      <div
-        role="menu"
-        {...props}
-        aria-labelledby={buttonId}
-        onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
-        hidden={!isOpen}
-        data-menu-items=""
-        data-state={isOpen ? 'open' : 'collapsed'}
-        ref={ref}
-        tabIndex={-1}
-      >
-        {children}
-      </div>
-    )
   }
-)
+
+  return (
+    <div
+      role="menu"
+      {...props}
+      aria-labelledby={buttonId}
+      onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
+      hidden={!isOpen}
+      data-menu-items=""
+      data-state={isOpen ? 'open' : 'collapsed'}
+      ref={ref}
+      tabIndex={-1}
+    >
+      {children}
+    </div>
+  )
+})
 
 MenuItems.displayName = 'MenuItems'
 
@@ -248,16 +219,8 @@ MenuItems.displayName = 'MenuItems'
  */
 
 export const MenuItem = forwardRef(
-  (
-    { children, onClick, onMouseEnter, onKeyDown, ...props },
-    forwardedRef
-  ) => {
-    const {
-      menuRef,
-      activeIndex,
-      setIsOpen,
-      setActiveIndex
-    } = useContext(MenuContext)
+  ({ children, onClick, onMouseEnter, onKeyDown, ...props }, forwardedRef) => {
+    const { menuRef, activeIndex, setIsOpen, setActiveIndex } = useContext(MenuContext)
     const menuItemRef = useRef(null)
 
     // Combine Refs
@@ -315,6 +278,3 @@ export const MenuItem = forwardRef(
 )
 
 MenuItem.displayName = 'MenuItem'
-Menu.propTypes = {
-  onSelect: PropTypes.func
-}
