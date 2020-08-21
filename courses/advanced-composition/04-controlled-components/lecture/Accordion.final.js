@@ -13,14 +13,14 @@ export const Accordion = forwardRef(
     { children, onChange, index: controlledIndex, defaultIndex = 0, id, ...props },
     forwardedRef
   ) => {
-    const isControlled = controlledIndex != null
-    const { current: wasControlled } = useRef(isControlled)
-    if ((!isControlled && wasControlled) || (isControlled && !wasControlled)) {
-      console.warn('Cannot change from controlled to uncontrolled or vice versa.')
-    }
-
     const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
     const accordionId = useId(id)
+
+    const isControlled = controlledIndex != null
+    const { current: startsControlled } = useRef(isControlled)
+    if (isControlled !== startsControlled) {
+      console.warn('Cannot change from controlled to uncontrolled or vice versa.')
+    }
 
     children = React.Children.map(children, (child, index) => {
       const panelId = `accordion-${accordionId}-panel-${index}`

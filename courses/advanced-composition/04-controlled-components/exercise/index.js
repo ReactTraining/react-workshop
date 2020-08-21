@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure'
 import './styles.scss'
 
 function App() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   return (
-    <Disclosure open={open} onChange={() => setOpen(!open)}>
-      <DisclosureButton>Click Me</DisclosureButton>
+    <Disclosure onChange={() => setOpen(!open)}>
+      <DisclosureButton>
+        {open ? <FaAngleDown /> : <FaAngleRight />}
+        <span>Click Me</span>
+      </DisclosureButton>
       <DisclosurePanel>Panel Info</DisclosurePanel>
     </Disclosure>
   )
 }
-
-/*
-✅ It works, but needs some improvements...
-❌ Accordion cannot be "controlled" from the owner's state
-*/
 
 ReactDOM.render(<App />, document.getElementById('root'))

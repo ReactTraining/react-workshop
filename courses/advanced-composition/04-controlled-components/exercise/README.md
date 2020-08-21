@@ -17,3 +17,7 @@ Remember:
 // Controlled
 <Disclosure open onChange />
 ```
+
+# Bonus Task: Render Props
+
+If you know the render props pattern, go ahead and add that to `Disclosure` as well. Extra points for making it an option API to disclosure

@@ -37,7 +37,12 @@ export function Disclosure({
     }
   }
 
-  return <DisclosureContext.Provider children={children} value={context} />
+  return (
+    <DisclosureContext.Provider
+      children={typeof children === 'function' ? children({ ...context }) : children}
+      value={context}
+    />
+  )
 }
 
 export const DisclosureButton = forwardRef(
