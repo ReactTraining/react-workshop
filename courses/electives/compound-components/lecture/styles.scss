@@ -6,7 +6,7 @@
   margin: 3em auto;
 }
 
-[data-reach-tab] {
+.tab {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -29,14 +29,14 @@
   }
 }
 
-[data-reach-tab-panels] {
+.tab-panels {
   padding: 0.5em 0;
 }
 
-[data-reach-tab-list] + [data-reach-tab-panels] {
+.tab-list + .tab-panels {
   border-top: 2px solid $bright-blue;
 }
 
-[data-reach-tab-panels] + [data-reach-tab-list] {
+.tab-panels + .tab-list {
   border-top: 2px solid $bright-blue;
 }

@@ -14,7 +14,7 @@ export function Tabs({ children, ...props }) {
 
   return (
     <TabsContext.Provider value={context}>
-      <div {...props} data-reach-tabs="">
+      <div {...props} className="tabs">
         {children}
       </div>
     </TabsContext.Provider>
@@ -27,7 +27,7 @@ export function TabList({ children, ...props }) {
   })
 
   return (
-    <div {...props} data-reach-tab-list="" role="tablist">
+    <div {...props} className="tab-list" role="tablist">
       {children}
     </div>
   )
@@ -44,7 +44,7 @@ export function Tab({ children, disabled, ...props }) {
       {...props}
       aria-selected={selected}
       disabled={disabled}
-      data-reach-tab=""
+      className="tab"
       data-selected={selected ? '' : undefined}
       onClick={() => setSelectedIndex(index)}
     >
@@ -59,7 +59,7 @@ export function TabPanels({ children, ...props }) {
   })
 
   return (
-    <div {...props} data-reach-tab-panels="">
+    <div {...props} className="tab-panels">
       {children}
     </div>
   )
@@ -71,12 +71,7 @@ export function TabPanel({ children, ...props }) {
   const selected = selectedIndex === index
 
   return (
-    <div
-      role="tabpanel"
-      {...props}
-      hidden={!selected}
-      data-reach-tab-panel=""
-    >
+    <div role="tabpanel" {...props} hidden={!selected} className="tab-panel">
       {children}
     </div>
   )
