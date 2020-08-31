@@ -1,6 +1,8 @@
 # Notes for Instructor
 
-Refactor `index` to use `useApi` instead of `useProduct` for more general use:
+## useApi
+
+Refactor `useProduct` to be more general, like `useApi`
 
 ```js
 function useApi(api) {
@@ -26,51 +28,8 @@ function ProductProfile({ productId }) {
 }
 ```
 
-Before when `useProduct` was simply passed a `productId`, it was easy to include that into the dependency array. But now that `useApi` is more general, we'll be passing in a callback for the promise-based API call, so what do we add to the dependency array?
-
-- If we leave it empty, we'll get that lint error that says it wants us to `api` in it.
-- If we put API in it with the way we're passing a function into `useApi`, that function is guaranteed to change its identity each time `ProductProfile` re-renders for any reason.
-
-Look at it from the perspective of this line:
-
-```js
-const products = useApi(() => api.products.getProduct(productId))
-```
-
-How are we going to re-run the effect if `productId` changes?
-
-We could try something like this:
-
-```js
-const products = useApi(() => api.products.getProduct(productId), [
-  productId
-])
-```
-
-...and create our own concept of a dependency array. Then we'd take that argument and plug it into the effect's array? The linter will complain about that too since it cannot statically analyze that array. In other words:
-
-```js
-export default function useApi(api, depArray) {
-  useEffect(() => {
-    // ...
-  }, depArray)
-  // ▲ The linter will be like "What the heck, I don't know what you have in there"
-}
-```
-
-The solution is `useCallback` like this:
-
-```js
-const getProducts = useCallback(
-  () => api.products.getProduct(productId),
-  [productId]
-)
-const products = useApi(getProducts)
-```
-
-And now the dependency array in the effect can just be `[api]`. Before we used `useCallback` the function being passed in was an anonymous arrow function that would change for every render. But now `useCallback` ensures that identity remains the same until `productId` changes.
-
-Hooks can also be composed, since their just functions (Hooks Composition):
+- Might be good to show the evolution that beginners go through. Like what if we passed our own dependency like `useApi(..., [productId])`. This would work but the linter doesn't like it because we'd have to receive an argument inside `useApi` and then pass it into the effect's dependency array as a variable instead of an array literal.
+- To solve that, the final solution should have `api` in the effect's dependency array, and to manage that api function being passed in, wrap it in useCallback:
 
 ```js
 const products = useApi(
@@ -78,56 +37,8 @@ const products = useApi(
 )
 ```
 
-## Refactor to `usePromise`
+This is also what we're calling "hooks composition"
 
-Hey, that `useApi` thing is actually so generic, it could be used for any promise-based function. Maybe we can just call it `usePromise()`. Let's also make it based on `useReducer` as a small state-machine:
+## Composing State
 
-```js
-export default function usePromise(api) {
-  const [state, dispatch] = useReducer(
-    (state, action) => {
-      switch (action.type) {
-        case 'LOADING':
-          return { ...state, loading: true }
-        case 'RESOLVED':
-          return {
-            ...state,
-            loading: false,
-            response: action.response,
-            error: null
-          }
-        case 'ERROR':
-          return {
-            ...state,
-            loading: false,
-            response: null,
-            error: action.error
-          }
-        default:
-          return state
-      }
-    },
-    {
-      loading: false,
-      response: null,
-      error: null
-    }
-  )
-
-  useEffect(() => {
-    let isCurrent = true
-    dispatch({ type: 'LOADING' })
-    api()
-      .then(response => {
-        if (!isCurrent) return
-        dispatch({ type: 'RESOLVED', response })
-      })
-      .catch(error => {
-        dispatch({ type: 'ERROR', error })
-      })
-    return () => (isCurrent = false)
-  }, [api])
-
-  return [state.response, state.loading, state.error]
-}
-```
+// todo

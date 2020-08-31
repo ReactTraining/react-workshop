@@ -1,78 +1,16 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect
-} from 'react'
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import { useUndoState, useLocalStorage } from './utils'
 
-// function useLocalStorage(name) {
-//   const [value, setValue] = useState(() => {
-//     return localStorage.getItem(name)
-//   })
-
-//   useEffect(() => {
-//     localStorage.setItem(name, value)
-//   }, [name, value])
-
-//   return [value, setValue]
-// }
-
-// function useUndoState(defaultValue) {
-//   const [value, setValue] = useState(defaultValue)
-//   const historyRef = useRef([])
-
-//   function undo() {
-//     const lastValue = historyRef.current.pop()
-//     setValue(lastValue)
-//   }
-
-//   function changeValue(newValue) {
-//     historyRef.current.push(value)
-//     setValue(newValue)
-//   }
-
-//   return [value, changeValue, undo]
-// }
-
-function useLocalStorage(name, state) {
-  const [value, setValue] = state
-
-  useLayoutEffect(() => {
-    setValue(localStorage.getItem(name))
-  }, [name, setValue])
-
-  useEffect(() => {
-    localStorage.setItem(name, value)
-  }, [name, value])
-
-  return [value, setValue]
-}
-
-function useUndoState(state) {
-  const [value, setValue] = state
-  const historyRef = useRef([])
-
-  function undo() {
-    const lastValue = historyRef.current.pop()
-    setValue(lastValue)
-  }
-
-  function changeValue(newValue) {
-    historyRef.current.push(value)
-    setValue(newValue)
-  }
-
-  return [value, changeValue, undo]
-}
+// 1. Make our own useUndoState:
+//    [color, setColor, undo] = useUndoState(color)
+// 2. Make our own useLocalStorage:
+//    [value, setValue] = useLocalStorage(name)
+// 3. Refactor them so they can be composed
 
 function App() {
-  const [color, setColor, undo] = useUndoState(
-    useLocalStorage('color', useState())
-  )
-  // const [color, setColor, undo] = useUndoState('#ff0000')
+  const [color, setColor, undo] = useUndoState('#ff0000')
 
   function changeColor(e) {
-    // console.log('here')
     setColor(e.target.value)
   }
 

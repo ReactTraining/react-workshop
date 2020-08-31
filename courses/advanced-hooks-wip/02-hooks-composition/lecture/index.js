@@ -7,9 +7,9 @@ import './styles.scss'
  */
 
 // 1. Managing the dependency array of effects in custom hooks
-import App from './effects-in-custom-hooks'
-ReactDOM.render(<App />, document.getElementById('root'))
+// import App from './useApi'
+// ReactDOM.render(<App />, document.getElementById('root'))
 
 // 2. Composing state with custom hooks
-// import App from './composing-state'
-// ReactDOM.render(<App />, document.getElementById('root'))
+import App from './composing-state'
+ReactDOM.render(<App />, document.getElementById('root'))
