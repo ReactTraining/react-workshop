@@ -1,11 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 function useLocalStorage(name, state) {
   const [value, setValue] = state
-
-  useLayoutEffect(() => {
-    setValue(localStorage.getItem(name))
-  }, [name, setValue])
 
   useEffect(() => {
     localStorage.setItem(name, value)
@@ -32,7 +28,14 @@ function useUndoState(state) {
 }
 
 function App() {
-  const [color, setColor, undo] = useUndoState(useLocalStorage('color', useState()))
+  const [color, setColor, undo] = useUndoState(
+    useLocalStorage(
+      'color',
+      useState(() => {
+        return localStorage.getItem('color') || '#ff0000'
+      })
+    )
+  )
 
   function changeColor(e) {
     setColor(e.target.value)
