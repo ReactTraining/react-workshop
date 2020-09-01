@@ -14,6 +14,8 @@ function App() {
 ❌ Be able to choose the icon and its position (to the left or right of text).
    Or what if we want no icon?
    - Implement an `onChange` for Disclosure
+   - We can also implement a render prop on DisclosureButton to 
+     contrast the differences
 ❌ Be able to pass the underlying button own props (like className, id, etc)
    unless we do strange API things like `buttonProps={}`
 ❌ Convert class-names to data-attributes
