@@ -45,6 +45,11 @@ function App() {
 /*
 ✅ It works, but needs some improvements...
 ❌ Accordion cannot be "controlled" from the owner's state
+
+Problems with React.Children.map technique to get the index 
+that we'll fix later
+❌ Can't add extra DOM container around accordion item
+❌ Can't abstract AccordionItem into another component
 */
 
 ReactDOM.render(<App />, document.getElementById('root'))

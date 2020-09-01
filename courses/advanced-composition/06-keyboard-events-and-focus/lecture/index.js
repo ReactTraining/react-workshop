@@ -20,6 +20,7 @@ function App() {
   )
 }
 
+// https://github.com/reach/reach-ui/tree/master/packages/descendants
 // Since we're using `useDescendants`, we can now make abstractions like this:
 function AuthenticatedMenuItems() {
   return (
