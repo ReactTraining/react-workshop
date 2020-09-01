@@ -1,17 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Disclosure } from './Disclosure'
+// import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'
 
 function App() {
-  return <Disclosure summary="Click Me">Panel Contents</Disclosure>
+  return <Disclosure label="Click Me">Panel Contents</Disclosure>
 }
 
 /*
 ✅ It works, but needs some improvements...
 ❌ Be able to rearrange the panel above the button or side-by-side.
 ❌ Be able to choose the icon and its position (to the left or right of text).
-   Or what if we want no icon? Implement an `onChange` for Disclosure
+   Or what if we want no icon?
+   - Implement an `onChange` for Disclosure
 ❌ Be able to pass the underlying button own props (like className, id, etc)
    unless we do strange API things like `buttonProps={}`
 ❌ Convert class-names to data-attributes

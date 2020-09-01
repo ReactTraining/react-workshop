@@ -7,8 +7,6 @@ import './styles.scss'
 function App() {
   const [index, setIndex] = useState(0)
 
-  console.log(index)
-
   return (
     <Accordion onChange={setIndex} defaultIndex={0}>
       <AccordionItem>

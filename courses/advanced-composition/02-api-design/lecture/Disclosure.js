@@ -1,8 +1,11 @@
 import React, { useState, forwardRef } from 'react'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
-// import { useId } from '../../useId'
 
-export function Disclosure({ children, summary, defaultIsOpen = false }) {
+// Import or write our own:
+// import { useId } from '../../useId'
+// function useId() {}
+
+export function Disclosure({ children, label, defaultIsOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
 
   function onSelect() {
@@ -18,7 +21,7 @@ export function Disclosure({ children, summary, defaultIsOpen = false }) {
         className={`disclosure-button ${isOpen ? 'open' : 'collapsed'}`}
       >
         {isOpen ? <FaAngleDown /> : <FaAngleRight />}
-        <span>{summary}</span>
+        <span>{label}</span>
       </button>
       <div
         className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`}
