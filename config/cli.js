@@ -11,8 +11,6 @@ const concurrently = require('concurrently')
 const appPaths = {
   'advanced-composition': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   'advanced-hooks': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  // temp for the "work in progress" version
-  'advanced-hooks-wip': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   core: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   electives: path.resolve(__dirname, '..', 'apps', 'YesterTech')
 }

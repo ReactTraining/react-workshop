@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { Menu, MenuButton, MenuList, MenuPopover, MenuItems, MenuItem } from './Menu'
+import { Menu, MenuButton, MenuList, MenuItem } from './Menu'
 import './styles.scss'
 
 function App() {
@@ -9,13 +9,11 @@ function App() {
   return (
     <Menu>
       <MenuButton className="button">Menu</MenuButton>
-      <MenuPopover>
-        <MenuItems data-menu-list="">
-          <MenuItem onSelect={() => console.log('one')}>Item One</MenuItem>
-          <MenuItem onSelect={() => console.log('two')}>Item Two</MenuItem>
-          {logged && <AuthenticatedMenuItems />}
-        </MenuItems>
-      </MenuPopover>
+      <MenuList>
+        <MenuItem onSelect={() => console.log('one')}>Item One</MenuItem>
+        <MenuItem onSelect={() => console.log('two')}>Item Two</MenuItem>
+        {logged && <AuthenticatedMenuItems />}
+      </MenuList>
     </Menu>
   )
 }
@@ -24,10 +22,10 @@ function App() {
 // Since we're using `useDescendants`, we can now make abstractions like this:
 function AuthenticatedMenuItems() {
   return (
-    <Fragment>
+    <>
       <MenuItem onSelect={() => console.log('three')}>Item Three</MenuItem>
       <MenuItem onSelect={() => console.log('four')}>Item Four</MenuItem>
-    </Fragment>
+    </>
   )
 }
 
@@ -36,7 +34,7 @@ function AuthenticatedMenuItems() {
    makes use of dynamic portals.
 ✅ We can finally add extra DOM containers. The problem before was all those cases
    of doing React.Children.map to manage indexes. But now we are using `useDescendants`
-   so each MenuItem will "register" itself and announce it's index to `Menu`.
+   so each MenuItem will "register" itself and announce its index to `Menu`.
 ❌ Add Keyboard Events
 */
 
