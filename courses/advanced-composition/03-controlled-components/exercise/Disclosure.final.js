@@ -12,8 +12,8 @@ export function Disclosure({
   ...props
 }) {
   const isControlled = controlledOpen != null
-  const { current: wasControlled } = useRef(isControlled)
-  if ((!isControlled && wasControlled) || (isControlled && !wasControlled)) {
+  const { current: startsControlled } = useRef(isControlled)
+  if (isControlled !== startsControlled) {
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }
 
