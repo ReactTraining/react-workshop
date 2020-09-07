@@ -1,131 +1,55 @@
-import React, {
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-  useRef
-} from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useLayoutEffect, useRef } from 'react'
+import ReactDOM, { createPortal } from 'react-dom'
 import './styles.scss'
 
-const CarouselContext = React.createContext()
+function Portal({ children }) {
+  const portalNode = useRef(null)
+  const [_, forceUpdate] = useState()
 
-function CarouselProvider({ children }) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [carouselSize, setCarouselSize] = useState(null)
-
-  const measureCarousel = useCallback(node => {
-    const { width, height } = window.getComputedStyle(node)
-    setCarouselSize({
-      width: parseInt(width.replace('px', '')),
-      height: parseInt(height.replace('px', ''))
-    })
+  useLayoutEffect(() => {
+    portalNode.current = document.createElement('portal')
+    document.body.appendChild(portalNode.current)
+    forceUpdate({})
+    return () => {
+      if (portalNode.current) {
+        document.body.removeChild(portalNode.current)
+      }
+    }
   }, [])
 
-  const context = {
-    measureCarousel,
-    carouselSize,
-    selectedIndex,
-    setSelectedIndex,
-    next: () => setSelectedIndex(selectedIndex + 1),
-    previous: () => setSelectedIndex(selectedIndex - 1)
-  }
+  return portalNode.current ? createPortal(children, portalNode.current) : null
+}
 
+function Popover({ children }) {
   return (
-    <CarouselContext.Provider value={context}>
-      {children}
-    </CarouselContext.Provider>
+    <Portal>
+      <div>{children}</div>
+    </Portal>
   )
 }
 
-function Carousel({ children, width, height }) {
-  const { measureCarousel, selectedIndex, carouselSize } = useContext(
-    CarouselContext
-  )
-
-  children = React.Children.map(children, (child, index) => {
-    return React.cloneElement(child, {
-      isSelected: index === selectedIndex
-    })
-  })
+function Define({ children }) {
+  const [open, setOpen] = useState(false)
 
   return (
-    <div
-      className="carousel"
-      ref={measureCarousel}
-      style={{ width, height }}
-    >
-      <div
-        className="carousel-wrap"
-        style={
-          carouselSize
-            ? {
-                width: carouselSize.width * children.length,
-                height: carouselSize.height
-              }
-            : null
-        }
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        onBlur={() => setOpen(false)}
+        className="as-link"
       >
         {children}
-      </div>
-    </div>
-  )
-}
-
-function CarouselPanel({ children, isSelected }) {
-  const { carouselSize } = useContext(CarouselContext)
-  const panelRef = useRef()
-
-  useEffect(() => {
-    if (isSelected) {
-      panelRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [isSelected])
-
-  return (
-    <div
-      className="carousel-panel"
-      ref={panelRef}
-      style={carouselSize ? { ...carouselSize } : null}
-    >
-      {children}
-    </div>
-  )
-}
-
-function CarouselNext({ children = 'Next' }) {
-  const { next } = useContext(CarouselContext)
-  return (
-    <button className="button" onClick={next}>
-      {children}
-    </button>
-  )
-}
-
-function CarouselPrevious({ children = 'Previous' }) {
-  const { previous } = useContext(CarouselContext)
-  return (
-    <button className="button" onClick={previous}>
-      {children}
-    </button>
+      </button>
+      {open && <Popover>Hooks are a way to compose behavior into components</Popover>}
+    </>
   )
 }
 
 function App() {
   return (
-    <div className="spacing">
-      <CarouselProvider>
-        <Carousel width="100%" height="300px">
-          <CarouselPanel>Panel One</CarouselPanel>
-          <CarouselPanel>Panel Two</CarouselPanel>
-          <CarouselPanel>Panel Three</CarouselPanel>
-        </Carousel>
-        <div className="horizontal-spacing">
-          <CarouselPrevious />
-          <CarouselNext />
-        </div>
-      </CarouselProvider>
-    </div>
+    <p>
+      Modern React is filled with <Define>Hooks</Define>
+    </p>
   )
 }
 

@@ -1,29 +1,10 @@
 @import 'YesterTech/styles/global-styles';
-@import 'YesterTech/styles/center-lesson';
 
-#root {
-  width: 40rem;
+body {
+  padding: 3rem;
 }
 
-.carousel {
-  overflow: hidden;
-}
-
-.carousel-wrap {
-  display: flex;
-}
-
-.carousel-panel {
+[data-popover] {
+  background-color: #000;
   color: #fff;
-  padding: 1rem;
-
-  &:nth-child(1) {
-    background-color: $red;
-  }
-  &:nth-child(2) {
-    background-color: $green;
-  }
-  &:nth-child(3) {
-    background-color: $blue;
-  }
 }
