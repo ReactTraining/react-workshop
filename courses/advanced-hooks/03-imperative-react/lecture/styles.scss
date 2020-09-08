@@ -1,7 +1,12 @@
 @import 'YesterTech/styles/global-styles';
 
+html {
+  font-size: 20pt;
+}
+
 body {
-  padding: 3rem;
+  padding-top: 4rem;
+  padding-left: 2rem;
 }
 
 [data-popover] {

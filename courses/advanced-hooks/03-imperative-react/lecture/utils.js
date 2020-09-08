@@ -1,4 +1,4 @@
-export function positionDefault(targetRect, popoverRect) {
+export function position(targetRect, popoverRect) {
   if (!targetRect || !popoverRect) {
     return {}
   }
