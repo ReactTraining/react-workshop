@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 let queueTweets = []
 
@@ -7,7 +7,8 @@ const Tweet = React.memo(({ id }) => {
 
   useEffect(() => {
     function renderTweet() {
-      window.twttr.widgets.createTweetEmbed(id, tweetRef.current)
+      const options = {} // if we were to want to pass options
+      window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
 
     if (!window.twttr) {

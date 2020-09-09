@@ -1,6 +1,6 @@
 # Notes for Instructor
 
-## useApi
+## promise-hook
 
 Refactor `useProduct` to be more general, like `useApi`
 
@@ -37,7 +37,7 @@ const products = useApi(
 )
 ```
 
-This is also what we're calling "hooks composition"
+This is also what we're calling "hooks composition". We can even refactor the `useApi` hook to be `usePromise` since it's so generic at this point it can be used for any promise based side effect.
 
 ## Composing State
 
