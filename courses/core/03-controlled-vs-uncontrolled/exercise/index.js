@@ -7,9 +7,7 @@ import './styles.scss'
 
 ReactDOM.render(
   <CheckoutBilling
-    onSubmit={(sameAsBilling, fields) =>
-      console.log(sameAsBilling, fields)
-    }
+    onSubmit={(sameAsBilling, fields) => console.log(sameAsBilling, fields)}
   />,
   document.getElementById('root')
 )

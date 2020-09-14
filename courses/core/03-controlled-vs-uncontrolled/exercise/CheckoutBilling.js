@@ -36,12 +36,7 @@ function CheckoutBilling({ onSubmit }) {
         </div>
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
-          <input
-            id="billing:address"
-            type="text"
-            required
-            name="billingAddress"
-          />
+          <input id="billing:address" type="text" required name="billingAddress" />
         </div>
 
         <Heading as="h2" size={3}>

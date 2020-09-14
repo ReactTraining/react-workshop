@@ -9,11 +9,7 @@ function ProductFilters() {
 
   return (
     <div className="spacing">
-      <ProductFilterList
-        list={categories}
-        urlKey="categories"
-        label="Categories"
-      />
+      <ProductFilterList list={categories} urlKey="categories" label="Categories" />
     </div>
   )
 }

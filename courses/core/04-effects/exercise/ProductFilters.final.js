@@ -14,15 +14,11 @@ function ProductFilters() {
     return () => (isCurrent = false)
   }, [])
 
-  if (!categories) return null
+  if (!categories) return <div>Loading Filters...</div>
 
   return (
     <div className="spacing">
-      <ProductFilterList
-        list={categories}
-        urlKey="categories"
-        label="Categories"
-      />
+      <ProductFilterList list={categories} urlKey="categories" label="Categories" />
     </div>
   )
 }

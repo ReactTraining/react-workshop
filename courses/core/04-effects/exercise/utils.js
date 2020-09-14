@@ -4,8 +4,7 @@ export function getCategories() {
   return get('/products')
     .then(products => {
       return products.reduce(
-        (categories, product) =>
-          categories.concat([product.category || '']),
+        (categories, product) => categories.concat([product.category || '']),
         []
       )
     })
