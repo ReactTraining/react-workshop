@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import * as storage from 'YesterTech/localStorage'
 
 const FavoriteProductContext = React.createContext()
@@ -8,8 +8,13 @@ export function FavoriteProductProvider({ children }) {
     return storage.getFavorites()
   })
 
+  const firstRenderRef = useRef(true)
+
   useEffect(() => {
-    storage.updateFavorites(favorites)
+    if (!firstRenderRef.current) {
+      storage.updateFavorites(favorites)
+    }
+    firstRenderRef.current = false
   }, [favorites])
 
   const value = {

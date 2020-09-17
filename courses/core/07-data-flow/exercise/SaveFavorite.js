@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import * as storage from 'YesterTech/localStorage'
+import React, { useState } from 'react'
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi'
 
-function SaveInFavorites({ productId }) {
-  const [favorites, setFavorites] = useState(() => {
-    return storage.getFavorites()
-  })
+// import { useFavoriteProduct } from 'YesterTech/FavoriteProductState'
 
-  useEffect(() => {
-    console.log('Update Favorites', favorites)
-    storage.updateFavorites(favorites)
-  }, [favorites])
+function SaveFavorite({ productId }) {
+  const [favorites, setFavorites] = useState([])
 
+  // See if our productId is one of the favorites
   const favorite = favorites.includes(productId)
 
   function handleClick() {
     if (favorite) {
-      // Remove by filtering an array down to everything that
+      // Remove favorites by filtering an array down to everything that
       // doesn't match the productId
       setFavorites(favorites.filter(id => id !== productId))
     } else {
-      // Add by concatenating two arrays together. If favorites
+      // Add favorites by concatenating two arrays together. If favorites
       // looks like this: [1, 2] and you concat an array that looks
       // like this [3], the end result is [1,2,3]
       setFavorites(favorites.concat([productId]))
@@ -35,4 +30,4 @@ function SaveInFavorites({ productId }) {
   )
 }
 
-export default SaveInFavorites
+export default SaveFavorite

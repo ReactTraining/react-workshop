@@ -7,7 +7,7 @@ import Quantity from 'YesterTech/Quantity'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
-import SaveInFavorites from 'YesterTech/SaveInFavorites'
+import SaveFavorite from 'YesterTech/SaveFavorite'
 import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/BrowseProductItem.scss'
 
@@ -61,7 +61,7 @@ function BrowseProductItem({
           )}
         </div>
         <div className="align-right">
-          <SaveInFavorites productId={productId} />
+          <SaveFavorite productId={productId} />
         </div>
       </Column>
     </Columns>
