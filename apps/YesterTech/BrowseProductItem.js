@@ -7,6 +7,7 @@ import Quantity from 'YesterTech/Quantity'
 import StarRatings from 'YesterTech/StarRatings'
 import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
+import SaveInFavorites from 'YesterTech/SaveInFavorites'
 import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import 'YesterTech/BrowseProductItem.scss'
 
@@ -47,13 +48,21 @@ function BrowseProductItem({
           <span>Condition: {condition}</span>
         </div>
       </Column>
-      <Column className="spacing-small">
-        <ShoppingCartButton onClick={() => addToCart(productId, name, price)} quantity={quantity} />
-        {quantity > 0 && (
-          <div className="align-right">
-            <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />
-          </div>
-        )}
+      <Column className="spacing">
+        <div className="spacing-small">
+          <ShoppingCartButton
+            onClick={() => addToCart(productId, name, price)}
+            quantity={quantity}
+          />
+          {quantity > 0 && (
+            <div className="align-right">
+              <Quantity onChange={q => updateQuantity(productId, q)} quantity={quantity} />
+            </div>
+          )}
+        </div>
+        <div className="align-right">
+          <SaveInFavorites productId={productId} />
+        </div>
       </Column>
     </Columns>
   )

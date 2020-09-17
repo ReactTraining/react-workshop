@@ -78,7 +78,7 @@
     "react-dev-utils": "^9.1.0",
     "react-dom": "^16.10.2",
     "react-flex-columns": "^0.4.2",
-    "react-icons": "^3.8.0",
+    "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",

@@ -41,3 +41,23 @@ export function getCart() {
     return
   }
 }
+
+/**
+ * Favorites
+ */
+
+const LOCAL_STORAGE_KEY_FAVORITES = 'reacttraining-workshop-favorites'
+
+export function updateFavorites(favorites) {
+  localStorage.setItem(LOCAL_STORAGE_KEY_FAVORITES, JSON.stringify(favorites))
+}
+
+export function getFavorites() {
+  try {
+    const favorites = localStorage.getItem(LOCAL_STORAGE_KEY_FAVORITES)
+    if (!favorites) return []
+    return JSON.parse(favorites)
+  } catch (e) {
+    return
+  }
+}

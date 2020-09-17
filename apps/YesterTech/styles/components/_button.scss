@@ -7,6 +7,15 @@ button {
   > * {
     vertical-align: middle;
   }
+  > svg {
+    font-size: 1rem;
+  }
+  > span + svg {
+    margin-left: 0.3em;
+  }
+  > svg + span {
+    margin-left: 0.5em;
+  }
 }
 
 .button {
@@ -22,20 +31,6 @@ button {
   // These normalize anchors with .button to behave more like buttons
   display: inline-block;
   text-decoration: none !important;
-
-  // Icon Size and Alignment
-  > * {
-    vertical-align: middle;
-  }
-  > svg {
-    font-size: 1rem;
-  }
-  > span + svg {
-    margin-left: 0.3em;
-  }
-  > svg + span {
-    margin-left: 0.5em;
-  }
 
   &:focus {
     outline: none;

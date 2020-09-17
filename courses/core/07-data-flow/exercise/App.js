@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { AuthStateProvider } from 'YesterTech/AuthState'
 import { ShoppingCartProvider } from 'YesterTech/ShoppingCartState'
-import { FavoriteProductProvider } from 'YesterTech/FavoriteProductState'
 import PrimaryLayout from 'YesterTech/PrimaryLayout'
 import 'YesterTech/styles/global-styles.scss'
 
@@ -12,9 +11,7 @@ function App() {
     <BrowserRouter>
       <AuthStateProvider>
         <ShoppingCartProvider>
-          <FavoriteProductProvider>
-            <PrimaryLayout />
-          </FavoriteProductProvider>
+          <PrimaryLayout />
         </ShoppingCartProvider>
       </AuthStateProvider>
     </BrowserRouter>
