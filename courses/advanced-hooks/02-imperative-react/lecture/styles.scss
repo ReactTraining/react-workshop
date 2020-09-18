@@ -9,6 +9,8 @@ body {
   padding-left: 2rem;
 }
 
+// Just incase the instructor wants to do a refactor
+.popover,
 [data-popover] {
   background-color: #000;
   color: #fff;

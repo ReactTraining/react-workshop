@@ -4,7 +4,7 @@ import { position } from './utils'
 import './styles.scss'
 
 function Popover({ children }) {
-  return <div data-popover="">{children}</div>
+  return <div className="popover">{children}</div>
 }
 
 function Define({ children }) {
