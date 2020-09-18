@@ -4,7 +4,6 @@ import BrowseProducts from './BrowseProducts'
 import Checkout from 'YesterTech/Checkout'
 // import { useShoppingCart } from './ShoppingCartState'
 import 'YesterTech/PrimaryLayout.scss'
-import './styles.scss'
 
 function PrimaryLayout() {
   return (
