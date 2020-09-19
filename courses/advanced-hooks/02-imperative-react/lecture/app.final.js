@@ -1,5 +1,5 @@
-import React, { useState, useLayoutEffect, useRef } from 'react'
-import ReactDOM, { createPortal } from 'react-dom'
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
 
@@ -25,16 +25,24 @@ function Popover({ children, targetRef }) {
   const popoverRef = useRef()
   const [styles, setStyles] = useState({})
 
-  useLayoutEffect(() => {
-    const targetRect = targetRef.current.getBoundingClientRect()
-    const popoverRect = targetRef.current.getBoundingClientRect()
-    setStyles(position(targetRect, popoverRect))
-  }, [targetRef])
+  // Doing this work in a ref callback helps overcome a race-condition where
+  // we need to ensure the popoverRef has been established. It's established
+  // later than we might expect because the div it's applied to is the children
+  // of Portal which returns null initially (which it must do)
+  function initPopoverRef(el) {
+    // initPopoverRef will be called numerous times, lets do this work once.
+    if (!popoverRef.current) {
+      popoverRef.current = el
+      const targetRect = targetRef.current.getBoundingClientRect()
+      const popoverRect = popoverRef.current.getBoundingClientRect()
+      setStyles(position(targetRect, popoverRect))
+    }
+  }
 
   return (
     <Portal>
       <div
-        ref={popoverRef}
+        ref={initPopoverRef}
         data-popover=""
         onClick={e => e.stopPropagation()}
         style={{
@@ -79,12 +87,12 @@ function Define({ children }) {
   )
 }
 
-function App() {
+export default function App() {
   return (
     <p>
-      Modern React is filled with <Define>Hooks</Define>
+      Modern React is filled with <Define>Hooks</Define>. You can still use classes if you
+      wish, but composability isn't as nice. Hooks were designed to give us better
+      composability with "custom hooks".
     </p>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))
