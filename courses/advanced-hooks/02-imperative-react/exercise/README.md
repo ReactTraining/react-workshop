@@ -1,6 +1,6 @@
 # Imperative React
 
-## Task: Get the Twitter API working
+## Task One: Get the Twitter API working
 
 Open the `TwitterFeed.js`. The `Tweet` component is the only one you'll need to work on.
 
@@ -22,3 +22,15 @@ HINT: if `window.twttr` is not true, you just need to call `renderTweet` now.
 ---
 
 Code algorithms are difficult to describe in words. Check out the solution if you get lost.
+
+## Bonus Task: Tweet Options
+
+Get the tweets to use some options so we can do `dark` or `light` themes. From a Twitter API standpoint, you just need to pass in options like this:
+
+```
+{
+  theme: 'dark' // or 'light'
+}
+```
+
+Remember, when objects are passed down as props, you might be re-creating that object again for each re-render which might be a problem if that object is used in a dependency array.

@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 
 let queueTweets = []
 
-const Tweet = React.memo(({ id }) => {
+const Tweet = React.memo(({ id, options }) => {
   const tweetRef = useRef()
 
   useEffect(() => {
     function renderTweet() {
-      const options = {} // if we were to want to pass options
       window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
 
@@ -25,25 +24,42 @@ const Tweet = React.memo(({ id }) => {
     } else {
       renderTweet()
     }
-  }, [id])
+
+    return () => {
+      tweetRef.current.innerHTML = ''
+    }
+  }, [id, options])
 
   return <div ref={tweetRef} />
 })
 
 function TwitterFeed() {
   const [show, setShow] = useState(true)
+  const [theme, setTheme] = useState('light')
+
+  const options = useMemo(() => {
+    return {
+      theme
+    }
+  }, [theme])
 
   return (
     <>
-      <div>
+      <div className="horizontal-spacing">
         <button onClick={() => setShow(!show)} className="button">
           Show Tweets: {show ? 'On' : 'Off'}
+        </button>
+        <button
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="button"
+        >
+          Theme
         </button>
       </div>
       {show && (
         <div>
-          <Tweet id="1274126046648864768" />
-          <Tweet id="1294327194009952256" />
+          <Tweet id="1274126046648864768" options={options} />
+          <Tweet id="1294327194009952256" options={options} />
         </div>
       )}
     </>

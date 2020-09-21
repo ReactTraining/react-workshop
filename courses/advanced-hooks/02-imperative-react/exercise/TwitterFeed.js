@@ -5,7 +5,8 @@ const Tweet = React.memo(({ id }) => {
 
   useEffect(() => {
     function renderTweet() {
-      window.twttr.widgets.createTweetEmbed(id, tweetRef.current)
+      const options = {} // if we were to want to pass options
+      window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
 
     let script = document.createElement('script')
@@ -21,12 +22,19 @@ const Tweet = React.memo(({ id }) => {
 
 export default function TwitterFeed() {
   const [show, setShow] = useState(true)
+  const [theme, setTheme] = useState('light')
 
   return (
     <>
-      <div>
+      <div className="horizontal-spacing">
         <button onClick={() => setShow(!show)} className="button">
           Show Tweets: {show ? 'On' : 'Off'}
+        </button>
+        <button
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="button"
+        >
+          Theme
         </button>
       </div>
       {show && (
