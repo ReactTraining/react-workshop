@@ -61,11 +61,13 @@ function Define({ children }) {
   const buttonRef = useRef()
 
   useLayoutEffect(() => {
-    window.addEventListener('click', event => {
+    const listener = event => {
       if (event.target !== buttonRef.current) {
         setOpen(false)
       }
-    })
+    }
+    window.addEventListener('click', listener)
+    return () => window.removeEventListener('click', listener)
   }, [])
 
   return (
