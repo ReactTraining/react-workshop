@@ -44,6 +44,7 @@ function Popover({ children, targetRef }) {
       <div
         ref={initPopoverRef}
         data-popover=""
+        // So the window won't close the popup when it gets the click
         onClick={e => e.stopPropagation()}
         style={{
           position: 'absolute',
@@ -75,6 +76,8 @@ function Define({ children }) {
       <button
         ref={buttonRef}
         onClick={() => setOpen(!open)}
+        // This works, sort of. But it fails if we want to select the
+        // text of the popup itself. So do the window listener instead.
         // onBlur={() => setOpen(false)}
         className="as-link"
       >
