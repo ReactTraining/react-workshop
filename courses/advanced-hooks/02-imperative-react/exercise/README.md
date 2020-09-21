@@ -4,36 +4,21 @@
 
 Open the `TwitterFeed.js`. The `Tweet` component is the only one you'll need to work on.
 
-You'll need these various parts of code to get it working:
+The biggest consideration is that we only want to load the Twitter API's `script` element once -- even if there's multiple tweets or the `Tweet` components get unmounted and re-mounted (which is why there's a "Show Tweets" button to demonstrate mounting and unmounting).
 
-```js
-// How you can imperatively create a script tag to load the Twitter API
-let script = document.createElement('script')
-script.setAttribute('src', '//platform.twitter.com/widgets.js')
-document.body.appendChild(script)
-script.onload = () => {
-  // do something when the script is loaded and ready
-}
+1. To start, you'll have a `useEffect` that has most of the basic imperative parts you'll need. The problem is it will run once for each instance of `<Tweet>` and therefore you'll notice two scripts get added to your DOM.
+2. We need to somehow run the renderTweets function for each instance but only setup the script one time. In React, the instances will not know about each other so the best way to coordinate this is with a variable that lives outside of the component. Create a `queueRenders` array outside of the component.
+3. In the effect, queue the `renderTweet` function by adding it to the array for all the instances of `<Tweet>` that are being rendered. Then, only run the logic to setup the script if the queue is empty.
+4. In the `onload` for the script, instead of calling `render`, you now have a queue of render functions you need to iterate through and call each one.
 
-// This is how you can tell the Twitter API to load a Twitter ID
-// into a DOM element
-window.twttr.widgets.createTweetEmbed(id, element)
+This is a good stopping point to make sure things are working as expected. You should now be able to load the page and only one script gets created while both tweets get rendered.
 
-// This is how you can tell if the Twitter API is loaded
-// into JavaScript
-if (window.twttr) {
-}
-```
+The main problem that still persists is that if the `<Tweet>` components were to be unmounted and then re-mounted, nothing would render on the second mount because the only logic to render the tweets comes after a `script.onLoad` which we've purposely just forced to happen once.
 
-Plan of attack!
+5. In the effect function, use the presence of `window.twttr` which checks to see if the script for Twitter is loaded. Now you know if you should be doing all the logic you just wrote to establish the script and queue the renders, or just call render directly.
 
-The biggest consideration is that we only want to load the Twitter API's `script` element once -- even if there's multiple tweets or the `Tweet` components get unmounted and re-mounted.
+HINT: if `window.twttr` is not true, you just need to call `renderTweet` now.
 
-1. First, just get the dynamic script tag loaded and render the tweets. For now, just use an effect with an empty dependency array to get it working. Ignore any dependency array warnings, we can fix those later.
-2. You probably have two `script` DOM elements being created. We need to somehow have one of them kick off the creation of the `script` while the other one waits. One trick for this is to create a queue.
-3. Create a `queueTweets = []` array OUTSIDE OF YOUR COMPONENT. This will allow multiple instances of elements all work with the same queue.
-4. In your effect, check to see if the ``queueTweets.length === 0`and if so, that's when you'll start making that`script`element. Regardless of that condition, you'll want to add a callback function to the queue. This is the renderTweet function that we have commented out for you. You might see later why it's better not as an anonymous function. In a small amount of time after the`script`tag is added, the Twitter API will load and then the`script.onload` will be called.
-5. When the `script` loads, you'll now have a queue of callbacks you can call to run each element's `renderTweet` function.
-6. Finally, if the Tweet elements get unmounted then re-mounted, you might want to use `window.twttr` as a condition to see if we can skip that `script` loading process. In that case we can just call `renderTweet` directly.
+---
 
 Code algorithms are difficult to describe in words. Check out the solution if you get lost.
