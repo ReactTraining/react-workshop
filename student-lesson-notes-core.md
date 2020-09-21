@@ -30,7 +30,7 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 - A good mental model for React is that UI is a function of state. In other words:
   - The component renders for the first time and JSX is created from initial props and state.
   - When state changes (often times through events like clicks), React calls our component function again and ensures the state variables reflect what was changed.
-  - This re-render will mean new JSX is returned that reflects the new state. It's like a new instruction manual for what do change in the DOM.
+  - This re-render will mean new JSX that is returned reflects the new state. It's like a new instruction manual for what does change in the DOM.
   - React takes the previously returned JSX and the new JSX and finds the differences (called a diff). Only the things that are different are used to change the real DOM. This makes React very fast.
 
 Docs: https://reactjs.org/docs/hooks-state.html
