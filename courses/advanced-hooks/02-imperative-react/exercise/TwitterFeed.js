@@ -4,10 +4,16 @@ const Tweet = React.memo(({ id }) => {
   const tweetRef = useRef()
 
   useEffect(() => {
-    // function renderTweet() {} 👈 leave this until you see why in the README
-    // ..
-    // finish this
-    // ..
+    function renderTweet() {
+      window.twttr.widgets.createTweetEmbed(id, tweetRef.current)
+    }
+
+    let script = document.createElement('script')
+    script.setAttribute('src', '//platform.twitter.com/widgets.js')
+    document.body.appendChild(script)
+    script.onload = () => {
+      renderTweet()
+    }
   }, [])
 
   return <div ref={tweetRef} />
