@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'
 
-let queueTweets = []
+let queueRenders = []
 
-const Tweet = React.memo(({ id, options }) => {
+function Tweet({ id, options }) {
   const tweetRef = useRef()
 
   useEffect(() => {
@@ -11,16 +11,16 @@ const Tweet = React.memo(({ id, options }) => {
     }
 
     if (!window.twttr) {
-      if (queueTweets.length === 0) {
+      if (queueRenders.length === 0) {
         let script = document.createElement('script')
         script.setAttribute('src', '//platform.twitter.com/widgets.js')
         document.body.appendChild(script)
         script.onload = () => {
-          queueTweets.forEach(cb => cb())
-          queueTweets = []
+          queueRenders.forEach(cb => cb())
+          queueRenders = []
         }
       }
-      queueTweets.push(renderTweet)
+      queueRenders.push(renderTweet)
     } else {
       renderTweet()
     }
@@ -31,7 +31,7 @@ const Tweet = React.memo(({ id, options }) => {
   }, [id, options])
 
   return <div ref={tweetRef} />
-})
+}
 
 function TwitterFeed() {
   const [show, setShow] = useState(true)

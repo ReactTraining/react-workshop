@@ -1,0 +1,24 @@
+@import 'YesterTech/styles/_theme.scss';
+@import 'YesterTech/styles/center-lesson';
+
+#root {
+  width: auto; // reset
+}
+
+.primary-layout {
+  width: 35rem;
+}
+
+.primary-header {
+  text-align: right;
+  a {
+    font-size: 0.8rem;
+    color: $text-color;
+  }
+  a.active {
+    text-decoration: underline;
+  }
+  a + a {
+    margin-left: 0.5rem;
+  }
+}

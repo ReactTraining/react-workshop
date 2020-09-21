@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const Tweet = React.memo(({ id }) => {
+function Tweet({ id }) {
   const tweetRef = useRef()
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Tweet = React.memo(({ id }) => {
   }, [])
 
   return <div ref={tweetRef} />
-})
+}
 
 export default function TwitterFeed() {
   const [show, setShow] = useState(true)

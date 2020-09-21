@@ -30,7 +30,7 @@ We're doing a side effect but this effect is going to run every time this compon
 function ProductsSidebar() {
   const media = window.matchMedia('(min-width: 800px)')
 
-  media.addListener(() => {
+  media.addEventListener('change', () => {
     console.log(media.matches)
     // What now? We don't have anywhere to save the new value to
   })
@@ -46,13 +46,11 @@ The side effect still runs after every re-render (if there were other state or t
 ```js
 function ProductsSidebar() {
   const query = '(min-width: 800px)'
-  const [isWide, setIsWide] = useState(
-    window.matchMedia(query).matches
-  )
+  const [isWide, setIsWide] = useState(window.matchMedia(query).matches)
 
   useEffect(() => {
     const media = window.matchMedia(query)
-    media.addListener(() => {
+    media.addEventListener('change', () => {
       setIsWide(media.matches)
     })
   }, [])
@@ -75,8 +73,8 @@ useEffect(() => {
   const media = window.matchMedia(query)
   // Now it makes sense to have the listener be it's own variable
   const listener = () => setIsWide(media.matches)
-  media.addListener(listener)
-  return () => media.removeListener(listener)
+  media.addEventListener('change', listener)
+  return () => media.removeEventListener('change', listener)
 }, [isWide])
 ```
 
@@ -109,9 +107,7 @@ NOTE: To help demonstrate the value of the `productId` in the dependency array, 
 
 ```js
 function useMedia(query) {
-  const [matches, setMatches] = useState(
-    window.matchMedia(query).matches
-  )
+  const [matches, setMatches] = useState(window.matchMedia(query).matches)
   // ...
 }
 
