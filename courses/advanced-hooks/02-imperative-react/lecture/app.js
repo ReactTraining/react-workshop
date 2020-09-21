@@ -27,9 +27,9 @@ function Define({ children }) {
 export default function App() {
   return (
     <p>
-      Modern React is filled with <Define>Hooks</Define>. You can still use classes if you
-      wish, but composability isn't as nice. Hooks were designed to give us better
-      composability with "custom hooks".
+      Modern React is filled with <Define>Hooks</Define>. They work with
+      function-components and they give us an ability to use state and other React
+      features similarly to class-based components.
     </p>
   )
 }
