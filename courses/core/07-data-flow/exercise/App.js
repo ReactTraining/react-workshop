@@ -5,7 +5,7 @@ import { ShoppingCartProvider } from 'YesterTech/ShoppingCartState'
 import PrimaryLayout from 'YesterTech/PrimaryLayout'
 import 'YesterTech/styles/global-styles.scss'
 
-// import FavoriteProductProvider from './YesterTech/FavoriteProductState'
+// import FavoriteProductProvider from './FavoriteProductState'
 
 function App() {
   return (
