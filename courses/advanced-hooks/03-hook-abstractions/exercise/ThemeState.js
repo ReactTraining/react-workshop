@@ -1,18 +1,8 @@
-import React, { useContext } from 'react'
-import useMedia from './useMedia'
+import React from 'react'
 
 const ThemeContext = React.createContext()
 
 export function ThemeProvider({ children }) {
-  const dark = useMedia('(prefers-color-scheme: dark)')
-
-  const context = {
-    scheme: dark ? 'dark' : 'light'
-  }
-
+  const context = {}
   return <ThemeContext.Provider value={context} children={children} />
-}
-
-export function useTheme() {
-  return useContext(ThemeContext)
 }

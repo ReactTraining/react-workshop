@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react'
 
 let queueRenders = []
 
-function Tweet({ id, options }) {
+function Tweet({ id, options = {} }) {
   const tweetRef = useRef()
 
   useEffect(() => {
@@ -25,8 +25,12 @@ function Tweet({ id, options }) {
       renderTweet()
     }
 
+    // The linter will complain if we use tweetRef.current in the cleanup function,
+    // saying that the "current" value can change from when the effect runs to when
+    // the cleanup runs, this is their recommended approach
+    const node = tweetRef.current
     return () => {
-      tweetRef.current.innerHTML = ''
+      node.innerHTML = ''
     }
   }, [id, options])
 
@@ -49,10 +53,7 @@ function TwitterFeed() {
         <button onClick={() => setShow(!show)} className="button">
           Show Tweets: {show ? 'On' : 'Off'}
         </button>
-        <button
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          className="button"
-        >
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className="button">
           Theme
         </button>
       </div>

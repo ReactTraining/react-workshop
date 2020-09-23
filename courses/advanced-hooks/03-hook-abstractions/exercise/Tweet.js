@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 
 let queueRenders = []
 
-function Tweet({ id, options }) {
+function Tweet({ id, options = {} }) {
   const tweetRef = useRef()
 
   useEffect(() => {
@@ -25,8 +25,9 @@ function Tweet({ id, options }) {
       renderTweet()
     }
 
+    const node = tweetRef.current
     return () => {
-      tweetRef.current.innerHTML = ''
+      node.innerHTML = ''
     }
   }, [id, options])
 

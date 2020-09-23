@@ -7,8 +7,8 @@ import ReactDOM from 'react-dom'
 
 // 1. Overview of useEffect with network requests
 // This is similar to the core workshop exercise on hooks
-// Open the ProductProfile.js to show effects in the context
-// of the full app
+// Open ProductProfile.js to show a network (async) side effect
+// Open ProductsSidebar.js to show a subscription side effect
 import App from 'YesterTech/App'
 ReactDOM.render(<App />, document.getElementById('root'))
 
