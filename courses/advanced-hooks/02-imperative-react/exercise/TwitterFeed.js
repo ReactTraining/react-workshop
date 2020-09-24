@@ -10,6 +10,7 @@ function Tweet({ id }) {
     }
 
     let script = document.createElement('script')
+    // When this script runs from twitter, they'll establish a window.twttr variable
     script.setAttribute('src', '//platform.twitter.com/widgets.js')
     document.body.appendChild(script)
     script.onload = () => {
@@ -30,10 +31,7 @@ export default function TwitterFeed() {
         <button onClick={() => setShow(!show)} className="button">
           Show Tweets: {show ? 'On' : 'Off'}
         </button>
-        <button
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          className="button"
-        >
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className="button">
           Theme
         </button>
       </div>
