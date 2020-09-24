@@ -164,7 +164,8 @@ In React, a “prop” (short for property) is a basic way to pass information f
 
 In React, props are probably the easiest way to pass information around. But in a large application with many components, it can be a little cumbersome with lots of “prop-drilling”. So “context” is an alternative way to pass information around where you can pass information from one component to another all while skipping all the components in-between. Technically, components can’t pass data directly between each other except for parents passing props to children, so context works by creating a PubSub pattern (publish-subscribe patter) whereby the publishers are called “providers” and the subscribers are called “consumers”
 
-## A Context Provider is a component sending data out. A Context Consumer is a component that is “subscribed” to that provider and receiving the data.
+- A Context Provider is a component sending data out.
+- A Context Consumer is a component that is “subscribed” to that provider and receiving the data.
 
 ## State
 
