@@ -4,8 +4,6 @@
 
 We know that there's a lot of things that go into learning React besides React itself. There's the DOM and other front-end concepts which you may or may not already be familiar with. Then there's also the tooling ecosystem around React just to setup a project. Also, what exactly is React? While you don't necessarily have to know all that stuff super well to take our workshop, sometimes it's good to have this extra knowledge. This document should at least help some to get you caught up.
 
-Also, we have a [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) which you should read if you need to get caught up on modern JavaScript syntax. A LOT has changed in the last 5 years.
-
 # The DOM
 
 Long story short, the DOM is an API that allows front-end JavaScript to manipulate elements on the page. Whereas HTML has tags which tell the browser what to build when the page starts, the browser takes those HTML instructions and builds "elements". So we might say that `<div>` is a "div tag" if we're talking about HTML, but once the browser builds the page, HTML is no longer apart of the picture. Now we have a "div element".

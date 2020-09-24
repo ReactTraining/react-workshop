@@ -9,7 +9,8 @@ Before attending the training, please make sure you install the code (not just c
 - [ ] Bring a laptop (don't forget a long power cord).
 - [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
 - [ ] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
-- [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. See the [Be Prepared](#be-prepared) section below.
+- [ ] Newer to React? Don't quite understand what JSX is or how Babel/Webpack plays a role? [We have some reading material for you](/reading) before the workshop.
+- [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
 
 ## Install & Setup
 
@@ -98,21 +99,6 @@ Choose one from list [1...9, a, 0]:
 Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
 
 If you don't want to deal with the CLI in the future as much, you can run `npm start 1` to go to your chosen exercise right away.
-
-## Be Prepared
-
-**IMPORTANT:** Please read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop. We wrote this to be as concise as possible while covering just the right types of JS syntax that are seen most often in React (and newer JS syntax which you may not have learned yet).
-
-If you know JS really well, it will take 3 minutes to skim through. If you don't know the topics from the article, study it if you can. We can answer JavaScript questions or explain any syntax we're writing in the workshop, but obviously if everyone is caught up on some of these pre-requisite JS things, then we can stay focused on React.
-
-There's also a document in this repo called [Prerequisites](./prerequisites.md) if you're newer to the JS/Node ecosystem which helps explain modern tooling like Webpack and Babel, their relationship to React, and what is React.
-
-### We took notes for you!
-
-During the lectures, feel free to take notes. We also have some pre-made notes for you in this repo that you can edit as you see fit.
-
-- [student-lesson-notes-core.md](/student-lesson-notes-core.md)
-- student-lesson-notes-advanced (not ready yet)
 
 ## Prettier Plugin
 
