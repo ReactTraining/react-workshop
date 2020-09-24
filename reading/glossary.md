@@ -150,7 +150,7 @@ It’s also worth mentioning that Class-based Components are not deprecated and 
 
 ## A “Pure” or “Memoized” Component
 
-These are not other “types” of components. A “Pure” component is a Class Component that has some optimizations turned on. A “memoized” component is a Function Component with similar optimizations turned on.
+These are not other “types” of components. A “Pure” component is a Class Component that has some performance optimizations turned on. A “memoized” component is a Function Component with similar optimizations turned on. The reason why components don't have these "optimizations" on by default is because they do come with some overhead costs that you would have to incur for all components even though only some components might benefit from these optimizations. So they're opt-in only.
 
 ## Component Hierarchy
 
