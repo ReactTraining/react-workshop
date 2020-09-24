@@ -183,7 +183,7 @@ When your application needs data to be shared among all components, we might cal
 
 ## Redux and MobX
 
-Redux and MobX are third-party tools for doing application state. They are framework agnostic so they’re not meant just for React. Their general purpose to to share state across an entire application. In previous years, React didn’t have a really good way to share state across the entire component hierarchy, so Redux was really popular as a third-party tool in React applications. These days, Redux is still fairly popular but React now has internal features that developers can use to achieve the same goal of application-wide state sharing. The tool in React is called “Context”.
+Redux and MobX are third-party tools for doing application state. They are framework agnostic so they’re not meant just for React. They're general purpose tools to share state across an entire application. In previous years, React didn’t have a really good way to share state across the entire component hierarchy, so Redux was really popular as a third-party tool in React applications. These days, Redux is still fairly popular but React now has internal features that developers can use to achieve the same goal of application-wide state sharing. The tool in React is called “Context”.
 
 ## JSX
 
