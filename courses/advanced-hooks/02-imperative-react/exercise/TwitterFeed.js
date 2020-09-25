@@ -10,13 +10,13 @@ function Tweet({ id }) {
     }
 
     let script = document.createElement('script')
-    // When this script runs from twitter, they'll establish a window.twttr variable
     script.setAttribute('src', '//platform.twitter.com/widgets.js')
     document.body.appendChild(script)
+    // When this script arrives and loads, they'll establish `window.twttr`
     script.onload = () => {
       renderTweet()
     }
-  }, [])
+  }, [id])
 
   return <div ref={tweetRef} />
 }
