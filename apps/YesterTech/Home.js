@@ -37,7 +37,7 @@ function Home() {
           <hr />
           <Tiles>
             <ProductTile productId={15} />
-            <ProductTile productId={4} />
+            <ProductTile productId={17} />
             <ProductTile productId={6} />
           </Tiles>
         </Column>
