@@ -2,7 +2,7 @@
 
 ## Task One: Refactor with context
 
-In this task we replace the implicit props that were being passed done through the `React.cloneElement` technique to using context instead:
+In this task we replace the implicit props that were being passed down through the `React.cloneElement` technique to using context instead:
 
 ```jsx
 // This goes in `Disclosure`

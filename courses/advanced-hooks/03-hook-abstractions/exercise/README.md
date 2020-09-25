@@ -8,7 +8,8 @@ HINT. We don't import things for you on this exercise. You'll have to setup all 
 
 1. Open `useMedia.js` and `Review.js`
 2. The Review page is where you need to know if the user prefers "light" or "dark" mode for their OS. This is where we need to call the custom hook for `useMedia('(prefers-color-scheme: dark)')`
-3. Pass an `options` prop into `Tweet` for `{theme: 'dark'}` or `{theme: 'light'}` depending on the return from useMedia.
+3. The `useMedia` hook is defined as a function, but it needs to be built by you. There are some hints in the comments in the `useMedia.js` file.
+4. Pass an `options` prop into `Tweet` for `{theme: 'dark'}` or `{theme: 'light'}` depending on the return from useMedia.
 
 ## Task Two: Context
 
