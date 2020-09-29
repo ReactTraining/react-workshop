@@ -49,7 +49,7 @@ function Quantity() {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={e => dispatch({ type: 'INPUT', quantity: e.target.value })}
+            onChange={e => dispatch({ type: 'INPUT', quantity: parseInt(e.target.value) })}
           />
         </div>
         <div>

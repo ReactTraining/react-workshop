@@ -28,7 +28,7 @@ function Quantity() {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={e => setQuantity(e.target.value)}
+            onChange={e => setQuantity(parseInt(e.target.value))}
           />
         </div>
         <div>
