@@ -9,13 +9,6 @@
 5. Hide the shipping fields if `sameAsBilling` is `true`. Use JSX conditional logic to do so, for example:
 
 ```jsx
-// The form-field is only mounted if `sameAsBilling` is false
-<div>
-  {!sameAsBilling && (
-    <div className="form-field">
-      <label htmlFor="shipping:name">Name</label>
-      <input id="shipping:name" type="text" name="shippingName" />
-    </div>
-  )}
-</div>
+// The inner div is only mounted if `sameAsBilling` is false
+<div>{!sameAsBilling && <div>...stuff</div>}</div>
 ```
