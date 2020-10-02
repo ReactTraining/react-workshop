@@ -26,3 +26,9 @@ const [state, dispatch] = useReducer(
 ```
 
 You can use the above "action types" if you want to match the final.
+
+Remember, you dispatch like this:
+
+```js
+dispatch({ type: 'INPUT', value: 1 })
+```
