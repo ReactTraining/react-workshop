@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# For babel-demo.sh
+compiled.js
+
 # React Training Preferences
 preferences.json
 
