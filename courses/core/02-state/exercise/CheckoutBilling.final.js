@@ -24,20 +24,11 @@ function CheckoutBilling({ onSubmit }) {
         <hr />
         <div className="form-field">
           <label htmlFor="billing:name">Name</label>
-          <input
-            id="billing:name"
-            type="text"
-            name="billingName"
-            autoComplete="off"
-          />
+          <input id="billing:name" type="text" name="billingName" autoComplete="off" />
         </div>
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
-          <input
-            id="billing:address"
-            type="text"
-            name="billingAddress"
-          />
+          <input id="billing:address" type="text" name="billingAddress" />
         </div>
 
         <Heading as="h2" size={3}>
@@ -50,28 +41,18 @@ function CheckoutBilling({ onSubmit }) {
             defaultChecked={sameAsBilling}
             onChange={() => setSameAsBilling(!sameAsBilling)}
           />{' '}
-          Same as Billing
+          <span>Same as Billing</span>
         </label>
 
         {!sameAsBilling && (
           <div className="spacing">
             <div className="form-field">
               <label htmlFor="shipping:name">Name</label>
-              <input
-                id="shipping:name"
-                type="text"
-                name="shippingName"
-                autoComplete="off"
-              />
+              <input id="shipping:name" type="text" name="shippingName" autoComplete="off" />
             </div>
             <div className="form-field">
               <label htmlFor="shipping:address">Address</label>
-              <input
-                id="shipping:address"
-                type="text"
-                name="shippingAddress"
-                autoComplete="off"
-              />
+              <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
             </div>
           </div>
         )}
