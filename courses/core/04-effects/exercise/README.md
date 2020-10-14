@@ -21,4 +21,4 @@ Hey! Are you getting this error "useEffect is called conditionally"? Remember, w
 
 ## Bonus Task: Custom Hooks
 
-If you have time, try converting the code to a custom hook!
+If the instructor has had a chance to explain "custom hooks" yet and If you have time, try converting the code to a custom hook.
