@@ -17,7 +17,7 @@ The main problem that still persists is that if the `<Tweet>` components were to
 
 5. In the effect function, use the presence of `window.twttr` which checks to see if the script for Twitter is loaded. Now you know if you should be doing all the logic you just wrote to establish the script and queue the renders, or just call render directly.
 
-HINT: if `window.twttr` is not true, you just need to call `renderTweet` now.
+HINT: if `window.twttr` is available (is truthy), you just need to call `renderTweet` now.
 
 ---
 
