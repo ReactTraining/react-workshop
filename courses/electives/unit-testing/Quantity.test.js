@@ -5,42 +5,41 @@ import Quantity from './Quantity'
 
 /**
  * With React Testing Library
+ * See: https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
  */
 
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 describe('Quantity', () => {
-  afterEach(cleanup)
-
   it('should start with 0', () => {
-    const { getByTestId } = render(<Quantity />)
-    const minutes = getByTestId('quantity')
+    render(<Quantity />)
+    const minutes = screen.getByTestId('quantity')
     expect(minutes.value).toEqual('0')
   })
 
   it('should not allow subtraction when quantity is already 0', () => {
-    const { getByTestId } = render(<Quantity />)
-    const quantity = getByTestId('quantity')
-    const subtract = getByTestId('subtract-button')
+    render(<Quantity />)
+    const quantity = screen.getByTestId('quantity')
+    const subtract = screen.getByTestId('subtract-button')
     expect(quantity.value).toEqual('0')
     fireEvent.click(subtract)
     expect(quantity.value).toEqual('0')
   })
 
   it('should add', () => {
-    const { getByTestId } = render(<Quantity />)
-    const quantity = getByTestId('quantity')
-    const add = getByTestId('add-button')
+    render(<Quantity />)
+    const quantity = screen.getByTestId('quantity')
+    const add = screen.getByTestId('add-button')
     fireEvent.click(add)
     expect(quantity.value).toEqual('1')
   })
 
   it('should subtract', () => {
-    const { getByTestId } = render(<Quantity />)
-    const quantity = getByTestId('quantity')
-    const add = getByTestId('add-button')
-    const subtract = getByTestId('subtract-button')
+    render(<Quantity />)
+    const quantity = screen.getByTestId('quantity')
+    const add = screen.getByTestId('add-button')
+    const subtract = screen.getByTestId('subtract-button')
     // Since this component is uncontrolled and always starts at 0,
     // we'll add first to test subtract
     fireEvent.click(add)
@@ -49,15 +48,15 @@ describe('Quantity', () => {
   })
 
   it('should add (up arrow)', () => {
-    const { getByTestId } = render(<Quantity />)
-    const quantity = getByTestId('quantity')
+    render(<Quantity />)
+    const quantity = screen.getByTestId('quantity')
     fireEvent.keyDown(quantity, { key: 'ArrowUp' })
     expect(quantity.value).toEqual('1')
   })
 
   it('should subtract (down arrow)', () => {
-    const { getByTestId } = render(<Quantity />)
-    const quantity = getByTestId('quantity')
+    render(<Quantity />)
+    const quantity = screen.getByTestId('quantity')
     fireEvent.keyDown(quantity, { key: 'ArrowUp' })
     fireEvent.keyDown(quantity, { key: 'ArrowDown' })
     expect(quantity.value).toEqual('0')
@@ -95,15 +94,11 @@ describe('Quantity', () => {
     act(() => {
       ReactDOM.render(<Quantity />, container)
     })
-    const subtractButton = container.querySelector(
-      '[data-testid=subtract-button]'
-    )
+    const subtractButton = container.querySelector('[data-testid=subtract-button]')
     const input = container.querySelector('[data-testid="quantity"]')
     expect(input.value).toBe('0')
     act(() => {
-      subtractButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      )
+      subtractButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
     expect(input.value).toBe('0')
   })
@@ -112,14 +107,10 @@ describe('Quantity', () => {
     act(() => {
       ReactDOM.render(<Quantity />, container)
     })
-    const addButton = container.querySelector(
-      '[data-testid=add-button]'
-    )
+    const addButton = container.querySelector('[data-testid=add-button]')
     const input = container.querySelector('[data-testid="quantity"]')
     act(() => {
-      addButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      )
+      addButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
     expect(input.value).toBe('1')
   })
@@ -128,22 +119,14 @@ describe('Quantity', () => {
     act(() => {
       ReactDOM.render(<Quantity />, container)
     })
-    const subtractButton = container.querySelector(
-      '[data-testid=subtract-button]'
-    )
-    const addButton = container.querySelector(
-      '[data-testid=add-button]'
-    )
+    const subtractButton = container.querySelector('[data-testid=subtract-button]')
+    const addButton = container.querySelector('[data-testid=add-button]')
     const input = container.querySelector('[data-testid="quantity"]')
     act(() => {
-      addButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      )
+      addButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
     act(() => {
-      subtractButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      )
+      subtractButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
     expect(input.value).toBe('0')
   })

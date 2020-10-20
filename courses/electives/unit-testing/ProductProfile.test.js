@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, wait } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 // Mock modules
@@ -14,7 +14,7 @@ import ProductProfile from 'YesterTech/ProductProfile'
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useParams: () => ({
-    productId: 1
+    productId: 5 // arbitrary
   })
 }))
 
@@ -39,23 +39,20 @@ api.products.getProduct.mockResolvedValue(mockProductResponse)
  */
 
 describe('ProductProfile', () => {
-  afterEach(cleanup)
-
   it('should render the product', async () => {
-    const { getByText } = render(<ProductProfile />)
+    render(<ProductProfile />)
 
-    expect(api.products.getProduct).toHaveBeenCalledWith(1)
+    expect(api.products.getProduct).toHaveBeenCalledWith(5)
     expect(api.products.getProduct).toHaveBeenCalledTimes(1)
 
-    const loading = getByText('Loading...')
+    const loading = screen.getByText('Loading...')
     expect(loading).toBeTruthy()
 
-    await wait(() => {
-      const name = getByText(mockProductResponse.name)
-      expect(name).toBeTruthy()
-    })
+    // "Waits" for component's side effects to resolve
+    const name = await screen.findByText(mockProductResponse.name)
+    expect(name).toBeTruthy()
 
-    // This is not as thorough as it could be, but gives the basic idea of testing
-    // with mocks and async network requests
+    // This is not as thorough as it could be regarding number of tests, but
+    // gives the basic idea of testing with mocks and async network requests
   })
 })
