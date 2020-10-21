@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { useUndoState, useLocalStorage } from './utils'
+import React, { useState, useEffect } from 'react'
+import { useUndoState } from './utils'
 
 // 1. Make our own useUndoState:
 //    [color, setColor, undo] = useUndoState(color)
@@ -23,12 +23,7 @@ function App() {
           backgroundColor: color
         }}
       >
-        <input
-          type="color"
-          value={color || ''}
-          onChange={changeColor}
-          aria-label="Color Picker"
-        />
+        <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />
       </div>
       <button className="button" onClick={undo}>
         Undo

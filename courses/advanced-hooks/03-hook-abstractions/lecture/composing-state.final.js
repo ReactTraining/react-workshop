@@ -1,30 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function useLocalStorage(name, state) {
   const [value, setValue] = state
+  console.log(value)
 
   useEffect(() => {
-    localStorage.setItem(name, value)
+    localStorage.setItem(name, JSON.stringify(value))
   }, [name, value])
 
   return [value, setValue]
 }
 
 function useUndoState(state) {
-  const [value, setValue] = state
-  const historyRef = useRef([])
+  const [values, setValues] = state
 
   function undo() {
-    const lastValue = historyRef.current.pop()
-    setValue(lastValue)
+    setValues(values.slice(0, values.length - 1))
   }
 
   function changeValue(newValue) {
-    historyRef.current.push(value)
-    setValue(newValue)
+    setValues(values.concat([newValue]))
   }
 
-  return [value, changeValue, undo]
+  return [values.slice(values.length - 1), changeValue, undo]
 }
 
 function App() {
@@ -32,7 +30,7 @@ function App() {
     useLocalStorage(
       'color',
       useState(() => {
-        return localStorage.getItem('color') || '#ff0000'
+        return JSON.parse(localStorage.getItem('color')) || ['#ff0000']
       })
     )
   )
@@ -50,12 +48,7 @@ function App() {
           backgroundColor: color
         }}
       >
-        <input
-          type="color"
-          value={color || ''}
-          onChange={changeColor}
-          aria-label="Color Picker"
-        />
+        <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />
       </div>
       <button className="button" onClick={undo}>
         Undo

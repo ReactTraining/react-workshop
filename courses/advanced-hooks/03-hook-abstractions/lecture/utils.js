@@ -9,31 +9,16 @@ export function getProducts() {
   return get(`/products?${query}`)
 }
 
-export function useUndoState(defaultValue) {
-  const [value, setValue] = useState(defaultValue)
-  const historyRef = useRef([])
+export function useUndoState(defaultState) {
+  const [values, setValues] = useState([defaultState])
 
   function undo() {
-    const lastValue = historyRef.current.pop()
-    setValue(lastValue)
+    setValues(values.slice(0, values.length - 1))
   }
 
-  function updateValue(newValue) {
-    historyRef.current.push(value)
-    setValue(newValue)
+  function changeValue(newValue) {
+    setValues(values.concat([newValue]))
   }
 
-  return [value, updateValue, undo]
-}
-
-export function useLocalStorage(name) {
-  const [value, setValue] = useState(() => {
-    return localStorage.getItem(name)
-  })
-
-  useEffect(() => {
-    localStorage.setItem(name, value)
-  }, [name, value])
-
-  return [value, setValue]
+  return [values.slice(values.length - 1), changeValue, undo]
 }
