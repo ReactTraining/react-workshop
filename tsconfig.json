@@ -1,0 +1,16 @@
+{
+  "include": ["apps", "courses"],
+  "exclude": ["node_modules", "scripts", "config"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "jsx": "react",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
