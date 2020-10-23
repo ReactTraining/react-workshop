@@ -5,7 +5,7 @@ Start by opening the file `SaveFavorite.js`. The general idea is that we're mana
 - Our state is an array
 - The handleClick will either add or update the array
 
-The problem is that this array of favorites is now shared between all of the possible instances of `SaveFavorite` elements.
+One thing we want to eventually do is persist the favorites to localStorage. The problem is that if we were to read from localStorage in `SaveFavorite` to establish the initial state, we have 10 instances of `SaveFavorite` mounted so we'd be reading 10 times from localStorage. So let's just read one time in a Context Provider and once we put that array on context all the `SaveFavorite` instances can just read from context.
 
 ## Task One: Move to Context
 
