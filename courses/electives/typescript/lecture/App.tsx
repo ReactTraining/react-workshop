@@ -1,15 +1,20 @@
-import React from 'react'
+import * as React from 'react'
+import { render } from 'react-dom'
 
-// // type Props = {
-// //   message: string
-// // }
-
-// interface Props {
+// type Props = {
 //   message: string
 // }
 
-const App: React.FC<{ message: string }> = ({ message }) => {
-  return <div>{message}</div>
+interface Props {
+  message: string
 }
 
-export default App
+// const App = ({ message }: Props) => {
+//   return <div>{message}</div>
+// }
+
+function App({ message }: Props) {
+  return <div>test</div>
+}
+
+render(<App message={123} />, document.getElementById('root'))
