@@ -3,4 +3,4 @@ import { render } from 'react-dom'
 
 import App from './App.tsx'
 
-render(<App message={'hello'} />, document.getElementById('root'))
+render(<App message={112} />, document.getElementById('root'))

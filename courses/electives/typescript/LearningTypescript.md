@@ -1,2 +1,3 @@
 - TypeScript Docs "Do's and Don'ts" - https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
 - Interfaces vs Types: https://www.youtube.com/watch?v=crjIq7LEAYw
+- Typing React Functions - https://blog.echobind.com/react-with-typescript-components-as-function-declarations-vs-function-expressions-e433ac8d6938

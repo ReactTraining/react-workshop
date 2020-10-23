@@ -1,16 +1,15 @@
 import React from 'react'
 
-type Name = string
+// // type Props = {
+// //   message: string
+// // }
 
-const name: Name = 'brad'
-console.log(name)
+// interface Props {
+//   message: string
+// }
 
 const App: React.FC<{ message: string }> = ({ message }) => {
   return <div>{message}</div>
 }
-
-// function App() {
-//   return <div>yo</div>
-// }
 
 export default App
