@@ -20,6 +20,8 @@
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "concurrently": "^5.0.0",
     "css-loader": "^2.1.1",
     "eslint-plugin-react-hooks": "^1.7.0",
@@ -32,7 +34,9 @@
     "readline-sync": "^1.4.10",
     "sass-loader": "^7.2.0",
     "shelljs": "^0.8.3",
-    "style-loader": "^1.0.0"
+    "style-loader": "^1.0.0",
+    "ts-loader": "^8.0.6",
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "@babel/core": "7.6.0",
@@ -71,6 +75,9 @@
     "jest-watch-typeahead": "0.4.0",
     "lodash.debounce": "^4.0.8",
     "mini-css-extract-plugin": "0.8.0",
+    "mobx": "^6.0.1",
+    "mobx-react": "^7.0.0",
+    "mobx-react-lite": "^3.0.1",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.5.0",
     "prop-types": "^15.7.2",
