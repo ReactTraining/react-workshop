@@ -12,7 +12,7 @@
 // // non-primitive type (number, string, boolean, null, undefined, etc)
 // const person: object = { name: 'brad' }
 
-// Arrays
+// // Arrays
 // const numbers: number[] = [1, 2, 3]
 // const numbers: any[] = [1, 2, 3]
 
