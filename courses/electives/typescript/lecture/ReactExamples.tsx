@@ -17,7 +17,7 @@ import ReactDOM from 'react-dom'
 //  * From React
 //  */
 
-// // // https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
+// // https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
 // interface FC<P = {}> {
 //   (props: PropsWithChildren<P>): ReactElement | null
 // }
@@ -39,11 +39,11 @@ import ReactDOM from 'react-dom'
 *****************************************/
 
 // export const MyComponent: React.FC = () => {
-//   // Implicit number type
-//   // const [count, setCount] = useState(0)
-
 //   // Explicit
-//   const [count, setCount] = useState<number>(0)
+//   // const [count, setCount] = useState<number>(0)
+
+//   // Implicit number type
+//   const [count, setCount] = useState(0)
 
 //   // remember you can always do unions like <string | null>
 

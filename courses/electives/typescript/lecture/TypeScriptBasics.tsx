@@ -50,18 +50,25 @@
 // type User = 'member' | 'admin'
 // let user: User = 'admin'
 
-// // type Loading = null | object // bad
-// // type Loading = null | { name: string } // better
+// // Lets say you wanted a "Loading" type that is either `null` or
+// // a particular object, like a "user" object:
+
+// type Loading = null | object // bad
+// type Loading = null | { name: string } // better
 
 // // almost good?
 // type User = { name: string }
-// type Loading = null | user
+// type Loading = null | User
 
 /****************************************
-  Intersection
+  Intersection (merge types)
 *****************************************/
 
-// type Person = { name: string } & { age: number }
+// type User = { name: string }
+// type Person = User & { age: number }
+
+// const myself: Person = { name: 'Brad', age: 68 } // ✅
+// const myself: Person = { name: 'Brad', age: 68, other: 'stuff' } // 🚨
 
 /****************************************
   Interfaces
@@ -89,72 +96,88 @@
   Type Alias vs Interface
 *****************************************/
 
-// // Alias is better (smaller)
-// type Names = string[];
+// // Type Aliases vs Interface
+// // https://www.youtube.com/watch?v=crjIq7LEAYw
 
-// // No advantage for interface for basic example
+// // Type aliases are small compared to interfaces:
+// type Names = string[]
+
+// // Here's an interface version of Names
 // interface Names {
-//   [index: number]: string;
+//   [index: number]: string
 // }
 
-// // Great for tuples
-// type Point = [number, number];
+// // Types are great for tuples (array of fixed known value types)
+// type MyTuple = [number, boolean]
 
-// // Functions
+// // Function Type:
+// type LogName = (name: string) => void
+// const logName: LogName = name => {
+//   console.log(name)
+// }
 
-// type LogName = (name: string) => string
-// const logName: LogName = name => name
-
+// // Function Interface:
 // interface LogName {
 //   (name: string): void
 // }
-// const logName: LogName = name => name
-// console.log(logName)
+// const logName: LogName = name => {
+//   console.log(name)
+// }
 
 /****************************************
-  Type Assertions ()
+  Type Assertions (const assertions)
 *****************************************/
 
-// // From https://devblogs.microsoft.com/typescript/announcing-typescript-3-4/#const-assertions
+// From https://devblogs.microsoft.com/typescript/announcing-typescript-3-4/#const-assertions
+
+// Essentially, do not "widen" by inferring `x` is a number, keep it constant
 
 // // Type '10'
-// let x = 10 as const;
+// let x = 10 as const
 
 // // Type 'readonly [10, 20]'
-// let y = [10, 20] as const;
+// let y = [10, 20] as const
 
 // // Type '{ readonly text: "hello" }'
-// let z = { text: "hello" } as const;
+// let z = { text: 'hello' } as const
 
 // Outside of .tsx files, the angle bracket assertion syntax can also be used.
 
 // // Type '10'
-// let x = <const,>10
+// let x = <const>10
 
 // // Type 'readonly [10, 20]'
-// let y = <const,>[10, 20]
+// let y = <const>[10, 20]
 
 // // Type '{ readonly text: "hello" }'
-// let z = <const,>{ text: "hello" }
+// let z = <const>{ text: "hello" }
 
 /****************************************
   Generics (Type Variables)
 *****************************************/
 
-// // We can do "identity" then this:
+// function makeArray(x: string): string[] {
+//   return [x]
+// }
+
+// function makeArray(x: number): number[] {
+//   return [x]
+// }
+
+// // Take in a given type and return an array of that type
 // function makeArray<T>(x: T): T[] {
 //   return [x]
 // }
 
-// Then we can show how an interface can basically take "types"
-// as a dynamic argument
+// // We can make an interface for our function that also uses generics
 
 // interface ValueToArray<T> {
 //   (arg: T): T[]
 // }
 
-// const makeArray: ValueToArray<{ name: string }> = arg => {
+// const makeArray: ValueToArray<{ name: string } | string> = arg => {
 //   return [arg]
 // }
 
-// console.log(makeArray({ name: 'brad' }))
+// console.log(makeArray({ name: 'brad' })) // ✅
+// console.log(makeArray('hello')) // ✅
