@@ -22,7 +22,7 @@
 // // Arrow function
 // const log = (message: string | number): void => {}
 
-// don't use `undefined` as the return type unless you plan on explicitly returning that, use void
+// // don't use `undefined` as the return type unless you plan on explicitly returning that, use `void`
 
 /****************************************
   Implicit, String literals, and Unions
