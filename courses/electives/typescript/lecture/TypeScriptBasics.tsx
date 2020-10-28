@@ -6,21 +6,21 @@
 
 // const admin: boolean = true
 // const message = 'hello world'
-// const message: number = 'hello world'
-// const someVariable: any = 'whatevers'
+// const age: number = 70
+// const someVariable: any = 'could be a string, or number, or object, etc...'
 
 // // non-primitive type (number, string, boolean, null, undefined, etc)
 // const person: object = { name: 'brad' }
 
 // // Arrays
-// const numbers: number[] = [1, 2, 3]
-// const numbers: any[] = [1, 2, 3]
+// const arrayOfNumbers: number[] = [1, 2, 3]
+// const mixedArray: any[] = [1, 2, 'a', false]
 
 // // Function declaration
-// function log(message: string | number) : void {}
+// function logOne(message: string | number): void {}
 
 // // Arrow function
-// const log = (message: string | number): void => {}
+// const logTwo = (message: string | number): void => {}
 
 // // don't use `undefined` as the return type unless you plan on explicitly returning that, use `void`
 
