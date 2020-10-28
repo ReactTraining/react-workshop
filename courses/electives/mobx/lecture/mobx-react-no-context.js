@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { makeAutoObservable } from 'mobx'
-import { useObserver, observer } from 'mobx-react'
+import { Observer, observer } from 'mobx-react'
 
 /**
  * Global Store
@@ -61,17 +61,21 @@ function Counter() {
 // File 2: import store
 
 function Report() {
-  return useObserver(() => (
-    <div>
-      Count: {store.count}
-      <Other />
-    </div>
-  ))
+  return (
+    <Observer>
+      {() => (
+        <div>
+          Count: {store.count}
+          {/* <Other /> */}
+        </div>
+      )}
+    </Observer>
+  )
 }
 
-function Other() {
-  console.log('Do I get re-rendered')
-  return <div />
-}
+// function Other() {
+//   console.log('Do I get re-rendered')
+//   return <div />
+// }
 
 ReactDOM.render(<App />, document.getElementById('root'))

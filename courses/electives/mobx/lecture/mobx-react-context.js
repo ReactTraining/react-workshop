@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import ReactDOM from 'react-dom'
-import { useLocalStore, useObserver, observer } from 'mobx-react-lite'
+import { useLocalObservable, Observer, observer } from 'mobx-react-lite'
 
 // mobx-react is a repackage of the smaller mobx-react-lite package
 // plus a few more things
@@ -13,7 +14,7 @@ import { useLocalStore, useObserver, observer } from 'mobx-react-lite'
 const StoreContext = React.createContext()
 
 function StoreProvider({ children }) {
-  const store = useLocalStore(() => {
+  const store = useLocalObservable(() => {
     return {
       count: 0,
       increment: () => {
@@ -67,21 +68,27 @@ function Counter() {
 function Report() {
   const store = useContext(StoreContext)
 
-  return useObserver(() => (
-    <div>
-      Count: {store.count}
-      <Other />
-    </div>
-  ))
+  return (
+    <Observer>
+      {() => {
+        return (
+          <div>
+            Count: {store.count}
+            {/* <Other /> */}
+          </div>
+        )
+      }}
+    </Observer>
+  )
 }
 
-function Other() {
-  console.log('Do I get re-rendered')
-  return <div />
-}
+// function Other() {
+//   console.log('Do I get re-rendered')
+//   return <div />
+// }
 
-// useObserver essentially takes a component and can only observe
-// the variables used within. Whereas `observer` is an HoC which
+// <Observer> essentially takes a function and can only observe
+// the variables used within. Whereas `observer(Comp)` (the HoC)
 // can wrap `Report` and be used incase the `store.count` were used
 // in the body of `Report` before the JSX
 

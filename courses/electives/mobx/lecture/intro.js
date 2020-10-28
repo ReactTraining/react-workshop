@@ -30,6 +30,8 @@ const id = setInterval(() => {
   me.addYear()
 }, 1000)
 
+// How does autorun work: https://mobx.js.org/reactions.html#autorun
+
 autorun(() => {
   if (me.canRentCar) {
     console.log('We can rent a car 🚙')
