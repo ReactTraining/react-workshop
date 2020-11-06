@@ -29,7 +29,7 @@
     "jest": "^24.9.0",
     "json-server": "^0.15.1",
     "md-to-pdf": "^3.1.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "prettier": "^1.18.2",
     "readline-sync": "^1.4.10",
     "sass-loader": "^7.2.0",
