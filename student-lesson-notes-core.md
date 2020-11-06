@@ -9,8 +9,8 @@ The workshop has lectures followed by exercises. The exercises are your chance t
 - We like React because it's Composable and Declarative
   - Composable: You can build small re-usable parts which can be used to build bigger, more complex things
   - Declarative: We write in a style where we say "what" we want. In other words `<StarRatings>` is declarative because we said we want star ratings on the page, but we didn't have to program "how" they work. Whoever did program the internals of `<StarRatings>` programmed "how" they work. All declarative code that we write has imperative code somewhere else that someone else wrote.
-- JSX is a syntax for easily creating nested elements. Babel is a Webpack plugin that converts each JSX "tag" into `React.createElement`
-- The return value of a component (JSX turned into `React.createElement`) is like an "instruction manual" for how to create DOM elements.
+- JSX is a syntax for easily creating nested elements. Babel is a Webpack plugin that converts each JSX "tag" into `_jsx('div')`
+- The return value of a component (JSX turned into `_jsx('div')`) is like an "instruction manual" for how to create DOM elements.
 - In a typical React application, `ReactDOM.render()` is only used once. As React changes our JSX responses from our components, React will also take care of updating the DOM to reflect those JSX changes.
 - A function that returns JSX is a "component" in React. There are also older ways of creating components with classes. Function-based and class-based components can intermingle in the same app.
 
@@ -134,7 +134,7 @@ dispatch({ type: 'SOME_ACTION_TYPE' })
 
 ## Lesson 7: Data Flow
 
-- Parent components send variables (data) down to their child components via props. Remember, even though props look like "attributes" of HTML, we call them props because they are going to turn into properties of the second argument to `React.createElement(MyButton, { hereAreTheProps: true })`
+- Parent components send variables (data) down to their child components via props. Remember, even though props look like "attributes" of HTML, we call them props because they are going to turn into properties of the second argument to `_jsx(MyButton, { name: 'Sarah' })`
 - A component can be a "child component" in respect to its parent, but could also be a parent component because it further has child components.
 - This relationship between components builds a tree structure that will probably resemble the DOM tree structure that React is building for you.
 - Data flows down: React's data model is said to be "uni-directional", meaning data flows from parent components down through the tree to child components. However, if a prop is passed down from parent to child and the prop is a callback function, then we might say that child components can communicate back up to their parents by calling the function.

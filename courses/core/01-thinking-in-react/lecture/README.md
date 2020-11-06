@@ -7,8 +7,7 @@ We like React because:
 
 Main topics to explain
 
-- `React.createElement`
-- JSX (Babel compiles)
+- JSX (compiles via Babel) to `_jsx('div')`
 - Definition of a component
 - Invoking components with JSX (elements)
 - Element vs Component

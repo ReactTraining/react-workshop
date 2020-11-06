@@ -155,13 +155,16 @@ function selectLesson() {
       // Show Menu
     } else {
       console.log(`\nWhich Lesson of ${selectedCourse}?`)
-      const modifiedLessonOptions = lessonOptions.concat(['FULL APP', 'BACK TO COURSE SELECTION'])
+      const modifiedLessonOptions = lessonOptions.concat([
+        'FULL APP',
+        '👈 BACK TO COURSE SELECTION'
+      ])
       const choice = readlineSync.keyInSelect(modifiedLessonOptions)
       if (choice === -1) {
         process.exit(0)
       } else if (modifiedLessonOptions[choice] === 'FULL APP') {
         return { appPath: appPaths[selectedCourse] }
-      } else if (modifiedLessonOptions[choice] === 'BACK TO COURSE SELECTION') {
+      } else if (modifiedLessonOptions[choice] === '👈 BACK TO COURSE SELECTION') {
         preferences.course = null
         selectedCourse = null
         // Starts CLI menu over
