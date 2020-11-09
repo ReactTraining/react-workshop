@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
@@ -27,9 +27,9 @@ function Define({ children }) {
 export default function App() {
   return (
     <p>
-      Modern React is filled with <Define>Hooks</Define>. They work with
-      function-components and they give us an ability to use state and other React
-      features similarly to class-based components.
+      Modern React is filled with <Define>Hooks</Define>. They work with function-components and
+      they give us an ability to use state and other React features similarly to class-based
+      components.
     </p>
   )
 }

@@ -8,8 +8,8 @@ function Account() {
     <div className="spacing">
       <Heading>My Account</Heading>
       <div>
-        Welcome to your account management page, {user.name}. Unfortunately, we have not finished it
-        yet 😟
+        Welcome to your account management page, {user.name}. You can only see this page if logged
+        in.
       </div>
     </div>
   )
