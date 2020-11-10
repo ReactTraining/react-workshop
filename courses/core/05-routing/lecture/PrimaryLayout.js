@@ -9,11 +9,6 @@ import StarRatings from 'YesterTech/StarRatings'
 import ProductFilterItem from 'YesterTech/ProductFilterItem'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 
-// After we implement the fake versions of these below, we can swap them out for these real ones:
-// import ProductsSidebar from 'YesterTech/ProductsSidebar'
-// import BrowseProducts from 'YesterTech/BrowseProducts'
-// import ProductProfile from 'YesterTech/ProductProfile'
-
 export default function PrimaryLayout() {
   return (
     <div className="primary-layout">
@@ -22,14 +17,10 @@ export default function PrimaryLayout() {
         <ProductSubNav />
         <main className="primary-content">
           <Home />
-          {/* Put other pages here */}
+          {/* <ProductProfile /> */}
+          {/* <BrowseProducts /> */}
         </main>
-        <footer className="primary-footer spacing">
-          <hr />
-          <div className="text-small">
-            Copyright &copy; {new Date().getFullYear()} YesterTech Inc
-          </div>
-        </footer>
+        <PrimaryFooter />
       </div>
     </div>
   )
@@ -58,6 +49,15 @@ function Home() {
     <div className="spacing">
       <Heading>Home Page</Heading>
     </div>
+  )
+}
+
+function PrimaryFooter() {
+  return (
+    <footer className="primary-footer spacing">
+      <hr />
+      <div className="text-small">Copyright &copy; {new Date().getFullYear()} YesterTech Inc</div>
+    </footer>
   )
 }
 
