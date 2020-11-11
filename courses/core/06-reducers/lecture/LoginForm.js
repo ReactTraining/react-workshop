@@ -21,7 +21,7 @@ function LoginForm({ onAuthenticated }) {
     let isCurrent = true
     if (loading) {
       api.auth
-        .login(usernameRef.current, passwordRef.current)
+        .login(usernameRef.current.value, passwordRef.current.value)
         .then(user => {
           if (isCurrent) setUser(user)
         })
@@ -59,11 +59,13 @@ function LoginForm({ onAuthenticated }) {
         )}
 
         <div className="form-field">
-          <input aria-label="Username" disabled={loading} type="text" placeholder="Username" />
+          <input ref={usernameRef} aria-label="Username" disabled={loading} type="text" placeholder="Username" />
         </div>
 
         <div className="form-field">
           <input
+            {/* The older way to do refs */}
+            ref={(node) => passwordRef.current = node}
             aria-label="Password"
             disabled={loading}
             type={showPassword ? 'text' : 'password'}
