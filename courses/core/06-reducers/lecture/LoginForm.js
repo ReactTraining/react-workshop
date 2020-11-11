@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from 'react'
+// eslint-disable-next-line no-unused-vars
+import React, { useState, useEffect, useRef, useReducer } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 
 import Heading from 'YesterTech/Heading'
@@ -7,26 +8,43 @@ import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
 function LoginForm({ onAuthenticated }) {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [user, setUser] = useState(null)
+
+  // State or Refs?
+  const username = ''
+  const password = ''
+
+  useEffect(() => {
+    let isCurrent = true
+    if (loading) {
+      api.auth
+        .login(username, password)
+        .then(user => {
+          if (isCurrent) setUser(user)
+        })
+        .catch(error => {
+          if (isCurrent) {
+            setError(error)
+            setLoading(false)
+          }
+        })
+    }
+    return () => (isCurrent = false)
+  }, [loading, onAuthenticated, password, username])
+
+  useEffect(() => {
+    if (user && typeof onAuthenticated === 'function') {
+      onAuthenticated(user)
+    }
+  }, [onAuthenticated, user])
 
   function handleLogin(event) {
     event.preventDefault()
     setLoading(true)
-    api.auth
-      .login(username, password)
-      .then(user => {
-        if (typeof onAuthenticated === 'function') {
-          onAuthenticated(user)
-        }
-      })
-      .catch(error => {
-        setError(error)
-        setLoading(false)
-      })
+    setError(null)
   }
 
   return (
@@ -41,27 +59,20 @@ function LoginForm({ onAuthenticated }) {
         )}
 
         <div className="form-field">
-          <input
-            aria-label="Username"
-            onChange={e => {
-              setUsername(e.target.value)
-            }}
-            type="text"
-            placeholder="Username"
-          />
+          <input aria-label="Username" disabled={loading} type="text" placeholder="Username" />
         </div>
+
         <div className="form-field">
           <input
             aria-label="Password"
-            onChange={e => {
-              setPassword(e.target.value)
-            }}
+            disabled={loading}
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
           />
           <label>
             <input
               onChange={() => setShowPassword(!showPassword)}
+              disabled={loading}
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"
@@ -71,7 +82,7 @@ function LoginForm({ onAuthenticated }) {
         </div>
 
         <footer>
-          <button type="submit" className="button">
+          <button type="submit" className="button" disabled={loading}>
             {!loading ? (
               <>
                 <FaSignInAlt /> <span>Login</span>

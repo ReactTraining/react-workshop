@@ -5,7 +5,7 @@
 
 Possible extra material:
 
-3. State machines
+3. State Machines and State Charts (https://xstate.js.org/viz/)
 4. Make our own `useState` that implements `useReducer`
 
 ```js
