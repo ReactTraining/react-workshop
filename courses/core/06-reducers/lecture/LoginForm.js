@@ -8,20 +8,20 @@ import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
 function LoginForm({ onAuthenticated }) {
+  const usernameRef = useRef()
+  const passwordRef = useRef()
   const [showPassword, setShowPassword] = useState(false)
+
+  // Change to reducer, then state machine
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [user, setUser] = useState(null)
-
-  // State or Refs?
-  const username = ''
-  const password = ''
 
   useEffect(() => {
     let isCurrent = true
     if (loading) {
       api.auth
-        .login(username, password)
+        .login(usernameRef.current, passwordRef.current)
         .then(user => {
           if (isCurrent) setUser(user)
         })
@@ -33,7 +33,7 @@ function LoginForm({ onAuthenticated }) {
         })
     }
     return () => (isCurrent = false)
-  }, [loading, onAuthenticated, password, username])
+  }, [loading])
 
   useEffect(() => {
     if (user && typeof onAuthenticated === 'function') {
