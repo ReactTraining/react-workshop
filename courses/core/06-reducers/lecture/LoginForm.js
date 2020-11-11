@@ -59,13 +59,20 @@ function LoginForm({ onAuthenticated }) {
         )}
 
         <div className="form-field">
-          <input ref={usernameRef} aria-label="Username" disabled={loading} type="text" placeholder="Username" />
+          <input
+            ref={usernameRef}
+            aria-label="Username"
+            disabled={loading}
+            type="text"
+            placeholder="Username"
+          />
         </div>
 
         <div className="form-field">
           <input
-            {/* The older way to do refs */}
-            ref={(node) => passwordRef.current = node}
+            // You can pass the ref directly in like above with username,
+            // or we can pass a function in and assign the current ourselves
+            ref={node => (passwordRef.current = node)}
             aria-label="Password"
             disabled={loading}
             type={showPassword ? 'text' : 'password'}
