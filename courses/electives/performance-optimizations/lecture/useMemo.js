@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { reallyLongRunningFunction } from './utils'
+import React, { useState, useMemo } from 'react'
+import slowFunction from './utils/slowFunction'
 
 export default function App() {
   const [count, setCount] = useState(0)
 
+  const input = count >= 5 // Let's change the input to the slow function
+
   console.time()
-  reallyLongRunningFunction()
+  const x = slowFunction(input)
   console.timeEnd()
 
   return (
@@ -13,7 +15,11 @@ export default function App() {
       <button className="button" onClick={() => setCount(count + 1)}>
         Count: {count}
       </button>
-      <p>Notice the delay when we click!</p>
+      <p>
+        Notice the delay when we click!
+        <br />
+        <code>slowFunction</code> loops to {x}
+      </p>
     </div>
   )
 }
