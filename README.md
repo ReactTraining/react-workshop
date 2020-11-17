@@ -81,7 +81,7 @@ $ npm start
 
 Which exercise?
 
-[1] 01-rendering
+[1] 01-thinking-in-react
 [2] 02-state
 [3] 03-controlled-vs-uncontrolled
 [4] 04-effects

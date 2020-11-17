@@ -5,3 +5,4 @@ import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
 // Let's go
+const el = <div>hello</div>
