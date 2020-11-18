@@ -8,7 +8,7 @@ function Checkout({ cart = [] }) {
       {Array.isArray(cart) && cart.length > 0 ? (
         <ul>
           {cart.map(item => (
-            <li>
+            <li key={item.productId}>
               {item.name}: {item.price.toFixed(2)}
             </li>
           ))}
