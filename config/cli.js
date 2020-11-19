@@ -24,12 +24,10 @@ module.exports = function() {
   /**
    * Does the app use a json-server database
    */
-  let dbPath = path.resolve(appPath, 'database', 'db.json')
-  let dbPathAlt = path.resolve(appPath, 'database', 'db.js')
-  dbPath = fs.existsSync(dbPath) ? dbPath : fs.existsSync(dbPathAlt)
+  const dbPath = path.resolve(appPath, 'database', 'db.json')
 
   // This allows the database to run in the background
-  if (dbPath) {
+  if (fs.existsSync(dbPath)) {
     concurrently([
       {
         command: `json-server --watch ${dbPath} -p 3333 --quiet`,
@@ -40,6 +38,10 @@ module.exports = function() {
       console.error(err)
       process.exit(1)
     })
+  } else {
+    console.error(`db.json is missing at path ${dbPath}`)
+    console.error('Try running `npm run create-db`')
+    process.exit(1)
   }
 
   return {
