@@ -1,6 +1,6 @@
 import queryString from "query-string";
-import { get, getRaw, post } from "./utils";
-import { Product } from "YesterTech/types";
+import { get, getRaw, post } from "YesterTech/api/utils";
+import { Product, ProductId } from "YesterTech/types";
 
 type ProductQuery = {
   categories?: string | undefined | null;
@@ -8,7 +8,10 @@ type ProductQuery = {
   conditions?: string | undefined | null;
 };
 
-export async function getProducts(search: ProductQuery = {}, page = 1) {
+export async function getProducts(
+  search: ProductQuery = {},
+  page = 1
+): Promise<{ products: Product[]; totalResults: number }> {
   // If setting up this search object seems a little weird, we're
   // just conforming to the funky API or JSON-Server
   const realSearch = {
@@ -31,24 +34,24 @@ export async function getProducts(search: ProductQuery = {}, page = 1) {
   };
 }
 
-export function getProduct(productId: Product["id"]) {
-  return get(`/products/${productId}`);
+export async function getProduct(productId: ProductId): Promise<Product> {
+  return await get(`/products/${productId}`);
 }
 
-export function addProduct(data: Product) {
-  return post(`/products`, data);
+export async function addProduct(data: Product): Promise<Product> {
+  return await post(`/products`, data);
 }
 
 export async function getMetaData(): Promise<{
-  categories: Product["category"][];
-  brands: Product["brand"][];
+  categories: string[];
+  brands: string[];
 }> {
   const products: Product[] = await get("/products");
-  const categories = products.reduce<Product["category"][]>(
+  const categories = products.reduce<string[]>(
     (c, p) => c.concat([p.category || ""]),
     []
   );
-  const brands = products.reduce<Product["brand"][]>(
+  const brands = products.reduce<string[]>(
     (b, p_1) => b.concat([p_1.brand || ""]),
     []
   );

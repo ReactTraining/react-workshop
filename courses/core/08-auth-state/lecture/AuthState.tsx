@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UserNoId } from "YesterTech/types";
+import { UserNoPassword } from "YesterTech/types";
 
 const initialState: AuthState = {
   authenticated: false,
@@ -43,7 +43,7 @@ export function useAuthState() {
 
 type AuthState = {
   authenticated: boolean;
-  user: null | UserNoId;
+  user: null | UserNoPassword;
 };
 
 type AuthDispatch = React.Dispatch<AuthActions>;
@@ -55,7 +55,7 @@ type AuthStateContextValue = AuthState & {
 type AuthActions =
   | {
       type: "LOGIN";
-      user: UserNoId;
+      user: UserNoPassword;
     }
   | {
       type: "LOGOUT";

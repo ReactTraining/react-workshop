@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { useProducts } from './utils'
+import * as React from "react";
+import { useProducts } from "./utils";
 // import { useShoppingCart } from './ShoppingCartState'
-import BrowseProductItem from './BrowseProductItem'
+import BrowseProductItem from "./BrowseProductItem";
 
 function BrowseProducts() {
-  const products = useProducts()
+  const products = useProducts();
   // const [cart, setCart] = React.useState([])
 
   // function addToCart(productId, name, price) {
@@ -35,20 +35,19 @@ function BrowseProducts() {
         <span>View Cart (3)</span>
       </nav>
       <hr />
-      {Array.isArray(products) &&
-        products.map(product => {
-          return (
-            <BrowseProductItem
-              key={product.id}
-              productId={product.id}
-              name={product.name}
-              price={product.price}
-              imagePath={product.imagePath}
-            />
-          )
-        })}
+      {products.map((product) => {
+        return (
+          <BrowseProductItem
+            key={product.id}
+            productId={product.id}
+            name={product.name}
+            price={product.price}
+            imagePath={product.imagePath}
+          />
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default BrowseProducts
+export default BrowseProducts;

@@ -1,6 +1,6 @@
 # Notes for Instructor
 
-There is no `index.js` file for this one. When you run the lecture and change the two files, your supposed to see those changes in the real application which runs with these as substitutes.
+There is no `index.tsx` file for this one. When you run the lecture and change the two files, your supposed to see those changes in the real application which runs with these as substitutes.
 
 ## Side Effects with a subscription
 

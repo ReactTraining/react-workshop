@@ -2,11 +2,11 @@
  * Auth
  */
 
-import { CartProduct, UserNoId } from "YesterTech/types";
+import { CartProduct, UserNoPassword } from "YesterTech/types";
 
 const LOCAL_STORAGE_KEY_AUTH = "reacttraining-workshop-auth";
 
-export function login(user: UserNoId): void {
+export function login(user: UserNoPassword): void {
   localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, JSON.stringify(user));
 }
 
@@ -14,11 +14,10 @@ export function logout() {
   localStorage.setItem(LOCAL_STORAGE_KEY_AUTH, null as any);
 }
 
-export function getAuthenticatedUser(): any {
+export function getAuthenticatedUser(): UserNoPassword | undefined {
   try {
     const localStorageUser = localStorage.getItem(LOCAL_STORAGE_KEY_AUTH);
-    if (!localStorageUser) return;
-    return JSON.parse(localStorageUser);
+    return localStorageUser ? JSON.parse(localStorageUser) : undefined;
   } catch (e) {
     return;
   }

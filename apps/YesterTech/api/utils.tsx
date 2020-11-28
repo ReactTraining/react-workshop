@@ -6,7 +6,7 @@ export async function get<T = any>(path: string): Promise<T> {
   return await res.json();
 }
 
-export async function getRaw(path: string) {
+export async function getRaw(path: string): Promise<Response> {
   return await fetch(`${baseURL}${path}`);
 }
 
@@ -18,5 +18,5 @@ export async function post<T>(path: string, data: any): Promise<T> {
       "Content-Type": "application/json",
     },
   });
-  return (await res.json()) as T;
+  return await res.json();
 }

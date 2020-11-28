@@ -5,10 +5,14 @@ import Heading from "YesterTech/Heading";
 import Avatar from "YesterTech/Avatar";
 import Centered from "YesterTech/Centered";
 import api from "YesterTech/api";
-import { ReactComponentWithoutChildren, UserNoId } from "YesterTech/types";
+import {
+  ReactComponentWithoutChildren,
+  UserNoPassword,
+  UserNoId,
+} from "YesterTech/types";
 
 interface SignupFormProps {
-  onSignup?(user: UserNoId): any;
+  onSignup?(user: UserNoPassword): any;
 }
 
 const SignupForm: ReactComponentWithoutChildren<SignupFormProps> = function SignupForm({
@@ -31,7 +35,8 @@ const SignupForm: ReactComponentWithoutChildren<SignupFormProps> = function Sign
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const user: UserNoId = { username, name, password, avatarUrl };
-    api.users.registerUser(user).then(() => {
+    api.users.registerUser(user).then((registeredUser) => {
+      const { password, ...user } = registeredUser;
       if (onSignup) {
         onSignup(user);
       }
