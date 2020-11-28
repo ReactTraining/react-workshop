@@ -7,9 +7,13 @@ import Notice from "YesterTech/Notice";
 import Centered from "YesterTech/Centered";
 import api from "YesterTech/api";
 
-function LoginForm({ onAuthenticated }) {
-  const usernameRef = React.useRef();
-  const passwordRef = React.useRef();
+interface LoginFormProps {
+  onAuthenticated?(user: any): any;
+}
+
+function LoginForm({ onAuthenticated }: LoginFormProps): React.ReactElement {
+  const usernameRef = React.useRef<HTMLInputElement | null>(null);
+  const passwordRef = React.useRef<HTMLInputElement | null>();
   const [showPassword, setShowPassword] = React.useState(false);
 
   // Change to reducer, then state machine
@@ -19,11 +23,20 @@ function LoginForm({ onAuthenticated }) {
 
   React.useEffect(() => {
     let isCurrent = true;
+    let username = usernameRef.current?.value;
+    let password = passwordRef.current?.value;
     if (loading) {
+      if (!username || !password) {
+        setLoading(false);
+        return;
+      }
+
       api.auth
-        .login(usernameRef.current.value, passwordRef.current.value)
+        .login(username, password)
         .then((user) => {
-          if (isCurrent) setUser(user);
+          if (isCurrent) {
+            setUser(user);
+          }
         })
         .catch((error) => {
           if (isCurrent) {
@@ -32,7 +45,9 @@ function LoginForm({ onAuthenticated }) {
           }
         });
     }
-    return () => (isCurrent = false);
+    return () => {
+      isCurrent = false;
+    };
   }, [loading]);
 
   React.useEffect(() => {
@@ -41,7 +56,7 @@ function LoginForm({ onAuthenticated }) {
     }
   }, [onAuthenticated, user]);
 
-  function handleLogin(event) {
+  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     setError(null);
