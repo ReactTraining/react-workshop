@@ -2,17 +2,26 @@
   "include": ["apps", "courses"],
   "exclude": ["node_modules", "scripts", "config"],
   "compilerOptions": {
-    "rootDir": ".",
-    "jsx": "react",
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "baseUrl": "./",
+    "downlevelIteration": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": false,
+    "importHelpers": true,
+    "jsx": "react",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "rootDir": ".",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-    // "allowJs": true,
-    // "checkJs: true
+    "strict": true,
+    "target": "ESNext",
+    "paths": {
+      "YesterTech/*": ["apps/YesterTech/*"]
+    }
   }
 }
