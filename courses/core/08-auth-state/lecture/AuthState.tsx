@@ -6,12 +6,10 @@ const initialState: AuthState = {
   user: null,
 };
 
-const AuthStateContext = React.createContext<AuthState>(initialState);
-const AuthDispatchContext = React.createContext<AuthDispatch>(
-  function dispatch() {}
-);
-
-export type AuthActionTypes = "LOGIN" | "LOGOUT";
+const AuthStateContext = React.createContext<AuthStateContextValue>({
+  ...initialState,
+  dispatch() {},
+});
 
 export const AuthStateProvider: React.FC = function AuthStateProvider({
   children,
@@ -21,32 +19,25 @@ export const AuthStateProvider: React.FC = function AuthStateProvider({
     action: AuthActions
   ): AuthState {
     switch (action.type) {
-      case "LOGIN": {
+      case "LOGIN":
         return { ...state, authenticated: true, user: action.user };
-      }
-      case "LOGOUT": {
+      case "LOGOUT":
         return { ...initialState };
-      }
       default:
         return state;
     }
   },
   initialState);
 
-  return (
-    <AuthDispatchContext.Provider value={dispatch}>
-      <AuthStateContext.Provider value={state}>
-        {children}
-      </AuthStateContext.Provider>
-    </AuthDispatchContext.Provider>
-  );
+  const value = {
+    ...state,
+    dispatch,
+  };
+
+  return <AuthStateContext.Provider value={value} children={children} />;
 };
 
-export function useAuthDispatch(): AuthDispatch {
-  return React.useContext(AuthDispatchContext);
-}
-
-export function useAuthState(): AuthState {
+export function useAuthState() {
   return React.useContext(AuthStateContext);
 }
 
@@ -56,6 +47,10 @@ type AuthState = {
 };
 
 type AuthDispatch = React.Dispatch<AuthActions>;
+
+type AuthStateContextValue = AuthState & {
+  dispatch: AuthDispatch;
+};
 
 type AuthActions =
   | {

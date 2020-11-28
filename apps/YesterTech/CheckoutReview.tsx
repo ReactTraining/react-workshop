@@ -6,14 +6,11 @@ import { FaAngleLeft } from "react-icons/fa";
 
 import Heading from "YesterTech/Heading";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import {
-  CheckoutFieldsShipping,
-  CheckoutFieldsBilling,
-} from "YesterTech/types";
+import { CheckoutFieldsFull } from "YesterTech/types";
 
 interface CheckoutReviewProps {
   sameAsBilling: boolean;
-  fields?: CheckoutFieldsBilling & Partial<CheckoutFieldsShipping>;
+  fields?: Partial<CheckoutFieldsFull>;
 }
 
 const CheckoutReview: React.FC<CheckoutReviewProps> = function CheckoutReview({

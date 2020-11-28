@@ -21,7 +21,7 @@ export async function getProducts(search: ProductQuery = {}, page = 1) {
     condition: search.conditions ? search.conditions.split(",") : undefined,
   };
 
-  const query = queryString.stringify(search || {});
+  const query = queryString.stringify(realSearch || {});
 
   const res = await getRaw(`/products?${query}`);
   const products = await res.json();

@@ -1,7 +1,7 @@
 // Database API served by `json-server`
 const baseURL = "http://localhost:3333";
 
-export async function get<T = any>(path: string): Promise<any> {
+export async function get<T = any>(path: string): Promise<T> {
   const res = await fetch(`${baseURL}${path}`);
   return await res.json();
 }

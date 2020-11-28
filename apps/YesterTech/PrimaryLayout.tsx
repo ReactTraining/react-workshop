@@ -10,7 +10,7 @@ import {
 import api from "YesterTech/api";
 import PrimaryHeader from "YesterTech/PrimaryHeader";
 import PrimaryFooter from "YesterTech/PrimaryFooter";
-import { useAuthState } from "YesterTech/AuthState";
+import { useAuthState, useAuthDispatch } from "YesterTech/AuthState";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import "YesterTech/PrimaryLayout.scss";
 
@@ -26,7 +26,8 @@ import { ReactComponentWithoutChildren } from "YesterTech/types";
 
 const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
   const history = useHistory();
-  const { authenticated, dispatch } = useAuthState();
+  const dispatch = useAuthDispatch();
+  const { authenticated } = useAuthState();
   const { cart } = useShoppingCart();
   const { key } = useLocation();
 

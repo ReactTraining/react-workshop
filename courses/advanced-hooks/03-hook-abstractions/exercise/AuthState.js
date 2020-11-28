@@ -1,11 +1,12 @@
 import * as React from "react";
 
-const AuthStateContext = React.createContext();
-
 const initialState = {
   authenticated: false,
   user: null,
 };
+
+const AuthStateContext = React.createContext(initialState);
+const AuthDispatchContext = React.createContext(function dispatch() {});
 
 export function AuthStateProvider({ children }) {
   const [state, dispatch] = React.useReducer((state, action) => {
@@ -19,12 +20,17 @@ export function AuthStateProvider({ children }) {
     }
   }, initialState);
 
-  const value = {
-    ...state,
-    dispatch,
-  };
+  return (
+    <AuthDispatchContext.Provider value={dispatch}>
+      <AuthStateContext.Provider value={state}>
+        {children}
+      </AuthStateContext.Provider>
+    </AuthDispatchContext.Provider>
+  );
+}
 
-  return <AuthStateContext.Provider value={value} children={children} />;
+export function useAuthDispatch() {
+  return React.useContext(AuthDispatchContext);
 }
 
 export function useAuthState() {

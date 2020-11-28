@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import api from "YesterTech/api";
 import PrimaryHeader from "./PrimaryHeader";
 import PrimaryFooter from "YesterTech/PrimaryFooter";
-import { useAuthState } from "YesterTech/AuthState";
+import { useAuthDispatch, useAuthState } from "YesterTech/AuthState";
 import "YesterTech/PrimaryLayout.scss";
 
 // Route Targets
@@ -15,14 +15,16 @@ import ProductsLayout from "YesterTech/ProductsLayout";
 import ProductSubNav from "YesterTech/ProductSubNav";
 import Checkout from "YesterTech/Checkout";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
 // import Account from 'YesterTech/Account'
 const Account = React.lazy(() => import("YesterTech/Account"));
 
-function PrimaryLayout() {
+const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
   const history = useHistory();
   const { cart } = useShoppingCart();
-  const { authenticated, dispatch } = useAuthState();
+  const dispatch = useAuthDispatch();
+  const { authenticated } = useAuthState();
 
   // Logout from server, then logout front-end
   // api.auth.getAuthenticatedUser().then(user => {})
@@ -78,6 +80,6 @@ function PrimaryLayout() {
       </div>
     </div>
   );
-}
+};
 
 export default PrimaryLayout;

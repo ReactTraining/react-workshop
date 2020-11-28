@@ -1,32 +1,34 @@
-import * as React from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { Columns, Column } from 'react-flex-columns'
+import * as React from "react";
+import { NavLink, Link } from "react-router-dom";
+import { Columns, Column } from "react-flex-columns";
 import {
   Menu,
   MenuList,
   MenuButton,
   MenuItem,
-  MenuLink
-} from '@reach/menu-button'
-import { MdShoppingCart } from 'react-icons/md'
+  MenuLink,
+} from "@reach/menu-button";
+import { MdShoppingCart } from "react-icons/md";
 
-import api from 'YesterTech/api'
-import { useAuthState } from 'YesterTech/AuthState'
-import { useShoppingCart } from 'YesterTech/ShoppingCartState'
-import Avatar from 'YesterTech/Avatar'
-import Logo from 'YesterTech/Logo'
-import 'YesterTech/PrimaryHeader.scss'
-import '@reach/menu-button/styles.css'
+import api from "YesterTech/api";
+import { useAuthState, useAuthDispatch } from "YesterTech/AuthState";
+import { useShoppingCart } from "YesterTech/ShoppingCartState";
+import Avatar from "YesterTech/Avatar";
+import Logo from "YesterTech/Logo";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
+import "YesterTech/PrimaryHeader.scss";
+import "@reach/menu-button/styles.css";
 
-function PrimaryHeader() {
-  const { authenticated, user, dispatch } = useAuthState()
-  const { getCartSize } = useShoppingCart()
-  const cartSize = getCartSize()
+const PrimaryHeader: ReactComponentWithoutChildren = function PrimaryHeader() {
+  const dispatch = useAuthDispatch();
+  const { authenticated, user } = useAuthState();
+  const { getCartSize } = useShoppingCart();
+  const cartSize = getCartSize();
 
   function handleLogout() {
     api.auth.logout().then(() => {
       // Tell the app we're logged out with a `dispatch`
-    })
+    });
   }
 
   return (
@@ -46,10 +48,7 @@ function PrimaryHeader() {
               Products
             </NavLink>
             {cartSize > 0 && (
-              <NavLink
-                to="/checkout"
-                className="primary-nav-item nav-cart"
-              >
+              <NavLink to="/checkout" className="primary-nav-item nav-cart">
                 <MdShoppingCart />
                 <span className="label">{cartSize}</span>
               </NavLink>
@@ -60,7 +59,7 @@ function PrimaryHeader() {
                   <Avatar src={user && user.avatarUrl} size={1.5} />
                 </MenuButton>
                 <MenuList className="nav-user-dropdown">
-                  <MenuLink to="/account" as={Link}>
+                  <MenuLink to="/account" as={Link as any}>
                     My Account
                   </MenuLink>
                   <MenuItem onSelect={handleLogout}>Logout</MenuItem>
@@ -80,7 +79,7 @@ function PrimaryHeader() {
         </Column>
       </Columns>
     </div>
-  )
-}
+  );
+};
 
-export default PrimaryHeader
+export default PrimaryHeader;

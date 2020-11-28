@@ -43,7 +43,10 @@ function Checkout(): React.ReactElement {
     }
   );
 
-  function handleBillingSubmit(sameAsBilling: boolean, fields: CheckoutFields) {
+  function handleBillingSubmit(
+    sameAsBilling: boolean,
+    fields: CheckoutFields
+  ) {
     dispatch({ type: "SUBMIT_BILLING", sameAsBilling, fields });
     history.push(`${match.path}/review`);
   }

@@ -6,11 +6,11 @@ In this lesson we already have authentication state in a context provider, we ju
 
 tldr;
 
-- Add `dispatch({ type: 'LOGIN', user })` for signup, login, and the effect (for refreshes) of `PrimaryLayout.js`.
-- Add `dispatch({ type: 'LOGOUT' })` to `PrimaryHeader.js`.
+- Add `dispatch({ type: 'LOGIN', user })` for signup, login, and the effect (for refreshes) of `PrimaryLayout.tsx`.
+- Add `dispatch({ type: 'LOGOUT' })` to `PrimaryHeader.tsx`.
 - Explain the basic flow of the client's ability to know about authentication status with context.
 
-## PrimaryLayout.js
+## PrimaryLayout.tsx
 
 Program the effect to get the current authentication status to then dispatch into the auth state context. Then if you scroll down there is a callback for the `<LoginForm />` and `<SignupForm>` which will give you the `user` object so you can do a similar `dispatch` to tell the front-end the login status after those forms are successfully submitted.
 
@@ -30,6 +30,6 @@ useEffect(() => {
 }, [authenticated, dispatch])
 ```
 
-## Logout `PrimaryHeader.js`
+## Logout `PrimaryHeader.tsx`
 
 In the callback from the "Logout" button being clicked, do an API request to logout from the server-side, and then dispatch an event to logout from the client-side

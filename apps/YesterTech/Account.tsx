@@ -6,7 +6,9 @@ function Account(): React.ReactElement {
   const { user } = useAuthState();
   return (
     <div className="spacing">
-      <Heading>My Account</Heading>
+      <Heading>
+        {user ? `Welcome ${user.name || user.username}!` : "My Account"}
+      </Heading>
       {user ? (
         <div>
           Welcome to your account management page, {user.name}. You can only see

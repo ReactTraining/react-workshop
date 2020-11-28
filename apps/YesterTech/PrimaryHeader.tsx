@@ -11,7 +11,7 @@ import {
 import { MdShoppingCart } from "react-icons/md";
 
 import api from "YesterTech/api";
-import { useAuthState } from "YesterTech/AuthState";
+import { useAuthState, useAuthDispatch } from "YesterTech/AuthState";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import Avatar from "YesterTech/Avatar";
 import Logo from "YesterTech/Logo";
@@ -20,7 +20,8 @@ import "YesterTech/PrimaryHeader.scss";
 import "@reach/menu-button/styles.css";
 
 const PrimaryHeader: ReactComponentWithoutChildren = function PrimaryHeader() {
-  const { authenticated, user, dispatch } = useAuthState();
+  const dispatch = useAuthDispatch();
+  const { authenticated, user } = useAuthState();
   const { getCartSize } = useShoppingCart();
   const cartSize = getCartSize();
 
