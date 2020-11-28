@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Switch, Route, Redirect, NavLink } from 'react-router-dom'
-import BrowseProducts from './BrowseProducts'
-import Checkout from 'YesterTech/Checkout'
+import * as React from "react";
+import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+import BrowseProducts from "./BrowseProducts";
+import Checkout from "./Checkout";
 // import { useShoppingCart } from './ShoppingCartState'
-import 'YesterTech/PrimaryLayout.scss'
+import "YesterTech/PrimaryLayout.scss";
 
-function PrimaryLayout() {
+function PrimaryLayout(): React.ReactElement {
   return (
     <div className="primary-layout">
       <div>
@@ -26,7 +26,7 @@ function PrimaryLayout() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default PrimaryLayout
+export default PrimaryLayout;

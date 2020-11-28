@@ -1,18 +1,18 @@
-import * as React from 'react'
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'YesterTech/Quantity.scss'
+import * as React from "react";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import "YesterTech/Quantity.scss";
 
-function Quantity() {
-  const [quantity, setQuantity] = React.useState(0)
+function Quantity(): React.ReactElement {
+  const [quantity, setQuantity] = React.useState(0);
 
   function subtract() {
     if (quantity > 0) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
   }
 
   function add() {
-    setQuantity(quantity + 1)
+    setQuantity(quantity + 1);
   }
 
   return (
@@ -28,8 +28,8 @@ function Quantity() {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={event => {
-              setQuantity(parseInt(event.target.value))
+            onChange={(event) => {
+              setQuantity(parseInt(event.target.value));
             }}
           />
         </div>
@@ -40,7 +40,7 @@ function Quantity() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Quantity
+export default Quantity;

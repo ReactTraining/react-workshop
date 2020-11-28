@@ -12,7 +12,7 @@ import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import "YesterTech/BrowseProductItem.scss";
 
 interface BrowseProductItemProps {
-  productId: any;
+  productId: number;
   name: string;
   price: number;
   imagePath: string;
@@ -20,7 +20,7 @@ interface BrowseProductItemProps {
   condition?: string;
   brand?: string;
   category?: string;
-  rating: number;
+  rating?: number;
 }
 
 const BrowseProductItem = function BrowseProductItem({
@@ -32,7 +32,7 @@ const BrowseProductItem = function BrowseProductItem({
   condition = "n/a",
   brand = "n/a",
   category = "n/a",
-  rating,
+  rating = 0,
 }: BrowseProductItemProps) {
   // Cart
   const { addToCart, updateQuantity, getQuantity } = useShoppingCart();

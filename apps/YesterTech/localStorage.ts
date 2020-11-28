@@ -50,16 +50,15 @@ export function getCart() {
 
 const LOCAL_STORAGE_KEY_FAVORITES = "reacttraining-workshop-favorites";
 
-export function updateFavorites(favorites: any) {
+export function updateFavorites(favorites: number[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY_FAVORITES, JSON.stringify(favorites));
 }
 
-export function getFavorites(): any {
+export function getFavorites(): number[] {
   try {
     const favorites = localStorage.getItem(LOCAL_STORAGE_KEY_FAVORITES);
-    if (!favorites) return [];
-    return JSON.parse(favorites);
+    return favorites ? JSON.parse(favorites) : [];
   } catch (e) {
-    return;
+    return [];
   }
 }

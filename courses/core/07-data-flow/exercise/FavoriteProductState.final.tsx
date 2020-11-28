@@ -32,7 +32,7 @@ export const FavoriteProductProvider: React.FC = function FavoriteProductProvide
     favoritesRef.current = favorites;
   });
 
-  const value: FavoriteProductContextValue = React.useMemo(() => {
+  const context: FavoriteProductContextValue = React.useMemo(() => {
     return {
       isFavorite(productId) {
         return favoritesRef.current.includes(productId);
@@ -46,7 +46,9 @@ export const FavoriteProductProvider: React.FC = function FavoriteProductProvide
     };
   }, []);
 
-  return <FavoriteProductContext.Provider value={value} children={children} />;
+  return (
+    <FavoriteProductContext.Provider value={context} children={children} />
+  );
 };
 
 export function useFavoriteProduct() {
