@@ -2,22 +2,27 @@
 
 ## The Lessons
 
-Day 1
+### Day 1;
 
-- Rendering and Components
+- Thinking in React
+- TypeScipt in React
 - State
 - Controlled Components
+
+### Day 2:
+
 - Effects
-- Data Loading/subscriptions, custom hooks
-
-Day 2
-
 - Routing, Single Page Applications
+
+### Day 3:
+
 - useReducer (the reducer pattern for local state)
 - Data flow, lifting state, prop drilling, context
 - Application State and organization, Authentication
+
+### Bonus (as time permits):
+
 - Hooks Composition, Abstracting custom hooks with useCallback
-- Review
 
 ## Workshop Objectives
 
