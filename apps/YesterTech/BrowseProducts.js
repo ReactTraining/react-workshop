@@ -1,25 +1,28 @@
-import React, { useMemo, useCallback } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import queryString from 'query-string'
-import { Columns, Column } from 'react-flex-columns'
+import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
+import queryString from "query-string";
+import { Columns, Column } from "react-flex-columns";
 
-import Heading from 'YesterTech/Heading'
-import { Pagination, PaginationRange } from 'YesterTech/Pagination'
-import NoResults from 'YesterTech/NoResults'
-import api from 'YesterTech/api'
-import usePromise from 'YesterTech/usePromise'
-import BrowseProductItem from 'YesterTech/BrowseProductItem'
+import Heading from "YesterTech/Heading";
+import { Pagination, PaginationRange } from "YesterTech/Pagination";
+import NoResults from "YesterTech/NoResults";
+import api from "YesterTech/api";
+import usePromise from "YesterTech/usePromise";
+import BrowseProductItem from "YesterTech/BrowseProductItem";
 
 function BrowseProducts() {
-  const urlQuery = useLocation().search
-  const search = useMemo(() => queryString.parse(urlQuery), [urlQuery])
-  const page = parseInt(search.page, 10) || 1
+  const urlQuery = useLocation().search;
+  const search = React.useMemo(() => queryString.parse(urlQuery), [urlQuery]);
+  const page = parseInt(search.page, 10) || 1;
 
   // Get Products (Paginated) and Total
-  const getProducts = useCallback(() => api.products.getProducts(search, page), [search, page])
-  const [response, loading] = usePromise(getProducts)
-  const products = response?.products
-  const totalResults = response?.totalResults
+  const getProducts = React.useCallback(
+    () => api.products.getProducts(search, page),
+    [search, page]
+  );
+  const [response, loading] = usePromise(getProducts);
+  const products = response?.products;
+  const totalResults = response?.totalResults;
 
   return (
     <div className="browse-products spacing">
@@ -33,7 +36,7 @@ function BrowseProducts() {
               resultsPerPage={10}
               page={page}
               totalResults={totalResults}
-              query={search.q || ''}
+              query={search.q || ""}
             />
           )}
         </Column>
@@ -41,7 +44,7 @@ function BrowseProducts() {
 
       {Array.isArray(products) && products.length > 0 ? (
         <div className="spacing">
-          {products.map(product => (
+          {products.map((product) => (
             <BrowseProductItem
               key={product.id}
               productId={product.id}
@@ -61,7 +64,7 @@ function BrowseProducts() {
           No Results
           {search.q && (
             <span>
-              {'. '}
+              {". "}
               <Link to="/products">Clear Search & Filters</Link>
             </span>
           )}
@@ -78,7 +81,7 @@ function BrowseProducts() {
         />
       )}
     </div>
-  )
+  );
 }
 
-export default BrowseProducts
+export default BrowseProducts;

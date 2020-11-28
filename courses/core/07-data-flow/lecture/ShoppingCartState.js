@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react'
+import * as React from "react";
 
-const ShoppingCartContext = React.createContext()
+const ShoppingCartContext = React.createContext();
 
 export function ShoppingCartProvider({ children }) {
   // paste `cart` state here and utility functions
 
   return (
-    <ShoppingCartContext.Provider value={}>
+    <ShoppingCartContext.Provider value={{}}>
       {children}
     </ShoppingCartContext.Provider>
-  )
+  );
 }
 
 export function useShoppingCart() {
-  return useContext(ShoppingCartContext)
+  return React.useContext(ShoppingCartContext);
 }

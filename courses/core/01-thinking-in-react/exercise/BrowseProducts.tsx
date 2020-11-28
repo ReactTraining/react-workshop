@@ -1,37 +1,37 @@
-import React from 'react'
+import * as React from "react";
 // import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa'
 // import Heading from 'YesterTech/Heading'
 
 const products = [
   {
     id: 1,
-    name: 'Mario Kart',
+    name: "Mario Kart",
     rating: 5,
-    brand: 'Nintendo',
-    condition: 'new'
+    brand: "Nintendo",
+    condition: "new",
   },
   {
     id: 2,
-    name: 'Donkey Kong',
+    name: "Donkey Kong",
     rating: 3.5,
-    brand: 'Nintendo',
-    condition: 'good'
+    brand: "Nintendo",
+    condition: "good",
   },
   {
     id: 3,
-    name: 'Nintendo NES',
+    name: "Nintendo NES",
     rating: 4,
-    brand: 'Nintendo',
-    condition: 'fair'
-  }
-]
+    brand: "Nintendo",
+    condition: "fair",
+  },
+];
 
 export default function BrowseProducts() {
-  console.log(products)
+  console.log(products);
 
   return (
     <div>
       {/* Exercise code goes here! This is what comments look like in JSX */}
     </div>
-  )
+  );
 }

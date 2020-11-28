@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
-  const [sameAsBilling, setSameAsBilling] = useState(false)
-  const [billingName, setBillingName] = useState('')
-  const [billingAddress, setBillingAddress] = useState('')
-  const [shippingName, setShippingName] = useState('')
-  const [shippingAddress, setShippingAddress] = useState('')
+  const [sameAsBilling, setSameAsBilling] = React.useState(false)
+  const [billingName, setBillingName] = React.useState('')
+  const [billingAddress, setBillingAddress] = React.useState('')
+  const [shippingName, setShippingName] = React.useState('')
+  const [shippingAddress, setShippingAddress] = React.useState('')
 
   function handleSubmit(event) {
     event.preventDefault()

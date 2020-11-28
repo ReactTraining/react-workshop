@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import PrimaryLayout from './PrimaryLayout'
 import { AuthStateProvider } from 'YesterTech/AuthState'

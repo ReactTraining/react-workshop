@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react'
+import * as React from "react";
 
-const TabsContext = React.createContext()
-const TabContext = React.createContext()
-const PanelContext = React.createContext()
+const TabsContext = React.createContext();
+const TabContext = React.createContext();
+const PanelContext = React.createContext();
 
 export function Tabs({ children, ...props }) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const context = {
     selectedIndex,
-    setSelectedIndex
-  }
+    setSelectedIndex,
+  };
 
   return (
     <TabsContext.Provider value={context}>
@@ -18,25 +18,25 @@ export function Tabs({ children, ...props }) {
         {children}
       </div>
     </TabsContext.Provider>
-  )
+  );
 }
 
 export function TabList({ children, ...props }) {
   children = React.Children.map(children, (child, index) => {
-    return <TabContext.Provider value={index} children={child} />
-  })
+    return <TabContext.Provider value={index} children={child} />;
+  });
 
   return (
     <div {...props} className="tab-list" role="tablist">
       {children}
     </div>
-  )
+  );
 }
 
 export function Tab({ children, disabled, ...props }) {
-  const index = useContext(TabContext)
-  const { selectedIndex, setSelectedIndex } = useContext(TabsContext)
-  const selected = index === selectedIndex
+  const index = React.useContext(TabContext);
+  const { selectedIndex, setSelectedIndex } = React.useContext(TabsContext);
+  const selected = index === selectedIndex;
 
   return (
     <button
@@ -45,51 +45,51 @@ export function Tab({ children, disabled, ...props }) {
       aria-selected={selected}
       disabled={disabled}
       className="tab"
-      data-selected={selected ? '' : undefined}
+      data-selected={selected ? "" : undefined}
       onClick={() => setSelectedIndex(index)}
     >
       {children}
     </button>
-  )
+  );
 }
 
 export function TabPanels({ children, ...props }) {
   children = React.Children.map(children, (child, index) => {
-    return <PanelContext.Provider value={index} children={child} />
-  })
+    return <PanelContext.Provider value={index} children={child} />;
+  });
 
   return (
     <div {...props} className="tab-panels">
       {children}
     </div>
-  )
+  );
 }
 
 export function TabPanel({ children, ...props }) {
-  const index = useContext(PanelContext)
-  const { selectedIndex } = useContext(TabsContext)
-  const selected = selectedIndex === index
+  const index = React.useContext(PanelContext);
+  const { selectedIndex } = React.useContext(TabsContext);
+  const selected = selectedIndex === index;
 
   return (
     <div role="tabpanel" {...props} hidden={!selected} className="tab-panel">
       {children}
     </div>
-  )
+  );
 }
 
 export function DataTabs({ data }) {
   return (
     <Tabs>
       <TabList>
-        {data.map(tab => (
+        {data.map((tab) => (
           <Tab>{tab.label}</Tab>
         ))}
       </TabList>
       <TabPanels>
-        {data.map(tab => (
+        {data.map((tab) => (
           <TabPanel>{tab.content}</TabPanel>
         ))}
       </TabPanels>
     </Tabs>
-  )
+  );
 }

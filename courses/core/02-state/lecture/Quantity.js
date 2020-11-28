@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-// import ReactDOM from 'react-dom'
+import * as React from 'react'
+// import * as ReactDOM from "react-dom"
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import 'YesterTech/Quantity.scss'
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 import CheckoutBilling from './CheckoutBilling'
 // import CheckoutBilling from './CheckoutBilling.final'
 import 'YesterTech/styles/global-styles.scss'

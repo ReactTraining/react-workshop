@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import 'YesterTech/Quantity.scss'
 
@@ -7,7 +7,7 @@ import 'YesterTech/Quantity.scss'
  */
 
 export const BrowseProductItem: React.FC = () => {
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = React.useState(0)
 
   return (
     <div className="browse-product-item spacing-small">

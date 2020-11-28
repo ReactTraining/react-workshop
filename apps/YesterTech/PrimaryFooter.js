@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { GoVersions } from 'react-icons/go'
 import { Columns, Column } from 'react-flex-columns'
 

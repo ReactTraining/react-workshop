@@ -1,29 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react'
-import './styles.scss'
+import * as React from "react";
+import "./styles.scss";
 
 export default function App() {
-  const [count, setCount] = useState(0)
-  const [saving, setSaving] = useState(false)
-  const [message, setMessage] = useState(null)
+  const [count, setCount] = React.useState(0);
+  const [saving, setSaving] = React.useState(false);
+  const [message, setMessage] = React.useState(null);
 
-  const countRef = useRef()
-  countRef.current = count
+  const countRef = React.useRef();
+  countRef.current = count;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (saving) {
       setTimeout(() => {
         setMessage(
           `We saved a count of ${count}, but this might be stale because count is currently ${countRef.current}`
-        )
-        setSaving(false)
-      }, 3000)
+        );
+        setSaving(false);
+      }, 3000);
     }
     // 👇🏼 showing with and without count reveals some characteristics of useEffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [saving])
+  }, [saving]);
 
   function saveToDatabase() {
-    setSaving(true)
+    setSaving(true);
   }
 
   return (
@@ -37,5 +37,5 @@ export default function App() {
       </button>
       {message && <p>{message}</p>}
     </div>
-  )
+  );
 }

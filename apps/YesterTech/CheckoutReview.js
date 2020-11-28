@@ -1,27 +1,27 @@
-import React, { Fragment } from 'react'
-import { MdShoppingCart } from 'react-icons/md'
-import { Link } from 'react-router-dom'
-import { Columns, Column } from 'react-flex-columns'
-import { FaAngleLeft } from 'react-icons/fa'
+import * as React from "react";
+import { MdShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Columns, Column } from "react-flex-columns";
+import { FaAngleLeft } from "react-icons/fa";
 
-import Heading from 'YesterTech/Heading'
-import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import Heading from "YesterTech/Heading";
+import { useShoppingCart } from "YesterTech/ShoppingCartState";
 
 function CheckoutReview({ sameAsBilling, fields = {} }) {
-  const { cart, getCartTotal } = useShoppingCart()
+  const { cart, getCartTotal } = useShoppingCart();
 
   function placeOrder() {
-    console.log(fields)
+    console.log(fields);
   }
 
   if (Object.keys(fields).length === 0) {
     // For the lessons
     return (
       <div>
-        Exercise Notice: Oops, did you forget you conditionally render the route for CheckoutReview?
-        We see that `fields` doesn't have an data.
+        Exercise Notice: Oops, did you forget you conditionally render the route
+        for CheckoutReview? We see that `fields` doesn't have an data.
       </div>
-    )
+    );
   }
 
   return (
@@ -53,7 +53,7 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
           {sameAsBilling ? (
             <em>Same As Billing</em>
           ) : (
-            <Fragment>
+            <React.Fragment>
               <span>{fields.shippingName}</span>
               <br />
               <span>{fields.shippingAddress}</span>
@@ -61,10 +61,11 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
               {/* Exercise doesn't have all the same form fields */}
               {fields.shippingCity && (
                 <span>
-                  {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
+                  {fields.shippingCity}, {fields.shippingState}{" "}
+                  {fields.shippingPostal}
                 </span>
               )}
-            </Fragment>
+            </React.Fragment>
           )}
         </Column>
       </Columns>
@@ -75,8 +76,8 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
       </Heading>
 
       <div className="spacing-small">
-        {cart.map(item => (
-          <Fragment key={item.productId}>
+        {cart.map((item) => (
+          <React.Fragment key={item.productId}>
             <Columns gutters middle>
               <Column flex>
                 <span className="no-wrap">
@@ -86,7 +87,7 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
               <Column>${(item.price * item.quantity).toFixed(2)}</Column>
             </Columns>
             <hr />
-          </Fragment>
+          </React.Fragment>
         ))}
       </div>
 
@@ -108,7 +109,7 @@ function CheckoutReview({ sameAsBilling, fields = {} }) {
         </Column>
       </Columns>
     </div>
-  )
+  );
 }
 
-export default CheckoutReview
+export default CheckoutReview;

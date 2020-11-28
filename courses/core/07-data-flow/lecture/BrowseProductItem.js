@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import Quantity from './Quantity'
 // import { useShoppingCart } from './ShoppingCartState'
 import ProductImage from 'YesterTech/ProductImage'

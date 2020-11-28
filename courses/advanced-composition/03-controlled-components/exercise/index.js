@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure'
 import './styles.scss'
 
 function App() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
   return (
     <Disclosure onChange={() => setOpen(!open)}>

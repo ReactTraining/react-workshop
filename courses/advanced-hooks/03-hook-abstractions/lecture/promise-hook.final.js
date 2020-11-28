@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import * as React from 'react'
 import StarRatings from 'YesterTech/StarRatings'
 import Heading from 'YesterTech/Heading'
 import api from 'YesterTech/api'
@@ -7,9 +7,9 @@ import api from 'YesterTech/api'
 // any promise-based side effects
 
 function useApi(api) {
-  const [results, setResults] = useState(null)
+  const [results, setResults] = React.useState(null)
 
-  useEffect(() => {
+  React.useEffect(() => {
     let isCurrent = true
     api().then(results => {
       if (!isCurrent) return
@@ -23,7 +23,7 @@ function useApi(api) {
 
 function ProductProfile({ productId }) {
   const product = useApi(
-    useCallback(() => api.products.getProduct(productId), [productId])
+    React.useCallback(() => api.products.getProduct(productId), [productId])
   )
 
   if (!product) return <div>Loading...</div>

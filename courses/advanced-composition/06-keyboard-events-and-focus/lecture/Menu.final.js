@@ -1,28 +1,28 @@
-import React, { useRef, useState, useEffect, forwardRef, useContext } from 'react'
-import { Popover } from './Popover'
-import { useId } from '../../useId'
-import { wrapEvent, useForkedRef } from '../../utils'
+import * as React from "react";
+import { Popover } from "./Popover";
+import { useId } from "../../useId";
+import { wrapEvent, useForkedRef } from "../../utils";
 import {
   createDescendantContext,
   DescendantProvider,
   useDescendant,
-  useDescendants
-} from '@reach/descendants'
+  useDescendants,
+} from "@reach/descendants";
 
-const DescendantContext = createDescendantContext('DescendantContext')
-const MenuContext = React.createContext()
+const DescendantContext = createDescendantContext("DescendantContext");
+const MenuContext = React.createContext();
 
 /**
  * Menu
  */
 
 export function Menu({ children, id, defaultOpen = false }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
-  const [activeIndex, setActiveIndex] = useState(-1)
-  const [descendants, setDescendants] = useDescendants()
-  const menuRef = useRef(null)
-  const buttonRef = useRef(null)
-  const popoverRef = useRef(null)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+  const [activeIndex, setActiveIndex] = React.useState(-1);
+  const [descendants, setDescendants] = useDescendants();
+  const menuRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
+  const popoverRef = React.useRef(null);
 
   const context = {
     buttonId: `menu-button-${useId(id)}`,
@@ -32,8 +32,8 @@ export function Menu({ children, id, defaultOpen = false }) {
     buttonRef,
     popoverRef,
     activeIndex,
-    setActiveIndex
-  }
+    setActiveIndex,
+  };
 
   return (
     <DescendantProvider
@@ -43,39 +43,43 @@ export function Menu({ children, id, defaultOpen = false }) {
     >
       <MenuContext.Provider value={context} children={children} />
     </DescendantProvider>
-  )
+  );
 }
 
 /**
  * Menu Button
  */
 
-export const MenuButton = forwardRef(
+export const MenuButton = React.forwardRef(
   ({ children, onClick, onKeyDown, ...props }, forwardedRef) => {
-    const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(
-      MenuContext
-    )
+    const {
+      buttonId,
+      isOpen,
+      setIsOpen,
+      setActiveIndex,
+      buttonRef,
+    } = React.useContext(MenuContext);
 
     // Combine Refs
-    const ref = useForkedRef(buttonRef, forwardedRef)
+    const ref = useForkedRef(buttonRef, forwardedRef);
 
     function handleClick() {
       if (isOpen) {
-        setIsOpen(false)
+        setIsOpen(false);
       } else {
-        setIsOpen(true)
-        setActiveIndex(0)
+        setIsOpen(true);
+        setActiveIndex(0);
       }
     }
 
     function handleKeyDown(event) {
       switch (event.key) {
-        case 'ArrowDown':
-          setIsOpen(true)
-          setActiveIndex(0)
-          break
+        case "ArrowDown":
+          setIsOpen(true);
+          setActiveIndex(0);
+          break;
         default:
-          break
+          break;
       }
     }
 
@@ -87,176 +91,191 @@ export const MenuButton = forwardRef(
         onClick={wrapEvent(onClick, handleClick)}
         onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
         data-menu-button=""
-        data-state={isOpen ? 'open' : 'collapsed'}
+        data-state={isOpen ? "open" : "collapsed"}
         aria-expanded={isOpen}
         aria-haspopup="menu"
       >
         {children}
       </button>
-    )
+    );
   }
-)
+);
 
-MenuButton.displayName = 'MenuButton'
+MenuButton.displayName = "MenuButton";
 
 /**
  * Menu List
  */
 
 // Menu List composes MenuPopover and MenuItems in a common way
-export const MenuList = forwardRef((props, forwardedRef) => {
+export const MenuList = React.forwardRef((props, forwardedRef) => {
   return (
     <MenuPopover>
       <MenuItems {...props} data-menu-list="" ref={forwardedRef} />
     </MenuPopover>
-  )
-})
+  );
+});
 
-MenuList.displayName = 'MenuList'
+MenuList.displayName = "MenuList";
 
 /**
  * Menu Popover
  */
 
-export const MenuPopover = forwardRef(({ onBlur, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, menuRef, popoverRef, buttonRef } = useContext(MenuContext)
-  const ref = useForkedRef(popoverRef, forwardedRef)
+export const MenuPopover = React.forwardRef(
+  ({ onBlur, ...props }, forwardedRef) => {
+    const {
+      isOpen,
+      setIsOpen,
+      menuRef,
+      popoverRef,
+      buttonRef,
+    } = React.useContext(MenuContext);
+    const ref = useForkedRef(popoverRef, forwardedRef);
 
-  function handleBlur() {
-    const ownerDocument = popoverRef.current?.ownerDocument || document
-    requestAnimationFrame(() => {
-      if (
-        popoverRef.current &&
-        !popoverRef.current.contains(ownerDocument.activeElement) &&
-        ownerDocument.activeElement !== menuRef.current &&
-        ownerDocument.activeElement !== buttonRef.current
-      ) {
-        setIsOpen(false)
-      }
-    })
+    function handleBlur() {
+      const ownerDocument = popoverRef.current?.ownerDocument || document;
+      requestAnimationFrame(() => {
+        if (
+          popoverRef.current &&
+          !popoverRef.current.contains(ownerDocument.activeElement) &&
+          ownerDocument.activeElement !== menuRef.current &&
+          ownerDocument.activeElement !== buttonRef.current
+        ) {
+          setIsOpen(false);
+        }
+      });
+    }
+
+    return isOpen ? (
+      <Popover
+        {...props}
+        ref={ref}
+        onBlur={wrapEvent(onBlur, handleBlur)}
+        targetRef={buttonRef}
+      />
+    ) : null;
   }
+);
 
-  return isOpen ? (
-    <Popover
-      {...props}
-      ref={ref}
-      onBlur={wrapEvent(onBlur, handleBlur)}
-      targetRef={buttonRef}
-    />
-  ) : null
-})
-
-MenuPopover.displayName = 'MenuPopover'
+MenuPopover.displayName = "MenuPopover";
 
 /**
  * Menu Items
  */
 
-export const MenuItems = forwardRef(({ children, onKeyDown, ...props }, forwardedRef) => {
-  const {
-    buttonId,
-    menuRef,
-    isOpen,
-    setIsOpen,
-    activeIndex,
-    setActiveIndex
-  } = useContext(MenuContext)
-  const ref = useForkedRef(menuRef, forwardedRef)
-  const { descendants } = useContext(DescendantContext)
-  const totalItems = descendants.length
+export const MenuItems = React.forwardRef(
+  ({ children, onKeyDown, ...props }, forwardedRef) => {
+    const {
+      buttonId,
+      menuRef,
+      isOpen,
+      setIsOpen,
+      activeIndex,
+      setActiveIndex,
+    } = React.useContext(MenuContext);
+    const ref = useForkedRef(menuRef, forwardedRef);
+    const { descendants } = React.useContext(DescendantContext);
+    const totalItems = descendants.length;
 
-  function handleKeyDown(event) {
-    if (!isOpen) return
-    switch (event.key) {
-      case 'Escape':
-        setIsOpen(false)
-        break
-      case 'Home':
-        setActiveIndex(0)
-        break
-      case 'End':
-        setActiveIndex(totalItems - 1)
-        break
-      case 'ArrowUp':
-        if (activeIndex !== 0) {
-          setActiveIndex(activeIndex - 1)
-        }
-        break
-      case 'ArrowDown':
-        if (activeIndex < totalItems - 1) {
-          setActiveIndex(activeIndex + 1)
-        }
-        break
-      case 'Tab':
-        event.preventDefault()
-        break
-      default:
-        break
+    function handleKeyDown(event) {
+      if (!isOpen) return;
+      switch (event.key) {
+        case "Escape":
+          setIsOpen(false);
+          break;
+        case "Home":
+          setActiveIndex(0);
+          break;
+        case "End":
+          setActiveIndex(totalItems - 1);
+          break;
+        case "ArrowUp":
+          if (activeIndex !== 0) {
+            setActiveIndex(activeIndex - 1);
+          }
+          break;
+        case "ArrowDown":
+          if (activeIndex < totalItems - 1) {
+            setActiveIndex(activeIndex + 1);
+          }
+          break;
+        case "Tab":
+          event.preventDefault();
+          break;
+        default:
+          break;
+      }
     }
+
+    return (
+      <div
+        role="menu"
+        {...props}
+        aria-labelledby={buttonId}
+        onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
+        hidden={!isOpen}
+        data-menu-items=""
+        data-state={isOpen ? "open" : "collapsed"}
+        ref={ref}
+        tabIndex={-1}
+      >
+        {children}
+      </div>
+    );
   }
+);
 
-  return (
-    <div
-      role="menu"
-      {...props}
-      aria-labelledby={buttonId}
-      onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
-      hidden={!isOpen}
-      data-menu-items=""
-      data-state={isOpen ? 'open' : 'collapsed'}
-      ref={ref}
-      tabIndex={-1}
-    >
-      {children}
-    </div>
-  )
-})
-
-MenuItems.displayName = 'MenuItems'
+MenuItems.displayName = "MenuItems";
 
 /**
  * Menu Item
  */
 
-export const MenuItem = forwardRef(
+export const MenuItem = React.forwardRef(
   ({ children, onClick, onMouseEnter, onKeyDown, ...props }, forwardedRef) => {
-    const { menuRef, activeIndex, setIsOpen, setActiveIndex } = useContext(MenuContext)
-    const menuItemRef = useRef(null)
+    const {
+      menuRef,
+      activeIndex,
+      setIsOpen,
+      setActiveIndex,
+    } = React.useContext(MenuContext);
+    const menuItemRef = React.useRef(null);
 
     // Combine Refs
-    const ref = useForkedRef(menuItemRef, forwardedRef)
+    const ref = useForkedRef(menuItemRef, forwardedRef);
 
     const index = useDescendant({
       context: DescendantContext,
-      element: menuItemRef.current
-    })
+      element: menuItemRef.current,
+    });
 
-    const isSelected = index === activeIndex
+    const isSelected = index === activeIndex;
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (isSelected) {
-        menuItemRef.current.focus()
+        menuItemRef.current.focus();
       }
-    }, [isSelected, menuRef])
+    }, [isSelected, menuRef]);
 
     function handleClick(event) {
-      props.onSelect && props.onSelect(event)
-      setIsOpen(false)
+      props.onSelect && props.onSelect(event);
+      setIsOpen(false);
     }
 
     function handleKeyDown(event) {
       switch (event.key) {
-        case 'Enter':
-          props.onSelect && props.onSelect(event)
-          setIsOpen(false)
-          break
+        case "Enter":
+          props.onSelect && props.onSelect(event);
+          setIsOpen(false);
+          break;
         default:
-          break
+          break;
       }
     }
 
     function handleMouseEnter() {
-      setActiveIndex(index)
+      setActiveIndex(index);
     }
 
     return (
@@ -268,13 +287,13 @@ export const MenuItem = forwardRef(
         onMouseEnter={wrapEvent(onMouseEnter, handleMouseEnter)}
         onKeyDown={wrapEvent(onKeyDown, handleKeyDown)}
         data-menu-item=""
-        data-selected={isSelected ? '' : undefined}
+        data-selected={isSelected ? "" : undefined}
         tabIndex={-1}
       >
         {children}
       </div>
-    )
+    );
   }
-)
+);
 
-MenuItem.displayName = 'MenuItem'
+MenuItem.displayName = "MenuItem";

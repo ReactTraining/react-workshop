@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import serializeForm from 'form-serialize'
 import Heading from 'YesterTech/Heading'
 
 function CheckoutBilling({ onSubmit }) {
-  const [sameAsBilling, setSameAsBilling] = useState(false)
+  const [sameAsBilling, setSameAsBilling] = React.useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ShoppingCartProvider } from 'YesterTech/ShoppingCartState'
 import PrimaryLayout from 'YesterTech/PrimaryLayout'

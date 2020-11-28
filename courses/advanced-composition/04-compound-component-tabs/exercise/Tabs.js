@@ -1,6 +1,6 @@
-import React, { useState, useContext, forwardRef, useRef } from 'react'
-import { useId } from '../../useId'
-import { wrapEvent } from '../../utils'
+import * as React from "react";
+import { useId } from "../../useId";
+import { wrapEvent } from "../../utils";
 
 // You know what to do 😉
 
@@ -9,8 +9,8 @@ export const Tabs = ({ children, ...props }) => {
     <div {...props} data-tabs="">
       {children}
     </div>
-  )
-}
+  );
+};
 
 export const TabList = ({ children, ...props }) => {
   // This is where we need to map over children to discover the Tab's
@@ -20,29 +20,29 @@ export const TabList = ({ children, ...props }) => {
     <div {...props} data-tab-list="">
       {children}
     </div>
-  )
-}
+  );
+};
 
 export const Tab = ({ children, ...props }) => {
   return (
     <div {...props} data-tab="">
       {children}
     </div>
-  )
-}
+  );
+};
 
 export const TabPanels = ({ children, ...props }) => {
   return (
     <div {...props} data-tab-panels="">
       {children}
     </div>
-  )
-}
+  );
+};
 
 export const TabPanel = ({ children, ...props }) => {
   return (
     <div {...props} data-tab-panel="">
       {children}
     </div>
-  )
-}
+  );
+};

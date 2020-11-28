@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import * as React from "react";
 import { Switch, Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom'
 import Centered from 'YesterTech/Centered'
 
@@ -11,7 +11,7 @@ function Checkout() {
   const match = useRouteMatch()
   const history = useHistory()
 
-  const [state, dispatch] = useReducer(
+  const [state, dispatch] = React.useReducer(
     (state, action) => {
       switch (action.type) {
         case 'SUBMIT_BILLING': {

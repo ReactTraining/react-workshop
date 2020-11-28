@@ -1,28 +1,28 @@
-import React, { Suspense, useEffect } from 'react'
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
+import * as React from "react";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 
-import api from 'YesterTech/api'
-import PrimaryHeader from './PrimaryHeader'
-import PrimaryFooter from 'YesterTech/PrimaryFooter'
-import { useAuthState } from 'YesterTech/AuthState'
-import 'YesterTech/PrimaryLayout.scss'
+import api from "YesterTech/api";
+import PrimaryHeader from "./PrimaryHeader";
+import PrimaryFooter from "YesterTech/PrimaryFooter";
+import { useAuthState } from "YesterTech/AuthState";
+import "YesterTech/PrimaryLayout.scss";
 
 // Route Targets
-import Home from 'YesterTech/Home'
-import SignupForm from 'YesterTech/SignupForm'
-import LoginForm from 'YesterTech/LoginForm'
-import ProductsLayout from 'YesterTech/ProductsLayout'
-import ProductSubNav from 'YesterTech/ProductSubNav'
-import Checkout from 'YesterTech/Checkout'
-import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import Home from "YesterTech/Home";
+import SignupForm from "YesterTech/SignupForm";
+import LoginForm from "YesterTech/LoginForm";
+import ProductsLayout from "YesterTech/ProductsLayout";
+import ProductSubNav from "YesterTech/ProductSubNav";
+import Checkout from "YesterTech/Checkout";
+import { useShoppingCart } from "YesterTech/ShoppingCartState";
 
 // import Account from 'YesterTech/Account'
-const Account = React.lazy(() => import('YesterTech/Account'))
+const Account = React.lazy(() => import("YesterTech/Account"));
 
 function PrimaryLayout() {
-  const history = useHistory()
-  const { cart } = useShoppingCart()
-  const { authenticated, dispatch } = useAuthState()
+  const history = useHistory();
+  const { cart } = useShoppingCart();
+  const { authenticated, dispatch } = useAuthState();
 
   // Logout from server, then logout front-end
   // api.auth.getAuthenticatedUser().then(user => {})
@@ -35,27 +35,27 @@ function PrimaryLayout() {
           <ProductSubNav />
         </Route>
         <main className="primary-content">
-          <Suspense fallback={<div />}>
+          <React.Suspense fallback={<div />}>
             <Switch>
               <Route path="/" exact>
                 <Home />
               </Route>
               <Route path="/signup" exact>
                 <SignupForm
-                  onSignup={user => {
+                  onSignup={(user) => {
                     // dispatch login so the frontend is aware
                     // then redirect:
-                    history.push('/')
+                    history.push("/");
                   }}
                 />
               </Route>
               <Route path="/login" exact>
                 <LoginForm
-                  onAuthenticated={user => {
+                  onAuthenticated={(user) => {
                     // dispatch login so the frontend is aware
                     // then redirect:
-                    dispatch({ type: 'LOGIN', user })
-                    history.push('/')
+                    dispatch({ type: "LOGIN", user });
+                    history.push("/");
                   }}
                 />
               </Route>
@@ -67,15 +67,17 @@ function PrimaryLayout() {
                   <Checkout />
                 </Route>
               )}
-              {authenticated && <Route path="/account" render={() => <Account />} />}
+              {authenticated && (
+                <Route path="/account" render={() => <Account />} />
+              )}
               <Redirect to="/" />
             </Switch>
-          </Suspense>
+          </React.Suspense>
         </main>
         <PrimaryFooter />
       </div>
     </div>
-  )
+  );
 }
 
-export default PrimaryLayout
+export default PrimaryLayout;

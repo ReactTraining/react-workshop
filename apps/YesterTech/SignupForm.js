@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'
@@ -7,15 +7,15 @@ import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
 function SignupForm({ onSignup }) {
-  const [useGitHub, setUseGitHub] = useState(true)
-  const [username, setUsername] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
-  const [avatarUrl, setAvatarUrl] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
+  const [useGitHub, setUseGitHub] = React.useState(true)
+  const [username, setUsername] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [avatarUrl, setAvatarUrl] = React.useState('')
+  const [showPassword, setShowPassword] = React.useState(false)
 
   // This is meant to stay here as a reminder
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('Keep in mind for workshops, GitHub has a rate limit of 60 requests per hour')
   }, [])
 

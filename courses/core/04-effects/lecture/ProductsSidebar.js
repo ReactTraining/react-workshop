@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 import ProductFilters from 'YesterTech/ProductFilters'
 
 function ProductsSidebar() {

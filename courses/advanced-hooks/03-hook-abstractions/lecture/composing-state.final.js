@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react'
+import * as React from "react";
 
 function useLocalStorage(name, state) {
-  const [value, setValue] = state
-  console.log(value)
+  const [value, setValue] = state;
+  console.log(value);
 
-  useEffect(() => {
-    localStorage.setItem(name, JSON.stringify(value))
-  }, [name, value])
+  React.useEffect(() => {
+    localStorage.setItem(name, JSON.stringify(value));
+  }, [name, value]);
 
-  return [value, setValue]
+  return [value, setValue];
 }
 
 function useUndoState(state) {
-  const [values, setValues] = state
+  const [values, setValues] = state;
 
   function undo() {
-    setValues(values.slice(0, values.length - 1))
+    setValues(values.slice(0, values.length - 1));
   }
 
   function changeValue(newValue) {
-    setValues(values.concat([newValue]))
+    setValues(values.concat([newValue]));
   }
 
-  return [values.slice(values.length - 1), changeValue, undo]
+  return [values.slice(values.length - 1), changeValue, undo];
 }
 
 function App() {
   const [color, setColor, undo] = useUndoState(
     useLocalStorage(
-      'color',
-      useState(() => {
-        return JSON.parse(localStorage.getItem('color')) || ['#ff0000']
+      "color",
+      React.useState(() => {
+        return JSON.parse(localStorage.getItem("color")) || ["#ff0000"];
       })
     )
-  )
+  );
 
   function changeColor(e) {
-    setColor(e.target.value)
+    setColor(e.target.value);
   }
 
   return (
@@ -44,17 +44,22 @@ function App() {
       <div
         className="color-preview"
         style={{
-          padding: '1rem',
-          backgroundColor: color
+          padding: "1rem",
+          backgroundColor: color,
         }}
       >
-        <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />
+        <input
+          type="color"
+          value={color || ""}
+          onChange={changeColor}
+          aria-label="Color Picker"
+        />
       </div>
       <button className="button" onClick={undo}>
         Undo
       </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,36 +1,36 @@
-import React from 'react'
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
-import Heading from 'YesterTech/Heading'
-import StarRatings from './StarRatings'
+import * as React from "react";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import Heading from "YesterTech/Heading";
+import StarRatings from "./StarRatings";
 
 const products = [
   {
     id: 1,
-    name: 'Mario Kart',
+    name: "Mario Kart",
     rating: 5,
-    brand: 'Nintendo',
-    condition: 'new'
+    brand: "Nintendo",
+    condition: "new",
   },
   {
     id: 2,
-    name: 'Donkey Kong',
+    name: "Donkey Kong",
     rating: 3.5,
-    brand: 'Nintendo',
-    condition: 'good'
+    brand: "Nintendo",
+    condition: "good",
   },
   {
     id: 3,
-    name: 'Nintendo NES',
+    name: "Nintendo NES",
     rating: 4,
-    brand: 'Nintendo',
-    condition: 'fair'
-  }
-]
+    brand: "Nintendo",
+    condition: "fair",
+  },
+];
 
 export default function BrowseProducts() {
   return (
     <div>
-      {products.map(product => (
+      {products.map((product) => (
         <div key={`product-${product.id}`}>
           <Heading>{product.name}</Heading>
           <StarRatings rating={product.rating} />
@@ -41,5 +41,5 @@ export default function BrowseProducts() {
         </div>
       ))}
     </div>
-  )
+  );
 }

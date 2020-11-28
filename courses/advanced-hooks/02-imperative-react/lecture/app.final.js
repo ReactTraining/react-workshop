@@ -1,29 +1,29 @@
-import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
-import { createPortal } from 'react-dom'
-import { position } from './utils'
-import './styles.scss'
+import * as React from "react";
+import { createPortal } from "react-dom";
+import { position } from "./utils";
+import "./styles.scss";
 
 function Portal({ children }) {
-  const portalNode = useRef(null)
-  const [_, forceUpdate] = useState()
+  const portalNode = React.useRef(null);
+  const [_, forceUpdate] = React.useState();
 
-  useLayoutEffect(() => {
-    portalNode.current = document.createElement('portal')
-    document.body.appendChild(portalNode.current)
-    forceUpdate({})
+  React.useLayoutEffect(() => {
+    portalNode.current = document.createElement("portal");
+    document.body.appendChild(portalNode.current);
+    forceUpdate({});
     return () => {
       if (portalNode.current) {
-        document.body.removeChild(portalNode.current)
+        document.body.removeChild(portalNode.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  return portalNode.current ? createPortal(children, portalNode.current) : null
+  return portalNode.current ? createPortal(children, portalNode.current) : null;
 }
 
 function Popover({ children, targetRef }) {
-  const popoverRef = useRef()
-  const [styles, setStyles] = useState({})
+  const popoverRef = React.useRef();
+  const [styles, setStyles] = React.useState({});
 
   // Doing this work in a ref callback helps overcome a race-condition where
   // we need to ensure the popoverRef has been established. It's established
@@ -32,10 +32,10 @@ function Popover({ children, targetRef }) {
   function initPopoverRef(el) {
     // initPopoverRef will be called numerous times, lets do this work once.
     if (!popoverRef.current) {
-      popoverRef.current = el
-      const targetRect = targetRef.current.getBoundingClientRect()
-      const popoverRect = popoverRef.current.getBoundingClientRect()
-      setStyles(position(targetRect, popoverRect))
+      popoverRef.current = el;
+      const targetRect = targetRef.current.getBoundingClientRect();
+      const popoverRect = popoverRef.current.getBoundingClientRect();
+      setStyles(position(targetRect, popoverRect));
     }
   }
 
@@ -45,31 +45,31 @@ function Popover({ children, targetRef }) {
         ref={initPopoverRef}
         data-popover=""
         // So the window won't close the popup when it gets the click
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
         style={{
-          position: 'absolute',
-          ...styles
+          position: "absolute",
+          ...styles,
         }}
       >
         {children}
       </div>
     </Portal>
-  )
+  );
 }
 
 function Define({ children }) {
-  const [open, setOpen] = useState(false)
-  const buttonRef = useRef()
+  const [open, setOpen] = React.useState(false);
+  const buttonRef = React.useRef();
 
-  useLayoutEffect(() => {
-    const listener = event => {
+  React.useLayoutEffect(() => {
+    const listener = (event) => {
       if (event.target !== buttonRef.current) {
-        setOpen(false)
+        setOpen(false);
       }
-    }
-    window.addEventListener('click', listener)
-    return () => window.removeEventListener('click', listener)
-  }, [])
+    };
+    window.addEventListener("click", listener);
+    return () => window.removeEventListener("click", listener);
+  }, []);
 
   return (
     <>
@@ -89,15 +89,15 @@ function Define({ children }) {
         </Popover>
       )}
     </>
-  )
+  );
 }
 
 export default function App() {
   return (
     <p>
       Modern React is filled with <Define>Hooks</Define>. They work with
-      function-components and they give us an ability to use state and other React
-      features similarly to class-based components.
+      function-components and they give us an ability to use state and other
+      React features similarly to class-based components.
     </p>
-  )
+  );
 }

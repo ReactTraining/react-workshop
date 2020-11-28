@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 

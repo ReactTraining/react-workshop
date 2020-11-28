@@ -1,35 +1,35 @@
-import React, { useContext, useState, useEffect, useRef } from 'react'
-import * as storage from 'YesterTech/localStorage'
+import * as React from "react";
+import * as storage from "YesterTech/localStorage";
 
-const FavoriteProductContext = React.createContext()
+const FavoriteProductContext = React.createContext();
 
 export function FavoriteProductProvider({ children }) {
-  const [favorites, setFavorites] = useState(() => {
-    return storage.getFavorites()
-  })
+  const [favorites, setFavorites] = React.useState(() => {
+    return storage.getFavorites();
+  });
 
-  const firstRenderRef = useRef(true)
+  const firstRenderRef = React.useRef(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!firstRenderRef.current) {
-      storage.updateFavorites(favorites)
+      storage.updateFavorites(favorites);
     }
-    firstRenderRef.current = false
-  }, [favorites])
+    firstRenderRef.current = false;
+  }, [favorites]);
 
   const value = {
-    isFavorite: productId => favorites.includes(productId),
-    addFavorite: productId => {
-      setFavorites(favorites.concat(productId))
+    isFavorite: (productId) => favorites.includes(productId),
+    addFavorite: (productId) => {
+      setFavorites(favorites.concat(productId));
     },
-    removeFavorite: productId => {
-      setFavorites(favorites.filter(id => id !== productId))
-    }
-  }
+    removeFavorite: (productId) => {
+      setFavorites(favorites.filter((id) => id !== productId));
+    },
+  };
 
-  return <FavoriteProductContext.Provider value={value} children={children} />
+  return <FavoriteProductContext.Provider value={value} children={children} />;
 }
 
 export function useFavoriteProduct() {
-  return useContext(FavoriteProductContext)
+  return React.useContext(FavoriteProductContext);
 }

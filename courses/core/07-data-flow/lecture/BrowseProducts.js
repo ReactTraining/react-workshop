@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { useProducts } from './utils'
 // import { useShoppingCart } from './ShoppingCartState'
 import BrowseProductItem from './BrowseProductItem'
 
 function BrowseProducts() {
   const products = useProducts()
-  // const [cart, setCart] = useState([])
+  // const [cart, setCart] = React.useState([])
 
   // function addToCart(productId, name, price) {
   //   const newCart = cart.concat([{ productId, quantity: 1, name, price }])

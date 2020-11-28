@@ -1,39 +1,39 @@
-import React, { useReducer } from 'react'
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'YesterTech/Quantity.scss'
+import * as React from "react";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import "YesterTech/Quantity.scss";
 
 function Quantity() {
-  const [state, dispatch] = useReducer(
+  const [state, dispatch] = React.useReducer(
     (state, action) => {
       switch (action.type) {
-        case 'SUBTRACT': {
-          return { quantity: state.quantity - 1 }
+        case "SUBTRACT": {
+          return { quantity: state.quantity - 1 };
         }
-        case 'ADD': {
-          return { quantity: state.quantity + 1 }
+        case "ADD": {
+          return { quantity: state.quantity + 1 };
         }
-        case 'INPUT': {
-          return { quantity: action.quantity }
+        case "INPUT": {
+          return { quantity: action.quantity };
         }
         default:
-          return state
+          return state;
       }
     },
     {
-      quantity: 0
+      quantity: 0,
     }
-  )
+  );
 
-  const { quantity } = state
+  const { quantity } = state;
 
   function subtract() {
     if (quantity > 0) {
-      dispatch({ type: 'SUBTRACT' })
+      dispatch({ type: "SUBTRACT" });
     }
   }
 
   function add() {
-    dispatch({ type: 'ADD' })
+    dispatch({ type: "ADD" });
   }
 
   return (
@@ -49,7 +49,9 @@ function Quantity() {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={e => dispatch({ type: 'INPUT', quantity: parseInt(e.target.value) })}
+            onChange={(e) =>
+              dispatch({ type: "INPUT", quantity: parseInt(e.target.value) })
+            }
           />
         </div>
         <div>
@@ -59,7 +61,7 @@ function Quantity() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Quantity
+export default Quantity;

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'

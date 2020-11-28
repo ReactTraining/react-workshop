@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 
 import Heading from 'YesterTech/Heading'
@@ -7,11 +7,11 @@ import Centered from 'YesterTech/Centered'
 import api from 'YesterTech/api'
 
 function LoginForm({ onAuthenticated }) {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [error, setError] = React.useState(null)
+  const [loading, setLoading] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false)
 
   function handleLogin(event) {
     event.preventDefault()

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom'
 import BrowseProducts from 'YesterTech/BrowseProducts'
 import Reviews from './Reviews'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { MdShoppingCart } from 'react-icons/md'
 import serializeForm from 'form-serialize'
 import Heading from 'YesterTech/Heading'

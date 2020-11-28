@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 import './styles.scss'
 
 export default function App() {
-  const [active, setActive] = useState(false)
-  const [seconds, setSeconds] = useState(0)
+  const [active, setActive] = React.useState(false)
+  const [seconds, setSeconds] = React.useState(0)
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (active) {
       const id = setInterval(() => {
         setSeconds(seconds => {

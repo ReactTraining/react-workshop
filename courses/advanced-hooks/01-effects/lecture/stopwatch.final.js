@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import './styles.scss'
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import "./styles.scss";
 
 export default function App() {
-  const [active, setActive] = useState(false)
-  const [seconds, setSeconds] = useState(0)
+  const [active, setActive] = React.useState(false);
+  const [seconds, setSeconds] = React.useState(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (active) {
       const id = setInterval(() => {
-        setSeconds(seconds => {
-          return seconds + 1
-        })
-      }, 1000)
-      return () => clearInterval(id)
+        setSeconds((seconds) => {
+          return seconds + 1;
+        });
+      }, 1000);
+      return () => clearInterval(id);
     }
-  }, [active])
+  }, [active]);
 
   return (
     <div className="align-center spacing stopwatch">
@@ -29,7 +30,7 @@ export default function App() {
       <hr />
       <div>Seconds: {seconds}</div>
     </div>
-  )
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById("root"));

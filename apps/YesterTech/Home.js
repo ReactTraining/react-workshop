@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Columns, Column } from 'react-flex-columns'
 
 import Heading from 'YesterTech/Heading'

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Switch, Route, Link, Redirect, useRouteMatch, useParams } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from './Accordion'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'
 
 function App() {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = React.useState(0)
 
   return (
     <div>

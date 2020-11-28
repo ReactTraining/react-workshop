@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { Columns, Column } from 'react-flex-columns'
-import { FaAngleRight } from 'react-icons/fa'
-import { MdShoppingCart } from 'react-icons/md'
+import * as React from "react";
+import { Link } from "react-router-dom";
+import { Columns, Column } from "react-flex-columns";
+import { FaAngleRight } from "react-icons/fa";
+import { MdShoppingCart } from "react-icons/md";
 
-import Heading from 'YesterTech/Heading'
-import Quantity from 'YesterTech/Quantity'
-import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import Heading from "YesterTech/Heading";
+import Quantity from "YesterTech/Quantity";
+import { useShoppingCart } from "YesterTech/ShoppingCartState";
 
 function ViewCart() {
-  const { cart, updateQuantity, getCartTotal } = useShoppingCart()
+  const { cart, updateQuantity, getCartTotal } = useShoppingCart();
 
   return (
     <div className="spacing">
@@ -18,12 +18,12 @@ function ViewCart() {
       </Heading>
 
       <div className="spacing-small">
-        {cart.map(item => (
-          <Fragment key={item.productId}>
+        {cart.map((item) => (
+          <React.Fragment key={item.productId}>
             <Columns gutters middle>
               <Column>
                 <Quantity
-                  onChange={q => updateQuantity(item.productId, q)}
+                  onChange={(q) => updateQuantity(item.productId, q)}
                   quantity={item.quantity}
                 />
               </Column>
@@ -33,7 +33,7 @@ function ViewCart() {
               <Column>${(item.price * item.quantity).toFixed(2)}</Column>
             </Columns>
             <hr />
-          </Fragment>
+          </React.Fragment>
         ))}
       </div>
 
@@ -51,7 +51,7 @@ function ViewCart() {
         </Column>
       </Columns>
     </div>
-  )
+  );
 }
 
-export default ViewCart
+export default ViewCart;

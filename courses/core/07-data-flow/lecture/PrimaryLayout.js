@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom'
 import BrowseProducts from './BrowseProducts'
 import Checkout from 'YesterTech/Checkout'

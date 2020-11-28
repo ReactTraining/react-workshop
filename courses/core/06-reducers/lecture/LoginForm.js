@@ -1,50 +1,50 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useRef, useReducer } from 'react'
-import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
+import * as React from "react";
+import { FaSignInAlt, FaExclamationCircle } from "react-icons/fa";
 
-import Heading from 'YesterTech/Heading'
-import Notice from 'YesterTech/Notice'
-import Centered from 'YesterTech/Centered'
-import api from 'YesterTech/api'
+import Heading from "YesterTech/Heading";
+import Notice from "YesterTech/Notice";
+import Centered from "YesterTech/Centered";
+import api from "YesterTech/api";
 
 function LoginForm({ onAuthenticated }) {
-  const usernameRef = useRef()
-  const passwordRef = useRef()
-  const [showPassword, setShowPassword] = useState(false)
+  const usernameRef = React.useRef();
+  const passwordRef = React.useRef();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   // Change to reducer, then state machine
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [user, setUser] = useState(null)
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const [user, setUser] = React.useState(null);
 
-  useEffect(() => {
-    let isCurrent = true
+  React.useEffect(() => {
+    let isCurrent = true;
     if (loading) {
       api.auth
         .login(usernameRef.current.value, passwordRef.current.value)
-        .then(user => {
-          if (isCurrent) setUser(user)
+        .then((user) => {
+          if (isCurrent) setUser(user);
         })
-        .catch(error => {
+        .catch((error) => {
           if (isCurrent) {
-            setError(error)
-            setLoading(false)
+            setError(error);
+            setLoading(false);
           }
-        })
+        });
     }
-    return () => (isCurrent = false)
-  }, [loading])
+    return () => (isCurrent = false);
+  }, [loading]);
 
-  useEffect(() => {
-    if (user && typeof onAuthenticated === 'function') {
-      onAuthenticated(user)
+  React.useEffect(() => {
+    if (user && typeof onAuthenticated === "function") {
+      onAuthenticated(user);
     }
-  }, [onAuthenticated, user])
+  }, [onAuthenticated, user]);
 
   function handleLogin(event) {
-    event.preventDefault()
-    setLoading(true)
-    setError(null)
+    event.preventDefault();
+    setLoading(true);
+    setError(null);
   }
 
   return (
@@ -72,10 +72,10 @@ function LoginForm({ onAuthenticated }) {
           <input
             // You can pass the ref directly in like above with username,
             // or we can pass a function in and assign the current ourselves
-            ref={node => (passwordRef.current = node)}
+            ref={(node) => (passwordRef.current = node)}
             aria-label="Password"
             disabled={loading}
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
           />
           <label>
@@ -85,7 +85,7 @@ function LoginForm({ onAuthenticated }) {
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"
-            />{' '}
+            />{" "}
             show password
           </label>
         </div>
@@ -103,7 +103,7 @@ function LoginForm({ onAuthenticated }) {
         </footer>
       </form>
     </Centered>
-  )
+  );
 }
 
-export default LoginForm
+export default LoginForm;

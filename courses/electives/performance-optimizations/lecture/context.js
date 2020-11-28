@@ -2,13 +2,8 @@
  * WORK IN PROGRESS
  */
 
-import React, {
-  useState,
-  useContext,
-  useMemo,
-  useEffect
-} from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from "react-dom"
 
 /**
  * 1. When does React.memo at the top level actually matter?
@@ -32,7 +27,7 @@ function B() {
 
 function Counter() {
   console.log('Counter Renders')
-  const { count, setCount } = useContext(Context)
+  const { count, setCount } = React.useContext(Context)
   return (
     <button onClick={() => setCount(count + 1)} className="button">
       {count}
@@ -50,17 +45,17 @@ function C() {
 const Context = React.createContext()
 
 function AppStateProvider({ children }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = React.useState(0)
 
-  const [_, forceUpdate] = useState()
-  useEffect(() => {
+  const [_, forceUpdate] = React.useState()
+  React.useEffect(() => {
     setTimeout(() => {
       console.log('force update')
       forceUpdate(true)
     }, 5000)
   }, [])
 
-  const context = useMemo(() => ({ count, setCount }), [count])
+  const context = React.useMemo(() => ({ count, setCount }), [count])
 
   return <Context.Provider value={context} children={children} />
 }

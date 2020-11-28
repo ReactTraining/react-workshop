@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 function Centered({ as: Component = 'div', size = 30, children, ...rest }) {
   return (

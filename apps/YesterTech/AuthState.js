@@ -1,34 +1,34 @@
-import React, { useContext, useReducer, useCallback } from 'react'
+import * as React from "react";
 
-const AuthStateContext = React.createContext()
+const AuthStateContext = React.createContext();
 
 const initialState = {
   authenticated: false,
-  user: null
-}
+  user: null,
+};
 
 export function AuthStateProvider({ children }) {
-  const [state, dispatch] = useReducer((state, action) => {
+  const [state, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
-      case 'LOGIN': {
-        return { ...state, authenticated: true, user: action.user }
+      case "LOGIN": {
+        return { ...state, authenticated: true, user: action.user };
       }
-      case 'LOGOUT': {
-        return { ...initialState }
+      case "LOGOUT": {
+        return { ...initialState };
       }
       default:
-        return state
+        return state;
     }
-  }, initialState)
+  }, initialState);
 
   const value = {
     ...state,
-    dispatch: useCallback(dispatch, [])
-  }
+    dispatch: React.useCallback(dispatch, []),
+  };
 
-  return <AuthStateContext.Provider value={value} children={children} />
+  return <AuthStateContext.Provider value={value} children={children} />;
 }
 
 export function useAuthState() {
-  return useContext(AuthStateContext)
+  return React.useContext(AuthStateContext);
 }

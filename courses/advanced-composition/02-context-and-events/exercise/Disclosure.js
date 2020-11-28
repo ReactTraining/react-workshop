@@ -1,9 +1,9 @@
-import React, { useState, forwardRef } from 'react'
+import * as React from "react";
 import { useId } from '../../useId'
 // import { wrapEvent } from '../../utils'
 
 export function Disclosure({ children, defaultOpen = false, ...props }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
   const id = useId(props.id)
   const panelId = `panel-${id}`
 
@@ -18,7 +18,7 @@ export function Disclosure({ children, defaultOpen = false, ...props }) {
   return children
 }
 
-export const DisclosureButton = forwardRef(
+export const DisclosureButton = React.forwardRef(
   ({ children, isOpen, panelId, onSelect, ...props }, forwardedRef) => {
     return (
       <button
@@ -38,7 +38,7 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(
+export const DisclosurePanel = React.forwardRef(
   ({ children, isOpen, panelId, ...props }, forwardedRef) => {
     return (
       <div

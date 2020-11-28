@@ -1,32 +1,34 @@
-import React, { useState } from 'react'
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
+import * as React from "react";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 
 function Quantity() {
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = React.useState(0);
 
   function subtract() {
     if (quantity > 0) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
   }
 
   function add() {
-    setQuantity(quantity + 1)
+    setQuantity(quantity + 1);
   }
 
   function handleInputBlur(event) {
-    if (event.target.value.trim() === '') {
-      setQuantity(0)
+    if (event.target.value.trim() === "") {
+      setQuantity(0);
     }
   }
 
   function handleInputKeyDown(event) {
-    // keep cursor from going back/forth
-    event.preventDefault()
-    if (event.key === 'ArrowUp') {
-      add()
-    } else if (event.key === 'ArrowDown') {
-      subtract()
+    if (event.key === "ArrowUp") {
+      // keep cursor from going back/forth
+      event.preventDefault();
+      add();
+    } else if (event.key === "ArrowDown") {
+      // keep cursor from going back/forth
+      event.preventDefault();
+      subtract();
     }
   }
 
@@ -49,8 +51,8 @@ function Quantity() {
             aria-label="quantity"
             value={quantity}
             data-testid="quantity"
-            onChange={event => {
-              setQuantity(event.target.value)
+            onChange={(event) => {
+              setQuantity(event.target.value);
             }}
             onBlur={handleInputBlur}
             onKeyDown={handleInputKeyDown}
@@ -68,7 +70,7 @@ function Quantity() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Quantity
+export default Quantity;

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState, useEffect, useRef } from 'react'
-import * as storage from 'YesterTech/localStorage'
+import * as React from "react";
+import * as storage from "YesterTech/localStorage";
 
 // Make your context here
 
 export function FavoriteProductProvider({ children }) {
   // Wrap children in the provider
-  return children
+  return children;
 }
 
 export function useFavoriteProduct() {

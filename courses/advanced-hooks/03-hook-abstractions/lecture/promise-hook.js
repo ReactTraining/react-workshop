@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import * as React from 'react'
 import StarRatings from 'YesterTech/StarRatings'
 import Heading from 'YesterTech/Heading'
 import api from 'YesterTech/api'
 
 function useProduct(productId) {
-  const [product, setProduct] = useState(null)
+  const [product, setProduct] = React.useState(null)
 
-  useEffect(() => {
+  React.useEffect(() => {
     let isCurrent = true
     api.products.getProduct(productId).then(product => {
       if (!isCurrent) return
