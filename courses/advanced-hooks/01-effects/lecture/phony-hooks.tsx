@@ -33,6 +33,20 @@ export default function App() {
   )
 }
 
+///
+
+// function useReducer<R extends (prevState: S, action: A) => S, S, A>(
+//     fn: R,
+//     initialState: S
+//   ): [S, (action: A) => void];
+
+// function useState<S>(
+//     initialState: S
+//   ): [S, (newState: S | ((oldState: S) => S)) => void];
+
+// type EffectCallback = () => void | (() => void | undefined);
+// function useEffect(fn: EffectCallback, depArray?: any[]): void;
+
 function reRender() {
   ReactDOM.render(<App />, document.getElementById('root'))
 }
