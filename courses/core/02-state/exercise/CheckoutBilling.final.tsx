@@ -1,15 +1,23 @@
-import * as React from 'react'
-import { MdShoppingCart } from 'react-icons/md'
-import serializeForm from 'form-serialize'
-import Heading from 'YesterTech/Heading'
+import * as React from "react";
+import { MdShoppingCart } from "react-icons/md";
+import serializeForm from "form-serialize";
+import Heading from "YesterTech/Heading";
 
-function CheckoutBilling({ onSubmit }) {
-  const [sameAsBilling, setSameAsBilling] = React.useState(false)
+interface CheckoutBillingProps {
+  onSubmit(fields: ReturnType<typeof serializeForm>): void;
+}
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    const fields = serializeForm(event.target, { hash: true })
-    onSubmit(fields)
+const CheckoutBilling: React.FC<CheckoutBillingProps> = function CheckoutBilling({
+  onSubmit,
+}) {
+  const [sameAsBilling, setSameAsBilling] = React.useState(false);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const fields = serializeForm(event.target as HTMLFormElement, {
+      hash: true,
+    });
+    onSubmit(fields);
   }
 
   return (
@@ -24,7 +32,12 @@ function CheckoutBilling({ onSubmit }) {
         <hr />
         <div className="form-field">
           <label htmlFor="billing:name">Name</label>
-          <input id="billing:name" type="text" name="billingName" autoComplete="off" />
+          <input
+            id="billing:name"
+            type="text"
+            name="billingName"
+            autoComplete="off"
+          />
         </div>
         <div className="form-field">
           <label htmlFor="billing:address">Address</label>
@@ -40,7 +53,7 @@ function CheckoutBilling({ onSubmit }) {
             type="checkbox"
             defaultChecked={sameAsBilling}
             onChange={() => setSameAsBilling(!sameAsBilling)}
-          />{' '}
+          />{" "}
           <span>Same as Billing</span>
         </label>
 
@@ -48,11 +61,21 @@ function CheckoutBilling({ onSubmit }) {
           <div className="spacing">
             <div className="form-field">
               <label htmlFor="shipping:name">Name</label>
-              <input id="shipping:name" type="text" name="shippingName" autoComplete="off" />
+              <input
+                id="shipping:name"
+                type="text"
+                name="shippingName"
+                autoComplete="off"
+              />
             </div>
             <div className="form-field">
               <label htmlFor="shipping:address">Address</label>
-              <input id="shipping:address" type="text" name="shippingAddress" autoComplete="off" />
+              <input
+                id="shipping:address"
+                type="text"
+                name="shippingAddress"
+                autoComplete="off"
+              />
             </div>
           </div>
         )}
@@ -64,7 +87,7 @@ function CheckoutBilling({ onSubmit }) {
         </footer>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutBilling
+export default CheckoutBilling;
