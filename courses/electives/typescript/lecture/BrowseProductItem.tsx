@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'YesterTech/Quantity.scss'
+import * as React from "react";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import "YesterTech/Quantity.scss";
 
 /**
  * BrowseProductItem
  */
 
 export const BrowseProductItem: React.FC = () => {
-  const [quantity, setQuantity] = React.useState(0)
+  const [quantity, setQuantity] = React.useState(0);
 
   return (
     <div className="browse-product-item spacing-small">
@@ -15,7 +15,7 @@ export const BrowseProductItem: React.FC = () => {
       <button
         className="button"
         onClick={() => {
-          setQuantity(1)
+          setQuantity(1);
         }}
       >
         Add To Cart
@@ -26,27 +26,27 @@ export const BrowseProductItem: React.FC = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 /**
  * Quantity
  */
 
 interface Props {
-  quantity: number
-  setQuantity: any
+  quantity: number;
+  setQuantity: any;
 }
 
 const Quantity: React.FC<Props> = ({ quantity, setQuantity }) => {
   function subtract() {
     if (quantity > 0) {
-      setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
   }
 
   function add() {
-    setQuantity(quantity + 1)
+    setQuantity(quantity + 1);
   }
 
   return (
@@ -62,8 +62,8 @@ const Quantity: React.FC<Props> = ({ quantity, setQuantity }) => {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={event => {
-              setQuantity(parseInt(event.target.value))
+            onChange={(event) => {
+              setQuantity(parseInt(event.target.value));
             }}
           />
         </div>
@@ -74,5 +74,5 @@ const Quantity: React.FC<Props> = ({ quantity, setQuantity }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

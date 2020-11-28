@@ -4,9 +4,9 @@ import "./styles.scss";
 export default function App() {
   const [count, setCount] = React.useState(0);
   const [saving, setSaving] = React.useState(false);
-  const [message, setMessage] = React.useState(null);
+  const [message, setMessage] = React.useState<string | null>(null);
 
-  const countRef = React.useRef();
+  const countRef = React.useRef<number>();
   countRef.current = count;
 
   React.useEffect(() => {

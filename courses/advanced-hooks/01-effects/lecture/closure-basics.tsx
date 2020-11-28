@@ -3,7 +3,7 @@ import "./styles.scss";
 
 export default function App() {
   const [count, setCount] = React.useState(0);
-  const [message, setMessage] = React.useState(null);
+  const [message, setMessage] = React.useState<string | null>(null);
 
   function saveToDatabase() {
     setTimeout(() => {

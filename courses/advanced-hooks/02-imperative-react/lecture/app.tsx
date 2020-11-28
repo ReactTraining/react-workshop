@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createPortal } from "react-dom";
+import * as ReactDOM from "react-dom";
 import { position } from "./utils";
 import "./styles.scss";
 
@@ -7,11 +7,15 @@ import "./styles.scss";
 // const popoverRect = popoverRef.current.getBoundingClientRect()
 // setStyles(position(targetRect, popoverRect))
 
-function Popover({ children }) {
-  return <div className="popover">{children}</div>;
+interface PopoverProps {
+  // targetRef: React.RefObject<HTMLElement | null | undefined>;
 }
 
-function Define({ children }) {
+const Popover: React.FC<PopoverProps> = function Popover({ children }) {
+  return <div className="popover">{children}</div>;
+};
+
+const Define: React.FC = function Define({ children }) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -24,7 +28,7 @@ function Define({ children }) {
       )}
     </>
   );
-}
+};
 
 export default function App() {
   return (

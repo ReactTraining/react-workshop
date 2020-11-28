@@ -2,9 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { saveClapsToDatabase } from "./utils";
 
-function ClapButton() {
-  const [claps, setClaps] = React.useState(0);
-  const [queueClaps, setQueueClaps] = React.useState(0);
+function ClapButton(): React.ReactElement {
+  const [claps, setClaps] = React.useState<number>(0);
+  const [queueClaps, setQueueClaps] = React.useState<number>(0);
 
   React.useEffect(() => {
     if (queueClaps > 0) {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ProductFilters from "YesterTech/ProductFilters";
 
-function ProductsSidebar() {
+function ProductsSidebar(): React.ReactElement {
   return (
     <aside>
       <ProductFilters />

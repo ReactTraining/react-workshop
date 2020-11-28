@@ -1,11 +1,11 @@
 import * as React from "react";
-import { createPortal } from "react-dom";
+import * as ReactDOM from "react-dom";
 import { position } from "./utils";
 import "./styles.scss";
 
-function Portal({ children }) {
-  const portalNode = React.useRef(null);
-  const [_, forceUpdate] = React.useState();
+const Portal: React.FC = function Portal({ children }) {
+  const portalNode = React.useRef<HTMLElement | null>(null);
+  const [, forceUpdate] = React.useState<any>();
 
   React.useLayoutEffect(() => {
     portalNode.current = document.createElement("portal");
@@ -18,24 +18,35 @@ function Portal({ children }) {
     };
   }, []);
 
-  return portalNode.current ? createPortal(children, portalNode.current) : null;
+  return portalNode.current
+    ? ReactDOM.createPortal(children, portalNode.current)
+    : null;
+};
+
+interface PopoverProps {
+  targetRef: React.RefObject<HTMLElement | null | undefined>;
 }
 
-function Popover({ children, targetRef }) {
-  const popoverRef = React.useRef();
+const Popover: React.FC<PopoverProps> = function Popover({
+  children,
+  targetRef,
+}) {
+  const popoverRef = React.useRef<HTMLElement | null>(null);
   const [styles, setStyles] = React.useState({});
 
   // Doing this work in a ref callback helps overcome a race-condition where
   // we need to ensure the popoverRef has been established. It's established
   // later than we might expect because the div it's applied to is the children
   // of Portal which returns null initially (which it must do)
-  function initPopoverRef(el) {
+  function initPopoverRef(el: HTMLDivElement) {
     // initPopoverRef will be called numerous times, lets do this work once.
     if (!popoverRef.current) {
       popoverRef.current = el;
-      const targetRect = targetRef.current.getBoundingClientRect();
-      const popoverRect = popoverRef.current.getBoundingClientRect();
-      setStyles(position(targetRect, popoverRect));
+      if (targetRef.current && popoverRef.current) {
+        const targetRect = targetRef.current.getBoundingClientRect();
+        const popoverRect = popoverRef.current.getBoundingClientRect();
+        setStyles(position(targetRect, popoverRect));
+      }
     }
   }
 
@@ -55,14 +66,14 @@ function Popover({ children, targetRef }) {
       </div>
     </Portal>
   );
-}
+};
 
-function Define({ children }) {
+const Define: React.FC = function Define({ children }) {
   const [open, setOpen] = React.useState(false);
-  const buttonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   React.useLayoutEffect(() => {
-    const listener = (event) => {
+    const listener = (event: MouseEvent) => {
       if (event.target !== buttonRef.current) {
         setOpen(false);
       }
@@ -90,7 +101,7 @@ function Define({ children }) {
       )}
     </>
   );
-}
+};
 
 export default function App() {
   return (

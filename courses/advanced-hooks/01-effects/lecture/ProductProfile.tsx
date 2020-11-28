@@ -13,10 +13,10 @@ import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import ProductTile from "YesterTech/ProductTile";
 
 function ProductProfile() {
-  let { productId } = useParams();
+  let { productId } = useParams<{ productId: any }>();
   productId = parseInt(productId, 10);
 
-  const product = null;
+  const product = null as any;
 
   // Cart
   const { addToCart, updateQuantity, getQuantity } = useShoppingCart();
@@ -46,7 +46,7 @@ function ProductProfile() {
                 onClick={() =>
                   addToCart(productId, product.name, product.price)
                 }
-                getQuantity={quantity}
+                quantity={quantity}
               />
 
               {quantity > 0 && (
@@ -70,7 +70,7 @@ function ProductProfile() {
               Related Products
             </Heading>
             <Tiles>
-              {product.relatedProducts.map((productId) => (
+              {product.relatedProducts.map((productId: any) => (
                 <ProductTile key={productId} productId={productId} />
               ))}
             </Tiles>
