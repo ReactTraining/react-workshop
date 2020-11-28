@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
-import 'YesterTech/Quantity.scss'
+import * as React from "react";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
+import "YesterTech/Quantity.scss";
 
 function Quantity() {
-  const quantity = 1
+  const quantity = 1;
 
   return (
     <div className="quantity-picker">
@@ -23,7 +23,7 @@ function Quantity() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Quantity
+export default Quantity;
