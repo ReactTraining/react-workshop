@@ -11,17 +11,21 @@ import ProductImage from "YesterTech/ProductImage";
 import ShoppingCartButton from "YesterTech/ShoppingCartButton";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import ProductTile from "YesterTech/ProductTile";
+import { Product } from "YesterTech/types";
 
 function ProductProfile() {
-  let { productId } = useParams();
+  let { productId } = useParams<{ productId: any }>();
   productId = parseInt(productId, 10);
 
-  const product = null;
+  const product: Product | null = null as any;
 
   // Cart
   const { addToCart, updateQuantity, getQuantity } = useShoppingCart();
   const quantity = getQuantity(productId);
-  if (!product) return <div>Loading...</div>;
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="spacing">
@@ -46,7 +50,7 @@ function ProductProfile() {
                 onClick={() =>
                   addToCart(productId, product.name, product.price)
                 }
-                getQuantity={quantity}
+                quantity={quantity}
               />
 
               {quantity > 0 && (

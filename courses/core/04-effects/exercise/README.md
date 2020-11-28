@@ -4,7 +4,7 @@
 
 In the browser, navigate to: http://localhost:3000/products
 
-1. Open `ProductFilters.js`.
+1. Open `ProductFilters.tsx`.
 2. Currently `categories` is `null` so we need to make it stateful.
 3. Then use an effect to query for the categories using the `getCategories` function.
 4. Don't forget to do a cleanup function.

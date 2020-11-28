@@ -7,7 +7,13 @@ import ProductImage from "YesterTech/ProductImage";
 import usePromise from "YesterTech/usePromise";
 import api from "YesterTech/api";
 
-function ProductTile({ productId }) {
+interface ProductTileProps {
+  productId: any;
+}
+
+const ProductTile: React.FC<ProductTileProps> = function ProductTile({
+  productId,
+}) {
   const getProduct = React.useCallback(
     () => api.products.getProduct(productId),
     [productId]
@@ -37,6 +43,6 @@ function ProductTile({ productId }) {
       </Columns>
     </div>
   );
-}
+};
 
 export default ProductTile;

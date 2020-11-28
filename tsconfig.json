@@ -1,5 +1,5 @@
 {
-  "include": ["apps", "courses"],
+  "include": ["apps", "courses", "types"],
   "exclude": ["node_modules", "scripts", "config"],
   "compilerOptions": {
     "allowJs": true,

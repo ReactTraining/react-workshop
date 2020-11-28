@@ -2,7 +2,15 @@ import * as React from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "YesterTech/Quantity.scss";
 
-function Quantity({ onChange, quantity = 1 }) {
+interface QuantityProps {
+  onChange(value: number): any;
+  quantity?: number;
+}
+
+const Quantity: React.FC<QuantityProps> = function Quantity({
+  onChange,
+  quantity = 1,
+}) {
   function subtract() {
     if (quantity > 0) {
       onChange(quantity - 1);
@@ -13,21 +21,21 @@ function Quantity({ onChange, quantity = 1 }) {
     onChange(quantity + 1);
   }
 
-  function handleChange(value) {
-    const int = parseInt(value, 10);
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const int = parseInt(event.target.value, 10);
     // disallow non-numeric values
     if (!isNaN(int)) {
       onChange(int);
     }
   }
 
-  function handleInputBlur(event) {
+  function handleInputBlur(event: React.FocusEvent<HTMLInputElement>) {
     if (event.target.value.trim() === "") {
       onChange(0);
     }
   }
 
-  function handleInputKeyDown(event) {
+  function handleInputKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "ArrowUp") {
       // keep cursor from going back/forth
       event.preventDefault();
@@ -52,7 +60,7 @@ function Quantity({ onChange, quantity = 1 }) {
             type="text"
             aria-label="quantity"
             value={quantity}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={handleInputChange}
             onBlur={handleInputBlur}
             onKeyDown={handleInputKeyDown}
           />
@@ -65,6 +73,6 @@ function Quantity({ onChange, quantity = 1 }) {
       </div>
     </div>
   );
-}
+};
 
 export default Quantity;

@@ -2,8 +2,19 @@ import * as React from "react";
 import ProductFilterList from "YesterTech/ProductFilterList";
 import { getCategories } from "./utils";
 
-function ProductFilters() {
-  const categories = null;
+const ProductFilters: React.FC = function ProductFilters() {
+  const [categories, setCategories] = React.useState<string[] | null>(null);
+
+  React.useEffect(function fetchCategories() {
+    let isCurrent = true;
+    getCategories().then((categories) => {
+      if (!isCurrent) return;
+      setCategories(categories);
+    });
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   if (!categories) return <div>Loading Filters...</div>;
 
@@ -16,6 +27,6 @@ function ProductFilters() {
       />
     </div>
   );
-}
+};
 
 export default ProductFilters;
