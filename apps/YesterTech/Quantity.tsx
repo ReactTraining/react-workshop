@@ -1,16 +1,17 @@
 import * as React from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "YesterTech/Quantity.scss";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
 interface QuantityProps {
   onChange(value: number): any;
   quantity?: number;
 }
 
-const Quantity: React.FC<QuantityProps> = function Quantity({
+const Quantity: ReactComponentWithoutChildren<QuantityProps> = function Quantity({
   onChange,
   quantity = 1,
-}) {
+}): React.ReactElement {
   function subtract() {
     if (quantity > 0) {
       onChange(quantity - 1);

@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 import queryString from "query-string";
 
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 import "YesterTech/Pagination.scss";
 
 interface PaginationProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -63,15 +64,15 @@ interface PaginationRangeProps {
   totalResults: number;
   page: number;
   resultsPerPage: number;
-  query: string;
+  query?: string;
 }
 
-function PaginationRange({
+const PaginationRange: ReactComponentWithoutChildren<PaginationRangeProps> = function PaginationRange({
   resultsPerPage,
   page,
   totalResults,
   query,
-}: PaginationRangeProps): React.ReactElement | null {
+}): React.ReactElement | null {
   if (!totalResults) return null;
   const first = resultsPerPage * page - resultsPerPage + 1;
   const last = resultsPerPage * page;
@@ -80,7 +81,7 @@ function PaginationRange({
   return (
     <span className="text-small">
       Showing {range} of {totalResults}
-      {query.length > 0 && (
+      {query && query.length > 0 && (
         <span>
           {" : "}
           Search: <strong>{query}</strong>
@@ -88,7 +89,7 @@ function PaginationRange({
       )}
     </span>
   );
-}
+};
 
 PaginationRange.propTypes = {
   totalResults: PropTypes.number.isRequired,

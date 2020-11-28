@@ -12,16 +12,22 @@ const Avatar: React.FC<AvatarProps> = function Avatar({
   src,
   size = 3,
   className,
+  alt = "Avatar",
+  children,
+  style,
   ...rest
 }) {
-  const Component = src ? "img" : "div";
-  return (
-    <Component
-      src={src}
-      alt="Avatar"
-      style={{ fontSize: `${size}rem` }}
-      className={classnames("avatar", className)}
-      {...rest}
+  const commonProps = {
+    className: classnames("avatar", className),
+    ...rest,
+  };
+  return src ? (
+    <img src={src} alt={alt} style={style} {...commonProps} />
+  ) : (
+    <div
+      children={children}
+      style={{ fontSize: `${size}rem`, ...style }}
+      {...commonProps}
     />
   );
 };

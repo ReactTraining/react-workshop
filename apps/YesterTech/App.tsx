@@ -6,7 +6,7 @@ import { FavoriteProductProvider } from "YesterTech/FavoriteProductState";
 import PrimaryLayout from "YesterTech/PrimaryLayout";
 import "YesterTech/styles/global-styles.scss";
 
-function App() {
+function App(): React.ReactElement {
   return (
     <BrowserRouter>
       {/* cooool */}

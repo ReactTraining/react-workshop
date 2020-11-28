@@ -4,9 +4,11 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import ProductsSidebar from "YesterTech/ProductsSidebar";
 import BrowseProducts from "YesterTech/BrowseProducts";
 import ProductProfile from "YesterTech/ProductProfile";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
+
 import "./ProductsLayout.scss";
 
-function ProductsLayout(): React.ReactElement {
+const ProductsLayout: ReactComponentWithoutChildren = function ProductsLayout() {
   return (
     <div className="products-layout">
       <ProductsSidebar />
@@ -23,6 +25,6 @@ function ProductsLayout(): React.ReactElement {
       </div>
     </div>
   );
-}
+};
 
 export default ProductsLayout;

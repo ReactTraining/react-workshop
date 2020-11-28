@@ -1,8 +1,15 @@
 import * as React from "react";
 import { useFavoriteProduct } from "YesterTech/FavoriteProductState";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
-function SaveFavorite({ productId }: { productId: any }): React.ReactElement {
+interface SaveFavoriteProps {
+  productId: any;
+}
+
+const SaveFavorite: ReactComponentWithoutChildren<SaveFavoriteProps> = function SaveFavorite({
+  productId,
+}): React.ReactElement {
   const { isFavorite, addFavorite, removeFavorite } = useFavoriteProduct();
   const favorite = isFavorite(productId);
   const action = favorite ? removeFavorite : addFavorite;
@@ -13,6 +20,6 @@ function SaveFavorite({ productId }: { productId: any }): React.ReactElement {
       {favorite ? <HiHeart color="#f00" /> : <HiOutlineHeart />}
     </button>
   );
-}
+};
 
 export default SaveFavorite;

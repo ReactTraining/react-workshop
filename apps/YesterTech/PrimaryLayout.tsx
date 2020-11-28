@@ -22,8 +22,9 @@ import Account from "YesterTech/Account";
 import ProductsLayout from "YesterTech/ProductsLayout";
 import ProductSubNav from "YesterTech/ProductSubNav";
 import Checkout from "YesterTech/Checkout";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
-const PrimaryLayout = function PrimaryLayout() {
+const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
   const history = useHistory();
   const { authenticated, dispatch } = useAuthState();
   const { cart } = useShoppingCart();

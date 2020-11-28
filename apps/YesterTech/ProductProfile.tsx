@@ -13,7 +13,9 @@ import ShoppingCartButton from "YesterTech/ShoppingCartButton";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import ProductTile from "YesterTech/ProductTile";
 
-function ProductProfile(): React.ReactElement {
+import { ReactComponentWithoutChildren } from "YesterTech/types";
+
+const ProductProfile: ReactComponentWithoutChildren = function ProductProfile() {
   let { productId } = useParams<{ productId: any }>();
   productId = parseInt(productId, 10);
 
@@ -89,6 +91,6 @@ function ProductProfile(): React.ReactElement {
       )}
     </div>
   );
-}
+};
 
 export default ProductProfile;

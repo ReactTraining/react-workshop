@@ -5,12 +5,15 @@ import Heading from "YesterTech/Heading";
 import Notice from "YesterTech/Notice";
 import Centered from "YesterTech/Centered";
 import api from "YesterTech/api";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
 interface LoginFormProps {
   onAuthenticated?(user: any): any;
 }
 
-function LoginForm({ onAuthenticated }: LoginFormProps): React.ReactElement {
+const LoginForm: ReactComponentWithoutChildren<LoginFormProps> = function LoginForm({
+  onAuthenticated,
+}): React.ReactElement {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(null);
@@ -90,6 +93,6 @@ function LoginForm({ onAuthenticated }: LoginFormProps): React.ReactElement {
       </form>
     </Centered>
   );
-}
+};
 
 export default LoginForm;

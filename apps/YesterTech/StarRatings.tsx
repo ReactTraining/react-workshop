@@ -1,15 +1,15 @@
 import * as React from "react";
 import { FaRegStar, FaStarHalfAlt, FaStar } from "react-icons/fa";
-
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 import "YesterTech/StarRatings.scss";
 
 export interface StarRatingsProps {
   rating: number;
 }
 
-const StarRatings: React.FC<StarRatingsProps> = function StarRatings({
+const StarRatings: ReactComponentWithoutChildren<StarRatingsProps> = function StarRatings({
   rating,
-}) {
+}): React.ReactElement {
   let stars = [];
 
   // Add filled in star(s)

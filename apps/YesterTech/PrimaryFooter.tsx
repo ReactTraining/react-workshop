@@ -1,10 +1,10 @@
 import * as React from "react";
 import { GoVersions } from "react-icons/go";
 import { Columns, Column } from "react-flex-columns";
-
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 import "YesterTech/PrimaryFooter.scss";
 
-function PrimaryFooter(): React.ReactElement {
+const PrimaryFooter: ReactComponentWithoutChildren = function PrimaryFooter(): React.ReactElement {
   return (
     <footer className="primary-footer spacing">
       <hr />
@@ -18,6 +18,6 @@ function PrimaryFooter(): React.ReactElement {
       </Columns>
     </footer>
   );
-}
+};
 
 export default PrimaryFooter;

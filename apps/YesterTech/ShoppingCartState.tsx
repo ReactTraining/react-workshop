@@ -5,8 +5,6 @@ import { getInt } from "YesterTech/utils";
 
 const ShoppingCartContext = React.createContext({} as ShoppingCartContextValue);
 
-type ShoppingCartActionTypes = "ADD" | "UPDATE" | "REMOVE";
-
 export const ShoppingCartProvider: React.FC = function ShoppingCartProvider({
   children,
 }) {
@@ -129,19 +127,19 @@ type ShoppingCartState = {
   cart: CartProduct[];
 };
 
-type ShoppingCartContextValue = {
+interface ShoppingCartContextValue {
   addToCart(
     productId: CartProduct["productId"],
     name: CartProduct["name"],
     price: CartProduct["price"]
   ): void;
-  updateQuantity: (
+  updateQuantity(
     productId: CartProduct["productId"],
     quantity: CartProduct["quantity"]
-  ) => void;
-  removeFromCart: (productId: CartProduct["productId"]) => void;
-  getQuantity: (productId: CartProduct["productId"]) => number;
-  getCartSize: () => number;
-  getCartTotal: () => number;
+  ): void;
+  removeFromCart(productId: CartProduct["productId"]): void;
+  getQuantity(productId: CartProduct["productId"]): number;
+  getCartSize(): number;
+  getCartTotal(): number;
   cart: CartProduct[];
-};
+}

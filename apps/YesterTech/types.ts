@@ -54,4 +54,14 @@ export type CheckoutFieldsShipping = {
   shippingPostal: string;
 };
 
-export type CheckoutFieldsFull = CheckoutFieldsBilling & CheckoutFieldsShipping
+export type CheckoutFieldsFull = CheckoutFieldsBilling & CheckoutFieldsShipping;
+
+export interface ReactComponentWithoutChildren<
+  P = {},
+> {
+  (props: P, context?: any): React.ReactElement<any, any> | null;
+  propTypes?: React.WeakValidationMap<P>;
+  contextTypes?: React.ValidationMap<any>;
+  defaultProps?: Partial<P>;
+  displayName?: string;
+}

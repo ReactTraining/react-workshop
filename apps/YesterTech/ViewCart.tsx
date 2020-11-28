@@ -7,8 +7,9 @@ import { MdShoppingCart } from "react-icons/md";
 import Heading from "YesterTech/Heading";
 import Quantity from "YesterTech/Quantity";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
-function ViewCart(): React.ReactElement {
+const ViewCart: ReactComponentWithoutChildren = function ViewCart(): React.ReactElement {
   const { cart, updateQuantity, getCartTotal } = useShoppingCart();
 
   return (
@@ -52,6 +53,6 @@ function ViewCart(): React.ReactElement {
       </Columns>
     </div>
   );
-}
+};
 
 export default ViewCart;

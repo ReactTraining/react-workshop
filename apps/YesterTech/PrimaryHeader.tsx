@@ -15,10 +15,11 @@ import { useAuthState } from "YesterTech/AuthState";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import Avatar from "YesterTech/Avatar";
 import Logo from "YesterTech/Logo";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 import "YesterTech/PrimaryHeader.scss";
 import "@reach/menu-button/styles.css";
 
-function PrimaryHeader(): React.ReactElement {
+const PrimaryHeader: ReactComponentWithoutChildren = function PrimaryHeader() {
   const { authenticated, user, dispatch } = useAuthState();
   const { getCartSize } = useShoppingCart();
   const cartSize = getCartSize();
@@ -76,6 +77,6 @@ function PrimaryHeader(): React.ReactElement {
       </Columns>
     </div>
   );
-}
+};
 
 export default PrimaryHeader;

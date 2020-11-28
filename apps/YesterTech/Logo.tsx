@@ -1,8 +1,9 @@
 import * as React from "react";
 import { GoVersions } from "react-icons/go";
 import "YesterTech/Logo.scss";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
-const Logo: React.FC = function Logo() {
+const Logo: ReactComponentWithoutChildren = function Logo(): React.ReactElement {
   return (
     <span className="logo vertical-middle">
       <GoVersions />{" "}

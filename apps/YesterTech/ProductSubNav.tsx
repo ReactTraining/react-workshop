@@ -5,8 +5,9 @@ import { Columns, Column } from "react-flex-columns";
 import SearchBox from "YesterTech/SearchBox";
 import SubNav from "YesterTech/SubNav";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
-function ProductSubNav(): React.ReactElement {
+const ProductSubNav: ReactComponentWithoutChildren = function ProductSubNav() {
   const { getCartSize } = useShoppingCart();
   const cartSize = getCartSize();
 
@@ -28,6 +29,6 @@ function ProductSubNav(): React.ReactElement {
       </Columns>
     </SubNav>
   );
-}
+};
 
 export default ProductSubNav;

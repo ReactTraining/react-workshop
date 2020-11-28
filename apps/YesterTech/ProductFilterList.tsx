@@ -4,18 +4,19 @@ import queryString from "query-string";
 
 import Heading from "YesterTech/Heading";
 import ProductFilterItem from "YesterTech/ProductFilterItem";
+import { ReactComponentWithoutChildren } from "YesterTech/types";
 
 interface ProductFilterListProps {
   urlKey: string;
-  list: any;
-  label: any;
+  list?: string[];
+  label: string;
 }
 
-function ProductFilterList({
+const ProductFilterList: ReactComponentWithoutChildren<ProductFilterListProps> = function ProductFilterList({
   urlKey,
   list,
   label,
-}: ProductFilterListProps): React.ReactElement {
+}): React.ReactElement {
   const location = useLocation();
   const history = useHistory();
   const search = queryString.parse(location.search) || null;
@@ -73,6 +74,6 @@ function ProductFilterList({
       )}
     </section>
   );
-}
+};
 
 export default ProductFilterList;
