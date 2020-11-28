@@ -67,7 +67,7 @@ The `PrimaryLayout` starts with several components that might resemble what the 
 
 ## `BrowserRouter`
 
-- Open `App.js`
+- Open `App.tsx`
 - Just briefly explain that anything that uses React Router components needs to be wrapped in this provider. We haven't even explained context yet so we can gloss over some details and come back to this thought later after context.
 
 ## `useRouteMatch`

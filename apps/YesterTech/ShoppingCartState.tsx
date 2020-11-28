@@ -7,7 +7,9 @@ const ShoppingCartContext = React.createContext({} as ShoppingCartContextValue);
 
 type ShoppingCartActionTypes = "ADD" | "UPDATE" | "REMOVE";
 
-export const ShoppingCartProvider: React.FC = ({ children }) => {
+export const ShoppingCartProvider: React.FC = function ShoppingCartProvider({
+  children,
+}) {
   const [state, dispatch] = React.useReducer(
     function shoppingCartReducer(
       state: ShoppingCartState,

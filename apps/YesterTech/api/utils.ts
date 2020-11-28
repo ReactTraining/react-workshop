@@ -10,7 +10,7 @@ export async function getRaw(path: string) {
   return await fetch(`${baseURL}${path}`);
 }
 
-export async function post<T>(path: string, data: T): Promise<T> {
+export async function post<T>(path: string, data: any): Promise<T> {
   const res = await fetch(`${baseURL}${path}`, {
     method: "POST",
     body: JSON.stringify(data),

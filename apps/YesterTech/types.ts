@@ -30,3 +30,28 @@ export type User = {
 export type UserNoId = Omit<User, "id"> & {
   id?: User["id"] | undefined | null;
 };
+
+export type CheckoutFields = {
+  billingName: string;
+  billingAddress: string;
+  shippingName: string;
+  shippingAddress: string;
+};
+
+export type CheckoutFieldsBilling = {
+  billingName: string;
+  billingAddress: string;
+  billingCity: string;
+  billingState: string;
+  billingPostal: string;
+};
+
+export type CheckoutFieldsShipping = {
+  shippingName: string;
+  shippingAddress: string;
+  shippingCity: string;
+  shippingState: string;
+  shippingPostal: string;
+};
+
+export type CheckoutFieldsFull = CheckoutFieldsBilling & CheckoutFieldsShipping
