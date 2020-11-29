@@ -9,26 +9,26 @@ One thing we want to eventually do is persist the favorites to `localStorage`. T
 
 ## Task One: Move to Context
 
-1. Open `App.js` and `FavoriteProductState.js`
-2. In `FavoriteProductState.js`, you have the workings of a Provider and a custom hook which will help your consumers. Start by creating some context (I helped you out a bit and created a type definition you can use if you want):
+1. Open `App.tsx` and `FavoriteProductState.tsx`
+2. In `FavoriteProductState.tsx`, you have the workings of a Provider and a custom hook which will help your consumers. Start by creating some context (I helped you out a bit and created a type definition you can use if you want):
 
 ```tsx
 const FavoriteProductContext = React.createContext<FavoriteProductContextValue>();
 ```
 
-Then make the `<FavoriteProductContext.Provider>` from that variable and pass down some context through it's `value` prop. Also, remember to pass the `children` into the provider.
+Then make the `<FavoriteProductProvider>` from that variable and pass down some context through it's `value` prop. Also, remember to pass the `children` into the provider.
 
-1. Create a `useFavoriteProduct` custom hook, return the context for anyone who wants to consume context by calling the `React.useContext` function with our `FavoriteProductContext` object.
+1. Create the `useFavoriteProduct` custom hook, return the context for anyone who wants to consume context by calling the `React.useContext` function with our `FavoriteProductContext` object.
 
-2. Open `App.js` and `import` the provider. Then wrap `ProductLayout` in that provider
+2. Open `App.tsx` and import the provider. Then wrap `ProductLayout` in that provider
 
 ** WARNING **
 
-You're making lots of changes, so lets test the code to see if things work. Before migrating the code from `SaveFavorite` into the provider, lets just pass down a basic message through context to see that it's all connected:
+You're making lots of changes, so lets test the code to see if things work. Before migrating the code from `SaveFavorite` into the provider, let's just pass down a basic message through context to see that it's all connected (you'll have to cast the value as `any` to bypass type checking for now):
 
-```js
+```tsx
 return (
-  <FavoriteProductContext.Provider value="Hello, does it work?">
+  <FavoriteProductContext.Provider value={"Hello, does it work?" as any}>
     {children}
   </FavoriteProductContext.Provider>
 );
