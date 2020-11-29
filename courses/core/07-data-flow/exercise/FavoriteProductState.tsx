@@ -11,3 +11,9 @@ export const FavoriteProductProvider: React.FC = ({ children }) =>
 export function useFavoriteProduct() {
   // return the return-value of useContext
 }
+
+interface FavoriteProductContextValue {
+  isFavorite(productId: number): boolean;
+  addFavorite(productId: number): void;
+  removeFavorite(productId: number): void;
+}
