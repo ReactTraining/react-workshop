@@ -6,13 +6,19 @@ function Quantity(): React.ReactElement {
   const [quantity, setQuantity] = React.useState(0);
 
   function subtract() {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
+    handleQuantityChange(quantity - 1);
   }
 
   function add() {
-    setQuantity(quantity + 1);
+    handleQuantityChange(quantity + 1);
+  }
+
+  function handleQuantityChange(val: number) {
+    if (val >= 0) {
+      setQuantity(val);
+      return true;
+    }
+    return false;
   }
 
   return (
@@ -28,8 +34,11 @@ function Quantity(): React.ReactElement {
             type="text"
             aria-label="quantity"
             value={quantity}
+            pattern="[0-9]"
             onChange={(event) => {
-              setQuantity(parseInt(event.target.value));
+              const sanitizedValue = event.target.value.replace(/[^0-9]/g, "");
+              const newVal = parseInt(sanitizedValue);
+              handleQuantityChange(isNaN(newVal) ? 0 : newVal);
             }}
           />
         </div>

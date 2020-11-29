@@ -6,6 +6,7 @@ import Heading from "YesterTech/Heading";
 import Notice from "YesterTech/Notice";
 import Centered from "YesterTech/Centered";
 import api from "YesterTech/api";
+import { UserNoPassword } from "YesterTech/types";
 
 interface LoginFormProps {
   onAuthenticated?(user: any): any;
@@ -13,13 +14,13 @@ interface LoginFormProps {
 
 function LoginForm({ onAuthenticated }: LoginFormProps): React.ReactElement {
   const usernameRef = React.useRef<HTMLInputElement | null>(null);
-  const passwordRef = React.useRef<HTMLInputElement | null>();
-  const [showPassword, setShowPassword] = React.useState(false);
+  const passwordRef = React.useRef<HTMLInputElement | null>(null);
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   // Change to reducer, then state machine
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
-  const [user, setUser] = React.useState(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<any>(null);
+  const [user, setUser] = React.useState<UserNoPassword | null>(null);
 
   React.useEffect(() => {
     let isCurrent = true;

@@ -34,4 +34,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Chance's additions
 .vscode
+scratchpad.tsx
+scratchpad.ts
+scratchpad.js
