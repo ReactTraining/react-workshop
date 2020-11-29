@@ -7,9 +7,7 @@ interface CheckoutBillingProps {
   onSubmit(...args: any): void;
 }
 
-const CheckoutBilling: React.FC<CheckoutBillingProps> = function CheckoutBilling({
-  onSubmit,
-}) {
+const CheckoutBilling: React.FC<CheckoutBillingProps> = ({ onSubmit }) => {
   const [sameAsBilling, setSameAsBilling] = React.useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {

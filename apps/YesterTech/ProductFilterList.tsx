@@ -4,7 +4,7 @@ import queryString from "query-string";
 
 import Heading from "YesterTech/Heading";
 import ProductFilterItem from "YesterTech/ProductFilterItem";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
 interface ProductFilterListProps {
   urlKey: string;
@@ -12,11 +12,11 @@ interface ProductFilterListProps {
   label: string;
 }
 
-const ProductFilterList: ReactComponentWithoutChildren<ProductFilterListProps> = function ProductFilterList({
+const ProductFilterList: ReactFCNoChildren<ProductFilterListProps> = ({
   urlKey,
   list,
   label,
-}): React.ReactElement {
+}): React.ReactElement => {
   const location = useLocation();
   const history = useHistory();
   const search = queryString.parse(location.search) || null;

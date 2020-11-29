@@ -11,11 +11,11 @@ interface PopoverProps {
   // targetRef: React.RefObject<HTMLElement | null | undefined>;
 }
 
-const Popover: React.FC<PopoverProps> = function Popover({ children }) {
-  return <div className="popover">{children}</div>;
-};
+const Popover: React.FC<PopoverProps> = ({ children }) => (
+  <div className="popover">{children}</div>
+);
 
-const Define: React.FC = function Define({ children }) {
+const Define: React.FC = ({ children }) => {
   const [open, setOpen] = React.useState(false);
 
   return (

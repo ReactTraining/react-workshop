@@ -22,9 +22,9 @@ import Account from "YesterTech/Account";
 import ProductsLayout from "YesterTech/ProductsLayout";
 import ProductSubNav from "YesterTech/ProductSubNav";
 import Checkout from "YesterTech/Checkout";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
-const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
+const PrimaryLayout: ReactFCNoChildren = () => {
   const history = useHistory();
   const dispatch = useAuthDispatch();
   const { authenticated } = useAuthState();

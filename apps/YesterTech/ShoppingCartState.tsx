@@ -5,9 +5,7 @@ import { getInt } from "YesterTech/utils";
 
 const ShoppingCartContext = React.createContext({} as ShoppingCartContextValue);
 
-export const ShoppingCartProvider: React.FC = function ShoppingCartProvider({
-  children,
-}) {
+export const ShoppingCartProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(
     function shoppingCartReducer(
       state: ShoppingCartState,

@@ -98,7 +98,7 @@ export type CheckoutFieldsShipping = {
 
 export type CheckoutFieldsFull = CheckoutFieldsBilling & CheckoutFieldsShipping;
 
-export interface ReactComponentWithoutChildren<P = {}> {
+export interface ReactFCNoChildren<P = {}> {
   (props: P, context?: any): React.ReactElement<any, any> | null;
   propTypes?: React.WeakValidationMap<P>;
   contextTypes?: React.ValidationMap<any>;

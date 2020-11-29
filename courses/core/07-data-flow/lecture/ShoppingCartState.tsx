@@ -3,17 +3,12 @@ import { CartProduct } from "YesterTech/types";
 
 const ShoppingCartContext = React.createContext({} as ShoppingCartContextValue);
 
-export const ShoppingCartProvider: React.FC = function ShoppingCartProvider({
-  children,
-}) {
+export const ShoppingCartProvider: React.FC = ({ children }) => (
   // paste `cart` state here and utility functions
-
-  return (
-    <ShoppingCartContext.Provider value={{} as any}>
-      {children}
-    </ShoppingCartContext.Provider>
-  );
-};
+  <ShoppingCartContext.Provider value={{} as any}>
+    {children}
+  </ShoppingCartContext.Provider>
+);
 
 export function useShoppingCart() {
   return React.useContext(ShoppingCartContext);

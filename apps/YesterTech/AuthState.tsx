@@ -13,9 +13,7 @@ const AuthDispatchContext = React.createContext<AuthDispatch>(
 
 export type AuthActionTypes = "LOGIN" | "LOGOUT";
 
-export const AuthStateProvider: React.FC = function AuthStateProvider({
-  children,
-}) {
+export const AuthStateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(function authReducer(
     state: AuthState,
     action: AuthActions

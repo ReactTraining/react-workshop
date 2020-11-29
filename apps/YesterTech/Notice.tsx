@@ -8,16 +8,9 @@ interface NoticeProps {
   type?: "default" | "error" | "success";
 }
 
-const Notice: React.FC<NoticeProps> = function Notice({
-  children,
-  type = "default",
-}) {
-  return (
-    <div className={classnames("notice", `notice-type-${type}`)}>
-      {children}
-    </div>
-  );
-};
+const Notice: React.FC<NoticeProps> = ({ children, type = "default" }) => (
+  <div className={classnames("notice", `notice-type-${type}`)}>{children}</div>
+);
 
 Notice.propTypes = {
   type: PropTypes.oneOf(["default", "error", "success"]),

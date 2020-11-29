@@ -1,10 +1,7 @@
 import * as React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-const StarRatings: React.FC<StarRatingsProps> = function StarRatings({
-  rating,
-  max = 5,
-}) {
+const StarRatings: React.FC<StarRatingsProps> = ({ rating, max = 5 }) => {
   let stars = [];
 
   for (let i = 0; i < max; ++i) {

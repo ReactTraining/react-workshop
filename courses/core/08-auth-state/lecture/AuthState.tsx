@@ -11,9 +11,7 @@ const AuthStateContext = React.createContext<AuthStateContextValue>({
   dispatch() {},
 });
 
-export const AuthStateProvider: React.FC = function AuthStateProvider({
-  children,
-}) {
+export const AuthStateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(function authReducer(
     state: AuthState,
     action: AuthActions

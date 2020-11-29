@@ -2,9 +2,9 @@ import * as React from "react";
 import api from "YesterTech/api";
 import usePromise from "YesterTech/usePromise";
 import ProductFilterList from "YesterTech/ProductFilterList";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
-const ProductFilters: ReactComponentWithoutChildren = function ProductFilters(): React.ReactElement | null {
+const ProductFilters: ReactFCNoChildren = (): React.ReactElement | null => {
   const [meta, loading] = usePromise(
     React.useCallback(function getMetaData() {
       return api.products.getMetaData();

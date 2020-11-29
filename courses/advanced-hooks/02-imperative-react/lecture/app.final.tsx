@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { position } from "./utils";
 import "./styles.scss";
 
-const Portal: React.FC = function Portal({ children }) {
+const Portal: React.FC = ({ children }) => {
   const portalNode = React.useRef<HTMLElement | null>(null);
   const [, forceUpdate] = React.useState<any>();
 
@@ -27,10 +27,7 @@ interface PopoverProps {
   targetRef: React.RefObject<HTMLElement | null | undefined>;
 }
 
-const Popover: React.FC<PopoverProps> = function Popover({
-  children,
-  targetRef,
-}) {
+const Popover: React.FC<PopoverProps> = ({ children, targetRef }) => {
   const popoverRef = React.useRef<HTMLElement | null>(null);
   const [styles, setStyles] = React.useState({});
 
@@ -68,7 +65,7 @@ const Popover: React.FC<PopoverProps> = function Popover({
   );
 };
 
-const Define: React.FC = function Define({ children }) {
+const Define: React.FC = ({ children }) => {
   const [open, setOpen] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 

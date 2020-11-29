@@ -15,12 +15,12 @@ import ProductsLayout from "YesterTech/ProductsLayout";
 import ProductSubNav from "YesterTech/ProductSubNav";
 import Checkout from "YesterTech/Checkout";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
 // import Account from 'YesterTech/Account'
 const Account = React.lazy(() => import("YesterTech/Account"));
 
-const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
+const PrimaryLayout: ReactFCNoChildren = () => {
   const history = useHistory();
   const { cart } = useShoppingCart();
   const dispatch = useAuthDispatch();
@@ -28,7 +28,6 @@ const PrimaryLayout: ReactComponentWithoutChildren = function PrimaryLayout() {
 
   // Logout from server, then logout front-end
   // api.auth.getAuthenticatedUser().then(user => {})
-
   return (
     <div className="primary-layout">
       <div>

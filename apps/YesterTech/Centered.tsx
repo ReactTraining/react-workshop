@@ -5,23 +5,21 @@ interface CenteredProps extends React.ComponentPropsWithoutRef<"div"> {
   as?: React.ElementType | React.ExoticComponent;
 }
 
-const Centered: React.FC<CenteredProps> = function Centered({
+const Centered: React.FC<CenteredProps> = ({
   as: Component = "div",
   size = 30,
   children,
   ...rest
-}) {
-  return (
-    <Component
-      style={{
-        margin: `0 auto`,
-        maxWidth: `${size}rem`,
-      }}
-      {...rest}
-    >
-      {children}
-    </Component>
-  );
-};
+}) => (
+  <Component
+    style={{
+      margin: `0 auto`,
+      maxWidth: `${size}rem`,
+    }}
+    {...rest}
+  >
+    {children}
+  </Component>
+);
 
 export default Centered;

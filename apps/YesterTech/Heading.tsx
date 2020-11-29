@@ -4,19 +4,17 @@ import classnames from "classnames";
 
 import "YesterTech/Heading.scss";
 
-const Heading: React.FC<HeadingProps> = function Heading({
+const Heading: React.FC<HeadingProps> = ({
   as: Component = "h1",
   size = 1,
   className,
   ...rest
-}) {
-  return (
-    <Component
-      className={classnames("heading", `size-${size}`, className)}
-      {...rest}
-    />
-  );
-};
+}) => (
+  <Component
+    className={classnames("heading", `size-${size}`, className)}
+    {...rest}
+  />
+);
 
 Heading.propTypes = {
   size: PropTypes.number,

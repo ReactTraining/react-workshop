@@ -13,9 +13,9 @@ import ShoppingCartButton from "YesterTech/ShoppingCartButton";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import ProductTile from "YesterTech/ProductTile";
 
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
-const ProductProfile: ReactComponentWithoutChildren = function ProductProfile() {
+const ProductProfile: ReactFCNoChildren = () => {
   let { productId } = useParams<{ productId: any }>();
   productId = parseInt(productId, 10);
 

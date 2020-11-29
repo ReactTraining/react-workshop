@@ -4,12 +4,9 @@ import * as storage from "YesterTech/localStorage";
 
 // Make your context here
 
-export const FavoriteProductProvider: React.FC = function FavoriteProductProvider({
-  children,
-}) {
+export const FavoriteProductProvider: React.FC = ({ children }) =>
   // Wrap children in the provider
-  return children as any;
-};
+  children as any;
 
 export function useFavoriteProduct() {
   // return the return-value of useContext

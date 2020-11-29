@@ -2,7 +2,7 @@ import * as React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { IoIosSearch } from "react-icons/io";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
 import "YesterTech/SearchBox.scss";
 
@@ -11,10 +11,10 @@ interface SearchBoxProps {
   path: string;
 }
 
-const SearchBox: ReactComponentWithoutChildren<SearchBoxProps> = function SearchBox({
+const SearchBox: ReactFCNoChildren<SearchBoxProps> = ({
   placeholder,
   path,
-}): React.ReactElement {
+}): React.ReactElement => {
   const history = useHistory();
   const search = useLocation().search;
   const [query, setQuery] = React.useState(queryString.parse(search).q || "");

@@ -5,19 +5,15 @@ import Heading from "YesterTech/Heading";
 import Avatar from "YesterTech/Avatar";
 import Centered from "YesterTech/Centered";
 import api from "YesterTech/api";
-import {
-  ReactComponentWithoutChildren,
-  UserNoPassword,
-  UserNoId,
-} from "YesterTech/types";
+import { ReactFCNoChildren, UserNoPassword, UserNoId } from "YesterTech/types";
 
 interface SignupFormProps {
   onSignup?(user: UserNoPassword): any;
 }
 
-const SignupForm: ReactComponentWithoutChildren<SignupFormProps> = function SignupForm({
+const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
   onSignup,
-}): React.ReactElement {
+}): React.ReactElement => {
   const [useGitHub, setUseGitHub] = React.useState(true);
   const [username, setUsername] = React.useState("");
   const [name, setName] = React.useState("");

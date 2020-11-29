@@ -9,6 +9,7 @@ import ProductImage from "YesterTech/ProductImage";
 import ShoppingCartButton from "YesterTech/ShoppingCartButton";
 import SaveFavorite from "YesterTech/SaveFavorite";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
+import { ReactFCNoChildren } from "YesterTech/types";
 import "YesterTech/BrowseProductItem.scss";
 
 interface BrowseProductItemProps {
@@ -23,7 +24,7 @@ interface BrowseProductItemProps {
   rating?: number;
 }
 
-const BrowseProductItem = function BrowseProductItem({
+const BrowseProductItem: ReactFCNoChildren<BrowseProductItemProps> = ({
   productId,
   name,
   price,
@@ -33,7 +34,7 @@ const BrowseProductItem = function BrowseProductItem({
   brand = "n/a",
   category = "n/a",
   rating = 0,
-}: BrowseProductItemProps) {
+}) => {
   // Cart
   const { addToCart, updateQuantity, getQuantity } = useShoppingCart();
   const quantity = getQuantity(productId);

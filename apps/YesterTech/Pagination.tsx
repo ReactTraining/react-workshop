@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import classnames from "classnames";
 import queryString from "query-string";
 
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 import "YesterTech/Pagination.scss";
 
 interface PaginationProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -15,14 +15,14 @@ interface PaginationProps extends React.ComponentPropsWithoutRef<"div"> {
   resultsPerPage?: number;
 }
 
-const Pagination: React.FC<PaginationProps> = function Pagination({
+const Pagination: React.FC<PaginationProps> = ({
   as: Component = "div",
   path,
   totalResults,
   page = 1,
   resultsPerPage = 10,
   ...rest
-}) {
+}) => {
   const query = queryString.parse(useLocation().search);
   const pages = Math.ceil(totalResults / resultsPerPage);
 
@@ -67,12 +67,12 @@ interface PaginationRangeProps {
   query?: string;
 }
 
-const PaginationRange: ReactComponentWithoutChildren<PaginationRangeProps> = function PaginationRange({
+const PaginationRange: ReactFCNoChildren<PaginationRangeProps> = ({
   resultsPerPage,
   page,
   totalResults,
   query,
-}): React.ReactElement | null {
+}): React.ReactElement | null => {
   if (!totalResults) return null;
   const first = resultsPerPage * page - resultsPerPage + 1;
   const last = resultsPerPage * page;

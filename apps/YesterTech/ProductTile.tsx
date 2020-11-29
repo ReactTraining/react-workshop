@@ -6,15 +6,15 @@ import Heading from "YesterTech/Heading";
 import ProductImage from "YesterTech/ProductImage";
 import usePromise from "YesterTech/usePromise";
 import api from "YesterTech/api";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
 interface ProductTileProps {
   productId: any;
 }
 
-const ProductTile: ReactComponentWithoutChildren<ProductTileProps> = function ProductTile({
+const ProductTile: ReactFCNoChildren<ProductTileProps> = ({
   productId,
-}): React.ReactElement | null {
+}): React.ReactElement | null => {
   const getProduct = React.useCallback(
     () => api.products.getProduct(productId),
     [productId]

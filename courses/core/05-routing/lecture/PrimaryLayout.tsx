@@ -16,22 +16,18 @@ import StarRatings from "YesterTech/StarRatings";
 import ProductFilterItem from "YesterTech/ProductFilterItem";
 import ProductSubNav from "YesterTech/ProductSubNav";
 
-const PrimaryLayout = function PrimaryLayout(): React.ReactElement {
-  return (
-    <div className="primary-layout">
-      <div>
-        <PrimaryHeader />
-        <ProductSubNav />
-        <main className="primary-content">
-          <Home />
-          {/* <ProductProfile /> */}
-          {/* <BrowseProducts /> */}
-        </main>
-        <PrimaryFooter />
-      </div>
+const PrimaryLayout = (): React.ReactElement => (
+  <div className="primary-layout">
+    <div>
+      <PrimaryHeader />
+      <ProductSubNav />
+      <main className="primary-content">
+        <Home />
+      </main>
+      <PrimaryFooter />
     </div>
-  );
-};
+  </div>
+);
 
 export default PrimaryLayout;
 

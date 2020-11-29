@@ -8,7 +8,7 @@ interface AvatarProps extends React.ComponentPropsWithoutRef<"div"> {
   size?: number;
 }
 
-const Avatar: React.FC<AvatarProps> = function Avatar({
+const Avatar: React.FC<AvatarProps> = ({
   src,
   size = 3,
   className,
@@ -16,7 +16,7 @@ const Avatar: React.FC<AvatarProps> = function Avatar({
   children,
   style,
   ...rest
-}) {
+}) => {
   const commonProps = {
     className: classnames("avatar", className),
     ...rest,

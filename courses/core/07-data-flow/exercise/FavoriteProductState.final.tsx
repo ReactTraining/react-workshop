@@ -11,9 +11,9 @@ const FavoriteProductContext = React.createContext<FavoriteProductContextValue>(
   }
 );
 
-export const FavoriteProductProvider: React.FC = function FavoriteProductProvider({
+export const FavoriteProductProvider: React.FC = ({
   children,
-}): React.ReactElement {
+}): React.ReactElement => {
   const [favorites, setFavorites] = React.useState<number[]>(() => {
     return storage.getFavorites();
   });

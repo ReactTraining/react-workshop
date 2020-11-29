@@ -6,9 +6,7 @@ interface CheckoutBillingProps {
   onSubmit(sameAsBilling: boolean, fields: Fields): void;
 }
 
-const CheckoutBilling: React.FC<CheckoutBillingProps> = function CheckoutBilling({
-  onSubmit,
-}) {
+const CheckoutBilling: React.FC<CheckoutBillingProps> = ({ onSubmit }) => {
   const [sameAsBilling, setSameAsBilling] = React.useState(false);
   const [billingName, setBillingName] = React.useState("");
   const [billingAddress, setBillingAddress] = React.useState("");

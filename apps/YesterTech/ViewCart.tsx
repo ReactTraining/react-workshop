@@ -7,9 +7,9 @@ import { MdShoppingCart } from "react-icons/md";
 import Heading from "YesterTech/Heading";
 import Quantity from "YesterTech/Quantity";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { ReactComponentWithoutChildren } from "YesterTech/types";
+import { ReactFCNoChildren } from "YesterTech/types";
 
-const ViewCart: ReactComponentWithoutChildren = function ViewCart(): React.ReactElement {
+const ViewCart: ReactFCNoChildren = (): React.ReactElement => {
   const { cart, updateQuantity, getCartTotal } = useShoppingCart();
 
   return (

@@ -2,8 +2,8 @@
  * WORK IN PROGRESS
  */
 
-import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 /**
  * 1. When does React.memo at the top level actually matter?
@@ -16,63 +16,63 @@ import * as ReactDOM from "react-dom"
  */
 
 function A() {
-  console.log('Child A Renders')
-  return <B />
+  console.log("Child A Renders");
+  return <B />;
 }
 
 function B() {
-  console.log('Child B Renders')
-  return <Counter />
+  console.log("Child B Renders");
+  return <Counter />;
 }
 
 function Counter() {
-  console.log('Counter Renders')
-  const { count, setCount } = React.useContext(Context)
+  console.log("Counter Renders");
+  const { count, setCount } = React.useContext(Context);
   return (
     <button onClick={() => setCount(count + 1)} className="button">
       {count}
     </button>
-  )
+  );
 }
 
 function C() {
-  console.log('Child C Renders')
-  return null
+  console.log("Child C Renders");
+  return null;
 }
 
 //////
 
-const Context = React.createContext()
+const Context = React.createContext();
 
 function AppStateProvider({ children }) {
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = React.useState(0);
 
-  const [_, forceUpdate] = React.useState()
+  const [, forceUpdate] = React.useState();
   React.useEffect(() => {
     setTimeout(() => {
-      console.log('force update')
-      forceUpdate(true)
-    }, 5000)
-  }, [])
+      console.log("force update");
+      forceUpdate(true);
+    }, 5000);
+  }, []);
 
-  const context = React.useMemo(() => ({ count, setCount }), [count])
+  const context = React.useMemo(() => ({ count, setCount }), [count]);
 
-  return <Context.Provider value={context} children={children} />
+  return <Context.Provider value={context} children={children} />;
 }
 
-const App = function() {
-  console.log('App Renders')
+function App() {
+  console.log("App Renders");
   return (
     <>
       <A />
       <C />
     </>
-  )
+  );
 }
 
 ReactDOM.render(
   <AppStateProvider>
     <App />
   </AppStateProvider>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);
