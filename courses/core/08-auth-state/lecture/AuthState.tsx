@@ -58,3 +58,8 @@ type AuthActions =
   | {
       type: "LOGOUT";
     };
+
+// 👀👀👀
+export function useAuthDispatch() {
+  return React.useContext(AuthStateContext).dispatch;
+}

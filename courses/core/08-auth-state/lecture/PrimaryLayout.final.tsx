@@ -26,8 +26,24 @@ const PrimaryLayout: ReactFCNoChildren = () => {
   const dispatch = useAuthDispatch();
   const { authenticated } = useAuthState();
 
-  // Logout from server, then logout front-end
   // api.auth.getAuthenticatedUser().then(user => {})
+  React.useEffect(() => {
+    let isCurrent = true;
+    // If we aren't athenticated on the client, we should check the server to be sure
+    if (!authenticated) {
+      // Get the authenticated user
+      api.auth.getAuthenticatedUser().then((user) => {
+        // If we find an authenticated user, dispatch the login action to update our frontend
+        if (user && isCurrent) {
+          dispatch({ type: "LOGIN", user });
+        }
+      });
+      return () => {
+        isCurrent = false;
+      };
+    }
+  }, [authenticated, dispatch]);
+
   return (
     <div className="primary-layout">
       <div>
@@ -45,6 +61,7 @@ const PrimaryLayout: ReactFCNoChildren = () => {
                 <SignupForm
                   onSignup={(user) => {
                     // dispatch login so the frontend is aware
+                    dispatch({ type: "LOGIN", user });
                     // then redirect:
                     history.push("/");
                   }}
@@ -54,6 +71,7 @@ const PrimaryLayout: ReactFCNoChildren = () => {
                 <LoginForm
                   onAuthenticated={(user) => {
                     // dispatch login so the frontend is aware
+                    dispatch({ type: "LOGIN", user });
                     // then redirect:
                     history.push("/");
                   }}

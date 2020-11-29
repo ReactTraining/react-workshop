@@ -11,7 +11,7 @@ import {
 import { MdShoppingCart } from "react-icons/md";
 
 import api from "YesterTech/api";
-import { useAuthState } from "./AuthState";
+import { useAuthState, useAuthDispatch } from "./AuthState.final";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import Avatar from "YesterTech/Avatar";
 import Logo from "YesterTech/Logo";
@@ -20,13 +20,14 @@ import "YesterTech/PrimaryHeader.scss";
 import "@reach/menu-button/styles.css";
 
 const PrimaryHeader: ReactFCNoChildren = () => {
-  const { authenticated, dispatch, user } = useAuthState();
+  const dispatch = useAuthDispatch();
+  const { authenticated, user } = useAuthState();
   const { getCartSize } = useShoppingCart();
   const cartSize = getCartSize();
 
   function handleLogout() {
     api.auth.logout().then(() => {
-      // Tell the app we're logged out with a `dispatch`
+      api.auth.logout().then(() => dispatch({ type: "LOGOUT" }));
     });
   }
 
