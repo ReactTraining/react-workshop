@@ -11,7 +11,7 @@ import {
 import { MdShoppingCart } from "react-icons/md";
 
 import api from "YesterTech/api";
-import { useAuthState, useAuthDispatch } from "./AuthState.final";
+import { useAuthState, useAuthDispatch } from "YesterTech/AuthState";
 import { useShoppingCart } from "YesterTech/ShoppingCartState";
 import Avatar from "YesterTech/Avatar";
 import Logo from "YesterTech/Logo";

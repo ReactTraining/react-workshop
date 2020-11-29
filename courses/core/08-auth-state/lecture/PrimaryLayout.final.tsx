@@ -2,7 +2,7 @@ import * as React from "react";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 
 import api from "YesterTech/api";
-import PrimaryHeader from "./PrimaryHeader";
+import PrimaryHeader from "YesterTech/PrimaryHeader";
 import PrimaryFooter from "YesterTech/PrimaryFooter";
 import { useAuthDispatch, useAuthState } from "YesterTech/AuthState";
 import "YesterTech/PrimaryLayout.scss";
