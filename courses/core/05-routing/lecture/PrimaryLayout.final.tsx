@@ -18,7 +18,14 @@ const PrimaryLayout = (): React.ReactElement => {
         <PrimaryHeader />
         <ProductSubNav />
         <main className="primary-content">
-          <Home />
+          <Switch>
+            <Route path="/products">
+              <ProductsLayout />
+            </Route>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+          </Switch>
         </main>
         <PrimaryFooter />
       </div>
@@ -35,12 +42,12 @@ function PrimaryHeader(): React.ReactElement {
         <Logo />
       </div>
       <nav className="horizontal-spacing-large align-right">
-        <a href="/" className="primary-nav-item">
+        <Link to="/" className="primary-nav-item">
           Home
-        </a>
-        <a href="/products" className="primary-nav-item">
+        </Link>
+        <Link to="/products" className="primary-nav-item">
           Products
-        </a>
+        </Link>
       </nav>
     </header>
   );
@@ -67,6 +74,20 @@ function PrimaryFooter(): React.ReactElement {
 
 function ProductsLayout(): React.ReactElement {
   return (
+    <Switch>
+      <Route path="/products" exact>
+        <AllProducts />
+      </Route>
+      <Route path="/products/:productId">
+        <ProductProfile />
+      </Route>
+      <Redirect to="/products" />
+    </Switch>
+  );
+}
+
+function AllProducts(): React.ReactElement {
+  return (
     <div className="products-layout">
       <aside className="spacing">
         <section className="spacing-small">
@@ -85,24 +106,31 @@ function ProductsLayout(): React.ReactElement {
 }
 
 function ProductProfile(): React.ReactElement {
+  let { productId } = useParams<{ productId: any }>();
+  productId = parseInt(productId, 10);
+
+  const getProduct = React.useCallback(
+    () => api.products.getProduct(productId),
+    [productId]
+  );
+  const [product] = usePromise(getProduct);
+
+  if (!product) return <div>Loading...</div>;
+
   return (
     <div className="spacing">
       <Columns gutters>
         <Column>
-          <ProductImage
-            src="/images/products/mario-kart.jpg"
-            alt="Mario Kart"
-            size={15}
-          />
+          <ProductImage src={product.imagePath} alt={product.name} size={15} />
         </Column>
         <Column flex className="spacing">
-          <Heading>Mario Kart</Heading>
-          <StarRatings rating={4.5} />
+          <Heading>{product.name}</Heading>
+          <StarRatings rating={product.rating} />
           <hr />
           <div className="text-small">
-            <div>Brand: Nintendo</div>
-            <div>Category: Games</div>
-            <div>Condition: Good</div>
+            <div>Brand: {product.brand}</div>
+            <div>Category: {product.category}</div>
+            <div>Condition: {product.condition}</div>
           </div>
         </Column>
       </Columns>
@@ -115,13 +143,13 @@ function BrowseProducts(): React.ReactElement {
     <div className="spacing">
       <ul>
         <li>
-          <a href="/products/1">Nintendo NES</a>
+          <Link to="/products/1">Nintendo NES</Link>
         </li>
         <li>
-          <a href="/products/2">Donkey Kong Country</a>
+          <Link to="/products/2">Donkey Kong Country</Link>
         </li>
         <li>
-          <a href="/products/3">Mario Kart</a>
+          <Link to="/products/3">Mario Kart</Link>
         </li>
       </ul>
     </div>
