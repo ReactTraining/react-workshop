@@ -19,7 +19,12 @@ function Quantity(): React.ReactElement {
     <div className="quantity-picker">
       <div>
         <div>
-          <button onClick={subtract} type="button" className="icon-button">
+          <button
+            onClick={subtract}
+            type="button"
+            className="icon-button"
+            aria-label="Remove an item"
+          >
             <FaMinusCircle />
           </button>
         </div>
@@ -37,7 +42,12 @@ function Quantity(): React.ReactElement {
           />
         </div>
         <div>
-          <button onClick={add} type="button" className="icon-button">
+          <button
+            onClick={add}
+            type="button"
+            className="icon-button"
+            aria-label="Add an item"
+          >
             <FaPlusCircle />
           </button>
         </div>

@@ -9,7 +9,11 @@ function Quantity() {
     <div className="quantity-picker">
       <div>
         <div>
-          <button type="button" className="icon-button">
+          <button
+            type="button"
+            className="icon-button"
+            aria-label="Remove an item"
+          >
             <FaMinusCircle />
           </button>
         </div>
@@ -17,7 +21,11 @@ function Quantity() {
           <input type="text" aria-label="quantity" defaultValue={quantity} />
         </div>
         <div>
-          <button type="button" className="icon-button">
+          <button
+            type="button"
+            className="icon-button"
+            aria-label="Add an item"
+          >
             <FaPlusCircle />
           </button>
         </div>

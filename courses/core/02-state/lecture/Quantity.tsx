@@ -10,13 +10,21 @@ export default function Quantity() {
     <div className="quantity-picker">
       <div>
         <div>
-          <button type="button" className="icon-button">
+          <button
+            type="button"
+            className="icon-button"
+            aria-label="Remove an item"
+          >
             <FaMinusCircle />
           </button>
         </div>
         <div className="input-container">{quantity}</div>
         <div>
-          <button type="button" className="icon-button">
+          <button
+            type="button"
+            className="icon-button"
+            aria-label="Add an item"
+          >
             <FaPlusCircle />
           </button>
         </div>

@@ -41,6 +41,7 @@ function Quantity() {
             type="button"
             className="icon-button"
             data-testid="subtract-button"
+            aria-label="Remove an item"
           >
             <FaMinusCircle />
           </button>
@@ -64,6 +65,7 @@ function Quantity() {
             type="button"
             className="icon-button"
             data-testid="add-button"
+            aria-label="Add an item"
           >
             <FaPlusCircle />
           </button>
