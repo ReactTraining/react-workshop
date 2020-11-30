@@ -54,7 +54,6 @@ function PrimaryLayout() {
                   onAuthenticated={user => {
                     // dispatch login so the frontend is aware
                     // then redirect:
-                    dispatch({ type: 'LOGIN', user })
                     history.push('/')
                   }}
                 />
