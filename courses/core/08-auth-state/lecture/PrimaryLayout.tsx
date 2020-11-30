@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import api from "YesterTech/api";
 import PrimaryHeader from "YesterTech/PrimaryHeader";
 import PrimaryFooter from "YesterTech/PrimaryFooter";
-import { useAuthDispatch, useAuthState } from "YesterTech/AuthState";
+import { useAuthState } from "./AuthState";
 import "YesterTech/PrimaryLayout.scss";
 
 // Route Targets
@@ -23,8 +23,7 @@ const Account = React.lazy(() => import("YesterTech/Account"));
 const PrimaryLayout: ReactFCNoChildren = () => {
   const history = useHistory();
   const { cart } = useShoppingCart();
-  const dispatch = useAuthDispatch();
-  const { authenticated } = useAuthState();
+  const { authenticated, dispatch } = useAuthState();
 
   // Logout from server, then logout front-end
   // api.auth.getAuthenticatedUser().then(user => {})

@@ -16,7 +16,7 @@ One thing we want to eventually do is persist the favorites to `localStorage`. T
 const FavoriteProductContext = React.createContext<FavoriteProductContextValue>();
 ```
 
-Then make the `<FavoriteProductProvider>` from that variable and pass down some context through it's `value` prop. Also, remember to pass the `children` into the provider.
+Then make the `<FavoriteProductContext.Provider>` from that variable and pass down some context through it's `value` prop. Also, remember to pass the `children` into the provider.
 
 1. Create the `useFavoriteProduct` custom hook, return the context for anyone who wants to consume context by calling the `React.useContext` function with our `FavoriteProductContext` object.
 
@@ -24,7 +24,7 @@ Then make the `<FavoriteProductProvider>` from that variable and pass down some 
 
 ** WARNING **
 
-You're making lots of changes, so lets test the code to see if things work. Before migrating the code from `SaveFavorite` into the provider, let's just pass down a basic message through context to see that it's all connected (you'll have to cast the value as `any` to bypass type checking for now):
+You're making lots of changes, so lets test the code to see if things work. Before migrating the code from `SaveFavorite` into the provider, let's just pass down a basic message through context to see that it's all connected (you'll have to cast the value as `any` to bypass type checking, but we're just making sure the data flow works as expected):
 
 ```tsx
 return (
