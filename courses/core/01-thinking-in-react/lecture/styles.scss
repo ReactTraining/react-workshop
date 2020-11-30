@@ -1,4 +1,4 @@
-@import 'YesterTech/styles/center-lesson';
+@import "YesterTech/styles/center-lesson";
 
 html {
   // Just so everything is a little bigger
@@ -23,4 +23,8 @@ html {
   position: relative;
   top: 1px;
   right: 1px;
+}
+
+.red {
+  color: crimson;
 }
