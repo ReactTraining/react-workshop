@@ -1,10 +1,8 @@
-import React, { Suspense, useEffect } from 'react'
+import React from 'react'
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom'
 
-import api from 'YesterTech/api'
 import PrimaryHeader from './PrimaryHeader'
 import PrimaryFooter from 'YesterTech/PrimaryFooter'
-import { useAuthState } from 'YesterTech/AuthState'
 import 'YesterTech/PrimaryLayout.scss'
 
 // Route Targets
@@ -15,17 +13,15 @@ import ProductsLayout from 'YesterTech/ProductsLayout'
 import ProductSubNav from 'YesterTech/ProductSubNav'
 import Checkout from 'YesterTech/Checkout'
 import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import Account from 'YesterTech/Account'
 
-// import Account from 'YesterTech/Account'
-const Account = React.lazy(() => import('YesterTech/Account'))
+// import api from 'YesterTech/api'
+// import { useAuthState } from 'YesterTech/AuthState'
 
 function PrimaryLayout() {
   const history = useHistory()
   const { cart } = useShoppingCart()
-  const { authenticated, dispatch } = useAuthState()
-
-  // Logout from server, then logout front-end
-  // api.auth.getAuthenticatedUser().then(user => {})
+  // const { authenticated, dispatch } = useAuthState()
 
   return (
     <div className="primary-layout">
@@ -35,41 +31,43 @@ function PrimaryLayout() {
           <ProductSubNav />
         </Route>
         <main className="primary-content">
-          <Suspense fallback={<div />}>
-            <Switch>
-              <Route path="/" exact>
-                <Home />
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/signup" exact>
+              <SignupForm
+                onSignup={user => {
+                  // dispatch login so the frontend is aware
+                  // then redirect:
+                  history.push('/')
+                }}
+              />
+            </Route>
+            <Route path="/login" exact>
+              <LoginForm
+                onAuthenticated={user => {
+                  // dispatch login so the frontend is aware
+                  // then redirect:
+                  history.push('/')
+                }}
+              />
+            </Route>
+            <Route path="/products">
+              <ProductsLayout />
+            </Route>
+            {cart.length > 0 && (
+              <Route path="/checkout">
+                <Checkout />
               </Route>
-              <Route path="/signup" exact>
-                <SignupForm
-                  onSignup={user => {
-                    // dispatch login so the frontend is aware
-                    // then redirect:
-                    history.push('/')
-                  }}
-                />
+            )}
+            {authenticated && (
+              <Route path="/account">
+                <Account />
               </Route>
-              <Route path="/login" exact>
-                <LoginForm
-                  onAuthenticated={user => {
-                    // dispatch login so the frontend is aware
-                    // then redirect:
-                    history.push('/')
-                  }}
-                />
-              </Route>
-              <Route path="/products">
-                <ProductsLayout />
-              </Route>
-              {cart.length > 0 && (
-                <Route path="/checkout">
-                  <Checkout />
-                </Route>
-              )}
-              {authenticated && <Route path="/account" render={() => <Account />} />}
-              <Redirect to="/" />
-            </Switch>
-          </Suspense>
+            )}
+            <Redirect to="/" />
+          </Switch>
         </main>
         <PrimaryFooter />
       </div>

@@ -13,20 +13,20 @@ export function AuthStateProvider({ children }) {
       case 'LOGIN':
         return { ...state, authenticated: true, user: action.user }
       case 'LOGOUT':
-        return { ...initialState }
+        return initialState
       default:
         return state
     }
   }, initialState)
+
+  // api.auth.getAuthenticatedUser().then(user => {})
 
   const value = {
     ...state,
     dispatch
   }
 
-  return (
-    <AuthStateContext.Provider value={value} children={children} />
-  )
+  return <AuthStateContext.Provider value={value} children={children} />
 }
 
 export function useAuthState() {
