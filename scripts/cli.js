@@ -1,52 +1,28 @@
 const path = require('path')
 const fs = require('fs')
 const readlineSync = require('readline-sync')
-const concurrently = require('concurrently')
 
 /**
  * Docs are at /docs/cli.md
  */
 
-// Where does each curriculum get it's app files from
+// Where does each curriculum get its app files from
 const appPaths = {
   'advanced-composition': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   'advanced-hooks': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
   core: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  electives: path.resolve(__dirname, '..', 'apps', 'YesterTech')
+  electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
 }
 
-module.exports = function() {
+module.exports = function () {
   console.clear()
 
   // Are we trying to choose an app or a lesson to load
   const { appPath, alias } = process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
 
-  /**
-   * Does the app use a json-server database
-   */
-  const dbPath = path.resolve(appPath, 'database', 'db.json')
-
-  // This allows the database to run in the background
-  if (fs.existsSync(dbPath)) {
-    concurrently([
-      {
-        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
-        name: 'json-server database'
-      }
-    ]).catch(err => {
-      console.error("JSON-SERVER was not able to start, or it's process was manually killed.\n\n")
-      console.error(err)
-      process.exit(1)
-    })
-  } else {
-    console.error(`db.json is missing at path ${dbPath}`)
-    console.error('Try running `npm run create-db`')
-    process.exit(1)
-  }
-
   return {
-    appEntry: path.resolve(appPath, 'entry.js'),
-    alias: alias || {}
+    appPath,
+    alias: alias || {},
   }
 }
 
@@ -84,7 +60,7 @@ function selectLesson() {
 
     // Read course options and make list
     const coursesPath = path.resolve(__dirname, '..', 'courses')
-    const courseOptions = fs.readdirSync(coursesPath).filter(item => {
+    const courseOptions = fs.readdirSync(coursesPath).filter((item) => {
       return fs.lstatSync(path.resolve(coursesPath, item)).isDirectory()
     })
 
@@ -130,7 +106,7 @@ function selectLesson() {
 
     // Read lesson options and make a list
     const lessonsPath = path.resolve(__dirname, '..', `courses/${selectedCourse}`)
-    const lessonOptions = fs.readdirSync(lessonsPath).filter(item => {
+    const lessonOptions = fs.readdirSync(lessonsPath).filter((item) => {
       return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
     })
     if (lessonOptions.length === 0) {
@@ -140,7 +116,7 @@ function selectLesson() {
 
     // Lesson arg would always be the last arg
     const selectedLessonArg = process.argv[process.argv.length - 1]
-    const selectByOptionWord = lessonOptions.find(lesson => {
+    const selectByOptionWord = lessonOptions.find((lesson) => {
       const regex = new RegExp(selectedLessonArg, 'i')
       return regex.test(lesson)
     })
@@ -159,7 +135,7 @@ function selectLesson() {
       console.log(`\nWhich Lesson of ${selectedCourse}?`)
       const modifiedLessonOptions = lessonOptions.concat([
         'FULL APP',
-        '👈 BACK TO COURSE SELECTION'
+        '👈 BACK TO COURSE SELECTION',
       ])
       const choice = readlineSync.keyInSelect(modifiedLessonOptions)
       if (choice === -1) {
@@ -204,7 +180,7 @@ function selectLesson() {
   }
 
   const alias = {}
-  fs.readdirSync(lessonPath).forEach(file => {
+  fs.readdirSync(lessonPath).forEach((file) => {
     const name = path.basename(file, '.js')
     alias[`YesterTech/${name}`] = path.join(lessonPath, file)
   })
@@ -218,7 +194,7 @@ function selectLesson() {
 
 function getAppPath() {
   const appsPath = path.resolve(__dirname, '..', `apps`)
-  const appOptions = fs.readdirSync(appsPath).filter(item => {
+  const appOptions = fs.readdirSync(appsPath).filter((item) => {
     return fs.lstatSync(path.resolve(appsPath, item)).isDirectory()
   })
 
