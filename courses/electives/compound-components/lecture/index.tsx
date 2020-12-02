@@ -5,7 +5,10 @@ import SignupForm from "YesterTech/SignupForm";
 import "YesterTech/styles/global-styles.scss";
 import "./styles.scss";
 
-export function Tabs({ data, ...props }) {
+export function Tabs({
+  data,
+  ...props
+}: React.ComponentProps<"button"> & DataTabsProps) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   return (
@@ -51,3 +54,26 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+interface TabsContextValue {
+  selectedIndex: number;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface TabContextValue {
+  index: number;
+}
+
+interface PanelContextValue {
+  index: number;
+}
+
+interface TabsProps extends React.ComponentProps<"div"> {}
+interface TabListProps extends React.ComponentProps<"div"> {}
+interface TabProps extends React.ComponentProps<"button"> {
+  disabled?: boolean;
+}
+interface TabPanelsProps extends React.ComponentProps<"div"> {}
+interface DataTabsProps {
+  data: { label: string; content: React.ReactNode }[];
+}
