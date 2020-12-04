@@ -90,7 +90,8 @@
     ],
     "plugins": [
       "@babel/plugin-transform-runtime",
-      "@babel/plugin-proposal-optional-chaining"
+      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-proposal-class-properties"
     ]
   },
   "prettier": {
@@ -119,7 +120,8 @@
       "no-unused-vars": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
-      "react/react-in-jsx-scope": "off"
+      "react/react-in-jsx-scope": "off",
+      "react/display-name": "off"
     },
     "ignorePatterns": [
       "/node_modules/**",

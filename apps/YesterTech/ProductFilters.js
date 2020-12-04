@@ -5,7 +5,7 @@ import usePromise from 'YesterTech/usePromise'
 import ProductFilterList from 'YesterTech/ProductFilterList'
 
 function ProductFilters() {
-  const getMetaData = useCallback(api.products.getMetaData, [])
+  const getMetaData = useCallback(() => api.products.getMetaData(), [])
   const [meta, loading] = usePromise(getMetaData)
   if (loading) return null
 
