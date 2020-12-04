@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node scripts/start.js",
+    "app": "npm start app",
     "build": "webpack --mode production --config config/webpack.config.production.js",
     "test": "NODE_PATH=./apps jest",
     "kill-db-port": "node scripts/kill-db-port 3333",
