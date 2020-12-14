@@ -18,10 +18,11 @@
     "baseUrl": "./",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "noEmit": true,
+    // "noEmit": true,
     "resolveJsonModule": true,
     "paths": {
-      "YesterTech/*": ["apps/YesterTech/*"]
+      "YesterTech/*": ["apps/YesterTech/*"],
+      "TaskMaker/*": ["apps/TaskMaker/*"]
     }
   }
 }

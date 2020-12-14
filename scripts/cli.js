@@ -3,15 +3,20 @@ const fs = require('fs')
 const readlineSync = require('readline-sync')
 
 /**
- * Docs are at /docs/cli.md
+ * CLI Docs are at /docs/cli.md
  */
 
-// Where does each curriculum get its app files from
-const appPaths = {
-  'advanced-composition': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  'advanced-hooks': path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  core: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
-  electives: path.resolve(__dirname, '..', 'apps', 'YesterTech'),
+// Which App does each curriculum get its files from:
+const courseAppNames = {
+  'advanced-composition': 'YesterTech',
+  'advanced-hooks': 'YesterTech',
+  'core-2020': 'YesterTech',
+  'core-2021': 'TaskMaker',
+  electives: 'YesterTech',
+}
+
+function getCourseAppPath(name) {
+  return path.resolve(__dirname, '..', 'apps', courseAppNames[name])
 }
 
 module.exports = function () {
@@ -141,7 +146,7 @@ function selectLesson() {
       if (choice === -1) {
         process.exit(0)
       } else if (modifiedLessonOptions[choice] === 'FULL APP') {
-        return { appPath: appPaths[selectedCourse] }
+        return { appPath: getCourseAppPath(selectedCourse) }
       } else if (modifiedLessonOptions[choice] === '👈 BACK TO COURSE SELECTION') {
         preferences.course = null
         selectedCourse = null
@@ -180,12 +185,13 @@ function selectLesson() {
   }
 
   const alias = {}
+  const aliasBasePath = `${courseAppNames[selectedCourse]}`
   fs.readdirSync(lessonPath).forEach((file) => {
     const name = path.basename(file, '.js')
-    alias[`YesterTech/${name}`] = path.join(lessonPath, file)
+    alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
   })
 
-  return { appPath: appPaths[selectedCourse], alias }
+  return { appPath: getCourseAppPath(selectedCourse), alias }
 }
 
 /****************************************
