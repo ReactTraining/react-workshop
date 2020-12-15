@@ -15,8 +15,8 @@ const courseAppNames = {
   electives: 'YesterTech',
 }
 
-function getCourseAppPath(name) {
-  return path.resolve(__dirname, '..', 'apps', courseAppNames[name])
+function getCourseAppPath(courseName) {
+  return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
 }
 
 module.exports = function () {
