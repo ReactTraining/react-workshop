@@ -18,7 +18,7 @@ compile()
 async function compile() {
   const allFiles = await globAsync('./+(apps|courses)/**/*')
   const tsFiles: string[] = []
-  const outDir = path.join(cwd, 'compiled')
+  const outDir = cwd // path.join(cwd, 'compiled')
 
   // Compile TypeScript files and copy everything else into a `compiled` directory
   for (let file of allFiles) {
@@ -29,7 +29,7 @@ async function compile() {
     ) {
       tsFiles.push(file)
     } else {
-      await fs.copy(file, path.join(outDir, path.relative(cwd, file)))
+      // await fs.copy(file, path.join(outDir, path.relative(cwd, file)))
     }
   }
 
@@ -52,7 +52,9 @@ async function compile() {
   // TS names uses .jsx for those files, and we want to rename them to .js
   await renameJsxFileExtensions(outDir)
 
-  await execAsync(`prettier --write ${path.relative(cwd, outDir)}`)
+  // await execAsync(`prettier --write ${path.relative(cwd, 'apps')}`)
+  // await execAsync(`prettier --write ${path.relative(cwd, 'courses')}`)
+  console.log('end')
 }
 
 async function compileTypeScript(fileNames: string[], options: ts.CompilerOptions) {
@@ -70,10 +72,10 @@ async function compileTypeScript(fileNames: string[], options: ts.CompilerOption
     }
   }
 
-  let outDir = program.getCompilerOptions().outDir!
-  for (let inputFile of fileNames) {
-    await removeDuplicateSourceFile(outDir, path.relative(cwd, inputFile))
-  }
+  // let outDir = program.getCompilerOptions().outDir!
+  // for (let inputFile of fileNames) {
+  //   await removeDuplicateSourceFile(outDir, path.relative(cwd, inputFile))
+  // }
 
   let exitCode = emitResult.emitSkipped ? 1 : 0
   return exitCode
