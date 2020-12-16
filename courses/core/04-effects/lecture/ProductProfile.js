@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 
-import api from 'YesterTech/api'
 import Heading from 'YesterTech/Heading'
 import Quantity from 'YesterTech/Quantity'
 import Tiles from 'YesterTech/Tiles'
@@ -11,6 +10,9 @@ import ProductImage from 'YesterTech/ProductImage'
 import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
 import { useShoppingCart } from 'YesterTech/ShoppingCartState'
 import ProductTile from 'YesterTech/ProductTile'
+import api from 'YesterTech/api'
+
+// https://twitter.com/dan_abramov/status/1313891773224189953
 
 function ProductProfile() {
   let { productId } = useParams()
@@ -49,10 +51,7 @@ function ProductProfile() {
 
               {quantity > 0 && (
                 <div className="align-right">
-                  <Quantity
-                    onChange={q => updateQuantity(productId, q)}
-                    quantity={quantity}
-                  />
+                  <Quantity onChange={(q) => updateQuantity(productId, q)} quantity={quantity} />
                 </div>
               )}
             </Column>
@@ -68,7 +67,7 @@ function ProductProfile() {
               Related Products
             </Heading>
             <Tiles>
-              {product.relatedProducts.map(productId => (
+              {product.relatedProducts.map((productId) => (
                 <ProductTile key={productId} productId={productId} />
               ))}
             </Tiles>
