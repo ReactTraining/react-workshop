@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+  color: $textColor;
+  font-family: $fontFamily, Arial;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+hr {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid $lineColor;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

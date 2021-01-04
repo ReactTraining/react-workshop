@@ -1,0 +1,8 @@
+@import 'TaskMaker/styles/_theme.scss';
+
+.card {
+  background-color: #fff;
+  padding: $gutterSmall;
+  border-radius: 0.4rem;
+  min-height: 5rem;
+}

@@ -1,0 +1,9 @@
+@import 'TaskMaker/styles/_theme.scss';
+
+.board-scroll-area {
+  background-color: #eee;
+  // display: flex;
+  // gap: 1rem;
+  overflow: scroll;
+  padding-bottom: 5rem;
+}

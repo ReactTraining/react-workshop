@@ -1,0 +1,26 @@
+.text-warn {
+  color: $warn !important;
+}
+.text-success {
+  color: $success !important;
+}
+
+.text-small {
+  font-size: 0.8rem;
+}
+
+.text-large {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.text-xlarge {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

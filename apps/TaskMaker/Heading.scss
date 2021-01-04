@@ -1,0 +1,29 @@
+@import 'TaskMaker/styles/_theme.scss';
+
+.heading {
+  // Reset all headings
+  font-size: 1rem;
+  font-family: $headingFontFamily;
+  font-weight: $headingFontWeight;
+
+  &.size-1 {
+    font-size: 1.5em;
+  }
+  &.size-2 {
+    font-size: 1.3em;
+  }
+  &.size-3 {
+    font-size: 1em;
+  }
+  &.size-4 {
+    font-size: 0.7em;
+  }
+
+  > * {
+    vertical-align: middle;
+  }
+
+  > svg {
+    fill: $brightBlue;
+  }
+}

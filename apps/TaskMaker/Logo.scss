@@ -1,0 +1,10 @@
+@import 'TaskMaker/styles/_theme.scss';
+
+.logo {
+  color: #fff;
+  svg {
+    stroke: $green;
+    width: 1.5em;
+    height: 1.5em;
+  }
+}

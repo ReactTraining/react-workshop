@@ -1,12 +1,12 @@
 {
-  "include": ["apps", "courses"],
+  "include": ["apps", "courses", "__mocks__/@types"],
   "exclude": ["node_modules", "scripts", "config"],
   "compilerOptions": {
     "rootDir": ".",
     "jsx": "react",
     "importHelpers": true,
     "target": "ESNext",
-    "module": "CommonJS",
+    // "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
@@ -18,7 +18,7 @@
     "baseUrl": "./",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "noEmit": true,
+    // "noEmit": true,
     "resolveJsonModule": true,
     "paths": {
       "YesterTech/*": ["apps/YesterTech/*"],

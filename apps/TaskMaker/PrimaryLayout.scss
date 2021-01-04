@@ -1,0 +1,16 @@
+@import 'TaskMaker/styles/_theme.scss';
+
+.primary-layout {
+  > div {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: linear-gradient(#eee, #000);
+  }
+
+  .primary-content {
+    // Take up the rest of the vertical space that adjacent siblings (header and footer) don't take up
+    flex: 1;
+    margin: $gutter;
+  }
+}

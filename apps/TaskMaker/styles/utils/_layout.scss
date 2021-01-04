@@ -1,0 +1,64 @@
+/**
+ * Spacing (Lobotomized Owl)
+ * https://css-tricks.com/lobotomized-owls/
+ */
+
+.spacing-small {
+  @include spacing($gutterSmall);
+}
+.spacing {
+  @include spacing($gutter);
+}
+.spacing-large {
+  @include spacing($gutter * 2);
+}
+
+.horizontal-spacing-small {
+  @include spacing($gutterSmall, true);
+}
+.horizontal-spacing {
+  @include spacing($gutter, true);
+}
+.horizontal-spacing-large {
+  @include spacing($gutter * 2, true);
+}
+
+/**
+ * Alignment
+ */
+
+.vertical-middle > * {
+  vertical-align: middle;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+/**
+ * Flexbox
+ */
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
