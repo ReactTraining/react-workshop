@@ -1,6 +1,12 @@
 import React from 'react'
-import { Board } from './Board'
+import { Heading } from './Heading'
 
-export default function Home() {
-  return <Board boardId={1} />
+type Props = {}
+
+export const Home: React.FC<Props> = () => {
+  return (
+    <div>
+      <Heading>Home Page</Heading>
+    </div>
+  )
 }

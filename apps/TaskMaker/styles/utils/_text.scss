@@ -1,12 +1,17 @@
 .text-warn {
   color: $warn !important;
 }
+
 .text-success {
   color: $success !important;
 }
 
+.text-light {
+  color: $textColorLight;
+}
+
 .text-small {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .text-large {
@@ -17,6 +22,18 @@
 .text-xlarge {
   font-size: 2em;
   font-weight: 300;
+}
+
+.text-icon {
+  > * {
+    vertical-align: middle;
+  }
+  > span + svg {
+    margin-left: 0.3em;
+  }
+  > svg + span {
+    margin-left: 0.5em;
+  }
 }
 
 .no-wrap {

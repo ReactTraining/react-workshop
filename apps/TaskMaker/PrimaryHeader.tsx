@@ -11,7 +11,7 @@ export const PrimaryHeader: React.FC = () => {
 
   return (
     <header className="primary-header spacing">
-      <div className="flex items-center justify-between">
+      <div className="flex-split">
         <div>
           <Logo />
         </div>
@@ -20,7 +20,7 @@ export const PrimaryHeader: React.FC = () => {
             <NavLink to="/" exact className="primary-nav-item">
               Dashboard
             </NavLink>
-            <NavLink to="/products" className="primary-nav-item">
+            <NavLink to="/boards" className="primary-nav-item">
               Boards
             </NavLink>
             <Menu>

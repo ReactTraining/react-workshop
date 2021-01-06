@@ -1,15 +1,27 @@
 @import 'TaskMaker/styles/_theme.scss';
 
 .card-list {
-  flex: none;
-  width: 15em;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(white, 0.5);
   padding: 0.8rem;
   border-radius: 0.6rem;
+
+  .dropzone {
+    min-height: 100px;
+  }
 }
 
-.card-list-scroll-area {
-  // temp to test scrolling
-  max-height: 13rem;
-  overflow: scroll;
+// Vertical spacing
+[data-rbd-placeholder-context-id],
+[data-rbd-draggable-id] {
+  margin-bottom: $gutter;
 }
+
+// .card-list-scroll-area {
+//   // temp to test scrolling
+//   max-height: 13rem;
+//   overflow: scroll;
+// }
+
+// .card {
+//   margin-bottom: $gutter;
+// }

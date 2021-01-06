@@ -1,98 +1,114 @@
 import React, { useState } from 'react'
 import { CardList } from './CardList'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-
+import { Heading } from './Heading'
 import './Board.scss'
 
-export const Board: React.FC<Props> = ({ boardId }) => {
-  // const lists = [
-  //   { cardListId: 1, name: 'One' },
-  //   { cardListId: 2, name: 'Two' },
-  //   { cardListId: 3, name: 'Three' },
-  //   { cardListId: 4, name: 'Four' },
-  //   { cardListId: 5, name: 'Five' },
-  //   { cardListId: 6, name: 'Six' },
-  // ]
-
-  const [items, setItems] = useState(['1', '2', '3'])
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  )
-
-  function handleDragEnd(event: any) {
-    const { active, over } = event
-
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id)
-        const newIndex = items.indexOf(over.id)
-
-        return arrayMove(items, oldIndex, newIndex)
-      })
-    }
-  }
-
-  return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <div className="board">
-        <div className="board-scroll-area">
-          {/* {lists.map((list: CardList) => {
-            return <CardList key={list.cardListId} cardListId={list.cardListId} name={list.name} />
-          })} */}
-
-          <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            {items.map((id) => (
-              <Item key={id} id={id}>
-                Item: {id}
-              </Item>
-            ))}
-          </SortableContext>
-        </div>
-      </div>
-    </DndContext>
-  )
-}
-
-type Props = {
-  boardId: number
-}
+import { DragDropContext } from 'react-beautiful-dnd'
 
 type CardList = {
   cardListId: number
   name: string
+  itemIds: number[]
 }
 
-const Item: React.FC<{ id: string }> = ({ children, id }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id })
+type BoardData = {
+  cardListId: number
+  name: string
+  itemIds: number[]
+}
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+const data = [
+  { cardListId: 1, name: 'One', itemIds: [1, 5] },
+  { cardListId: 2, name: 'Two', itemIds: [9, 10] },
+  { cardListId: 3, name: 'Three', itemIds: [] },
+  { cardListId: 4, name: 'Four', itemIds: [] },
+  { cardListId: 5, name: 'Five', itemIds: [] },
+  { cardListId: 6, name: 'Six', itemIds: [] },
+  { cardListId: 7, name: 'Seven', itemIds: [] },
+]
+
+// https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
+
+export const Board: React.FC = () => {
+  const [boardData, setBoardData] = useState<BoardData[]>(data)
+  const [dragging, setDragging] = useState(false)
+
+  function onDragEnd(result: any) {
+    if (!result.destination) return
+    const toIndex: number = result.destination.index
+    const fromIndex: number = result.source.index
+    const fromListId = parseInt(result.source.droppableId)
+    const toListId = parseInt(result.destination.droppableId)
+    setDragging(false)
+    setBoardData(shuffleArray(boardData, fromListId, fromIndex, toListId, toIndex))
   }
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {children}
-    </div>
+    <DragDropContext onDragEnd={onDragEnd} onDragStart={() => setDragging(true)}>
+      <div className="board spacing" data-board-dragging={dragging ? '' : undefined}>
+        <Heading>Board Name</Heading>
+
+        <div className="board-scroll-area">
+          {boardData.map((boardList) => {
+            return (
+              <div className="card-list-wrap" key={boardList.cardListId}>
+                <CardList
+                  cardListId={boardList.cardListId}
+                  name={boardList.name}
+                  itemIds={boardList.itemIds}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </DragDropContext>
   )
+}
+
+/**
+ * Utils
+ */
+
+function shuffleArray(
+  data: BoardData[],
+  fromListId: number,
+  fromIndex: number,
+  toListId: number,
+  toIndex: number
+) {
+  return data.map((boardList) => {
+    const isTo = boardList.cardListId === toListId
+    const isFrom = boardList.cardListId === fromListId
+    const itemIds = [...boardList.itemIds]
+
+    // Moving to and from same array
+    if (isTo && isFrom) {
+      itemIds.splice(toIndex, 0, itemIds.splice(fromIndex, 1)[0])
+      return { ...boardList, itemIds }
+
+      // Move to different array
+    } else {
+      if (isTo) {
+        const fromItemId = data.find((l) => l.cardListId === fromListId)?.itemIds[fromIndex]
+        if (fromItemId) {
+          return {
+            ...boardList,
+            itemIds: [
+              ...itemIds.slice(0, toIndex),
+              fromItemId,
+              ...itemIds.slice(toIndex, itemIds.length),
+            ],
+          }
+        }
+      } else if (isFrom) {
+        return {
+          ...boardList,
+          itemIds: itemIds.filter((id) => id !== itemIds[fromIndex]),
+        }
+      }
+    }
+
+    return boardList
+  })
 }

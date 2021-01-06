@@ -2,7 +2,12 @@
 
 .card {
   background-color: #fff;
-  padding: $gutterSmall;
-  border-radius: 0.4rem;
-  min-height: 5rem;
+  box-shadow: 0 0 -10px 20px red;
+  border-left: 4px solid $blue;
+  padding: $gutterSmall $gutter;
+  border-radius: 6px;
+}
+
+.card-body {
+  padding: 0.5rem 0;
 }

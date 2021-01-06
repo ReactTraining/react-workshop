@@ -1,16 +1,25 @@
 @import 'TaskMaker/styles/_theme.scss';
 
 .primary-layout {
-  > div {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: linear-gradient(#eee, #000);
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e8edf3;
+  // background-image: url('/images/trianglify-lowres.png');
+  // background-size: cover;
 
-  .primary-content {
+  main.primary-content {
     // Take up the rest of the vertical space that adjacent siblings (header and footer) don't take up
     flex: 1;
-    margin: $gutter;
+    // Allow the pages to take full height (they will be flex items
+    display: flex;
+
+    > * {
+      flex: 1;
+    }
+
+    > *:not(.board) {
+      margin: $gutter;
+    }
   }
 }

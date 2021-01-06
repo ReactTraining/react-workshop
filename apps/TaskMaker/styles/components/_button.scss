@@ -7,9 +7,6 @@ button {
   > * {
     vertical-align: middle;
   }
-  > svg {
-    font-size: 1rem;
-  }
   > span + svg {
     margin-left: 0.3em;
   }
@@ -25,7 +22,7 @@ button {
   border-radius: 0.2rem;
   color: #fff;
   background-color: $brightBlue;
-  border: none;
+  border: 1px solid transparent;
   padding: 0.5rem 1rem;
 
   // These normalize anchors with .button to behave more like buttons
@@ -44,18 +41,23 @@ button {
   [disabled] {
     background-color: #aaa;
   }
+
+  &.button-small {
+    font-size: 0.5rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  &.button-outline {
+    background-color: transparent;
+    color: $brightBlue;
+    font-weight: bold;
+    &:hover {
+      border: 1px solid $lineColor;
+      background-color: #fff;
+    }
+  }
 }
 
-.cta-button {
-  background-color: $green;
-  &:focus {
-    box-shadow: 0 0 0 3px rgba($green, 0.3);
-  }
-  &:hover {
-    background-color: darken($green, 8%);
-  }
-}
-
-button.as-link {
+button.ink {
   color: $linkColor;
 }

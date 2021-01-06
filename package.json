@@ -66,8 +66,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@dnd-kit/core": "^1.0.0",
-    "@dnd-kit/sortable": "^1.0.0",
     "@reach/descendants": "^0.8.2",
     "@reach/menu-button": "^0.11.2",
     "@reach/rect": "^0.11.2",
@@ -86,6 +84,7 @@
     "prop-types": "^15.7.2",
     "query-string": "^6.13.7",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^17.0.1",
     "react-flex-columns": "^0.4.3",
     "react-icons": "^3.11.0",

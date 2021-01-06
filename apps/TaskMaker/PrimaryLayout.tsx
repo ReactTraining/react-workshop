@@ -6,7 +6,8 @@ import { PrimaryFooter } from 'TaskMaker/PrimaryFooter'
 import './PrimaryLayout.scss'
 
 // Route Targets
-import Home from 'TaskMaker/Home'
+import { Home } from './Home'
+import { Board } from './Board'
 
 export const PrimaryLayout: React.FC = () => {
   // const history = useHistory()
@@ -20,18 +21,20 @@ export const PrimaryLayout: React.FC = () => {
 
   return (
     <div className="primary-layout">
-      <div>
-        <PrimaryHeader />
-        <main className="primary-content">
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </main>
-        <PrimaryFooter />
-      </div>
+      <PrimaryHeader />
+      <main className="primary-content">
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/boards/:boardId" exact>
+            <Board />
+          </Route>
+          <Redirect from="/boards" to="/boards/1" />
+          <Redirect to="/" />
+        </Switch>
+      </main>
+      <PrimaryFooter />
     </div>
   )
 }

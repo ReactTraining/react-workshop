@@ -1,9 +1,26 @@
 @import 'TaskMaker/styles/_theme.scss';
 
+.board {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  padding: $gutter;
+}
+
 .board-scroll-area {
-  background-color: #eee;
-  // display: flex;
-  // gap: 1rem;
-  overflow: scroll;
+  // Take the rest of the remaining vertical space
+  flex: 1;
+
+  // Makes `.card-list-wrap` the flex item so `.card-list` can remain not one.
+  // This allows `.card-list` to be only as tall as cards. Also this strategy is
+  // for horizontal scrolling endless card-lists
+  display: flex;
+  gap: 1rem;
+  overflow-y: scroll;
   padding-bottom: 5rem;
+}
+
+.card-list-wrap {
+  width: 15em;
+  flex: none;
 }
