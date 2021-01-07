@@ -22,7 +22,7 @@
     "resolveJsonModule": true,
     "paths": {
       "YesterTech/*": ["apps/YesterTech/*"],
-      "TaskMaker/*": ["apps/TaskMaker/*"]
+      "ProjectPlanner/*": ["apps/ProjectPlanner/*"]
     }
   }
 }

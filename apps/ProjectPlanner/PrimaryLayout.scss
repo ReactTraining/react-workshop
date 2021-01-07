@@ -1,12 +1,10 @@
-@import 'TaskMaker/styles/_theme.scss';
+@import 'ProjectPlanner/styles/_theme.scss';
 
 .primary-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #e8edf3;
-  // background-image: url('/images/trianglify-lowres.png');
-  // background-size: cover;
 
   main.primary-content {
     // Take up the rest of the vertical space that adjacent siblings (header and footer) don't take up

@@ -1,4 +1,4 @@
-@import 'TaskMaker/styles/_theme.scss';
+@import 'ProjectPlanner/styles/_theme.scss';
 
 .card-list {
   background-color: rgba(white, 0.5);
@@ -6,7 +6,7 @@
   border-radius: 0.6rem;
 
   .dropzone {
-    min-height: 100px;
+    min-height: 2rem;
   }
 }
 

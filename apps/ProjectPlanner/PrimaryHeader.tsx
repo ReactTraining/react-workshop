@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
-import { Avatar } from 'TaskMaker/Avatar'
-import { Logo } from 'TaskMaker/Logo'
+import { Avatar } from 'ProjectPlanner/Avatar'
+import { Logo } from 'ProjectPlanner/Logo'
 import '@reach/menu-button/styles.css'
 import './PrimaryHeader.scss'
 

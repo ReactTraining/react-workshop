@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
-import { PrimaryHeader } from 'TaskMaker/PrimaryHeader'
-import { PrimaryFooter } from 'TaskMaker/PrimaryFooter'
-// import { useAuthState } from 'TaskMaker/AuthState'
+import { PrimaryHeader } from 'ProjectPlanner/PrimaryHeader'
+import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
+// import { useAuthState } from 'ProjectPlanner/AuthState'
 import './PrimaryLayout.scss'
 
 // Route Targets

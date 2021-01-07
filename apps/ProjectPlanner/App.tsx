@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-// import { AuthStateProvider } from 'TaskMaker/AuthState'
-import { PrimaryLayout } from 'TaskMaker/PrimaryLayout'
-import 'TaskMaker/styles/global-styles.scss'
+// import { AuthStateProvider } from 'ProjectPlanner/AuthState'
+import { PrimaryLayout } from 'ProjectPlanner/PrimaryLayout'
+import 'ProjectPlanner/styles/global-styles.scss'
 
 function App() {
   return (

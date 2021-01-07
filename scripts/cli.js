@@ -11,7 +11,7 @@ const courseAppNames = {
   'advanced-composition': 'YesterTech',
   'advanced-hooks': 'YesterTech',
   'core-2020': 'YesterTech',
-  'core-2021': 'TaskMaker',
+  'core-2021': 'ProjectPlanner',
   electives: 'YesterTech',
 }
 

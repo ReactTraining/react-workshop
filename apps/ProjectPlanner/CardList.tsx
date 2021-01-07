@@ -9,17 +9,17 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 type Props = {
   cardListId: number
   name: string
-  itemIds: number[]
+  cardIds: number[]
 }
 
-export const CardList: React.FC<Props> = ({ cardListId, name, itemIds }) => {
+export const CardList: React.FC<Props> = ({ cardListId, name, cardIds }) => {
   return (
     <Droppable droppableId={`${cardListId}`}>
       {(provided: any) => {
         return (
           <div
             className="card-list spacing"
-            data-card-list-empty={itemIds.length > 0 ? undefined : ''}
+            // data-card-list-empty={itemIds.length > 0 ? undefined : ''}
           >
             <div className="flex-split">
               <div className="spacing">
@@ -33,7 +33,7 @@ export const CardList: React.FC<Props> = ({ cardListId, name, itemIds }) => {
             </div>
 
             <div className="dropzone" {...provided.droppableProps} ref={provided.innerRef}>
-              {itemIds.map((cardId, index) => {
+              {cardIds.map((cardId, index) => {
                 return (
                   <Draggable key={cardId} draggableId={cardId + ''} index={index}>
                     {(provided: any) => {

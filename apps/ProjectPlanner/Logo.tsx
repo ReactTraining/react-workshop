@@ -6,7 +6,7 @@ export const Logo: React.FC = () => (
   <span className="logo vertical-middle">
     <FiLayers />{' '}
     <span>
-      Task<strong>Maker</strong>
+      Project<strong>Planner</strong>
     </span>
   </span>
 )

@@ -5,26 +5,26 @@ import './Board.scss'
 
 import { DragDropContext } from 'react-beautiful-dnd'
 
-type CardList = {
-  cardListId: number
-  name: string
-  itemIds: number[]
-}
+// type CardList = {
+//   cardListId: number
+//   name: string
+//   itemIds: number[]
+// }
 
 type BoardData = {
   cardListId: number
   name: string
-  itemIds: number[]
+  cardIds: number[]
 }
 
 const data = [
-  { cardListId: 1, name: 'One', itemIds: [1, 5] },
-  { cardListId: 2, name: 'Two', itemIds: [9, 10] },
-  { cardListId: 3, name: 'Three', itemIds: [] },
-  { cardListId: 4, name: 'Four', itemIds: [] },
-  { cardListId: 5, name: 'Five', itemIds: [] },
-  { cardListId: 6, name: 'Six', itemIds: [] },
-  { cardListId: 7, name: 'Seven', itemIds: [] },
+  { cardListId: 1, name: 'One', cardIds: [1, 5] },
+  { cardListId: 2, name: 'Two', cardIds: [9, 10] },
+  { cardListId: 3, name: 'Three', cardIds: [] },
+  { cardListId: 4, name: 'Four', cardIds: [] },
+  { cardListId: 5, name: 'Five', cardIds: [] },
+  { cardListId: 6, name: 'Six', cardIds: [] },
+  { cardListId: 7, name: 'Seven', cardIds: [] },
 ]
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
@@ -55,7 +55,7 @@ export const Board: React.FC = () => {
                 <CardList
                   cardListId={boardList.cardListId}
                   name={boardList.name}
-                  itemIds={boardList.itemIds}
+                  cardIds={boardList.cardIds}
                 />
               </div>
             )
@@ -80,31 +80,31 @@ function shuffleArray(
   return data.map((boardList) => {
     const isTo = boardList.cardListId === toListId
     const isFrom = boardList.cardListId === fromListId
-    const itemIds = [...boardList.itemIds]
+    const cardIds = [...boardList.cardIds]
 
     // Moving to and from same array
     if (isTo && isFrom) {
-      itemIds.splice(toIndex, 0, itemIds.splice(fromIndex, 1)[0])
-      return { ...boardList, itemIds }
+      cardIds.splice(toIndex, 0, cardIds.splice(fromIndex, 1)[0])
+      return { ...boardList, cardIds }
 
       // Move to different array
     } else {
       if (isTo) {
-        const fromItemId = data.find((l) => l.cardListId === fromListId)?.itemIds[fromIndex]
+        const fromItemId = data.find((l) => l.cardListId === fromListId)?.cardIds[fromIndex]
         if (fromItemId) {
           return {
             ...boardList,
-            itemIds: [
-              ...itemIds.slice(0, toIndex),
+            cardIds: [
+              ...cardIds.slice(0, toIndex),
               fromItemId,
-              ...itemIds.slice(toIndex, itemIds.length),
+              ...cardIds.slice(toIndex, cardIds.length),
             ],
           }
         }
       } else if (isFrom) {
         return {
           ...boardList,
-          itemIds: itemIds.filter((id) => id !== itemIds[fromIndex]),
+          cardIds: cardIds.filter((id) => id !== cardIds[fromIndex]),
         }
       }
     }
