@@ -3,8 +3,8 @@ import classnames from 'classnames'
 import './Heading.scss'
 
 type Props = {
-  size?: number
-  as?: any
+  size?: 1 | 2 | 3 | 4
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   className?: string
 }
 
@@ -14,10 +14,5 @@ export const Heading: React.FC<Props> = ({
   className,
   ...rest
 }) => {
-  return <Component className={classnames('heading', `size-${size}`, className)} {...rest} />
+  return <Component className={classnames(`heading size-${size}`, className)} {...rest} />
 }
-
-// Heading.propTypes = {
-//   size: PropTypes.number,
-//   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
-// }

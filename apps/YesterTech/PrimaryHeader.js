@@ -3,7 +3,6 @@ import { NavLink, Link } from 'react-router-dom'
 import { Columns, Column } from 'react-flex-columns'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
 import { MdShoppingCart } from 'react-icons/md'
-
 import api from 'YesterTech/api'
 import { useAuthState } from 'YesterTech/AuthState'
 import { useShoppingCart } from 'YesterTech/ShoppingCartState'

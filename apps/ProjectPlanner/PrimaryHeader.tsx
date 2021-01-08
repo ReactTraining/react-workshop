@@ -1,13 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
+import api from 'ProjectPlanner/api'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { Logo } from 'ProjectPlanner/Logo'
+import { useAuthState } from 'ProjectPlanner/AuthState'
 import '@reach/menu-button/styles.css'
 import './PrimaryHeader.scss'
 
 export const PrimaryHeader: React.FC = () => {
-  function handleLogout() {}
+  const { authenticated, user, logout } = useAuthState()
+
+  function handleLogout() {
+    api.auth.logout().then(logout)
+  }
 
   return (
     <header className="primary-header spacing">

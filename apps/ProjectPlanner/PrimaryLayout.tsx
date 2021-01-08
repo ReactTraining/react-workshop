@@ -2,16 +2,13 @@ import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { PrimaryHeader } from 'ProjectPlanner/PrimaryHeader'
 import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
-// import { useAuthState } from 'ProjectPlanner/AuthState'
 import './PrimaryLayout.scss'
 
 // Route Targets
-import { Home } from './Home'
+import { Dashboard } from './Dashboard'
 import { Board } from './Board'
 
 export const PrimaryLayout: React.FC = () => {
-  // const history = useHistory()
-  // const { authenticated, dispatch } = useAuthState()
   const { key } = useLocation()
 
   // Scroll to the top of the page when pages change
@@ -25,7 +22,7 @@ export const PrimaryLayout: React.FC = () => {
       <main className="primary-content">
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Dashboard />
           </Route>
           <Route path="/boards/:boardId" exact>
             <Board />

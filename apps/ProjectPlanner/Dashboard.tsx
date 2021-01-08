@@ -3,10 +3,10 @@ import { Heading } from './Heading'
 
 type Props = {}
 
-export const Home: React.FC<Props> = () => {
+export const Dashboard: React.FC<Props> = () => {
   return (
     <div>
-      <Heading>Home Page</Heading>
+      <Heading>Dashboard</Heading>
     </div>
   )
 }
