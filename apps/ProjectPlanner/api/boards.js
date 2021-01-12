@@ -1,5 +1,5 @@
 // import queryString from 'query-string'
-import { get, getRaw, post } from './utils'
+import { get, getRaw, post, put } from './utils'
 
 // export async function getProducts(search = {}, page = 1) {
 //   // If setting up this search object seems a little weird, we're
@@ -25,11 +25,15 @@ import { get, getRaw, post } from './utils'
 // }
 
 export function getBoard(boardId) {
-  return get(`/boards/${boardId}`)
+  return get(`/boards/${boardId}?_embed=cards`)
 }
 
 export function addBoard(data) {
   return post(`/boards`, data)
+}
+
+export function saveBoard(boardId, data) {
+  return put(`/boards/${boardId}`, data)
 }
 
 // export function getMetaData() {

@@ -31,7 +31,7 @@ export const AuthStateProvider: React.FC = ({ children }) => {
       }
     },
     {
-      // Null, meaning undetermined yet.
+      // Null, meaning not determined yet.
       // False, meaning determined and not logged in
       // True, meaning logged in
       authenticated: null,

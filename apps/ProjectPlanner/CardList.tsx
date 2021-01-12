@@ -2,9 +2,8 @@ import React from 'react'
 import { Card } from './Card'
 import { Heading } from './Heading'
 import { BsThreeDots } from 'react-icons/bs'
-import './CardList.scss'
-
 import { Droppable, Draggable } from 'react-beautiful-dnd'
+import './CardList.scss'
 
 type Props = {
   cardListId: number
@@ -33,23 +32,24 @@ export const CardList: React.FC<Props> = ({ cardListId, name, cardIds }) => {
             </div>
 
             <div className="dropzone" {...provided.droppableProps} ref={provided.innerRef}>
-              {cardIds.map((cardId, index) => {
-                return (
-                  <Draggable key={cardId} draggableId={cardId + ''} index={index}>
-                    {(provided: any) => {
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <Card cardId={cardId}>{cardId}</Card>
-                        </div>
-                      )
-                    }}
-                  </Draggable>
-                )
-              })}
+              {Array.isArray(cardIds) &&
+                cardIds.map((cardId, index) => {
+                  return (
+                    <Draggable key={cardId} draggableId={cardId + ''} index={index}>
+                      {(provided: any) => {
+                        return (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <Card cardId={cardId}>{cardId}</Card>
+                          </div>
+                        )
+                      }}
+                    </Draggable>
+                  )
+                })}
               {provided.placeholder}
             </div>
 

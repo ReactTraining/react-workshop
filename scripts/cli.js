@@ -187,7 +187,7 @@ function selectLesson() {
   const alias = {}
   const aliasBasePath = `${courseAppNames[selectedCourse]}`
   fs.readdirSync(lessonPath).forEach((file) => {
-    const name = path.basename(file, '.js')
+    const name = path.basename(file).replace(/\.(js|ts|tsx)$/, '')
     alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
   })
 

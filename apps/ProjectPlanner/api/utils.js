@@ -2,7 +2,7 @@
 const baseURL = 'http://localhost:3333'
 
 export function get(path) {
-  return fetch(`${baseURL}${path}`).then(res => res.json())
+  return fetch(`${baseURL}${path}`).then((res) => res.json())
 }
 
 export function getRaw(path) {
@@ -14,7 +14,17 @@ export function post(path, data) {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(res => res.json())
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json())
+}
+
+export function put(path, data) {
+  return fetch(`${baseURL}${path}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json())
 }

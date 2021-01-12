@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "@reach/descendants": "^0.8.2",
+    "@reach/dialog": "^0.12.1",
     "@reach/menu-button": "^0.11.2",
     "@reach/rect": "^0.11.2",
     "@reach/tabs": "^0.11.2",
