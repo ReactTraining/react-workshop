@@ -3,9 +3,16 @@
   width: 1em;
   height: 1em;
   border-radius: 50%;
+  border: 1px solid rgba(white, 0.3);
 }
 
 div.avatar {
   background-color: #eee;
   border: 1px solid #ddd;
+}
+
+.avatar-group {
+  > * + * {
+    margin-left: -0.8rem;
+  }
 }

@@ -4,12 +4,11 @@ import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-butt
 import api from 'ProjectPlanner/api'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { Logo } from 'ProjectPlanner/Logo'
-import { useAuthState } from 'ProjectPlanner/AuthState'
-import '@reach/menu-button/styles.css'
+import { useAuth } from 'ProjectPlanner/AuthContext'
 import './PrimaryHeader.scss'
 
 export const PrimaryHeader: React.FC = () => {
-  const { authenticated, user, logout } = useAuthState()
+  const { user, logout } = useAuth()
 
   function handleLogout() {
     api.auth.logout().then(logout)
@@ -31,8 +30,7 @@ export const PrimaryHeader: React.FC = () => {
             </NavLink>
             <Menu>
               <MenuButton className="primary-nav-item reset-button">
-                {/* <Avatar src={user && user.avatarUrl} size={1.5} /> */}
-                <Avatar size={1.5} />
+                <Avatar src={user?.avatarUrl!} size={1.5} />
               </MenuButton>
               <MenuList className="nav-user-dropdown">
                 {/* <MenuLink to="/account" as={Link}>

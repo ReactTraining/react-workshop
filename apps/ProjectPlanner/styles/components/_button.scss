@@ -56,6 +56,18 @@ button {
       background-color: #fff;
     }
   }
+
+  &.button-green {
+    background-color: $green;
+  }
+
+  &.button-red {
+    background-color: $red;
+  }
+}
+
+.button-icon {
+  padding: 0.3rem;
 }
 
 button.ink {

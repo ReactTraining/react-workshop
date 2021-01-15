@@ -1,6 +1,6 @@
 @import 'ProjectPlanner/styles/_theme.scss';
 
-.card-list {
+.task-group {
   background-color: rgba(white, 0.5);
   padding: 0.8rem;
   border-radius: 0.6rem;
@@ -15,13 +15,3 @@
 [data-rbd-draggable-id] {
   margin-bottom: $gutter;
 }
-
-// .card-list-scroll-area {
-//   // temp to test scrolling
-//   max-height: 13rem;
-//   overflow: scroll;
-// }
-
-// .card {
-//   margin-bottom: $gutter;
-// }

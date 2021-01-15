@@ -1,0 +1,31 @@
+@import 'ProjectPlanner/styles/_theme.scss';
+
+.minutes {
+  display: flex;
+  align-items: center;
+  max-width: 8rem;
+
+  > div:nth-child(2) {
+    flex: 1;
+  }
+
+  > div:nth-child(1) {
+    margin-right: 0.4rem;
+  }
+
+  > div:nth-child(3) {
+    margin-left: 0.4rem;
+  }
+
+  input[type='text'] {
+    text-align: center;
+  }
+
+  button {
+    font-size: 1.3em;
+  }
+
+  svg {
+    fill: $brightBlue;
+  }
+}

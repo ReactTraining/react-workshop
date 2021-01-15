@@ -5,8 +5,9 @@ import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
 import './PrimaryLayout.scss'
 
 // Route Targets
-import { Dashboard } from './Dashboard'
-import { Board } from './Board'
+import { Dashboard } from 'ProjectPlanner/Dashboard'
+import { BrowseBoards } from 'ProjectPlanner/BrowseBoards'
+import { Board } from 'ProjectPlanner/Board'
 
 export const PrimaryLayout: React.FC = () => {
   const { key } = useLocation()
@@ -24,10 +25,12 @@ export const PrimaryLayout: React.FC = () => {
           <Route path="/" exact>
             <Dashboard />
           </Route>
+          <Route path="/boards" exact>
+            <BrowseBoards />
+          </Route>
           <Route path="/boards/:boardId" exact>
             <Board />
           </Route>
-          <Redirect from="/boards" to="/boards/1" />
           <Redirect to="/" />
         </Switch>
       </main>
@@ -35,5 +38,3 @@ export const PrimaryLayout: React.FC = () => {
     </div>
   )
 }
-
-export default PrimaryLayout

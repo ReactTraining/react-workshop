@@ -1,0 +1,35 @@
+@import '@reach/slider/styles';
+@import '@reach/menu-button/styles';
+@import '@reach/dialog/styles';
+
+/**
+ * Dialog
+ */
+
+[data-reach-dialog-content] {
+  padding: 0 !important;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  min-width: 400px;
+}
+
+/**
+ * Slider
+ */
+
+[data-reach-slider-track] {
+  background-color: $lineColor;
+}
+
+[data-reach-slider-range] {
+  background-color: rgba($brightBlue, 0.2);
+}
+
+[data-reach-slider-handle] {
+  background: $brightBlue;
+  box-shadow: 0 0 0 3px white;
+  &:focus {
+    box-shadow: 0 0 0 1px white, 0 0 0 2px $brightBlue, 0 0 0 5px white;
+    outline: none;
+  }
+}

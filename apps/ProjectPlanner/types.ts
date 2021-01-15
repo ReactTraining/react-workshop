@@ -6,22 +6,25 @@ export type User = {
   avatarUrl: string | null
 }
 
-export type CardList = {
-  cardListId: number
+export type TaskGroup = {
+  taskGroupId: number
   name: string
-  cardIds: number[]
+  taskIds: number[]
 }
 
-export type Card = {
+export type Task = {
   id: number
   boardId: number
   name: string
+  content: string
+  minutes: number
+  completedMinutes: number
+  assignedTo: number[]
 }
 
 export type Board = {
   id: number
   userId: number
   name: string
-  cardLists: CardList[]
-  cards: Card[]
+  taskGroups: TaskGroup[]
 }

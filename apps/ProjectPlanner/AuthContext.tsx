@@ -1,12 +1,12 @@
 import React, { useContext, useReducer, useCallback, useEffect } from 'react'
-import api from './api'
-import { User } from './types'
+import api from 'ProjectPlanner/api'
+import { User } from 'ProjectPlanner/types'
 
 export type AuthContextActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
 
 type State = {
   authenticated: null | boolean
-  user: User | null
+  user: null | User
 }
 
 type Context = State & {
@@ -16,7 +16,7 @@ type Context = State & {
 
 const AuthStateContext = React.createContext<Context | null>(null)
 
-export const AuthStateProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(
     (state: State, action: AuthContextActions) => {
       switch (action.type) {
@@ -70,7 +70,7 @@ export const AuthStateProvider: React.FC = ({ children }) => {
   return <AuthStateContext.Provider value={context} children={children} />
 }
 
-export function useAuthState() {
+export function useAuth() {
   const context = useContext(AuthStateContext)
   if (!context) {
     throw Error('Use of useAuthState is outside of Provider')

@@ -28,3 +28,12 @@ export function put(path, data) {
     },
   }).then((res) => res.json())
 }
+
+export function httpDelete(path) {
+  return fetch(`${baseURL}${path}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json())
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import 'YesterTech/Avatar.scss'
+import 'ProjectPlanner/Avatar.scss'
 
 type Props = {
   src?: string
@@ -21,3 +21,11 @@ export const Avatar: React.FC<Props> = ({ src, size = 3, className, ...props }) 
     />
   )
 }
+
+// type UserAvatarProps = {
+//   userId: number
+// }
+
+// export const UserAvatar: React.FC<UserAvatarProps> = ({ userId, ...rest}) => {
+
+// }

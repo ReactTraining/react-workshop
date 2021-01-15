@@ -68,3 +68,44 @@
 .flex-1 {
   flex: 1 1 0%;
 }
+
+/**
+ * Width / Margin / Padding
+ */
+
+.w-0 {
+  width: 0;
+}
+
+@for $i from 1 through 80 {
+  .w-#{$i} {
+    width: #{$i/4}rem;
+  }
+}
+
+@for $i from 1 through 8 {
+  .mt-#{$i} {
+    margin-top: #{$i/4}rem;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i/4}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i/4}rem;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i/4}rem;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i/4}rem;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i/4}rem;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i/4}rem;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i/4}rem;
+  }
+}

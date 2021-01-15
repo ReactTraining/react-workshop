@@ -1,1 +1,57 @@
-{}
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "bradwestfall",
+      "name": "Brad Westfall",
+      "password": "abc123",
+      "avatarUrl": "https://avatars3.githubusercontent.com/u/2272118?v=4"
+    },
+    {
+      "id": 2,
+      "username": "student",
+      "name": "Student Name",
+      "password": "student",
+      "avatarUrl": "/images/bruce-lee.jpg"
+    }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "userId": "1",
+      "name": "foo",
+      "taskGroups": [
+        {
+          "taskGroupId": 1,
+          "name": "One",
+          "taskIds": [9, 5]
+        },
+        {
+          "taskGroupId": 2,
+          "name": "Two",
+          "taskIds": []
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": 5,
+      "boardId": 1,
+      "name": "Five",
+      "content": "Hello",
+      "minutes": 1,
+      "completedMinutes": 0,
+      "assignedTo": []
+    },
+    {
+      "id": 9,
+      "boardId": 1,
+      "name": "Nine",
+      "content": "Hello",
+      "minutes": 12,
+      "completedMinutes": 12,
+      "assignedTo": []
+    }
+  ]
+}

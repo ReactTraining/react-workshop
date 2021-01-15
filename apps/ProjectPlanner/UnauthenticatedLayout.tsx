@@ -1,12 +1,12 @@
 import React from 'react'
-import { LoginForm } from './LoginForm'
-import { SignupForm } from './SignupForm'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { useAuthState } from './AuthState'
-import './UnauthorizedLayout.scss'
+import { LoginForm } from 'ProjectPlanner/LoginForm'
+import { SignupForm } from 'ProjectPlanner/SignupForm'
+import { useAuth } from 'ProjectPlanner/AuthContext'
+import 'ProjectPlanner/UnauthorizedLayout.scss'
 
 export const UnauthenticatedLayout: React.FC = () => {
-  const { login } = useAuthState()
+  const { login } = useAuth()
 
   return (
     <div className="unauthorized-layout">

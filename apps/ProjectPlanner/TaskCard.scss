@@ -1,0 +1,26 @@
+@import 'ProjectPlanner/styles/_theme.scss';
+
+.task-card {
+  background-color: #fff;
+  box-shadow: 0 0 -10px 20px red;
+  border-left: 4px solid $blue;
+  padding: $gutterSmall $gutter;
+  border-radius: 6px;
+
+  .remove-task {
+    opacity: 0;
+  }
+
+  &:hover .remove-task {
+    opacity: 1;
+  }
+}
+
+.task-card-content {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,15 @@
+.progress {
+  padding: 0 0.3em;
+
+  [data-reach-slider-range] {
+    background-color: currentcolor;
+    opacity: 0.5;
+  }
+  [data-reach-slider-handle] {
+    background: currentcolor;
+    box-shadow: 0 0 0 3px white;
+    &:focus {
+      box-shadow: 0 0 0 1px white, 0 0 0 2px currentcolor, 0 0 0 5px white;
+    }
+  }
+}
