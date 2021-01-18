@@ -21,24 +21,41 @@ export function createBoard(userId) {
 }
 
 export async function updateBoard(boardId, data) {
-  const taskGroupData = data.taskGroups
-  delete data.taskGroups
-
-  const p = []
-  p.push(put(`/boards/${boardId}`, data))
-
-  taskGroupData.forEach((group) => {
-    p.push(put(`/taskGroups/${group.id}`, group))
-  })
-
-  return Promise.all(p).then((results) => {
-    const [boardResults, ...taskGroupResults] = results
-    return { ...boardResults, taskGroups: taskGroupResults }
-  })
+  return put(`/boards/${boardId}`, data)
 }
 
 export function removeBoard(boardId) {
   return httpDelete(`/boards/${boardId}`)
+}
+
+/**
+ * Task Groups
+ */
+
+export function getTaskGroups(boardId) {
+  return get(`/taskGroups?boardId=${boardId}`)
+}
+
+export function updateTaskGroups(taskGroups) {
+  const p = []
+  taskGroups.forEach((group) => {
+    p.push(put(`/taskGroups/${group.id}`, group))
+  })
+
+  // Since Promise.all() returns an array of each p's
+  // results, and the response from each promise is the
+  // corresponding taskGroup, we can pretend this was one
+  // PUT call with a valid response of the data that changed
+  return Promise.all(p)
+}
+
+export function createTaskGroup(boardId) {
+  const defaultTaskGroupData = {
+    boardId,
+    name: 'Unnamed',
+    tasksIds: [],
+  }
+  return post(`/taskGroups`, defaultTaskGroupData)
 }
 
 /**

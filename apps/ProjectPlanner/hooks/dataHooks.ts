@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from 'ProjectPlanner/api'
 import {
-  // TaskGroup as TaskGroupType,
+  TaskGroup as TaskGroupType,
   Board as BoardType,
   Task as TaskType,
 } from 'ProjectPlanner/types'
@@ -34,19 +34,19 @@ export const useBoard = (
   return [board, setBoard]
 }
 
-// export const useTaskGroups = (
-//   boardId: number
-// ): [TaskGroupType | null, React.Dispatch<React.SetStateAction<TaskGroupType | null>>] => {
-//   const [taskGroup, setTaskGroup] = useState<TaskGroupType | null>(null)
+export const useTaskGroups = (
+  boardId: number
+): [TaskGroupType[] | null, React.Dispatch<React.SetStateAction<TaskGroupType[] | null>>] => {
+  const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
 
-//   useEffect(() => {
-//     api.boards.getBoard(boardId).then((taskGroup: TaskGroupType) => {
-//       setTaskGroup(taskGroup)
-//     })
-//   }, [boardId])
+  useEffect(() => {
+    api.boards.getTaskGroups(boardId).then((taskGroup: TaskGroupType[]) => {
+      setTaskGroups(taskGroup)
+    })
+  }, [boardId])
 
-//   return [taskGroup, setTaskGroup]
-// }
+  return [taskGroups, setTaskGroups]
+}
 
 export const useTasks = (
   boardId: number
