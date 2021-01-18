@@ -8,13 +8,13 @@ import { useAuth } from 'ProjectPlanner/AuthContext'
 import api from 'ProjectPlanner/api'
 
 export const BrowseBoards: React.FC = () => {
-  const [boards, setBoards] = useBoards(1)
-  const history = useHistory()
   const { user } = useAuth()
+  const [boards, setBoards] = useBoards(1) // needs to be user.id
+  const history = useHistory()
 
   function newBoard(): void {
     if (!user) return
-    api.boards.createBoard(user.userId).then((board) => {
+    api.boards.createBoard(user.id).then((board) => {
       history.push(`/boards/${board.id}`)
     })
   }

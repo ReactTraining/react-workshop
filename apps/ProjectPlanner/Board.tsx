@@ -36,6 +36,7 @@ export const Board: React.FC = () => {
     const toListId = parseInt(result.destination.droppableId)
     const newTaskGroups = shuffleArray(taskGroups, fromListId, fromIndex, toListId, toIndex)
 
+    // Optimistic: Set State before Network Call
     setBoard({
       ...board,
       taskGroups: newTaskGroups,
@@ -66,7 +67,7 @@ export const Board: React.FC = () => {
       if (!board || !taskGroups) return
 
       const newTaskGroups = taskGroups.map((taskGroup) => {
-        return taskGroup.taskGroupId !== taskGroupId ? taskGroup : { ...taskGroup, name }
+        return taskGroup.id !== taskGroupId ? taskGroup : { ...taskGroup, name }
       })
 
       setBoard({ ...board, taskGroups: newTaskGroups })
@@ -95,7 +96,7 @@ export const Board: React.FC = () => {
 
       // Add to Task Group
       const newTaskGroups = taskGroups.map((taskGroup) => {
-        return taskGroup.taskGroupId !== taskGroupId
+        return taskGroup.id !== taskGroupId
           ? taskGroup
           : { ...taskGroup, taskIds: taskGroup.taskIds.concat([task.id]) }
       })
@@ -137,9 +138,9 @@ export const Board: React.FC = () => {
               tasks &&
               taskGroups.map((taskGroup) => {
                 return (
-                  <div className="task-group-wrap" key={taskGroup.taskGroupId}>
+                  <div className="task-group-wrap" key={taskGroup.id}>
                     <TaskGroup
-                      taskGroupId={taskGroup.taskGroupId}
+                      taskGroupId={taskGroup.id}
                       name={taskGroup.name}
                       taskIds={taskGroup.taskIds}
                       tasks={tasks}
@@ -170,8 +171,8 @@ function shuffleArray(
   toIndex: number
 ): TaskGroupType[] {
   return taskGroups.map((taskGroup) => {
-    const isTo = taskGroup.taskGroupId === toListId
-    const isFrom = taskGroup.taskGroupId === fromListId
+    const isTo = taskGroup.id === toListId
+    const isFrom = taskGroup.id === fromListId
     const taskIds = [...taskGroup.taskIds]
 
     // Moving to and from same array
@@ -182,7 +183,7 @@ function shuffleArray(
       // Move to different array
     } else {
       if (isTo) {
-        const fromItemId = taskGroups.find((l) => l.taskGroupId === fromListId)?.taskIds[fromIndex]
+        const fromItemId = taskGroups.find((l) => l.id === fromListId)?.taskIds[fromIndex]
         if (fromItemId) {
           return {
             ...taskGroup,

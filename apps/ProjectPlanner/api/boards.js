@@ -9,20 +9,32 @@ export function getBoards(userId) {
 }
 
 export function getBoard(boardId) {
-  return get(`/boards/${boardId}`)
+  return get(`/boards/${boardId}?_embed=taskGroups`)
 }
 
 export function createBoard(userId) {
   const defaultBoardData = {
     userId,
     name: 'Untitled',
-    taskGroups: [],
   }
   return post(`/boards`, defaultBoardData)
 }
 
-export function updateBoard(boardId, data) {
-  return put(`/boards/${boardId}`, data)
+export async function updateBoard(boardId, data) {
+  const taskGroupData = data.taskGroups
+  delete data.taskGroups
+
+  const p = []
+  p.push(put(`/boards/${boardId}`, data))
+
+  taskGroupData.forEach((group) => {
+    p.push(put(`/taskGroups/${group.id}`, group))
+  })
+
+  return Promise.all(p).then((results) => {
+    const [boardResults, ...taskGroupResults] = results
+    return { ...boardResults, taskGroups: taskGroupResults }
+  })
 }
 
 export function removeBoard(boardId) {

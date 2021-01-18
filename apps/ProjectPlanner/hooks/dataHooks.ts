@@ -34,6 +34,20 @@ export const useBoard = (
   return [board, setBoard]
 }
 
+// export const useTaskGroups = (
+//   boardId: number
+// ): [TaskGroupType | null, React.Dispatch<React.SetStateAction<TaskGroupType | null>>] => {
+//   const [taskGroup, setTaskGroup] = useState<TaskGroupType | null>(null)
+
+//   useEffect(() => {
+//     api.boards.getBoard(boardId).then((taskGroup: TaskGroupType) => {
+//       setTaskGroup(taskGroup)
+//     })
+//   }, [boardId])
+
+//   return [taskGroup, setTaskGroup]
+// }
+
 export const useTasks = (
   boardId: number
 ): [TaskType[] | null, React.Dispatch<React.SetStateAction<TaskType[] | null>>] => {
