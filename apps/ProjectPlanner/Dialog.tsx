@@ -31,7 +31,7 @@ export const DialogConfirm: React.FC<DialogConfirmProps> = ({
   return (
     <Dialog {...props} onClose={onCancel}>
       <div className="spacing">
-        <div>{children}</div>
+        <div className="spacing">{children}</div>
         <footer className="horizontal-spacing">
           <button onClick={onConfirm} className="button button-green">
             Yes

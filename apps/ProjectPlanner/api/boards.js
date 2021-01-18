@@ -4,16 +4,29 @@ import { get, post, put, httpDelete } from './utils'
  * Boards
  */
 
+export function getBoards(userId) {
+  return get(`/boards?user=${userId}`)
+}
+
 export function getBoard(boardId) {
   return get(`/boards/${boardId}`)
 }
 
-export function addBoard(data) {
-  return post(`/boards`, data)
+export function createBoard(userId) {
+  const defaultBoardData = {
+    userId,
+    name: 'Untitled',
+    taskGroups: [],
+  }
+  return post(`/boards`, defaultBoardData)
 }
 
 export function updateBoard(boardId, data) {
   return put(`/boards/${boardId}`, data)
+}
+
+export function removeBoard(boardId) {
+  return httpDelete(`/boards/${boardId}`)
 }
 
 /**
@@ -28,7 +41,7 @@ export function getTask(taskId) {
   return get(`/tasks/${taskId}`)
 }
 
-export function addTask(boardId) {
+export function createTask(boardId) {
   const defaultTaskData = {
     boardId,
     name: '',

@@ -1,3 +1,7 @@
+.block {
+  display: block;
+}
+
 /**
  * Spacing (Lobotomized Owl)
  * https://css-tricks.com/lobotomized-owls/
@@ -67,6 +71,10 @@
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.align-self-start {
+  align-self: start;
 }
 
 /**

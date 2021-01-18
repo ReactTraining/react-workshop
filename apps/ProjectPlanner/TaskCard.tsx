@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { MdModeComment } from 'react-icons/md'
 import { FaCalendar, FaTrash } from 'react-icons/fa'
-import { useTaskColor } from 'ProjectPlanner/useTaskColor'
+import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
 import { Heading } from 'ProjectPlanner/Heading'
 import { TaskDialog } from 'ProjectPlanner/TaskDialog'
 import { DialogConfirm } from 'ProjectPlanner/Dialog'

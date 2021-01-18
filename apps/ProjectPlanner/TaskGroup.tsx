@@ -3,6 +3,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { BsThreeDots } from 'react-icons/bs'
 import { TaskCard } from 'ProjectPlanner/TaskCard'
 import { Heading } from 'ProjectPlanner/Heading'
+import { EditTitle } from 'ProjectPlanner/EditTitle'
 import { BoardContext } from 'ProjectPlanner/Board'
 import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
@@ -15,15 +16,17 @@ type Props = {
 }
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
-  const { addTask } = useContext(BoardContext)
+  const { createTask, updateTaskGroupName } = useContext(BoardContext)
   const [minutes, setMinutes] = useState(0)
 
   return (
     <Droppable droppableId={`${taskGroupId}`}>
       {(provided: any) => {
         return (
-          <div className="task-group spacing-small">
-            <Heading size={3}>{name}</Heading>
+          <div className="task-group spacing">
+            <Heading size={3}>
+              <EditTitle title={name} onSave={(name) => updateTaskGroupName(taskGroupId, name)} />
+            </Heading>
 
             <div className="dropzone" {...provided.droppableProps} ref={provided.innerRef}>
               {Array.isArray(taskIds) &&
@@ -50,10 +53,7 @@ export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
             <div className="flex-split">
               <div>...</div>
               <div>
-                <button
-                  className="button button-small button-outline"
-                  onClick={() => addTask(taskGroupId)}
-                >
+                <button className="button button-outline" onClick={() => createTask(taskGroupId)}>
                   Add Card
                 </button>
               </div>

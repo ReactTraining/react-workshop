@@ -1,9 +1,9 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import classnames from 'classnames'
 import { FaCheck } from 'react-icons/fa'
 import api from 'ProjectPlanner/api'
 import { Task } from 'ProjectPlanner/types'
-import { useTaskColor } from 'ProjectPlanner/useTaskColor'
+import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
 import { Dialog } from 'ProjectPlanner/Dialog'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { Heading } from 'ProjectPlanner/Heading'
@@ -16,14 +16,32 @@ type Props = {
   onClose(): void
 }
 
-export const TaskDialog: React.FC<Props> = ({ task, onClose }) => {
+// type ParialTask = {
+
+// }
+
+export const TaskDialog: React.FC<Props> = ({ task: initialTask, onClose }) => {
   const { updateTask: update } = useContext(BoardContext)
+  const [task, setTask] = useState(initialTask)
+  const [edited, setEdited] = useState(false)
   const color = useTaskColor(task)
   const complete = task.minutes === task.completedMinutes && task.minutes > 0
 
   function updateTask(data: any) {
-    update(task.id, { ...task, ...data })
+    setTask({ ...task, ...data })
+    setEdited(true)
   }
+
+  useEffect(() => {
+    if (edited) {
+      const id = setTimeout(() => {
+        update(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
+      }, 400)
+      return () => {
+        clearTimeout(id)
+      }
+    }
+  }, [edited, task, update])
 
   return (
     <Dialog onClose={onClose} aria-label="Task Profile Dialog">
@@ -68,7 +86,12 @@ export const TaskDialog: React.FC<Props> = ({ task, onClose }) => {
               </Heading>
               <Minutes
                 minutes={task.minutes || 0}
-                onChange={(minutes) => updateTask({ minutes })}
+                onChange={(minutes) =>
+                  updateTask({
+                    minutes,
+                    completedMinutes: Math.min(minutes, task.completedMinutes),
+                  })
+                }
               />
             </div>
 

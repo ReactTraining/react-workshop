@@ -1,0 +1,46 @@
+@import 'ProjectPlanner/styles/_theme.scss';
+
+.edit-title {
+  display: flex;
+  padding: 0.3em;
+  border: 1px solid transparent;
+  cursor: text;
+
+  > :first-child {
+    display: block;
+    width: 100%;
+    flex: 1;
+  }
+
+  input {
+    border: none;
+    background-color: transparent;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    padding: 0;
+  }
+
+  svg {
+    align-self: center;
+    opacity: 0;
+  }
+
+  &:hover {
+    border-radius: 2px;
+    border: 1px solid $lineColor;
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:focus,
+  &:focus-within {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid $lineColor;
+    svg {
+      opacity: 1;
+    }
+  }
+}

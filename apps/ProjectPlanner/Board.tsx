@@ -3,20 +3,20 @@ import { useParams } from 'react-router-dom'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { TaskGroup } from 'ProjectPlanner/TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
+import { useBoard, useTasks } from 'ProjectPlanner/hooks/dataHooks'
 import api from 'ProjectPlanner/api'
-import {
-  TaskGroup as TaskGroupType,
-  Board as BoardType,
-  Task as TaskType,
-} from 'ProjectPlanner/types'
+import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/types'
 import './Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
 
 type BoardContextType = {
+  updateBoardName: (name: string) => void
+  createTaskGroup: () => void
+  updateTaskGroupName: (taskGroupId: number, name: string) => void
   getTask: (taskId: number) => TaskType | undefined
   updateTask: (taskId: number, task: TaskType) => void
-  addTask: (taskGroupId: number) => void
+  createTask: (taskGroupId: number) => void
   removeTask: (taskId: number) => void
 }
 
@@ -24,29 +24,9 @@ export const BoardContext = React.createContext<BoardContextType>(null!)
 
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
-  const [board, setBoard] = useState<BoardType | null>(null)
-  const [tasks, setTasks] = useState<TaskType[] | null>(null)
+  const [board, setBoard] = useBoard(boardId)
+  const [tasks, setTasks] = useTasks(boardId)
   const taskGroups = board?.taskGroups
-
-  useEffect(() => {
-    let isCurrent = true
-    api.boards.getBoard(boardId).then((board: BoardType) => {
-      if (isCurrent) setBoard(board)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [boardId])
-
-  useEffect(() => {
-    let isCurrent = true
-    api.boards.getTasks(boardId).then((tasks: TaskType[]) => {
-      if (isCurrent) setTasks(tasks)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [boardId])
 
   function onDragEnd(result: any) {
     if (!result.destination || !board || !taskGroups) return
@@ -68,6 +48,34 @@ export const Board: React.FC = () => {
   }
 
   const context: BoardContextType = {
+    updateBoardName: async (name) => {
+      const newBoard = await api.boards.updateBoard(boardId, {
+        ...board,
+        name,
+      })
+      setBoard(newBoard)
+    },
+    createTaskGroup: async () => {
+      // const newBoard = await api.boards.updateBoard(boardId, {
+      //   ...board,
+      //   taskGroups: taskGroups.concat(???),
+      // })
+      // setBoard(newBoard)
+    },
+    updateTaskGroupName: async (taskGroupId, name) => {
+      if (!board || !taskGroups) return
+
+      const newTaskGroups = taskGroups.map((taskGroup) => {
+        return taskGroup.taskGroupId !== taskGroupId ? taskGroup : { ...taskGroup, name }
+      })
+
+      setBoard({ ...board, taskGroups: newTaskGroups })
+
+      await api.boards.updateBoard(boardId, {
+        ...board,
+        taskGroups: newTaskGroups,
+      })
+    },
     getTask: (taskId) => {
       return tasks?.find((t) => t.id === taskId)
     },
@@ -78,11 +86,11 @@ export const Board: React.FC = () => {
         setTasks([...tasks.slice(0, i), task, ...tasks.slice(i, tasks.length)])
       })
     },
-    addTask: async (taskGroupId) => {
+    createTask: async (taskGroupId) => {
       if (!board || !taskGroups) return
 
       // Add Task
-      const task: TaskType = await api.boards.addTask(boardId)
+      const task: TaskType = await api.boards.createTask(boardId)
       setTasks(tasks!.concat([task]))
 
       // Add to Task Group
@@ -92,17 +100,11 @@ export const Board: React.FC = () => {
           : { ...taskGroup, taskIds: taskGroup.taskIds.concat([task.id]) }
       })
 
-      api.boards
-        .updateBoard(boardId, {
-          ...board,
-          taskGroups: newTaskGroups,
-        })
-        .then(() => {
-          setBoard({
-            ...board,
-            taskGroups: newTaskGroups,
-          })
-        })
+      const newBoard = await api.boards.updateBoard(boardId, {
+        ...board,
+        taskGroups: newTaskGroups,
+      })
+      setBoard(newBoard)
     },
     removeTask: async (taskId) => {
       if (!board || !tasks || !taskGroups) return
@@ -116,17 +118,11 @@ export const Board: React.FC = () => {
         return { ...taskGroup, taskIds: taskGroup.taskIds.filter((id) => id !== taskId) }
       })
 
-      api.boards
-        .updateBoard(boardId, {
-          ...board,
-          taskGroups: newTaskGroups,
-        })
-        .then(() => {
-          setBoard({
-            ...board,
-            taskGroups: newTaskGroups,
-          })
-        })
+      const newBoard = await api.boards.updateBoard(boardId, {
+        ...board,
+        taskGroups: newTaskGroups,
+      })
+      setBoard(newBoard)
     },
   }
 
@@ -134,7 +130,7 @@ export const Board: React.FC = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <BoardContext.Provider value={context}>
         <div className="board spacing">
-          <Heading>Board Name</Heading>
+          <Heading>Board: {board?.name}</Heading>
 
           <div className="board-scroll-area">
             {taskGroups &&
@@ -151,6 +147,10 @@ export const Board: React.FC = () => {
                   </div>
                 )
               })}
+
+            <div>
+              <button className="add-task-group-button">Add Column</button>
+            </div>
           </div>
         </div>
       </BoardContext.Provider>
