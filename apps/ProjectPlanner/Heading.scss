@@ -1,10 +1,8 @@
-@import 'ProjectPlanner/styles/_theme.scss';
-
 .heading {
   // Reset all headings
   font-size: 1rem;
-  font-family: $headingFontFamily;
-  font-weight: $headingFontWeight;
+  font-family: var(--headingFontFamily);
+  font-weight: var(--headingFontWeight);
 
   &.size-1 {
     font-size: 1.5em;
@@ -24,6 +22,6 @@
   }
 
   > svg {
-    fill: $brightBlue;
+    fill: var(--brightBlue);
   }
 }

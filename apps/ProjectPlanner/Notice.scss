@@ -1,5 +1,3 @@
-@import 'ProjectPlanner/styles/_theme.scss';
-
 .notice {
   font-size: 0.8rem;
   border: 1px solid #ddd;
@@ -7,17 +5,17 @@
   padding: 0.3rem 0.5rem;
   border-radius: 3px;
 
-  &.notice-type-success {
-    color: #49856b;
-    border-color: #90d1b5;
-    background-color: #edfdf6;
-  }
+  // &.notice-type-success {
+  //   color: #49856b;
+  //   border-color: #90d1b5;
+  //   background-color: #edfdf6;
+  // }
 
-  &.notice-type-error {
-    color: $red;
-    border-color: $red;
-    background-color: lighten($red, 55%);
-  }
+  // &.notice-type-error {
+  //   color: $red;
+  //   border-color: $red;
+  //   background-color: lighten($red, 55%);
+  // }
 
   // Icon Size and Alignment
   > * {

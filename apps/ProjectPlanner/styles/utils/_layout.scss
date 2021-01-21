@@ -7,6 +7,28 @@
  * https://css-tricks.com/lobotomized-owls/
  */
 
+// Vertical and Horizontal Gutters (Lobotomized Owl)
+@mixin spacing($gutter, $horizontal: false) {
+  @if $horizontal {
+    > * + * {
+      margin-left: $gutter !important;
+    }
+  } @else {
+    // Reset all first-child elements to have no vertical margin
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    > * + * {
+      margin-top: $gutter !important;
+    }
+  }
+}
+
+$gutter: 0.8rem;
+$gutterSmall: 0.3rem;
+
 .spacing-small {
   @include spacing($gutterSmall);
 }

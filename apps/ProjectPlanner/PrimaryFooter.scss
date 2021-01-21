@@ -1,7 +1,5 @@
-@import 'ProjectPlanner/styles/_theme.scss';
-
 .primary-footer {
   padding: 0.5rem 1em;
-  border-top: 1px solid $lineColor;
+  border-top: 1px solid var(--lineColor);
   background-color: #fff;
 }

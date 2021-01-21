@@ -1,13 +1,13 @@
 .text-warn {
-  color: $warn !important;
+  color: var(--warn) !important;
 }
 
 .text-success {
-  color: $success !important;
+  color: var(--success) !important;
 }
 
 .text-light {
-  color: $textColorLight;
+  color: var(--textColorLight);
 }
 
 .text-small {

@@ -1,8 +1,31 @@
-// Global Variables
-@import 'theme';
+:root {
+  --blue: #6fbfd8;
+  --brightBlue: #04b3ff;
+  --green: #4dd579;
+  --purple: #696ad8;
+  --lavender: #c3a2f9;
+  --red: #ff5656;
+  --yellow: #f3b73d;
 
-// Mixins
-@import 'mixins/layout';
+  // Semantic Colors
+  --lineColor: #dce4ec;
+  --warn: $red;
+  --success: $green;
+
+  // Copy
+  --textColor: #303f46;
+  --textColorLight: #9cadb5;
+  --fontFamily: 'Nunito Sans';
+  --fontWeight: 300;
+  --fontSize: 14pt;
+  --linkColor: $brightBlue;
+  --headingFontFamily: $fontFamily;
+  --headingFontWeight: 700;
+
+  // Layout
+  --gutter: 0.8rem;
+  --gutterSmall: 0.3rem;
+}
 
 // Reset
 @import 'reset';

@@ -1,9 +1,7 @@
-@import 'ProjectPlanner/styles/_theme.scss';
-
 .task-card {
   background-color: #fff;
   border-left: 4px solid var(--taskColor);
-  padding: $gutterSmall $gutter;
+  padding: var(--gutterSmall) var(--gutter);
   border-radius: 6px;
 
   .remove-task-button {
@@ -41,5 +39,5 @@
 // Vertical spacing
 [data-rbd-placeholder-context-id],
 [data-rbd-draggable-id] {
-  margin-bottom: $gutter;
+  margin-bottom: var(--gutter);
 }

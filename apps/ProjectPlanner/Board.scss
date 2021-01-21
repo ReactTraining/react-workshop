@@ -1,10 +1,8 @@
-@import 'ProjectPlanner/styles/_theme.scss';
-
 .board {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  padding: $gutter;
+  padding: var(--gutter);
 }
 
 .board-scroll-area {
@@ -32,12 +30,12 @@
   padding: 0.8rem;
   border-radius: 0.6rem;
   text-align: center;
-  color: rgba($purple, 0.6);
+  color: rgba(var(--purple), 0.6);
   transition: color 0.5s;
 
   &:hover,
   &:focus {
     background-color: rgba(white, 0.8);
-    color: rgba($brightBlue, 0.8);
+    color: rgba(var(--brightBlue), 0.8);
   }
 }

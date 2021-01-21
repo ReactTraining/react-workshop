@@ -9,7 +9,7 @@
   display: block;
   width: 100%;
   font-size: 1rem;
-  font-family: $fontFamily;
+  font-family: var(--fontFamily);
   padding: 0.3rem 0.5rem;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -24,7 +24,7 @@ textarea {
 
     &:focus {
       outline: none;
-      border-color: $brightBlue;
+      border-color: var(--brightBlue);
     }
 
     &[disabled] {
@@ -36,7 +36,7 @@ textarea {
 div.form-field {
   @include formField;
   &:focus-within {
-    border-color: $brightBlue;
+    border-color: var(--brightBlue);
   }
 }
 

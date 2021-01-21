@@ -21,7 +21,7 @@ button {
   text-transform: uppercase;
   border-radius: 0.2rem;
   color: #fff;
-  background-color: $brightBlue;
+  background-color: var(--brightBlue);
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
 
@@ -29,13 +29,10 @@ button {
   display: inline-block;
   text-decoration: none !important;
 
+  &:hover,
   &:focus {
     outline: none;
     box-shadow: inset 0 0 0 4px rgba(#fff, 0.5);
-  }
-
-  &:hover {
-    background-color: darken($brightBlue, 8%);
   }
 
   [disabled] {
@@ -49,23 +46,23 @@ button {
 
   &.button-outline {
     background-color: transparent;
-    color: $brightBlue;
+    color: var(--brightBlue);
     font-weight: bold;
     &:hover {
-      border: 1px solid $lineColor;
+      border: 1px solid var(--lineColor);
       background-color: #fff;
     }
     &:focus {
-      box-shadow: 0 0 0 1px $blue;
+      box-shadow: 0 0 0 1px var(--blue);
     }
   }
 
   &.button-green {
-    background-color: $green;
+    background-color: var(--green);
   }
 
   &.button-red {
-    background-color: $red;
+    background-color: var(--red);
   }
 }
 
@@ -74,5 +71,5 @@ button {
 }
 
 button.ink {
-  color: $linkColor;
+  color: var(--linkColor);
 }

@@ -1,9 +1,9 @@
 html {
   box-sizing: border-box;
-  color: $textColor;
-  font-family: $fontFamily, Arial;
-  font-size: $fontSize;
-  font-weight: $fontWeight;
+  color: var(--textColor);
+  font-family: var(--fontFamily), Arial;
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
 }
 
 *,
@@ -19,11 +19,11 @@ body {
 hr {
   margin: 0;
   border: none;
-  border-bottom: 1px solid $lineColor;
+  border-bottom: 1px solid var(--lineColor);
 }
 
 a {
-  color: $linkColor;
+  color: var(--linkColor);
   text-decoration: none;
   &:hover {
     text-decoration: underline;
