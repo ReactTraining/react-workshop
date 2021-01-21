@@ -1,34 +1,34 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import 'ProjectPlanner/Minutes.scss'
 
-type State = [any, (value: any) => void]
+// type State = [any, (value: any) => void]
 
-const states: State[] = []
-let calls = -1
+// const states: State[] = []
+// let calls = -1
 
-function useState(value: any) {
-  const call = ++calls
+// function useState(value: any) {
+//   const call = ++calls
 
-  if (states[call]) {
-    return states[call]
-  }
+//   if (states[call]) {
+//     return states[call]
+//   }
 
-  function setState(newValue: any): void {
-    states[call][0] = newValue
-    reRender()
-  }
+//   function setState(newValue: any): void {
+//     states[call][0] = newValue
+//     reRender()
+//   }
 
-  const state: State = [value, setState]
-  states[call] = state
-  return state
-}
+//   const state: State = [value, setState]
+//   states[call] = state
+//   return state
+// }
 
-function reRender() {
-  calls = -1
-  ReactDOM.render(<Minutes />, document.getElementById('root'))
-}
+// function reRender() {
+//   calls = -1
+//   ReactDOM.render(<Minutes />, document.getElementById('root'))
+// }
 
 export const Minutes = () => {
   const [minutes, setMinutes] = useState(0)

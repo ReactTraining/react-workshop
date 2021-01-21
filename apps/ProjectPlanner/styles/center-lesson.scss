@@ -1,12 +1,7 @@
 // Centers the content for the lesson
 
-body {
-  display: flex;
-  min-height: 100vh;
-}
-
 #root {
   margin: 100px auto;
-  width: 15em;
+  max-width: 700px;
   min-height: 5em;
 }

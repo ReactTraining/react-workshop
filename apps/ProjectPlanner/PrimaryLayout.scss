@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #e8edf3;
+  background-color: var(--lightGray);
 
   main.primary-content {
     // Take up the rest of the vertical space that adjacent siblings (header and footer) don't take up
