@@ -8,10 +8,12 @@
   .dropzone {
     min-height: 2rem;
   }
-}
 
-// Vertical spacing
-[data-rbd-placeholder-context-id],
-[data-rbd-draggable-id] {
-  margin-bottom: $gutter;
+  .button-remove-board {
+    opacity: 0;
+  }
+
+  &:hover .button-remove-board {
+    opacity: 1;
+  }
 }

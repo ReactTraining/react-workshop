@@ -55,6 +55,9 @@ button {
       border: 1px solid $lineColor;
       background-color: #fff;
     }
+    &:focus {
+      box-shadow: 0 0 0 1px $blue;
+    }
   }
 
   &.button-green {

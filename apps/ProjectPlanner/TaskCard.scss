@@ -2,17 +2,12 @@
 
 .task-card {
   background-color: #fff;
-  box-shadow: 0 0 -10px 20px red;
-  border-left: 4px solid $blue;
+  border-left: 4px solid var(--taskColor);
   padding: $gutterSmall $gutter;
   border-radius: 6px;
 
-  .remove-task {
+  .remove-task-button {
     opacity: 0;
-  }
-
-  &:hover .remove-task {
-    opacity: 1;
   }
 }
 
@@ -23,4 +18,28 @@
   display: -webkit-box;
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+[data-rbd-draggable-context-id] {
+  &:focus {
+    outline: none;
+
+    .task-card {
+      box-shadow: 0 0 0 1px var(--taskColor);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .remove-task-button {
+      opacity: 1;
+    }
+  }
+}
+
+// Vertical spacing
+[data-rbd-placeholder-context-id],
+[data-rbd-draggable-id] {
+  margin-bottom: $gutter;
 }

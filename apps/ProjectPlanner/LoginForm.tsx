@@ -45,8 +45,9 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
           </Notice>
         )}
 
-        <div className="form-field">
+        <div>
           <input
+            className="form-field"
             aria-label="Username"
             onChange={(e) => setUsername(e.target.value)}
             type="text"
@@ -54,8 +55,9 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
             required
           />
         </div>
-        <div className="form-field">
+        <div>
           <input
+            className="form-field"
             aria-label="Password"
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? 'text' : 'password'}

@@ -4,17 +4,19 @@ import './EditTitle.scss'
 
 type Props = {
   title: string
+  placeholder?: string
   onSave(title: string): void
 }
 
-export const EditTitle: React.FC<Props> = ({ title, onSave }) => {
+export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
   const [edit, setEdit] = useState(false)
-  const titleRef = useRef<HTMLInputElement>(null)
+  const editTitleRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   function saveTitle() {
     setEdit(false)
-    if (titleRef.current && titleRef.current.value.trim() !== title) {
-      onSave(titleRef.current.value.trim())
+    if (inputRef.current && inputRef.current.value.trim() !== title) {
+      onSave(inputRef.current.value.trim())
     }
   }
 
@@ -22,31 +24,44 @@ export const EditTitle: React.FC<Props> = ({ title, onSave }) => {
     setEdit(true)
   }
 
-  function handleKeyDown(event: React.KeyboardEvent) {
-    if (titleRef.current && event.key === 'Enter') {
-      titleRef.current.blur()
+  function handleFocusOnEnter(event: React.KeyboardEvent) {
+    if (event.key === 'Enter') setEdit(true)
+  }
+
+  function handleInputKeyDown(event: React.KeyboardEvent) {
+    if (inputRef.current && event.key === 'Enter') {
+      event.stopPropagation()
+      // inputRef.current.blur()
+      if (editTitleRef.current) {
+        editTitleRef.current.focus()
+      }
     }
   }
 
   useEffect(() => {
-    if (edit && titleRef.current) {
-      titleRef.current.focus()
-      titleRef.current.select()
+    if (edit && inputRef.current) {
+      inputRef.current.focus()
+      inputRef.current.select()
     }
   }, [edit])
 
   return (
-    <div className="edit-title icon-text">
+    <div
+      ref={editTitleRef}
+      className="edit-title icon-text"
+      tabIndex={0}
+      onKeyDown={handleFocusOnEnter}
+    >
       {edit ? (
         <input
           type="text"
-          ref={titleRef}
+          ref={inputRef}
           defaultValue={title.trim()}
           onBlur={saveTitle}
-          onKeyDown={handleKeyDown}
+          onKeyDown={handleInputKeyDown}
         />
       ) : (
-        <span onClick={startEdit}>{title}</span>
+        <span onClick={startEdit}>{title || <em>{placeholder || 'No Title'}</em>}</span>
       )}
       <MdModeEdit />
     </div>

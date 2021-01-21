@@ -27,4 +27,5 @@ export type Task = {
   minutes: number
   completedMinutes: number
   assignedTo: number[]
+  date: string
 }

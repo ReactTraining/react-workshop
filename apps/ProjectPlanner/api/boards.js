@@ -1,4 +1,13 @@
 import { get, post, put, httpDelete } from './utils'
+import { format } from 'date-fns'
+
+/**
+ * NOTICE
+ *
+ * Some of the work here would realistically be done server side
+ * but we don't have a real server, we have a tool called json-server
+ * which allows us to play with a JSON file as if it were a restful API
+ */
 
 /**
  * Boards
@@ -15,7 +24,7 @@ export function getBoard(boardId) {
 export function createBoard(userId) {
   const defaultBoardData = {
     userId,
-    name: 'Untitled',
+    name: '',
   }
   return post(`/boards`, defaultBoardData)
 }
@@ -52,10 +61,21 @@ export function updateTaskGroups(taskGroups) {
 export function createTaskGroup(boardId) {
   const defaultTaskGroupData = {
     boardId,
-    name: 'Unnamed',
-    tasksIds: [],
+    name: '',
+    taskIds: [],
   }
   return post(`/taskGroups`, defaultTaskGroupData)
+}
+
+export async function removeTaskGroup(taskGroupId, tasks) {
+  const p = []
+  tasks.forEach((taskId) => {
+    p.push(httpDelete(`/tasks/${taskId}`))
+  })
+
+  // Cascade remove all related tasks
+  await Promise.all(p)
+  return httpDelete(`/taskGroups/${taskGroupId}`)
 }
 
 /**
@@ -78,6 +98,7 @@ export function createTask(boardId) {
     minutes: 0,
     completedMinutes: 0,
     assignedTo: [],
+    date: format(Date.now(), 'yyyy-MM-dd'),
   }
   return post(`/tasks`, defaultTaskData)
 }

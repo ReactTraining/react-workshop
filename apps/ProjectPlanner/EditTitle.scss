@@ -5,6 +5,7 @@
   padding: 0.3em;
   border: 1px solid transparent;
   cursor: text;
+  outline: none;
 
   > :first-child {
     display: block;
@@ -26,7 +27,8 @@
     opacity: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-radius: 2px;
     border: 1px solid $lineColor;
     svg {
@@ -34,8 +36,8 @@
     }
   }
 
-  &:focus,
-  &:focus-within {
+  // We only want these styles when in actual edit mode
+  &:focus-within:not(:focus) {
     background-color: #fff;
     border-radius: 2px;
     border: 1px solid $lineColor;

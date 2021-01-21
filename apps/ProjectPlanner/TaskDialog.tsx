@@ -7,18 +7,14 @@ import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
 import { Dialog } from 'ProjectPlanner/Dialog'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { Heading } from 'ProjectPlanner/Heading'
-import { Minutes } from 'ProjectPlanner/Minutes'
-import { Progress } from 'ProjectPlanner/Progress'
+import { Minutes } from 'ProjectPlanner/Minutes.tsx'
+import { Progress } from 'ProjectPlanner/Progress.tsx'
 import { BoardContext } from 'ProjectPlanner/Board'
 
 type Props = {
   task: Task
   onClose(): void
 }
-
-// type ParialTask = {
-
-// }
 
 export const TaskDialog: React.FC<Props> = ({ task: initialTask, onClose }) => {
   const { updateTask: update } = useContext(BoardContext)

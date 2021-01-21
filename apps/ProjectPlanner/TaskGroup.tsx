@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { BsThreeDots } from 'react-icons/bs'
+import { FaTrash } from 'react-icons/fa'
 import { TaskCard } from 'ProjectPlanner/TaskCard'
 import { Heading } from 'ProjectPlanner/Heading'
 import { EditTitle } from 'ProjectPlanner/EditTitle'
+import { DialogConfirm } from 'ProjectPlanner/Dialog'
 import { BoardContext } from 'ProjectPlanner/Board'
 import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
@@ -16,42 +17,64 @@ type Props = {
 }
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
-  const { createTask, updateTaskGroupName } = useContext(BoardContext)
-  const [minutes, setMinutes] = useState(0)
+  const [promptRemove, setPromptRemove] = useState(false)
+  const { createTask, updateTaskGroupName, removeTaskGroup } = useContext(BoardContext)
 
   return (
     <Droppable droppableId={`${taskGroupId}`}>
       {(provided: any) => {
         return (
           <div className="task-group spacing">
-            <Heading size={3}>
-              <EditTitle title={name} onSave={(name) => updateTaskGroupName(taskGroupId, name)} />
-            </Heading>
+            {promptRemove && (
+              <DialogConfirm
+                onConfirm={() => {
+                  removeTaskGroup(taskGroupId)
+                  setPromptRemove(false)
+                }}
+                onCancel={() => setPromptRemove(false)}
+                aria-label="Remove All Tasks?"
+              >
+                ⚠️ Are you sure you want to remove this column and all of its tasks?
+              </DialogConfirm>
+            )}
+            <div className="flex">
+              <div className="flex-1 spacing">
+                <Heading size={3}>
+                  <EditTitle
+                    title={name}
+                    placeholder="Column Name"
+                    onSave={(name) => updateTaskGroupName(taskGroupId, name)}
+                  />
+                </Heading>
+              </div>
+              <div className="ml-2">
+                <button
+                  className="button-remove-board button-icon text-small"
+                  tabIndex={-1}
+                  onClick={(e) => {
+                    // e.stopPropagation()
+                    setPromptRemove(true)
+                  }}
+                >
+                  <FaTrash color="#696ad8" />
+                </button>
+              </div>
+            </div>
 
             <div className="dropzone" {...provided.droppableProps} ref={provided.innerRef}>
               {Array.isArray(taskIds) &&
                 taskIds.map((taskId, index) => {
-                  return (
-                    <Draggable key={taskId} draggableId={taskId + ''} index={index}>
-                      {(provided: any) => {
-                        return (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <TaskCard taskId={taskId} />
-                          </div>
-                        )
-                      }}
-                    </Draggable>
-                  )
+                  return <TaskCard key={taskId} taskId={taskId} index={index} />
                 })}
               {provided.placeholder}
             </div>
 
             <div className="flex-split">
-              <div>...</div>
+              <div>
+                {/* <button className="button button-outline" onClick={() => {}}>
+                  Remove
+                </button> */}
+              </div>
               <div>
                 <button className="button button-outline" onClick={() => createTask(taskGroupId)}>
                   Add Card

@@ -38,7 +38,7 @@ export const BrowseBoardItem: React.FC<BrowseBoardItemProps> = ({ board }) => {
         </div>
         <div className="spacing-small flex-1">
           <Heading>
-            <Link to={`/boards/${board.id}`}>{board.name}</Link>
+            <Link to={`/boards/${board.id}`}>{board.name || <em>Board Name</em>}</Link>
           </Heading>
           <div className=" horizontal-spacing">
             <span>

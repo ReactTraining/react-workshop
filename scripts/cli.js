@@ -10,8 +10,8 @@ const readlineSync = require('readline-sync')
 const courseAppNames = {
   'advanced-composition': 'YesterTech',
   'advanced-hooks': 'YesterTech',
-  'core-2020': 'YesterTech',
-  'core-2021': 'ProjectPlanner',
+  'core-v1': 'YesterTech',
+  'core-v2': 'ProjectPlanner',
   electives: 'YesterTech',
 }
 
