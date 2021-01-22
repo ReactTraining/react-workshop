@@ -5,13 +5,10 @@
   cursor: text;
   outline: none;
 
-  > :first-child {
+  input {
     display: block;
     width: 100%;
     flex: 1;
-  }
-
-  input {
     border: none;
     background-color: transparent;
     font: inherit;

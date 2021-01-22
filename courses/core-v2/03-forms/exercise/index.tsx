@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Minutes } from './Minutes'
-// import { Minutes } from './Minutes.final'
+import { LoginForm } from './LoginForm'
 import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
 
 function App() {
-  return <Minutes />
+  return <LoginForm />
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))

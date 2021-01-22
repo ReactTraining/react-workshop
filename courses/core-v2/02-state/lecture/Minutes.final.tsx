@@ -42,6 +42,7 @@ export const Minutes = () => {
   }
 
   function add() {
+    console.log('here')
     setMinutes(minutes + 1)
     if (minutes + 1 >= 0) {
       setError('')
@@ -56,7 +57,11 @@ export const Minutes = () => {
             <FaMinusCircle />
           </button>
         </div>
-        <input type="text" value={minutes} />
+        <input
+          type="text"
+          value={minutes}
+          onChange={(event) => setMinutes(parseInt(event.target.value))}
+        />
         <div>
           <button type="button" onClick={add}>
             <FaPlusCircle />

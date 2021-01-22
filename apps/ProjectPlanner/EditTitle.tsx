@@ -40,7 +40,6 @@ export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
 
   useEffect(() => {
     if (edit && inputRef.current) {
-      inputRef.current.focus()
       inputRef.current.select()
     }
   }, [edit])
@@ -52,18 +51,19 @@ export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
       tabIndex={0}
       onKeyDown={handleFocusOnEnter}
     >
-      {edit ? (
-        <input
-          type="text"
-          ref={inputRef}
-          defaultValue={title.trim()}
-          onBlur={saveTitle}
-          onKeyDown={handleInputKeyDown}
-        />
-      ) : (
-        <span onClick={startEdit}>{title || <em>{placeholder || 'No Title'}</em>}</span>
-      )}
+      <input
+        type="text"
+        tabIndex={-1}
+        ref={inputRef}
+        defaultValue={title.trim()}
+        onBlur={saveTitle}
+        onKeyDown={handleInputKeyDown}
+      />
       <MdModeEdit />
     </div>
   )
 }
+
+// ) : (
+//   <span onClick={startEdit}>{title || <em>{placeholder || 'No Title'}</em>}</span>
+// )}

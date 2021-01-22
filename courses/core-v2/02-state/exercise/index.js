@@ -5,4 +5,8 @@ import { Task } from './Task'
 import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
 
-ReactDOM.render(<Task />, document.getElementById('root'))
+function App() {
+  return <Task />
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))

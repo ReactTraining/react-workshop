@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { LoginForm } from 'ProjectPlanner/LoginForm'
+import { LoginForm } from './LoginForm'
 import { SignupForm } from 'ProjectPlanner/SignupForm'
 import { useAuth } from 'ProjectPlanner/AuthContext'
 import 'ProjectPlanner/UnauthorizedLayout.scss'

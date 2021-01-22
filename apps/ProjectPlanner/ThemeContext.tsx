@@ -1,14 +1,16 @@
-import React, { useContext, createContext } from 'react'
+import React, { useState, useContext, createContext } from 'react'
 
-const colors: { [key: string]: string } = {
-  blue: '#6fbfd8',
-  brightBlue: '#04b3ff',
-  // green: '#50f3b0',
-  green: '#4dd579',
-  purple: '#696ad8',
-  lavender: '#c3a2f9',
-  red: '#ff5656',
-  yellow: '#f3b73d',
+type Colors = {
+  [key: string]: string
+}
+
+function getRootStyles(props: string[]): Colors {
+  return props.reduce((all, property) => {
+    return {
+      ...all,
+      [property]: window.getComputedStyle(document.body).getPropertyValue(`--${property}`).trim(),
+    }
+  }, {})
 }
 
 type ContextType = {
@@ -18,9 +20,15 @@ type ContextType = {
 const Context = createContext<ContextType>(null!)
 
 export const ThemeProvider: React.FC = ({ children }) => {
+  const [colors, setColors] = useState<Colors>(null!)
+
   const context = {
     colors,
   }
+
+  React.useEffect(() => {
+    setColors(getRootStyles(['blue', 'brightBlue', 'green', 'purple', 'lavender', 'red', 'yellow']))
+  }, [])
 
   return <Context.Provider value={context} children={children} />
 }

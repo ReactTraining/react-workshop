@@ -4,6 +4,8 @@
 
 - ✅ State with useState
 - ✅ Fragments
+- ✅ Controlled vs Uncontrolled Input Fields
+- ✅ Lifted State
 
 # Lecture
 
@@ -23,3 +25,8 @@ function subtract() {
 ```
 
 - Create our own version of `useState` if the timing is right and if it's right for the group. See `.final`.
+- Convert the `<div>{minutes}</div>` to an input field to explain controlled vs uncontrolled input fields.
+
+# Extra
+
+- If there's time, explain lifting state. Simply lift the minutes state to `App`. This is a good primer for the exercise which requires knowledge of listed state.
