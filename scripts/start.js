@@ -20,7 +20,7 @@ server.listen(port, 'localhost', function (err) {
     console.log(err)
   } else {
     console.clear()
-    console.log(`\nGo to: localhost:${port}\nCompiling...\n`)
+    console.log(`\nGo to: http://localhost:${port}\nCompiling...\n`)
   }
 
   ;['SIGINT', 'SIGTERM'].forEach(function (sig) {
@@ -41,7 +41,7 @@ server.listen(port, 'localhost', function (err) {
       },
     ]).catch((err) => {
       console.error(
-        'JSON-SERVER was not able to start. Its port 3333 might still be open from a previous run. Try running `npm run kill-db` to kill the port\n\n'
+        'JSON-SERVER was not able to start. Its port 3333 might still be open from a previous run. Try running `npm run kill-db-port` to kill the port\n\n'
       )
       console.error(err)
       process.exit(1)

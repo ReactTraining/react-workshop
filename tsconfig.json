@@ -1,6 +1,6 @@
 {
   "include": ["apps", "courses", "__mocks__/@types"],
-  "exclude": ["node_modules", "scripts", "config"],
+  "exclude": ["scripts", "config"],
   "compilerOptions": {
     "rootDir": ".",
     "jsx": "react",
@@ -18,7 +18,7 @@
     "baseUrl": "./",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    // "noEmit": true,
+    "noEmit": true,
     "resolveJsonModule": true,
     "paths": {
       "YesterTech/*": ["apps/YesterTech/*"],
