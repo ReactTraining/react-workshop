@@ -1,42 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react'
 import classnames from 'classnames'
 import { FaCheck } from 'react-icons/fa'
+// import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
+import { Dialog } from 'ProjectPlanner/Dialog'
+import { Avatar } from 'ProjectPlanner/Avatar'
+import { Heading } from 'ProjectPlanner/Heading'
+import { Minutes } from 'ProjectPlanner/Minutes'
+import { Progress } from 'ProjectPlanner/Progress'
 import { Task } from './types'
-import { useTaskColor } from './hooks/useTaskColor'
-import { Dialog } from './Dialog'
-import { Avatar } from './Avatar'
-import { Heading } from './Heading'
-import { Minutes } from './Minutes'
-import { Progress } from './Progress'
-import { BoardContext } from './Board'
 
 type Props = {
   task: Task
+  color: string
   onClose(): void
+  // Partial is a utility that takes the type we pass in and makes a new
+  // type where every key is optional. So this way someone can now call
+  // updateTask with an object that only represents a "partially" completed
+  // version of the full Task type, like this: updateTask({ minutes: 7 })
+  updateTask(partialTask: Partial<Task>): void
 }
 
-export const TaskDialog: React.FC<Props> = ({ task: initialTask, onClose }) => {
-  const { updateTask: update } = useContext(BoardContext)
-  const [task, setTask] = useState(initialTask)
-  const [edited, setEdited] = useState(false)
-  const color = useTaskColor(task)
+export const TaskDialog: React.FC<Props> = ({ task, color, onClose, updateTask }) => {
   const complete = task.minutes === task.completedMinutes && task.minutes > 0
-
-  function updateTask(partialTask: Partial<Task>) {
-    setTask({ ...task, ...partialTask })
-    setEdited(true)
-  }
-
-  useEffect(() => {
-    if (edited) {
-      const id = setTimeout(() => {
-        update(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
-      }, 400)
-      return () => {
-        clearTimeout(id)
-      }
-    }
-  }, [edited, task, update])
 
   return (
     <Dialog onClose={onClose} aria-label="Task Profile Dialog">
@@ -79,11 +64,16 @@ export const TaskDialog: React.FC<Props> = ({ task: initialTask, onClose }) => {
               <Heading as="h2" size={4}>
                 Total Task Minutes:
               </Heading>
-              <Minutes
-                minutes={task.minutes}
-                min={task.completedMinutes}
-                onChange={(minutes) => updateTask({ minutes })}
-              />
+              {/* I couldn't freakin run exercise 2 with this code */}
+              {/* <Minutes
+                minutes={task?.minutes! || 0}
+                onChange={(minutes: number) =>
+                  updateTask({
+                    minutes,
+                    completedMinutes: Math.min(minutes, task.completedMinutes),
+                  })
+                }
+              /> */}
             </div>
 
             <div className="spacing-small">
@@ -95,7 +85,9 @@ export const TaskDialog: React.FC<Props> = ({ task: initialTask, onClose }) => {
                   totalMinutes={task?.minutes || 0}
                   completedMinutes={task?.completedMinutes || 0}
                   color={color}
-                  onChange={(completedMinutes) => updateTask({ completedMinutes })}
+                  onChange={(completedMinutes: number) => {
+                    updateTask({ completedMinutes })
+                  }}
                 />
               )}
               <p className="text-small">

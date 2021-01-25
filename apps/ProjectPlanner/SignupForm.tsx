@@ -1,5 +1,5 @@
 import React from 'react'
-import { User } from 'ProjectPlanner/types'
+import { User } from './types'
 
 type Props = {
   onAuthenticated?(user: User): void

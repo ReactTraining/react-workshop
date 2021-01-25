@@ -2,11 +2,12 @@ import React, { useState, useContext, useMemo } from 'react'
 import { format, parse } from 'date-fns'
 import { Draggable } from 'react-beautiful-dnd'
 import { FaCalendar, FaTrash } from 'react-icons/fa'
-import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
-import { Heading } from 'ProjectPlanner/Heading'
-import { TaskDialog } from 'ProjectPlanner/TaskDialog'
-import { DialogConfirm } from 'ProjectPlanner/Dialog'
-import { BoardContext } from 'ProjectPlanner/Board'
+import { useTaskColor } from './hooks/useTaskColor'
+import { useCSSPropertyRef } from './hooks/useCSSPropertyRef'
+import { Heading } from './Heading'
+import { TaskDialog } from './TaskDialog'
+import { DialogConfirm } from './Dialog'
+import { BoardContext } from './Board'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
@@ -14,19 +15,7 @@ type Props = {
   index: number
 }
 
-function useCSSPropertyRef(arg: { [key: string]: string }): React.MutableRefObject<HTMLDivElement> {
-  const ref = React.useRef<HTMLDivElement>(null!)
-  React.useLayoutEffect(() => {
-    if (!ref.current) return
-    for (let property in arg) {
-      ref.current.style.setProperty(`--${property}`, arg[property])
-    }
-  }, [arg])
-
-  return ref
-}
-
-export const TaskCard: React.FC<Props> = ({ taskId, index, children }) => {
+export const TaskCard: React.FC<Props> = ({ taskId, index }) => {
   const [expanded, setExpanded] = useState(false)
   const [promptRemove, setPromptRemove] = useState(false)
   const { getTask, removeTask } = useContext(BoardContext)

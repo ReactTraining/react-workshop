@@ -12,7 +12,7 @@ export const Task = () => {
   const complete = minutes > 0 && minutes === completedMinutes
 
   return (
-    <div className="task-card spacing">
+    <div className="spacing">
       <div className="spacing-small">
         <Heading as="h2" size={4}>
           Total Task Minutes:

@@ -25,7 +25,7 @@ export const Task = () => {
   // For more tasks, see the README.md
 
   return (
-    <div className="task-card spacing">
+    <div className="spacing">
       <div className="spacing-small">
         <Heading as="h2" size={4}>
           Total Task Minutes:

@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react'
-import api from 'ProjectPlanner/api'
-import {
-  TaskGroup as TaskGroupType,
-  Board as BoardType,
-  Task as TaskType,
-} from 'ProjectPlanner/types'
+import api from '../api'
+import { TaskGroup as TaskGroupType, Board as BoardType, Task as TaskType } from '../types'
 
 export const useBoards = (
   userId: number

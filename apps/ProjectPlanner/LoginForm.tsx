@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { User } from 'ProjectPlanner/types'
-import { Heading } from 'ProjectPlanner/Heading'
-import { Notice } from 'ProjectPlanner/Notice'
-import api from 'ProjectPlanner/api'
+import { User } from './types'
+import { Heading } from './Heading'
+import { Notice } from './Notice'
+import api from './api'
 
 type Props = {
   onAuthenticated?(user: User): void
@@ -21,7 +21,7 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
     setLoading(true)
     api.auth
       .login(username, password)
-      .then((user) => {
+      .then((user: User) => {
         onAuthenticated && onAuthenticated(user)
       })
       .catch((error) => {

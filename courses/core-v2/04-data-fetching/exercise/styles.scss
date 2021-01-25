@@ -2,5 +2,18 @@
 
 html {
   // Just so everything is a little bigger
-  font-size: 25pt;
+  font-size: 20pt;
+}
+
+#root {
+  margin: 50px;
+  max-width: 350px;
+}
+
+body {
+  background-color: var(--lightGray);
+}
+
+.task-card {
+  cursor: pointer;
 }

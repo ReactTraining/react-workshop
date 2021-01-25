@@ -1,11 +1,11 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Centered } from 'ProjectPlanner/Centered'
-import { Heading } from 'ProjectPlanner/Heading'
-import { useBoards } from 'ProjectPlanner/hooks/dataHooks'
-import { BrowseBoardItem } from 'ProjectPlanner/BrowseBoardItem'
-import { useAuth } from 'ProjectPlanner/AuthContext'
-import api from 'ProjectPlanner/api'
+import { Centered } from './Centered'
+import { Heading } from './Heading'
+import { useBoards } from './hooks/dataHooks'
+import { BrowseBoardItem } from './BrowseBoardItem'
+import { useAuth } from './AuthContext'
+import api from './api'
 
 export const BrowseBoards: React.FC = () => {
   const { user } = useAuth()

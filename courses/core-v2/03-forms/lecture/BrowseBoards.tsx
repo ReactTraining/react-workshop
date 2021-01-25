@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
-import { Heading } from 'ProjectPlanner/Heading'
 import { BsKanban } from 'react-icons/bs'
 import { FaPlus } from 'react-icons/fa'
+import { Heading } from 'ProjectPlanner/Heading'
 
 let incrementId = 3
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading } from 'ProjectPlanner/Heading'
+import { Heading } from './Heading'
 
 type Props = {}
 

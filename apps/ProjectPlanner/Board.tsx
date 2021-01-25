@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext } from 'react-beautiful-dnd'
-import { TaskGroup } from 'ProjectPlanner/TaskGroup'
-import { Heading } from 'ProjectPlanner/Heading'
-import { useBoard, useTaskGroups, useTasks } from 'ProjectPlanner/hooks/dataHooks'
-import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/types'
-import { EditTitle } from 'ProjectPlanner/EditTitle'
-import api from 'ProjectPlanner/api'
+import { TaskGroup } from './TaskGroup'
+import { Heading } from './Heading'
+import { useBoard, useTaskGroups, useTasks } from './hooks/dataHooks'
+import { TaskGroup as TaskGroupType, Task as TaskType } from './types'
+import { EditTitle } from './EditTitle'
+import api from './api'
 import './Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/

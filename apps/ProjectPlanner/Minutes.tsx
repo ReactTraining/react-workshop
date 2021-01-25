@@ -4,12 +4,13 @@ import 'ProjectPlanner/Minutes.scss'
 
 type Props = {
   minutes: number
+  min?: number
   onChange(minutes: number): void
 }
 
-export const Minutes: React.FC<Props> = ({ minutes, onChange }) => {
+export const Minutes: React.FC<Props> = ({ minutes, min = 0, onChange }) => {
   function subtract() {
-    if (minutes > 0) {
+    if (minutes > min) {
       onChange(minutes - 1)
     }
   }

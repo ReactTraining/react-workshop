@@ -1,5 +1,5 @@
-import { Task } from 'ProjectPlanner/types'
-import { useTheme } from 'ProjectPlanner/ThemeContext'
+import { Task } from '../types'
+import { useTheme } from '../ThemeContext'
 
 export function useTaskColor(task: Task | null) {
   const { colors } = useTheme()

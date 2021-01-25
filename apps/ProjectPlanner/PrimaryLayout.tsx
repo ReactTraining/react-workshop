@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
-import { PrimaryHeader } from 'ProjectPlanner/PrimaryHeader'
-import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
+import { PrimaryHeader } from './PrimaryHeader'
+import { PrimaryFooter } from './PrimaryFooter'
 import './PrimaryLayout.scss'
 
 // Route Targets
-import { Dashboard } from 'ProjectPlanner/Dashboard'
-import { BrowseBoards } from 'ProjectPlanner/BrowseBoards'
-import { Board } from 'ProjectPlanner/Board'
+import { Dashboard } from './Dashboard'
+import { BrowseBoards } from './BrowseBoards'
+import { Board } from './Board'
 
 export const PrimaryLayout: React.FC = () => {
   const { key } = useLocation()
