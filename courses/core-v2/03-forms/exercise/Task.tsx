@@ -25,7 +25,7 @@ export const Task = () => {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="flex">
         <div className="flex-1 spacing">
           <input className="form-field" type="text" placeholder="Task Name" required />

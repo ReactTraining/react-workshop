@@ -40,4 +40,8 @@
       opacity: 1;
     }
   }
+
+  ::placeholder {
+    color: inherit;
+  }
 }

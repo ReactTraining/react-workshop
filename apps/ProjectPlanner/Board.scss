@@ -30,12 +30,12 @@
   padding: 0.8rem;
   border-radius: 0.6rem;
   text-align: center;
-  color: rgba(var(--purple), 0.6);
+  color: var(--purple);
   transition: color 0.5s;
 
   &:hover,
   &:focus {
     background-color: rgba(white, 0.8);
-    color: rgba(var(--brightBlue), 0.8);
+    color: var(--brightBlue);
   }
 }

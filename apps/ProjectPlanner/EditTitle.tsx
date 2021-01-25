@@ -56,6 +56,7 @@ export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
         tabIndex={-1}
         ref={inputRef}
         defaultValue={title.trim()}
+        placeholder={placeholder}
         onBlur={saveTitle}
         onKeyDown={handleInputKeyDown}
       />

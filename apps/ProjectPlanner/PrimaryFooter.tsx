@@ -1,6 +1,4 @@
 import React from 'react'
-// import { GoVersions } from 'react-icons/go'
-import { Columns, Column } from 'react-flex-columns'
 import './PrimaryFooter.scss'
 
 export const PrimaryFooter: React.FC = () => {
