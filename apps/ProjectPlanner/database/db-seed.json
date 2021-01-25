@@ -19,39 +19,175 @@
     {
       "id": 1,
       "userId": "1",
-      "name": "foo",
-      "taskGroups": [
-        {
-          "taskGroupId": 1,
-          "name": "One",
-          "taskIds": [9, 5]
-        },
-        {
-          "taskGroupId": 2,
-          "name": "Two",
-          "taskIds": []
-        }
-      ]
+      "name": "New Curriculum"
+    },
+    {
+      "userId": 1,
+      "name": "sdfssdfs",
+      "id": 2,
+      "taskGroups": []
+    }
+  ],
+  "taskGroups": [
+    {
+      "boardId": 1,
+      "name": "Project Planner",
+      "taskIds": [22, 16, 18, 20],
+      "id": 4
+    },
+    {
+      "id": 1,
+      "boardId": 1,
+      "name": "1. Thinking in React",
+      "taskIds": [11, 13]
+    },
+    {
+      "id": 2,
+      "boardId": 1,
+      "name": "2. State",
+      "taskIds": [12, 14]
+    },
+    {
+      "boardId": 1,
+      "name": "3. Forms",
+      "taskIds": [15, 17],
+      "id": 3
+    },
+    {
+      "boardId": 1,
+      "name": "4. Reducers",
+      "taskIds": [23],
+      "id": 5
+    },
+    {
+      "boardId": 1,
+      "name": "5. Data Fetching",
+      "taskIds": [],
+      "id": 6
+    },
+    {
+      "boardId": 2,
+      "name": "sdfsdfsd",
+      "taskIds": [],
+      "id": 7
+    },
+    {
+      "boardId": 2,
+      "name": "",
+      "taskIds": [24],
+      "id": 8
     }
   ],
   "tasks": [
     {
-      "id": 5,
       "boardId": 1,
-      "name": "Five",
-      "content": "Hello",
-      "minutes": 1,
-      "completedMinutes": 0,
-      "assignedTo": []
+      "name": "Lecture",
+      "content": "About the same as before",
+      "minutes": 3,
+      "completedMinutes": 2,
+      "assignedTo": [],
+      "date": "2021-01-01",
+      "id": 11
     },
     {
-      "id": 9,
       "boardId": 1,
-      "name": "Nine",
-      "content": "Hello",
-      "minutes": 12,
-      "completedMinutes": 12,
-      "assignedTo": []
+      "name": "<Minutes />",
+      "content": "Probably about the same as before",
+      "minutes": 10,
+      "completedMinutes": 10,
+      "assignedTo": [],
+      "date": "2021-01-01",
+      "id": 12
+    },
+    {
+      "boardId": 1,
+      "name": "Exercise",
+      "content": "tbd",
+      "minutes": 9,
+      "completedMinutes": 3,
+      "assignedTo": [],
+      "date": "2021-01-01",
+      "id": 13
+    },
+    {
+      "boardId": 1,
+      "name": "Exercise",
+      "content": "Get minutes and progress working with shared state",
+      "minutes": 40,
+      "completedMinutes": 40,
+      "assignedTo": [],
+      "date": "2021-01-01",
+      "id": 14
+    },
+    {
+      "boardId": 1,
+      "name": "Lecture",
+      "content": "Teach useRef and useReducer. Have a custom hook for data fetching",
+      "minutes": 0,
+      "completedMinutes": 0,
+      "assignedTo": [],
+      "date": "2021-01-20",
+      "id": 15
+    },
+    {
+      "boardId": 1,
+      "name": "Add Dashboard Page",
+      "content": "",
+      "minutes": 0,
+      "completedMinutes": 0,
+      "assignedTo": [],
+      "date": "2021-01-20",
+      "id": 16
+    },
+    {
+      "boardId": 1,
+      "name": "Exercise",
+      "content": "",
+      "minutes": 1,
+      "completedMinutes": 1,
+      "assignedTo": [],
+      "date": "2021-01-20",
+      "id": 17
+    },
+    {
+      "boardId": 1,
+      "name": "Add Column Drag-n-Drop",
+      "content": "",
+      "minutes": 0,
+      "completedMinutes": 0,
+      "assignedTo": [],
+      "date": "2021-01-20",
+      "id": 18
+    },
+    {
+      "boardId": 1,
+      "name": "Ryan wanted better keyboard accessibility",
+      "content": "",
+      "minutes": 0,
+      "completedMinutes": 0,
+      "assignedTo": [],
+      "date": "2021-01-20",
+      "id": 20
+    },
+    {
+      "boardId": 1,
+      "name": "Wrong data",
+      "content": "right now we're grabbing boards of user 1 hard coded",
+      "minutes": 0,
+      "completedMinutes": 0,
+      "assignedTo": [],
+      "date": "2021-01-21",
+      "id": 22
+    },
+    {
+      "boardId": 1,
+      "name": "",
+      "content": "",
+      "minutes": 2,
+      "completedMinutes": 2,
+      "assignedTo": [],
+      "date": "2021-01-22",
+      "id": 23
     }
   ]
 }
