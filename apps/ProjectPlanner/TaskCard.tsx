@@ -5,18 +5,17 @@ import { FaCalendar, FaTrash } from 'react-icons/fa'
 import { useTaskColor } from './hooks/useTaskColor'
 import { useCSSPropertyRef } from './hooks/useCSSPropertyRef'
 import { Heading } from './Heading'
-import { TaskDialog } from './TaskDialog'
 import { DialogConfirm } from './Dialog'
 import { BoardContext } from './Board'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
   taskId: number
+  onClick(): void
   index: number
 }
 
-export const TaskCard: React.FC<Props> = ({ taskId, index }) => {
-  const [expanded, setExpanded] = useState(false)
+export const TaskCard: React.FC<Props> = ({ taskId, onClick, index }) => {
   const [promptRemove, setPromptRemove] = useState(false)
   const { getTask, removeTask } = useContext(BoardContext)
   const task = getTask(taskId)
@@ -24,9 +23,9 @@ export const TaskCard: React.FC<Props> = ({ taskId, index }) => {
   const ref = useCSSPropertyRef(useMemo(() => ({ taskColor: color }), [color]))
 
   function handleKeydown(event: React.KeyboardEvent) {
-    if (expanded || promptRemove) return
+    if (promptRemove) return
     if (event.key === 'Backspace') setPromptRemove(true)
-    if (event.key === 'Enter') setExpanded(true)
+    if (event.key === 'Enter') onClick()
   }
 
   return (
@@ -45,10 +44,9 @@ export const TaskCard: React.FC<Props> = ({ taskId, index }) => {
               // focus just before we expand the dialog so that when the
               // dialog closes, the focus is returned here
               event.currentTarget.focus()
-              setExpanded(true)
+              onClick()
             }}
           >
-            {task && expanded && <TaskDialog onClose={() => setExpanded(false)} task={task} />}
             {promptRemove && (
               <DialogConfirm
                 onConfirm={() => {

@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
 import classnames from 'classnames'
 import { FaCheck, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
-import { Task } from './types'
-import { useTaskColor } from './hooks/useTaskColor'
-import { Dialog } from './Dialog'
-import { Avatar } from './Avatar'
-import { Heading } from './Heading'
-import { Minutes } from './Minutes'
-import { Progress } from './Progress'
-import { BoardContext } from './Board'
-import './TaskDialog.scss'
+import { api } from 'ProjectPlanner/api2'
+import { Task } from 'ProjectPlanner/types'
+import { useTaskColor } from 'ProjectPlanner/hooks/useTaskColor'
+import { Dialog } from 'ProjectPlanner/Dialog'
+import { Avatar } from 'ProjectPlanner/Avatar'
+import { Heading } from 'ProjectPlanner/Heading'
+import { Minutes } from 'ProjectPlanner/Minutes'
+import { Progress } from 'ProjectPlanner/Progress'
+import { BoardContext } from 'ProjectPlanner/Board'
+import 'ProjectPlanner/TaskDialog.scss'
 
 type Props = {
   taskId: number
@@ -18,42 +19,57 @@ type Props = {
   onClose(): void
 }
 
+/**
+ * They left off in 3 by doing this component with a controlled form. Maybe we explain context
+ * in #4 and in the process move the task data to an object. So that by the time they get here
+ * we can rely on them knowing about updateTask. Then we can explain debouncing as a part of
+ * useEffect
+ */
+
 export const TaskDialog: React.FC<Props> = ({
   taskId,
   siblingTaskIds,
   onChangeTaskId,
   onClose,
 }) => {
-  const { updateTask: update } = useContext(BoardContext)
-  const [edited, setEdited] = useState(false)
-  const { getTask } = useContext(BoardContext)
-  const [task, setTask] = useState(getTask(taskId))
+  const [task, setTask] = useState<Task | null>(null)
+
+  console.log('hererere')
+
+  useEffect(() => {
+    let isCurrent = true
+    api.boards.getTask(taskId).then((task) => {
+      if (isCurrent) {
+        console.log(task)
+        setTask(task)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [taskId])
+
   const color = useTaskColor(task)
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)
   const prevTaskId = i > 0 && siblingTaskIds[i - 1]
   const nextTaskId = i < siblingTaskIds.length - 1 && siblingTaskIds[i + 1]
 
-  useEffect(() => {
-    setTask(getTask(taskId))
-  }, [getTask, taskId])
-
-  function updateTask(partialTask: Partial<Task>) {
+  function update(partialTask: Partial<Task>) {
     if (!task) return
     setTask({ ...task, ...partialTask })
-    setEdited(true)
   }
 
-  useEffect(() => {
-    if (edited && task) {
-      const id = setTimeout(() => {
-        update(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
-      }, 400)
-      return () => {
-        clearTimeout(id)
-      }
-    }
-  }, [edited, task, update])
+  // useEffect(() => {
+  //   if (edited && task) {
+  //     const id = setTimeout(() => {
+  //       update(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
+  //     }, 400)
+  //     return () => {
+  //       clearTimeout(id)
+  //     }
+  //   }
+  // }, [edited, task, update])
 
   return (
     <Dialog onClose={onClose} aria-label="Task Profile Dialog">
@@ -66,7 +82,7 @@ export const TaskDialog: React.FC<Props> = ({
               placeholder="Task Name"
               value={task?.name || ''}
               onChange={(e) => {
-                updateTask({ name: e.target.value })
+                update({ name: e.target.value })
               }}
             />
             <textarea
@@ -75,7 +91,7 @@ export const TaskDialog: React.FC<Props> = ({
               placeholder="Task"
               value={task?.content || ''}
               onChange={(e) => {
-                updateTask({ content: e.target.value })
+                update({ content: e.target.value })
               }}
             />
           </div>
@@ -100,7 +116,7 @@ export const TaskDialog: React.FC<Props> = ({
                 <Minutes
                   minutes={task.minutes}
                   min={task.completedMinutes}
-                  onChange={(minutes) => updateTask({ minutes })}
+                  onChange={(minutes) => update({ minutes })}
                 />
               )}
             </div>
@@ -114,7 +130,7 @@ export const TaskDialog: React.FC<Props> = ({
                   totalMinutes={task?.minutes || 0}
                   completedMinutes={task?.completedMinutes || 0}
                   color={color}
-                  onChange={(completedMinutes) => updateTask({ completedMinutes })}
+                  onChange={(completedMinutes) => update({ completedMinutes })}
                 />
               )}
               <p className="text-small">
@@ -163,7 +179,7 @@ export const TaskDialog: React.FC<Props> = ({
                   if (complete) {
                     onClose()
                   } else {
-                    updateTask({ completedMinutes: task.minutes })
+                    update({ completedMinutes: task.minutes })
                   }
                 }}
               >

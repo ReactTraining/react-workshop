@@ -28,14 +28,9 @@
   --gutterSmall: 0.3rem;
 }
 
-// Reset
 @import 'reset';
-
-// Utils
-@import 'utils/layout';
-@import 'utils/text';
-
-// Components
-@import 'components/button';
-@import 'components/form-field';
-@import 'components/reachui';
+@import 'layout';
+@import 'text';
+@import 'button';
+@import 'form-field';
+@import 'reachui';

@@ -1,3 +1,5 @@
+export type Nullish = null | undefined | 0 | ''
+
 export type User = {
   id: number
   username: string

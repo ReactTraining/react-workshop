@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable } from 'react-beautiful-dnd'
 import { FaTrash } from 'react-icons/fa'
 import { TaskCard } from './TaskCard'
 import { Heading } from './Heading'
 import { EditTitle } from './EditTitle'
 import { DialogConfirm } from './Dialog'
+import { TaskDialog } from 'ProjectPlanner/TaskDialog'
 import { BoardContext } from './Board'
 import { Task } from './types'
 import 'ProjectPlanner/TaskGroup.scss'
@@ -19,12 +20,21 @@ type Props = {
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
   const [promptRemove, setPromptRemove] = useState(false)
   const { createTask, updateTaskGroupName, removeTaskGroup } = useContext(BoardContext)
+  const [expandTaskId, setExpandTaskId] = useState<number | null>(null)
 
   return (
     <Droppable droppableId={`${taskGroupId}`}>
       {(provided: any) => {
         return (
           <div className="task-group spacing">
+            {expandTaskId && (
+              <TaskDialog
+                onClose={() => setExpandTaskId(null)}
+                taskId={expandTaskId}
+                siblingTaskIds={taskIds}
+                onChangeTaskId={setExpandTaskId}
+              />
+            )}
             {promptRemove && (
               <DialogConfirm
                 onConfirm={() => {
@@ -51,10 +61,7 @@ export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
                 <button
                   className="button-remove-board button-icon text-small"
                   tabIndex={-1}
-                  onClick={(e) => {
-                    // e.stopPropagation()
-                    setPromptRemove(true)
-                  }}
+                  onClick={() => setPromptRemove(true)}
                 >
                   <FaTrash color="#696ad8" />
                 </button>
@@ -64,22 +71,22 @@ export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
             <div className="dropzone" {...provided.droppableProps} ref={provided.innerRef}>
               {Array.isArray(taskIds) &&
                 taskIds.map((taskId, index) => {
-                  return <TaskCard key={taskId} taskId={taskId} index={index} />
+                  return (
+                    <TaskCard
+                      key={taskId}
+                      taskId={taskId}
+                      onClick={() => setExpandTaskId(taskId)}
+                      index={index}
+                    />
+                  )
                 })}
               {provided.placeholder}
             </div>
 
-            <div className="flex-split">
-              <div>
-                {/* <button className="button button-outline" onClick={() => {}}>
-                  Remove
-                </button> */}
-              </div>
-              <div>
-                <button className="button button-outline" onClick={() => createTask(taskGroupId)}>
-                  Add Card
-                </button>
-              </div>
+            <div className="align-right">
+              <button className="button button-outline" onClick={() => createTask(taskGroupId)}>
+                Add Card
+              </button>
             </div>
           </div>
         )

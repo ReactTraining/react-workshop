@@ -22,7 +22,6 @@ export const Minutes: React.FC<Props> = ({ minutes, min = 0, onChange }) => {
   function handleChange(value: string) {
     const int = parseInt(value, 10)
     // disallow non-numeric values
-    console.log(int)
     if (!isNaN(int)) {
       onChange(int)
     }

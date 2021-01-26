@@ -37,6 +37,7 @@ button {
 
   [disabled] {
     background-color: #aaa;
+    cursor: default;
   }
 
   &.button-small {

@@ -1,0 +1,12 @@
+.prev-task,
+.next-task {
+  font-size: 1.6em;
+
+  svg {
+    fill: var(--purple);
+  }
+
+  &[disabled] svg {
+    fill: var(--lavender);
+  }
+}
