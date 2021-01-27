@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import classnames from 'classnames'
-import { FaCheck } from 'react-icons/fa'
+import { FaCheck, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 import { Task } from 'ProjectPlanner/types'
 import { Dialog } from 'ProjectPlanner/Dialog'
+import { AssignedTo } from 'ProjectPlanner/AssignedTo'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
+import { api } from 'ProjectPlanner/api2'
+import { useTask } from './useTask'
 import 'ProjectPlanner/TaskDialog.scss'
 
 type Props = {
+  taskId: number
+  siblingTaskIds: number[]
+  onChangeTaskId(taskId: number): void
   onClose(): void
 }
 
-export const TaskDialog: React.FC<Props> = ({ onClose }) => {
-  const [task, setTask] = useState({
-    name: 'Learn useEffect',
-    content: `It's a "hook!"`,
-    minutes: 30,
-    completedMinutes: 0,
-  })
+export const TaskDialog: React.FC<Props> = ({
+  taskId,
+  siblingTaskIds,
+  onChangeTaskId,
+  onClose,
+}) => {
+  const [task, setTask] = useTask(taskId)
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
+  const i = siblingTaskIds.indexOf(taskId)
+  const prevTaskId = i > 0 && siblingTaskIds[i - 1]
+  const nextTaskId = i < siblingTaskIds.length - 1 && siblingTaskIds[i + 1]
 
-  // Partial is a utility that takes the type we pass in and makes a new
-  // type where every key is optional.
   function update(partialTask: Partial<Task>) {
+    if (!task) return
     setTask({ ...task, ...partialTask })
   }
 
@@ -37,7 +45,7 @@ export const TaskDialog: React.FC<Props> = ({ onClose }) => {
               className="form-field"
               type="text"
               placeholder="Task Name"
-              value={task.name}
+              value={task?.name || ''}
               onChange={(e) => {
                 update({ name: e.target.value })
               }}
@@ -46,13 +54,20 @@ export const TaskDialog: React.FC<Props> = ({ onClose }) => {
               className="form-field"
               style={{ minHeight: '9rem' }}
               placeholder="Task"
-              value={task.content}
+              value={task?.content || ''}
               onChange={(e) => {
                 update({ content: e.target.value })
               }}
             />
           </div>
           <div className="w-40 ml-4 spacing">
+            <div className="spacing-small">
+              <Heading as="h2" size={4}>
+                Assigned To:
+              </Heading>
+              <AssignedTo taskId={taskId} />
+            </div>
+
             <div className="spacing-small">
               <Heading as="h2" size={4}>
                 Total Task Minutes:
@@ -68,54 +83,76 @@ export const TaskDialog: React.FC<Props> = ({ onClose }) => {
 
             <div className="spacing-small">
               <Heading as="h2" size={4}>
-                Minutes Completed: {task.completedMinutes}/{task?.minutes}
+                Minutes Completed: {task?.completedMinutes}/{task?.minutes}
               </Heading>
               {task && task.minutes > 0 && (
                 <Progress
-                  totalMinutes={task.minutes || 0}
-                  completedMinutes={task.completedMinutes || 0}
+                  totalMinutes={task?.minutes || 0}
+                  completedMinutes={task?.completedMinutes || 0}
                   onChange={(completedMinutes) => update({ completedMinutes })}
-                  status={complete ? 'complete' : 'progress'}
                 />
               )}
               <p className="text-small">
                 {task && task.minutes === 0 && <i>Set Minutes First</i>}
                 {task && task.minutes > 0 && (
                   <span className="task-color">
-                    {((task.completedMinutes! / task.minutes) * 100).toFixed(0)}% Complete
+                    {((task?.completedMinutes! / task.minutes) * 100).toFixed(0)}% Complete
                   </span>
                 )}
               </p>
             </div>
           </div>
         </div>
-
-        <footer className="align-right horizontal-spacing">
-          <button className="button button-outline" onClick={onClose}>
-            Close
-          </button>
-
-          {task && task.minutes > 0 && (
+        <footer className="flex-split">
+          <div className="horizontal-spacing">
             <button
-              className={classnames('button', { 'button-green': complete })}
+              aria-label="Previous Task"
+              disabled={!prevTaskId}
+              className="prev-task"
               onClick={() => {
-                if (complete) {
-                  onClose()
-                } else {
-                  update({ completedMinutes: task.minutes })
-                }
+                if (prevTaskId) onChangeTaskId(prevTaskId)
               }}
             >
-              {complete ? (
-                <>
-                  <FaCheck />
-                  <span>Done</span>
-                </>
-              ) : (
-                <span>Complete</span>
-              )}
+              <FaArrowCircleLeft />
             </button>
-          )}
+            <button
+              aria-label="Next Task"
+              disabled={!nextTaskId}
+              className="next-task"
+              onClick={() => {
+                if (nextTaskId) onChangeTaskId(nextTaskId)
+              }}
+            >
+              <FaArrowCircleRight />
+            </button>
+          </div>
+          <div className="horizontal-spacing">
+            <button className="button button-outline" onClick={onClose}>
+              Close
+            </button>
+
+            {task && task.minutes > 0 && (
+              <button
+                className={classnames('button', { 'button-green': complete })}
+                onClick={() => {
+                  if (complete) {
+                    onClose()
+                  } else {
+                    update({ completedMinutes: task.minutes })
+                  }
+                }}
+              >
+                {complete ? (
+                  <>
+                    <FaCheck />
+                    <span>Done</span>
+                  </>
+                ) : (
+                  <span>Complete</span>
+                )}
+              </button>
+            )}
+          </div>
         </footer>
       </div>
     </Dialog>

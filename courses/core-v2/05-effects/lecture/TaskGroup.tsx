@@ -9,6 +9,7 @@ type Props = {
   taskGroupId: number
   name: string
   taskIds: number[]
+  // tasks: Task[]
 }
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
