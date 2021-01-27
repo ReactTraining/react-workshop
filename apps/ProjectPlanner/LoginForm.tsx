@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { User } from './types'
-import { Heading } from './Heading'
-import { Notice } from './Notice'
-import api from './api'
+import { User } from 'ProjectPlanner/types'
+import { Heading } from 'ProjectPlanner/Heading'
+import { Notice } from 'ProjectPlanner/Notice'
+import api from 'ProjectPlanner/api'
 
 type Props = {
   onAuthenticated?(user: User): void

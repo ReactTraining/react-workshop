@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dialog as ReachDialog } from '@reach/dialog'
-import { Heading } from './Heading'
+import { Heading } from 'ProjectPlanner/Heading'
 import './Dialog.scss'
 
 type Props = {

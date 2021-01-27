@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
-import api from './api'
-import { Avatar } from './Avatar'
-import { Logo } from './Logo'
-import { useAuth } from './AuthContext'
+import api from 'ProjectPlanner/api'
+import { Avatar } from 'ProjectPlanner/Avatar'
+import { Logo } from 'ProjectPlanner/Logo'
+import { useAuth } from 'ProjectPlanner/AuthContext'
 import './PrimaryHeader.scss'
 
 export const PrimaryHeader: React.FC = () => {

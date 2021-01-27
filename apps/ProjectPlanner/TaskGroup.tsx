@@ -1,20 +1,19 @@
 import React, { useContext, useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { FaTrash } from 'react-icons/fa'
-import { TaskCard } from './TaskCard'
-import { Heading } from './Heading'
-import { EditTitle } from './EditTitle'
-import { DialogConfirm } from './Dialog'
+import { TaskCard } from 'ProjectPlanner/TaskCard'
+import { Heading } from 'ProjectPlanner/Heading'
+import { EditTitle } from 'ProjectPlanner/EditTitle'
+import { DialogConfirm } from 'ProjectPlanner/Dialog'
 import { TaskDialog } from 'ProjectPlanner/TaskDialog'
-import { BoardContext } from './Board'
-import { Task } from './types'
+import { BoardContext } from 'ProjectPlanner/Board'
+import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
 
 type Props = {
   taskGroupId: number
   name: string
   taskIds: number[]
-  tasks: Task[]
 }
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {

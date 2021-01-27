@@ -1,17 +1,10 @@
 import React from 'react'
 import { Slider } from '@reach/slider'
-import 'ProjectPlanner/Progress.scss'
+import './Progress.scss'
 
-// type Props = {
-//   completedMinutes: number
-//   totalMinutes: number
-//   color: string
-//   onChange(value: number): void
-// }
-
-export const Progress = ({ completedMinutes, totalMinutes, color, onChange }) => {
+export const Progress = ({ completedMinutes, totalMinutes, status = 'progress', onChange }) => {
   return (
-    <div className="progress" style={{ color }}>
+    <div className="progress" data-status={status}>
       <Slider min={0} max={totalMinutes} step={1} value={completedMinutes} onChange={onChange} />
     </div>
   )

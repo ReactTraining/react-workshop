@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BsKanban } from 'react-icons/bs'
-import { Heading } from './Heading'
-import { DialogConfirm } from './Dialog'
-import { Board as BoardType } from './types'
-import { useTheme } from './ThemeContext'
-import api from './api'
+import { Heading } from 'ProjectPlanner/Heading'
+import { DialogConfirm } from 'ProjectPlanner/Dialog'
+import { Board as BoardType } from 'ProjectPlanner/types'
+import { useTheme } from 'ProjectPlanner/ThemeContext'
+import api from 'ProjectPlanner/api'
 import 'ProjectPlanner/BrowseBoardItem.scss'
 
 type BrowseBoardItemProps = {

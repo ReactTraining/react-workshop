@@ -3,9 +3,6 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from './Minutes.final'
 import { Progress } from './Progress'
 
-const colorGreen = '#4dd579'
-const colorBlue = '#04b3ff'
-
 export const Task = () => {
   const [completedMinutes, setCompletedMinutes] = useState(0)
   const [minutes, setMinutes] = useState(0)
@@ -27,7 +24,7 @@ export const Task = () => {
         <Progress
           completedMinutes={completedMinutes}
           totalMinutes={minutes}
-          color={complete ? colorGreen : colorBlue}
+          status={complete ? 'complete' : 'progress'}
           onChange={(completedMinutes) => {
             setCompletedMinutes(completedMinutes)
           }}

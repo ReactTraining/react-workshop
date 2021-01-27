@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthProvider, useAuth } from './AuthContext'
-import { ThemeProvider } from './ThemeContext'
-import { PrimaryLayout } from './PrimaryLayout'
-import { UnauthenticatedLayout } from './UnauthenticatedLayout'
+import { AuthProvider, useAuth } from 'ProjectPlanner/AuthContext'
+import { ThemeProvider } from 'ProjectPlanner/ThemeContext'
+import { PrimaryLayout } from 'ProjectPlanner/PrimaryLayout'
+import { UnauthenticatedLayout } from 'ProjectPlanner/UnauthenticatedLayout'
 import './styles/global-styles.scss'
 
 const AppInContext: React.FC = () => {

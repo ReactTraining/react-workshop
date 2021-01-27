@@ -3,9 +3,6 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from './Minutes'
 import { Progress } from './Progress'
 
-const colorRed = '#ff5656'
-const colorBlue = '#04b3ff'
-
 // Remember, there are more detailed instructions in the README.md
 // file with every exercise
 
@@ -40,7 +37,7 @@ export const Task = () => {
         <Progress
           completedMinutes={completedMinutes}
           totalMinutes={minutes}
-          color={colorBlue}
+          status="progress"
           // Task 1:
           onChange={(completedMinutes) => {
             // setCompletedMinutes(completedMinutes)

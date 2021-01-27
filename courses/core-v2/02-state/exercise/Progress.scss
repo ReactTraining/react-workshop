@@ -1,10 +1,6 @@
 .progress {
   padding: 0 0.3em;
 
-  &[data-status='none'] {
-    --taskColor: #04b3ff;
-  }
-
   &[data-status='progress'] {
     --taskColor: #04b3ff;
   }

@@ -78,8 +78,8 @@ export const Task = () => {
             <Progress
               completedMinutes={completedMinutes}
               totalMinutes={minutes}
-              color={complete ? colorGreen : colorBlue}
               onChange={setCompletedMinutes}
+              status={complete ? 'complete' : 'progress'}
             />
           </div>
         </div>

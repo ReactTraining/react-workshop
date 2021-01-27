@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { LoginForm } from './LoginForm'
-import { SignupForm } from './SignupForm'
-import { useAuth } from './AuthContext'
+import { LoginForm } from 'ProjectPlanner/LoginForm'
+import { SignupForm } from 'ProjectPlanner/SignupForm'
+import { useAuth } from 'ProjectPlanner/AuthContext'
 import 'ProjectPlanner/UnauthorizedLayout.scss'
 
 export const UnauthenticatedLayout: React.FC = () => {
