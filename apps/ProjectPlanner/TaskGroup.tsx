@@ -7,7 +7,6 @@ import { EditTitle } from 'ProjectPlanner/EditTitle'
 import { DialogConfirm } from 'ProjectPlanner/Dialog'
 import { TaskDialog } from 'ProjectPlanner/TaskDialog'
 import { BoardContext } from 'ProjectPlanner/Board'
-import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
 
 type Props = {

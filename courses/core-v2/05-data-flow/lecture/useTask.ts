@@ -5,7 +5,17 @@ import { api } from 'ProjectPlanner/api2'
 export function useTask(taskId: number) {
   const [task, setTask] = useState<Task | null>(null)
 
-  // Do Effect Here
+  useEffect(() => {
+    let isCurrent = true
+    api.boards.getTask(taskId).then((task) => {
+      if (isCurrent) {
+        setTask(task)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [taskId])
 
   return [task, setTask] as const
 }

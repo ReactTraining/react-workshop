@@ -40,11 +40,7 @@ export const Board: React.FC = () => {
           taskGroups.map((taskGroup) => {
             return (
               <div className="task-group-wrap" key={taskGroup.id}>
-                <TaskGroup
-                  taskGroupId={taskGroup.id}
-                  name={taskGroup.name}
-                  taskIds={taskGroup.taskIds}
-                />
+                <TaskGroup name={taskGroup.name} taskIds={taskGroup.taskIds} />
               </div>
             )
           })}

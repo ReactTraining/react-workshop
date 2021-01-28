@@ -27,8 +27,8 @@ export const BoardContext = React.createContext<BoardContextType>(null!)
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
   const [board, setBoard] = useBoard(boardId)
-  const [tasks, setTasks] = useTasks(boardId)
   const [taskGroups, setTaskGroups] = useTaskGroups(boardId)
+  const [tasks, setTasks] = useTasks(boardId)
 
   function onDragEnd(result: any) {
     if (!result.destination || !board || !taskGroups) return
@@ -76,16 +76,22 @@ export const Board: React.FC = () => {
       setTaskGroups(taskGroups.filter((t) => t.id !== taskGroupId))
       setTasks(tasks.filter((t) => !relatedTaskIds.includes(t.id)))
     },
-    getTask: (taskId) => {
-      return tasks?.find((t) => t.id === taskId)
-    },
-    updateTask: (taskId, task) => {
-      api.boards.updateTask(taskId, task).then(() => {
-        if (!tasks) return
-        const i = tasks.findIndex((t) => t.id === taskId)
-        setTasks([...tasks.slice(0, i), task, ...tasks.slice(i, tasks.length)])
-      })
-    },
+    getTask: React.useCallback(
+      (taskId) => {
+        return tasks?.find((t: TaskType) => t.id === taskId)
+      },
+      [tasks]
+    ),
+    updateTask: React.useCallback(
+      (taskId, task) => {
+        api.boards.updateTask(taskId, task).then(() => {
+          if (!tasks) return
+          const i = tasks.findIndex((t) => t.id === taskId)
+          setTasks([...tasks.slice(0, i), task, ...tasks.slice(i, tasks.length)])
+        })
+      },
+      [setTasks, tasks]
+    ),
     createTask: async (taskGroupId) => {
       if (!board || !taskGroups || !tasks) return
 
@@ -116,7 +122,7 @@ export const Board: React.FC = () => {
       })
 
       setTaskGroups(newTaskGroups)
-      api.boards.updateTaskGroups(newTaskGroups)
+      await api.boards.updateTaskGroups(newTaskGroups)
     },
   }
 

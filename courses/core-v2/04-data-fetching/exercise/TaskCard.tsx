@@ -1,8 +1,6 @@
-import React from 'react'
-import { format, parse } from 'date-fns'
-import { FaCalendar } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
-import { useTask } from './useTask'
+// import { useTask } from './useTask'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
@@ -11,7 +9,11 @@ type Props = {
 }
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
-  // Do Effect Here
+  // Do effect here to get task based on taskId
+
+  // Use the `task.name` and `task.content` in the appropriate place below.
+  // But remember, you can't just use `task.name` if task is null or
+  // undefined, so you'll have to handle that situation.
 
   return (
     <div

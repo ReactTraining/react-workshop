@@ -60,9 +60,9 @@ export const TaskCard: React.FC<Props> = ({ taskId, onClick, index }) => {
               <TaskColor task={task}>
                 <div className="task-card">
                   <div className="task-card-content spacing-small">
-                    {task && <Heading size={3}>{task.name}</Heading>}
+                    <Heading size={3}>{task.name}</Heading>
                     <div className="task-card-content">
-                      {!task?.content ? <i>No Content</i> : task.content}
+                      {task.content ? <i>No Content</i> : task.content}
                     </div>
                   </div>
                   <footer className="flex-split">
