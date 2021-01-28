@@ -3,9 +3,6 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 
-const colorGreen = '#4dd579'
-const colorBlue = '#04b3ff'
-
 type Task = {
   name: string
   content: string
