@@ -8,15 +8,16 @@
 
 ## ✅ Task 2: Collect the form fields into an object
 
-4. Inside the `handleSubmit` function, populate the task object with all the task information. You can see what keys are expected by looking at the `Task` type at the top of the file. If you're doing TypeScript for this exercise, make the `task` object a `Task` type:
+4. Inside the `handleSubmit` function, populate the task object with all the task information. You can see what keys are expected by looking at the `Task` type at the top of the file.
 
 ```ts
-const task: Task = {
-  /* ... */
-}
-```
+// The JS Way
+const task = {}
 
-If you renamed the file to `.js` and you're doing JavaScript, then you'll need to get rid of the `type` declaration at the top.
+// The TS Way with a Task type. We already made this for you
+// but it's commented out
+const task: Task = {}
+```
 
 After this step, you should now be able to submit the form and see the data in the console.
 
