@@ -1,6 +1,5 @@
 import React from 'react'
 import { Dialog as ReachDialog } from '@reach/dialog'
-import { Heading } from 'ProjectPlanner/Heading'
 import './Dialog.scss'
 
 type Props = {
@@ -19,6 +18,7 @@ export const Dialog: React.FC<Props> = ({ onClose, children, ...props }) => {
 type DialogConfirmProps = {
   onConfirm(): void
   onCancel(): void
+  'aria-label': string
   [key: string]: any
 }
 

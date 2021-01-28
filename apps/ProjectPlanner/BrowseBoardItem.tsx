@@ -28,7 +28,11 @@ export const BrowseBoardItem: React.FC<BrowseBoardItemProps> = ({ board }) => {
   return (
     <>
       {confirmRemove && (
-        <DialogConfirm onConfirm={remove} onCancel={() => setConfirmRemove(false)}>
+        <DialogConfirm
+          onConfirm={remove}
+          onCancel={() => setConfirmRemove(false)}
+          aria-label="Remove Board?"
+        >
           Are you sure you want to remove this Board?
         </DialogConfirm>
       )}
