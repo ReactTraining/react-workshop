@@ -61,9 +61,7 @@ export const TaskCard: React.FC<Props> = ({ taskId, onClick, index }) => {
                 <div className="task-card">
                   <div className="task-card-content spacing-small">
                     <Heading size={3}>{task.name}</Heading>
-                    <div className="task-card-content">
-                      {task.content ? <i>No Content</i> : task.content}
-                    </div>
+                    <div className="task-card-content">{task.content || <i>No Content</i>}</div>
                   </div>
                   <footer className="flex-split">
                     <div className="horizontal-spacing">
