@@ -3,32 +3,27 @@ import { useParams } from 'react-router-dom'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { TaskGroup } from 'ProjectPlanner/TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
-import { useBoard, useTaskGroups, useTasks } from 'ProjectPlanner/hooks/dataHooks'
+
 import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/types'
 import { EditTitle } from 'ProjectPlanner/EditTitle'
-import api from 'ProjectPlanner/api'
+
 import './Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
 
-type BoardContextType = {
-  updateBoardName: (name: string) => void
-  createTaskGroup: () => void
-  updateTaskGroupName: (taskGroupId: number, name: string) => void
-  removeTaskGroup: (taskGroupId: number) => void
-  getTask: (taskId: number) => TaskType | undefined
-  updateTask: (taskId: number, task: TaskType) => void
-  createTask: (taskGroupId: number) => void
-  removeTask: (taskId: number) => void
-}
-
-export const BoardContext = React.createContext<BoardContextType>(null!)
+import { BoardProvider, useBoardContext } from './BoardContext'
 
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
-  const [board, setBoard] = useBoard(boardId)
-  const [taskGroups, setTaskGroups] = useTaskGroups(boardId)
-  const [tasks, setTasks] = useTasks(boardId)
+  return (
+    <BoardProvider boardId={boardId}>
+      <BoardUI />
+    </BoardProvider>
+  )
+}
+
+export const BoardUI: React.FC = () => {
+  const { board, taskGroups, updateBoardName, createTaskGroup } = useBoardContext()
 
   function onDragEnd(result: any) {
     if (!result.destination || !board || !taskGroups) return
@@ -37,136 +32,46 @@ export const Board: React.FC = () => {
     const fromListId = parseInt(result.source.droppableId)
     const toListId = parseInt(result.destination.droppableId)
     const newTaskGroups = shuffleArray(taskGroups, fromListId, fromIndex, toListId, toIndex)
-
     // Optimistic: Set State before Network Call
-    setTaskGroups(newTaskGroups)
-    api.boards.updateTaskGroups(newTaskGroups)
-  }
-
-  const context: BoardContextType = {
-    updateBoardName: (name) => {
-      if (!board) return
-      const newBoard = {
-        ...board,
-        name,
-      }
-      setBoard(newBoard)
-      api.boards.updateBoard(boardId, newBoard)
-    },
-    createTaskGroup: () => {
-      if (!taskGroups) return
-      api.boards.createTaskGroup(boardId).then((newTaskGroup) => {
-        setTaskGroups(taskGroups.concat(newTaskGroup))
-      })
-    },
-    updateTaskGroupName: async (taskGroupId, name) => {
-      if (!board || !taskGroups) return
-
-      const newTaskGroups = taskGroups.map((taskGroup) => {
-        return taskGroup.id !== taskGroupId ? taskGroup : { ...taskGroup, name }
-      })
-
-      setTaskGroups(newTaskGroups)
-      api.boards.updateTaskGroups(newTaskGroups)
-    },
-    removeTaskGroup: async (taskGroupId) => {
-      if (!taskGroups || !tasks) return
-      const relatedTaskIds = taskGroups.find((t) => t.id === taskGroupId)?.taskIds || []
-      await api.boards.removeTaskGroup(taskGroupId, relatedTaskIds)
-      setTaskGroups(taskGroups.filter((t) => t.id !== taskGroupId))
-      setTasks(tasks.filter((t) => !relatedTaskIds.includes(t.id)))
-    },
-    getTask: React.useCallback(
-      (taskId) => {
-        return tasks?.find((t: TaskType) => t.id === taskId)
-      },
-      [tasks]
-    ),
-    updateTask: React.useCallback(
-      (taskId, task) => {
-        api.boards.updateTask(taskId, task).then(() => {
-          if (!tasks) return
-          const i = tasks.findIndex((t) => t.id === taskId)
-          setTasks([...tasks.slice(0, i), task, ...tasks.slice(i, tasks.length)])
-        })
-      },
-      [setTasks, tasks]
-    ),
-    createTask: async (taskGroupId) => {
-      if (!board || !taskGroups || !tasks) return
-
-      // Add Task
-      const task: TaskType = await api.boards.createTask(boardId)
-      setTasks(tasks.concat([task]))
-
-      // Add to Task Group
-      const newTaskGroups = taskGroups.map((taskGroup) => {
-        return taskGroup.id !== taskGroupId
-          ? taskGroup
-          : { ...taskGroup, taskIds: taskGroup.taskIds.concat([task.id]) }
-      })
-
-      setTaskGroups(newTaskGroups)
-      api.boards.updateTaskGroups(newTaskGroups)
-    },
-    removeTask: async (taskId) => {
-      if (!board || !tasks || !taskGroups) return
-
-      // Remove Task
-      await api.boards.removeTask(taskId)
-      setTasks(tasks.filter((task) => task.id !== taskId))
-
-      // Remove Task from Group
-      const newTaskGroups = taskGroups.map((taskGroup) => {
-        return { ...taskGroup, taskIds: taskGroup.taskIds.filter((id) => id !== taskId) }
-      })
-
-      setTaskGroups(newTaskGroups)
-      await api.boards.updateTaskGroups(newTaskGroups)
-    },
+    // setTaskGroups(newTaskGroups)
+    // api.boards.updateTaskGroups(newTaskGroups)
   }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <BoardContext.Provider value={context}>
-        <div className="board spacing">
-          <header className="flex spacing">
-            <Heading style={{ minWidth: '25rem' }}>
-              {board ? (
-                <EditTitle
-                  title={board.name}
-                  placeholder="Board Name"
-                  onSave={context.updateBoardName}
-                />
-              ) : (
-                ''
-              )}
-            </Heading>
-            <div className="align-right flex-1">...</div>
-          </header>
+      <div className="board spacing">
+        <header className="flex spacing">
+          <Heading style={{ minWidth: '25rem' }}>
+            {board ? (
+              <EditTitle title={board.name} placeholder="Board Name" onSave={updateBoardName} />
+            ) : (
+              ''
+            )}
+          </Heading>
+          <div className="align-right flex-1">...</div>
+        </header>
 
-          <div className="board-scroll-area">
-            {taskGroups &&
-              taskGroups.map((taskGroup) => {
-                return (
-                  <div className="task-group-wrap" key={taskGroup.id}>
-                    <TaskGroup
-                      taskGroupId={taskGroup.id}
-                      name={taskGroup.name}
-                      taskIds={taskGroup.taskIds}
-                    />
-                  </div>
-                )
-              })}
+        <div className="board-scroll-area">
+          {taskGroups &&
+            taskGroups.map((taskGroup) => {
+              return (
+                <div className="task-group-wrap" key={taskGroup.id}>
+                  <TaskGroup
+                    taskGroupId={taskGroup.id}
+                    name={taskGroup.name}
+                    taskIds={taskGroup.taskIds}
+                  />
+                </div>
+              )
+            })}
 
-            <div>
-              <button className="add-task-group-button" onClick={context.createTaskGroup}>
-                Add Column
-              </button>
-            </div>
+          <div>
+            <button className="add-task-group-button" onClick={createTaskGroup}>
+              Add Column
+            </button>
           </div>
         </div>
-      </BoardContext.Provider>
+      </div>
     </DragDropContext>
   )
 }

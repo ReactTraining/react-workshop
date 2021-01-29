@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { format, parse } from 'date-fns'
 import { Draggable } from 'react-beautiful-dnd'
 import { FaCalendar, FaTrash } from 'react-icons/fa'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
 import { Heading } from 'ProjectPlanner/Heading'
 import { DialogConfirm } from 'ProjectPlanner/Dialog'
-import { BoardContext } from 'ProjectPlanner/Board'
+import { useBoardContext } from 'ProjectPlanner/BoardContext'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick, index }) => {
   const [promptRemove, setPromptRemove] = useState(false)
-  const { getTask, removeTask } = useContext(BoardContext)
+  const { getTask, removeTask } = useBoardContext()
   const task = getTask(taskId)
 
   function handleKeydown(event: React.KeyboardEvent) {

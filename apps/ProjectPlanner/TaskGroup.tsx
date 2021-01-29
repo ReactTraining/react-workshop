@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { FaTrash } from 'react-icons/fa'
 import { TaskCard } from 'ProjectPlanner/TaskCard'
@@ -6,7 +6,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { EditTitle } from 'ProjectPlanner/EditTitle'
 import { DialogConfirm } from 'ProjectPlanner/Dialog'
 import { TaskDialog } from 'ProjectPlanner/TaskDialog'
-import { BoardContext } from 'ProjectPlanner/Board'
+import { useBoardContext } from 'ProjectPlanner/BoardContext'
 import 'ProjectPlanner/TaskGroup.scss'
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
   const [promptRemove, setPromptRemove] = useState(false)
-  const { createTask, updateTaskGroupName, removeTaskGroup } = useContext(BoardContext)
+  const { createTask, updateTaskGroupName, removeTaskGroup } = useBoardContext()
   const [expandTaskId, setExpandTaskId] = useState<number | null>(null)
 
   return (

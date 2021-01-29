@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import classnames from 'classnames'
 import { FaCheck, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 import { Task } from 'ProjectPlanner/types'
@@ -7,7 +7,7 @@ import { AssignedTo } from 'ProjectPlanner/AssignedTo'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
-import { BoardContext } from 'ProjectPlanner/Board'
+import { useBoardContext } from 'ProjectPlanner/BoardContext'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
 import './TaskDialog.scss'
 
@@ -24,7 +24,7 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const { updateTask, getTask } = useContext(BoardContext)
+  const { updateTask, getTask } = useBoardContext()
   const [edited, setEdited] = useState(false)
   const [task, setTask] = useState<Task | null>(null)
 
