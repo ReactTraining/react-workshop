@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
+import { Task } from 'ProjectPlanner/types'
 // import { useTask } from './useTask'
 import 'ProjectPlanner/TaskCard.scss'
 
@@ -9,11 +10,10 @@ type Props = {
 }
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
-  // Do effect here to get task based on taskId
+  const [task, setTask] = useState<Task | null>(null)
 
-  // Use the `task.name` and `task.content` in the appropriate place below.
-  // But remember, you can't just use `task.name` if task is null or
-  // undefined, so you'll have to handle that situation.
+  // Do effect here to get task based on taskId
+  // You'll want to store the response in the `task` state above
 
   return (
     <div
@@ -23,8 +23,8 @@ export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
       className="task-card"
     >
       <div className="task-card-content spacing-small">
-        <Heading size={3}>Task Name</Heading>
-        <div className="task-card-content">Task Content</div>
+        <Heading size={3}>{task?.name}</Heading>
+        <div className="task-card-content">{task?.content || <i>No Content</i>}</div>
       </div>
     </div>
   )

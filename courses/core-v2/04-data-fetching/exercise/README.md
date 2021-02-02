@@ -18,7 +18,12 @@ Board
 
 ## ✅ Task 1: TaskCard Data
 
-1. Write an effect to get the task for TaskCard. We have a copy of it for you to review if you need to in TaskDialog.
-2. Since we now have the same useEffect logic twice, refactor TaskCard and TaskDialog to use the existing `useTask.ts` custom hook.
+1. Open TaskCard.tsx. In the browser, navigate to a board that has tasks.
+2. Write an effect to get the task based on the `taskId` prop. Hint, the effect is identical to the code in TaskDialog if you want to peak 👀.
+3. When the page loads, you should be able to see the Task Cards load with their data now.
+
+## ✅ Task 2: Custom Hook
+
+4. Since we now have the same useEffect logic twice, refactor `TaskCard` and `TaskDialog` to use the existing `useTask.ts` custom hook.
 
 Remember, the main reason for custom hooks is code-reuse.

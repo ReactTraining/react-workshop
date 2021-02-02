@@ -25,12 +25,7 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const [task, setTask] = useState({
-    name: '',
-    content: '',
-    minutes: 20,
-    completedMinutes: 0,
-  })
+  const [task, setTask] = useState<Task | null>(null)
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)
@@ -43,7 +38,7 @@ export const TaskDialog: React.FC<Props> = ({
   }
 
   return (
-    <Dialog onClose={onClose} aria-label="Edit Task">
+    <Dialog onClose={close} aria-label="Edit Task">
       <div className="spacing">
         <div className="flex">
           <div className="flex-1 spacing">

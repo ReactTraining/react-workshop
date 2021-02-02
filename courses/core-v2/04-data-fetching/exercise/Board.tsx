@@ -12,23 +12,11 @@ export const Board: React.FC = () => {
   const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
 
   useEffect(() => {
-    let isCurrent = true
-    api.boards.getBoard(boardId).then((board) => {
-      if (isCurrent) setBoard(board)
+    api.boards.getBoard(boardId).then((data: any) => {
+      const { taskGroups, tasks, ...board } = data
+      setBoard(board)
+      setTaskGroups(taskGroups)
     })
-    return () => {
-      isCurrent = false
-    }
-  }, [boardId])
-
-  useEffect(() => {
-    let isCurrent = true
-    api.boards.getTaskGroups(boardId).then((taskGroups) => {
-      if (isCurrent) setTaskGroups(taskGroups)
-    })
-    return () => {
-      isCurrent = false
-    }
   }, [boardId])
 
   return (
