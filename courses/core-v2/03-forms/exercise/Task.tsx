@@ -3,21 +3,27 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 
-// type Task = {
-//   name: string
-//   content: string
-//   minutes: number
-//   completedMinutes: number
-// }
+type Task = {
+  // name: string
+  // content: string
+  minutes: number
+  completedMinutes: number
+}
 
 export const Task = () => {
-  const [completedMinutes, setCompletedMinutes] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const complete = minutes > 0 && minutes === completedMinutes
+  const [task, setTask] = useState<Task>({
+    minutes: 20,
+    completedMinutes: 0,
+  })
+  const complete = task.minutes > 0 && task.minutes === task.completedMinutes
+
+  function update(partialTask: Partial<Task>) {
+    if (!task) return
+    setTask({ ...task, ...partialTask })
+  }
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const task = {}
     console.log(task)
   }
 
@@ -33,17 +39,21 @@ export const Task = () => {
             <Heading as="h2" size={4}>
               Total Task Minutes:
             </Heading>
-            <Minutes minutes={minutes} min={completedMinutes} onChange={setMinutes} />
+            <Minutes
+              minutes={task.minutes}
+              min={task.completedMinutes}
+              onChange={(minutes) => update({ minutes })}
+            />
           </div>
 
           <div className="spacing-small">
             <Heading as="h2" size={4}>
-              Minutes Completed: {completedMinutes}/{minutes}
+              Minutes Completed: {task.completedMinutes}/{task.minutes}
             </Heading>
             <Progress
-              completedMinutes={completedMinutes}
-              totalMinutes={minutes}
-              onChange={setCompletedMinutes}
+              completedMinutes={task.completedMinutes}
+              totalMinutes={task.minutes}
+              onChange={(completedMinutes) => update({ completedMinutes })}
               status={complete ? 'complete' : 'progress'}
             />
           </div>

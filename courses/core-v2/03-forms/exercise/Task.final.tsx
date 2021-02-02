@@ -10,27 +10,26 @@ type Task = {
   completedMinutes: number
 }
 
-export const Task = () => {
-  const [name, setName] = useState('')
-  const [content, setContent] = useState('')
-  const [completedMinutes, setCompletedMinutes] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const complete = minutes > 0 && minutes === completedMinutes
+const initialTask = {
+  name: '',
+  content: '',
+  minutes: 20,
+  completedMinutes: 0,
+}
 
+export const Task = () => {
+  const [task, setTask] = useState<Task>(initialTask)
+  const complete = task.minutes > 0 && task.minutes === task.completedMinutes
   const nameRef = useRef<HTMLInputElement>(null!)
+
+  function update(partialTask: Partial<Task>) {
+    if (!task) return
+    setTask({ ...task, ...partialTask })
+  }
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const task: Task = {
-      name,
-      content,
-      minutes,
-      completedMinutes,
-    }
-    setName('')
-    setContent('')
-    setMinutes(0)
-    setCompletedMinutes(0)
+    setTask(initialTask)
     console.log(task)
     nameRef.current?.focus()
   }
@@ -45,18 +44,18 @@ export const Task = () => {
             placeholder="Task Name"
             required
             ref={nameRef}
-            value={name}
+            value={task.name}
             onChange={(event) => {
-              setName(event.target.value)
+              update({ name: event.target.value })
             }}
           />
           <textarea
             className="form-field"
             placeholder="Task"
             required
-            value={content}
+            value={task.content}
             onChange={(event) => {
-              setContent(event.target.value)
+              update({ content: event.target.value })
             }}
           />
         </div>
@@ -65,17 +64,21 @@ export const Task = () => {
             <Heading as="h2" size={4}>
               Total Task Minutes:
             </Heading>
-            <Minutes minutes={minutes} min={completedMinutes} onChange={setMinutes} />
+            <Minutes
+              minutes={task.minutes}
+              min={task.completedMinutes}
+              onChange={(minutes) => update({ minutes })}
+            />
           </div>
 
           <div className="spacing-small">
             <Heading as="h2" size={4}>
-              Minutes Completed: {completedMinutes}/{minutes}
+              Minutes Completed: {task.completedMinutes}/{task.minutes}
             </Heading>
             <Progress
-              completedMinutes={completedMinutes}
-              totalMinutes={minutes}
-              onChange={setCompletedMinutes}
+              completedMinutes={task.completedMinutes}
+              totalMinutes={task.minutes}
+              onChange={(completedMinutes) => update({ completedMinutes })}
               status={complete ? 'complete' : 'progress'}
             />
           </div>

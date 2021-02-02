@@ -2,28 +2,29 @@
 
 ## ✅ Task 1: Controlled `name` and `content` fields
 
-1. Open `Task.js` and create two pieces of state for `name` and `content`.
-2. Make the input and textarea form fields "controlled" by giving them a `value` and an `onChange` prop that controls the newly created state.
-3. If you can type into the field and submit the form then you're on the right track. Verify the form is being submitted by checking the console. You should see an empty object for now.
+1. Open `Task.tsx` and create state for `name` and `content`. Notice that the state for the task has been moved to a single object. So create those properties on that object.
+2. Make the input and textarea form fields "controlled" by giving them a `value` and an `onChange` prop that controls the newly created state. Notice that if you call `setTask` directly you have to account for all the other state. We created an `update` function for you. Use it like this:
 
-## ✅ Task 2: Collect the form fields into an object
+```js
+// This will set your entire state so it only has a `name` property. Don't do this
+setTask({ name: 'some new name' })
 
-4. Inside the `handleSubmit` function, populate the task object with all the task information. You can see what keys are expected by looking at the `Task` type at the top of the file.
-
-```ts
-// The JS Way
-const task = {}
-
-// The TS Way with a Task type. We already made this for you
-// but it's commented out
-const task: Task = {}
+// We created this `update` function for you. It takes an object and "blends" it into
+// the existing state. Check out its implementation in `Task.tsx`
+update({ name: 'some new name' })
 ```
 
-After this step, you should now be able to submit the form and see the data in the console.
+3. If you can type into the field and submit the form then you're on the right track. Verify the form is being submitted by checking the console. You should see an empty object for now.
 
-## ✅ Task 3: Refs for Focus
+## ✅ Task 2: Submit the form
 
-5. After the form is submitted, lets clear the form (by resetting the state). See the `.final` if you need to see what we mean.
+4. At this point, you should be able to fill out the form and submit it. You'll see the data in the console.
+5. Clear the form by setting the state for the task to be the initial values again.
+
+Hint: Use empty strings for `name` and `content`
+
+## ✅ Task 3: Refs for focus
+
 6. Let's reset the focus of the cursor to be back on the name input field after submission as well. There is no way to "declaratively" do this with JSX. So you'll have to imperatively do it by working directly with the DOM. For this we'll use a "ref"
 7. Create a ref using `useRef()`:
 

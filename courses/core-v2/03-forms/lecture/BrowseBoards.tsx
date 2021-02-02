@@ -44,23 +44,17 @@ export const BrowseBoards = () => {
       </form>
 
       <div className="spacing">
-        {boards.map((board) => {
-          return (
-            <div key={board.id} className="browse-board-item flex items-center">
-              <div className=" mr-2" style={{ fontSize: '2rem' }}>
-                <BsKanban className="block" color="var(--purple)" />
-              </div>
-              <div className="spacing-small flex-1">
-                <Heading>{board.name || <em>Board Name</em>}</Heading>
-              </div>
-              <div>
-                <button className="button button-outline" onClick={() => onRemove(board.id)}>
-                  Remove
-                </button>
-              </div>
-            </div>
-          )
-        })}
+        <div className="browse-board-item flex items-center">
+          <div className=" mr-2" style={{ fontSize: '2rem' }}>
+            <BsKanban className="block" color="var(--purple)" />
+          </div>
+          <div className="spacing-small flex-1">
+            <Heading>Board Name</Heading>
+          </div>
+          <div>
+            <button className="button button-outline">Remove</button>
+          </div>
+        </div>
       </div>
     </div>
   )
