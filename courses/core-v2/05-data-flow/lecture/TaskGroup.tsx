@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { TaskDialog } from './TaskDialog'
 import { TaskCard } from './TaskCard'
+import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
 
 type Props = {
   name: string
   taskIds: number[]
+  // tasks: Task[] | null
+  // updateTask: (taskId: number, task: Task) => void
 }
 
 export const TaskGroup: React.FC<Props> = ({ name, taskIds }) => {

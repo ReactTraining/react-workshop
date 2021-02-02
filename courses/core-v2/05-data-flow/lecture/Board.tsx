@@ -2,41 +2,36 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { TaskGroup } from './TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
-import { useBoard, useTaskGroups } from 'ProjectPlanner/hooks/dataHooks'
-import { Task } from 'ProjectPlanner/types'
+import {
+  Board as BoardType,
+  TaskGroup as TaskGroupType,
+  Task as TaskType,
+} from 'ProjectPlanner/types'
 import { api } from 'ProjectPlanner/api2'
 import 'ProjectPlanner/Board.scss'
 
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
-  const board = useBoard(boardId)
-  const taskGroups = useTaskGroups(boardId)
+  const [board, setBoard] = useState<BoardType | null>(null)
+  const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
+  const [tasks, setTasks] = useState<TaskType[] | null>(null)
 
-  // const [tasks, setTasks] = useState<Task[] | null>(null)
+  useEffect(() => {
+    api.boards.getBoard(boardId).then((data: any) => {
+      const { taskGroups, tasks, ...board } = data
+      setBoard(board)
+      setTaskGroups(taskGroups)
+      setTasks(tasks)
+    })
+  }, [boardId])
 
-  // useEffect(() => {
-  //   let isCurrent = true
-  //   api.boards.getTasks(boardId).then((tasks) => {
-  //     if (isCurrent) {
-  //       setTasks(tasks)
-  //     }
-  //   })
-  //   return () => {
-  //     isCurrent = false
-  //   }
-  // }, [boardId])
+  // api.boards.updateTask(taskId, task)
 
-  // const getTask = (taskId: number): Task | undefined => {
-  //   return tasks?.find((task) => task.id === taskId)
-  // }
-
-  // const updateTask = (taskId: number, task: Task): void => {
-  //   api.boards.updateTask(taskId, task).then(() => {
-  //     if (!tasks) return
-  //     const i = tasks.findIndex((t) => t.id === taskId)
-  //     setTasks([...tasks.slice(0, i), task, ...tasks.slice(i, tasks.length)])
-  //   })
-  // }
+  const updateTask = (taskId: number, task: TaskType): void => {
+    if (!tasks) return
+    const i = tasks.findIndex((t) => t.id === taskId)
+    setTasks([...tasks.slice(0, i), task, ...tasks.slice(i + 1, tasks.length)])
+  }
 
   return (
     <div className="board spacing">

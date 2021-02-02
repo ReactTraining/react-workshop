@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { useTask } from './useTask'
+import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
   taskId: number
   onClick(): void
+  // tasks: Task[] | null
 }
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {

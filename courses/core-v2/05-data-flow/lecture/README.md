@@ -9,7 +9,7 @@
 # Lecture
 
 - Our starting point is similar to the ending point for the last exercise.
-- Even with the `useTasks` hook removing the repetitive code, we're still doing an API call for each TaskCard. Then doing it again when the dialog is opened.
+- Even with the `useTasks` hook (to remove repetitive code) we're still doing an API call for each `TaskCard`. Then doing it again when `TaskDialog` opens.
 - Replace the current strategy by doing an API call for all the board's tasks in `Board.tsx`.
 - Prop drill a `getBoard` function down to TaskCard and TaskDialog.
 - Everything should work except for updating tasks.
