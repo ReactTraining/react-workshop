@@ -22,8 +22,15 @@ export const Board: React.FC = () => {
   )
 }
 
+// Uses wrapper (Board) so we can read from our own context
 export const BoardUI: React.FC = () => {
-  const { board, taskGroups, updateBoardName, createTaskGroup } = useBoardContext()
+  const {
+    board,
+    taskGroups,
+    updateBoardName,
+    createTaskGroup,
+    updateTaskGroups,
+  } = useBoardContext()
 
   function onDragEnd(result: any) {
     if (!result.destination || !board || !taskGroups) return
@@ -32,9 +39,7 @@ export const BoardUI: React.FC = () => {
     const fromListId = parseInt(result.source.droppableId)
     const toListId = parseInt(result.destination.droppableId)
     const newTaskGroups = shuffleArray(taskGroups, fromListId, fromIndex, toListId, toIndex)
-    // Optimistic: Set State before Network Call
-    // setTaskGroups(newTaskGroups)
-    // api.boards.updateTaskGroups(newTaskGroups)
+    updateTaskGroups(newTaskGroups)
   }
 
   return (

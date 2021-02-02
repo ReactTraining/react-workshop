@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 import { TaskGroup as TaskGroupType, Board as BoardType, Task as TaskType } from '../types'
 
-export const useBoards = (
-  userId: number
-): [BoardType[] | null, React.Dispatch<React.SetStateAction<BoardType[] | null>>] => {
+export const useBoards = (userId: number): BoardType[] | null => {
   const [boards, setBoards] = useState<BoardType[] | null>(null)
 
   useEffect(() => {
@@ -13,12 +11,10 @@ export const useBoards = (
     })
   }, [userId])
 
-  return [boards, setBoards]
+  return boards
 }
 
-export const useBoard = (
-  boardId: number
-): [BoardType | null, React.Dispatch<React.SetStateAction<BoardType | null>>] => {
+export const useBoard = (boardId: number): BoardType | null => {
   const [board, setBoard] = useState<BoardType | null>(null)
 
   useEffect(() => {
@@ -27,12 +23,10 @@ export const useBoard = (
     })
   }, [boardId])
 
-  return [board, setBoard]
+  return board
 }
 
-export const useTaskGroups = (
-  boardId: number
-): [TaskGroupType[] | null, React.Dispatch<React.SetStateAction<TaskGroupType[] | null>>] => {
+export const useTaskGroups = (boardId: number): TaskGroupType[] | null => {
   const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
 
   useEffect(() => {
@@ -41,21 +35,17 @@ export const useTaskGroups = (
     })
   }, [boardId])
 
-  return [taskGroups, setTaskGroups]
+  return taskGroups
 }
 
-export const useTasks = (
-  boardId: number
-): [TaskType[] | null, React.Dispatch<React.SetStateAction<TaskType[] | null>>] => {
-  const [tasks, setTasks] = useState<TaskType[] | null>(null)
+// export const useTasks = (boardId: number): TaskType[] | null => {
+//   const [tasks, setTasks] = useState<TaskType[] | null>(null)
 
-  useEffect(() => {
-    api.boards.getTasks(boardId).then((tasks: TaskType[]) => {
-      setTasks(tasks)
-    })
-  }, [boardId])
+//   useEffect(() => {
+//     api.boards.getTasks(boardId).then((tasks: TaskType[]) => {
+//       setTasks(tasks)
+//     })
+//   }, [boardId])
 
-  return [tasks, setTasks]
-}
-
-// const taskGroups = board?.taskGroups
+//   return tasks
+// }

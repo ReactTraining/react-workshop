@@ -12,6 +12,7 @@ export type Board = {
   id: number
   userId: number
   name: string
+  // todo: I think we need to remove this
   taskGroups: TaskGroup[]
 }
 

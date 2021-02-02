@@ -9,8 +9,8 @@ import 'ProjectPlanner/Board.scss'
 
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
-  const [board] = useBoard(boardId)
-  const [taskGroups] = useTaskGroups(boardId)
+  const board = useBoard(boardId)
+  const taskGroups = useTaskGroups(boardId)
 
   // const [tasks, setTasks] = useState<Task[] | null>(null)
 

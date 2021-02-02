@@ -36,7 +36,8 @@ export const TaskDialog: React.FC<Props> = ({
   useEffect(() => {
     const task = getTask(taskId)
     if (task) setTask(task)
-  }, [getTask, taskId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskId])
 
   function update(partialTask: Partial<Task>) {
     if (!task) return
