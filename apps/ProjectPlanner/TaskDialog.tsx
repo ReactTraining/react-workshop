@@ -24,7 +24,7 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const { updateTask, getTask } = useBoardContext()
+  const { getTask, updateTask } = useBoardContext()
   const [edited, setEdited] = useState(false)
   const [task, setTask] = useState<Task | null>(null)
 
@@ -48,7 +48,6 @@ export const TaskDialog: React.FC<Props> = ({
   useEffect(() => {
     if (edited && task) {
       const id = setTimeout(() => {
-        console.log('update')
         updateTask(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
       }, 400)
       return () => {

@@ -14,12 +14,13 @@ type BoardContextType = {
   board: BoardType | null
   taskGroups: TaskGroupType[] | null
   tasks: TaskType[] | null
-  getTask: (taskId: number) => TaskType | undefined
-  updateBoardName: (name: string) => void
+  loading: boolean
+  updateBoard: (updates: Partial<BoardType>) => void
   createTaskGroup: () => void
-  updateTaskGroupName: (taskGroupId: number, name: string) => void
+  updateTaskGroup: (taskGroupId: number, updates: Partial<TaskGroupType>) => void
   updateTaskGroups: (taskGroups: TaskGroupType[]) => void
   removeTaskGroup: (taskGroupId: number) => void
+  getTask: (taskId: number) => TaskType | undefined
   updateTask: (taskId: number, task: TaskType) => void
   createTask: (taskGroupId: number) => void
   removeTask: (taskId: number) => void
@@ -141,7 +142,7 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
   )
 
   const { current: status, board, taskGroups, tasks } = state
-  // const loading = status === 'loading'
+  const loading = status === 'loading'
 
   useEffect(() => {
     api.boards.getBoard(boardId).then((data: any) => {
@@ -150,22 +151,15 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
     })
   }, [boardId])
 
-  // const tasksRef = useRef(tasks)
-  // useEffect(() => {
-  //   tasksRef.current = tasks
-  // }, [tasks])
-
   const context: BoardContextType = {
     board,
     taskGroups,
     tasks,
-    getTask: (taskId) => {
-      return tasks?.find((t: TaskType) => t.id === taskId)
-    },
-    updateBoardName: (name) => {
+    loading,
+    updateBoard: (updates) => {
       if (!board) return
-      api.boards.updateBoard(boardId, { name }).then(() => {
-        dispatch({ type: 'UPDATE_BOARD', updates: { name } })
+      api.boards.updateBoard(boardId, updates).then(() => {
+        dispatch({ type: 'UPDATE_BOARD', updates })
       })
     },
     createTaskGroup: () => {
@@ -174,21 +168,24 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
         dispatch({ type: 'CREATE_TASK_GROUP', taskGroup })
       })
     },
-    removeTaskGroup: (taskGroupId) => {
-      api.boards.removeTaskGroup(taskGroupId).then(() => {
-        dispatch({ type: 'REMOVE_TASK_GROUP', taskGroupId })
-      })
-    },
-    updateTaskGroupName: (taskGroupId, name) => {
+    updateTaskGroup: (taskGroupId, updates) => {
       if (!taskGroups) return
-      api.boards.updateTaskGroup(taskGroupId, { name }).then(() => {
-        dispatch({ type: 'UPDATE_TASK_GROUP', taskGroupId, updates: { name } })
+      api.boards.updateTaskGroup(taskGroupId, updates).then(() => {
+        dispatch({ type: 'UPDATE_TASK_GROUP', taskGroupId, updates })
       })
     },
     updateTaskGroups: (taskGroups) => {
       // Optimistic: Set State before Network Call
       dispatch({ type: 'UPDATE_TASK_GROUPS', taskGroups })
       api.boards.updateTaskGroups(taskGroups)
+    },
+    removeTaskGroup: (taskGroupId) => {
+      api.boards.removeTaskGroup(taskGroupId).then(() => {
+        dispatch({ type: 'REMOVE_TASK_GROUP', taskGroupId })
+      })
+    },
+    getTask: (taskId) => {
+      return tasks?.find((t: TaskType) => t.id === taskId)
     },
     createTask: (taskGroupId) => {
       api.boards.createTask(boardId, taskGroupId).then((task: TaskType) => {
@@ -213,3 +210,30 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
 export const useBoardContext = () => {
   return useContext(BoardContext)
 }
+
+/**
+ * Separate Context for getting Tasks
+ */
+
+// type TaskContextType = {
+//   getTask: (taskId: number) => TaskType | undefined
+// }
+
+// const TaskContext = React.createContext<TaskContextType>(null!)
+
+// export const TaskProvider: React.FC = ({ children }) => {
+//   const { tasks } = useBoardContext()
+
+//   const context: TaskContextType = {
+//     getTask: useCallback((taskId) => {
+//       console.log('NEW')
+//       return tasks?.find((t: TaskType) => t.id === taskId)
+//     }, [tasks]),
+//   }
+
+//   return <TaskContext.Provider value={context} children={children} />
+// }
+
+// export const useTaskContext = () => {
+//   return useContext(TaskContext)
+// }

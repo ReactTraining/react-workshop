@@ -17,7 +17,7 @@ type Props = {
 
 export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
   const [promptRemove, setPromptRemove] = useState(false)
-  const { createTask, updateTaskGroupName, removeTaskGroup } = useBoardContext()
+  const { createTask, updateTaskGroup, removeTaskGroup } = useBoardContext()
   const [expandTaskId, setExpandTaskId] = useState<number | null>(null)
 
   return (
@@ -51,7 +51,7 @@ export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
                   <EditTitle
                     title={name}
                     placeholder="Column Name"
-                    onSave={(name) => updateTaskGroupName(taskGroupId, name)}
+                    onSave={(name) => updateTaskGroup(taskGroupId, { name })}
                   />
                 </Heading>
               </div>

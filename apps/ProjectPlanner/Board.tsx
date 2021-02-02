@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { TaskGroup } from 'ProjectPlanner/TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
-
 import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/types'
 import { EditTitle } from 'ProjectPlanner/EditTitle'
-
+import { BoardProvider, useBoardContext } from './BoardContext'
 import './Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
-
-import { BoardProvider, useBoardContext } from './BoardContext'
 
 export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
@@ -24,13 +21,7 @@ export const Board: React.FC = () => {
 
 // Uses wrapper (Board) so we can read from our own context
 export const BoardUI: React.FC = () => {
-  const {
-    board,
-    taskGroups,
-    updateBoardName,
-    createTaskGroup,
-    updateTaskGroups,
-  } = useBoardContext()
+  const { board, taskGroups, updateBoard, createTaskGroup, updateTaskGroups } = useBoardContext()
 
   function onDragEnd(result: any) {
     if (!result.destination || !board || !taskGroups) return
@@ -48,7 +39,11 @@ export const BoardUI: React.FC = () => {
         <header className="flex spacing">
           <Heading style={{ minWidth: '25rem' }}>
             {board ? (
-              <EditTitle title={board.name} placeholder="Board Name" onSave={updateBoardName} />
+              <EditTitle
+                title={board.name}
+                placeholder="Board Name"
+                onSave={(name) => updateBoard({ name })}
+              />
             ) : (
               ''
             )}
