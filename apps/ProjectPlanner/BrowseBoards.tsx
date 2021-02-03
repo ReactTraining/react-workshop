@@ -5,7 +5,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { useBoards } from 'ProjectPlanner/hooks/dataHooks'
 import { BrowseBoardItem } from 'ProjectPlanner/BrowseBoardItem'
 import { useAuth } from 'ProjectPlanner/AuthContext'
-import api from 'ProjectPlanner/api'
+import { api } from 'ProjectPlanner/api'
 
 export const BrowseBoards: React.FC = () => {
   const { user } = useAuth()

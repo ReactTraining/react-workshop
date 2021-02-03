@@ -29,6 +29,16 @@ export function put(path, data) {
   }).then((res) => res.json())
 }
 
+export function patch(path, data) {
+  return fetch(`${baseURL}${path}`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json())
+}
+
 export function httpDelete(path) {
   return fetch(`${baseURL}${path}`, {
     method: 'DELETE',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import api from '../api'
+import { api } from '../api'
 import { TaskGroup as TaskGroupType, Board as BoardType, Task as TaskType } from '../types'
 
 export const useBoards = (userId: number): BoardType[] | null => {

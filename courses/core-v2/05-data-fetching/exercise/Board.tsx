@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { TaskGroup } from './TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Board as BoardType, TaskGroup as TaskGroupType } from 'ProjectPlanner/types'
-import { api } from 'ProjectPlanner/api2'
+import { api } from 'ProjectPlanner/api'
 import 'ProjectPlanner/Board.scss'
 
 export const Board: React.FC = () => {

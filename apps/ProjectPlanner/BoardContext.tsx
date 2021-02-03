@@ -4,7 +4,7 @@ import {
   TaskGroup as TaskGroupType,
   Task as TaskType,
 } from 'ProjectPlanner/types'
-import { api } from 'ProjectPlanner/api2'
+import { api } from 'ProjectPlanner/api'
 
 type Props = {
   boardId: number

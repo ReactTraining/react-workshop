@@ -7,7 +7,7 @@ import {
   TaskGroup as TaskGroupType,
   Task as TaskType,
 } from 'ProjectPlanner/types'
-import { api } from 'ProjectPlanner/api2'
+import { api } from 'ProjectPlanner/api'
 import 'ProjectPlanner/Board.scss'
 
 export const Board: React.FC = () => {
@@ -25,10 +25,9 @@ export const Board: React.FC = () => {
     })
   }, [boardId])
 
-  // api.boards.updateTask(taskId, task)
-
   const updateTask = (taskId: number, task: TaskType): void => {
     if (!tasks) return
+    // api.boards.updateTask(taskId, task)
     const i = tasks.findIndex((t) => t.id === taskId)
     setTasks([...tasks.slice(0, i), task, ...tasks.slice(i + 1, tasks.length)])
   }

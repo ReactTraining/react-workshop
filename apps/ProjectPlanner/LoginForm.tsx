@@ -3,7 +3,7 @@ import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { User } from 'ProjectPlanner/types'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Notice } from 'ProjectPlanner/Notice'
-import api from 'ProjectPlanner/api'
+import { api } from 'ProjectPlanner/api'
 
 type Props = {
   onAuthenticated?(user: User): void

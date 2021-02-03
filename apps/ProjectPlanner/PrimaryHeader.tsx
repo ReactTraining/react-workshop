@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
-import api from 'ProjectPlanner/api'
+import { api } from 'ProjectPlanner/api'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { Logo } from 'ProjectPlanner/Logo'
 import { useAuth } from 'ProjectPlanner/AuthContext'

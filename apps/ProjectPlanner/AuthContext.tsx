@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useCallback, useEffect } from 'react'
-import api from 'ProjectPlanner/api'
+import { api } from 'ProjectPlanner/api'
 import { User } from 'ProjectPlanner/types'
 
 export type AuthContextActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
