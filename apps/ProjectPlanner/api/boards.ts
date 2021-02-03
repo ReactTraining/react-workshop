@@ -1,6 +1,5 @@
 import { get, post, put, patch, httpDelete } from './utils'
 import { format } from 'date-fns'
-
 import { Board, TaskGroup, Task } from '../types'
 
 /**
@@ -20,23 +19,23 @@ export function createBoard(userId: number, name?: string) {
     userId,
     name: name || '',
   }
-  return post(`/boards`, defaultBoardData)
+  return post<Board>(`/boards`, defaultBoardData)
 }
 
 export function getBoards(userId: number) {
-  return get(`/boards?userId=${userId}`)
+  return get<Board[]>(`/boards?userId=${userId}`)
 }
 
 export function getBoard(boardId: number) {
-  return get(`/boards/${boardId}?_embed=taskGroups&_embed=tasks`)
+  return get<Board>(`/boards/${boardId}?_embed=taskGroups&_embed=tasks`)
 }
 
 export async function updateBoard(boardId: number, data: Partial<Board>) {
-  return patch(`/boards/${boardId}`, data)
+  return patch<any>(`/boards/${boardId}`, data)
 }
 
 export function removeBoard(boardId: number) {
-  return httpDelete(`/boards/${boardId}`)
+  return httpDelete<any>(`/boards/${boardId}`)
 }
 
 /**
@@ -49,21 +48,21 @@ export function createTaskGroup(boardId: number, name?: string) {
     boardId,
     taskIds: [],
   }
-  return post(`/taskGroups`, defaultTaskGroupData)
+  return post<TaskGroup>(`/taskGroups`, defaultTaskGroupData)
 }
 
 export function getTaskGroups(boardId: number) {
-  return get(`/taskGroups?boardId=${boardId}`)
+  return get<TaskGroup[]>(`/taskGroups?boardId=${boardId}`)
 }
 
 export function updateTaskGroup(taskGroupId: number, data: Partial<TaskGroup>) {
-  return patch(`/taskGroups/${taskGroupId}`, data)
+  return patch<any>(`/taskGroups/${taskGroupId}`, data)
 }
 
 export function updateTaskGroups(taskGroups: TaskGroup[]) {
   const p: any = []
   taskGroups.forEach((group) => {
-    p.push(put(`/taskGroups/${group.id}`, group))
+    p.push(put<any>(`/taskGroups/${group.id}`, group))
   })
 
   // Since Promise.all() returns an array of each p's
@@ -75,11 +74,11 @@ export function updateTaskGroups(taskGroups: TaskGroup[]) {
 
 export async function removeTaskGroup(taskGroupId: number) {
   const taskGroup: TaskGroup = await get(`/taskGroups/${taskGroupId}`)
-  await httpDelete(`/taskGroups/${taskGroupId}`)
+  await httpDelete<any>(`/taskGroups/${taskGroupId}`)
 
   const p: any[] = []
   taskGroup.taskIds.forEach((taskId) => {
-    p.push(httpDelete(`/tasks/${taskId}`))
+    p.push(httpDelete<any>(`/tasks/${taskId}`))
   })
 
   // Cascade remove all related tasks
@@ -91,11 +90,11 @@ export async function removeTaskGroup(taskGroupId: number) {
  */
 
 export function getTasks(boardId: number) {
-  return get(`/tasks?boardId=${boardId}`)
+  return get<Task[]>(`/tasks?boardId=${boardId}`)
 }
 
 export function getTask(taskId: number) {
-  return get(`/tasks/${taskId}`)
+  return get<Task>(`/tasks/${taskId}`)
 }
 
 export async function createTask(boardId: number, taskGroupId: number, data?: Partial<Task>) {
@@ -109,11 +108,11 @@ export async function createTask(boardId: number, taskGroupId: number, data?: Pa
     boardId,
     date: format(Date.now(), 'yyyy-MM-dd'),
   }
-  const task: Task = await post(`/tasks`, defaultTaskData)
+  const task: Task = await post<Task>(`/tasks`, defaultTaskData)
   // Get task group so we can add this new task.id to it
-  const taskGroup: TaskGroup = await get(`/taskGroups/${taskGroupId}`)
+  const taskGroup = await get<TaskGroup>(`/taskGroups/${taskGroupId}`)
   const newTaskIds = taskGroup.taskIds.concat(task.id)
-  await patch(`/taskGroups/${taskGroupId}`, { taskIds: newTaskIds })
+  await patch<any>(`/taskGroups/${taskGroupId}`, { taskIds: newTaskIds })
   return task
 }
 

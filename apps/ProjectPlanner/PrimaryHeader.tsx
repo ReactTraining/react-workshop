@@ -14,6 +14,13 @@ export const PrimaryHeader: React.FC = () => {
     api.auth.logout().then(logout)
   }
 
+  function resetData() {
+    if (!user) return
+    api.users.resetAccountBoardData(user.id).then(() => {
+      location.href = '/boards'
+    })
+  }
+
   return (
     <header className="primary-header spacing">
       <div className="flex-split">
@@ -37,6 +44,7 @@ export const PrimaryHeader: React.FC = () => {
                   My Account
                 </MenuLink> */}
                 <MenuItem onSelect={handleLogout}>Logout</MenuItem>
+                <MenuItem onSelect={resetData}>Reset Data</MenuItem>
               </MenuList>
             </Menu>
           </nav>

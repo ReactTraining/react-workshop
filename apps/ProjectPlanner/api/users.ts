@@ -1,18 +1,12 @@
 import { post } from './utils'
-import {
-  getBoards,
-  removeBoard,
-  createBoard,
-  updateBoard,
-  createTaskGroup,
-  updateTaskGroup,
-  createTask,
-} from './boards'
+import { getBoards, removeBoard, createBoard, createTaskGroup, createTask } from './boards'
 import * as storage from '../localStorage'
 import { User } from '../types'
 
-export async function registerUser(user: Omit<User, 'id'>) {
-  const newUser = await post(`/users`, user)
+type DatabaseUser = User & { password?: string }
+
+export async function registerUser(user: Omit<User, 'id'>): Promise<User> {
+  const newUser = await post<DatabaseUser>(`/users`, user)
 
   // Log them in (which we fake with localStorage)
   delete newUser.password
@@ -25,13 +19,15 @@ export async function registerUser(user: Omit<User, 'id'>) {
  * Seed an new account with data
  */
 
-async function setNewAccountData(userId: number) {
+export async function resetAccountBoardData(userId: number) {
   try {
     const boards = await getBoards(userId)
 
-    // const p = boards.map((board) => {
-    //   return removeBoard(board.id)
-    // })
+    await Promise.all(
+      boards.map((board) => {
+        return removeBoard(board.id)
+      })
+    )
 
     const board = await createBoard(userId, 'React Workshop')
 

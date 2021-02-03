@@ -5,7 +5,7 @@ type Data = {
   [key: string]: any
 }
 
-export function get(path: string) {
+export function get<T>(path: string): Promise<T> {
   return fetch(`${baseURL}${path}`).then((res) => res.json())
 }
 
@@ -13,7 +13,7 @@ export function getRaw(path: string) {
   return fetch(`${baseURL}${path}`)
 }
 
-export function post(path: string, data: Data) {
+export function post<T>(path: string, data: Data): Promise<T> {
   return fetch(`${baseURL}${path}`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -23,7 +23,7 @@ export function post(path: string, data: Data) {
   }).then((res) => res.json())
 }
 
-export function put(path: string, data: Data) {
+export function put<T>(path: string, data: Data): Promise<T> {
   return fetch(`${baseURL}${path}`, {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -33,7 +33,7 @@ export function put(path: string, data: Data) {
   }).then((res) => res.json())
 }
 
-export function patch(path: string, data: Data) {
+export function patch<T>(path: string, data: Data): Promise<T> {
   return fetch(`${baseURL}${path}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
@@ -43,7 +43,7 @@ export function patch(path: string, data: Data) {
   }).then((res) => res.json())
 }
 
-export function httpDelete(path: string) {
+export function httpDelete<T>(path: string): Promise<T> {
   return fetch(`${baseURL}${path}`, {
     method: 'DELETE',
     headers: {

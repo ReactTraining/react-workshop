@@ -9,6 +9,8 @@ type Props = {
   onAuthenticated?(user: User): void
 }
 
+type FormUser = Omit<User, 'id'> & { password: string }
+
 export const SignupForm: React.FC<Props> = ({ onAuthenticated }) => {
   const [useGitHub, setUseGitHub] = useState(true)
   const [username, setUsername] = useState('')
@@ -23,7 +25,7 @@ export const SignupForm: React.FC<Props> = ({ onAuthenticated }) => {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const user: Omit<User, 'id'> = { username, name, password, avatarUrl }
+    const user: FormUser = { username, name, password, avatarUrl }
     api.users.registerUser(user).then((user) => {
       onAuthenticated && onAuthenticated(user)
     })
