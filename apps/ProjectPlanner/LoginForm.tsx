@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { User } from 'ProjectPlanner/types'
 import { Heading } from 'ProjectPlanner/Heading'
@@ -75,16 +76,21 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
           </label>
         </div>
 
-        <footer>
-          <button type="submit" className="button">
-            {!loading ? (
-              <>
-                <FaSignInAlt /> <span>Login</span>
-              </>
-            ) : (
-              <span>Loading ...</span>
-            )}
-          </button>
+        <footer className="flex-split">
+          <div>
+            <button type="submit" className="button">
+              {!loading ? (
+                <>
+                  <FaSignInAlt /> <span>Login</span>
+                </>
+              ) : (
+                <span>Loading ...</span>
+              )}
+            </button>
+          </div>
+          <div>
+            Don't have an account? <Link to="/signup">Signup.</Link>
+          </div>
         </footer>
       </form>
     </div>

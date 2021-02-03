@@ -1,15 +1,19 @@
 // Database API served by `json-server`
 const baseURL = 'http://localhost:3333'
 
-export function get(path) {
+type Data = {
+  [key: string]: any
+}
+
+export function get(path: string) {
   return fetch(`${baseURL}${path}`).then((res) => res.json())
 }
 
-export function getRaw(path) {
+export function getRaw(path: string) {
   return fetch(`${baseURL}${path}`)
 }
 
-export function post(path, data) {
+export function post(path: string, data: Data) {
   return fetch(`${baseURL}${path}`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -19,7 +23,7 @@ export function post(path, data) {
   }).then((res) => res.json())
 }
 
-export function put(path, data) {
+export function put(path: string, data: Data) {
   return fetch(`${baseURL}${path}`, {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -29,7 +33,7 @@ export function put(path, data) {
   }).then((res) => res.json())
 }
 
-export function patch(path, data) {
+export function patch(path: string, data: Data) {
   return fetch(`${baseURL}${path}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
@@ -39,7 +43,7 @@ export function patch(path, data) {
   }).then((res) => res.json())
 }
 
-export function httpDelete(path) {
+export function httpDelete(path: string) {
   return fetch(`${baseURL}${path}`, {
     method: 'DELETE',
     headers: {

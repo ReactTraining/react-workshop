@@ -9,185 +9,196 @@
     },
     {
       "id": 2,
+      "username": "chaance",
+      "name": "Chance",
+      "password": "abc123",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/3082153?s=460&u=e1d45c3ec237a7ef24c28d4a602f8131f3cc1738&v=4"
+    },
+    {
+      "id": 10,
       "username": "student",
-      "name": "Student Name",
       "password": "student",
+      "name": "Student Name",
       "avatarUrl": "/images/bruce-lee.jpg"
+    },
+    {
+      "id": 11,
+      "username": "",
+      "password": "",
+      "name": "Sasha Owens",
+      "avatarUrl": "/images/people/1.png"
+    },
+    {
+      "id": 12,
+      "username": "",
+      "password": "",
+      "name": "Lindsey Watson",
+      "avatarUrl": "/images/people/2.png"
+    },
+    {
+      "id": 13,
+      "username": "",
+      "password": "",
+      "name": "George Stephens",
+      "avatarUrl": "/images/people/3.png"
+    },
+    {
+      "id": 14,
+      "username": "",
+      "password": "",
+      "name": "Marc Dillard",
+      "avatarUrl": "/images/people/4.png"
+    },
+    {
+      "id": 15,
+      "username": "",
+      "password": "",
+      "name": "Tyler McDowel",
+      "avatarUrl": "/images/people/5.png"
+    },
+    {
+      "id": 16,
+      "username": "",
+      "password": "",
+      "name": "JJ Olm",
+      "avatarUrl": "/images/people/6.png"
+    },
+    {
+      "id": 17,
+      "username": "",
+      "password": "",
+      "name": "Anthony Greer",
+      "avatarUrl": "/images/people/7.png"
     }
   ],
   "boards": [
     {
-      "id": 1,
-      "userId": "1",
-      "name": "New Curriculum"
+      "userId": 1,
+      "name": "React Workshop",
+      "id": 1
     },
     {
-      "userId": 1,
-      "name": "sdfssdfs",
-      "id": 2,
-      "taskGroups": []
+      "userId": 2,
+      "name": "React Workshop",
+      "id": 2
     }
   ],
   "taskGroups": [
     {
+      "name": "Getting Setup",
       "boardId": 1,
-      "name": "Project Planner",
-      "taskIds": [22, 16, 18, 20],
-      "id": 4
+      "taskIds": [1, 2],
+      "id": 1
     },
     {
-      "id": 1,
+      "name": "Thinking in React",
       "boardId": 1,
-      "name": "1. Thinking in React",
-      "taskIds": [11, 13]
+      "taskIds": [3, 4, 5],
+      "id": 2
     },
     {
-      "id": 2,
-      "boardId": 1,
-      "name": "2. State",
-      "taskIds": [12, 14]
-    },
-    {
-      "boardId": 1,
-      "name": "3. Forms",
-      "taskIds": [15, 17],
+      "name": "Getting Setup",
+      "boardId": 2,
+      "taskIds": [6, 7],
       "id": 3
     },
     {
-      "boardId": 1,
-      "name": "4. Reducers",
-      "taskIds": [23],
-      "id": 5
-    },
-    {
-      "boardId": 1,
-      "name": "5. Data Fetching",
-      "taskIds": [],
-      "id": 6
-    },
-    {
+      "name": "Thinking in React",
       "boardId": 2,
-      "name": "sdfsdfsd",
-      "taskIds": [],
-      "id": 7
-    },
-    {
-      "boardId": 2,
-      "name": "",
-      "taskIds": [24],
-      "id": 8
+      "taskIds": [8],
+      "id": 4
     }
   ],
   "tasks": [
     {
-      "boardId": 1,
-      "name": "Lecture",
-      "content": "About the same as before",
-      "minutes": 3,
-      "completedMinutes": 2,
-      "assignedTo": [],
-      "date": "2021-01-01",
-      "id": 11
-    },
-    {
-      "boardId": 1,
-      "name": "<Minutes />",
-      "content": "Probably about the same as before",
+      "name": "JS Primer Article",
+      "content": "Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/",
       "minutes": 10,
       "completedMinutes": 10,
-      "assignedTo": [],
-      "date": "2021-01-01",
-      "id": 12
+      "assignedTo": [18],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 1
     },
     {
+      "name": "Install Workshop Code",
+      "content": "git clone and npm install",
+      "minutes": 5,
+      "completedMinutes": 5,
+      "assignedTo": [18],
       "boardId": 1,
-      "name": "Exercise",
-      "content": "tbd",
-      "minutes": 9,
-      "completedMinutes": 3,
-      "assignedTo": [],
-      "date": "2021-01-01",
-      "id": 13
+      "date": "2021-02-03",
+      "id": 2
     },
     {
-      "boardId": 1,
-      "name": "Exercise",
-      "content": "Get minutes and progress working with shared state",
-      "minutes": 40,
-      "completedMinutes": 40,
-      "assignedTo": [],
-      "date": "2021-01-01",
-      "id": 14
-    },
-    {
-      "boardId": 1,
-      "name": "Lecture",
-      "content": "Teach useRef and useReducer. Have a custom hook for data fetching",
-      "minutes": 0,
+      "name": "Declarative vs Imperative",
+      "content": "Declarative code is when you write in a style where you say \"what\" you want, like HTML, CSS, SQL, or React's JSX. Imperative code is when you write in a style where you say \"how\" you want things to work.",
+      "minutes": 60,
       "completedMinutes": 0,
       "assignedTo": [],
-      "date": "2021-01-20",
-      "id": 15
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 3
     },
     {
-      "boardId": 1,
-      "name": "Add Dashboard Page",
-      "content": "",
-      "minutes": 0,
+      "name": "Creating State",
+      "content": "State can be created with useState or useReducer",
+      "minutes": 60,
       "completedMinutes": 0,
       "assignedTo": [],
-      "date": "2021-01-20",
-      "id": 16
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 4
     },
     {
-      "boardId": 1,
-      "name": "Exercise",
-      "content": "",
-      "minutes": 1,
-      "completedMinutes": 1,
+      "name": "Updating State",
+      "content": "Updating state will cause a re-render of the component",
+      "minutes": 10,
+      "completedMinutes": 5,
       "assignedTo": [],
-      "date": "2021-01-20",
-      "id": 17
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 5
     },
     {
-      "boardId": 1,
-      "name": "Add Column Drag-n-Drop",
-      "content": "",
-      "minutes": 0,
+      "name": "JS Primer Article",
+      "content": "Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/",
+      "minutes": 10,
+      "completedMinutes": 10,
+      "assignedTo": [18],
+      "boardId": 2,
+      "date": "2021-02-03",
+      "id": 6
+    },
+    {
+      "name": "Install Workshop Code",
+      "content": "git clone and npm install",
+      "minutes": 5,
+      "completedMinutes": 5,
+      "assignedTo": [18],
+      "boardId": 2,
+      "date": "2021-02-03",
+      "id": 7
+    },
+    {
+      "name": "Declarative vs Imperative",
+      "content": "Declarative code is when you write in a style where you say \"what\" you want, like HTML, CSS, SQL, or React's JSX. Imperative code is when you write in a style where you say \"how\" you want things to work.",
+      "minutes": 60,
       "completedMinutes": 0,
       "assignedTo": [],
-      "date": "2021-01-20",
-      "id": 18
+      "boardId": 2,
+      "date": "2021-02-03",
+      "id": 8
     },
     {
-      "boardId": 1,
-      "name": "Ryan wanted better keyboard accessibility",
-      "content": "",
-      "minutes": 0,
+      "name": "Creating State",
+      "content": "State can be created with useState or useReducer",
+      "minutes": 60,
       "completedMinutes": 0,
       "assignedTo": [],
-      "date": "2021-01-20",
-      "id": 20
-    },
-    {
-      "boardId": 1,
-      "name": "Wrong data",
-      "content": "right now we're grabbing boards of user 1 hard coded",
-      "minutes": 0,
-      "completedMinutes": 0,
-      "assignedTo": [],
-      "date": "2021-01-21",
-      "id": 22
-    },
-    {
-      "boardId": 1,
-      "name": "",
-      "content": "",
-      "minutes": 2,
-      "completedMinutes": 2,
-      "assignedTo": [],
-      "date": "2021-01-22",
-      "id": 23
+      "boardId": 2,
+      "date": "2021-02-03",
+      "id": 9
     }
   ]
 }

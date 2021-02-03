@@ -15,20 +15,20 @@ import { Board, TaskGroup, Task } from '../types'
  * Boards
  */
 
+export function createBoard(userId: number, name?: string) {
+  const defaultBoardData = {
+    userId,
+    name: name || '',
+  }
+  return post(`/boards`, defaultBoardData)
+}
+
 export function getBoards(userId: number) {
-  return get(`/boards?user=${userId}`)
+  return get(`/boards?userId=${userId}`)
 }
 
 export function getBoard(boardId: number) {
   return get(`/boards/${boardId}?_embed=taskGroups&_embed=tasks`)
-}
-
-export function createBoard(userId: number) {
-  const defaultBoardData = {
-    userId,
-    name: '',
-  }
-  return post(`/boards`, defaultBoardData)
 }
 
 export async function updateBoard(boardId: number, data: Partial<Board>) {
@@ -42,6 +42,15 @@ export function removeBoard(boardId: number) {
 /**
  * Task Groups
  */
+
+export function createTaskGroup(boardId: number, name?: string) {
+  const defaultTaskGroupData = {
+    name: name || '',
+    boardId,
+    taskIds: [],
+  }
+  return post(`/taskGroups`, defaultTaskGroupData)
+}
 
 export function getTaskGroups(boardId: number) {
   return get(`/taskGroups?boardId=${boardId}`)
@@ -62,15 +71,6 @@ export function updateTaskGroups(taskGroups: TaskGroup[]) {
   // corresponding taskGroup, we can pretend this was one
   // PUT call with a valid response of the data that changed
   return Promise.all(p)
-}
-
-export function createTaskGroup(boardId: number) {
-  const defaultTaskGroupData = {
-    boardId,
-    name: '',
-    taskIds: [],
-  }
-  return post(`/taskGroups`, defaultTaskGroupData)
 }
 
 export async function removeTaskGroup(taskGroupId: number) {
@@ -98,14 +98,15 @@ export function getTask(taskId: number) {
   return get(`/tasks/${taskId}`)
 }
 
-export async function createTask(boardId: number, taskGroupId: number) {
+export async function createTask(boardId: number, taskGroupId: number, data?: Partial<Task>) {
   const defaultTaskData = {
-    boardId,
     name: '',
     content: '',
     minutes: 0,
     completedMinutes: 0,
     assignedTo: [],
+    ...data,
+    boardId,
     date: format(Date.now(), 'yyyy-MM-dd'),
   }
   const task: Task = await post(`/tasks`, defaultTaskData)

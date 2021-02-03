@@ -10,8 +10,8 @@
 
   // Semantic Colors
   --lineColor: #dce4ec;
-  --warn: $red;
-  --success: $green;
+  --warn: var(--red);
+  --success: var(--green);
 
   // Copy
   --textColor: #303f46;
@@ -19,8 +19,8 @@
   --fontFamily: 'Nunito Sans';
   --fontWeight: 300;
   --fontSize: 14pt;
-  --linkColor: $brightBlue;
-  --headingFontFamily: $fontFamily;
+  --linkColor: var(--brightBlue);
+  --headingFontFamily: var(--fontFamily);
   --headingFontWeight: 700;
 
   // Layout

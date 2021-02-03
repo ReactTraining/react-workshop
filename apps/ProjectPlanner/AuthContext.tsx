@@ -39,7 +39,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   )
 
-  const login = useCallback((user: User) => {
+  const login = useCallback((user) => {
     dispatch({ type: 'LOGIN', user })
   }, [])
 

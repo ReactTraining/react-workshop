@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { api } from '../api'
 import { TaskGroup as TaskGroupType, Board as BoardType, Task as TaskType } from '../types'
 
-export const useBoards = (userId: number): BoardType[] | null => {
+export const useBoards = (userId: number | undefined): BoardType[] | null => {
   const [boards, setBoards] = useState<BoardType[] | null>(null)
 
   useEffect(() => {
+    if (!userId) return
     api.boards.getBoards(userId).then((boards: BoardType[]) => {
       setBoards(boards)
     })

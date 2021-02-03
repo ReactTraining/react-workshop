@@ -9,7 +9,7 @@ import { api } from 'ProjectPlanner/api'
 
 export const BrowseBoards: React.FC = () => {
   const { user } = useAuth()
-  const boards = useBoards(1) // needs to be user.id
+  const boards = useBoards(user?.id)
   const history = useHistory()
 
   function newBoard(): void {
