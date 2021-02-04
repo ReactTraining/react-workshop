@@ -94,7 +94,7 @@ export const TaskDialog: React.FC<Props> = ({
               <p className="text-small">
                 {task && task.minutes === 0 && <i>Set Minutes First</i>}
                 {task && task.minutes > 0 && (
-                  <span className="task-color">
+                  <span className="task-completion-status">
                     {((task?.completedMinutes! / task.minutes) * 100).toFixed(0)}% Complete
                   </span>
                 )}

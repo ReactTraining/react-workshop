@@ -17,23 +17,7 @@ type Props = {
   onClose(): void
 }
 
-function useTask(taskId: number) {
-  const [task, setTask] = useState<Task | null>(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.boards.getTask(taskId).then((task) => {
-      if (isCurrent) {
-        setTask(task)
-      }
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [taskId])
-
-  return [task, setTask] as const
-}
+// api.boards.getTask(taskId)
 
 export const TaskDialog: React.FC<Props> = ({
   taskId,
@@ -41,7 +25,7 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const [task, setTask] = useTask(taskId)
+  const [task, setTask] = useState<Task | null>(null)
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)
@@ -54,7 +38,7 @@ export const TaskDialog: React.FC<Props> = ({
   }
 
   return (
-    <Dialog onClose={onClose} aria-label="Edit Task">
+    <Dialog onClose={close} aria-label="Edit Task">
       <div className="spacing">
         <div className="flex">
           <div className="flex-1 spacing">
@@ -112,7 +96,7 @@ export const TaskDialog: React.FC<Props> = ({
               <p className="text-small">
                 {task && task.minutes === 0 && <i>Set Minutes First</i>}
                 {task && task.minutes > 0 && (
-                  <span className="task-color">
+                  <span className="task-completion-status">
                     {((task?.completedMinutes! / task.minutes) * 100).toFixed(0)}% Complete
                   </span>
                 )}

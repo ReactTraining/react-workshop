@@ -1,8 +1,10 @@
 .board {
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  padding: var(--gutter);
+
+  // This accommodates that we want the full width of the screen
+  // minus the left and right padding the <main> tag has applied already
+  max-width: calc(100vw - var(--gutter) - var(--gutter));
 }
 
 .board-scroll-area {

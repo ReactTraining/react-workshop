@@ -1,23 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classnames from 'classnames'
 import { FaCheck, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
+import { Task } from 'ProjectPlanner/types'
 import { Dialog } from 'ProjectPlanner/Dialog'
 import { AssignedTo } from 'ProjectPlanner/AssignedTo'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
-import { useTask } from './useTask'
+import { api } from 'ProjectPlanner/api'
+// import { useTask } from './useTask'
 import 'ProjectPlanner/TaskDialog.scss'
-
-import { Task } from 'ProjectPlanner/types'
 
 type Props = {
   taskId: number
   siblingTaskIds: number[]
   onChangeTaskId(taskId: number): void
   onClose(): void
-  // tasks: Task[] | null
-  // updateTask: (taskId: number, task: Task) => void
 }
 
 export const TaskDialog: React.FC<Props> = ({
@@ -26,7 +24,19 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const [task, setTask] = useTask(taskId)
+  const [task, setTask] = useState<Task | null>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api.boards.getTask(taskId).then((task) => {
+      if (isCurrent) {
+        setTask(task)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [taskId])
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)

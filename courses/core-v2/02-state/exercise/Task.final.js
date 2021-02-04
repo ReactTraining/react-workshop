@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
+import { Progress } from 'ProjectPlanner/Progress'
 import { Minutes } from './Minutes.final'
-import { Progress } from './Progress'
 
 export const Task = () => {
   const [completedMinutes, setCompletedMinutes] = useState(0)

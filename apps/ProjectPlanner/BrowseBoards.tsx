@@ -22,7 +22,7 @@ export const BrowseBoards: React.FC = () => {
 
   return (
     <Centered size={50}>
-      <div className="pt-4 flex">
+      <div className="flex">
         <div className="flex-1">
           <div className="flex-split">
             <div>

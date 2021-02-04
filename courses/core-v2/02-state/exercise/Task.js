@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
+import { Progress } from 'ProjectPlanner/Progress'
 import { Minutes } from './Minutes'
-import { Progress } from './Progress'
 
 // Remember, there are more detailed instructions in the README.md
 // file with every exercise

@@ -1,15 +1,25 @@
 import React from 'react'
-import { Switch, Route, Redirect, Link, useParams } from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Switch, Route, Redirect, Link, useParams } from 'react-router-dom'
 import { PrimaryHeader } from 'ProjectPlanner/PrimaryHeaderStub'
 import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
 import { Centered } from 'ProjectPlanner/Centered'
 import { BsKanban } from 'react-icons/bs'
 import { Heading } from 'ProjectPlanner/Heading'
 import { useBoards } from 'ProjectPlanner/hooks/dataHooks'
+import 'ProjectPlanner/styles/global-styles.scss'
 import 'ProjectPlanner/PrimaryLayout.scss'
 import 'ProjectPlanner/BrowseBoardItem.scss'
 
-export const PrimaryLayout: React.FC = () => {
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <PrimaryLayout />
+    </BrowserRouter>
+  )
+}
+
+const PrimaryLayout: React.FC = () => {
   return (
     <div className="primary-layout">
       <PrimaryHeader />
@@ -67,3 +77,5 @@ const Board: React.FC = () => {
     </Centered>
   )
 }
+
+ReactDOM.render(<App />, document.getElementById('root'))

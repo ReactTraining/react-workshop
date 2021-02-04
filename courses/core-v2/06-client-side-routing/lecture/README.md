@@ -10,14 +10,18 @@ The main point is to familiarize them with Client Side Routing and SPA concepts.
 
 # Lecture
 
-The starting point allows you to create three pages, all within PrimaryLayout:
+The starting point allows you to create three pages:
 
 - Dashboard
 - BrowseBoards
 - Board
 
-All are in the PrimaryLayout file and ready for teaching things like:
+Teach the basics of React Router including:
 
-- Switch and Route
+- Switch
+- Route
+- Matching algo.
 - useParams()
+- useMatch()
 - Redirect
+- Dynamic Routes (Conditional Routes)

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import { Task } from 'ProjectPlanner/types'
 import { useTheme } from 'ProjectPlanner/ThemeContext'
 
@@ -21,7 +21,7 @@ export const TaskColor: React.FC<Props> = ({ task, children }) => {
     }
   }
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     if (!ref.current || !statusColor) return
     ref.current.style.setProperty(`--taskColor`, statusColor)
   }, [statusColor])

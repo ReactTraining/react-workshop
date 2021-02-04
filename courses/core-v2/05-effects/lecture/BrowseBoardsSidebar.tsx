@@ -4,18 +4,12 @@ import { ActiveUsers } from 'ProjectPlanner/ActiveUsers'
 import 'ProjectPlanner/BrowseBoardsSidebar.scss'
 
 export const BrowseBoardsSidebar: React.FC = () => {
-  const [isWide, setIsWide] = useState(() => {
-    return window && window.matchMedia('(min-width: 900px)').matches
-  })
+  const [isWide, setIsWide] = useState(true)
 
-  useEffect(() => {
-    const media = window.matchMedia('(min-width: 900px)')
-    const listener = () => setIsWide(media.matches)
-    media.addEventListener('change', listener)
-    return () => {
-      media.removeEventListener('change', listener)
-    }
-  }, [])
+  // What if we didn't want to show the sidebar if the screen was less than
+  // 900px? We could use a CSS media query, but then we'd still get "side effects"
+  // that are doing network requests in these children components even when the
+  // user can't see the UI for them
 
   return isWide ? (
     <aside className="browse-boards-sidebar spacing">
