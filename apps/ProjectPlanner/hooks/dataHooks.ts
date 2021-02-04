@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
 import { api } from '../api'
-import { TaskGroup as TaskGroupType, Board as BoardType, Task as TaskType } from '../types'
+import { User, Board, TaskGroup, Task } from '../types'
 
-export const useBoards = (userId: number | undefined): BoardType[] | null => {
-  const [boards, setBoards] = useState<BoardType[] | null>(null)
+/**
+ * These are temporary until we make usePromise
+ */
+
+export const useBoards = (userId: number | undefined): Board[] | null => {
+  const [boards, setBoards] = useState<Board[] | null>(null)
 
   useEffect(() => {
     if (!userId) return
-    api.boards.getBoards(userId).then((boards: BoardType[]) => {
+    api.boards.getBoards(userId).then((boards) => {
       setBoards(boards)
     })
   }, [userId])
@@ -15,11 +19,11 @@ export const useBoards = (userId: number | undefined): BoardType[] | null => {
   return boards
 }
 
-export const useBoard = (boardId: number): BoardType | null => {
-  const [board, setBoard] = useState<BoardType | null>(null)
+export const useBoard = (boardId: number): Board | null => {
+  const [board, setBoard] = useState<Board | null>(null)
 
   useEffect(() => {
-    api.boards.getBoard(boardId).then((board: BoardType) => {
+    api.boards.getBoard(boardId).then((board) => {
       setBoard(board)
     })
   }, [boardId])
@@ -27,11 +31,11 @@ export const useBoard = (boardId: number): BoardType | null => {
   return board
 }
 
-export const useTaskGroups = (boardId: number): TaskGroupType[] | null => {
-  const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
+export const useTaskGroups = (boardId: number): TaskGroup[] | null => {
+  const [taskGroups, setTaskGroups] = useState<TaskGroup[] | null>(null)
 
   useEffect(() => {
-    api.boards.getTaskGroups(boardId).then((taskGroup: TaskGroupType[]) => {
+    api.boards.getTaskGroups(boardId).then((taskGroup) => {
       setTaskGroups(taskGroup)
     })
   }, [boardId])
@@ -50,3 +54,16 @@ export const useTaskGroups = (boardId: number): TaskGroupType[] | null => {
 
 //   return tasks
 // }
+
+export const useAccountUsers = (accountId: number | undefined): User[] | null => {
+  const [users, setUsers] = useState<User[] | null>(null)
+
+  useEffect(() => {
+    if (!accountId) return
+    api.users.getAccountUsers(accountId).then((users) => {
+      setUsers(users)
+    })
+  }, [accountId])
+
+  return users
+}

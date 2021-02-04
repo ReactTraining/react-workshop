@@ -9,7 +9,7 @@ type Props = {
   onAuthenticated?(user: User): void
 }
 
-type FormUser = Omit<User, 'id'> & { password: string }
+type FormUser = Omit<User, 'id' | 'accountId'> & { password: string }
 
 export const SignupForm: React.FC<Props> = ({ onAuthenticated }) => {
   const [useGitHub, setUseGitHub] = useState(true)

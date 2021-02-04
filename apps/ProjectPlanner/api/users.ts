@@ -1,11 +1,11 @@
-import { post } from './utils'
+import { post, get } from '../utils'
 import { getBoards, removeBoard, createBoard, createTaskGroup, createTask } from './boards'
 import * as storage from '../localStorage'
 import { User } from '../types'
 
 type DatabaseUser = User & { password?: string }
 
-export async function registerUser(user: Omit<User, 'id'>): Promise<User> {
+export async function registerUser(user: Omit<User, 'id' | 'accountId'>): Promise<User> {
   const newUser = await post<DatabaseUser>(`/users`, user)
 
   // Log them in (which we fake with localStorage)
@@ -15,13 +15,17 @@ export async function registerUser(user: Omit<User, 'id'>): Promise<User> {
   return newUser
 }
 
+export async function getAccountUsers(accountId: number): Promise<User[]> {
+  return get<User[]>(`/users?accountId=${accountId}`)
+}
+
 /**
  * Seed an new account with data
  */
 
-export async function resetAccountBoardData(userId: number) {
+export async function resetAccountBoardData(accountId: number, userId: number) {
   try {
-    const boards = await getBoards(userId)
+    const boards = await getBoards(accountId)
 
     await Promise.all(
       boards.map((board) => {

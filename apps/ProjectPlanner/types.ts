@@ -2,6 +2,7 @@ export type Nullish = null | undefined | 0 | ''
 
 export type User = {
   id: number
+  accountId: number
   username: string
   name: string
   avatarUrl: string | null
@@ -9,10 +10,8 @@ export type User = {
 
 export type Board = {
   id: number
-  userId: number
+  accountId: number
   name: string
-  // todo: I think we need to remove this
-  taskGroups: TaskGroup[]
 }
 
 export type TaskGroup = {

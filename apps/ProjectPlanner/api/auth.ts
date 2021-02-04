@@ -1,4 +1,4 @@
-import { get } from './utils'
+import { get } from '../utils'
 import * as storage from '../localStorage'
 import { User } from '../types'
 

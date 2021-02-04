@@ -1,4 +1,4 @@
-import { get, post, put, patch, httpDelete } from './utils'
+import { get, post, put, patch, httpDelete } from '../utils'
 import { format } from 'date-fns'
 import { Board, TaskGroup, Task } from '../types'
 
@@ -14,20 +14,22 @@ import { Board, TaskGroup, Task } from '../types'
  * Boards
  */
 
-export function createBoard(userId: number, name?: string) {
+export function createBoard(accountId: number, name?: string) {
   const defaultBoardData = {
-    userId,
+    accountId,
     name: name || '',
   }
   return post<Board>(`/boards`, defaultBoardData)
 }
 
-export function getBoards(userId: number) {
-  return get<Board[]>(`/boards?userId=${userId}`)
+export function getBoards(accountId: number) {
+  return get<Board[]>(`/boards?accountId=${accountId}`)
 }
 
 export function getBoard(boardId: number) {
-  return get<Board>(`/boards/${boardId}?_embed=taskGroups&_embed=tasks`)
+  return get<Board & { taskGroups: TaskGroup[]; tasks: Task[] }>(
+    `/boards/${boardId}?_embed=taskGroups&_embed=tasks`
+  )
 }
 
 export async function updateBoard(boardId: number, data: Partial<Board>) {
@@ -46,7 +48,7 @@ export function createTaskGroup(boardId: number, name?: string) {
   const defaultTaskGroupData = {
     name: name || '',
     boardId,
-    taskIds: [],
+    taskIds: [] as number[],
   }
   return post<TaskGroup>(`/taskGroups`, defaultTaskGroupData)
 }
@@ -120,7 +122,7 @@ export function updateTask(taskId: number, task: Task) {
   return put(`/tasks/${taskId}`, task)
 }
 
-export async function removeTask(boardId: number, taskId: number) {
+export async function removeTask(boardId: number, taskId: number): Promise<null> {
   await httpDelete(`/tasks/${taskId}`)
   const taskGroups: TaskGroup[] = await get(`/taskGroups/?boardId=${boardId}`)
   const newTaskGroups = taskGroups.map((taskGroup) => {

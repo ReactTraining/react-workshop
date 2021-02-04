@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import './Notice.scss'
 
 type Props = {
-  type: 'default' | 'error' | 'success'
+  type?: 'error' | 'success'
 }
 
 export const Notice: React.FC<Props> = ({ children, type = 'default' }) => {

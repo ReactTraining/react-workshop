@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { TaskGroup } from 'ProjectPlanner/TaskGroup'
 import { Heading } from 'ProjectPlanner/Heading'
 import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/types'
 import { EditTitle } from 'ProjectPlanner/EditTitle'
-import { BoardProvider, useBoardContext } from './BoardContext'
+import { BoardProvider, useBoardContext } from 'ProjectPlanner/BoardContext'
+import * as localStorage from 'ProjectPlanner/localStorage'
 import './Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
@@ -33,22 +34,24 @@ export const BoardUI: React.FC = () => {
     updateTaskGroups(newTaskGroups)
   }
 
+  useEffect(() => {
+    if (!board) return
+    localStorage.setRecentBoard(board.id)
+  }, [board])
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="board spacing">
-        <header className="flex spacing">
-          <Heading style={{ minWidth: '25rem' }}>
-            {board ? (
+        <header className="spacing">
+          <Heading style={{ maxWidth: '25rem' }}>
+            {board && (
               <EditTitle
                 title={board.name}
                 placeholder="Board Name"
                 onSave={(name) => updateBoard({ name })}
               />
-            ) : (
-              ''
             )}
           </Heading>
-          <div className="align-right flex-1">...</div>
         </header>
 
         <div className="board-scroll-area">
@@ -64,7 +67,6 @@ export const BoardUI: React.FC = () => {
                 </div>
               )
             })}
-
           <div>
             <button className="add-task-group-button" onClick={createTaskGroup}>
               Add Column

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer, useRef, useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import {
   Board as BoardType,
   TaskGroup as TaskGroupType,
@@ -48,6 +49,7 @@ type Actions =
   | { type: 'REMOVE_TASK'; taskId: number }
 
 export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
+  const history = useHistory()
   const [state, dispatch] = useReducer(
     (state: State, action: Actions) => {
       switch (action.type) {
@@ -145,11 +147,15 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
   const loading = status === 'loading'
 
   useEffect(() => {
-    api.boards.getBoard(boardId).then((data: any) => {
+    api.boards.getBoard(boardId).then((data) => {
       const { taskGroups, tasks, ...board } = data
+      if (!board.id) {
+        history.push('/boards')
+        return
+      }
       dispatch({ type: 'LOAD_DATA', payload: { taskGroups, tasks, board, current: 'success' } })
     })
-  }, [boardId])
+  }, [boardId, history])
 
   const context: BoardContextType = {
     board,

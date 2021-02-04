@@ -39,6 +39,12 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
     <div>
       <Heading>Login</Heading>
       <form onSubmit={handleLogin} className="spacing">
+        <Notice>
+          <div>
+            Don't want to create an account? Login with the username <b>student</b> and the password{' '}
+            <b>student</b>
+          </div>
+        </Notice>
         {error && (
           <Notice type="error">
             <FaExclamationCircle />

@@ -4,6 +4,7 @@
 
 - ✅ State Lifting
 - ✅ Prop Drilling
+- ✅ Reducers (with the state in `Board.tsx`)
 - ✅ Context
 
 # Lecture

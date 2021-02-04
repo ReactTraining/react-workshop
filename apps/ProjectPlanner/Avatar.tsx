@@ -3,13 +3,13 @@ import classnames from 'classnames'
 import 'ProjectPlanner/Avatar.scss'
 
 type Props = {
-  src?: string
+  src?: string | null
   size?: number
   className?: string
 }
 
 export const Avatar: React.FC<Props> = ({ src, size = 3, className, ...props }) => {
-  const Component = src ? 'img' : 'div'
+  const Component: any = src ? 'img' : 'div'
 
   return (
     <Component
@@ -21,11 +21,3 @@ export const Avatar: React.FC<Props> = ({ src, size = 3, className, ...props }) 
     />
   )
 }
-
-// type UserAvatarProps = {
-//   userId: number
-// }
-
-// export const UserAvatar: React.FC<UserAvatarProps> = ({ userId, ...rest}) => {
-
-// }
