@@ -89,8 +89,8 @@ export const TaskDialog: React.FC<Props> = ({
               </Heading>
               {task && task.minutes > 0 && (
                 <Progress
-                  totalMinutes={task?.minutes || 0}
-                  completedMinutes={task?.completedMinutes || 0}
+                  totalMinutes={task.minutes || 0}
+                  completedMinutes={task.completedMinutes || 0}
                   onChange={(completedMinutes) => update({ completedMinutes })}
                 />
               )}
@@ -98,7 +98,7 @@ export const TaskDialog: React.FC<Props> = ({
                 {task && task.minutes === 0 && <i>Set Minutes First</i>}
                 {task && task.minutes > 0 && (
                   <span className="task-completion-status">
-                    {((task?.completedMinutes! / task.minutes) * 100).toFixed(0)}% Complete
+                    {((task.completedMinutes / task.minutes) * 100).toFixed(0)}% Complete
                   </span>
                 )}
               </p>
