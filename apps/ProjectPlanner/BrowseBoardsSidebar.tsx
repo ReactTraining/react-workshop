@@ -17,14 +17,15 @@ export const BrowseBoardsSidebar: React.FC = () => {
   const users = useAccountUsers(user?.accountId)
   const [recent, setRecent] = useState<Board[]>([])
 
-  // Then we were going to work on #5. I think the lecture can be using effects for the title of
-  // a task card perhaps, and doing the useMedia custom hook for hiding the sidebar
-
   useEffect(() => {
     if (!user) return
     const ids = localStorage.getRecentBoards()
     api.boards.getBoards(user.accountId).then((boards) => {
-      let recent = boards.filter((b) => ids.includes[b.id])
+      const recent = ids
+        .map((id) => {
+          return boards.find((b) => b.id === id)
+        })
+        .filter((b) => b !== undefined) as Board[]
       setRecent(recent)
     })
   }, [user])
@@ -37,8 +38,8 @@ export const BrowseBoardsSidebar: React.FC = () => {
         </Heading>
         {recent.length > 0 ? (
           <ul className="spacing-small">
-            {recent.map((boardId: number) => {
-              return <RecentWorkshop key={boardId} id={boardId} name="React Workshop" />
+            {recent.map((board) => {
+              return <RecentWorkshop key={board.id} id={board.id} name={board.name} />
             })}
           </ul>
         ) : (
@@ -73,7 +74,7 @@ const RecentWorkshop: React.FC<RecentWorkshopProps> = ({ id, name }) => {
     <li className="flex items-center">
       <BsKanban className="block" color={theme.colors.purple} />
       <div className="ml-2">
-        <Link to={`/boards/${id}`}>{name}</Link>
+        <Link to={`/boards/${id}`}>{name || <em>Board Name</em>}</Link>
       </div>
     </li>
   )
