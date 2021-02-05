@@ -18,10 +18,10 @@
     opacity: 0.5;
   }
   [data-reach-slider-handle] {
-    background: var(--taskColor);
+    background: var(--taskColor, var(--brightBlue));
     box-shadow: 0 0 0 3px white;
     &:focus {
-      box-shadow: 0 0 0 1px white, 0 0 0 2px var(--taskColor), 0 0 0 5px white;
+      box-shadow: 0 0 0 1px white, 0 0 0 2px var(--taskColor, var(--brightBlue)), 0 0 0 5px white;
     }
   }
 }
