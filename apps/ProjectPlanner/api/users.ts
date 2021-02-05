@@ -16,7 +16,22 @@ export async function registerUser(user: Omit<User, 'id' | 'accountId'>): Promis
 }
 
 export async function getAccountUsers(accountId: number): Promise<User[]> {
-  return get<User[]>(`/users?accountId=${accountId}`)
+  return get<DatabaseUser[]>(`/users?accountId=${accountId}`).then((users) =>
+    users.map((u) => {
+      delete u.password
+      return u
+    })
+  )
+}
+
+export async function getUsersByIds(ids: number[]): Promise<User[]> {
+  if (ids.length === 0) return Promise.resolve([])
+  return get<DatabaseUser[]>(`/users?id=${ids.join('&id=')}`).then((users) =>
+    users.map((u) => {
+      delete u.password
+      return u
+    })
+  )
 }
 
 /**

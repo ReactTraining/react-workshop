@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import { FaCheck, FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 import { Dialog } from 'ProjectPlanner/Dialog'
-import { AssignedTo } from 'ProjectPlanner/AssignedTo'
+import { AvatarGroup } from 'ProjectPlanner/AvatarGroup'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
@@ -67,7 +67,7 @@ export const TaskDialog: React.FC<Props> = ({
               <Heading as="h2" size={4}>
                 Assigned To:
               </Heading>
-              <AssignedTo taskId={taskId} />
+              {task ? <AvatarGroup userIds={task.assignedTo} /> : '...'}
             </div>
 
             <div className="spacing-small">

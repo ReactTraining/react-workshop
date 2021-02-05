@@ -20,7 +20,7 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/3082153?s=460&u=e1d45c3ec237a7ef24c28d4a602f8131f3cc1738&v=4"
     },
     {
-      "id": 10,
+      "id": 3,
       "accountId": 1,
       "username": "student",
       "password": "student",
@@ -28,7 +28,7 @@
       "avatarUrl": "/images/bruce-lee.jpg"
     },
     {
-      "id": 11,
+      "id": 4,
       "accountId": 1,
       "username": "",
       "password": "",
@@ -36,7 +36,7 @@
       "avatarUrl": "/images/people/1.png"
     },
     {
-      "id": 12,
+      "id": 5,
       "accountId": 1,
       "username": "",
       "password": "",
@@ -44,7 +44,7 @@
       "avatarUrl": "/images/people/2.png"
     },
     {
-      "id": 13,
+      "id": 6,
       "accountId": 1,
       "username": "",
       "password": "",
@@ -52,7 +52,7 @@
       "avatarUrl": "/images/people/3.png"
     },
     {
-      "id": 14,
+      "id": 7,
       "accountId": 1,
       "username": "",
       "password": "",
@@ -60,7 +60,7 @@
       "avatarUrl": "/images/people/4.png"
     },
     {
-      "id": 16,
+      "id": 8,
       "accountId": 1,
       "username": "",
       "password": "",
@@ -101,7 +101,7 @@
       "content": "Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/",
       "minutes": 10,
       "completedMinutes": 10,
-      "assignedTo": [18],
+      "assignedTo": [4],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 1
@@ -111,7 +111,7 @@
       "content": "git clone and npm install",
       "minutes": 5,
       "completedMinutes": 5,
-      "assignedTo": [18],
+      "assignedTo": [3, 6],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 2
@@ -121,7 +121,7 @@
       "content": "Declarative code is when you write in a style where you say \"what\" you want, like HTML, CSS, SQL, or React's JSX. Imperative code is when you write in a style where you say \"how\" you want things to work.",
       "minutes": 60,
       "completedMinutes": 0,
-      "assignedTo": [],
+      "assignedTo": [7, 8, 9],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 3
@@ -131,7 +131,7 @@
       "content": "State can be created with useState or useReducer",
       "minutes": 60,
       "completedMinutes": 0,
-      "assignedTo": [],
+      "assignedTo": [3, 4, 5],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 4
@@ -141,7 +141,7 @@
       "content": "Updating state will cause a re-render of the component",
       "minutes": 10,
       "completedMinutes": 5,
-      "assignedTo": [],
+      "assignedTo": [3, 5, 7],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 5
@@ -151,7 +151,7 @@
       "content": "React components are created with functions or classes. With functions, they return JSX. With classes, the `render` method returns JSX",
       "minutes": 10,
       "completedMinutes": 5,
-      "assignedTo": [],
+      "assignedTo": [5, 7, 8],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 6
@@ -161,7 +161,7 @@
       "content": "A \"Single Page Application\" is where the HTML payload is only delivered on the first request. Then JavaScript mimics page changes and updates the URL as the user navigates. The DOM is also changed between pages giving an impression of real page changes.",
       "minutes": 10,
       "completedMinutes": 10,
-      "assignedTo": [],
+      "assignedTo": [4, 7],
       "boardId": 1,
       "date": "2021-02-03",
       "id": 7

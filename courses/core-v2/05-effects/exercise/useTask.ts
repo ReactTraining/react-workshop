@@ -17,6 +17,5 @@ export function useTask(taskId: number) {
     }
   }, [taskId])
 
-  // Ask instructor what "as const" does for us here
   return [task, setTask] as const
 }

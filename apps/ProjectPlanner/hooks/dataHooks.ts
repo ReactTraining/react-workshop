@@ -43,16 +43,16 @@ export const useTaskGroups = (boardId: number): TaskGroup[] | null => {
   return taskGroups
 }
 
-// export const useTasks = (boardId: number): TaskType[] | null => {
-//   const [tasks, setTasks] = useState<TaskType[] | null>(null)
+// export const useTask = (taskId: number): Task | null => {
+//   const [task, setTask] = useState<Task | null>(null)
 
 //   useEffect(() => {
-//     api.boards.getTasks(boardId).then((tasks: TaskType[]) => {
-//       setTasks(tasks)
+//     api.boards.getTask(taskId).then((task) => {
+//       setTask(task)
 //     })
-//   }, [boardId])
+//   }, [taskId])
 
-//   return tasks
+//   return task
 // }
 
 export const useAccountUsers = (accountId: number | undefined): User[] | null => {

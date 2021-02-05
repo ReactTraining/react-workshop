@@ -26,7 +26,7 @@ export const BrowseBoardsSidebar: React.FC = () => {
 }
 
 /**
- * Alternative Solution with different tradeoffs
+ * Alternative Solution with different useLayoutEffect
  */
 
 // export const BrowseBoardsSidebar: React.FC = () => {
