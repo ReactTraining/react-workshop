@@ -1,6 +1,4 @@
-# Forms
-
-NOTE! You will only work on the two files that have respective `.final.tsx` versions
+# Data Fetching with useEffect
 
 ## Review the component hierarchy
 

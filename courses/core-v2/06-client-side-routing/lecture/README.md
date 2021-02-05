@@ -2,11 +2,11 @@
 
 # Main Topics to Cover
 
-The main point is to familiarize them with Client Side Routing and SPA concepts. Not necessarily to spend tons of time making them React Router experts.
+The main point is to familiarize them with Client Side Routing so they can understand the basics enough to understand SPAs and to be successful with the rest of the curriculum -- not necessarily to spend tons of time making them React Router experts.
 
 - ✅ Single Page Applications
 - ✅ React Router
-- ✅ Server Side Routing (SSR)
+- ✅ Server Side Rendering (SSR) - maybe a recap on how useEffect doesn't get called
 
 # Lecture
 

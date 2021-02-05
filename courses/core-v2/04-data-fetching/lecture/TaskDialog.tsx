@@ -17,8 +17,6 @@ type Props = {
   onClose(): void
 }
 
-// api.boards.getTask(taskId)
-
 export const TaskDialog: React.FC<Props> = ({
   taskId,
   siblingTaskIds,
@@ -26,6 +24,8 @@ export const TaskDialog: React.FC<Props> = ({
   onClose,
 }) => {
   const [task, setTask] = useState<Task | null>(null)
+
+  // api.boards.getTask(taskId)
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)

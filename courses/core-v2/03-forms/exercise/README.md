@@ -33,12 +33,16 @@ Hint: Use empty strings for `name` and `content`
 
 ```ts
 // For TypeScript, refs can be weird. You'll have to do it like this.
-// The instructor can explain later
+// The instructor can explain more but we also have some links if you
+// need them below
 const nameRef = useRef<HTMLInputElement>(null!)
 
 // For JavaScript, you can just do:
 const nameRef = useRef()
 ```
+
+- https://github.com/typescript-cheatsheets/react#useref
+- https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
 
 8. Assign the ref to the input like this: `<input ref={nameRef} />`
 

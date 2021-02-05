@@ -5,7 +5,7 @@ import React, {
   useReducer,
   useEffect,
   PropsWithChildren,
-  ReactElement
+  ReactElement,
 } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -221,7 +221,7 @@ import ReactDOM from 'react-dom'
 // }
 
 // // Fixes:
-// // 1. Return: [boolean, () => void] to explicitly type a tuple
+// // 1. Return type: [boolean, () => void] to explicitly type a tuple
 // // 2. Do: `return [state, toggle] as const` // const assertion
 
 // // In this case, const assertion tells TypeScript these are constants and will not change

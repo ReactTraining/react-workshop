@@ -2,6 +2,7 @@
 
 # Main Topics to Cover
 
+- ✅ TypeScript Primer
 - ✅ State with useState
 - ✅ Fragments
 - ✅ Controlled vs Uncontrolled Input Fields
@@ -9,6 +10,7 @@
 
 # Lecture
 
+- This might be a great time to do a little TypeScript primer. Not too much, just some basics for the lesson. Generics would be good to approach too since it's so heavily used.
 - Teach the `useState` API
 - Still going with the theme of "how to think in React", emphasize the underlying mechanics of re-renders on state changes, the virtual dom which is buffering what updates the real dom, and "UI is a function of state".
 - Use `useState` again for an error message. This helps explain nuances of two states and some of the other points listed below.

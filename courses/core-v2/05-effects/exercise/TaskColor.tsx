@@ -7,7 +7,12 @@ type Props = {
 }
 
 export const TaskColor: React.FC<Props> = ({ task, children }) => {
-  const ref = React.useRef<HTMLDivElement>(null!)
+  // Make a ref for the div below. The "type" for a div is HTMLElementDiv
+  // If you're doing TypeScript, you'll need to give useRef that type
+  // as a generic: https://github.com/typescript-cheatsheets/react#useref
+
+  // useTheme is just a custom hook to get our websites theme colors.
+  // Then we make `statusColor` based on the details of the task
   const { colors } = useTheme()
   let statusColor: string | null = null
 
@@ -21,10 +26,13 @@ export const TaskColor: React.FC<Props> = ({ task, children }) => {
     }
   }
 
-  React.useLayoutEffect(() => {
-    if (!ref.current || !statusColor) return
-    ref.current.style.setProperty(`--taskColor`, statusColor)
-  }, [statusColor])
+  // The whole point of this component is to make a CSS custom property
+  // called `--taskColor` on an element which is one of three colors from
+  // `statusColor`. This`TaskColor` component just makes a div with that
+  // property.But there's no way to add CSS custom properties directly in
+  // JSX(like we can with attributes like className).So we made the ref so
+  // we can do this more "imperatively".So you'll need a ref and a useEffect
+  // or useLayoutEffect.
 
-  return <div ref={ref}>{children}</div>
+  return <div>{children}</div>
 }
