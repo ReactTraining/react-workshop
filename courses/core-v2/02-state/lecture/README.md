@@ -6,7 +6,7 @@
 - ✅ State with useState
 - ✅ Fragments
 - ✅ Controlled vs Uncontrolled Input Fields
-- ✅ Lifted State
+- ✅ State Lifting
 
 # Lecture
 

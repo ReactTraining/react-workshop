@@ -8,10 +8,6 @@ type Props = {
   colors: { [key: string]: string }
 }
 
-/**
- * A small React tree: App -> PrimaryLayout -> Board -> TaskCard
- */
-
 export const App: React.FC = () => {
   // Open getTheme to see where these are coming from!
   const colors = getTheme()
@@ -30,18 +26,16 @@ const Board: React.FC<Props> = ({ colors }) => {
 }
 
 const TaskCard: React.FC<Props> = ({ colors }) => {
-  const spanRef = useRef<HTMLSpanElement>(null!)
+  const taskRef = useRef<HTMLDivElement>(null!)
 
   useLayoutEffect(() => {
-    spanRef.current.style.setProperty(`--taskColor`, colors.blue)
+    taskRef.current.style.setProperty(`--taskColor`, colors.blue)
   }, [colors])
 
   return (
-    <div className="task-card spacing">
+    <div className="task-card spacing" ref={taskRef}>
       <Heading>Task Card</Heading>
-      <span ref={spanRef}>
-        <b>{colors?.blue}</b>
-      </span>
+      <span>{colors?.blue}</span>
     </div>
   )
 }

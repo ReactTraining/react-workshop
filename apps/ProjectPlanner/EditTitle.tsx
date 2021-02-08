@@ -20,10 +20,6 @@ export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
     }
   }
 
-  function startEdit() {
-    setEdit(true)
-  }
-
   function handleFocusOnEnter(event: React.KeyboardEvent) {
     if (event.key === 'Enter') setEdit(true)
   }
@@ -64,7 +60,3 @@ export const EditTitle: React.FC<Props> = ({ title, placeholder, onSave }) => {
     </div>
   )
 }
-
-// ) : (
-//   <span onClick={startEdit}>{title || <em>{placeholder || 'No Title'}</em>}</span>
-// )}

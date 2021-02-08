@@ -8,15 +8,33 @@ type Colors = {
   [key: string]: string
 }
 
+/**
+ * Custom Provider:
+ */
+
 const ThemeContext = React.createContext<Colors | null>(null)
+
+const ThemeProvider: React.FC = ({ children }) => {
+  const colors = getTheme()
+
+  return <ThemeContext.Provider value={colors}>{children}</ThemeContext.Provider>
+}
+
+const useTheme = () => {
+  return useContext(ThemeContext)
+}
+
+/**
+ * App Tree:
+ */
 
 export const App: React.FC = () => {
   const colors = getTheme()
 
   return (
-    <ThemeContext.Provider value={colors}>
+    <ThemeProvider>
       <PrimaryLayout />
-    </ThemeContext.Provider>
+    </ThemeProvider>
   )
 }
 
@@ -29,21 +47,19 @@ const Board: React.FC = () => {
 }
 
 const TaskCard: React.FC = () => {
-  const context = useContext(ThemeContext)
-  const spanRef = useRef<HTMLSpanElement>(null!)
+  const colors = useTheme()
+  const taskRef = useRef<HTMLDivElement>(null!)
 
   useLayoutEffect(() => {
-    if (context) {
-      spanRef.current.style.setProperty(`--taskColor`, context.blue)
+    if (colors) {
+      taskRef.current.style.setProperty(`--taskColor`, colors.blue)
     }
-  }, [context])
+  }, [colors])
 
   return (
-    <div className="task-card spacing">
+    <div className="task-card spacing" ref={taskRef}>
       <Heading>Task Card</Heading>
-      <span ref={spanRef}>
-        <b>{context?.blue}</b>
-      </span>
+      <span>{colors?.blue}</span>
     </div>
   )
 }

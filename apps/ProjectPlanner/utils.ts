@@ -61,7 +61,8 @@ export function httpDelete<T>(path: string): Promise<T> {
 *****************************************/
 
 export function shuffle(array: any[]): any[] {
-  var currentIndex = array.length,
+  if (!array || array.length === 0) return []
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex
 

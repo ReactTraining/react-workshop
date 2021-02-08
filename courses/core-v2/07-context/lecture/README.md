@@ -1,17 +1,15 @@
 # Data Flow
 
-🛑 WAIT! There was no exercise for #6. This lecture is pretty heavy considering all the new concepts. It might make sense to start by showing the exercise first and reversing the order. The exercise has a light version of explaining context. This can be a code-along with the students since they'll need help with the TS aspect of context. Then they can still finish the exercise.
-
 # Main Topics to Cover
 
 - ✅ State Lifting
 - ✅ Prop Drilling
 - ✅ Reducers (with the state in `Board.tsx`)
-- ✅ Context
+- ✅ Context with Custom Providers/Consumers
 
 # Lecture
 
-- Our starting point is similar to the ending point for the last exercise.
+- Our starting point is similar to the ending point the "Data Fetching" exercise.
 - Even with the `useTasks` hook (to remove repetitive code) we're still doing an API call for each `TaskCard`. Then doing it again when `TaskDialog` opens.
 - Replace the current strategy by doing an API call for all the board's tasks in `Board.tsx`. Much of the code in `Board.tsx` is already written.
 - Make a `getTask` utility function to prop-drill down to `TaskCard` and `TaskDialog`.

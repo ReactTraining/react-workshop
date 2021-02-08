@@ -1,19 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from 'ProjectPlanner/AuthContext'
 import { ThemeProvider } from 'ProjectPlanner/ThemeContext'
 import { PrimaryLayout } from 'ProjectPlanner/PrimaryLayout'
-import { UnauthenticatedLayout } from 'ProjectPlanner/UnauthenticatedLayout'
-import { AuthProvider } from './AuthContext'
 import 'ProjectPlanner/styles/global-styles.scss'
 
-const App = () => {
-  const authenticated = false
-
+export const App = () => {
   return (
     <BrowserRouter>
       <ThemeProvider>
-        <AuthProvider>{authenticated ? <PrimaryLayout /> : <UnauthenticatedLayout />}</AuthProvider>
+        <AuthProvider>
+          <PrimaryLayout />
+        </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
   )

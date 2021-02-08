@@ -6,7 +6,8 @@
 - ✅ Refs (Uncontrolled Input Fields)
 - ✅ Controlled Input Fields
 - ✅ React Event Delegation
-- ✅ TypeScript
+- ✅ Virtual DOM / Reconciliation
+- ✅ State Lifting
 
 If doing TypeScript:
 
@@ -23,4 +24,4 @@ If doing TypeScript:
 
 - Submitting the form currently gets the form data from `getElementById`. Change to ref instead.
 - Use refs to set focus back to the input after submission
-- Change to a "controlled" strategy with the input field. Explain controlled vs uncontrolled
+- Change to a "controlled" strategy with the input field.
