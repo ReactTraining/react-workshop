@@ -73,7 +73,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth() {
   const context = useContext(AuthStateContext)
   if (!context) {
-    throw Error('Use of useAuthState is outside of Provider')
+    throw Error('Use of useState is outside of Provider')
   }
   return context
 }

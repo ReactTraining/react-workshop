@@ -47,19 +47,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     dispatch({ type: 'LOGOUT' })
   }, [])
 
-  useEffect(() => {
-    let isCurrent = true
-    api.auth.getAuthenticatedUser().then((user) => {
-      if (user && isCurrent) {
-        login(user)
-      } else {
-        logout()
-      }
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [login, logout])
+  // api.auth.getAuthenticatedUser()
 
   const context: Context = {
     ...state,
@@ -73,7 +61,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth() {
   const context = useContext(AuthStateContext)
   if (!context) {
-    throw Error('Use of useAuthState is outside of Provider')
+    throw Error('Use of useState is outside of Provider')
   }
   return context
 }
