@@ -9,7 +9,7 @@ import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 import { useBoardContext } from 'ProjectPlanner/BoardContext'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
-import './TaskDialog.scss'
+import 'ProjectPlanner/TaskDialog.scss'
 
 type Props = {
   taskId: number

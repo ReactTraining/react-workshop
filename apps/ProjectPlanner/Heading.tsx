@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import './Heading.scss'
+import 'ProjectPlanner/Heading.scss'
 
 type Props = {
   size?: 1 | 2 | 3 | 4

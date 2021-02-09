@@ -51,3 +51,9 @@
 - ✅ Prop Drilling
 - ✅ Reducers
 - ✅ Context with Custom Providers/Consumers
+
+## Authentication
+
+- ✅ Authentication With Context
+- ✅ Unique situations with Context
+- ✅ Private Routes

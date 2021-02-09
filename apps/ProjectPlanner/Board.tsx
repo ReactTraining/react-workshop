@@ -7,7 +7,7 @@ import { TaskGroup as TaskGroupType, Task as TaskType } from 'ProjectPlanner/typ
 import { EditTitle } from 'ProjectPlanner/EditTitle'
 import { BoardProvider, useBoardContext } from 'ProjectPlanner/BoardContext'
 import * as localStorage from 'ProjectPlanner/localStorage'
-import './Board.scss'
+import 'ProjectPlanner/Board.scss'
 
 // https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
 

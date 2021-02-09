@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dialog as ReachDialog } from '@reach/dialog'
-import './Dialog.scss'
+import 'ProjectPlanner/Dialog.scss'
 
 type Props = {
   onClose(): void

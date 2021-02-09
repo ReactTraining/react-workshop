@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiLayers } from 'react-icons/fi'
-import './Logo.scss'
+import 'ProjectPlanner/Logo.scss'
 
 export const Logo: React.FC = () => (
   <span className="logo vertical-middle">

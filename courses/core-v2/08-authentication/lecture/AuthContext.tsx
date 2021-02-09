@@ -10,8 +10,9 @@ type State = {
 }
 
 type Context = State & {
-  login(user: User): void
-  logout(): void
+  dispatch: React.Dispatch<AuthContextActions>
+  // login(user: User): void
+  // logout(): void
 }
 
 const AuthStateContext = React.createContext<Context | null>(null)
@@ -39,20 +40,25 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   )
 
-  const login = useCallback((user) => {
-    dispatch({ type: 'LOGIN', user })
+  useEffect(() => {
+    let isCurrent = true
+    api.auth.getAuthenticatedUser().then((user) => {
+      if (user && isCurrent) {
+        dispatch({ type: 'LOGIN', user })
+      } else {
+        dispatch({ type: 'LOGOUT' })
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
   }, [])
-
-  const logout = useCallback(() => {
-    dispatch({ type: 'LOGOUT' })
-  }, [])
-
-  // api.auth.getAuthenticatedUser()
 
   const context: Context = {
     ...state,
-    login,
-    logout,
+    dispatch,
+    // login,
+    // logout,
   }
 
   return <AuthStateContext.Provider value={context} children={children} />
@@ -61,7 +67,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 export function useAuth() {
   const context = useContext(AuthStateContext)
   if (!context) {
-    throw Error('Use of useState is outside of Provider')
+    throw Error('Use of useAuth is outside of Provider')
   }
   return context
 }

@@ -2,8 +2,12 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { LoginForm } from 'ProjectPlanner/LoginForm'
 import { SignupForm } from 'ProjectPlanner/SignupForm'
-import { useAuth } from 'ProjectPlanner/AuthContext'
 import 'ProjectPlanner/UnauthorizedLayout.scss'
+
+// This file uses AuthContext in a slightly different way than some lessons.
+// So we're including the one we want (relative path) and not possibly a
+// lesson one:
+import { useAuth } from './AuthContext'
 
 export const UnauthenticatedLayout: React.FC = () => {
   const { login } = useAuth()

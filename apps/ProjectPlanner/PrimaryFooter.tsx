@@ -1,5 +1,5 @@
 import React from 'react'
-import './PrimaryFooter.scss'
+import 'ProjectPlanner/PrimaryFooter.scss'
 
 export const PrimaryFooter: React.FC = () => {
   return (

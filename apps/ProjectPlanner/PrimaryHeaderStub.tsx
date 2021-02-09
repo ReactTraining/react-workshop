@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Logo } from 'ProjectPlanner/Logo'
-import './PrimaryHeader.scss'
+import 'ProjectPlanner/PrimaryHeader.scss'
 
 /**
  * Similar to PrimaryHeader but with no context. Used in lessons

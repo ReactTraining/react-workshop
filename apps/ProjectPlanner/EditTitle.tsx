@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { MdModeEdit } from 'react-icons/md'
-import './EditTitle.scss'
+import 'ProjectPlanner/EditTitle.scss'
 
 type Props = {
   title: string

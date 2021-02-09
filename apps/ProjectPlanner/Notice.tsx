@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import './Notice.scss'
+import 'ProjectPlanner/Notice.scss'
 
 type Props = {
   type?: 'error' | 'success'
