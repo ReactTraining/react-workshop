@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { PrimaryHeader } from 'ProjectPlanner/PrimaryHeader'
 import { PrimaryFooter } from 'ProjectPlanner/PrimaryFooter'
-import './PrimaryLayout.scss'
+import 'ProjectPlanner/PrimaryLayout.scss'
 
 // Route Targets
 import { Dashboard } from 'ProjectPlanner/Dashboard'
