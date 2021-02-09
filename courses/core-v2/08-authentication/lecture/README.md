@@ -31,4 +31,4 @@ ReactDOM.render(
 )
 ```
 
-Depending on how much time you have and how much you want to show, the context currently gives you a `dispatch` function. It might ne nice to refactor `AuthContext` to give a `login` and `logout` function instead.
+Depending on how much time you have and how much you want to show, the context currently gives you a `dispatch` function. It might ne nice to refactor `AuthContext` to give a `login` and `logout` function instead. Depending on how those functions are used, we might need to wrap in `useCallback` :)

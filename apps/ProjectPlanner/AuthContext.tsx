@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useCallback, useEffect } from 'react'
+import React, { useContext, useReducer, useEffect } from 'react'
 import { api } from 'ProjectPlanner/api'
 import { User } from 'ProjectPlanner/types'
 
@@ -39,13 +39,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   )
 
-  const login = useCallback((user) => {
+  const login = (user: User) => {
     dispatch({ type: 'LOGIN', user })
-  }, [])
+  }
 
-  const logout = useCallback(() => {
+  const logout = () => {
     dispatch({ type: 'LOGOUT' })
-  }, [])
+  }
 
   useEffect(() => {
     let isCurrent = true
@@ -59,7 +59,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return () => {
       isCurrent = false
     }
-  }, [login, logout])
+  }, [])
 
   const context: Context = {
     ...state,

@@ -182,4 +182,56 @@ function useToggle(value: boolean): [boolean, () => void] {
 
 # Context
 
-todo
+Without TypeScript, it is normal to establish your context like this with no argument to `createContext()`. The argument to `createContext` is actually the "initial value" of your context, so technically your context is 'undefined' when you do this:
+
+```js
+const Context = React.createContext()
+```
+
+But we also send an initial value through context when we write the provider:
+
+```jsx
+const [someValue, setSomeValue] = useState('initial value')
+<Context.Provider value={someValue} />
+```
+
+For all your components, they will never know that the initial value was once `undefined`. The first thing they'll get is the value passed down into the provider, so this is okay in a non-TypeScript world.
+
+However, with TypeScript we can't just leave that argument empty because TypeScript will infer that the type is only allowed to be `undefined`. So we do this instead:
+
+```ts
+// If we have the value ahead of time
+const Context = React.createContext<User>({ name: 'Bob' })
+
+// If you don't have the exact User value yet (perhaps it's asynchronous)
+const Context = React.createContext<User | null>(null)
+```
+
+In more rare cases, you might have the exact value you want to send down through context, like this "bob" user. In that case you can use the first option above. But often times your data will be asynchronous. If your state is `null` until the data arrives, maybe you need to do it like this:
+
+```ts
+type User = {
+  name: string
+}
+
+type ContextType = {
+  user: User | null
+  getName(): string | undefined
+}
+
+const Context = React.createContext<ContextType | null>(null)
+
+export const UserProvider: React.FC = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null)
+  React.useEffect(/* fetch data async */)
+
+  const value: ContextType = {
+    user,
+    getName: () => {
+      return user?.name
+    },
+  }
+
+  return <Context.Provider value={value} children={children} />
+}
+```
