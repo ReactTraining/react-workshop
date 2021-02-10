@@ -17,7 +17,7 @@ export const Board: React.FC = () => {
   // const [tasks, setTasks] = useState<TaskType[] | null>(null)
 
   useEffect(() => {
-    api.boards.getBoard(boardId).then((data: any) => {
+    api.boards.getBoard(boardId).then((data) => {
       const { taskGroups, tasks, ...board } = data
       setBoard(board)
       setTaskGroups(taskGroups)
