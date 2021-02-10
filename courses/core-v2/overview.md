@@ -51,11 +51,15 @@
 - ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
 - ✅ Design System Theming
+  t
 
-## Data Cache
+## App State
 
-- ✅ Reducers (with the state in `Board.tsx`)
+- ✅ Application State in Context
+- ✅ Reducers
 - ✅ Context with Custom Providers/Consumers
+- ✅ Efficiencies for real time updates
+- ✅ Reduce repetitive network requests
 
 ## Authentication
 
