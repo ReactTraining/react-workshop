@@ -31,7 +31,7 @@ const Board: React.FC = () => {
 }
 
 const TaskGroup: React.FC = () => {
-  const [openDialog, setOpenDialog] = useState(false)
+  const [expandTask, setExpandTask] = useState(false)
 
   // Using lifted shared state instead of network data
   // for brevity.
@@ -48,10 +48,10 @@ const TaskGroup: React.FC = () => {
 
   return (
     <div>
-      {openDialog && (
-        <TaskDialog task={task} update={update} onClose={() => setOpenDialog(false)} />
+      {expandTask && (
+        <TaskDialog task={task} update={update} onClose={() => setExpandTask(false)} />
       )}
-      <TaskCard task={task} onClick={() => setOpenDialog(true)} />
+      <TaskCard task={task} onClick={() => setExpandTask(true)} />
     </div>
   )
 }
