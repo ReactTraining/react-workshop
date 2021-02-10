@@ -1,9 +1,7 @@
-# Data Flow
+# Data Cache
 
 # Main Topics to Cover
 
-- ✅ State Lifting
-- ✅ Prop Drilling
 - ✅ Reducers (with the state in `Board.tsx`)
 - ✅ Context with Custom Providers/Consumers
 

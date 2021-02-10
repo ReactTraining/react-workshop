@@ -54,6 +54,9 @@
 
 ## Data Cache
 
+- ✅ Reducers (with the state in `Board.tsx`)
+- ✅ Context with Custom Providers/Consumers
+
 ## Authentication
 
 - ✅ Authentication With Context
