@@ -3,7 +3,6 @@
 ## ✅ Task 1: Controlled `name` and `content` fields
 
 1. Open `Task.tsx` and create state for `name` and `content`. Notice that the state for the task has been moved to a single object. So create those properties on that object.
-
 2. Make the input and textarea form fields "controlled" by giving them a `value` and an `onChange` prop that controls the newly created state. Notice that if you call `setTask` directly you have to account for all the other state. We created an `update` function for you. Use it like this:
 
 ```js
@@ -20,15 +19,13 @@ update({ name: 'some new name' })
 ## ✅ Task 2: Submit the form
 
 4. At this point, you should be able to fill out the form and submit it. You'll see the data in the console.
-
 5. Clear the form by setting the state for the task to be the initial values again.
 
 Hint: Use empty strings for `name` and `content`
 
-## ✅ Task 3: Refs for focus
+## ✅ BONUS TASK!
 
 6. Let's reset the focus of the cursor to be back on the name input field after submission as well. There is no way to "declaratively" do this with JSX. So you'll have to imperatively do it by working directly with the DOM. For this we'll use a "ref"
-
 7. Create a ref using `useRef()`:
 
 ```ts
@@ -45,7 +42,6 @@ const nameRef = useRef()
 - https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
 
 8. Assign the ref to the input like this: `<input ref={nameRef} />`
-
 9. Now at the end of the `handleSubmit` function, make the input focused again.
 
 In JavaScript, you would ordinarily do that like this:

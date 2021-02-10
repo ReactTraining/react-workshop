@@ -1,56 +1,35 @@
-# Data Flow
+# Context
 
 # Main Topics to Cover
 
-- ✅ State Lifting
-- ✅ Prop Drilling
-- ✅ Reducers (with the state in `Board.tsx`)
+- ✅ "State Lifting" leads to "Prop Drilling"
+- ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
+- ✅ Design System Theming
 
 # Lecture
 
-- Our starting point is similar to the ending point the "Data Fetching" exercise.
-- Even with the `useTasks` hook (to remove repetitive code) we're still doing an API call for each `TaskCard`. Then doing it again when `TaskDialog` opens.
-- Replace the current strategy by doing an API call for all the board's tasks in `Board.tsx`. Much of the code in `Board.tsx` is already written.
-- Make a `getTask` utility function to prop-drill down to `TaskCard` and `TaskDialog`.
-- Everything should work except for updating tasks.
+- Teach the basic concepts of context.
+- Migrate the theme colors from a prop-drilling strategy to context
+- Use `ThemeContext` to stay consistent with the exercise they'll be doing
+- When context is finished, migrate to a `ThemProvider` custom component.
 
-## Switch to Context
+## CSS Custom Properties
 
-- Put `getTask` on context instead of prop-drilling.
-- Put `updateTask` on context.
+In addition to explaining context in React, this particular code uses CSS Custom Properties which will probably be a new concept to some people. Maybe use this as an time to review how they work and checkout the `styles.scss` file to see how we're using them to add a `--taskColor` to the `TaskCard`.
 
-## Debouncing Updates
+In CSS you can do this:
 
-If the group feels comfortable with JS and useEffect, and if there's time :)
-
-In `TaskDialog`, the form updates are hitting the lifted state often and trashing re-renders. Plus we're doing an API call with each one. We could debounce like this:
-
-```tsx
-const { updateTask } = useContext(BoardContext)
-const [edited, setEdited] = useState(false)
-const { getTask } = useContext(BoardContext)
-const [task, setTask] = useState<Task | null>(null)
-
-useEffect(() => {
-  const task = getTask(taskId)
-  if (task) setTask(task)
-}, [getTask, taskId])
-
-function update(partialTask: Partial<Task>) {
-  if (!task) return
-  setTask({ ...task, ...partialTask })
-  setEdited(true)
+```css
+body {
+  --themeColor: red;
 }
 
-useEffect(() => {
-  if (edited && task) {
-    const id = setTimeout(() => {
-      updateTask(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
-    }, 400)
-    return () => {
-      clearTimeout(id)
-    }
-  }
-}, [edited, task, updateTask])
+div.some-component {
+  --themeColor: blue;
+}
+
+div.some-component a {
+  color: var(--themeColor); /* The anchor will be blue because it's more locally scoped */
+}
 ```

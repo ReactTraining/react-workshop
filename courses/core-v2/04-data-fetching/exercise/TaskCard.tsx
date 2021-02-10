@@ -24,7 +24,9 @@ export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
     >
       <div className="task-card-content spacing-small">
         <Heading size={3}>{task?.name}</Heading>
-        <div className="task-card-content">{task?.content || <i>No Content</i>}</div>
+        <div className="task-card-content">
+          {task?.content || <i>Get Task Data from Database</i>}
+        </div>
       </div>
     </div>
   )

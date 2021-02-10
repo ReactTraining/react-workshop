@@ -8,7 +8,7 @@ const devServerOptions = require('../config/webpack.devserver.config.js')
 
 /////////////// START SYNCHRONOUS COURSE MENU CLI
 const cli = require('./cli')
-const { appPath, alias } = cli()
+const { appPath, alias, selectedLessonType, selectedLesson } = cli()
 /////////////// END
 
 const port = 3000
@@ -20,7 +20,10 @@ server.listen(port, 'localhost', function (err) {
     console.log(err)
   } else {
     console.clear()
-    console.log(`\nGo to: http://localhost:${port}\nCompiling...\n`)
+    console.log(`\nGo to: http://localhost:${port}`)
+    console.log(
+      `Compiling... ${selectedLesson ? `${selectedLessonType}: ${selectedLesson}` : 'App'}\n`
+    )
   }
 
   ;['SIGINT', 'SIGTERM'].forEach(function (sig) {

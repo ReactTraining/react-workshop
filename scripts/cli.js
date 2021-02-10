@@ -23,11 +23,14 @@ module.exports = function () {
   console.clear()
 
   // Are we trying to choose an app or a lesson to load
-  const { appPath, alias } = process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
+  const { appPath, alias, selectedLessonType, selectedLesson } =
+    process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
 
   return {
     appPath,
     alias: alias || {},
+    selectedLessonType,
+    selectedLesson,
   }
 }
 
@@ -191,7 +194,7 @@ function selectLesson() {
     alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
   })
 
-  return { appPath: getCourseAppPath(selectedCourse), alias }
+  return { appPath: getCourseAppPath(selectedCourse), alias, selectedLessonType, selectedLesson }
 }
 
 /****************************************

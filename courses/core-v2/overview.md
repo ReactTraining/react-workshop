@@ -47,10 +47,12 @@
 
 ## Context
 
-- ✅ State Lifting
-- ✅ Prop Drilling
-- ✅ Reducers
+- ✅ "State Lifting" leads to "Prop Drilling"
+- ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
+- ✅ Design System Theming
+
+## Data Cache
 
 ## Authentication
 

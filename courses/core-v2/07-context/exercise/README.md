@@ -1,45 +1,22 @@
 # Context
 
-## ✅ Task 1: Basic Context
+## ✅ Task 1: Custom Context Provider
 
-Open `App.js` (rename to .tsx if you want to try it the TypeScript way)
+Context is already setup and working in `index.tsx`
 
-1. Refactor `App.js` to pass colors down to `TaskCard` via context instead of prop drilling
+1. Migrate the working context code from `index.tsx` into the `ThemeContext.tsx` file.
 
-```js
-/****************************************
-  The JS way (Vanilla React)
-*****************************************/
+There are basically three parts to context:
 
-// Create a context object outside of all the components:
-const ThemeContext = React.createContext()
+- Creating the context object (outside of your components)
+- The Provider JSX where the `value` prop is the data being passed down through context
+- The Consumer using `useContext(/* Context Object Here*/)`
 
-// In App, provide context around the children. Pass any value you
-// want through the `value` prop:
-<ThemeContext.Provider value={colors}>
-  <PrimaryLayout />
-</ThemeContext.Provider>
-
-// In any descendant component of PrimaryLayout, consume the context:
-const colors = useContext(ThemeContext)
-
-
-/****************************************
-  The TypeScript Way
-*****************************************/
-
-// With TypeScript, the possible types for the context value must be
-// established here:
-const ThemeContext = React.createContext<Colors | null>(null)
-```
-
-## ✅ Bonus Task: Custom Provider
-
-2. Create a component called `ThemeProvider` that takes a `children` prop.
-
-3. Return the children from the component but wrap then in `<ThemeContext.Provider value={colors}>`
-
-4. In the `App` component, wrap the `PrimaryLayout` in your new `ThemeProvider` instead of the provider it has before. The end result here is that we're moving the context logic away from `App`. The `App` component will have:
+2. You can identify the first two in that list in the `index.tsx` file near the `App` component. Migrate those into `ThemeContext.tsx` first.
+3. Then you'll want to open `TaskCard.tsx` where context is being consumed. You can see that `useContext` is being used and we're passing in the `ThemeContext` that used to exist in the `index.tsx` file. But now `ThemeContext` should be in the `ThemeContext.tsx` file.
+4. Instead of just importing `ThemeContext` from its new location, try to make a custom hook called `useTheme` in `ThemeContext.tsx`.
+5. `useTheme` will just return `useContext(ThemeContext)` so that way when `TaskCard` uses `useTheme()`, it will get the context returned. See the `.final` files if you need help on this one.
+6. In the `App` component, wrap the `PrimaryLayout` in your new `ThemeProvider` instead of the provider it had before. The end result here is that we're moving the context logic away from `App`. The `App` component will have:
 
 ```tsx
 <ThemeProvider>
@@ -47,4 +24,23 @@ const ThemeContext = React.createContext<Colors | null>(null)
 </ThemeProvider>
 ```
 
-Then inside `ThemeProvider`, when you did step #3, you're essentially providing context onto the children which is the `PrimaryLayout`. This is a "Custom Provider"
+Here's what's going on - `ThemeProvider` is just an ordinary component that you're passing `PrimaryLayout` into. But inside `ThemeProvider` you're going to take the `children` (which is `PrimaryLayout`) and provide context to the `children` like this:
+
+```tsx
+export const ThemeProvider: React.FC = ({ children }) => {
+  const colors = getTheme()
+  return <ThemeContext.Provider value={colors}>{children}</ThemeContext.Provider>
+}
+```
+
+So, you're essentially creating a utility called `ThemeProvider` that can be used to provide context onto anything, and it doesn't add a bunch of code to `App` which we probably want to maintain as minimal.
+
+## ✅ BONUS TASK!
+
+Currently, `TaskCard` has to do a lot of work to turn the theme colors into a `ref` for so it can apply the right color to `--taskColor`. Imagine if we wanted to add `--taskColor` to other things and having to do this work all over again.
+
+Let's take a look at `TaskColor` and see how it could be used as a utility.
+
+It basically just does all that repetitive work and adds the ref to an arbitrary `div` element. This means we can take the context stuff out of `TaskCard` and just implement `TaskColor` around all the JSX.
+
+7. Implement `TaskColor` on `TaskCard` and `TaskDialog`

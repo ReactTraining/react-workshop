@@ -1,6 +1,6 @@
 # Effects
 
-## Remember that component hierarchy?
+Remember that component hierarchy?
 
 ```
 Board
@@ -9,7 +9,7 @@ Board
      ├──> TaskCard
 ```
 
-## Understanding CSS Custom Properties (aka Custom Variables)
+## Pre-requisite: Understanding CSS Custom Properties (aka Custom Variables)
 
 In CSS you can do this:
 
@@ -51,13 +51,9 @@ This is where `TaskColor.tsx` comes in. All it does is take a `task` as a prop, 
 Open `TaskColor.tsx` and follow these steps. There are more details in the file:
 
 1.  Make a ref
-
 2.  Attach the ref to the `div`
-
 3.  Use `useEffect` or `useLayoutEffect` so you can do some functionality after the div is mounted. Remember, your `.current` isn't available on the first render of the component.
-
 4.  Remember that your `divRef.current` is a reference to the actual DOM node for the DIV
-
 5.  The way you set a CSS custom property in JavaScript is:
 
 ```js

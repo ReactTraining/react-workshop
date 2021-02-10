@@ -23,10 +23,8 @@ Remember, the only files you'll ever work on will have corresponding `.final` fi
 ## ✅ BONUS TASK!
 
 4. Replace the `h1` and `h2` elements with a custom component called `Heading`. Currently, heading only returns an `h1` element, but see if you can have it return 1 through 6.
-
 5. The `size` prop being passed in is not being used. Turn that numeric value into the className `size-1`, `size-2`, etc...
-
-6. If you want to try out TypeScript, rename the `BrowseBoards.js` extension to `.tsx`. Here's an example Type Alias for the Props of Heading
+6. If you want to try out TypeScript, rename the `BrowseBoards.js` extension to `.tsx`. Here's an example Type Alias for the Props of Heading:
 
 ```ts
 type Props = {
