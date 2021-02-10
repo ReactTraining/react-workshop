@@ -2,25 +2,27 @@ import React, { useState, useRef } from 'react'
 import { BsKanban } from 'react-icons/bs'
 import { FaPlus } from 'react-icons/fa'
 import { Heading } from 'ProjectPlanner/Heading'
+import { createBoard } from './utils'
 
-let incrementId = 3
+type BoardData = {
+  id: number
+  name: string
+}
 
 export const BrowseBoards = () => {
-  const [boards, setBoards] = useState([
+  const boards = [
     { id: 1, name: 'Board One' },
     { id: 2, name: 'Board Two' },
-  ])
+  ]
 
   function onSubmit(event: React.FormEvent) {
     event.preventDefault()
     // https://stackoverflow.com/a/43823786
     const name = (document.getElementById('boardName') as HTMLInputElement).value
-    setBoards(boards.concat({ id: ++incrementId, name }))
+    const newBoard = createBoard(name)
   }
 
-  function onRemove(id: number): void {
-    setBoards(boards.filter((b) => b.id !== id))
-  }
+  function onRemove(id: number) {}
 
   return (
     <div className="spacing">
@@ -44,18 +46,25 @@ export const BrowseBoards = () => {
       </form>
 
       <div className="spacing">
-        <div className="browse-board-item flex items-center">
-          <div className=" mr-2" style={{ fontSize: '2rem' }}>
-            <BsKanban className="block" color="var(--purple)" />
-          </div>
-          <div className="spacing-small flex-1">
-            <Heading>Board Name</Heading>
-          </div>
-          <div>
-            <button className="button button-outline">Remove</button>
-          </div>
-        </div>
+        <BrowseBoardItem board={boards[0]} onRemove={() => {}} />
       </div>
+    </div>
+  )
+}
+
+type Props = {
+  board: BoardData
+  onRemove(id: number): void
+}
+
+const BrowseBoardItem: React.FC<Props> = ({ board, onRemove }) => {
+  return (
+    <div className="browse-board-item flex items-center">
+      <BsKanban className="board-icon" color="var(--purple)" />
+      <div className="spacing-small flex-1">
+        <Heading as="h2">{board.name || <em>Board Name</em>}</Heading>
+      </div>
+      <button className="button button-outline">Remove</button>
     </div>
   )
 }

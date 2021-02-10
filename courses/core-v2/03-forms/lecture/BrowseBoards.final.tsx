@@ -2,8 +2,7 @@ import React, { useState, useRef } from 'react'
 import { BsKanban } from 'react-icons/bs'
 import { FaPlus } from 'react-icons/fa'
 import { Heading } from 'ProjectPlanner/Heading'
-
-let incrementId = 3
+import { createBoard } from './utils'
 
 type BoardData = {
   id: number
@@ -21,7 +20,8 @@ export const BrowseBoards = () => {
 
   function onSubmit(event: React.FormEvent) {
     event.preventDefault()
-    setBoards(boards.concat({ id: ++incrementId, name }))
+    const newBoard = createBoard(name)
+    setBoards(boards.concat(newBoard))
     setName('')
     nameInputRef.current.focus()
   }
@@ -67,20 +67,16 @@ type Props = {
   onRemove(id: number): void
 }
 
-export const BrowseBoardItem: React.FC<Props> = ({ board, onRemove }) => {
+const BrowseBoardItem: React.FC<Props> = ({ board, onRemove }) => {
   return (
     <div className="browse-board-item flex items-center">
-      <div className=" mr-2" style={{ fontSize: '2rem' }}>
-        <BsKanban className="block" color="var(--purple)" />
-      </div>
+      <BsKanban className="board-icon" color="var(--purple)" />
       <div className="spacing-small flex-1">
-        <Heading>{board.name || <em>Board Name</em>}</Heading>
+        <Heading as="h2">{board.name || <em>Board Name</em>}</Heading>
       </div>
-      <div>
-        <button className="button button-outline" onClick={() => onRemove(board.id)}>
-          Remove
-        </button>
-      </div>
+      <button className="button button-outline" onClick={() => onRemove(board.id)}>
+        Remove
+      </button>
     </div>
   )
 }

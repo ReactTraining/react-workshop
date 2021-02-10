@@ -1,6 +1,6 @@
 # State
 
-Remember, the only fines you'll ever work on will have corresponding `.final` files. These `.final` files are for you to review while your coding. They are the solution and it's okay to look. 🙂
+Remember, the only files you'll ever work on will have corresponding `.final` files. These `.final` files are for you to review while your coding. They are the solution and it's okay to look. 🙂
 
 ## ✅ Task 1: Create State for Progress Slider
 
