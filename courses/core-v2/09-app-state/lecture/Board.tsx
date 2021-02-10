@@ -14,24 +14,30 @@ export const Board: React.FC = () => {
   const boardId = parseInt(useParams<{ boardId: string }>().boardId)
   const [board, setBoard] = useState<BoardType | null>(null)
   const [taskGroups, setTaskGroups] = useState<TaskGroupType[] | null>(null)
-  // const [tasks, setTasks] = useState<TaskType[] | null>(null)
+  const [tasks, setTasks] = useState<TaskType[] | null>(null)
 
   useEffect(() => {
     api.boards.getBoard(boardId).then((data) => {
       const { taskGroups, tasks, ...board } = data
       setBoard(board)
       setTaskGroups(taskGroups)
-      // setTasks(tasks)
+      setTasks(tasks)
     })
   }, [boardId])
 
-  // const updateTask = (taskId: number, task: TaskType): void => {
-  //   if (!tasks) return
-  //   api.boards.updateTask(taskId, task).then(() => {
-  //     const i = tasks.findIndex((t) => t.id === taskId)
-  //     setTasks([...tasks.slice(0, i), task, ...tasks.slice(i + 1, tasks.length)])
-  //   })
-  // }
+  // Lets put these on context:
+
+  const getTask = (taskId: number): TaskType | undefined => {
+    return tasks?.find((task) => task.id === taskId)
+  }
+
+  const updateTask = (taskId: number, task: TaskType): void => {
+    if (!tasks) return
+    api.boards.updateTask(taskId, task).then(() => {
+      const i = tasks.findIndex((t) => t.id === taskId)
+      setTasks([...tasks.slice(0, i), task, ...tasks.slice(i + 1, tasks.length)])
+    })
+  }
 
   return (
     <div className="board spacing">

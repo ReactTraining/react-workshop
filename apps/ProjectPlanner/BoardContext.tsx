@@ -216,30 +216,3 @@ export const BoardProvider: React.FC<Props> = ({ boardId, children }) => {
 export const useBoardContext = () => {
   return useContext(BoardContext)
 }
-
-/**
- * Separate Context for getting Tasks
- */
-
-// type TaskContextType = {
-//   getTask: (taskId: number) => TaskType | undefined
-// }
-
-// const TaskContext = React.createContext<TaskContextType>(null!)
-
-// export const TaskProvider: React.FC = ({ children }) => {
-//   const { tasks } = useBoardContext()
-
-//   const context: TaskContextType = {
-//     getTask: useCallback((taskId) => {
-//       console.log('NEW')
-//       return tasks?.find((t: TaskType) => t.id === taskId)
-//     }, [tasks]),
-//   }
-
-//   return <TaskContext.Provider value={context} children={children} />
-// }
-
-// export const useTaskContext = () => {
-//   return useContext(TaskContext)
-// }

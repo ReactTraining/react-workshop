@@ -23,14 +23,13 @@
 
 ## Debouncing Updates
 
-If the group feels comfortable with JS and useEffect, and if there's time :)
+If there's time:
 
 In `TaskDialog`, the form updates are hitting the lifted state often and trashing re-renders. Plus we're doing an API call with each one. We could debounce like this:
 
 ```tsx
-const { updateTask } = useContext(BoardContext)
+const { updateTask, getTask } = useContext(BoardContext)
 const [edited, setEdited] = useState(false)
-const { getTask } = useContext(BoardContext)
 const [task, setTask] = useState<Task | null>(null)
 
 useEffect(() => {
