@@ -30,7 +30,7 @@ export const PrimaryHeader: React.FC = () => {
               Boards
             </NavLink>
             <Menu>
-              <MenuButton className="primary-nav-item reset-button">
+              <MenuButton className="avatar-menu primary-nav-item">
                 <Avatar src={user?.avatarUrl!} size={1.5} />
               </MenuButton>
               <MenuList className="nav-user-dropdown">

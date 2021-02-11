@@ -41,15 +41,15 @@ export const PrimaryHeader: React.FC = () => {
               Boards
             </NavLink>
             <Menu>
-              <MenuButton className="primary-nav-item reset-button">
+              <MenuButton className="avatar-menu primary-nav-item">
                 <Avatar src={user?.avatarUrl!} size={1.5} />
               </MenuButton>
               <MenuList className="nav-user-dropdown">
-                {/* <MenuLink to="/account" as={Link}>
-                  My Account
-                </MenuLink> */}
                 <MenuItem onSelect={handleLogout}>Logout</MenuItem>
-                <MenuItem onSelect={resetData}>Reset Data</MenuItem>
+                <MenuItem onSelect={resetData}>Reset Database Boards</MenuItem>
+                <MenuLink href="https://reacttraining.com/workshops" as="a">
+                  More Workshops
+                </MenuLink>
               </MenuList>
             </Menu>
           </nav>

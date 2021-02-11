@@ -3,6 +3,19 @@
 @import '@reach/dialog/styles';
 
 /**
+ * Menu List
+ */
+
+[data-reach-menu-list] {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+[data-reach-menu-item][data-selected] {
+  background-color: var(--lavender);
+}
+
+/**
  * Dialog
  */
 

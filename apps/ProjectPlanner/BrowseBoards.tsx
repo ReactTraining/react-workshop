@@ -35,10 +35,14 @@ export const BrowseBoards: React.FC = () => {
             </div>
           </div>
           <div className="spacing">
-            {boards &&
+            {Array.isArray(boards) &&
+              boards.length > 0 &&
               boards.map((board) => {
                 return <BrowseBoardItem key={board.id} board={board} />
               })}
+            {Array.isArray(boards) && boards.length === 0 && (
+              <div className="no-results">No Boards</div>
+            )}
           </div>
         </div>
         <BrowseBoardsSidebar />
