@@ -1,7 +1,7 @@
 {
   "name": "react-training-workshop",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "For teaching workshops from ReactTraining.com",
   "main": "index.js",
   "scripts": {
     "start": "node scripts/start.js",
@@ -11,7 +11,6 @@
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",
     "postinstall": "npm run create-db",
-    "glossary": "node --no-warnings scripts/glossary-pdf.js",
     "compile": "ts-node scripts/compile.ts"
   },
   "devDependencies": {

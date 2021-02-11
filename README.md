@@ -48,9 +48,9 @@ $ cd react-workshop
 
 # Install and run. Make sure you do these two commands from within the `react-workshop` folder:
 $ npm install
-$ npm run app
 
-# A menu will show some different app options. Choose #1 by typing `1`
+# After this command, a menu will show some different app options. Choose #1 by typing `1`
+$ npm run app
 
 # If you have issues, read below.
 ```
