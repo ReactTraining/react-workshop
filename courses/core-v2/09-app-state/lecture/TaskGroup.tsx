@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { TaskDialog } from './TaskDialog'
 import { TaskCard } from './TaskCard'
-import { Task } from 'ProjectPlanner/types'
+// import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskGroup.scss'
 
 type Props = {

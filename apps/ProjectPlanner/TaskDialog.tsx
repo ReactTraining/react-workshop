@@ -28,16 +28,16 @@ export const TaskDialog: React.FC<Props> = ({
   const [edited, setEdited] = useState(false)
   const [task, setTask] = useState<Task | null>(null)
 
-  const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
-  const i = siblingTaskIds.indexOf(taskId)
-  const prevTaskId = i > 0 && siblingTaskIds[i - 1]
-  const nextTaskId = i < siblingTaskIds.length - 1 && siblingTaskIds[i + 1]
-
   useEffect(() => {
     const task = getTask(taskId)
     if (task) setTask(task)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskId])
+
+  const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
+  const i = siblingTaskIds.indexOf(taskId)
+  const prevTaskId = i > 0 && siblingTaskIds[i - 1]
+  const nextTaskId = i < siblingTaskIds.length - 1 && siblingTaskIds[i + 1]
 
   function update(partialTask: Partial<Task>) {
     if (!task) return
@@ -46,6 +46,7 @@ export const TaskDialog: React.FC<Props> = ({
   }
 
   useEffect(() => {
+    console.log('here')
     if (edited && task) {
       const id = setTimeout(() => {
         updateTask(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })

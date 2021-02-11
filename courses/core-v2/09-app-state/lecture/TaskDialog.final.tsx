@@ -7,8 +7,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
-// import { useBoardContext } from './BoardContext'
-import { useTask } from './useTask'
+import { useBoardContext } from './BoardContext'
 import { Task } from 'ProjectPlanner/types'
 import 'ProjectPlanner/TaskDialog.scss'
 
@@ -17,8 +16,6 @@ type Props = {
   siblingTaskIds: number[]
   onChangeTaskId(taskId: number): void
   onClose(): void
-  // tasks: Task[] | null
-  // updateTask: (taskId: number, task: Task) => void
 }
 
 export const TaskDialog: React.FC<Props> = ({
@@ -27,7 +24,15 @@ export const TaskDialog: React.FC<Props> = ({
   onChangeTaskId,
   onClose,
 }) => {
-  const [task, setTask] = useTask(taskId)
+  const { getTask, updateTask } = useBoardContext()
+  const [task, setTask] = useState<Task | null>(null)
+  const [edited, setEdited] = useState(false)
+
+  useEffect(() => {
+    const task = getTask(taskId)
+    if (task) setTask(task)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskId])
 
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
   const i = siblingTaskIds.indexOf(taskId)
@@ -37,7 +42,20 @@ export const TaskDialog: React.FC<Props> = ({
   function update(partialTask: Partial<Task>) {
     if (!task) return
     setTask({ ...task, ...partialTask })
+    setEdited(true)
   }
+
+  useEffect(() => {
+    if (edited && task) {
+      const id = setTimeout(() => {
+        updateTask(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })
+      }, 400)
+      return () => {
+        clearTimeout(id)
+      }
+    }
+  }, [edited, task, updateTask])
+
   return (
     <Dialog onClose={onClose} aria-label="Edit Task">
       <TaskColor task={task}>

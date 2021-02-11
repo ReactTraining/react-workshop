@@ -8,6 +8,7 @@ import {
   Task as TaskType,
 } from 'ProjectPlanner/types'
 import { api } from 'ProjectPlanner/api'
+// import BoardContext from './BoardContext'
 import 'ProjectPlanner/Board.scss'
 
 export const Board: React.FC = () => {

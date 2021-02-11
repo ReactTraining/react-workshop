@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
-import { useTask } from './useTask'
-// import { useBoardContext } from './BoardContext'
-// import { Task } from 'ProjectPlanner/types'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
+import { useBoardContext } from './BoardContext'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
   taskId: number
   onClick(): void
-  // tasks: Task[] | null
 }
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
-  const [task] = useTask(taskId)
+  const { getTask } = useBoardContext()
+  const [task, setTask] = useState()
+
+  useEffect(() => {
+    const task = getTask(taskId)
+    if (task) setTask(task)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskId])
 
   return (
     <TaskColor task={task}>
