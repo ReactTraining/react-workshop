@@ -1,0 +1,36 @@
+:root {
+  --lightGray: #e8edf3;
+  --blue: #6fbfd8;
+  --brightBlue: #04b3ff;
+  --green: #4dd579;
+  --purple: #696ad8;
+  --lavender: #c3a2f9;
+  --red: #ff5656;
+  --yellow: #f3b73d;
+
+  // Semantic Colors
+  --lineColor: #dce4ec;
+  --warn: var(--red);
+  --success: var(--green);
+
+  // Copy
+  --textColor: #303f46;
+  --textColorLight: #9cadb5;
+  --fontFamily: 'Nunito Sans';
+  --fontWeight: 300;
+  --fontSize: 14pt;
+  --linkColor: var(--brightBlue);
+  --headingFontFamily: var(--fontFamily);
+  --headingFontWeight: 700;
+
+  // Layout
+  --gutter: 0.8rem;
+  --gutterSmall: 0.3rem;
+}
+
+@import 'reset';
+@import 'layout';
+@import 'text';
+@import 'button';
+@import 'form-field';
+@import 'reachui';

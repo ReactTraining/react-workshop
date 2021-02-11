@@ -2,6 +2,7 @@
 process.env.NODE_ENV = 'development'
 const getClientEnvironment = require('./env')
 const env = getClientEnvironment()
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const webpack = require('webpack')
 const path = require('path')
@@ -48,7 +49,14 @@ module.exports = function (appEntry, alias) {
         {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
-          use: 'ts-loader',
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
+            },
+          ],
         },
         // Process CSS and SCSS
         {
@@ -83,6 +91,7 @@ module.exports = function (appEntry, alias) {
       // Make global variables available to the application. We use this to
       // set process.env vars in the front-end
       new webpack.DefinePlugin(env.stringified),
+      new ForkTsCheckerWebpackPlugin(),
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

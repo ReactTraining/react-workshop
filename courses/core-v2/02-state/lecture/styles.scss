@@ -1,0 +1,28 @@
+@import 'ProjectPlanner/styles/center-lesson';
+
+html {
+  // Just so everything is a little bigger
+  font-size: 25pt;
+}
+
+#root {
+  max-width: 6rem;
+  text-align: center;
+}
+
+.minutes {
+  margin: auto;
+  input[type='text'] {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-family: var(--fontFamily);
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    &:focus {
+      outline: none;
+      border-color: var(--brightBlue);
+    }
+  }
+}

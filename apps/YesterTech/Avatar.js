@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import 'YesterTech/Avatar.scss'
+import './Avatar.scss'
 
 function Avatar({ src, size = 3, className, ...rest }) {
   const Component = src ? 'img' : 'div'

@@ -1,6 +1,34 @@
 // Since Windows cannot run bash scripts, we do this in Node now. Here was the old bash script
 // for reference: $ find . -iname db-seed.json | xargs -L1 -I {} bash -c 'cp {} $(dirname {})/db.json'
 
+const path = require('path')
+const fs = require('fs')
 const shell = require('shelljs')
-const path = `apps/YesterTech/database`
-shell.cp(`${path}/db-seed.json`, `${path}/db.json`)
+
+const APPS_ROOT_PATH = path.join(__dirname, '..', 'apps')
+
+for (const appPath of getDirectories(APPS_ROOT_PATH)) {
+  const dbPath = path.join(appPath, 'database')
+  try {
+    shell.cp(`${dbPath}/db-seed.json`, `${dbPath}/db.json`)
+  } catch (err) {}
+}
+
+/**
+ * @param {string} pathname
+ * @returns {boolean}
+ */
+function isDirectory(pathname) {
+  return fs.lstatSync(pathname).isDirectory()
+}
+
+/**
+ * @param {string} pathname
+ * @returns {string[]}
+ */
+function getDirectories(pathname) {
+  return fs
+    .readdirSync(pathname)
+    .map((name) => path.join(pathname, name))
+    .filter(isDirectory)
+}

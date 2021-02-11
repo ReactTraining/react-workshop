@@ -1,0 +1,170 @@
+{
+  "accounts": {
+    "id": 1
+  },
+  "users": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "username": "bradwestfall",
+      "name": "Brad Westfall",
+      "password": "abc123",
+      "avatarUrl": "https://avatars3.githubusercontent.com/u/2272118?v=4"
+    },
+    {
+      "id": 2,
+      "accountId": 1,
+      "username": "chaance",
+      "name": "Chance",
+      "password": "abc123",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/3082153?s=460&u=e1d45c3ec237a7ef24c28d4a602f8131f3cc1738&v=4"
+    },
+    {
+      "id": 3,
+      "accountId": 1,
+      "username": "student",
+      "password": "student",
+      "name": "Bruce Lee",
+      "avatarUrl": "/images/bruce-lee.jpg"
+    },
+    {
+      "id": 4,
+      "accountId": 1,
+      "username": "",
+      "password": "",
+      "name": "Sasha Owens",
+      "avatarUrl": "/images/people/1.png"
+    },
+    {
+      "id": 5,
+      "accountId": 1,
+      "username": "",
+      "password": "",
+      "name": "Lindsey Watson",
+      "avatarUrl": "/images/people/2.png"
+    },
+    {
+      "id": 6,
+      "accountId": 1,
+      "username": "",
+      "password": "",
+      "name": "George Stephens",
+      "avatarUrl": "/images/people/3.png"
+    },
+    {
+      "id": 7,
+      "accountId": 1,
+      "username": "",
+      "password": "",
+      "name": "Marc Dillard",
+      "avatarUrl": "/images/people/4.png"
+    },
+    {
+      "id": 8,
+      "accountId": 1,
+      "username": "",
+      "password": "",
+      "name": "JJ Olm",
+      "avatarUrl": "/images/people/6.png"
+    }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "name": "React Workshop"
+    }
+  ],
+  "taskGroups": [
+    {
+      "name": "Getting Setup",
+      "boardId": 1,
+      "taskIds": [1, 2],
+      "id": 1
+    },
+    {
+      "name": "Thinking in React",
+      "boardId": 1,
+      "taskIds": [3, 4, 5],
+      "id": 2
+    },
+    {
+      "name": "Terminology",
+      "boardId": 1,
+      "taskIds": [6, 7],
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "name": "JS Primer Article",
+      "content": "Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/",
+      "minutes": 10,
+      "completedMinutes": 10,
+      "assignedTo": [4],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 1
+    },
+    {
+      "name": "Install Workshop Code",
+      "content": "git clone and npm install",
+      "minutes": 5,
+      "completedMinutes": 5,
+      "assignedTo": [3, 6],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 2
+    },
+    {
+      "name": "Declarative vs Imperative",
+      "content": "Declarative code is when you write in a style where you say \"what\" you want, like HTML, CSS, SQL, or React's JSX. Imperative code is when you write in a style where you say \"how\" you want things to work.",
+      "minutes": 60,
+      "completedMinutes": 0,
+      "assignedTo": [7, 8, 9],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 3
+    },
+    {
+      "name": "Creating State",
+      "content": "State can be created with useState or useReducer",
+      "minutes": 60,
+      "completedMinutes": 0,
+      "assignedTo": [3, 4, 5],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 4
+    },
+    {
+      "name": "Updating State",
+      "content": "Updating state will cause a re-render of the component",
+      "minutes": 10,
+      "completedMinutes": 5,
+      "assignedTo": [3, 5, 7],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 5
+    },
+    {
+      "name": "React Component",
+      "content": "React components are created with functions or classes. With functions, they return JSX. With classes, the `render` method returns JSX",
+      "minutes": 10,
+      "completedMinutes": 5,
+      "assignedTo": [5, 7, 8],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 6
+    },
+    {
+      "name": "SPA",
+      "content": "A \"Single Page Application\" is where the HTML payload is only delivered on the first request. Then JavaScript mimics page changes and updates the URL as the user navigates. The DOM is also changed between pages giving an impression of real page changes.",
+      "minutes": 10,
+      "completedMinutes": 10,
+      "assignedTo": [4, 7],
+      "boardId": 1,
+      "date": "2021-02-03",
+      "id": 7
+    }
+  ]
+}

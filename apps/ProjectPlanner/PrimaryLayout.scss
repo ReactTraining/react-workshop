@@ -1,0 +1,19 @@
+.primary-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightGray);
+
+  main.primary-content {
+    padding: var(--gutter);
+    // Take up the rest of the vertical space that adjacent siblings (header and footer) don't take up
+    flex: 1;
+
+    // Allow the pages to take full height because our first
+    // child will be a flex item
+    display: flex;
+    > * {
+      flex: 1;
+    }
+  }
+}

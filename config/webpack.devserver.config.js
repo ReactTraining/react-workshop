@@ -14,7 +14,12 @@ module.exports = {
   // Port to view dev env
   port: 3000,
   // Show less info in the terminal
-  stats: 'errors-warnings',
+  stats: {
+    all: false,
+    errors: true,
+    warnings: true,
+    warningsFilter: /export .* was not found in/,
+  },
   // Reportedly, this avoids CPU overload on some systems.
   // https://github.com/facebookincubator/create-react-app/issues/293
   watchOptions: {

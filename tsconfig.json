@@ -1,18 +1,29 @@
 {
-  "include": ["apps", "courses"],
-  "exclude": ["node_modules", "scripts", "config"],
+  "include": ["apps", "courses", "__mocks__/@types"],
+  "exclude": ["scripts", "config"],
   "compilerOptions": {
     "rootDir": ".",
     "jsx": "react",
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
+    "target": "ESNext",
+    // "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
+    // "strictNullChecks": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-    // "allowJs": true,
-    // "checkJs: true
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "YesterTech/*": ["apps/YesterTech/*"],
+      "ProjectPlanner/*": ["apps/ProjectPlanner/*"]
+    }
   }
 }

@@ -50,6 +50,8 @@ $ cd react-workshop
 $ npm install
 $ npm run app
 
+# A menu will show some different app options. Choose #1 by typing `1`
+
 # If you have issues, read below.
 ```
 
