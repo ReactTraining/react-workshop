@@ -8,6 +8,7 @@
 - ✅ Terms: Element vs Component
 - ✅ How React embraces composability
 - ✅ The declarative approach to React
+- ✅ Mapping over data in JSX, key prop
 
 ## State
 
@@ -16,10 +17,10 @@
 - ✅ Fragments
 - ✅ Controlled vs Uncontrolled Input Fields
 - ✅ State Lifting
+- ✅ React Event Delegation
 
 ## Forms
 
-- ✅ Mapping over data in JSX, key prop
 - ✅ Refs (Uncontrolled Input Fields)
 - ✅ Controlled Input Fields
 - ✅ React Event Delegation

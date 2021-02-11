@@ -7,6 +7,7 @@
 - ✅ Fragments
 - ✅ Controlled vs Uncontrolled Input Fields
 - ✅ State Lifting
+- ✅ React Event Delegation
 
 # Lecture
 

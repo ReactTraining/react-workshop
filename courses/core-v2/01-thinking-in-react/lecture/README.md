@@ -8,6 +8,7 @@
 - ✅ Terms: Element vs Component
 - ✅ How React embraces composability
 - ✅ The declarative approach to React
+- ✅ Mapping over data in JSX, key prop
 
 # Lecture
 

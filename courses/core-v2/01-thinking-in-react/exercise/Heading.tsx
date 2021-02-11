@@ -2,6 +2,8 @@ import React from 'react'
 import classnames from 'classnames'
 import 'ProjectPlanner/Heading.scss'
 
+// A reference to the Heading component used in the App
+
 type Props = {
   size?: 1 | 2 | 3 | 4
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
