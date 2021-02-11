@@ -113,7 +113,16 @@ $gutterSmall: 0.3rem;
   }
 }
 
+@for $i from 1 through 40 {
+  .h-#{$i} {
+    height: #{$i/4}rem;
+  }
+}
+
 @for $i from 1 through 8 {
+  .m-#{$i} {
+    margin: #{$i/4}rem;
+  }
   .mt-#{$i} {
     margin-top: #{$i/4}rem;
   }
@@ -125,6 +134,9 @@ $gutterSmall: 0.3rem;
   }
   .ml-#{$i} {
     margin-left: #{$i/4}rem;
+  }
+  .p-#{$i} {
+    padding: #{$i/4}rem;
   }
   .pt-#{$i} {
     padding-top: #{$i/4}rem;
