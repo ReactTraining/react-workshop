@@ -5,6 +5,7 @@
 - ✅ useEffect basic API
 - ✅ useEffect as it pertains to data fetching
 - ✅ Custom Hooks <-- they need this for the exercise
+- ✅ How the dep array works - why do functions go in it sometimes (useCallback)
 
 # Lecture
 

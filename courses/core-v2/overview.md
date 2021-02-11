@@ -1,6 +1,6 @@
 # Overview
 
-## Thinking in React
+## 01 - Thinking in React
 
 - ✅ Dive into JSX and the mechanics of React
 - ✅ JSX is function calls, props are arguments
@@ -10,7 +10,7 @@
 - ✅ The declarative approach to React
 - ✅ Mapping over data in JSX, key prop
 
-## State
+## 02 - State
 
 - ✅ TypeScript Primer
 - ✅ State with useState
@@ -19,7 +19,7 @@
 - ✅ State Lifting
 - ✅ React Event Delegation
 
-## Forms
+## 03 - Forms
 
 - ✅ Refs (Uncontrolled Input Fields)
 - ✅ Controlled Input Fields
@@ -27,34 +27,34 @@
 - ✅ Virtual DOM / Reconciliation
 - ✅ State Lifting
 
-## Data Fetching
+## 04 - Data Fetching
 
 - ✅ useEffect basic API
 - ✅ useEffect as it pertains to data fetching
 - ✅ Custom Hooks
+- ✅ How the dep array works - why do functions go in it sometimes (useCallback)
 
-## Effects
+## 05 - Effects
 
 - ✅ Non-network Side Effects
 - ✅ Subscription based side effects
 - ✅ useState's lazy initialization
 - ✅ useLayoutEffect (exercise)
 
-## Client Side Routing
+## 06 - Client Side Routing
 
 - ✅ Single Page Applications
 - ✅ React Router
 - ✅ Server Side Rendering (SSR) - maybe a recap on how useEffect doesn't get called
 
-## Context
+## 07 - Context
 
 - ✅ "State Lifting" leads to "Prop Drilling"
 - ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
 - ✅ Design System Theming
-  t
 
-## App State
+## 08 - App State
 
 - ✅ Application State in Context
 - ✅ Reducers
@@ -62,7 +62,7 @@
 - ✅ Efficiencies for real time updates
 - ✅ Reduce repetitive network requests
 
-## Authentication
+## 09 - Authentication
 
 - ✅ Authentication With Context
 - ✅ Unique situations with Context
