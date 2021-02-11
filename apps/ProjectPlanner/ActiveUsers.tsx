@@ -7,7 +7,7 @@ import { shuffle } from 'ProjectPlanner/utils.ts'
 
 export const ActiveUsers: React.FC = () => {
   const { user } = useAuth()
-  const users = useAccountUsers(user?.accountId)
+  const users = useAccountUsers()
 
   return (
     <div className="spacing">

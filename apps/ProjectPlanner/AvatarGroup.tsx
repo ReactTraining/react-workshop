@@ -14,8 +14,7 @@ export const AvatarGroup: React.FC<Props> = ({ userIds }) => {
     api.users.getUsersByIds(userIds).then((users) => {
       setUsers(users)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [userIds])
 
   return (
     <div className="avatar-group">
@@ -24,7 +23,7 @@ export const AvatarGroup: React.FC<Props> = ({ userIds }) => {
           return <Avatar key={user.id} src={user.avatarUrl} size={2} />
         })
       ) : (
-        <div>nope</div>
+        <div>Nobody Yet</div>
       )}
     </div>
   )

@@ -15,8 +15,8 @@ export async function registerUser(user: Omit<User, 'id' | 'accountId'>): Promis
   return newUser
 }
 
-export async function getAccountUsers(accountId: number): Promise<User[]> {
-  return get<DatabaseUser[]>(`/users?accountId=${accountId}`).then((users) =>
+export async function getAccountUsers(): Promise<User[]> {
+  return get<DatabaseUser[]>(`/users`).then((users) =>
     users.map((u) => {
       delete u.password
       return u
@@ -38,9 +38,9 @@ export async function getUsersByIds(ids: number[]): Promise<User[]> {
  * Seed an new account with data
  */
 
-export async function resetAccountBoardData(accountId: number, userId: number) {
+export async function resetAccountBoardData(userId: number) {
   try {
-    const boards = await getBoards(accountId)
+    const boards = await getBoards()
 
     await Promise.all(
       boards.map((board) => {
@@ -48,7 +48,7 @@ export async function resetAccountBoardData(accountId: number, userId: number) {
       })
     )
 
-    const board = await createBoard(userId, 'React Workshop')
+    const board = await createBoard('React Workshop')
 
     const tg1 = await createTaskGroup(board.id, 'Getting Setup')
     await createTask(board.id, tg1.id, {

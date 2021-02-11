@@ -6,15 +6,14 @@ import { User, Board, TaskGroup, Task } from '../types'
  * These are temporary until we make usePromise
  */
 
-export const useBoards = (userId: number | undefined): Board[] | null => {
+export const useBoards = (): Board[] | null => {
   const [boards, setBoards] = useState<Board[] | null>(null)
 
   useEffect(() => {
-    if (!userId) return
-    api.boards.getBoards(userId).then((boards) => {
+    api.boards.getBoards().then((boards) => {
       setBoards(boards)
     })
-  }, [userId])
+  }, [])
 
   return boards
 }
@@ -55,15 +54,14 @@ export const useTaskGroups = (boardId: number): TaskGroup[] | null => {
 //   return task
 // }
 
-export const useAccountUsers = (accountId: number | undefined): User[] | null => {
+export const useAccountUsers = (): User[] | null => {
   const [users, setUsers] = useState<User[] | null>(null)
 
   useEffect(() => {
-    if (!accountId) return
-    api.users.getAccountUsers(accountId).then((users) => {
+    api.users.getAccountUsers().then((users) => {
       setUsers(users)
     })
-  }, [accountId])
+  }, [])
 
   return users
 }

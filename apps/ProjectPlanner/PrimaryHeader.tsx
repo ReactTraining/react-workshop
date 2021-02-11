@@ -21,7 +21,7 @@ export const PrimaryHeader: React.FC = () => {
 
   function resetData() {
     if (!user) return
-    api.users.resetAccountBoardData(user.accountId, user.id).then(() => {
+    api.users.resetAccountBoardData(user.id).then(() => {
       location.href = '/boards'
     })
   }

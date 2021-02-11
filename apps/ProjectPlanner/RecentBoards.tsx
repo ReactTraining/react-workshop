@@ -13,9 +13,8 @@ export const RecentBoards: React.FC = () => {
   const [recent, setRecent] = useState<Board[]>([])
 
   useEffect(() => {
-    if (!user) return
     const ids = localStorage.getRecentBoards()
-    api.boards.getBoards(user.accountId).then((boards) => {
+    api.boards.getBoards().then((boards) => {
       const recent = ids
         .map((id) => {
           return boards.find((b) => b.id === id)
@@ -23,7 +22,7 @@ export const RecentBoards: React.FC = () => {
         .filter((b) => b !== undefined) as Board[]
       setRecent(recent)
     })
-  }, [user])
+  }, [])
 
   return (
     <div className="spacing">

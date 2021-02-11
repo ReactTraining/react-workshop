@@ -40,8 +40,7 @@ const Dashboard: React.FC = () => {
 }
 
 const BrowseBoards: React.FC = () => {
-  const userId = 1
-  const boards = useBoards(userId)
+  const boards = useBoards()
 
   return (
     <Centered size={50}>

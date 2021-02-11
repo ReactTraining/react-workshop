@@ -1,11 +1,7 @@
 {
-  "accounts": {
-    "id": 1
-  },
   "users": [
     {
       "id": 1,
-      "accountId": 1,
       "username": "bradwestfall",
       "name": "Brad Westfall",
       "password": "abc123",
@@ -13,7 +9,6 @@
     },
     {
       "id": 2,
-      "accountId": 1,
       "username": "chaance",
       "name": "Chance",
       "password": "abc123",
@@ -21,7 +16,6 @@
     },
     {
       "id": 3,
-      "accountId": 1,
       "username": "student",
       "password": "student",
       "name": "Bruce Lee",
@@ -29,7 +23,6 @@
     },
     {
       "id": 4,
-      "accountId": 1,
       "username": "",
       "password": "",
       "name": "Sasha Owens",
@@ -37,7 +30,6 @@
     },
     {
       "id": 5,
-      "accountId": 1,
       "username": "",
       "password": "",
       "name": "Lindsey Watson",
@@ -45,7 +37,6 @@
     },
     {
       "id": 6,
-      "accountId": 1,
       "username": "",
       "password": "",
       "name": "George Stephens",
@@ -53,7 +44,6 @@
     },
     {
       "id": 7,
-      "accountId": 1,
       "username": "",
       "password": "",
       "name": "Marc Dillard",
@@ -61,7 +51,6 @@
     },
     {
       "id": 8,
-      "accountId": 1,
       "username": "",
       "password": "",
       "name": "JJ Olm",
@@ -70,9 +59,8 @@
   ],
   "boards": [
     {
-      "id": 1,
-      "accountId": 1,
-      "name": "React Workshop"
+      "name": "React Workshop",
+      "id": 1
     }
   ],
   "taskGroups": [
@@ -101,9 +89,9 @@
       "content": "Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/",
       "minutes": 10,
       "completedMinutes": 10,
-      "assignedTo": [4],
+      "assignedTo": [1],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 1
     },
     {
@@ -111,9 +99,9 @@
       "content": "git clone and npm install",
       "minutes": 5,
       "completedMinutes": 5,
-      "assignedTo": [3, 6],
+      "assignedTo": [1],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 2
     },
     {
@@ -121,9 +109,9 @@
       "content": "Declarative code is when you write in a style where you say \"what\" you want, like HTML, CSS, SQL, or React's JSX. Imperative code is when you write in a style where you say \"how\" you want things to work.",
       "minutes": 60,
       "completedMinutes": 0,
-      "assignedTo": [7, 8, 9],
+      "assignedTo": [],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 3
     },
     {
@@ -131,9 +119,9 @@
       "content": "State can be created with useState or useReducer",
       "minutes": 60,
       "completedMinutes": 0,
-      "assignedTo": [3, 4, 5],
+      "assignedTo": [],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 4
     },
     {
@@ -141,9 +129,9 @@
       "content": "Updating state will cause a re-render of the component",
       "minutes": 10,
       "completedMinutes": 5,
-      "assignedTo": [3, 5, 7],
+      "assignedTo": [],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 5
     },
     {
@@ -151,9 +139,9 @@
       "content": "React components are created with functions or classes. With functions, they return JSX. With classes, the `render` method returns JSX",
       "minutes": 10,
       "completedMinutes": 5,
-      "assignedTo": [5, 7, 8],
+      "assignedTo": [],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 6
     },
     {
@@ -161,9 +149,9 @@
       "content": "A \"Single Page Application\" is where the HTML payload is only delivered on the first request. Then JavaScript mimics page changes and updates the URL as the user navigates. The DOM is also changed between pages giving an impression of real page changes.",
       "minutes": 10,
       "completedMinutes": 10,
-      "assignedTo": [4, 7],
+      "assignedTo": [],
       "boardId": 1,
-      "date": "2021-02-03",
+      "date": "2021-02-11",
       "id": 7
     }
   ]

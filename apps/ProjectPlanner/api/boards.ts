@@ -14,16 +14,15 @@ import { Board, TaskGroup, Task } from '../types'
  * Boards
  */
 
-export function createBoard(accountId: number, name?: string) {
+export function createBoard(name?: string) {
   const defaultBoardData = {
-    accountId,
     name: name || '',
   }
   return post<Board>(`/boards`, defaultBoardData)
 }
 
-export function getBoards(accountId: number) {
-  return get<Board[]>(`/boards?accountId=${accountId}`)
+export function getBoards() {
+  return get<Board[]>(`/boards`)
 }
 
 export function getBoard(boardId: number) {
