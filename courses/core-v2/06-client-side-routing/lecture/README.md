@@ -7,6 +7,7 @@ The main point is to familiarize them with Client Side Routing so they can under
 - ✅ Single Page Applications
 - ✅ React Router
 - ✅ Server Side Rendering (SSR) - maybe a recap on how useEffect doesn't get called
+- ✅ Code-splitting via Routes and Suspense
 
 # Lecture
 

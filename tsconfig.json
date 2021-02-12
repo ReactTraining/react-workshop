@@ -6,7 +6,7 @@
     "jsx": "react",
     "importHelpers": true,
     "target": "ESNext",
-    // "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
     // "strictNullChecks": false,

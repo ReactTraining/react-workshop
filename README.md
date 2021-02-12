@@ -1,5 +1,7 @@
 # Welcome to React Training!
 
+We have new workshops for 2021 🎉
+
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
 Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.

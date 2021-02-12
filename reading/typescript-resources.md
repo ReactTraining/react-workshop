@@ -1,3 +1,5 @@
+# TypeScript Resources
+
 TypeScript Official JSX Handbook
 https://www.typescriptlang.org/docs/handbook/jsx.html
 
@@ -16,7 +18,7 @@ https://github.com/typescript-cheatsheets/react
 Typing React Function Components (Declarations vs Expressions)
 https://blog.echobind.com/react-with-typescript-components-as-function-declarations-vs-function-expressions-e433ac8d6938
 
-// Typing React Class Components
+Typing React Class Components
 https://github.com/typescript-cheatsheets/react#class-components
 
 Typing React Event Handlers
@@ -34,13 +36,14 @@ https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
 Generics and Arrow Functions
 https://www.carlrippon.com/generic-arrow-functions/
 
-TypeScript Docs "Do's and Don'ts"
+TypeScript Docs "Do's and Dont's"
 https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html
 
-// TypeScript Encyclopedia (cheatsheet)
+TypeScript Encyclopedia (cheatsheet)
 https://www.saltycrane.com/cheat-sheets/typescript/latest/
 
-Video Tutorials
+## Video Tutorials
+
 Interfaces vs Types: https://www.youtube.com/watch?v=crjIq7LEAYw
 TS and React: https://www.youtube.com/watch?v=Z5iWr6Srsj8
 Generics (with classes): https://www.youtube.com/watch?v=nePDL5lQSE4

@@ -5,7 +5,6 @@
 - ✅ Non-network Side Effects
 - ✅ Subscription based side effects
 - ✅ useState's lazy initialization
-- ✅ useLayoutEffect (exercise)
 
 # Lecture
 

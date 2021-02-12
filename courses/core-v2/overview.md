@@ -39,13 +39,13 @@
 - ✅ Non-network Side Effects
 - ✅ Subscription based side effects
 - ✅ useState's lazy initialization
-- ✅ useLayoutEffect (exercise)
 
 ## 06 - Client Side Routing
 
 - ✅ Single Page Applications
 - ✅ React Router
-- ✅ Server Side Rendering (SSR) - maybe a recap on how useEffect doesn't get called
+- ✅ Server Side Rendering (SSR)
+- ✅ Code-splitting via Routes and Suspense
 
 ## 07 - Context
 
@@ -54,16 +54,16 @@
 - ✅ Context with Custom Providers/Consumers
 - ✅ Design System Theming
 
-## 08 - App State
+## 08 - Authentication
+
+- ✅ Authentication With Context
+- ✅ Unique situations with Context
+- ✅ Private Routes
+
+## 09 - App State
 
 - ✅ Application State in Context
 - ✅ Reducers
 - ✅ Context with Custom Providers/Consumers
 - ✅ Efficiencies for real time updates
 - ✅ Reduce repetitive network requests
-
-## 09 - Authentication
-
-- ✅ Authentication With Context
-- ✅ Unique situations with Context
-- ✅ Private Routes
