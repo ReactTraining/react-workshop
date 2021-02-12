@@ -24,6 +24,13 @@ export async function getAccountUsers(): Promise<User[]> {
   )
 }
 
+export async function getUser(userId: number): Promise<User> {
+  return get<DatabaseUser>(`/users/${userId}`).then((user) => {
+    delete user.password
+    return user
+  })
+}
+
 export async function getUsersByIds(ids: number[]): Promise<User[]> {
   if (ids.length === 0) return Promise.resolve([])
   return get<DatabaseUser[]>(`/users?id=${ids.join('&id=')}`).then((users) =>
@@ -50,20 +57,24 @@ export async function resetAccountBoardData(userId: number) {
 
     const board = await createBoard('React Workshop')
 
+    function u(a: number[]): number[] {
+      return [...new Set(a)]
+    }
+
     const tg1 = await createTaskGroup(board.id, 'Getting Setup')
     await createTask(board.id, tg1.id, {
       name: 'JS Primer Article',
       content: 'Remember to read: https://reacttraining.com/blog/javascript-the-react-parts/',
       minutes: 10,
       completedMinutes: 10,
-      assignedTo: [userId],
+      assignedTo: u([userId, 1, 3]),
     })
     await createTask(board.id, tg1.id, {
       name: 'Install Workshop Code',
       content: 'git clone and npm install',
       minutes: 5,
       completedMinutes: 5,
-      assignedTo: [userId],
+      assignedTo: u([userId, 2, 3]),
     })
 
     const tg2 = await createTaskGroup(board.id, 'Thinking in React')
@@ -72,17 +83,20 @@ export async function resetAccountBoardData(userId: number) {
       content:
         'Declarative code is when you write in a style where you say "what" you want, like HTML, CSS, SQL, or React\'s JSX. Imperative code is when you write in a style where you say "how" you want things to work.',
       minutes: 60,
+      assignedTo: u([userId, 7]),
     })
     await createTask(board.id, tg2.id, {
       name: 'Creating State',
       content: 'State can be created with useState or useReducer',
       minutes: 60,
+      assignedTo: [3, 6, 7],
     })
     await createTask(board.id, tg2.id, {
       name: 'Updating State',
       content: 'Updating state will cause a re-render of the component',
       minutes: 10,
       completedMinutes: 5,
+      assignedTo: u([userId, 2, 8]),
     })
 
     const tg3 = await createTaskGroup(board.id, 'Terminology')
@@ -92,6 +106,7 @@ export async function resetAccountBoardData(userId: number) {
         'React components are created with functions or classes. With functions, they return JSX. With classes, the `render` method returns JSX',
       minutes: 10,
       completedMinutes: 5,
+      assignedTo: [7, 8],
     })
     await createTask(board.id, tg3.id, {
       name: 'SPA',
@@ -99,6 +114,7 @@ export async function resetAccountBoardData(userId: number) {
         'A "Single Page Application" is where the HTML payload is only delivered on the first request. Then JavaScript mimics page changes and updates the URL as the user navigates. The DOM is also changed between pages giving an impression of real page changes.',
       minutes: 10,
       completedMinutes: 10,
+      assignedTo: [4, 5, 6],
     })
   } catch (err) {
     console.log('Error Creating User Data', err)

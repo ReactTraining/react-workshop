@@ -46,7 +46,6 @@ export const TaskDialog: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    console.log('here')
     if (edited && task) {
       const id = setTimeout(() => {
         updateTask(task.id, { ...task, name: task.name.trim(), content: task.content.trim() })

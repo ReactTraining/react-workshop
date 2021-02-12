@@ -8,6 +8,8 @@ import 'ProjectPlanner/PrimaryLayout.scss'
 import { Dashboard } from 'ProjectPlanner/Dashboard'
 import { BrowseBoards } from 'ProjectPlanner/BrowseBoards'
 import { Board } from 'ProjectPlanner/Board'
+import { UserProfile } from 'ProjectPlanner/UserProfile'
+import { NotFound } from 'ProjectPlanner/NotFound'
 
 export const PrimaryLayout: React.FC = () => {
   const { key } = useLocation()
@@ -31,7 +33,12 @@ export const PrimaryLayout: React.FC = () => {
           <Route path="/boards/:boardId" exact>
             <Board />
           </Route>
-          <Redirect to="/" />
+          <Route path="/users/:userId" exact>
+            <UserProfile />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </main>
       <PrimaryFooter />

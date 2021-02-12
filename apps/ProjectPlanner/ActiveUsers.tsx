@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { useAuth } from 'ProjectPlanner/AuthContext'
@@ -6,7 +7,6 @@ import { useAccountUsers } from 'ProjectPlanner/hooks/dataHooks'
 import { shuffle } from 'ProjectPlanner/utils.ts'
 
 export const ActiveUsers: React.FC = () => {
-  const { user } = useAuth()
   const users = useAccountUsers()
 
   return (
@@ -19,7 +19,14 @@ export const ActiveUsers: React.FC = () => {
           shuffle(users)
             .slice(0, 4)
             .map((user) => {
-              return <ActiveUserItem key={user.id} avatarUrl={user.avatarUrl} name={user.name} />
+              return (
+                <ActiveUserItem
+                  key={user.id}
+                  userId={user.id}
+                  avatarUrl={user.avatarUrl}
+                  name={user.name}
+                />
+              )
             })}
       </ul>
     </div>
@@ -27,16 +34,17 @@ export const ActiveUsers: React.FC = () => {
 }
 
 type ActiveUserItemProps = {
+  userId: number
   avatarUrl?: string | null
   name: string
 }
 
-const ActiveUserItem: React.FC<ActiveUserItemProps> = ({ avatarUrl, name }) => {
+const ActiveUserItem: React.FC<ActiveUserItemProps> = ({ userId, avatarUrl, name }) => {
   return (
     <li className="flex items-center">
       <Avatar src={avatarUrl} size={1.5} />
       <div className="ml-2">
-        <a href="#">{name}</a>
+        <Link to={`/users/${userId}`}>{name}</Link>
       </div>
     </li>
   )
