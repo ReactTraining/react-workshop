@@ -1,4 +1,4 @@
-# Cheat Sheet
+# TypeScript/React Cheat Sheet
 
 ## Function Components
 

@@ -8,7 +8,8 @@ Before attending the training, please make sure you install the code (not just c
 
 - [ ] Bring a laptop (don't forget a long power cord).
 - [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
-- [ ] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
+- [ ] [Learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/).
+- [ ] We have some additional () reading material for those who are interested in getting a head start: [Extra Reading](./reading)
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
 - [ ] WAIT! Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and Proxies are so diverse and out of our control.
 
