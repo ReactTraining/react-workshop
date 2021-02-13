@@ -38,6 +38,8 @@ module.exports = function () {
   Select Lesson
 *****************************************/
 
+let askedToRemember = false
+
 function selectLesson() {
   /**
    * Load Preferences
@@ -57,6 +59,7 @@ function selectLesson() {
 
   let selectedCourse
   let selectedLesson
+  let selectedLessonType
 
   // So we can start over with course selection
   while (!selectedLesson) {
@@ -94,7 +97,8 @@ function selectLesson() {
     }
 
     // See if they want to save their choice to `preferences.json`
-    if (!preferences.course) {
+    if (!preferences.course && !askedToRemember) {
+      askedToRemember = true
       if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
         try {
           fs.writeFileSync(
@@ -140,7 +144,8 @@ function selectLesson() {
 
       // Show Menu
     } else {
-      console.log(`\nWhich Lesson of ${selectedCourse}?`)
+      console.clear()
+      console.log(`\nWhich lesson of ${selectedCourse}?`)
       const modifiedLessonOptions = lessonOptions.concat([
         'FULL APP',
         '👈 BACK TO COURSE SELECTION',
@@ -159,15 +164,38 @@ function selectLesson() {
         selectedLesson = modifiedLessonOptions[choice]
       }
     }
+
+    /**
+     * Lesson type
+     */
+
+    const lessonTypesPath = path.resolve(
+      __dirname,
+      '..',
+      `courses/${selectedCourse}/${selectedLesson}`
+    )
+    const lessonTypeOptions = fs.readdirSync(lessonTypesPath).filter((item) => {
+      return fs.lstatSync(path.resolve(lessonTypesPath, item)).isDirectory()
+    })
+    if (lessonTypeOptions.length === 0) {
+      console.log(`\nThere are no exercises or lectures in ${selectedLesson}`)
+      process.exit(0)
+    }
+
+    console.clear()
+    console.log(`\nWhich lesson type of ${selectedLesson}?`)
+    const modifiedLessonTypeOptions = lessonTypeOptions.concat(['👈 BACK TO LESSON SELECTION'])
+    const choice = readlineSync.keyInSelect(modifiedLessonTypeOptions)
+    if (choice === -1) {
+      process.exit(0)
+    } else if (modifiedLessonTypeOptions[choice] === '👈 BACK TO LESSON SELECTION') {
+      selectedLesson = null
+      // Starts CLI menu over
+      continue
+    } else {
+      selectedLessonType = modifiedLessonTypeOptions[choice]
+    }
   }
-
-  /**
-   * Exercise or Lecture
-   */
-
-  const selectedLessonType = [process.argv[2], process.argv[3], process.argv[4]].includes('lecture')
-    ? 'lecture'
-    : 'exercise'
 
   const lessonPath = path.resolve(
     __dirname,
