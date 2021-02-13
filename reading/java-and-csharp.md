@@ -8,29 +8,49 @@ Also here are some high level points:
 
 - TS can infer types and has Duck Typing - https://ajay-bhosale.medium.com/typescript-and-duck-typing-7b3d7bb6f03c
 
-- TS can have unions `type Animal = 'dog' | 'cat'`. Now variables with the type of Animal are almost like enums that can only be one of those two values
+```ts
+type User = {
+  id: number
+  name: string
+}
 
-- In TS, if a variable can be null, it needs to be defined.
+function getName(user: User): string {
+  return user.name
+}
+
+// Name is inferred to be a string
+const name = getName({ id: 1, name: 'Brad' })
+```
+
+- In TS, unions can be value-specific:
 
 ```ts
-const x = 10
-// ERROR
-// x's type is inferred to be exactly `10` because of `const`
-x = 11
+// Variables of Animal type can only be these specific strings
+// Essentially this creates an enum:
+type Animal = 'dog' | 'cat'
+```
 
-let y = 10
-// VALID
-// y's type is inferred to be `:number` because of `let`
-y = 11
-// ERROR
-// But it was never allowed to be null
-y = null
-console.log(y)
+- In TS, if a variable can be `null` or `undefined`, it needs to be explicitly typed:
 
-// We would have to do this if we wanted y to be null
-let y: number | null = 10
-y = 11 // Valid
-y = null // Valid
+```ts
+// variables of type User cannot be null or undefined
+type User = {
+  id: number
+  name: string
+}
+
+function getName(user: User | null): string | null {
+  return user && user.name
+}
+
+// Fails. undefined is not the same as null and the function only wants
+// User | null
+getName(undefined)
+
+// Fails. The getName function could take null, but `myself` is a User type
+// that cannot be null
+const myself: User = null
+getName(myself)
 ```
 
 - TS has an `any` type
