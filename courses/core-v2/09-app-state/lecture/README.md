@@ -6,7 +6,7 @@
 - ✅ Reducers (with the state in `Board.tsx`)
 - ✅ Context with Custom Providers/Consumers
 - ✅ Efficiencies for real time updates (debounce)
-- ✅ Reduce repetitive network requests
+- ✅ Use `react-query` to cache results from API requests
 
 # Lecture
 

@@ -66,4 +66,4 @@
 - ✅ Reducers
 - ✅ Context with Custom Providers/Consumers
 - ✅ Efficiencies for real time updates
-- ✅ Reduce repetitive network requests
+- ✅ Use `react-query` to cache results from API requests

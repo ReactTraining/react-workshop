@@ -171,10 +171,11 @@ history.push('/path')
 
 ## Lesson 8: Authentication
 
-- This lesson reviews how we can use context with reducers to create "global state" for the purposes of authentication
+- This lesson reviews how we can use context with reducers to create "global state" for the purposes of authentication.
 
 ---
 
 ## Lesson 9: App State
 
 - This lesson is mostly review with some strategies to think about for solving problems with application state
+- Use `react-query` to cache results from API requests

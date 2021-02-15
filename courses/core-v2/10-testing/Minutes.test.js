@@ -1,5 +1,5 @@
 import React from 'react'
-import Quantity from './Quantity'
+import { Minutes } from './Minutes'
 
 /**
  * With React Testing Library
@@ -9,55 +9,52 @@ import Quantity from './Quantity'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-describe('Quantity', () => {
-  it('should start with 0', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
-    expect(quantity.value).toEqual('0')
+describe('Minutes', () => {
+  it('should display initial value of 0', () => {
+    render(<Minutes minutes={0} />)
+    const minutes = screen.getByTestId('minutes-input')
+    expect(minutes.value).toEqual('0')
   })
 
   it('should not allow subtraction when quantity is already 0', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
+    render(<Minutes minutes={0} />)
+    const minutes = screen.getByTestId('minutes-input')
     const subtract = screen.getByTestId('subtract-button')
-    expect(quantity.value).toEqual('0')
+    expect(minutes.value).toEqual('0')
     fireEvent.click(subtract)
-    expect(quantity.value).toEqual('0')
+    expect(minutes.value).toEqual('0')
   })
 
   it('should add', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
+    const onChange = jest.fn()
+    render(<Minutes minutes={0} onChange={onChange} />)
     const add = screen.getByTestId('add-button')
     fireEvent.click(add)
-    expect(quantity.value).toEqual('1')
+    expect(onChange).toHaveBeenCalledWith(1)
   })
 
   it('should subtract', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
-    const add = screen.getByTestId('add-button')
+    const onChange = jest.fn()
+    render(<Minutes minutes={1} onChange={onChange} />)
     const subtract = screen.getByTestId('subtract-button')
-    // Since this component is uncontrolled and always starts at 0,
-    // we'll add first to test subtract
-    fireEvent.click(add)
     fireEvent.click(subtract)
-    expect(quantity.value).toEqual('0')
+    expect(onChange).toHaveBeenCalledWith(0)
   })
 
   it('should add (up arrow)', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
-    fireEvent.keyDown(quantity, { key: 'ArrowUp' })
-    expect(quantity.value).toEqual('1')
+    const onChange = jest.fn()
+    render(<Minutes minutes={0} onChange={onChange} />)
+    const minutes = screen.getByTestId('minutes-input')
+    fireEvent.keyDown(minutes, { key: 'ArrowUp' })
+    expect(onChange).toHaveBeenCalledWith(1)
   })
 
   it('should subtract (down arrow)', () => {
-    render(<Quantity />)
-    const quantity = screen.getByTestId('quantity')
-    fireEvent.keyDown(quantity, { key: 'ArrowUp' })
-    fireEvent.keyDown(quantity, { key: 'ArrowDown' })
-    expect(quantity.value).toEqual('0')
+    const onChange = jest.fn()
+    render(<Minutes minutes={1} onChange={onChange} />)
+    const minutes = screen.getByTestId('minutes-input')
+    fireEvent.keyDown(minutes, { key: 'ArrowDown' })
+    expect(onChange).toHaveBeenCalledWith(0)
   })
 })
 
@@ -82,18 +79,18 @@ describe('Quantity', () => {
 
   it('should start with 0', () => {
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={0} />, container)
     })
-    const input = container.querySelector('[data-testid="quantity"]')
+    const input = container.querySelector('[data-testid="minutes-input"]')
     expect(input.value).toBe('0')
   })
 
   it('should not allow subtraction when quantity is 0', () => {
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={0} />, container)
     })
     const subtractButton = container.querySelector('[data-testid=subtract-button]')
-    const input = container.querySelector('[data-testid="quantity"]')
+    const input = container.querySelector('[data-testid="minutes-input"]')
     expect(input.value).toBe('0')
     act(() => {
       subtractButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
@@ -102,38 +99,35 @@ describe('Quantity', () => {
   })
 
   it('should add', () => {
+    const onChange = jest.fn()
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={0} onChange={onChange} />, container)
     })
     const addButton = container.querySelector('[data-testid=add-button]')
-    const input = container.querySelector('[data-testid="quantity"]')
     act(() => {
       addButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
-    expect(input.value).toBe('1')
+    expect(onChange).toHaveBeenCalledWith(1)
   })
 
   it('should subtract', () => {
+    const onChange = jest.fn()
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={1} onChange={onChange} />, container)
     })
     const subtractButton = container.querySelector('[data-testid=subtract-button]')
-    const addButton = container.querySelector('[data-testid=add-button]')
-    const input = container.querySelector('[data-testid="quantity"]')
-    act(() => {
-      addButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
-    })
     act(() => {
       subtractButton.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     })
-    expect(input.value).toBe('0')
+    expect(onChange).toHaveBeenCalledWith(0)
   })
 
   it('should add (up arrow)', () => {
+    const onChange = jest.fn()
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={0} onChange={onChange} />, container)
     })
-    const input = container.querySelector('[data-testid="quantity"]')
+    const input = container.querySelector('[data-testid="minutes-input"]')
     act(() => {
       input.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -142,22 +136,15 @@ describe('Quantity', () => {
         })
       )
     })
-    expect(input.value).toBe('1')
+    expect(onChange).toHaveBeenCalledWith(1)
   })
 
   it('should add (down arrow)', () => {
+    const onChange = jest.fn()
     act(() => {
-      ReactDOM.render(<Quantity />, container)
+      ReactDOM.render(<Minutes minutes={1} onChange={onChange} />, container)
     })
-    const input = container.querySelector('[data-testid="quantity"]')
-    act(() => {
-      input.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'ArrowUp',
-          bubbles: true,
-        })
-      )
-    })
+    const input = container.querySelector('[data-testid="minutes-input"]')
     act(() => {
       input.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -166,6 +153,6 @@ describe('Quantity', () => {
         })
       )
     })
-    expect(input.value).toBe('0')
+    expect(onChange).toHaveBeenCalledWith(0)
   })
 })
