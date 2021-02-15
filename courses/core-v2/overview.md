@@ -67,3 +67,9 @@
 - ✅ Context with Custom Providers/Consumers
 - ✅ Efficiencies for real time updates
 - ✅ Use `react-query` to cache results from API requests
+
+## 10 - Testing
+
+- ✅ Using Jest with React Testing Library and ReactDOM Test Utils
+- ✅ Testing Approaches - Test the way the user interacts with the UI
+- ✅ Mocking
