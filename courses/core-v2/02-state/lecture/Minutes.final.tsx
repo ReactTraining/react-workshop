@@ -42,7 +42,6 @@ export const Minutes = () => {
   }
 
   function add() {
-    console.log('here')
     setMinutes(minutes + 1)
     if (minutes + 1 >= 0) {
       setError('')
