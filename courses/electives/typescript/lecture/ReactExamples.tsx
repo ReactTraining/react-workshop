@@ -19,7 +19,7 @@ import ReactDOM from 'react-dom'
 
 // // https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
 // interface FC<P = {}> {
-//   (props: PropsWithChildren<P>): ReactElement | null
+//   (props: React.PropsWithChildren<P>): React.ReactElement | null
 // }
 
 // // /**
