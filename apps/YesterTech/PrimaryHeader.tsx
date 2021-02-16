@@ -1,32 +1,25 @@
-import * as React from "react";
-import { NavLink, Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
-import {
-  Menu,
-  MenuList,
-  MenuButton,
-  MenuItem,
-  MenuLink,
-} from "@reach/menu-button";
-import { MdShoppingCart } from "react-icons/md";
-
-import api from "YesterTech/api";
-import { useAuthState, useAuthDispatch } from "YesterTech/AuthState";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import Avatar from "YesterTech/Avatar";
-import Logo from "YesterTech/Logo";
-import { ReactFCNoChildren } from "YesterTech/types";
-import "YesterTech/PrimaryHeader.scss";
-import "@reach/menu-button/styles.css";
+import * as React from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
+import { MdShoppingCart } from 'react-icons/md'
+import api from 'YesterTech/api'
+import { useAuthState, useAuthDispatch } from 'YesterTech/AuthState'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import Avatar from 'YesterTech/Avatar'
+import Logo from 'YesterTech/Logo'
+import { ReactFCNoChildren } from 'YesterTech/types'
+import '@reach/menu-button/styles.css'
+import 'YesterTech/PrimaryHeader.scss'
 
 const PrimaryHeader: ReactFCNoChildren = () => {
-  const dispatch = useAuthDispatch();
-  const { authenticated, user } = useAuthState();
-  const { getCartSize } = useShoppingCart();
-  const cartSize = getCartSize();
+  const dispatch = useAuthDispatch()
+  const { authenticated, user } = useAuthState()
+  const { getCartSize } = useShoppingCart()
+  const cartSize = getCartSize()
 
   function handleLogout() {
-    api.auth.logout().then(() => dispatch({ type: "LOGOUT" }));
+    api.auth.logout().then(() => dispatch({ type: 'LOGOUT' }))
   }
 
   return (
@@ -77,7 +70,7 @@ const PrimaryHeader: ReactFCNoChildren = () => {
         </Column>
       </Columns>
     </div>
-  );
-};
+  )
+}
 
-export default PrimaryHeader;
+export default PrimaryHeader

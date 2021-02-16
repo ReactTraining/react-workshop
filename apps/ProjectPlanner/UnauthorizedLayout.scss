@@ -1,0 +1,11 @@
+.unauthorized-layout {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-around;
+
+  > div {
+    margin: auto;
+    max-width: 700px;
+    flex: 1 1 auto;
+  }
+}

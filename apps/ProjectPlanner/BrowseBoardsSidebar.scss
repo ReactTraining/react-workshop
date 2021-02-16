@@ -1,0 +1,11 @@
+.browse-boards-sidebar {
+  width: 15rem;
+  border-left: 1px solid rgba(#000, 0.1);
+  padding-left: var(--gutter);
+  margin-left: var(--gutter);
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}

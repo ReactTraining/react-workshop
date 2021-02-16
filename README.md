@@ -1,5 +1,10 @@
 # Welcome to React Training!
 
+We have new workshop material for 2021 🎉. Be sure to checkout https://reacttraining.com/workshops. We offer:
+
+- Regular Public Workshops
+- Private tailored Corporate Workshops
+
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
 Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
@@ -8,8 +13,8 @@ Before attending the training, please make sure you install the code (not just c
 
 - [ ] Bring a laptop (don't forget a long power cord).
 - [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
-- [ ] Read our [JavaScript Primer](https://reacttraining.com/blog/javascript-the-react-parts/) to get caught up on modern JS syntax which is common in React.
-- [ ] Newer to React? Don't quite understand what JSX is or how Babel/Webpack plays a role? [We have some reading material for you](/reading) before the workshop.
+- [ ] [Learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/).
+- [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
 - [ ] WAIT! Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and Proxies are so diverse and out of our control.
 
@@ -48,12 +53,14 @@ $ cd react-workshop
 
 # Install and run. Make sure you do these two commands from within the `react-workshop` folder:
 $ npm install
+
+# After this command, a menu will show some different app options. Choose #1 by typing `1`
 $ npm run app
 
 # If you have issues, read below.
 ```
 
-When you do `npm run app` you should eventually see a message that says "Compiled Successfully!" and the code might even launch the app in the browser with the correct port. If it doesn't you can visit `http://localhost:3000/` after you see that message. If the app launches, then you're all set. Please proceed to the [Be Prepared](#be-prepared) section below.
+Everything is working if the code compiles and you can visit `http://localhost:3000/` in a browser.
 
 If something goes wrong, you may need to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
 
@@ -64,12 +71,14 @@ While in the workshop, you will be asked to do `npm start` to see a menu for cou
 ```
 Which Course?
 
-[1] advanced
-[2] electives
-[3] core
+[1] advanced-composition
+[2] advanced-hooks
+[3] core-v1
+[4] core-v2
+[5] electives
 [0] CANCEL
 
-Choose one from list [1, 2, 0]: 3
+Choose one from list [1...5 / 0]: 4
 
 Do you want us to remember this course selection? [y/n]: y
 ```
@@ -79,25 +88,28 @@ From this point on, you'll be prompted with the exercise you'd like to run:
 ```
 $ npm start
 
-Which exercise?
+Which Lesson of core-v2?
 
 [1] 01-thinking-in-react
 [2] 02-state
-[3] 03-controlled-vs-uncontrolled
-[4] 04-effects
-[5] 05-routing
-[6] 06-reducers
-[7] 07-data-flow
-[8] 08-app-state
-[9] 09-hooks-composition
-[a] FULL APP
-[b] BACK TO COURSE SELECTION
+[3] 03-forms
+[4] 04-data-fetching
+[5] 05-effects
+[6] 06-client-side-routing
+[7] 07-context
+[8] 08-authentication
+[9] 09-app-state
+[a] 10-testing
+[b] 11-react-query
+[c] context-with-theme
+[d] FULL APP
+[e] 👈 BACK TO COURSE SELECTION
 [0] CANCEL
 
-Choose one from list [1...9, a, 0]:
+Choose one from list [1...9, a...e, 0]:
 ```
 
-Choose option "a" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
+Choose option "d" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
 
 If you don't want to deal with the CLI in the future as much, you can run `npm start 1` to go to your chosen exercise right away.
 
@@ -109,9 +121,9 @@ You might notice as the instructors save their code that a tool called "Prettier
 
 ## Database
 
-When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry too much about the database, it's nothing big or harmful. It's a tool called `json-server` which runs 100% within the React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
+When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry about the database, it's not even a real database. It's a tool called `json-server` which runs 100% within this React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
-When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/YesterTech/database`.
+When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/ProjectPlanner/database`.
 
 There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db-port` as a command for you in case this happens. All this does is quit the processes associated with port 3333. If you have any problems you can do this manually.
 

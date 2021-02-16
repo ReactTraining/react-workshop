@@ -1,0 +1,17 @@
+.task-group {
+  background-color: rgba(white, 0.5);
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+
+  .dropzone {
+    min-height: 2rem;
+  }
+
+  .button-remove-board {
+    opacity: 0;
+  }
+
+  &:hover .button-remove-board {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,22 @@
+@import 'ProjectPlanner/styles/center-lesson';
+
+html {
+  // Just so everything is a little bigger
+  font-size: 18pt;
+}
+
+body {
+  background-color: var(--lightGray);
+}
+
+.browse-board-item {
+  background-color: #fff;
+  padding: var(--gutter);
+  border-radius: 0.3rem;
+
+  .board-icon {
+    display: block;
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+}

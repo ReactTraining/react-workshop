@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+  color: var(--textColor);
+  font-family: var(--fontFamily), Arial;
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+hr {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--lineColor);
+}
+
+a {
+  color: var(--linkColor);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+svg {
+  font-size: 1em;
+}

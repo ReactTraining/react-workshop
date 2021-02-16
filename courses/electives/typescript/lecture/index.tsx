@@ -19,10 +19,3 @@ import "./TypeScriptBasics";
 //   <MyComponent message="Hello, React Component Interface!" />,
 //   document.getElementById('root')
 // )
-
-/**
- * Browse Product Item with Quantity
- */
-
-// import { BrowseProductItem } from './BrowseProductItem.tsx'
-// ReactDOM.render(<BrowseProductItem />, document.getElementById('root'))

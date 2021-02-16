@@ -1,28 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 /****************************************
   Basic Types and Functions
 *****************************************/
 
-// const admin: boolean = true
-// const message = 'hello world'
-// const age: number = 70
-// const someVariable: any = 'could be a string, or number, or object, etc...'
+let admin: boolean = true
+let message = 'hello world'
+let age: number = 70
+let someVariable: any = 'could be a string, or number, or object, etc...'
 
-// // non-primitive type (number, string, boolean, null, undefined, etc)
-// const person: object = { name: 'brad' }
+let person: object = { name: 'brad' }
+// Since person is `let` and only has to be of type "object", it's a little
+// too generic
+person = { name: 'new name' }
+console.log(person)
 
-// // Arrays
-// const arrayOfNumbers: number[] = [1, 2, 3]
-// const mixedArray: any[] = [1, 2, 'a', false]
+// Arrays
+const arrayOfNumbers: number[] = [1, 2, 3]
+const mixedArray: any[] = [1, 2, 'a', false]
 
-// // Function declaration
-// function logOne(message: string | number): void {}
+// Function declaration
+function logOne(message: string | number): void {}
 
-// // Arrow function
-// const logTwo = (message: string | number): void => {}
+// Arrow function
+const logTwo = (message: string | number): void => {}
 
-// // don't use `undefined` as the return type unless you plan on explicitly returning that, use `void`
+// don't use `undefined` as the return type unless you plan on explicitly returning that, use `void`
 
 /****************************************
   Implicit, String literals, and Unions

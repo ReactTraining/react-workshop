@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React, {
+  useRef,
+  useState,
+  useReducer,
+  useEffect,
+  PropsWithChildren,
+  ReactElement,
+} from 'react'
+import ReactDOM from 'react-dom'
 
 /****************************************
   React FC Interface
@@ -213,7 +220,7 @@ import * as ReactDOM from "react-dom";
 // }
 
 // // Fixes:
-// // 1. Return: [boolean, () => void] to explicitly type a tuple
+// // 1. Return type: [boolean, () => void] to explicitly type a tuple
 // // 2. Do: `return [state, toggle] as const` // const assertion
 
 // // In this case, const assertion tells TypeScript these are constants and will not change
