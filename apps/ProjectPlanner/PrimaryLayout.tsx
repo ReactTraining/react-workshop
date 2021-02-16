@@ -36,9 +36,7 @@ export const PrimaryLayout: React.FC = () => {
           <Route path="/users/:userId" exact>
             <UserProfile />
           </Route>
-          <Route>
-            <NotFound />
-          </Route>
+          <Redirect to="/" />
         </Switch>
       </main>
       <PrimaryFooter />
