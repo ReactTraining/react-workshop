@@ -3,8 +3,8 @@ import { counterReducer } from './state/counterState'
 
 const store = configureStore({
   reducer: {
-    counterState: counterReducer
-  }
+    counterState: counterReducer,
+  },
 })
 
 export default store

@@ -2,7 +2,7 @@
 
 ## Task One: Convert `useState` state to `useReducer`
 
-1. Open `Quantity.js`.
+1. Open `Quantity.tsx`.
 2. Use the reducer pattern with `useReducer` to start to migrate the old state into `useReducer`. Here's a template for `useReducer` if you need it.
 
 ```js
@@ -20,7 +20,7 @@ const [state, dispatch] = useReducer(
     }
   },
   {
-    quantity: 0
+    quantity: 0,
   }
 )
 ```

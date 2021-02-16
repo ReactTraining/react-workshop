@@ -3,7 +3,7 @@ const port = process.argv[2]
 
 if (port) {
   find('port', port)
-    .then(list => {
+    .then((list) => {
       console.log(
         `Killing process on port ${port}. This cause cause the React Training app to crash also, that's okay.\n\n`
       )
@@ -12,7 +12,7 @@ if (port) {
       )
       Array.isArray(list) && list[0] && process.kill(list[0].pid)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`No process found for port ${port}`)
     })
 }

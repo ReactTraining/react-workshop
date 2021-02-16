@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import * as React from 'react'
 
 function Tweet({ id }) {
-  const tweetRef = useRef()
+  const tweetRef = React.useRef()
 
-  useEffect(() => {
+  React.useEffect(() => {
     function renderTweet() {
       const options = {} // if we were to want to pass options
       window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
@@ -22,8 +22,8 @@ function Tweet({ id }) {
 }
 
 export default function TwitterFeed() {
-  const [show, setShow] = useState(true)
-  const [theme, setTheme] = useState('light')
+  const [show, setShow] = React.useState(true)
+  const [theme, setTheme] = React.useState('light')
 
   return (
     <>

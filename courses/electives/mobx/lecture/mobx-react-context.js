@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { useLocalObservable, Observer, observer } from 'mobx-react-lite'
 
 // mobx-react is a repackage of the smaller mobx-react-lite package
@@ -22,7 +22,7 @@ function StoreProvider({ children }) {
       },
       decrement: () => {
         store.count--
-      }
+      },
     }
   })
 
@@ -51,7 +51,7 @@ function Layout() {
 }
 
 function Counter() {
-  const store = useContext(StoreContext)
+  const store = React.useContext(StoreContext)
 
   return (
     <div className="horizontal-spacing">
@@ -66,7 +66,7 @@ function Counter() {
 }
 
 function Report() {
-  const store = useContext(StoreContext)
+  const store = React.useContext(StoreContext)
 
   return (
     <Observer>

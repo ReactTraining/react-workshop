@@ -1,4 +1,4 @@
-import React, { useState, useContext, forwardRef, useRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 

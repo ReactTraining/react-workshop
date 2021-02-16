@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { TaskColor } from 'ProjectPlanner/TaskColor'
 import { useBoardContext } from './BoardContext'
 import 'ProjectPlanner/TaskCard.scss'
+import { Task } from 'ProjectPlanner/types'
 
 type Props = {
   taskId: number
@@ -11,7 +12,7 @@ type Props = {
 
 export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
   const { getTask } = useBoardContext()
-  const [task, setTask] = useState()
+  const [task, setTask] = useState<Task | undefined>()
 
   useEffect(() => {
     const task = getTask(taskId)

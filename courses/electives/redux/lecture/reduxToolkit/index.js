@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  createReducer,
-  createAction
-} from '@reduxjs/toolkit'
+import { configureStore, createReducer, createAction } from '@reduxjs/toolkit'
 
 const initialState = { count: 0 }
 
@@ -31,7 +27,7 @@ const counterReducer = createReducer(initialState, {
   },
   [decrement]: (state, action) => {
     return { ...state, count: state.count - 1 }
-  }
+  },
 })
 
 // instead of this...
@@ -45,8 +41,8 @@ const counterReducer = createReducer(initialState, {
 
 const store = configureStore({
   reducer: {
-    counterState: counterReducer
-  }
+    counterState: counterReducer,
+  },
 })
 
 store.subscribe(() => {

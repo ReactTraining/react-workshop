@@ -1,14 +1,15 @@
-import React, { useContext, useReducer } from 'react'
-
-const AuthStateContext = React.createContext()
+import * as React from 'react'
 
 const initialState = {
   authenticated: false,
-  user: null
+  user: null,
 }
 
+const AuthStateContext = React.createContext(initialState)
+const AuthDispatchContext = React.createContext(function dispatch() {})
+
 export function AuthStateProvider({ children }) {
-  const [state, dispatch] = useReducer((state, action) => {
+  const [state, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
       case 'LOGIN':
         return { ...state, authenticated: true, user: action.user }
@@ -19,16 +20,17 @@ export function AuthStateProvider({ children }) {
     }
   }, initialState)
 
-  const value = {
-    ...state,
-    dispatch
-  }
-
   return (
-    <AuthStateContext.Provider value={value} children={children} />
+    <AuthDispatchContext.Provider value={dispatch}>
+      <AuthStateContext.Provider value={state}>{children}</AuthStateContext.Provider>
+    </AuthDispatchContext.Provider>
   )
 }
 
+export function useAuthDispatch() {
+  return React.useContext(AuthDispatchContext)
+}
+
 export function useAuthState() {
-  return useContext(AuthStateContext)
+  return React.useContext(AuthStateContext)
 }

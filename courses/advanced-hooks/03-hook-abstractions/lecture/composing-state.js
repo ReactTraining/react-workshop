@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 import { useUndoState } from './utils'
 
 // 1. Make our own useUndoState:
@@ -20,7 +20,7 @@ function App() {
         className="color-preview"
         style={{
           padding: '1rem',
-          backgroundColor: color
+          backgroundColor: color,
         }}
       >
         <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />

@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import * as React from 'react'
 import { Portal } from './Portal'
 import { useRect } from '@reach/rect'
 import { useForkedRef } from '../../utils'
@@ -13,7 +13,7 @@ import { useForkedRef } from '../../utils'
 // going to give us a lot more freedom and the ability to move the popup away from
 // the edge of the viewport.
 
-export const Popover = forwardRef((props, forwardedRef) => {
+export const Popover = React.forwardRef((props, forwardedRef) => {
   return (
     <Portal>
       <PopoverImpl ref={forwardedRef} {...props} />
@@ -29,9 +29,9 @@ Popover.displayName = 'Popover'
  * Popover is conditionally rendered so we can't start measuring until it shows
  * up, so useRect needs to live down here not up in Popover
  */
-const PopoverImpl = forwardRef(
+const PopoverImpl = React.forwardRef(
   ({ targetRef, style, position = positionDefault, ...props }, forwardedRef) => {
-    const popoverRef = useRef(null)
+    const popoverRef = React.useRef(null)
     const popoverRect = useRect(popoverRef)
     const targetRect = useRect(targetRef)
 
@@ -45,7 +45,7 @@ const PopoverImpl = forwardRef(
         style={{
           ...style,
           position: 'absolute',
-          ...getStyles(position, targetRect, popoverRect)
+          ...getStyles(position, targetRect, popoverRect),
         }}
         {...props}
       />
@@ -81,7 +81,7 @@ export const positionDefault = (targetRect, popoverRect) => {
       : `${targetRect.left + window.pageXOffset}px`,
     top: directionUp
       ? `${targetRect.top - popoverRect.height + window.pageYOffset}px`
-      : `${targetRect.top + targetRect.height + window.pageYOffset}px`
+      : `${targetRect.top + targetRect.height + window.pageYOffset}px`,
   }
 }
 
@@ -94,7 +94,7 @@ function getCollisions(targetRect, popoverRect, offsetLeft = 0, offsetBottom = 0
     top: targetRect.top - popoverRect.height < 0,
     right: window.innerWidth < targetRect.left + popoverRect.width - offsetLeft,
     bottom: window.innerHeight < targetRect.bottom + popoverRect.height - offsetBottom,
-    left: targetRect.left - popoverRect.width < 0
+    left: targetRect.left - popoverRect.width < 0,
   }
 
   const directionRight = collisions.right && !collisions.left

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect, forwardRef } from 'react'
+import * as React from 'react'
 import { createPortal } from 'react-dom'
 
 // Checkout the real Reach Portal
@@ -10,12 +10,12 @@ import { createPortal } from 'react-dom'
 // a chance you'll collide with someone's styling or other code that might
 // be looking for root-level divs.
 
-export const Portal = forwardRef(({ children, type = 'reach-portal' }, forwardedRef) => {
-  const mountNode = useRef(null)
-  const portalNode = useRef(null)
-  let [, forceUpdate] = useState()
+export const Portal = React.forwardRef(({ children, type = 'reach-portal' }, forwardedRef) => {
+  const mountNode = React.useRef(null)
+  const portalNode = React.useRef(null)
+  let [, forceUpdate] = React.useState()
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     const ownerDocument = mountNode.current.ownerDocument
     portalNode.current = ownerDocument.createElement(type)
     ownerDocument.body.appendChild(portalNode.current)
@@ -27,11 +27,7 @@ export const Portal = forwardRef(({ children, type = 'reach-portal' }, forwarded
     }
   }, [type])
 
-  return portalNode.current ? (
-    createPortal(children, portalNode.current)
-  ) : (
-    <div ref={mountNode} />
-  )
+  return portalNode.current ? createPortal(children, portalNode.current) : <div ref={mountNode} />
 })
 
 Portal.displayName = 'Portal'

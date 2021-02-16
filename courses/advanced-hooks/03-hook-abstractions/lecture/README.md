@@ -10,7 +10,7 @@ function useApi(api) {
 
   useEffect(() => {
     let isCurrent = true
-    api().then(response => {
+    api().then((response) => {
       if (!isCurrent) return
       setResponse(response)
     })
@@ -32,9 +32,7 @@ function ProductProfile({ productId }) {
 - To solve that, the final solution should have `api` in the effect's dependency array, and to manage that api function being passed in, wrap it in useCallback:
 
 ```js
-const products = useApi(
-  useCallback(() => api.products.getProduct(productId), [productId])
-)
+const products = useApi(useCallback(() => api.products.getProduct(productId), [productId]))
 ```
 
 This is also what we're calling "hooks composition". We can even refactor the `useApi` hook to be `usePromise` since it's so generic at this point it can be used for any promise based side effect.

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import Quantity from './Quantity'
 
 /**
@@ -65,7 +65,7 @@ describe('Quantity', () => {
  * The same tests with React Test-Utils
  */
 
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom'
 import { act } from 'react-dom/test-utils'
 
 describe('Quantity', () => {

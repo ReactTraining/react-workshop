@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
@@ -14,8 +14,8 @@ import ProductProfile from 'YesterTech/ProductProfile'
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
   useParams: () => ({
-    productId: 5 // arbitrary
-  })
+    productId: 5, // arbitrary
+  }),
 }))
 
 jest.mock('YesterTech/ShoppingCartState')
@@ -24,12 +24,12 @@ jest.mock('YesterTech/api')
 useShoppingCart.mockReturnValue({
   addToCart: () => null,
   updateQuantity: () => null,
-  getQuantity: () => null
+  getQuantity: () => null,
 })
 
 const mockProductResponse = {
   name: 'TestProduct',
-  price: 10
+  price: 10,
 }
 
 api.products.getProduct.mockResolvedValue(mockProductResponse)

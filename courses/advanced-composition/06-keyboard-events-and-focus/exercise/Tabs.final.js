@@ -1,4 +1,4 @@
-import React, { useState, useContext, forwardRef, useRef, useEffect } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
 
@@ -6,25 +6,25 @@ const TabsContext = React.createContext()
 const TabContext = React.createContext()
 const PanelContext = React.createContext()
 
-export const Tabs = forwardRef(
+export const Tabs = React.forwardRef(
   ({ children, onChange, index: controlledIndex, id, ...props }, forwardedRef) => {
     const isControlled = controlledIndex != null
-    const { current: wasControlled } = useRef(isControlled)
+    const { current: wasControlled } = React.useRef(isControlled)
     if ((!isControlled && wasControlled) || (isControlled && !wasControlled)) {
       console.warn('Cannot change from controlled to uncontrolled or vice versa.')
     }
 
-    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     const context = {
       tabsId: useId(id),
       selectedIndex: isControlled ? controlledIndex : selectedIndex,
-      setSelectedIndex: index => {
+      setSelectedIndex: (index) => {
         onChange && onChange(index)
         if (!isControlled) {
           setSelectedIndex(index)
         }
-      }
+      },
     }
 
     return (
@@ -37,7 +37,7 @@ export const Tabs = forwardRef(
   }
 )
 
-export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
+export const TabList = React.forwardRef(({ children, ...props }, forwardedRef) => {
   const totalTabs = React.Children.count(children)
   children = React.Children.map(children, (child, index) => {
     return <TabContext.Provider value={{ index, totalTabs }} children={child} />
@@ -50,18 +50,18 @@ export const TabList = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-export const Tab = forwardRef(
+export const Tab = React.forwardRef(
   ({ children, onClick, onKeyDown, disabled, ...props }, forwardedRef) => {
-    const { index, totalTabs } = useContext(TabContext)
-    const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
+    const { index, totalTabs } = React.useContext(TabContext)
+    const { tabsId, selectedIndex, setSelectedIndex } = React.useContext(TabsContext)
     const selected = index === selectedIndex
-    const mountedRef = useRef(false)
-    const tabRef = useRef(null)
+    const mountedRef = React.useRef(false)
+    const tabRef = React.useRef(null)
 
     // Combine Refs
     const ref = useForkedRef(tabRef, forwardedRef)
 
-    useEffect(() => {
+    React.useEffect(() => {
       // Do not set the focus when we first mount
       if (mountedRef.current && selected) {
         tabRef.current.focus()
@@ -120,7 +120,7 @@ export const Tab = forwardRef(
   }
 )
 
-export const TabPanels = forwardRef(({ children, ...props }, forwardedRef) => {
+export const TabPanels = React.forwardRef(({ children, ...props }, forwardedRef) => {
   children = React.Children.map(children, (child, index) => {
     return <PanelContext.Provider value={index} children={child} />
   })
@@ -132,9 +132,9 @@ export const TabPanels = forwardRef(({ children, ...props }, forwardedRef) => {
   )
 })
 
-export const TabPanel = forwardRef(({ children, ...props }, forwardedRef) => {
-  const index = useContext(PanelContext)
-  const { tabsId, selectedIndex } = useContext(TabsContext)
+export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const index = React.useContext(PanelContext)
+  const { tabsId, selectedIndex } = React.useContext(TabsContext)
   const selected = selectedIndex === index
 
   return (

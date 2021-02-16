@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, forwardRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
@@ -12,7 +12,7 @@ export function Disclosure({
   ...props
 }) {
   const isControlled = controlledOpen != null
-  const { current: startsControlled } = useRef(isControlled)
+  const { current: startsControlled } = React.useRef(isControlled)
   if (isControlled !== startsControlled) {
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }
@@ -21,7 +21,7 @@ export function Disclosure({
     console.warn('defaultOpen should only be used for uncontrolled components.')
   }
 
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
 
   const id = useId(props.id)
   const panelId = `panel-${id}`
@@ -34,7 +34,7 @@ export function Disclosure({
       if (!isControlled) {
         setIsOpen(!isOpen)
       }
-    }
+    },
   }
 
   return (
@@ -45,9 +45,9 @@ export function Disclosure({
   )
 }
 
-export const DisclosureButton = forwardRef(
+export const DisclosureButton = React.forwardRef(
   ({ children, onClick, ...props }, forwardedRef) => {
-    const { isOpen, panelId, onSelect } = useContext(DisclosureContext)
+    const { isOpen, panelId, onSelect } = React.useContext(DisclosureContext)
 
     return (
       <button
@@ -67,8 +67,8 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { isOpen, panelId } = useContext(DisclosureContext)
+export const DisclosurePanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const { isOpen, panelId } = React.useContext(DisclosureContext)
 
   return (
     <div
