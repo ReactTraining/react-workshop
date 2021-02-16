@@ -8,7 +8,8 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = function (appEntry, alias) {
+module.exports = function (appEntry, alias, opts = {}) {
+  let { tsConfigPath } = opts
   return {
     // Enhanced dev support (like correct line numbers on errors)
     devtool: 'source-map',
@@ -54,6 +55,7 @@ module.exports = function (appEntry, alias) {
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
+                ...(tsConfigPath ? { configFile: tsConfigPath } : {}),
               },
             },
           ],
@@ -91,7 +93,11 @@ module.exports = function (appEntry, alias) {
       // Make global variables available to the application. We use this to
       // set process.env vars in the front-end
       new webpack.DefinePlugin(env.stringified),
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          ...(tsConfigPath ? { configFile: tsConfigPath } : {}),
+        },
+      }),
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

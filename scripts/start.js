@@ -6,14 +6,22 @@ const concurrently = require('concurrently')
 const config = require('../config/webpack.config.dev.js')
 const devServerOptions = require('../config/webpack.devserver.config.js')
 
+const rootDir = process.cwd()
+
 /////////////// START SYNCHRONOUS COURSE MENU CLI
 const cli = require('./cli')
-const { appPath, alias, selectedLessonType, selectedLesson } = cli()
-/////////////// END
+const { appPath, alias, selectedCourse, selectedLessonType, selectedLesson } = cli()
 
+/////////////// CREATE TS CONFIG FOR LESSON SELECTION
+let tsConfigPath = ensureDevTsConfig({ selectedCourse, selectedLesson })
+
+/////////////// START SERVER
 const port = 3000
 const appEntry = path.resolve(appPath, 'entry.js')
-const server = new WebpackDevServer(webpack(config(appEntry, alias)), devServerOptions)
+const server = new WebpackDevServer(
+  webpack(config(appEntry, alias, { tsConfigPath })),
+  devServerOptions
+)
 
 server.listen(port, 'localhost', function (err) {
   if (err) {
@@ -55,3 +63,24 @@ server.listen(port, 'localhost', function (err) {
     process.exit(1)
   }
 })
+
+function ensureDevTsConfig({ selectedCourse, selectedLesson }) {
+  try {
+    let tsconfig = JSON.parse(fs.readFileSync(path.join(rootDir, 'tsconfig.json'), 'utf-8'))
+    let tsconfigDevPath = path.join(rootDir, 'tsconfig.dev.json')
+
+    let devTsConfig = {
+      extends: './tsconfig.json',
+      include: [
+        ...tsconfig.include.filter((item) => item !== 'courses'),
+        path.join('courses', selectedCourse, selectedLesson),
+      ],
+    }
+
+    fs.writeFileSync(tsconfigDevPath, JSON.stringify(devTsConfig), 'utf-8')
+
+    return tsconfigDevPath
+  } catch (err) {
+    return 'tsconfig.json'
+  }
+}
