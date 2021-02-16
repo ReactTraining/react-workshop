@@ -10,6 +10,6 @@ Possible extra material:
 
 ```js
 function useState(defaultState) {
-  return useReducer((_, state) => state, defaultState);
+  return useReducer((_, state) => state, defaultState)
 }
 ```

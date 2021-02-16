@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as ReactDOM from 'react-dom'
 import './styles.scss'
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
   React.useEffect(() => {
     if (active) {
       const id = setInterval(() => {
-        setSeconds(seconds => {
+        setSeconds((seconds) => {
           return seconds + 1
         })
       }, 1000)

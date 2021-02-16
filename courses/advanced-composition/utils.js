@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 // These utils are similar (or identical) to the ones Reach UI uses
 
 export function wrapEvent(theirHandler, ourHandler) {
-  return event => {
+  return (event) => {
     theirHandler && theirHandler(event)
     if (!event.defaultPrevented) {
       return ourHandler(event)
@@ -13,11 +13,11 @@ export function wrapEvent(theirHandler, ourHandler) {
 
 export function useForkedRef(...refs) {
   return useMemo(() => {
-    if (refs.every(ref => ref == null)) {
+    if (refs.every((ref) => ref == null)) {
       return null
     }
-    return node => {
-      refs.forEach(ref => {
+    return (node) => {
+      refs.forEach((ref) => {
         assignRef(ref, node)
       })
     }
@@ -33,9 +33,7 @@ export function assignRef(ref, value) {
     try {
       ref.current = value
     } catch (error) {
-      throw new Error(
-        `Cannot assign value "${value}" to ref "${ref}"`
-      )
+      throw new Error(`Cannot assign value "${value}" to ref "${ref}"`)
     }
   }
 }

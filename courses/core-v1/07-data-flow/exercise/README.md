@@ -13,7 +13,7 @@ One thing we want to eventually do is persist the favorites to `localStorage`. T
 2. In `FavoriteProductState.tsx`, you have the workings of a Provider and a custom hook which will help your consumers. Start by creating some context (I helped you out a bit and created a type definition you can use if you want):
 
 ```tsx
-const FavoriteProductContext = React.createContext<FavoriteProductContextValue>();
+const FavoriteProductContext = React.createContext<FavoriteProductContextValue>()
 ```
 
 Then make the `<FavoriteProductContext.Provider>` from that variable and pass down some context through it's `value` prop. Also, remember to pass the `children` into the provider.
@@ -28,10 +28,10 @@ You're making lots of changes, so lets test the code to see if things work. Befo
 
 ```tsx
 return (
-  <FavoriteProductContext.Provider value={"Hello, does it work?" as any}>
+  <FavoriteProductContext.Provider value={'Hello, does it work?' as any}>
     {children}
   </FavoriteProductContext.Provider>
-);
+)
 ```
 
 Open the `SaveFavorite.tsx` file again and import the custom hook. Call it and see if you get your message. If you don't, you might have missed a subtle step from above.
@@ -49,7 +49,7 @@ const context: FavoriteProductContextValue = {
   isFavorite(productId) {}, // returns boolean
   addFavorite(productId) {}, // adds
   removeFavorite(productId) {}, // removes
-};
+}
 ```
 
 4. Fill out those functions. You have all the code you need sitting right there inside `SaveFavorite`
@@ -64,8 +64,8 @@ If that all goes well, you should be able to add and remove products and see the
 3. The `storage` has two methods:
 
 ```tsx
-storage.getFavorites();
-storage.updateFavorites(favorites);
+storage.getFavorites()
+storage.updateFavorites(favorites)
 ```
 
 Use those to:
@@ -88,7 +88,7 @@ It turns out, `React.useState()` has an alternative way to initialize state:
 ```tsx
 React.useState(() => {
   // return the initial state
-});
+})
 ```
 
 If you pass a function in, the return value of that function will be the initial state. Also, that function gets called only on the first render. Therefore, if you put your call to `storage.getFavorites()` there, you'll only call it once. (See the final solution)

@@ -11,7 +11,7 @@ function useApi(api) {
 
   React.useEffect(() => {
     let isCurrent = true
-    api().then(results => {
+    api().then((results) => {
       if (!isCurrent) return
       setResults(results)
     })
@@ -22,9 +22,7 @@ function useApi(api) {
 }
 
 function ProductProfile({ productId }) {
-  const product = useApi(
-    React.useCallback(() => api.products.getProduct(productId), [productId])
-  )
+  const product = useApi(React.useCallback(() => api.products.getProduct(productId), [productId]))
 
   if (!product) return <div>Loading...</div>
 

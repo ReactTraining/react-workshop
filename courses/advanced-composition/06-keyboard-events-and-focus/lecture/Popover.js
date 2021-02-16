@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Portal } from "./Portal";
-import { useRect } from "@reach/rect";
-import { useForkedRef } from "../../utils";
+import * as React from 'react'
+import { Portal } from './Portal'
+import { useRect } from '@reach/rect'
+import { useForkedRef } from '../../utils'
 
 // Checkout the real Reach Popover
 // https://github.com/reach/reach-ui/blob/master/packages/popover/src/index.tsx
@@ -18,10 +18,10 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     <Portal>
       <PopoverImpl ref={forwardedRef} {...props} />
     </Portal>
-  );
-});
+  )
+})
 
-Popover.displayName = "Popover";
+Popover.displayName = 'Popover'
 
 /**
  * PopoverImpl
@@ -30,16 +30,13 @@ Popover.displayName = "Popover";
  * up, so useRect needs to live down here not up in Popover
  */
 const PopoverImpl = React.forwardRef(
-  (
-    { targetRef, style, position = positionDefault, ...props },
-    forwardedRef
-  ) => {
-    const popoverRef = React.useRef(null);
-    const popoverRect = useRect(popoverRef);
-    const targetRect = useRect(targetRef);
+  ({ targetRef, style, position = positionDefault, ...props }, forwardedRef) => {
+    const popoverRef = React.useRef(null)
+    const popoverRect = useRect(popoverRef)
+    const targetRect = useRect(targetRef)
 
     // Combine Refs
-    const ref = useForkedRef(popoverRef, forwardedRef);
+    const ref = useForkedRef(popoverRef, forwardedRef)
 
     return (
       <div
@@ -47,25 +44,25 @@ const PopoverImpl = React.forwardRef(
         ref={ref}
         style={{
           ...style,
-          position: "absolute",
+          position: 'absolute',
           ...getStyles(position, targetRect, popoverRect),
         }}
         {...props}
       />
-    );
+    )
   }
-);
+)
 
 /**
  * getStyles
  */
 
 function getStyles(position, targetRect, popoverRect) {
-  const needToMeasurePopup = !popoverRect;
+  const needToMeasurePopup = !popoverRect
   if (needToMeasurePopup) {
-    return { visibility: "hidden" };
+    return { visibility: 'hidden' }
   }
-  return position(targetRect, popoverRect);
+  return position(targetRect, popoverRect)
 }
 
 /**
@@ -74,13 +71,10 @@ function getStyles(position, targetRect, popoverRect) {
 
 export const positionDefault = (targetRect, popoverRect) => {
   if (!targetRect || !popoverRect) {
-    return {};
+    return {}
   }
 
-  const { directionUp, directionRight } = getCollisions(
-    targetRect,
-    popoverRect
-  );
+  const { directionUp, directionRight } = getCollisions(targetRect, popoverRect)
   return {
     left: directionRight
       ? `${targetRect.right - popoverRect.width + window.pageXOffset}px`
@@ -88,30 +82,23 @@ export const positionDefault = (targetRect, popoverRect) => {
     top: directionUp
       ? `${targetRect.top - popoverRect.height + window.pageYOffset}px`
       : `${targetRect.top + targetRect.height + window.pageYOffset}px`,
-  };
-};
+  }
+}
 
 /**
  * getCollisions
  */
 
-function getCollisions(
-  targetRect,
-  popoverRect,
-  offsetLeft = 0,
-  offsetBottom = 0
-) {
+function getCollisions(targetRect, popoverRect, offsetLeft = 0, offsetBottom = 0) {
   const collisions = {
     top: targetRect.top - popoverRect.height < 0,
     right: window.innerWidth < targetRect.left + popoverRect.width - offsetLeft,
-    bottom:
-      window.innerHeight <
-      targetRect.bottom + popoverRect.height - offsetBottom,
+    bottom: window.innerHeight < targetRect.bottom + popoverRect.height - offsetBottom,
     left: targetRect.left - popoverRect.width < 0,
-  };
+  }
 
-  const directionRight = collisions.right && !collisions.left;
-  const directionUp = collisions.bottom && !collisions.top;
+  const directionRight = collisions.right && !collisions.left
+  const directionUp = collisions.bottom && !collisions.top
 
-  return { directionRight, directionUp };
+  return { directionRight, directionUp }
 }

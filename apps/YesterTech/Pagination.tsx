@@ -1,30 +1,30 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
-import classnames from "classnames";
-import queryString from "query-string";
+import * as React from 'react'
+import PropTypes from 'prop-types'
+import { Link, useLocation } from 'react-router-dom'
+import classnames from 'classnames'
+import queryString from 'query-string'
 
-import { ReactFCNoChildren } from "YesterTech/types";
-import "YesterTech/Pagination.scss";
+import { ReactFCNoChildren } from 'YesterTech/types'
+import 'YesterTech/Pagination.scss'
 
-interface PaginationProps extends React.ComponentPropsWithoutRef<"div"> {
-  as?: any;
-  path: string;
-  totalResults: number;
-  page?: number;
-  resultsPerPage?: number;
+interface PaginationProps extends React.ComponentPropsWithoutRef<'div'> {
+  as?: any
+  path: string
+  totalResults: number
+  page?: number
+  resultsPerPage?: number
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  as: Component = "div",
+  as: Component = 'div',
   path,
   totalResults,
   page = 1,
   resultsPerPage = 10,
   ...rest
 }) => {
-  const query = queryString.parse(useLocation().search);
-  const pages = Math.ceil(totalResults / resultsPerPage);
+  const query = queryString.parse(useLocation().search)
+  const pages = Math.ceil(totalResults / resultsPerPage)
 
   return (
     <Component className="pagination horizontal-spacing-small" {...rest}>
@@ -35,36 +35,36 @@ const Pagination: React.FC<PaginationProps> = ({
             const newQuery = queryString.stringify({
               ...query,
               page: i + 1,
-            });
-            const active = page === i + 1;
+            })
+            const active = page === i + 1
             return (
               <Link
-                className={classnames("pagination-link", { active })}
+                className={classnames('pagination-link', { active })}
                 key={i}
                 to={`${path}?${newQuery}`}
               >
                 {i + 1}
               </Link>
-            );
+            )
           })}
     </Component>
-  );
-};
+  )
+}
 
 Pagination.propTypes = {
   path: PropTypes.string.isRequired,
   totalResults: PropTypes.number.isRequired,
   page: PropTypes.number,
   resultsPerPage: PropTypes.number,
-};
+}
 
-export { Pagination };
+export { Pagination }
 
 interface PaginationRangeProps {
-  totalResults: number;
-  page: number;
-  resultsPerPage: number;
-  query?: string;
+  totalResults: number
+  page: number
+  resultsPerPage: number
+  query?: string
 }
 
 const PaginationRange: ReactFCNoChildren<PaginationRangeProps> = ({
@@ -73,29 +73,29 @@ const PaginationRange: ReactFCNoChildren<PaginationRangeProps> = ({
   totalResults,
   query,
 }): React.ReactElement | null => {
-  if (!totalResults) return null;
-  const first = resultsPerPage * page - resultsPerPage + 1;
-  const last = resultsPerPage * page;
-  const range = `${first}-${last > totalResults ? totalResults : last}`;
+  if (!totalResults) return null
+  const first = resultsPerPage * page - resultsPerPage + 1
+  const last = resultsPerPage * page
+  const range = `${first}-${last > totalResults ? totalResults : last}`
 
   return (
     <span className="text-small">
       Showing {range} of {totalResults}
       {query && query.length > 0 && (
         <span>
-          {" : "}
+          {' : '}
           Search: <strong>{query}</strong>
         </span>
       )}
     </span>
-  );
-};
+  )
+}
 
 PaginationRange.propTypes = {
   totalResults: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   resultsPerPage: PropTypes.number.isRequired,
   query: PropTypes.string,
-};
+}
 
-export { PaginationRange };
+export { PaginationRange }

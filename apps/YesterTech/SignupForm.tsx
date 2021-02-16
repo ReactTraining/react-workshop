@@ -1,55 +1,51 @@
-import * as React from "react";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { Columns, Column } from 'react-flex-columns'
 
-import Heading from "YesterTech/Heading";
-import Avatar from "YesterTech/Avatar";
-import Centered from "YesterTech/Centered";
-import api from "YesterTech/api";
-import { ReactFCNoChildren, UserNoPassword, UserNoId } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import Avatar from 'YesterTech/Avatar'
+import Centered from 'YesterTech/Centered'
+import api from 'YesterTech/api'
+import { ReactFCNoChildren, UserNoPassword, UserNoId } from 'YesterTech/types'
 
 interface SignupFormProps {
-  onSignup?(user: UserNoPassword): any;
+  onSignup?(user: UserNoPassword): any
 }
 
-const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
-  onSignup,
-}): React.ReactElement => {
-  const [useGitHub, setUseGitHub] = React.useState(true);
-  const [username, setUsername] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [avatarUrl, setAvatarUrl] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+const SignupForm: ReactFCNoChildren<SignupFormProps> = ({ onSignup }): React.ReactElement => {
+  const [useGitHub, setUseGitHub] = React.useState(true)
+  const [username, setUsername] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [avatarUrl, setAvatarUrl] = React.useState('')
+  const [showPassword, setShowPassword] = React.useState(false)
 
   // This is meant to stay here as a reminder
   React.useEffect(() => {
-    console.log(
-      "Keep in mind for workshops, GitHub has a rate limit of 60 requests per hour"
-    );
-  }, []);
+    console.log('Keep in mind for workshops, GitHub has a rate limit of 60 requests per hour')
+  }, [])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const user: UserNoId = { username, name, password, avatarUrl };
+    event.preventDefault()
+    const user: UserNoId = { username, name, password, avatarUrl }
     api.users.registerUser(user).then((registeredUser) => {
-      const { password, ...user } = registeredUser;
+      const { password, ...user } = registeredUser
       if (onSignup) {
-        onSignup(user);
+        onSignup(user)
       }
-    });
+    })
   }
 
   function handleShowPassword() {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword)
   }
 
   function searchGitHub() {
     api.auth.getGitHubUser(username).then((user) => {
       if (user) {
-        setName(user.name || "");
-        setAvatarUrl(user.avatar_url || "");
+        setName(user.name || '')
+        setAvatarUrl(user.avatar_url || '')
       }
-    });
+    })
   }
 
   return (
@@ -66,7 +62,7 @@ const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
                 type="checkbox"
                 defaultChecked={useGitHub}
                 onChange={() => setUseGitHub(!useGitHub)}
-              />{" "}
+              />{' '}
               Use GitHub
             </label>
           </div>
@@ -81,11 +77,11 @@ const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
                 type="text"
-                placeholder={useGitHub ? "GitHub Username" : "Username"}
+                placeholder={useGitHub ? 'GitHub Username' : 'Username'}
                 onKeyPress={(event) => {
-                  if (event.key === "Enter" && useGitHub) {
-                    event.preventDefault();
-                    searchGitHub();
+                  if (event.key === 'Enter' && useGitHub) {
+                    event.preventDefault()
+                    searchGitHub()
                   }
                 }}
               />
@@ -104,12 +100,8 @@ const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
             aria-label="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
-            type={showPassword ? "text" : "password"}
-            placeholder={
-              useGitHub
-                ? "Create a YesterTech Password (Not GitHub)"
-                : "Password"
-            }
+            type={showPassword ? 'text' : 'password'}
+            placeholder={useGitHub ? 'Create a YesterTech Password (Not GitHub)' : 'Password'}
           />
           <label>
             <input
@@ -117,7 +109,7 @@ const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"
-            />{" "}
+            />{' '}
             show password
           </label>
         </div>
@@ -148,7 +140,7 @@ const SignupForm: ReactFCNoChildren<SignupFormProps> = ({
         </footer>
       </form>
     </Centered>
-  );
-};
+  )
+}
 
-export default SignupForm;
+export default SignupForm

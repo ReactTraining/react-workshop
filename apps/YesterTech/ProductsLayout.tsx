@@ -1,12 +1,12 @@
-import * as React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import * as React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-import ProductsSidebar from "YesterTech/ProductsSidebar";
-import BrowseProducts from "YesterTech/BrowseProducts";
-import ProductProfile from "YesterTech/ProductProfile";
-import { ReactFCNoChildren } from "YesterTech/types";
+import ProductsSidebar from 'YesterTech/ProductsSidebar'
+import BrowseProducts from 'YesterTech/BrowseProducts'
+import ProductProfile from 'YesterTech/ProductProfile'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
-import "./ProductsLayout.scss";
+import './ProductsLayout.scss'
 
 const ProductsLayout: ReactFCNoChildren = () => (
   <div className="products-layout">
@@ -23,6 +23,6 @@ const ProductsLayout: ReactFCNoChildren = () => (
       </Switch>
     </div>
   </div>
-);
+)
 
-export default ProductsLayout;
+export default ProductsLayout

@@ -1,16 +1,16 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
-import { FaAngleRight } from "react-icons/fa";
-import { MdShoppingCart } from "react-icons/md";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+import { FaAngleRight } from 'react-icons/fa'
+import { MdShoppingCart } from 'react-icons/md'
 
-import Heading from "YesterTech/Heading";
-import Quantity from "YesterTech/Quantity";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { ReactFCNoChildren } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import Quantity from 'YesterTech/Quantity'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 const ViewCart: ReactFCNoChildren = (): React.ReactElement => {
-  const { cart, updateQuantity, getCartTotal } = useShoppingCart();
+  const { cart, updateQuantity, getCartTotal } = useShoppingCart()
 
   return (
     <div className="spacing">
@@ -52,7 +52,7 @@ const ViewCart: ReactFCNoChildren = (): React.ReactElement => {
         </Column>
       </Columns>
     </div>
-  );
-};
+  )
+}
 
-export default ViewCart;
+export default ViewCart

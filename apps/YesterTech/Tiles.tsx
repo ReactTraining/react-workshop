@@ -1,9 +1,9 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import "YesterTech/Tiles.scss";
+import * as React from 'react'
+import PropTypes from 'prop-types'
+import 'YesterTech/Tiles.scss'
 
-interface TilesProps extends React.ComponentPropsWithoutRef<"div"> {
-  minSize?: number;
+interface TilesProps extends React.ComponentPropsWithoutRef<'div'> {
+  minSize?: number
 }
 
 const Tiles: React.FC<TilesProps> = ({ children, minSize = 10, ...rest }) => {
@@ -15,7 +15,7 @@ const Tiles: React.FC<TilesProps> = ({ children, minSize = 10, ...rest }) => {
   // do that to our arbitrary div
   const style = {
     gridTemplateColumns: `repeat(auto-fill, minmax(${minSize}em, 1fr))`,
-  };
+  }
 
   return (
     <div {...rest} className="tiles" style={style}>
@@ -23,11 +23,11 @@ const Tiles: React.FC<TilesProps> = ({ children, minSize = 10, ...rest }) => {
         <div>{child}</div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 Tiles.propTypes = {
   minSize: PropTypes.number,
-};
+}
 
-export default Tiles;
+export default Tiles

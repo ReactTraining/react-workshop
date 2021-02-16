@@ -11,7 +11,7 @@ Here's the order of how things should work in the function component version of 
 3. Set a timeout, where at the end of one second, you call `saveClapsToDatabase(queueClaps)`
 
 ```js
-saveClapsToDatabase(queueClaps).then(latestClaps => {
+saveClapsToDatabase(queueClaps).then((latestClaps) => {
   // When this promise resolves, it gives you the most recent latest
   // claps from the database
 })

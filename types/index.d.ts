@@ -1,1 +1,1 @@
-declare module "react-flex-columns";
+declare module 'react-flex-columns'

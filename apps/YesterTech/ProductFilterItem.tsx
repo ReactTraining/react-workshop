@@ -1,10 +1,10 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import * as React from 'react'
+import PropTypes from 'prop-types'
 
 interface ProductFilterItemProps {
-  item: string;
-  onChange?(value: string): void;
-  selected?: boolean;
+  item: string
+  onChange?(value: string): void
+  selected?: boolean
 }
 
 const ProductFilterItem: React.FC<ProductFilterItemProps> = ({
@@ -22,14 +22,14 @@ const ProductFilterItem: React.FC<ProductFilterItemProps> = ({
         onChange={onChange ? (e) => onChange(e.target.name) : undefined}
         checked={onChange ? selected : undefined}
         name={item}
-      />{" "}
+      />{' '}
       <span>{children}</span>
     </label>
   </div>
-);
+)
 
 ProductFilterItem.propTypes = {
   onChange: PropTypes.func,
-};
+}
 
-export default ProductFilterItem;
+export default ProductFilterItem

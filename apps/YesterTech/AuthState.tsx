@@ -1,17 +1,15 @@
-import * as React from "react";
-import { UserNoPassword } from "YesterTech/types";
+import * as React from 'react'
+import { UserNoPassword } from 'YesterTech/types'
 
 const initialState: AuthState = {
   authenticated: false,
   user: null,
-};
+}
 
-const AuthStateContext = React.createContext<AuthState>(initialState);
-const AuthDispatchContext = React.createContext<AuthDispatch>(
-  function dispatch() {}
-);
+const AuthStateContext = React.createContext<AuthState>(initialState)
+const AuthDispatchContext = React.createContext<AuthDispatch>(function dispatch() {})
 
-export type AuthActionTypes = "LOGIN" | "LOGOUT";
+export type AuthActionTypes = 'LOGIN' | 'LOGOUT'
 
 export const AuthStateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(function authReducer(
@@ -19,47 +17,45 @@ export const AuthStateProvider: React.FC = ({ children }) => {
     action: AuthActions
   ): AuthState {
     switch (action.type) {
-      case "LOGIN": {
-        return { ...state, authenticated: true, user: action.user };
+      case 'LOGIN': {
+        return { ...state, authenticated: true, user: action.user }
       }
-      case "LOGOUT": {
-        return { ...initialState };
+      case 'LOGOUT': {
+        return { ...initialState }
       }
       default:
-        return state;
+        return state
     }
   },
-  initialState);
+  initialState)
 
   return (
     <AuthDispatchContext.Provider value={dispatch}>
-      <AuthStateContext.Provider value={state}>
-        {children}
-      </AuthStateContext.Provider>
+      <AuthStateContext.Provider value={state}>{children}</AuthStateContext.Provider>
     </AuthDispatchContext.Provider>
-  );
-};
+  )
+}
 
 export function useAuthDispatch(): AuthDispatch {
-  return React.useContext(AuthDispatchContext);
+  return React.useContext(AuthDispatchContext)
 }
 
 export function useAuthState(): AuthState {
-  return React.useContext(AuthStateContext);
+  return React.useContext(AuthStateContext)
 }
 
 type AuthState = {
-  authenticated: boolean;
-  user: null | UserNoPassword;
-};
+  authenticated: boolean
+  user: null | UserNoPassword
+}
 
-type AuthDispatch = React.Dispatch<AuthActions>;
+type AuthDispatch = React.Dispatch<AuthActions>
 
 type AuthActions =
   | {
-      type: "LOGIN";
-      user: UserNoPassword;
+      type: 'LOGIN'
+      user: UserNoPassword
     }
   | {
-      type: "LOGOUT";
-    };
+      type: 'LOGOUT'
+    }

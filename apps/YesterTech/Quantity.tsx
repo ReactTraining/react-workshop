@@ -1,11 +1,11 @@
-import * as React from "react";
-import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import "YesterTech/Quantity.scss";
-import { ReactFCNoChildren } from "YesterTech/types";
+import * as React from 'react'
+import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
+import 'YesterTech/Quantity.scss'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 interface QuantityProps {
-  onChange(value: number): any;
-  quantity?: number;
+  onChange(value: number): any
+  quantity?: number
 }
 
 const Quantity: ReactFCNoChildren<QuantityProps> = ({
@@ -14,37 +14,37 @@ const Quantity: ReactFCNoChildren<QuantityProps> = ({
 }): React.ReactElement => {
   function subtract() {
     if (quantity > 0) {
-      onChange(quantity - 1);
+      onChange(quantity - 1)
     }
   }
 
   function add() {
-    onChange(quantity + 1);
+    onChange(quantity + 1)
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const int = parseInt(event.target.value, 10);
+    const int = parseInt(event.target.value, 10)
     // disallow non-numeric values
     if (!isNaN(int)) {
-      onChange(int);
+      onChange(int)
     }
   }
 
   function handleInputBlur(event: React.FocusEvent<HTMLInputElement>) {
-    if (event.target.value.trim() === "") {
-      onChange(0);
+    if (event.target.value.trim() === '') {
+      onChange(0)
     }
   }
 
   function handleInputKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "ArrowUp") {
+    if (event.key === 'ArrowUp') {
       // keep cursor from going back/forth
-      event.preventDefault();
-      add();
-    } else if (event.key === "ArrowDown") {
+      event.preventDefault()
+      add()
+    } else if (event.key === 'ArrowDown') {
       // keep cursor from going back/forth
-      event.preventDefault();
-      subtract();
+      event.preventDefault()
+      subtract()
     }
   }
 
@@ -72,18 +72,13 @@ const Quantity: ReactFCNoChildren<QuantityProps> = ({
           />
         </div>
         <div>
-          <button
-            type="button"
-            className="icon-button"
-            onClick={add}
-            aria-label="Add an item"
-          >
+          <button type="button" className="icon-button" onClick={add} aria-label="Add an item">
             <FaPlusCircle />
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Quantity;
+export default Quantity

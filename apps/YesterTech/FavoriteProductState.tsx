@@ -1,60 +1,56 @@
-import * as React from "react";
-import * as storage from "YesterTech/localStorage";
+import * as React from 'react'
+import * as storage from 'YesterTech/localStorage'
 
-const FavoriteProductContext = React.createContext<FavoriteProductContextValue>(
-  {
-    isFavorite() {
-      return false;
-    },
-    addFavorite() {},
-    removeFavorite() {},
-  }
-);
+const FavoriteProductContext = React.createContext<FavoriteProductContextValue>({
+  isFavorite() {
+    return false
+  },
+  addFavorite() {},
+  removeFavorite() {},
+})
 
-export const FavoriteProductProvider: React.FC = ({
-  children,
-}): React.ReactElement => {
+export const FavoriteProductProvider: React.FC = ({ children }): React.ReactElement => {
   const [favorites, setFavorites] = React.useState<number[]>(() => {
-    return storage.getFavorites();
-  });
+    return storage.getFavorites()
+  })
 
-  const firstRenderRef = React.useRef(true);
+  const firstRenderRef = React.useRef(true)
 
   React.useEffect(() => {
     if (!firstRenderRef.current) {
-      storage.updateFavorites(favorites);
+      storage.updateFavorites(favorites)
     }
-    firstRenderRef.current = false;
-  }, [favorites]);
+    firstRenderRef.current = false
+  }, [favorites])
 
-  const favoritesRef = React.useRef(favorites);
+  const favoritesRef = React.useRef(favorites)
   React.useEffect(() => {
-    favoritesRef.current = favorites;
-  });
+    favoritesRef.current = favorites
+  })
 
   const value: FavoriteProductContextValue = React.useMemo(() => {
     return {
       isFavorite(productId) {
-        return favoritesRef.current.includes(productId);
+        return favoritesRef.current.includes(productId)
       },
       addFavorite(productId) {
-        setFavorites((favorites) => favorites.concat(productId));
+        setFavorites((favorites) => favorites.concat(productId))
       },
       removeFavorite(productId) {
-        setFavorites((favorites) => favorites.filter((id) => id !== productId));
+        setFavorites((favorites) => favorites.filter((id) => id !== productId))
       },
-    };
-  }, []);
+    }
+  }, [])
 
-  return <FavoriteProductContext.Provider value={value} children={children} />;
-};
+  return <FavoriteProductContext.Provider value={value} children={children} />
+}
 
 export function useFavoriteProduct() {
-  return React.useContext(FavoriteProductContext);
+  return React.useContext(FavoriteProductContext)
 }
 
 interface FavoriteProductContextValue {
-  isFavorite(productId: number): boolean;
-  addFavorite(productId: number): void;
-  removeFavorite(productId: number): void;
+  isFavorite(productId: number): boolean
+  addFavorite(productId: number): void
+  removeFavorite(productId: number): void
 }

@@ -1,15 +1,15 @@
-import * as React from "react";
-import { useLocation, useHistory, Link } from "react-router-dom";
-import queryString from "query-string";
+import * as React from 'react'
+import { useLocation, useHistory, Link } from 'react-router-dom'
+import queryString from 'query-string'
 
-import Heading from "YesterTech/Heading";
-import ProductFilterItem from "YesterTech/ProductFilterItem";
-import { ReactFCNoChildren } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import ProductFilterItem from 'YesterTech/ProductFilterItem'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 interface ProductFilterListProps {
-  urlKey: string;
-  list?: string[];
-  label: string;
+  urlKey: string
+  list?: string[]
+  label: string
 }
 
 const ProductFilterList: ReactFCNoChildren<ProductFilterListProps> = ({
@@ -17,38 +17,38 @@ const ProductFilterList: ReactFCNoChildren<ProductFilterListProps> = ({
   list,
   label,
 }): React.ReactElement => {
-  const location = useLocation();
-  const history = useHistory();
-  const search = queryString.parse(location.search) || null;
-  const searchRes = search[urlKey];
+  const location = useLocation()
+  const history = useHistory()
+  const search = queryString.parse(location.search) || null
+  const searchRes = search[urlKey]
   const selected = searchRes
     ? Array.isArray(searchRes)
       ? searchRes.reduce<string[]>((prev, cur) => {
-          return [...new Set([...prev, ...cur.split(",")])];
+          return [...new Set([...prev, ...cur.split(',')])]
         }, [])
-      : searchRes.split(",")
-    : [];
+      : searchRes.split(',')
+    : []
 
   function isSelected(item: any) {
-    return selected && selected.includes(item);
+    return selected && selected.includes(item)
   }
 
   function toggleItem(item: any) {
     // Remove or Add
     const newSelected = isSelected(item)
       ? selected.filter((c) => c !== item)
-      : selected.concat([item]);
+      : selected.concat([item])
     const newSearch = {
       ...search,
       page: undefined,
-      [urlKey]: newSelected.length ? newSelected.join(",") : undefined,
-    };
-    history.push(`${location.pathname}?${queryString.stringify(newSearch)}`);
+      [urlKey]: newSelected.length ? newSelected.join(',') : undefined,
+    }
+    history.push(`${location.pathname}?${queryString.stringify(newSearch)}`)
   }
 
   function getClearLink() {
-    const newSearch = { ...search, page: undefined, [urlKey]: undefined };
-    return `${location.pathname}?${queryString.stringify(newSearch)}`;
+    const newSearch = { ...search, page: undefined, [urlKey]: undefined }
+    return `${location.pathname}?${queryString.stringify(newSearch)}`
   }
 
   return (
@@ -65,7 +65,7 @@ const ProductFilterList: ReactFCNoChildren<ProductFilterListProps> = ({
             >
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </ProductFilterItem>
-          );
+          )
         })}
       {selected.length > 0 && (
         <div className="text-small">
@@ -73,7 +73,7 @@ const ProductFilterList: ReactFCNoChildren<ProductFilterListProps> = ({
         </div>
       )}
     </section>
-  );
-};
+  )
+}
 
-export default ProductFilterList;
+export default ProductFilterList

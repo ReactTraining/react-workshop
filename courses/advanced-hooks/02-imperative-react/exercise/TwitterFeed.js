@@ -1,40 +1,37 @@
-import * as React from "react";
+import * as React from 'react'
 
 function Tweet({ id }) {
-  const tweetRef = React.useRef();
+  const tweetRef = React.useRef()
 
   React.useEffect(() => {
     function renderTweet() {
-      const options = {}; // if we were to want to pass options
-      window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options);
+      const options = {} // if we were to want to pass options
+      window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
 
-    let script = document.createElement("script");
-    script.setAttribute("src", "//platform.twitter.com/widgets.js");
-    document.body.appendChild(script);
+    let script = document.createElement('script')
+    script.setAttribute('src', '//platform.twitter.com/widgets.js')
+    document.body.appendChild(script)
     // When this script arrives and loads, they'll establish `window.twttr`
     script.onload = () => {
-      renderTweet();
-    };
-  }, [id]);
+      renderTweet()
+    }
+  }, [id])
 
-  return <div ref={tweetRef} />;
+  return <div ref={tweetRef} />
 }
 
 export default function TwitterFeed() {
-  const [show, setShow] = React.useState(true);
-  const [theme, setTheme] = React.useState("light");
+  const [show, setShow] = React.useState(true)
+  const [theme, setTheme] = React.useState('light')
 
   return (
     <>
       <div className="horizontal-spacing">
         <button onClick={() => setShow(!show)} className="button">
-          Show Tweets: {show ? "On" : "Off"}
+          Show Tweets: {show ? 'On' : 'Off'}
         </button>
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="button"
-        >
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className="button">
           Theme
         </button>
       </div>
@@ -45,5 +42,5 @@ export default function TwitterFeed() {
         </div>
       )}
     </>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import * as React from "react";
+import * as React from 'react'
 
-interface CenteredProps extends React.ComponentPropsWithoutRef<"div"> {
-  size?: number;
-  as?: React.ElementType | React.ExoticComponent;
+interface CenteredProps extends React.ComponentPropsWithoutRef<'div'> {
+  size?: number
+  as?: React.ElementType | React.ExoticComponent
 }
 
 const Centered: React.FC<CenteredProps> = ({
-  as: Component = "div",
+  as: Component = 'div',
   size = 30,
   children,
   ...rest
@@ -20,6 +20,6 @@ const Centered: React.FC<CenteredProps> = ({
   >
     {children}
   </Component>
-);
+)
 
-export default Centered;
+export default Centered

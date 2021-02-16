@@ -1,22 +1,22 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import isFunction from "lodash.isfunction";
-import "./styles.scss";
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import isFunction from 'lodash.isfunction'
+import './styles.scss'
 
 export default function App() {
-  const [active, setActive] = useState(false);
-  const [seconds, setSeconds] = useState(0);
+  const [active, setActive] = useState(false)
+  const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
     if (active) {
       const id = setInterval(() => {
         setSeconds((seconds) => {
-          return seconds + 1;
-        });
-      }, 1000);
-      return () => clearInterval(id);
+          return seconds + 1
+        })
+      }, 1000)
+      return () => clearInterval(id)
     }
-  }, [active]);
+  }, [active])
 
   return (
     <div className="align-center spacing phony-hooks">
@@ -31,85 +31,81 @@ export default function App() {
       <hr />
       <div>Seconds: {seconds}</div>
     </div>
-  );
+  )
 }
 
-const states: any[] = [];
-let calls = -1;
+const states: any[] = []
+let calls = -1
 
 // useReducer
 
 function useReducer<R extends (prevState: S, action: A) => S, S, A>(
   fn: R,
   initialState: S
-): [S, (action: A) => void];
+): [S, (action: A) => void]
 
 function useReducer<R extends (prevState: S, action: A) => S, S, A>(
   fn: R,
   initialState: S
 ): [S, (action: A) => void] {
-  const callId = ++calls;
+  const callId = ++calls
 
   if (states[callId]) {
-    return states[callId];
+    return states[callId]
   }
 
   function dispatch(action: A): void {
-    states[callId][0] = fn(states[callId][0], action);
-    reRender();
+    states[callId][0] = fn(states[callId][0], action)
+    reRender()
   }
 
-  states[callId] = [initialState, dispatch];
-  return states[callId];
+  states[callId] = [initialState, dispatch]
+  return states[callId]
 }
 
 // useState
 
-function useState<S>(
-  initialState: S
-): [S, (newState: S | ((oldState: S) => S)) => void];
+function useState<S>(initialState: S): [S, (newState: S | ((oldState: S) => S)) => void]
 
-function useState<S>(
-  initialState: S
-): [S, (newState: S | ((oldState: S) => S)) => void] {
+function useState<S>(initialState: S): [S, (newState: S | ((oldState: S) => S)) => void] {
   return useReducer((oldState, newState) => {
-    return isFunction(newState) ? newState(oldState) : newState;
-  }, initialState);
+    return isFunction(newState) ? newState(oldState) : newState
+  }, initialState)
 }
 
 // useEffect
-const effects: any = [];
-let effectCalls = -1;
+const effects: any = []
+let effectCalls = -1
 
-type EffectCallback = () => void | (() => void | undefined);
-function useEffect(fn: EffectCallback, depArray?: any[]): void;
+type EffectCallback = () => void | (() => void | undefined)
+function useEffect(fn: EffectCallback, depArray?: any[]): void
 
 function useEffect(fn: EffectCallback, depArray?: any[]): void {
   window.requestAnimationFrame(() => {
-    const callId = ++effectCalls;
+    const callId = ++effectCalls
 
     const depArrayChanged = (depArray || []).reduce((changed, next, index) => {
-      if (changed) return changed;
-      if (!effects[callId] || !Array.isArray(depArray)) return true;
-      return next !== effects[callId][1][index];
-    }, false);
+      if (changed) return changed
+      if (!effects[callId] || !Array.isArray(depArray)) return true
+      return next !== effects[callId][1][index]
+    }, false)
 
     // Cleanup
     if (depArrayChanged && effects[callId] && effects[callId][2]) {
-      effects[callId][2]();
+      effects[callId][2]()
     }
 
     // The Effect "belongs" to a render
     if (depArrayChanged) {
-      effects[callId] = [fn, depArray];
-      effects[callId][2] = fn();
+      effects[callId] = [fn, depArray]
+      effects[callId][2] = fn()
     }
-  });
+  })
 }
 
-reRender();
+reRender()
 function reRender(): void {
-  calls = -1;
-  effectCalls = -1;
-  ReactDOM.render(<App />, document.getElementById("root"));
+  calls = -1
+  effectCalls = -1
+  ReactDOM.render(<App />, document.getElementById('root'))
 }

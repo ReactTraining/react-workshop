@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useUndoState } from "./utils";
+import * as React from 'react'
+import { useUndoState } from './utils'
 
 // 1. Make our own useUndoState:
 //    [color, setColor, undo] = useUndoState(color)
@@ -8,10 +8,10 @@ import { useUndoState } from "./utils";
 // 3. Refactor them so they can be composed
 
 function App() {
-  const [color, setColor, undo] = useUndoState("#ff0000");
+  const [color, setColor, undo] = useUndoState('#ff0000')
 
   function changeColor(e) {
-    setColor(e.target.value);
+    setColor(e.target.value)
   }
 
   return (
@@ -19,22 +19,17 @@ function App() {
       <div
         className="color-preview"
         style={{
-          padding: "1rem",
+          padding: '1rem',
           backgroundColor: color,
         }}
       >
-        <input
-          type="color"
-          value={color || ""}
-          onChange={changeColor}
-          aria-label="Color Picker"
-        />
+        <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />
       </div>
       <button className="button" onClick={undo}>
         Undo
       </button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

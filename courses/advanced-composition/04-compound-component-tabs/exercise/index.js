@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as ReactDOM from 'react-dom'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
 import { TaskOne, TaskTwo, TaskThree } from './Tasks'
 import Heading from 'YesterTech/Heading'

@@ -1,27 +1,27 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
 
-import Heading from "YesterTech/Heading";
-import Quantity from "YesterTech/Quantity";
-import StarRatings from "YesterTech/StarRatings";
-import ProductImage from "YesterTech/ProductImage";
-import ShoppingCartButton from "YesterTech/ShoppingCartButton";
-import SaveFavorite from "YesterTech/SaveFavorite";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { ReactFCNoChildren } from "YesterTech/types";
-import "YesterTech/BrowseProductItem.scss";
+import Heading from 'YesterTech/Heading'
+import Quantity from 'YesterTech/Quantity'
+import StarRatings from 'YesterTech/StarRatings'
+import ProductImage from 'YesterTech/ProductImage'
+import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
+import SaveFavorite from 'YesterTech/SaveFavorite'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import { ReactFCNoChildren } from 'YesterTech/types'
+import 'YesterTech/BrowseProductItem.scss'
 
 interface BrowseProductItemProps {
-  productId: number;
-  name: string;
-  price: number;
-  imagePath: string;
-  year?: string;
-  condition?: string;
-  brand?: string;
-  category?: string;
-  rating?: number;
+  productId: number
+  name: string
+  price: number
+  imagePath: string
+  year?: string
+  condition?: string
+  brand?: string
+  category?: string
+  rating?: number
 }
 
 const BrowseProductItem: ReactFCNoChildren<BrowseProductItemProps> = ({
@@ -29,15 +29,15 @@ const BrowseProductItem: ReactFCNoChildren<BrowseProductItemProps> = ({
   name,
   price,
   imagePath,
-  year = "unknown",
-  condition = "n/a",
-  brand = "n/a",
-  category = "n/a",
+  year = 'unknown',
+  condition = 'n/a',
+  brand = 'n/a',
+  category = 'n/a',
   rating = 0,
 }) => {
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCart();
-  const quantity = getQuantity(productId);
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
+  const quantity = getQuantity(productId)
 
   return (
     <Columns gutters className="browse-product-item">
@@ -69,10 +69,7 @@ const BrowseProductItem: ReactFCNoChildren<BrowseProductItemProps> = ({
           />
           {quantity > 0 && (
             <div className="align-right">
-              <Quantity
-                onChange={(q) => updateQuantity(productId, q)}
-                quantity={quantity}
-              />
+              <Quantity onChange={(q) => updateQuantity(productId, q)} quantity={quantity} />
             </div>
           )}
         </div>
@@ -81,7 +78,7 @@ const BrowseProductItem: ReactFCNoChildren<BrowseProductItemProps> = ({
         </div>
       </Column>
     </Columns>
-  );
-};
+  )
+}
 
-export default BrowseProductItem;
+export default BrowseProductItem

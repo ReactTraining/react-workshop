@@ -20,7 +20,7 @@ Here's what the effect might look like:
 useEffect(() => {
   let isCurrent = true
   if (!authenticated) {
-    api.auth.getAuthenticatedUser().then(user => {
+    api.auth.getAuthenticatedUser().then((user) => {
       if (user && isCurrent) {
         dispatch({ type: 'LOGIN', user })
       }

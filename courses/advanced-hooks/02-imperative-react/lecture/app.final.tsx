@@ -1,35 +1,33 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { position } from "./utils";
-import "./styles.scss";
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { position } from './utils'
+import './styles.scss'
 
 const Portal: React.FC = ({ children }) => {
-  const portalNode = React.useRef<HTMLElement | null>(null);
-  const [, forceUpdate] = React.useState<any>();
+  const portalNode = React.useRef<HTMLElement | null>(null)
+  const [, forceUpdate] = React.useState<any>()
 
   React.useLayoutEffect(() => {
-    portalNode.current = document.createElement("portal");
-    document.body.appendChild(portalNode.current);
-    forceUpdate({});
+    portalNode.current = document.createElement('portal')
+    document.body.appendChild(portalNode.current)
+    forceUpdate({})
     return () => {
       if (portalNode.current) {
-        document.body.removeChild(portalNode.current);
+        document.body.removeChild(portalNode.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
-  return portalNode.current
-    ? ReactDOM.createPortal(children, portalNode.current)
-    : null;
-};
+  return portalNode.current ? ReactDOM.createPortal(children, portalNode.current) : null
+}
 
 interface PopoverProps {
-  targetRef: React.RefObject<HTMLElement | null | undefined>;
+  targetRef: React.RefObject<HTMLElement | null | undefined>
 }
 
 const Popover: React.FC<PopoverProps> = ({ children, targetRef }) => {
-  const popoverRef = React.useRef<HTMLElement | null>(null);
-  const [styles, setStyles] = React.useState({});
+  const popoverRef = React.useRef<HTMLElement | null>(null)
+  const [styles, setStyles] = React.useState({})
 
   // Doing this work in a ref callback helps overcome a race-condition where
   // we need to ensure the popoverRef has been established. It's established
@@ -38,11 +36,11 @@ const Popover: React.FC<PopoverProps> = ({ children, targetRef }) => {
   function initPopoverRef(el: HTMLDivElement) {
     // initPopoverRef will be called numerous times, lets do this work once.
     if (!popoverRef.current) {
-      popoverRef.current = el;
+      popoverRef.current = el
       if (targetRef.current && popoverRef.current) {
-        const targetRect = targetRef.current.getBoundingClientRect();
-        const popoverRect = popoverRef.current.getBoundingClientRect();
-        setStyles(position(targetRect, popoverRect));
+        const targetRect = targetRef.current.getBoundingClientRect()
+        const popoverRect = popoverRef.current.getBoundingClientRect()
+        setStyles(position(targetRect, popoverRect))
       }
     }
   }
@@ -55,29 +53,29 @@ const Popover: React.FC<PopoverProps> = ({ children, targetRef }) => {
         // So the window won't close the popup when it gets the click
         onClick={(e) => e.stopPropagation()}
         style={{
-          position: "absolute",
+          position: 'absolute',
           ...styles,
         }}
       >
         {children}
       </div>
     </Portal>
-  );
-};
+  )
+}
 
 const Define: React.FC = ({ children }) => {
-  const [open, setOpen] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+  const [open, setOpen] = React.useState(false)
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null)
 
   React.useLayoutEffect(() => {
     const listener = (event: MouseEvent) => {
       if (event.target !== buttonRef.current) {
-        setOpen(false);
+        setOpen(false)
       }
-    };
-    window.addEventListener("click", listener);
-    return () => window.removeEventListener("click", listener);
-  }, []);
+    }
+    window.addEventListener('click', listener)
+    return () => window.removeEventListener('click', listener)
+  }, [])
 
   return (
     <>
@@ -92,20 +90,18 @@ const Define: React.FC = ({ children }) => {
         {children}
       </button>
       {open && (
-        <Popover targetRef={buttonRef}>
-          Hooks are a way to compose behavior into components
-        </Popover>
+        <Popover targetRef={buttonRef}>Hooks are a way to compose behavior into components</Popover>
       )}
     </>
-  );
-};
+  )
+}
 
 export default function App() {
   return (
     <p>
-      Modern React is filled with <Define>Hooks</Define>. They work with
-      function-components and they give us an ability to use state and other
-      React features similarly to class-based components.
+      Modern React is filled with <Define>Hooks</Define>. They work with function-components and
+      they give us an ability to use state and other React features similarly to class-based
+      components.
     </p>
-  );
+  )
 }

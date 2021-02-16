@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import "YesterTech/Hero.scss";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import 'YesterTech/Hero.scss'
 
 function Hero(): React.ReactElement {
   return (
@@ -12,7 +12,7 @@ function Hero(): React.ReactElement {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default Hero;
+export default Hero

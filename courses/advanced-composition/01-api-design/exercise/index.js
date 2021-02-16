@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as ReactDOM from 'react-dom'
 import { FaAngleRight } from 'react-icons/fa'
 import '../lecture/styles.scss'
 

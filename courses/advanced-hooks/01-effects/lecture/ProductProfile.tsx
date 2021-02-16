@@ -1,27 +1,27 @@
-import * as React from "react";
-import { useParams } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { useParams } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
 
-import api from "YesterTech/api";
-import Heading from "YesterTech/Heading";
-import Quantity from "YesterTech/Quantity";
-import Tiles from "YesterTech/Tiles";
-import StarRatings from "YesterTech/StarRatings";
-import ProductImage from "YesterTech/ProductImage";
-import ShoppingCartButton from "YesterTech/ShoppingCartButton";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import ProductTile from "YesterTech/ProductTile";
+import api from 'YesterTech/api'
+import Heading from 'YesterTech/Heading'
+import Quantity from 'YesterTech/Quantity'
+import Tiles from 'YesterTech/Tiles'
+import StarRatings from 'YesterTech/StarRatings'
+import ProductImage from 'YesterTech/ProductImage'
+import ShoppingCartButton from 'YesterTech/ShoppingCartButton'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import ProductTile from 'YesterTech/ProductTile'
 
 function ProductProfile() {
-  let { productId } = useParams<{ productId: any }>();
-  productId = parseInt(productId, 10);
+  let { productId } = useParams<{ productId: any }>()
+  productId = parseInt(productId, 10)
 
-  const product = null as any;
+  const product = null as any
 
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCart();
-  const quantity = getQuantity(productId);
-  if (!product) return <div>Loading...</div>;
+  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
+  const quantity = getQuantity(productId)
+  if (!product) return <div>Loading...</div>
 
   return (
     <div className="spacing">
@@ -43,18 +43,13 @@ function ProductProfile() {
             </Column>
             <Column className="spacing-small">
               <ShoppingCartButton
-                onClick={() =>
-                  addToCart(productId, product.name, product.price)
-                }
+                onClick={() => addToCart(productId, product.name, product.price)}
                 quantity={quantity}
               />
 
               {quantity > 0 && (
                 <div className="align-right">
-                  <Quantity
-                    onChange={(q) => updateQuantity(productId, q)}
-                    quantity={quantity}
-                  />
+                  <Quantity onChange={(q) => updateQuantity(productId, q)} quantity={quantity} />
                 </div>
               )}
             </Column>
@@ -78,7 +73,7 @@ function ProductProfile() {
         </>
       )}
     </div>
-  );
+  )
 }
 
-export default ProductProfile;
+export default ProductProfile

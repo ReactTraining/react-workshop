@@ -1,36 +1,33 @@
-import * as React from "react";
-import { MdShoppingCart } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
-import { FaAngleLeft } from "react-icons/fa";
+import * as React from 'react'
+import { MdShoppingCart } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+import { FaAngleLeft } from 'react-icons/fa'
 
-import Heading from "YesterTech/Heading";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { CheckoutFieldsFull } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import { CheckoutFieldsFull } from 'YesterTech/types'
 
 interface CheckoutReviewProps {
-  sameAsBilling: boolean;
-  fields?: Partial<CheckoutFieldsFull>;
+  sameAsBilling: boolean
+  fields?: Partial<CheckoutFieldsFull>
 }
 
-const CheckoutReview: React.FC<CheckoutReviewProps> = ({
-  sameAsBilling,
-  fields = {},
-}) => {
-  const { cart, getCartTotal } = useShoppingCart();
+const CheckoutReview: React.FC<CheckoutReviewProps> = ({ sameAsBilling, fields = {} }) => {
+  const { cart, getCartTotal } = useShoppingCart()
 
   function placeOrder() {
-    console.log(fields);
+    console.log(fields)
   }
 
   if (Object.keys(fields).length === 0) {
     // For the lessons
     return (
       <div>
-        Exercise Notice: Oops, did you forget you conditionally render the route
-        for CheckoutReview? We see that `fields` doesn't have an data.
+        Exercise Notice: Oops, did you forget you conditionally render the route for CheckoutReview?
+        We see that `fields` doesn't have an data.
       </div>
-    );
+    )
   }
 
   return (
@@ -70,8 +67,7 @@ const CheckoutReview: React.FC<CheckoutReviewProps> = ({
 
               {fields.shippingCity && (
                 <span>
-                  {fields.shippingCity}, {fields.shippingState}{" "}
-                  {fields.shippingPostal}
+                  {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}
                 </span>
               )}
             </React.Fragment>
@@ -118,7 +114,7 @@ const CheckoutReview: React.FC<CheckoutReviewProps> = ({
         </Column>
       </Columns>
     </div>
-  );
-};
+  )
+}
 
-export default CheckoutReview;
+export default CheckoutReview

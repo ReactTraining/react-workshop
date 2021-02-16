@@ -1,16 +1,16 @@
-import * as React from "react";
-import "./styles.scss";
+import * as React from 'react'
+import './styles.scss'
 
 export default function App() {
-  const [count, setCount] = React.useState(0);
-  const [message, setMessage] = React.useState<string | null>(null);
+  const [count, setCount] = React.useState(0)
+  const [message, setMessage] = React.useState<string | null>(null)
 
   function saveToDatabase() {
     setTimeout(() => {
       setMessage(
         `We saved a count of ${count}, but it is stale since the count state may have changed`
-      );
-    }, 3000);
+      )
+    }, 3000)
   }
 
   return (
@@ -24,5 +24,5 @@ export default function App() {
       </button>
       {message && <p>{message}</p>}
     </div>
-  );
+  )
 }

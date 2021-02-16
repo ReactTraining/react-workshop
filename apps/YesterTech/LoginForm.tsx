@@ -1,43 +1,41 @@
-import * as React from "react";
-import { FaSignInAlt, FaExclamationCircle } from "react-icons/fa";
+import * as React from 'react'
+import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 
-import Heading from "YesterTech/Heading";
-import Notice from "YesterTech/Notice";
-import Centered from "YesterTech/Centered";
-import api from "YesterTech/api";
-import { ReactFCNoChildren } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import Notice from 'YesterTech/Notice'
+import Centered from 'YesterTech/Centered'
+import api from 'YesterTech/api'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 interface LoginFormProps {
-  onAuthenticated?(user: any): any;
+  onAuthenticated?(user: any): any
 }
 
-const LoginForm: ReactFCNoChildren<LoginFormProps> = ({
-  onAuthenticated,
-}): React.ReactElement => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
+const LoginForm: ReactFCNoChildren<LoginFormProps> = ({ onAuthenticated }): React.ReactElement => {
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [error, setError] = React.useState(null)
+  const [loading, setLoading] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false)
 
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setLoading(true);
+    event.preventDefault()
+    setLoading(true)
     api.auth
       .login(username, password)
       .then((user) => {
-        if (typeof onAuthenticated === "function") {
-          onAuthenticated(user);
+        if (typeof onAuthenticated === 'function') {
+          onAuthenticated(user)
         }
       })
       .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+        setError(error)
+        setLoading(false)
+      })
   }
 
   function handleShowPassword() {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -64,7 +62,7 @@ const LoginForm: ReactFCNoChildren<LoginFormProps> = ({
           <input
             aria-label="Password"
             onChange={(e) => setPassword(e.target.value)}
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             required
           />
@@ -74,7 +72,7 @@ const LoginForm: ReactFCNoChildren<LoginFormProps> = ({
               defaultChecked={showPassword}
               className="passwordCheckbox"
               type="checkbox"
-            />{" "}
+            />{' '}
             show password
           </label>
         </div>
@@ -92,7 +90,7 @@ const LoginForm: ReactFCNoChildren<LoginFormProps> = ({
         </footer>
       </form>
     </Centered>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

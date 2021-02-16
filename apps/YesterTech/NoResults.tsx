@@ -1,10 +1,10 @@
-import * as React from "react";
-import "YesterTech/NoResults.scss";
+import * as React from 'react'
+import 'YesterTech/NoResults.scss'
 
 const NoResults: React.FC = ({ children }) => (
   <div className="no-results">
     <div>{children}</div>
   </div>
-);
+)
 
-export default NoResults;
+export default NoResults

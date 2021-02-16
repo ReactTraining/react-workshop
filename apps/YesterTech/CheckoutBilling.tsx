@@ -1,19 +1,16 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { MdShoppingCart } from "react-icons/md";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { MdShoppingCart } from 'react-icons/md'
 
-import Heading from "YesterTech/Heading";
-import { CheckoutFieldsFull } from "YesterTech/types";
+import Heading from 'YesterTech/Heading'
+import { CheckoutFieldsFull } from 'YesterTech/types'
 
 interface CheckoutBillingProps {
-  defaultFields?: Partial<CheckoutFieldsFull>;
-  defaultSameAsBilling?: boolean;
-  onSubmit(
-    sameAsBilling: boolean,
-    fields: Omit<CheckoutFieldsFull, "sameAsBilling">
-  ): any;
+  defaultFields?: Partial<CheckoutFieldsFull>
+  defaultSameAsBilling?: boolean
+  onSubmit(sameAsBilling: boolean, fields: Omit<CheckoutFieldsFull, 'sameAsBilling'>): any
 }
 
 function CheckoutBilling({
@@ -22,34 +19,31 @@ function CheckoutBilling({
   defaultFields = {},
 }: CheckoutBillingProps): React.ReactElement {
   const [state, dispatch] = React.useReducer(
-    function billingReducer(
-      state: ReducerState,
-      action: ReducerAction
-    ): ReducerState {
+    function billingReducer(state: ReducerState, action: ReducerAction): ReducerState {
       switch (action.type) {
-        case "TOGGLE_SAME_AS_BILLING":
-          return { ...state, sameAsBilling: !state.sameAsBilling };
-        case "CHANGE_FIELD":
-          return { ...state, [action.field]: action.value };
+        case 'TOGGLE_SAME_AS_BILLING':
+          return { ...state, sameAsBilling: !state.sameAsBilling }
+        case 'CHANGE_FIELD':
+          return { ...state, [action.field]: action.value }
         default:
-          return state;
+          return state
       }
     },
     {
       sameAsBilling: defaultSameAsBilling,
       // Form Fields
-      billingName: defaultFields.billingName || "",
-      billingAddress: defaultFields.billingAddress || "",
-      billingCity: defaultFields.billingCity || "",
-      billingState: defaultFields.billingState || "",
-      billingPostal: defaultFields.billingPostal || "",
-      shippingName: defaultFields.shippingName || "",
-      shippingAddress: defaultFields.shippingAddress || "",
-      shippingCity: defaultFields.shippingCity || "",
-      shippingState: defaultFields.shippingState || "",
-      shippingPostal: defaultFields.shippingPostal || "",
+      billingName: defaultFields.billingName || '',
+      billingAddress: defaultFields.billingAddress || '',
+      billingCity: defaultFields.billingCity || '',
+      billingState: defaultFields.billingState || '',
+      billingPostal: defaultFields.billingPostal || '',
+      shippingName: defaultFields.shippingName || '',
+      shippingAddress: defaultFields.shippingAddress || '',
+      shippingCity: defaultFields.shippingCity || '',
+      shippingState: defaultFields.shippingState || '',
+      shippingPostal: defaultFields.shippingPostal || '',
     }
-  );
+  )
 
   const {
     sameAsBilling,
@@ -63,10 +57,10 @@ function CheckoutBilling({
     shippingCity,
     shippingState,
     shippingPostal,
-  } = state;
+  } = state
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault()
     const fields = {
       billingName,
       billingAddress,
@@ -78,12 +72,12 @@ function CheckoutBilling({
       shippingCity: sameAsBilling ? billingCity : shippingCity,
       shippingState: sameAsBilling ? billingState : shippingState,
       shippingPostal: sameAsBilling ? billingPostal : shippingPostal,
-    };
-    onSubmit(sameAsBilling, fields);
+    }
+    onSubmit(sameAsBilling, fields)
   }
 
   function changeField(field: FieldKeys, value: string) {
-    dispatch({ type: "CHANGE_FIELD", field, value });
+    dispatch({ type: 'CHANGE_FIELD', field, value })
   }
 
   return (
@@ -103,7 +97,7 @@ function CheckoutBilling({
             type="text"
             required
             defaultValue={billingName}
-            onChange={(event) => changeField("billingName", event.target.value)}
+            onChange={(event) => changeField('billingName', event.target.value)}
           />
         </div>
         <div className="form-field">
@@ -113,9 +107,7 @@ function CheckoutBilling({
             type="text"
             required
             defaultValue={billingAddress}
-            onChange={(event) =>
-              changeField("billingAddress", event.target.value)
-            }
+            onChange={(event) => changeField('billingAddress', event.target.value)}
           />
         </div>
         <Columns gutters>
@@ -127,9 +119,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 defaultValue={billingCity}
-                onChange={(event) =>
-                  changeField("billingCity", event.target.value)
-                }
+                onChange={(event) => changeField('billingCity', event.target.value)}
               />
             </div>
           </Column>
@@ -141,9 +131,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 defaultValue={billingState}
-                onChange={(event) =>
-                  changeField("billingState", event.target.value)
-                }
+                onChange={(event) => changeField('billingState', event.target.value)}
               />
             </div>
           </Column>
@@ -155,9 +143,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 defaultValue={billingPostal}
-                onChange={(event) =>
-                  changeField("billingPostal", event.target.value)
-                }
+                onChange={(event) => changeField('billingPostal', event.target.value)}
               />
             </div>
           </Column>
@@ -174,8 +160,8 @@ function CheckoutBilling({
               <input
                 type="checkbox"
                 defaultChecked={sameAsBilling}
-                onChange={() => dispatch({ type: "TOGGLE_SAME_AS_BILLING" })}
-              />{" "}
+                onChange={() => dispatch({ type: 'TOGGLE_SAME_AS_BILLING' })}
+              />{' '}
               Same as Billing
             </label>
           </Column>
@@ -189,9 +175,7 @@ function CheckoutBilling({
             type="text"
             required
             value={sameAsBilling ? billingName : shippingName}
-            onChange={(event) =>
-              changeField("shippingName", event.target.value)
-            }
+            onChange={(event) => changeField('shippingName', event.target.value)}
             disabled={sameAsBilling}
           />
         </div>
@@ -202,9 +186,7 @@ function CheckoutBilling({
             type="text"
             required
             value={sameAsBilling ? billingAddress : shippingAddress}
-            onChange={(event) =>
-              changeField("shippingAddress", event.target.value)
-            }
+            onChange={(event) => changeField('shippingAddress', event.target.value)}
             disabled={sameAsBilling}
           />
         </div>
@@ -217,9 +199,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 value={sameAsBilling ? billingCity : shippingCity}
-                onChange={(event) =>
-                  changeField("shippingCity", event.target.value)
-                }
+                onChange={(event) => changeField('shippingCity', event.target.value)}
                 disabled={sameAsBilling}
               />
             </div>
@@ -232,9 +212,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 value={sameAsBilling ? billingState : shippingState}
-                onChange={(event) =>
-                  changeField("shippingState", event.target.value)
-                }
+                onChange={(event) => changeField('shippingState', event.target.value)}
                 disabled={sameAsBilling}
               />
             </div>
@@ -247,9 +225,7 @@ function CheckoutBilling({
                 type="text"
                 required
                 value={sameAsBilling ? billingPostal : shippingPostal}
-                onChange={(event) =>
-                  changeField("shippingPostal", event.target.value)
-                }
+                onChange={(event) => changeField('shippingPostal', event.target.value)}
                 disabled={sameAsBilling}
               />
             </div>
@@ -274,15 +250,15 @@ function CheckoutBilling({
         </Columns>
       </form>
     </div>
-  );
+  )
 }
 
-export default CheckoutBilling;
+export default CheckoutBilling
 
-type FieldKeys = keyof Omit<CheckoutFieldsFull, "sameAsBilling">;
+type FieldKeys = keyof Omit<CheckoutFieldsFull, 'sameAsBilling'>
 
 type ReducerAction =
-  | { type: "TOGGLE_SAME_AS_BILLING" }
-  | { type: "CHANGE_FIELD"; field: FieldKeys; value: string };
+  | { type: 'TOGGLE_SAME_AS_BILLING' }
+  | { type: 'CHANGE_FIELD'; field: FieldKeys; value: string }
 
-type ReducerState = CheckoutFieldsFull & { sameAsBilling: boolean };
+type ReducerState = CheckoutFieldsFull & { sameAsBilling: boolean }

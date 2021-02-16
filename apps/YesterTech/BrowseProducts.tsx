@@ -1,29 +1,29 @@
-import * as React from "react";
-import { Link, useLocation } from "react-router-dom";
-import queryString from "query-string";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import queryString from 'query-string'
+import { Columns, Column } from 'react-flex-columns'
 
-import Heading from "YesterTech/Heading";
-import { Pagination, PaginationRange } from "YesterTech/Pagination";
-import NoResults from "YesterTech/NoResults";
-import api from "YesterTech/api";
-import usePromise from "YesterTech/usePromise";
-import BrowseProductItem from "YesterTech/BrowseProductItem";
-import { getInt } from "YesterTech/utils";
+import Heading from 'YesterTech/Heading'
+import { Pagination, PaginationRange } from 'YesterTech/Pagination'
+import NoResults from 'YesterTech/NoResults'
+import api from 'YesterTech/api'
+import usePromise from 'YesterTech/usePromise'
+import BrowseProductItem from 'YesterTech/BrowseProductItem'
+import { getInt } from 'YesterTech/utils'
 
 function BrowseProducts() {
-  const urlQuery = useLocation().search;
-  const search = React.useMemo(() => queryString.parse(urlQuery), [urlQuery]);
-  const page = search.page != null ? getInt(search.page as any, 10) : 1;
+  const urlQuery = useLocation().search
+  const search = React.useMemo(() => queryString.parse(urlQuery), [urlQuery])
+  const page = search.page != null ? getInt(search.page as any, 10) : 1
 
   // Get Products (Paginated) and Total
-  const getProducts = React.useCallback(
-    () => api.products.getProducts(search, page),
-    [search, page]
-  );
-  const [response, loading] = usePromise(getProducts);
-  const products = response?.products;
-  const totalResults = response?.totalResults!;
+  const getProducts = React.useCallback(() => api.products.getProducts(search, page), [
+    search,
+    page,
+  ])
+  const [response, loading] = usePromise(getProducts)
+  const products = response?.products
+  const totalResults = response?.totalResults!
 
   return (
     <div className="browse-products spacing">
@@ -37,7 +37,7 @@ function BrowseProducts() {
               resultsPerPage={10}
               page={page}
               totalResults={totalResults}
-              query={(search.q as any) || ""}
+              query={(search.q as any) || ''}
             />
           )}
         </Column>
@@ -65,7 +65,7 @@ function BrowseProducts() {
           No Results
           {search.q && (
             <span>
-              {". "}
+              {'. '}
               <Link to="/products">Clear Search & Filters</Link>
             </span>
           )}
@@ -82,7 +82,7 @@ function BrowseProducts() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default BrowseProducts;
+export default BrowseProducts

@@ -1,29 +1,24 @@
-import * as React from "react";
-import { useId } from "../../useId";
+import * as React from 'react'
+import { useId } from '../../useId'
 
-export function Disclosure({
-  children,
-  onChange,
-  defaultOpen = false,
-  ...props
-}) {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
-  const id = useId(props.id);
-  const panelId = `panel-${id}`;
+export function Disclosure({ children, onChange, defaultOpen = false, ...props }) {
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
+  const id = useId(props.id)
+  const panelId = `panel-${id}`
 
   children = React.Children.map(children, (child) => {
     return React.cloneElement(child, {
       isOpen,
       panelId,
       onSelect: () => {
-        onChange && onChange();
-        setIsOpen(!isOpen);
+        onChange && onChange()
+        setIsOpen(!isOpen)
       },
-    });
-  });
+    })
+  })
 
   // Notice we don't need the wrapper div. It wasn't doing anything stylistically for us anyway
-  return children;
+  return children
 }
 
 export const DisclosureButton = React.forwardRef(
@@ -34,18 +29,18 @@ export const DisclosureButton = React.forwardRef(
         {...props}
         onClick={onSelect}
         data-disclosure-button=""
-        data-state={isOpen ? "open" : "collapsed"}
+        data-state={isOpen ? 'open' : 'collapsed'}
         aria-expanded={isOpen}
         aria-controls={panelId}
         ref={forwardedRef}
       >
         {children}
       </button>
-    );
+    )
   }
-);
+)
 
-DisclosureButton.displayName = "DisclosureButton";
+DisclosureButton.displayName = 'DisclosureButton'
 
 export const DisclosurePanel = React.forwardRef(
   ({ children, isOpen, panelId, ...props }, forwardedRef) => {
@@ -55,13 +50,13 @@ export const DisclosurePanel = React.forwardRef(
         id={panelId}
         hidden={!isOpen}
         data-disclosure-panel=""
-        data-state={isOpen ? "open" : "collapsed"}
+        data-state={isOpen ? 'open' : 'collapsed'}
         ref={forwardedRef}
       >
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DisclosurePanel.displayName = "DisclosurePanel";
+DisclosurePanel.displayName = 'DisclosurePanel'

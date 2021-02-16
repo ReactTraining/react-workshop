@@ -1,15 +1,15 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Columns, Column } from 'react-flex-columns'
 
-import SearchBox from "YesterTech/SearchBox";
-import SubNav from "YesterTech/SubNav";
-import { useShoppingCart } from "YesterTech/ShoppingCartState";
-import { ReactFCNoChildren } from "YesterTech/types";
+import SearchBox from 'YesterTech/SearchBox'
+import SubNav from 'YesterTech/SubNav'
+import { useShoppingCart } from 'YesterTech/ShoppingCartState'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 const ProductSubNav: ReactFCNoChildren = () => {
-  const { getCartSize } = useShoppingCart();
-  const cartSize = getCartSize();
+  const { getCartSize } = useShoppingCart()
+  const cartSize = getCartSize()
 
   return (
     <SubNav>
@@ -28,7 +28,7 @@ const ProductSubNav: ReactFCNoChildren = () => {
         </Column>
       </Columns>
     </SubNav>
-  );
-};
+  )
+}
 
-export default ProductSubNav;
+export default ProductSubNav

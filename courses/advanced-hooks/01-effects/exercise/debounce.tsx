@@ -1,20 +1,16 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import debounce from "lodash.debounce";
-import { saveClapsToDatabase } from "./utils";
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import debounce from 'lodash.debounce'
+import { saveClapsToDatabase } from './utils'
 
-class ClapButton extends React.Component<
-  ClapButtonProps,
-  ClapButtonState,
-  ClapButtonState
-> {
+class ClapButton extends React.Component<ClapButtonProps, ClapButtonState, ClapButtonState> {
   constructor(props: ClapButtonProps) {
-    super(props);
+    super(props)
     this.state = {
       claps: 0,
       queueClaps: 0,
-    };
-    this.saveClaps = debounce(this.saveClaps, 1000);
+    }
+    this.saveClaps = debounce(this.saveClaps, 1000)
   }
 
   saveClaps = () => {
@@ -22,16 +18,16 @@ class ClapButton extends React.Component<
       this.setState({
         claps: latestClaps,
         queueClaps: 0,
-      });
-    });
-  };
+      })
+    })
+  }
 
   clap = () => {
     this.setState((state) => {
-      return { queueClaps: state.queueClaps + 1 };
-    });
-    this.saveClaps();
-  };
+      return { queueClaps: state.queueClaps + 1 }
+    })
+    this.saveClaps()
+  }
 
   render() {
     return (
@@ -45,11 +41,11 @@ class ClapButton extends React.Component<
           <span>Claps: {this.state.claps}</span>
         </div>
       </div>
-    );
+    )
   }
 }
 
-ReactDOM.render(<ClapButton />, document.getElementById("root"));
+ReactDOM.render(<ClapButton />, document.getElementById('root'))
 
 // One of our instructors wrote a blog article on this exact topic of "debouncing claps":
 // https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/
@@ -57,6 +53,6 @@ ReactDOM.render(<ClapButton />, document.getElementById("root"));
 interface ClapButtonProps {}
 
 interface ClapButtonState {
-  claps: number;
-  queueClaps: number;
+  claps: number
+  queueClaps: number
 }

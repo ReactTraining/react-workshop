@@ -19,21 +19,13 @@ export default function Quantity() {
     <div className="quantity-picker">
       <div>
         <div>
-          <button
-            type="button"
-            className="icon-button"
-            onClick={handleAdd}
-          >
+          <button type="button" className="icon-button" onClick={handleAdd}>
             <FaMinusCircle />
           </button>
         </div>
         <div className="input-container">{quantity}</div>
         <div>
-          <button
-            type="button"
-            className="icon-button"
-            onClick={handleSubtract}
-          >
+          <button type="button" className="icon-button" onClick={handleSubtract}>
             <FaPlusCircle />
           </button>
         </div>
@@ -75,21 +67,13 @@ export default function Quantity() {
     <div className="quantity-picker">
       <div>
         <div>
-          <button
-            type="button"
-            className="icon-button"
-            onClick={handleAdd}
-          >
+          <button type="button" className="icon-button" onClick={handleAdd}>
             <FaMinusCircle />
           </button>
         </div>
         <div className="input-container">{quantity}</div>
         <div>
-          <button
-            type="button"
-            className="icon-button"
-            onClick={handleSubtract}
-          >
+          <button type="button" className="icon-button" onClick={handleSubtract}>
             <FaPlusCircle />
           </button>
         </div>

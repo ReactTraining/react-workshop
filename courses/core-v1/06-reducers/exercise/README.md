@@ -9,20 +9,20 @@
 const [state, dispatch] = useReducer(
   (state, action) => {
     switch (action.type) {
-      case "SUBTRACT":
-        return {};
-      case "ADD":
-        return {};
-      case "INPUT":
-        return {};
+      case 'SUBTRACT':
+        return {}
+      case 'ADD':
+        return {}
+      case 'INPUT':
+        return {}
       default:
-        return state;
+        return state
     }
   },
   {
     quantity: 0,
   }
-);
+)
 ```
 
 You can use the above "action types" if you want to match the final.
@@ -30,5 +30,5 @@ You can use the above "action types" if you want to match the final.
 Remember, you dispatch like this:
 
 ```js
-dispatch({ type: "INPUT", value: 1 });
+dispatch({ type: 'INPUT', value: 1 })
 ```

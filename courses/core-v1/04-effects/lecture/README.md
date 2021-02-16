@@ -90,7 +90,7 @@ const [product, setProduct] = useState(null)
 
 useEffect(() => {
   let isCurrent = true
-  api.products.getProduct(productId).then(product => {
+  api.products.getProduct(productId).then((product) => {
     if (!isCurrent) return
     setProduct(product)
   })

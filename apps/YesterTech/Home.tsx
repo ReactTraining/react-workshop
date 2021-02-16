@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Columns, Column } from "react-flex-columns";
+import * as React from 'react'
+import { Columns, Column } from 'react-flex-columns'
 
-import Heading from "YesterTech/Heading";
-import Tiles from "YesterTech/Tiles";
-import Hero from "YesterTech/Hero";
-import ProductCategories from "YesterTech/ProductCategories";
-import ProductTile from "YesterTech/ProductTile";
+import Heading from 'YesterTech/Heading'
+import Tiles from 'YesterTech/Tiles'
+import Hero from 'YesterTech/Hero'
+import ProductCategories from 'YesterTech/ProductCategories'
+import ProductTile from 'YesterTech/ProductTile'
 
 function Home(): React.ReactElement {
   return (
@@ -49,8 +49,8 @@ function Home(): React.ReactElement {
           <ul>
             <li>
               <a href="/">
-                This year's "Best 56k Modem" reviews are in. Did you ever think
-                the Internet could be so fast?
+                This year's "Best 56k Modem" reviews are in. Did you ever think the Internet could
+                be so fast?
               </a>
             </li>
             <li>
@@ -66,15 +66,13 @@ function Home(): React.ReactElement {
               <a href="/">HP buys Compaq Computer.</a>
             </li>
             <li>
-              <a href="/">
-                Did you know you can get a free email from your ISP, probably?
-              </a>
+              <a href="/">Did you know you can get a free email from your ISP, probably?</a>
             </li>
           </ul>
         </Column>
       </Columns>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react'
-import * as ReactDOM from "react-dom"
+import * as ReactDOM from 'react-dom'
 import { useLocalObservable, Observer, observer } from 'mobx-react-lite'
 
 // mobx-react is a repackage of the smaller mobx-react-lite package
@@ -22,7 +22,7 @@ function StoreProvider({ children }) {
       },
       decrement: () => {
         store.count--
-      }
+      },
     }
   })
 

@@ -16,17 +16,11 @@ export function Disclosure({ children, label, defaultIsOpen = false }) {
 
   return (
     <div className="disclosure">
-      <button
-        onClick={onSelect}
-        className={`disclosure-button ${isOpen ? 'open' : 'collapsed'}`}
-      >
+      <button onClick={onSelect} className={`disclosure-button ${isOpen ? 'open' : 'collapsed'}`}>
         {isOpen ? <FaAngleDown /> : <FaAngleRight />}
         <span>{label}</span>
       </button>
-      <div
-        className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`}
-        hidden={!isOpen}
-      >
+      <div className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`} hidden={!isOpen}>
         {children}
       </div>
     </div>

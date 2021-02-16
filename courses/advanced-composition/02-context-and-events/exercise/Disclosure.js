@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 import { useId } from '../../useId'
 // import { wrapEvent } from '../../utils'
 
@@ -7,11 +7,11 @@ export function Disclosure({ children, defaultOpen = false, ...props }) {
   const id = useId(props.id)
   const panelId = `panel-${id}`
 
-  children = React.Children.map(children, child => {
+  children = React.Children.map(children, (child) => {
     return React.cloneElement(child, {
       isOpen,
       panelId,
-      onSelect: () => setIsOpen(!isOpen)
+      onSelect: () => setIsOpen(!isOpen),
     })
   })
 

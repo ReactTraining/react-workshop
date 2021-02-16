@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { MdShoppingCart } from "react-icons/md";
-import { ReactFCNoChildren } from "YesterTech/types";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { MdShoppingCart } from 'react-icons/md'
+import { ReactFCNoChildren } from 'YesterTech/types'
 
 interface ShoppingCartButtonProps {
-  quantity: number;
-  onClick?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  quantity: number
+  onClick?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void
 }
 
 const ShoppingCartButton: ReactFCNoChildren<ShoppingCartButtonProps> = ({
@@ -21,6 +21,6 @@ const ShoppingCartButton: ReactFCNoChildren<ShoppingCartButtonProps> = ({
     <button className="button" onClick={onClick}>
       Add To Cart
     </button>
-  );
+  )
 
-export default ShoppingCartButton;
+export default ShoppingCartButton
