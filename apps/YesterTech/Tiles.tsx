@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import 'YesterTech/Tiles.scss'
 
 interface TilesProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -24,10 +23,6 @@ const Tiles: React.FC<TilesProps> = ({ children, minSize = 10, ...rest }) => {
       ))}
     </div>
   )
-}
-
-Tiles.propTypes = {
-  minSize: PropTypes.number,
 }
 
 export default Tiles

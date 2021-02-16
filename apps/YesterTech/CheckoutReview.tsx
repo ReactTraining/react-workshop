@@ -45,7 +45,7 @@ const CheckoutReview: React.FC<CheckoutReviewProps> = ({ sameAsBilling, fields =
           <br />
           <span>{fields.billingAddress}</span>
           <br />
-
+          {/* Exercise doesn't have all the same form fields */}
           {fields.billingCity && (
             <span>
               {fields.billingCity}, {fields.billingState} {fields.billingPostal}
@@ -64,7 +64,7 @@ const CheckoutReview: React.FC<CheckoutReviewProps> = ({ sameAsBilling, fields =
               <br />
               <span>{fields.shippingAddress}</span>
               <br />
-
+              {/* Exercise doesn't have all the same form fields */}
               {fields.shippingCity && (
                 <span>
                   {fields.shippingCity}, {fields.shippingState} {fields.shippingPostal}

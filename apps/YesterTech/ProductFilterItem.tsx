@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 
 interface ProductFilterItemProps {
   item: string
@@ -27,9 +26,5 @@ const ProductFilterItem: React.FC<ProductFilterItemProps> = ({
     </label>
   </div>
 )
-
-ProductFilterItem.propTypes = {
-  onChange: PropTypes.func,
-}
 
 export default ProductFilterItem

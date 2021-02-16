@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import { Link, useLocation } from 'react-router-dom'
 import classnames from 'classnames'
 import queryString from 'query-string'
@@ -51,13 +50,6 @@ const Pagination: React.FC<PaginationProps> = ({
   )
 }
 
-Pagination.propTypes = {
-  path: PropTypes.string.isRequired,
-  totalResults: PropTypes.number.isRequired,
-  page: PropTypes.number,
-  resultsPerPage: PropTypes.number,
-}
-
 export { Pagination }
 
 interface PaginationRangeProps {
@@ -89,13 +81,6 @@ const PaginationRange: ReactFCNoChildren<PaginationRangeProps> = ({
       )}
     </span>
   )
-}
-
-PaginationRange.propTypes = {
-  totalResults: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  resultsPerPage: PropTypes.number.isRequired,
-  query: PropTypes.string,
 }
 
 export { PaginationRange }
