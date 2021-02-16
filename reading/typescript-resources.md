@@ -15,6 +15,9 @@ https://www.typescriptlang.org/docs/handbook/2/functions.html
 React Cheatsheet
 https://github.com/typescript-cheatsheets/react
 
+Advanced React Cheatsheet
+https://react-typescript-cheatsheet.netlify.app/docs/advanced/intro
+
 Typing React Function Components (Declarations vs Expressions)
 https://blog.echobind.com/react-with-typescript-components-as-function-declarations-vs-function-expressions-e433ac8d6938
 

@@ -1,34 +1,39 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 import 'ProjectPlanner/Minutes.scss'
 
-// type State = [any, (value: any) => void]
+// We can explain how DefinitelyTyped gives us type definitions on libraries like
+// React that were written in JS. For example, how useState can infer the argument
+// is going to be the first thing in the array returned.
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/v16/index.d.ts#L920
 
-// const states: State[] = []
-// let calls = -1
+type State = [any, (value: any) => void]
 
-// function useState(value: any) {
-//   const call = ++calls
+const states: State[] = []
+let calls = -1
 
-//   if (states[call]) {
-//     return states[call]
-//   }
+function useState(value: any) {
+  const call = ++calls
 
-//   function setState(newValue: any): void {
-//     states[call][0] = newValue
-//     reRender()
-//   }
+  if (states[call]) {
+    return states[call]
+  }
 
-//   const state: State = [value, setState]
-//   states[call] = state
-//   return state
-// }
+  function setState(newValue: any): void {
+    states[call][0] = newValue
+    reRender()
+  }
 
-// function reRender() {
-//   calls = -1
-//   ReactDOM.render(<Minutes />, document.getElementById('root'))
-// }
+  const state: State = [value, setState]
+  states[call] = state
+  return state
+}
+
+function reRender() {
+  calls = -1
+  ReactDOM.render(<Minutes />, document.getElementById('root'))
+}
 
 export const Minutes = () => {
   const [minutes, setMinutes] = useState(0)

@@ -14,22 +14,28 @@ const Comp = () => {
 const Comp = () => <div /> // Arrow function with "implicit return"
 ```
 
-You can take any of those above and "type" them, but there would be lots of nuances to consider. So We have this one for you:
+You can use any of those in TypeScript but there will be some considerations depending on the path you take. The most conventional approach is as follows:
 
 ```tsx
-// Instead of this in JS
+// Instead of this plain arrow function in JS:
 const Comp = ({ name }) => {
   return <div />
 }
 
-// Do this in TS
+// Do this in TS:
+const Comp: React.FC = ({ name }) => {
+  return <div />
+}
+
+// Or this if you have props:
 type Props = { name: string }
 const Comp: React.FC<Props> = ({ name }) => {
   return <div />
 }
 
-// The `type Props` is optional if you don't have any props beyond `children`
-// That also means the `<Props>` generic would go away
+// `React.FC` is an alias for `React.FunctionComponent`
+// Using it with generics or without, you get children props automatically. This
+// can be controversial: https://github.com/facebook/create-react-app/pull/8177
 ```
 
 ## State with useState
