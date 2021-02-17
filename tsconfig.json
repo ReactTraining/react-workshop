@@ -1,5 +1,7 @@
 {
-  "include": ["apps", "courses", "types", "__mocks__/@types"],
+  // For lessons, TypeScript will use tsconfig.dev.json which is auto generated
+  // on each launch of a lesson to adjust includes to be specific for the lesson.
+  "include": ["apps", "types", "__mocks__/@types"],
   "exclude": ["node_modules", "scripts", "config"],
   "compilerOptions": {
     "allowJs": true,
