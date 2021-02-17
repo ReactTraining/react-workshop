@@ -27,7 +27,7 @@
 setSeconds(seconds + 1)
 
 // ✅ This doesn't capture because the latests seconds is given to us by the function
-setSeconds(seconds => seconds + 1)
+setSeconds((seconds) => seconds + 1)
 ```
 
 - Since the second way doesn't require our effect to close over `seconds`, we can remove it from the dependency array. And now that we're not capturing `seconds` but using the latest one from the function API, we can increment it correctly.
@@ -48,11 +48,11 @@ const saveClaps = debounce(() => {
 
 ```js
 const saveClaps = useRef(
-  debounce(claps => {
-    saveClapsToDatabase(queueClaps).then(latestClaps => {
+  debounce((claps) => {
+    saveClapsToDatabase(queueClaps).then((latestClaps) => {
       this.setState({
         claps: latestClaps,
-        queueClaps: 0
+        queueClaps: 0,
       })
     })
   }, 700)

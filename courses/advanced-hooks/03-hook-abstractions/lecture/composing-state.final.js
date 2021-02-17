@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import * as React from 'react'
 
 function useLocalStorage(name, state) {
   const [value, setValue] = state
   console.log(value)
 
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.setItem(name, JSON.stringify(value))
   }, [name, value])
 
@@ -29,7 +29,7 @@ function App() {
   const [color, setColor, undo] = useUndoState(
     useLocalStorage(
       'color',
-      useState(() => {
+      React.useState(() => {
         return JSON.parse(localStorage.getItem('color')) || ['#ff0000']
       })
     )
@@ -45,7 +45,7 @@ function App() {
         className="color-preview"
         style={{
           padding: '1rem',
-          backgroundColor: color
+          backgroundColor: color,
         }}
       >
         <input type="color" value={color || ''} onChange={changeColor} aria-label="Color Picker" />

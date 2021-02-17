@@ -1,19 +1,19 @@
-import React, { useState, forwardRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 
 export function Disclosure({ children, onChange, defaultOpen = false, ...props }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
   const id = useId(props.id)
   const panelId = `panel-${id}`
 
-  children = React.Children.map(children, child => {
+  children = React.Children.map(children, (child) => {
     return React.cloneElement(child, {
       isOpen,
       panelId,
       onSelect: () => {
         onChange && onChange()
         setIsOpen(!isOpen)
-      }
+      },
     })
   })
 
@@ -21,7 +21,7 @@ export function Disclosure({ children, onChange, defaultOpen = false, ...props }
   return children
 }
 
-export const DisclosureButton = forwardRef(
+export const DisclosureButton = React.forwardRef(
   ({ children, isOpen, panelId, onSelect, ...props }, forwardedRef) => {
     // Note, data attributes in React need to have an empty string in order to be created correctly.
     return (
@@ -42,7 +42,7 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(
+export const DisclosurePanel = React.forwardRef(
   ({ children, isOpen, panelId, ...props }, forwardedRef) => {
     return (
       <div

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import Heading from 'YesterTech/Heading'
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = React.useState(0)
 
   // const onUpdate = () => {
   //   console.log('User was updated')

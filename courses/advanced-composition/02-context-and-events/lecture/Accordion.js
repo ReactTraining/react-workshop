@@ -1,4 +1,4 @@
-import React, { useState, useContext, forwardRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
@@ -6,9 +6,9 @@ import { wrapEvent } from '../../utils'
  * Accordion
  */
 
-export const Accordion = forwardRef(
+export const Accordion = React.forwardRef(
   ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
-    const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
+    const [selectedIndex, setSelectedIndex] = React.useState(defaultIndex)
     const accordionId = useId(id)
 
     children = React.Children.map(children, (child, index) => {
@@ -22,7 +22,7 @@ export const Accordion = forwardRef(
         selectPanel: () => {
           onChange && onChange(index)
           setSelectedIndex(index)
-        }
+        },
       })
     })
 
@@ -40,14 +40,14 @@ Accordion.displayName = 'Accordion'
  * Accordion Item
  */
 
-export const AccordionItem = forwardRef(
+export const AccordionItem = React.forwardRef(
   ({ children, buttonId, panelId, selected, selectPanel, ...props }, forwardedRef) => {
-    children = React.Children.map(children, child => {
+    children = React.Children.map(children, (child) => {
       return React.cloneElement(child, {
         buttonId,
         panelId,
         selected,
-        selectPanel
+        selectPanel,
       })
     })
 
@@ -70,7 +70,7 @@ AccordionItem.displayName = 'AccordionItem'
  * Accordion Button
  */
 
-export const AccordionButton = forwardRef(
+export const AccordionButton = React.forwardRef(
   ({ children, buttonId, panelId, selected, selectPanel, ...props }, forwardedRef) => {
     return (
       <button
@@ -95,7 +95,7 @@ AccordionButton.displayName = 'AccordionButton'
  * Accordion Panel
  */
 
-export const AccordionPanel = forwardRef(
+export const AccordionPanel = React.forwardRef(
   ({ children, buttonId, panelId, selected, ...props }, forwardedRef) => {
     // Since we're passing our internal implementations down through props,
     // and then also forwarding props, some unneeded things are being passed

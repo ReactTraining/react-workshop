@@ -1,4 +1,4 @@
-import React, { useState, useContext, forwardRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
@@ -8,9 +8,9 @@ const AccordionContext = React.createContext()
  * Accordion
  */
 
-export const Accordion = forwardRef(
+export const Accordion = React.forwardRef(
   ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
-    const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
+    const [selectedIndex, setSelectedIndex] = React.useState(defaultIndex)
     const accordionId = useId(id)
 
     // We're mapping over the children (AccordionItem) to get their index. Then we're
@@ -26,7 +26,7 @@ export const Accordion = forwardRef(
         selectPanel: () => {
           onChange && onChange(index)
           setSelectedIndex(index)
-        }
+        },
       }
       return <AccordionContext.Provider value={context} children={child} />
     })
@@ -45,8 +45,8 @@ Accordion.displayName = 'Accordion'
  * Accordion Item
  */
 
-export const AccordionItem = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { selected } = useContext(AccordionContext)
+export const AccordionItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const { selected } = React.useContext(AccordionContext)
 
   return (
     <div
@@ -66,25 +66,23 @@ AccordionItem.displayName = 'AccordionItem'
  * Accordion Button
  */
 
-export const AccordionButton = forwardRef(
-  ({ children, onClick, ...props }, forwardedRef) => {
-    const { panelId, selected, selectPanel } = useContext(AccordionContext)
+export const AccordionButton = React.forwardRef(({ children, onClick, ...props }, forwardedRef) => {
+  const { panelId, selected, selectPanel } = React.useContext(AccordionContext)
 
-    return (
-      <button
-        {...props}
-        onClick={wrapEvent(onClick, selectPanel)}
-        data-accordion-button=""
-        data-state={selected ? 'open' : 'collapsed'}
-        aria-expanded={selected}
-        aria-controls={panelId}
-        ref={forwardedRef}
-      >
-        {children}
-      </button>
-    )
-  }
-)
+  return (
+    <button
+      {...props}
+      onClick={wrapEvent(onClick, selectPanel)}
+      data-accordion-button=""
+      data-state={selected ? 'open' : 'collapsed'}
+      aria-expanded={selected}
+      aria-controls={panelId}
+      ref={forwardedRef}
+    >
+      {children}
+    </button>
+  )
+})
 
 AccordionButton.displayName = 'AccordionButton'
 
@@ -92,8 +90,8 @@ AccordionButton.displayName = 'AccordionButton'
  * Accordion Panel
  */
 
-export const AccordionPanel = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected } = useContext(AccordionContext)
+export const AccordionPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const { buttonId, panelId, selected } = React.useContext(AccordionContext)
 
   return (
     <div

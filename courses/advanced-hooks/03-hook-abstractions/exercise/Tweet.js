@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from 'react'
+import * as React from 'react'
 
 let queueRenders = []
 
 function Tweet({ id, options = {} }) {
-  const tweetRef = useRef()
+  const tweetRef = React.useRef()
 
-  useEffect(() => {
+  React.useEffect(() => {
     function renderTweet() {
       window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
@@ -16,7 +16,7 @@ function Tweet({ id, options = {} }) {
         script.setAttribute('src', '//platform.twitter.com/widgets.js')
         document.body.appendChild(script)
         script.onload = () => {
-          queueRenders.forEach(cb => cb())
+          queueRenders.forEach((cb) => cb())
           queueRenders = []
         }
       }

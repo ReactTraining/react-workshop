@@ -67,12 +67,12 @@ The `PrimaryLayout` starts with several components that might resemble what the 
 
 ## `BrowserRouter`
 
-- Open `App.js`
+- Open `App.tsx`
 - Just briefly explain that anything that uses React Router components needs to be wrapped in this provider. We haven't even explained context yet so we can gloss over some details and come back to this thought later after context.
 
 ## `useRouteMatch`
 
-- Currently there is some duplication of paths. For example the `Route`s in `ProductsLayout` have `/products` since we need to build the URL up from the start again (even though the `PrimaryLayout`) does `/products` also. So we can refactor to
+- Currently there is some duplication of paths. For example the `Route`s in `ProductsLayout` have `/products` since we need to build the URL up from the start again (even though the `PrimaryLayout`) does `/products` also. So we can refactor to:
 
 ```jsx
 const match = useRouteMatch()

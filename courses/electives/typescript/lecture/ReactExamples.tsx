@@ -17,7 +17,6 @@ import ReactDOM from 'react-dom'
 //  * From React
 //  */
 
-// // https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
 // interface FC<P = {}> {
 //   (props: React.PropsWithChildren<P>): React.ReactElement | null
 // }
@@ -40,10 +39,10 @@ import ReactDOM from 'react-dom'
 
 // export const MyComponent: React.FC = () => {
 //   // Explicit
-//   // const [count, setCount] = useState<number>(0)
+//   // const [count, setCount] = React.useState<number>(0)
 
 //   // Implicit number type
-//   const [count, setCount] = useState(0)
+//   const [count, setCount] = React.useState(0)
 
 //   // remember you can always do unions like <string | null>
 
@@ -63,7 +62,7 @@ import ReactDOM from 'react-dom'
 // }
 
 // export const MyComponent: React.FC = () => {
-//   const [user, setUser] = useState<User>({})
+//   const [user, setUser] = React.useState<User>({})
 
 //   return (
 //     <button onClick={() => setUser({ name: 'Nathan' })} className="button">
@@ -77,7 +76,7 @@ import ReactDOM from 'react-dom'
 *****************************************/
 
 // export const MyComponent: React.FC = () => {
-//   const [showMessage, setShowMessage] = useState<boolean>(false)
+//   const [showMessage, setShowMessage] = React.useState<boolean>(false)
 //   return (
 //     <Message
 //       message="Yay, TypeScript 🎉"
@@ -111,7 +110,7 @@ import ReactDOM from 'react-dom'
 //   // HTMLDivElement will ensure .current is just that, or null.
 //   // The ! and the end of null makes it read-only which is ideal
 //   // for refs that are used on DOM elements
-//   const divRef = useRef<HTMLDivElement>(null!)
+//   const divRef = React.useRef<HTMLDivElement>(null!)
 //   return <div ref={divRef} />
 // }
 
@@ -121,9 +120,9 @@ import ReactDOM from 'react-dom'
 
 // export const MyComponent: React.FC = () => {
 //   // Mutable ref
-//   const firstRender = useRef<boolean>(true)
+//   const firstRender = React.useRef<boolean>(true)
 
-//   useEffect(() => {
+//   React.useEffect(() => {
 //     firstRender.current = false
 //   }, [])
 
@@ -145,7 +144,7 @@ import ReactDOM from 'react-dom'
 // }
 
 // export const MyComponent: React.FC = () => {
-//   const [state, dispatch] = useReducer(
+//   const [state, dispatch] = React.useReducer(
 //     (state: State, action: Actions) => {
 //       switch (action.type) {
 //         case 'INCREMENT':
@@ -180,13 +179,13 @@ import ReactDOM from 'react-dom'
   Custom Hook
 *****************************************/
 
-// function useStateAlt<T>(defaultState: T) {
-//   const [state, setState] = useState(defaultState)
+// function React.useStateAlt<T>(defaultState: T) {
+//   const [state, setState] = React.useState(defaultState)
 //   return [state, setState] as const // explained below
 // }
 
 // export const MyComponent: React.FC = () => {
-//   const [count, setCount] = useStateAlt<number>(0)
+//   const [count, setCount] = React.useStateAlt<number>(0)
 
 //   return (
 //     <button onClick={() => setCount(count + 1)} className="button">
@@ -198,7 +197,7 @@ import ReactDOM from 'react-dom'
 // //// or
 
 // function useToggle(value: boolean) {
-//   const [state, setState] = useState(value)
+//   const [state, setState] = React.useState(value)
 //   function toggle() {
 //     setState(!value)
 //   }

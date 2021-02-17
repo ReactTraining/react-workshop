@@ -7,7 +7,7 @@ function useMedia(query) {
 
   useEffect(() => {
     const media = window.matchMedia(query)
-    const listener = e => setMatches(e.matches)
+    const listener = (e) => setMatches(e.matches)
     media.addEventListener('change', listener)
     return () => media.removeEventListener('change', listener)
   }, [query])

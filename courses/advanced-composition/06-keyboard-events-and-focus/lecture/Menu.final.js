@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, forwardRef, useContext } from 'react'
+import * as React from 'react'
 import { Popover } from './Popover'
 import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
@@ -6,7 +6,7 @@ import {
   createDescendantContext,
   DescendantProvider,
   useDescendant,
-  useDescendants
+  useDescendants,
 } from '@reach/descendants'
 
 const DescendantContext = createDescendantContext('DescendantContext')
@@ -17,12 +17,12 @@ const MenuContext = React.createContext()
  */
 
 export function Menu({ children, id, defaultOpen = false }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
-  const [activeIndex, setActiveIndex] = useState(-1)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
+  const [activeIndex, setActiveIndex] = React.useState(-1)
   const [descendants, setDescendants] = useDescendants()
-  const menuRef = useRef(null)
-  const buttonRef = useRef(null)
-  const popoverRef = useRef(null)
+  const menuRef = React.useRef(null)
+  const buttonRef = React.useRef(null)
+  const popoverRef = React.useRef(null)
 
   const context = {
     buttonId: `menu-button-${useId(id)}`,
@@ -32,15 +32,11 @@ export function Menu({ children, id, defaultOpen = false }) {
     buttonRef,
     popoverRef,
     activeIndex,
-    setActiveIndex
+    setActiveIndex,
   }
 
   return (
-    <DescendantProvider
-      context={DescendantContext}
-      items={descendants}
-      set={setDescendants}
-    >
+    <DescendantProvider context={DescendantContext} items={descendants} set={setDescendants}>
       <MenuContext.Provider value={context} children={children} />
     </DescendantProvider>
   )
@@ -50,11 +46,9 @@ export function Menu({ children, id, defaultOpen = false }) {
  * Menu Button
  */
 
-export const MenuButton = forwardRef(
+export const MenuButton = React.forwardRef(
   ({ children, onClick, onKeyDown, ...props }, forwardedRef) => {
-    const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = useContext(
-      MenuContext
-    )
+    const { buttonId, isOpen, setIsOpen, setActiveIndex, buttonRef } = React.useContext(MenuContext)
 
     // Combine Refs
     const ref = useForkedRef(buttonRef, forwardedRef)
@@ -104,7 +98,7 @@ MenuButton.displayName = 'MenuButton'
  */
 
 // Menu List composes MenuPopover and MenuItems in a common way
-export const MenuList = forwardRef((props, forwardedRef) => {
+export const MenuList = React.forwardRef((props, forwardedRef) => {
   return (
     <MenuPopover>
       <MenuItems {...props} data-menu-list="" ref={forwardedRef} />
@@ -118,8 +112,8 @@ MenuList.displayName = 'MenuList'
  * Menu Popover
  */
 
-export const MenuPopover = forwardRef(({ onBlur, ...props }, forwardedRef) => {
-  const { isOpen, setIsOpen, menuRef, popoverRef, buttonRef } = useContext(MenuContext)
+export const MenuPopover = React.forwardRef(({ onBlur, ...props }, forwardedRef) => {
+  const { isOpen, setIsOpen, menuRef, popoverRef, buttonRef } = React.useContext(MenuContext)
   const ref = useForkedRef(popoverRef, forwardedRef)
 
   function handleBlur() {
@@ -137,12 +131,7 @@ export const MenuPopover = forwardRef(({ onBlur, ...props }, forwardedRef) => {
   }
 
   return isOpen ? (
-    <Popover
-      {...props}
-      ref={ref}
-      onBlur={wrapEvent(onBlur, handleBlur)}
-      targetRef={buttonRef}
-    />
+    <Popover {...props} ref={ref} onBlur={wrapEvent(onBlur, handleBlur)} targetRef={buttonRef} />
   ) : null
 })
 
@@ -152,17 +141,12 @@ MenuPopover.displayName = 'MenuPopover'
  * Menu Items
  */
 
-export const MenuItems = forwardRef(({ children, onKeyDown, ...props }, forwardedRef) => {
-  const {
-    buttonId,
-    menuRef,
-    isOpen,
-    setIsOpen,
-    activeIndex,
-    setActiveIndex
-  } = useContext(MenuContext)
+export const MenuItems = React.forwardRef(({ children, onKeyDown, ...props }, forwardedRef) => {
+  const { buttonId, menuRef, isOpen, setIsOpen, activeIndex, setActiveIndex } = React.useContext(
+    MenuContext
+  )
   const ref = useForkedRef(menuRef, forwardedRef)
-  const { descendants } = useContext(DescendantContext)
+  const { descendants } = React.useContext(DescendantContext)
   const totalItems = descendants.length
 
   function handleKeyDown(event) {
@@ -218,22 +202,22 @@ MenuItems.displayName = 'MenuItems'
  * Menu Item
  */
 
-export const MenuItem = forwardRef(
+export const MenuItem = React.forwardRef(
   ({ children, onClick, onMouseEnter, onKeyDown, ...props }, forwardedRef) => {
-    const { menuRef, activeIndex, setIsOpen, setActiveIndex } = useContext(MenuContext)
-    const menuItemRef = useRef(null)
+    const { menuRef, activeIndex, setIsOpen, setActiveIndex } = React.useContext(MenuContext)
+    const menuItemRef = React.useRef(null)
 
     // Combine Refs
     const ref = useForkedRef(menuItemRef, forwardedRef)
 
     const index = useDescendant({
       context: DescendantContext,
-      element: menuItemRef.current
+      element: menuItemRef.current,
     })
 
     const isSelected = index === activeIndex
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (isSelected) {
         menuItemRef.current.focus()
       }

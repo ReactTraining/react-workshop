@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
 
 function Quantity() {
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = React.useState(0)
 
   function subtract() {
     if (quantity > 0) {
@@ -21,11 +21,13 @@ function Quantity() {
   }
 
   function handleInputKeyDown(event) {
-    // keep cursor from going back/forth
-    event.preventDefault()
     if (event.key === 'ArrowUp') {
+      // keep cursor from going back/forth
+      event.preventDefault()
       add()
     } else if (event.key === 'ArrowDown') {
+      // keep cursor from going back/forth
+      event.preventDefault()
       subtract()
     }
   }
@@ -39,6 +41,7 @@ function Quantity() {
             type="button"
             className="icon-button"
             data-testid="subtract-button"
+            aria-label="Remove an item"
           >
             <FaMinusCircle />
           </button>
@@ -49,7 +52,7 @@ function Quantity() {
             aria-label="quantity"
             value={quantity}
             data-testid="quantity"
-            onChange={event => {
+            onChange={(event) => {
               setQuantity(event.target.value)
             }}
             onBlur={handleInputBlur}
@@ -62,6 +65,7 @@ function Quantity() {
             type="button"
             className="icon-button"
             data-testid="add-button"
+            aria-label="Add an item"
           >
             <FaPlusCircle />
           </button>

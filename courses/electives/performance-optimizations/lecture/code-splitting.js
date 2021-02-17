@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Heading from 'YesterTech/Heading'
 import PrimaryNav from './utils/PrimaryNav'
@@ -44,7 +44,7 @@ function HomePage() {
 }
 
 function ProductProfile() {
-  const [showReviews, setShowReviews] = useState(false)
+  const [showReviews, setShowReviews] = React.useState(false)
 
   return (
     <>

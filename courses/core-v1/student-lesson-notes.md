@@ -74,7 +74,7 @@ useEffect(() => {
   // 1. The effect first runs so we'll say it's "current"
   let isCurrent = true
   // 2. Go out and get a user on the network
-  fetchUser(uid).then(user => {
+  fetchUser(uid).then((user) => {
     // 5. A moment later, the promise does resolve (the component
     // is no longer mounted though). This condition will prevent us
     // from setting state on an unmounted component.

@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react'
+import * as React from 'react'
 import slowFunction from './utils/slowFunction'
 
 export default function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = React.useState(0)
 
   const input = count >= 5 // Let's change the input to the slow function
 

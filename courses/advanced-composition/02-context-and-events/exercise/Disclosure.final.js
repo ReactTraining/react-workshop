@@ -1,11 +1,11 @@
-import React, { useState, useContext, forwardRef } from 'react'
+import * as React from 'react'
 import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
 const DisclosureContext = React.createContext()
 
 export function Disclosure({ children, onChange, defaultOpen = false, ...props }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [isOpen, setIsOpen] = React.useState(defaultOpen)
   const id = useId(props.id)
   const panelId = `panel-${id}`
 
@@ -15,15 +15,15 @@ export function Disclosure({ children, onChange, defaultOpen = false, ...props }
     onSelect: () => {
       onChange && onChange()
       setIsOpen(!isOpen)
-    }
+    },
   }
 
   return <DisclosureContext.Provider children={children} value={context} />
 }
 
-export const DisclosureButton = forwardRef(
+export const DisclosureButton = React.forwardRef(
   ({ children, onClick, ...props }, forwardedRef) => {
-    const { isOpen, panelId, onSelect } = useContext(DisclosureContext)
+    const { isOpen, panelId, onSelect } = React.useContext(DisclosureContext)
 
     return (
       <button
@@ -43,8 +43,8 @@ export const DisclosureButton = forwardRef(
 
 DisclosureButton.displayName = 'DisclosureButton'
 
-export const DisclosurePanel = forwardRef(({ children, ...props }, forwardedRef) => {
-  const { isOpen, panelId } = useContext(DisclosureContext)
+export const DisclosurePanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const { isOpen, panelId } = React.useContext(DisclosureContext)
 
   return (
     <div
