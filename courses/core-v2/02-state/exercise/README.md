@@ -8,7 +8,7 @@ Remember, the only files you'll ever work on will have corresponding `.final` fi
 2. Make `completedMinutes` stateful with the `useState` hook.
 3. When the progress slider is changed by the user, the function passed into it's `onChange` prop will be called. Use that to set your newly created state.
 
-## ✅ Task 2: Create State for Progress Slider
+## ✅ Task 2: Create State for Minutes (Lifted to Task.js)
 
 4. Currently, the `Minutes.js` file already has state. Remove the state from the `Minutes` component and move it up into the `Task` component. This is called "lifting state".
 5. Pass down `minutes` and `setMinutes` (the variables created from `useState`) as props into `Minutes` like this:

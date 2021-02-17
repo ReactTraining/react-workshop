@@ -28,9 +28,9 @@ export const LoginForm: React.FC<Props> = ({ onAuthenticated }) => {
     (state: StateType, action: ActionTypes) => {
       switch (action.type) {
         case 'FETCH':
-          return { ...state }
+          return { ...state, loading: true, error: null }
         case 'ERROR':
-          return { ...state, error: action.error }
+          return { ...state, error: action.error, loading: false }
         case 'TOGGLE_SHOW_PASSWORD':
           return { ...state, showPassword: !state.showPassword }
         case 'CHANGE_FIELD':
