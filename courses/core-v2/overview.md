@@ -53,14 +53,9 @@
 - ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
 - ✅ Design System Theming
+- ✅ Authentication Global State
 
-## 08 - Authentication
-
-- ✅ Authentication With Context
-- ✅ Unique situations with Context
-- ✅ Private Routes
-
-## 09 - App State
+## 08 - App State
 
 - ✅ Application State in Context
 - ✅ Reducers
@@ -68,7 +63,7 @@
 - ✅ Efficiencies for real time updates
 - ✅ Use `react-query` to cache results from API requests
 
-## 10 - Testing
+## 09 - Testing
 
 - ✅ Using Jest with React Testing Library and ReactDOM Test Utils
 - ✅ Testing Approaches - Test the way the user interacts with the UI

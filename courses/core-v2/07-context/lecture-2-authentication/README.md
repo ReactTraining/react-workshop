@@ -1,11 +1,5 @@
 # Authentication
 
-# Main Topics to Cover
-
-- ✅ Authentication With Context
-- ✅ Unique situations with Context
-- ✅ Private Routes
-
 # Lecture
 
 This one is mostly an end-of-workshop show-and-tell. The `App` component in `index.tsx` is hard-coded for `authenticated = false` which means when you successfully login, nothing will happen until you get the real `authenticated` boolean from `useAuth()`

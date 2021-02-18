@@ -6,6 +6,7 @@
 - ✅ Prop Drilling vs Context
 - ✅ Context with Custom Providers/Consumers
 - ✅ Design System Theming
+- ✅ Authentication Global State
 
 # Lecture
 
