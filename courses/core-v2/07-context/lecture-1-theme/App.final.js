@@ -1,20 +1,16 @@
-import React, { useContext, useRef, useLayoutEffect } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { getTheme } from './utils'
 import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
 
-type Colors = {
-  [key: string]: string
-}
-
 /**
  * Custom Provider:
  */
 
-const ThemeContext = React.createContext<Colors | null>(null)
+const ThemeContext = React.createContext()
 
-const ThemeProvider: React.FC = ({ children }) => {
+const ThemeProvider = ({ children }) => {
   const colors = getTheme()
 
   return <ThemeContext.Provider value={colors}>{children}</ThemeContext.Provider>
@@ -24,7 +20,7 @@ const ThemeProvider: React.FC = ({ children }) => {
  * App Tree:
  */
 
-export const App: React.FC = () => {
+export const App = () => {
   return (
     <ThemeProvider>
       <PrimaryLayout />
@@ -32,19 +28,19 @@ export const App: React.FC = () => {
   )
 }
 
-const PrimaryLayout: React.FC = () => {
+const PrimaryLayout = () => {
   return <Board />
 }
 
-const Board: React.FC = () => {
+const Board = () => {
   return <TaskCard />
 }
 
-const TaskCard: React.FC = () => {
+const TaskCard = () => {
   const colors = useContext(ThemeContext)
-  const taskRef = useRef<HTMLDivElement>(null!)
+  const taskRef = useRef()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (colors) {
       taskRef.current.style.setProperty(`--taskColor`, colors.blue)
     }
@@ -53,7 +49,7 @@ const TaskCard: React.FC = () => {
   return (
     <div className="task-card spacing" ref={taskRef}>
       <Heading>Task Card</Heading>
-      <span>{colors?.blue}</span>
+      <span>{colors.blue}</span>
     </div>
   )
 }

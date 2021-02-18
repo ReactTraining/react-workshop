@@ -1,0 +1,29 @@
+@import 'ProjectPlanner/styles/center-lesson';
+
+html {
+  // Just so everything is a little bigger
+  font-size: 18pt;
+}
+
+body {
+  background-color: var(--lightGray);
+
+  // Default Task Color
+  --taskColor: #3d4246;
+}
+
+.task-card {
+  background-color: #fff;
+  padding: var(--gutter);
+  border-radius: 0.5rem;
+  border-left: 5px solid var(--taskColor);
+}
+
+.task-card span {
+  background-color: var(--taskColor);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.1rem;
+  display: inline-block;
+  font-weight: bold;
+}

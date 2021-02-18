@@ -12,13 +12,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ThemeProvider>
-          <AuthProvider>
-            {authenticated ? <PrimaryLayout /> : <UnauthenticatedLayout />}
-          </AuthProvider>
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>{authenticated ? <PrimaryLayout /> : <UnauthenticatedLayout />}</AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

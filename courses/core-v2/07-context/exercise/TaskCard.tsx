@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Task } from './index'
 import 'ProjectPlanner/TaskCard.scss'
@@ -17,7 +17,7 @@ export const TaskCard: React.FC<Props> = ({ task, onClick }) => {
   const colors = useContext(ThemeContext)
   const divRef = useRef<HTMLDivElement>(null!)
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (colors) {
       let statusColor: string | null = null
       if (task) {

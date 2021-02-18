@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useLayoutEffect } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { getTheme } from './utils'
 import 'ProjectPlanner/styles/global-styles.scss'
@@ -27,7 +27,7 @@ const Board = ({ colors }) => {
 const TaskCard = ({ colors }) => {
   const taskRef = useRef()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     taskRef.current.style.setProperty(`--taskColor`, colors.blue)
   }, [colors])
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Task } from './index'
 import { useTheme } from './ThemeContext'
 
@@ -10,7 +10,7 @@ export const TaskColor: React.FC<Props> = ({ task, children }) => {
   const divRef = React.useRef<HTMLDivElement>(null!)
   const colors = useTheme()
 
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     if (colors) {
       let statusColor: string | null = null
       if (task) {

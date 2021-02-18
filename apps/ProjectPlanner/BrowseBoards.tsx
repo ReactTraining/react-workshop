@@ -20,6 +20,8 @@ export const BrowseBoards: React.FC = () => {
     })
   }
 
+  console.log(boards)
+
   return (
     <Centered size={50}>
       <div className="flex">

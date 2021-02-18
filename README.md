@@ -83,7 +83,9 @@ Choose one from list [1...5 / 0]: 4
 Do you want us to remember this course selection? [y/n]: y
 ```
 
-From this point on, you'll be prompted with the exercise you'd like to run:
+If choosing `y` to the "remember" question you won't get the "Which Course?" menu again.
+
+After a course is chosen:
 
 ```
 $ npm start
@@ -106,12 +108,23 @@ Which Lesson of core-v2?
 [e] 👈 BACK TO COURSE SELECTION
 [0] CANCEL
 
-Choose one from list [1...9, a...e, 0]:
+Choose one from list [1...9, a...e, 0]: 1
 ```
 
-Choose option "d" to run the full app, then open a web browser to [http://localhost:3000](http://localhost:3000) to play around with it.
+After choosing a lesson, you'll be asked which material you want to run:
 
-If you don't want to deal with the CLI in the future as much, you can run `npm start 1` to go to your chosen exercise right away.
+```
+Which lesson type of 01-thinking-in-react?
+
+[1] exercise
+[2] lecture
+[3] 👈 BACK TO LESSON SELECTION
+[0] CANCEL
+```
+
+Shortcut!
+
+If you have a course preference already and you run `npm start 1` (or any valid lesson number), it will skip all the way to the end where you choose between exercise and lecture.
 
 ## Prettier Plugin
 
@@ -121,7 +134,7 @@ You might notice as the instructors save their code that a tool called "Prettier
 
 ## Database
 
-When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry about the database, it's not even a real database. It's a tool called `json-server` which runs 100% within this React Training repo so as soon as you quit the app and if you remove the repo, you've removed the database.
+When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry about the database, it's not even a real database. It's a tool called `json-server` that treats a JSON file like a restful database and runs 100% within this repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
 When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/ProjectPlanner/database`.
 
