@@ -12,7 +12,7 @@ export const Task = () => {
   // that changes this state when the progress slider changes
   const completedMinutes = 4
 
-  // Step 2: You need to "lift" the state from the Minutes component
+  // Task 2: You need to "lift" the state from the Minutes component
   // to here. That means you'll move the useState() line in Minutes
   // to here and pass down a `minutes` and an `onChange` prop like this:
   // <Minutes minutes={minutes} onChange={fn}>

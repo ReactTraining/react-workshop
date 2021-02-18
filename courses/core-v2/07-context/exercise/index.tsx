@@ -33,8 +33,11 @@ const Board: React.FC = () => {
 const TaskGroup: React.FC = () => {
   const [expandTask, setExpandTask] = useState(false)
 
-  // Using lifted shared state instead of network data
-  // for brevity.
+  // Instead of TaskDialog and TaskGroup each doing their own network
+  // requests and operating on their own state, here we have some lifted
+  // state that they will each use. Let's just have each component work
+  // with this state and forget about network requests for this context
+  // exercise:
   const [task, setTask] = useState({
     name: 'Context',
     content: 'Learn about React Context',
