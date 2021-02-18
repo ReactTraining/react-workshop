@@ -21,7 +21,11 @@ export const TaskCard: React.FC<{ color: string }> = ({ color }) => {
   return (
     <div className="task-card spacing">
       <Heading>Task Card</Heading>
-      {color && <span>{colors[color]}</span>}
+      {color && (
+        <span>
+          {color}: {colors[color]}
+        </span>
+      )}
     </div>
   )
 }
