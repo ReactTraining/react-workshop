@@ -1,5 +1,7 @@
 # Tests
 
+There's no code to run with `npm start`. Show the tests and run `npm test` if you want to show them pass/fail
+
 # Main Topics to Cover
 
 - ✅ Using Jest with React Testing Library and ReactDOM Test Utils

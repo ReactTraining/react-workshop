@@ -29,7 +29,7 @@ export const BrowseBoards = () => {
   )
 }
 
-function Heading({ children, size = 1 }) {
+function Heading({ children, size = 1, ...rest }) {
   // For the bonus task, see if you can program this component to be used
   // instead of <h1> and <h2>. See the README for more info.
   return (

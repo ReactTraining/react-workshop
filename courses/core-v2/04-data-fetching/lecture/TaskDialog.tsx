@@ -38,7 +38,7 @@ export const TaskDialog: React.FC<Props> = ({
   }
 
   return (
-    <Dialog onClose={close} aria-label="Edit Task">
+    <Dialog onClose={onClose} aria-label="Edit Task">
       <div className="spacing">
         <div className="flex">
           <div className="flex-1 spacing">
