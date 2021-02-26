@@ -22,7 +22,7 @@ Before attending the training, please make sure you install the code (not just c
 
 If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
 
-**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. Particularly, we have found that PowerShell works better.
+**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. We suggest running scripts using the Windows Subsystem for Linux.
 
 <hr />
 
@@ -193,15 +193,16 @@ $ npm install
 
 - **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db-port` (Mac/Linux). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
 
-- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` and see if that fixes it. If you're on Windows, see the [PowerShell](#powershell) section below.
+- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` and see if that fixes it. If you're on Windows, see the [Windows Users](#windows-users) section below.
 
 ## Windows Users
 
-**TL;DR: You probably want to use PowerShell instead of GitBash**
+**TL;DR: You probably want to use the [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) instead of GitBash or PowerShell**
 
-There are three problems that might arise in a Windows Environment:
+There are a few problems that might arise in a Windows Environment:
 
-- Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details
+- Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
+- Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details.
 - If you're able to successfully run the app once but it doesn't start on the subsequent runs, chances are the database port didn't shut down when you recently stopped the app. See the [Database](#database) section above for details.
 - If you do `npm run app` or `npm start` and you get weird errors instead of our menu system, we don't know what that is yet but the only reporters have been using GitBash instead of PowerShell.
 
@@ -209,7 +210,7 @@ There are three problems that might arise in a Windows Environment:
 
 If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
 
-Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default.
+Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default, but you can configure it to use WSL which is what we recommend.
 
 If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
 
