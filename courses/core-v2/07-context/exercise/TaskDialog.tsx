@@ -78,7 +78,7 @@ export const TaskDialog: React.FC<Props> = ({ task, update, onClose }) => {
             </div>
           </div>
         </div>
-        <footer className="align-right horizontal-spacing">
+        <footer className="text-right horizontal-spacing">
           <button className="button button-outline" onClick={onClose}>
             Close
           </button>

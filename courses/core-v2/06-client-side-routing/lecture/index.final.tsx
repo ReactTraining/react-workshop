@@ -60,7 +60,7 @@ const PrimaryHeader: React.FC = () => {
           <Logo />
         </div>
         <div>
-          <nav className="horizontal-spacing-large align-right">
+          <nav className="horizontal-spacing-large">
             <NavLink to="/" exact className="primary-nav-item">
               Dashboard
             </NavLink>

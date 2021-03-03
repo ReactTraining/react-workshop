@@ -81,7 +81,7 @@ export const TaskGroup: React.FC<Props> = ({ taskGroupId, name, taskIds }) => {
               {provided.placeholder}
             </div>
 
-            <div className="align-right">
+            <div className="text-right">
               <button className="button button-outline" onClick={() => createTask(taskGroupId)}>
                 Add Card
               </button>
