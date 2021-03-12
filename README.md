@@ -18,26 +18,35 @@ Before attending the training, please make sure you install the code (not just c
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
 - [ ] WAIT! Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and Proxies are so diverse and out of our control.
 
-## Install & Setup
+## Install Git, Node, and NPM
 
 If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
 
-**Windows Users!** Please read the [Windows Users](#windows-users) section before finishing these setup steps. We suggest running scripts using the Windows Subsystem for Linux.
+**Need to install Git?** - http://git-scm.com/downloads
 
-<hr />
+**Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) instead of installing from source. Installing from source works, but it's difficult to maintain your node version later on (which is why `nvm` exists)
 
-You need to have Git and Node installed. You might already so verify with these commands:
+**Windows Users!** Please Please read the [Windows Users](#windows-users) section below for installing Node and WSL.
+
+If you need to verify that you have NVM installed: `nvm --version`. Then install Node:
 
 ```sh
-# Verify Git and Node are installed
-$ git --version
-$ node --version
+# Installs latest LTS version of node
+# See this page for more install options: https://github.com/nvm-sh/nvm#usage
+$ nvm install node
 ```
 
-If one of those commands doesn't work, then you don't have that tool installed. Go to these pages and follow the instructions for your operating system:
+Verify you have Git, Node, and NPM installed. Installing Node will install NPM.
 
-- [Git](http://git-scm.com/downloads)
-- [NPM and Node](https://www.npmjs.com/get-npm) - If you didn't have Node installed, get the LTS (Long Term Support) version. If you have an older version like Node 8, that will probably work too.
+```sh
+$ git --version
+$ node --version
+$ npm --version
+```
+
+You don't necessarily need the latest version of Node for this workshop.
+
+## Install Workshop Code
 
 Then **clone**, **install**, and **run** the app:
 
@@ -197,9 +206,20 @@ $ npm install
 
 ## Windows Users
 
-**TL;DR: You probably want to use the [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10) instead of GitBash or PowerShell**
+**TL;DR: You probably want to use the Windows Subsystem for Linux (WSL) instead of GitBash or PowerShell**
 
-There are a few problems that might arise in a Windows Environment:
+- WSL 2 Installation: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+- Node on Windows: https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2
+
+From their docs:
+
+> "There are multiple ways to install Node.js. We recommend using a version manager as versions change very quickly. You will likely need to switch between multiple versions based on the needs of different projects you're working on"
+
+They will recommend you install `nvm` (Node Version Manager). We agree!
+
+<hr />
+
+Not using WSL can have a few problems that might arise in a Windows Environment:
 
 - Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 - Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details.
