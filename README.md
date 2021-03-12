@@ -2,8 +2,8 @@
 
 We have new workshop material for 2021 🎉. Be sure to checkout https://reacttraining.com/workshops. We offer:
 
-- Regular Public Workshops
-- Private tailored Corporate Workshops
+- Monthly Public Workshops (Paid and Free)
+- Private/tailored Corporate Workshops
 
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
