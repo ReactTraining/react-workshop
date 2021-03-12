@@ -47,8 +47,8 @@ server.listen(port, 'localhost', function (err) {
   if (fs.existsSync(dbPath)) {
     concurrently([
       {
-        command: `json-server --watch ${dbPath} -p 3333 --quiet`,
-        name: 'json-server database',
+        command: `npx json-server --watch ${dbPath} -p 3333 --quiet`,
+        name: 'npx json-server database',
       },
     ]).catch((err) => {
       console.error(
