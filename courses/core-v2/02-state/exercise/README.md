@@ -44,5 +44,3 @@ You'll need to figure out how to make the string you pass into the className dyn
 ```jsx
 <Minutes minutes={minutes} min={currentMinutes} setMinutes={setMinutes} />
 ```
-
-If you open the `Minutes` component you'll already notice that the subtract function doesn't allow us to go below 0. Adjust the code so now it can't go below the `min` prop being passed in.
