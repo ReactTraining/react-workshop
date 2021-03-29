@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { getTheme } from '../lecture/utils'
+import { getTheme } from './utils'
 
 // Create context here
 

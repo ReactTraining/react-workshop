@@ -3,7 +3,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 
-type Task = {
+type TaskType = {
   // name: string
   // content: string
   minutes: number
@@ -11,13 +11,13 @@ type Task = {
 }
 
 export const Task = () => {
-  const [task, setTask] = useState<Task>({
+  const [task, setTask] = useState<TaskType>({
     minutes: 20,
     completedMinutes: 0,
   })
   const complete = task.minutes > 0 && task.minutes === task.completedMinutes
 
-  function update(partialTask: Partial<Task>) {
+  function update(partialTask: Partial<TaskType>) {
     if (!task) return
     setTask({ ...task, ...partialTask })
   }
