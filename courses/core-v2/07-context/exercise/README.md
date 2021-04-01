@@ -12,14 +12,14 @@ There are basically three parts to context:
 - The Provider JSX where the `value` prop is the data being passed down through context
 - The Consumer using `useContext(/* Context Object Here*/)`
 
-2. You can identify the first two in that list in the `index.tsx` file near the `App` component. Migrate those into `ThemeContext.tsx` first.
-3. Then you'll want to open `TaskCard.tsx` where context is being consumed. You can see that `useContext` is being used and we're passing in the `ThemeContext` that used to exist in the `index.tsx` file. But now `ThemeContext` should be in the `ThemeContext.tsx` file.
+2. In the list above, the first two things can be found in `index.tsx` file near the `App` component. Migrate those into `ThemeContext.tsx` first.
+3. For the third thing in that list, you'll want to open `TaskCard.tsx` where context is being consumed. You can see that `useContext` is being used and we're passing in the `ThemeContext` that used to exist in the `index.tsx` file. But now `ThemeContext` should be in the `ThemeContext.tsx` file.
 4. Instead of just importing `ThemeContext` from its new location, try to make a custom hook called `useTheme` in `ThemeContext.tsx`.
 5. `useTheme` will just return `useContext(ThemeContext)` so that way when `TaskCard` uses `useTheme()`, it will get the context returned. See the `.final` files if you need help on this one.
 6. In the `App` component, wrap the `PrimaryLayout` in your new `ThemeProvider` instead of the provider it had before. The end result here is that we're moving the context logic away from `App`. The `App` component will have:
 
 ```tsx
-<ThemeProvider>
+<ThemeProvider value={}>
   <PrimaryLayout />
 </ThemeProvider>
 ```
@@ -37,7 +37,7 @@ So, you're essentially creating a utility called `ThemeProvider` that can be use
 
 ## ✅ BONUS TASK!
 
-Currently, `TaskCard` has to do a lot of work to turn the theme colors into a `ref` for so it can apply the right color to `--taskColor`. Imagine if we wanted to add `--taskColor` to other things and having to do this work all over again.
+Currently, `TaskCard` has to do a lot of work to turn the theme colors into a `ref` so it can apply the right color to `--taskColor`. Imagine if we wanted to add `--taskColor` to other things and having to do this work all over again.
 
 Let's take a look at `TaskColor` and see how it could be used as a utility.
 
