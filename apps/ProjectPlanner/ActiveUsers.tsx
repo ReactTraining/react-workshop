@@ -4,7 +4,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Avatar } from 'ProjectPlanner/Avatar'
 import { useAuth } from 'ProjectPlanner/AuthContext'
 import { useAccountUsers } from 'ProjectPlanner/hooks/dataHooks'
-import { shuffle } from 'ProjectPlanner/utils.ts'
+import { shuffle } from 'ProjectPlanner/utils'
 
 export const ActiveUsers: React.FC = () => {
   const users = useAccountUsers()
