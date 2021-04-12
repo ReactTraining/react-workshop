@@ -19,7 +19,11 @@ There are basically three parts to context:
 6. In the `App` component, wrap the `PrimaryLayout` in your new `ThemeProvider` instead of the provider it had before. The end result here is that we're moving the context logic away from `App`. The `App` component will have:
 
 ```tsx
-<ThemeProvider value={}>
+// All of the context stuff has been moved out of index and into
+// this ThemeProvider component. So the new App component in index
+// will be very simple looking compared to before and it's JSX will
+// be just this:
+<ThemeProvider>
   <PrimaryLayout />
 </ThemeProvider>
 ```
