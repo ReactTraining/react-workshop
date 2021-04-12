@@ -1,6 +1,5 @@
 {
-  "//":"For lessons, TypeScript will use tsconfig.dev.json which is auto generated",
-  "//":"on each launch of a lesson to adjust includes to be specific for the lesson.",
+  "_comment_": "Typescript uses auto generated tsconfig.dev.json on each lesson launch to adjust lesson-specific includes.",
   "include": ["apps", "types", "__mocks__/@types"],
   "exclude": ["node_modules", "scripts", "config"],
   "compilerOptions": {
