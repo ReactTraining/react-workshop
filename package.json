@@ -7,6 +7,7 @@
     "start": "node scripts/start.js",
     "app": "npm start app",
     "test": "NODE_PATH=./apps jest",
+    "mytest": "jest __tests__ --watch",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",
     "postinstall": "npm run create-db",
