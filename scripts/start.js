@@ -78,6 +78,6 @@ function ensureDevTsConfig({ selectedCourse, selectedLesson }) {
 
     return tsconfigDevPath
   } catch (err) {
-    return 'tsconfig.json'
+    return 'tsconfig.base.json'
   }
 }
