@@ -71,7 +71,10 @@ function ensureDevTsConfig({ selectedCourse, selectedLesson }) {
 
     let devTsConfig = {
       extends: './tsconfig.json',
-      include: [...tsconfig.include, path.join('courses', selectedCourse, selectedLesson)],
+      include: [
+        ...tsconfig.include.filter((inc) => inc !== 'courses'),
+        path.join('courses', selectedCourse, selectedLesson),
+      ],
     }
 
     fs.writeFileSync(tsconfigDevPath, JSON.stringify(devTsConfig), 'utf-8')
