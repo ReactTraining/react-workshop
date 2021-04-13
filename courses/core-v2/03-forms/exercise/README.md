@@ -29,10 +29,9 @@ Hint: Use empty strings for `name` and `content`
 7. Create a ref using `useRef()`:
 
 ```ts
-// For TypeScript, refs can be weird. You'll have to do it like this.
-// The instructor can explain more but we also have some links if you
-// need them below
-const nameRef = useRef<HTMLInputElement>(null!)
+// For TypeScript, refs can be weird. Make sure you pass the type
+// of the element that will be stored in the ref.
+const nameRef = useRef<HTMLInputElement>()
 
 // For JavaScript, you can just do:
 const nameRef = useRef()

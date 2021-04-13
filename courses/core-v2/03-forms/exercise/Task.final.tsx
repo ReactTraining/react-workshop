@@ -3,7 +3,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 
-type Task = {
+type TaskType = {
   name: string
   content: string
   minutes: number
@@ -18,11 +18,11 @@ const initialTask = {
 }
 
 export const Task = () => {
-  const [task, setTask] = useState<Task>(initialTask)
+  const [task, setTask] = useState<TaskType>(initialTask)
   const complete = task.minutes > 0 && task.minutes === task.completedMinutes
-  const nameRef = useRef<HTMLInputElement>(null!)
+  const nameRef = useRef<HTMLInputElement>()
 
-  function update(partialTask: Partial<Task>) {
+  function update(partialTask: Partial<TaskType>) {
     if (!task) return
     setTask({ ...task, ...partialTask })
   }
@@ -31,7 +31,7 @@ export const Task = () => {
     event.preventDefault()
     setTask(initialTask)
     console.log(task)
-    nameRef.current?.focus()
+    nameRef.current.focus()
   }
 
   return (
