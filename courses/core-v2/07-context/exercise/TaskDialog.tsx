@@ -20,6 +20,7 @@ export const TaskDialog: React.FC<Props> = ({ task, update, onClose }) => {
 
   return (
     <Dialog onClose={onClose} aria-label="Edit Task">
+      {/* Put TaskColor on the inside of Dialog, for reasons the instructor can explain later */}
       <div className="spacing">
         <div className="flex">
           <div className="flex-1 spacing">

@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Task } from './index'
+// import { TaskColor } from './TaskColor'
 import 'ProjectPlanner/TaskCard.scss'
 
 // We'll only need to import ThemeContext until we make a custom provider
