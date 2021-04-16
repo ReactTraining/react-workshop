@@ -1,7 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import CheckoutBilling from './myfinal/CheckoutBilling'
-// import CheckoutBilling from './CheckoutBilling.final'
 import 'YesterTech/styles/global-styles.scss'
 import './styles.scss'
 
