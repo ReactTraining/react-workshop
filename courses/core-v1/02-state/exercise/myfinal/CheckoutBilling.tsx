@@ -32,11 +32,11 @@ const CheckoutBilling = ({ onSubmit }: CheckoutBillingProps) => {
           </Heading>
           <hr />
           <div className="form-field">
-            <label htmlFor="billing:name">Name</label>
-            <input id="billing:name" type="text" name="billingName" autoComplete="off" />
+            <label htmlFor="billing_name">Billing Name</label>
+            <input id="billing_name" type="text" name="billingName" autoComplete="off" />
           </div>
           <div className="form-field">
-            <label htmlFor="billing:address">Address</label>
+            <label htmlFor="billing:address">Billing Address</label>
             <input id="billing:address" type="text" name="billingAddress" />
           </div>
         </fieldset>
@@ -60,11 +60,11 @@ const CheckoutBilling = ({ onSubmit }: CheckoutBillingProps) => {
           {!sameAsBilling && (
             <div className="spacing">
               <div className="form-field">
-                <label htmlFor="shipping:name">Name</label>
+                <label htmlFor="shipping:name">Shipping Name</label>
                 <input id="shipping:name" type="text" name="shippingName" autoComplete="off" />
               </div>
               <div className="form-field">
-                <label htmlFor="shipping:address">Address</label>
+                <label htmlFor="shipping:address">Shipping Address</label>
                 <input
                   id="shipping:address"
                   type="text"
