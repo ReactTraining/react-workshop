@@ -23,24 +23,17 @@ export const FavoriteProductProvider: React.FC = ({ children }): React.ReactElem
     firstRenderRef.current = false
   }, [favorites])
 
-  const favoritesRef = React.useRef(favorites)
-  React.useEffect(() => {
-    favoritesRef.current = favorites
-  })
-
-  const value: FavoriteProductContextValue = React.useMemo(() => {
-    return {
-      isFavorite(productId) {
-        return favoritesRef.current.includes(productId)
-      },
-      addFavorite(productId) {
-        setFavorites((favorites) => favorites.concat(productId))
-      },
-      removeFavorite(productId) {
-        setFavorites((favorites) => favorites.filter((id) => id !== productId))
-      },
-    }
-  }, [])
+  const value: FavoriteProductContextValue = {
+    isFavorite(productId) {
+      return favorites.includes(productId)
+    },
+    addFavorite(productId) {
+      setFavorites((favorites) => favorites.concat(productId))
+    },
+    removeFavorite(productId) {
+      setFavorites((favorites) => favorites.filter((id) => id !== productId))
+    },
+  }
 
   return <FavoriteProductContext.Provider value={value} children={children} />
 }
