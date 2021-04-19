@@ -1,8 +1,8 @@
-# Effects
-
-## Task: Query for Product Categories
+# Data Fetching
 
 In the browser, navigate to: http://localhost:3000/products
+
+## Task: Query for Product Categories
 
 1. Open `ProductFilters.tsx`.
 2. Currently `categories` is `null` so we need to make it stateful.

@@ -1,0 +1,136 @@
+.chat {
+  $self: &;
+  --offset: 20px;
+  --size-header: 60px;
+  --size-entry: 60px;
+  --size-main: min(
+    calc(100vh - var(--size-header) - var(--size-entry) - (var(--offset) * 3)),
+    400px
+  );
+  position: fixed;
+  bottom: var(--offset);
+  right: var(--offset);
+  width: 400px;
+  z-index: 2;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+  border-radius: 8px;
+  padding: 0;
+  display: grid;
+  grid-template-rows: var(--size-header) var(--size-main) var(--size-entry);
+
+  &--closed {
+    grid-template-rows: var(--size-header);
+  }
+
+  &__heading {
+    margin: 0;
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__close-button {
+    position: absolute;
+    right: var(--offset);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__area {
+    background: #eee;
+    padding: var(--offset);
+    overflow-y: auto;
+
+    #{$self}--closed & {
+      display: none;
+    }
+  }
+
+  &__entry {
+    display: flex;
+    position: relative;
+    border: 1px solid transparent;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+
+    &:focus-within {
+      border-color: #04b3ff;
+    }
+
+    #{$self}--closed & {
+      display: none;
+    }
+  }
+
+  &__form {
+    display: contents;
+  }
+
+  &__input {
+    flex: 0 1 100%;
+    appearance: none;
+    box-shadow: none;
+    border: 0;
+    padding: 0.5em;
+    font-size: 1rem;
+    font-family: 'Nunito Sans', Arial;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__submit {
+    border-radius: 0;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: var(--offset);
+    top: 50%;
+    transform: translateY(-50%);
+    fill: #04b3ff;
+
+    transition: fill 0.5s ease;
+
+    &[disabled] {
+      fill: #bbb;
+    }
+  }
+}
+
+.chat-message {
+  $self: &;
+  width: fit-content;
+  max-width: 90%;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+
+  &__content {
+    padding: 0.75em;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  }
+
+  &--sent {
+    margin-right: 0;
+    margin-left: auto;
+
+    #{$self}__content {
+      background: linear-gradient(to top, #4272ff 0%, #1a51f0 100%);
+      color: #fff;
+    }
+  }
+
+  &__name {
+    margin-bottom: 0.25em;
+  }
+}
