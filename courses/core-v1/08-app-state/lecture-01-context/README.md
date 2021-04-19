@@ -1,8 +1,6 @@
 # Notes for Instructor
 
-If context wasn't explained in `07-data-flow`, then now is the time to do it. Perhaps start with a basic add-hoc example.
-
-In this lesson we already have authentication state in a context provider, we just need to wire up login, logout, signup, and when the user refreshes the page to dispatch the auth state.
+In this lesson we already have application state for authorization state in a context provider, we just need to wire up login, logout, signup, and when the user refreshes the page to dispatch the auth state.
 
 tldr;
 

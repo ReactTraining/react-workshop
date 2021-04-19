@@ -18,11 +18,13 @@ function ProductProfile() {
   let { productId } = useParams<{ productId: any }>()
   productId = parseInt(productId, 10)
 
-  const product: Product | null = null as any
+  let product: Product | null = null
+
+  api.products.getProduct(productId)
 
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
-  const quantity = getQuantity(productId)
+  let { addToCart, updateQuantity, getQuantity } = useShoppingCart()
+  let quantity = getQuantity(productId)
 
   if (!product) {
     return <div>Loading...</div>

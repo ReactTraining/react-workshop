@@ -7,6 +7,10 @@ interface CheckoutBillingProps {
   onSubmit(...args: any): void
 }
 
+// 👀
+type TextFieldName = 'billingName' | 'billingAddress' | 'shippingName' | 'shippingAddress'
+type TextFields = Record<TextFieldName, string>
+
 const CheckoutBilling: React.FC<CheckoutBillingProps> = ({ onSubmit }) => {
   const [sameAsBilling, setSameAsBilling] = React.useState(false)
 
@@ -76,11 +80,3 @@ const CheckoutBilling: React.FC<CheckoutBillingProps> = ({ onSubmit }) => {
 }
 
 export default CheckoutBilling
-
-// 👀
-type Fields = {
-  billingName: string
-  billingAddress: string
-  shippingName: string
-  shippingAddress: string
-}
