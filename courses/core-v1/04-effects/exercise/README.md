@@ -1,24 +1,26 @@
 # Effects
 
-## Task: Query for Product Categories
+Navigate to any product page (ex: http://localhost:3000/products/1)
 
-In the browser, navigate to: http://localhost:3000/products
+When you navigate to a product profile page, a chat widget will pop up for the user to request support for a given product.
 
-1. Open `ProductFilters.tsx`.
-2. Currently `categories` is `null` so we need to make it stateful.
-3. Then use an effect to query for the categories using the `getCategories` function.
-4. Don't forget to do a cleanup function.
+Right now the chat pops up immediately when you navigate to a product page. The marketing team thinks this is disruptive and wants us to give the user some time (around 5 seconds) to look at the page before being prompted to chat.
 
-Here's how the promise-based `getCategories` works:
+## Task: Delay chat popup for 5 seconds
+
+1. Open `ProductProfile.tsx`
+2. Make `chatIsVisible` stateful.
+3. After a 5-second timeout, set `chatIsVisible` to `true`. This is a side effect!
+
+You can delay execution of a function by setting a timeout using `window.setTimeout`, which returns a timeout ID.
 
 ```js
-getCategories().then(categories => {
-  // do more stuff here
-}
+const TIME_IN_MILLISECONDS = 5000
+const timeoutId = window.setTimeout(functionToDelay, TIME_IN_MILLISECONDS)
 ```
 
-Hey! Are you getting this error "useEffect is called conditionally"? Remember, we can't conditionally call hooks. You might be doing the effect after that early-return `if` statement which is also version of "conditionalizing hooks". So just move the effect above the early return.
+**Hint:** Don't forget to clean up the effect if the component unmounts. You can remove a timeout by passing the returned timeout ID to `window.clearTimeout`.
 
-## Bonus Task: Custom Hooks
-
-If the instructor has had a chance to explain "custom hooks" yet and If you have time, try converting the code to a custom hook.
+```js
+window.clearTimeout(timeoutId)
+```

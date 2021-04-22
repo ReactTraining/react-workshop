@@ -1,6 +1,6 @@
 # Notes for Instructor
 
-## Teach "lifting state"
+## Teach "lifting state" before introducing context
 
 ```js
 //                                                      ▼ State is currently here
