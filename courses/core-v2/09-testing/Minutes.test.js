@@ -1,13 +1,18 @@
 import React from 'react'
 import { Minutes } from './Minutes'
 
+// For React Testing Library
+import { render, screen, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+
+// For Test Utils
+import ReactDOM from 'react-dom'
+import { act } from 'react-dom/test-utils'
+
 /**
  * With React Testing Library
  * See: https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
  */
-
-import { render, screen, fireEvent } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 
 describe('Minutes', () => {
   it('should display initial value of 0', () => {
@@ -62,10 +67,7 @@ describe('Minutes', () => {
  * The same tests with React Test-Utils
  */
 
-import ReactDOM from 'react-dom'
-import { act } from 'react-dom/test-utils'
-
-describe('Quantity', () => {
+describe('Minutes', () => {
   let container
   beforeEach(() => {
     container = document.createElement('div')
