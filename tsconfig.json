@@ -1,9 +1,5 @@
 {
-  // For lessons, TypeScript will use tsconfig.dev.json which is auto generated
-  // on each launch of a lesson to adjust includes to be specific for the
-  // lesson. Both extend tsconfig.base.json, but we need the file that VS Code
-  // uses for intellisense to use the tsconfig.json filename so that files in
-  // the courses don't show a bunch of errors.
+  "__comment__": "Used by VSCode intellisense and needed to prevent course file errors",
   "extends": "./tsconfig.base.json",
   "include": ["apps", "types", "__mocks__/@types", "courses"]
 }
