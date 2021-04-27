@@ -13,6 +13,7 @@ Before attending the training, please make sure you install the code (not just c
 
 - [ ] Bring a laptop (don't forget a long power cord).
 - [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
+- [ ] Don't use spaces in the repo folder name if you do a custom folder. We've seen issues with Windows users when they do that. Also for Windows users, use WSL and read the [Windows Users](#windows-users) section below.
 - [ ] [Learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/).
 - [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
@@ -26,7 +27,7 @@ If you have any problems with these steps, make sure you see the [Troubleshootin
 
 **Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) instead of installing from source. Installing from source works, but it's difficult to maintain your node version later on (which is why `nvm` exists)
 
-**Windows Users!** Please Please read the [Windows Users](#windows-users) section below for installing Node and WSL.
+**Windows Users!** Please read the [Windows Users](#windows-users) section below for installing Node and WSL.
 
 If you need to verify that you have NVM installed: `nvm --version`. Then install Node:
 
@@ -206,7 +207,7 @@ $ npm install
 
 ## Windows Users
 
-**TL;DR: You probably want to use the Windows Subsystem for Linux (WSL) instead of GitBash or PowerShell**
+Don't use spaces in your repo folder name, we've had some issues with Windows users regarding this if you're not using WSL. **However, you should use the Windows Subsystem for Linux (WSL) instead of GitBash or PowerShell**. Just about all of our Windows issues come from non WSL users. Even Microsoft documentation recommends it for running Node projects:
 
 - WSL 2 Installation: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 - Node on Windows: https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2
@@ -221,6 +222,7 @@ They will recommend you install `nvm` (Node Version Manager). We agree!
 
 Not using WSL can have a few problems that might arise in a Windows Environment:
 
+- Repos with spaces can fail to build.
 - Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 - Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details.
 - If you're able to successfully run the app once but it doesn't start on the subsequent runs, chances are the database port didn't shut down when you recently stopped the app. See the [Database](#database) section above for details.
