@@ -10,7 +10,7 @@ Also, did you remember to shut down the exercise from #2 and start #3? Easy mist
 2. Instead of hiding the shipping information, disable the fields using the `disabled` prop if `sameAsBilling` is `true`.
 3. Also when `sameAsBilling` is `true`, keep the shipping fields in sync with the state of the billing fields. When `sameAsBilling` is `true`, you should be able to type into the billing fields and see the same value in the respective shipping field.
 
-Hint. Each form field should have its own `useState` state. If you try to use one `useState` with an object for all the fields at once (mimicking the older class-based React), you might run into problems. Ask the instructor for more details on this if you're interested.
+Hint. Each form field should have its own `useState` state. If you try to use one `useState` with an object for all the fields at once (mimicking the older class-based React), you might run into problems. Alternatively, you might want to `useReducer` instead.
 
 4. The `fields` variable in `handleSubmit` can get its value from state now instead of a utility like `serializeForm`. See the solution if you're not sure what this means.
 
