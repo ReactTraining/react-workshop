@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .block {
   display: block;
 }
@@ -97,45 +99,45 @@ $gutterSmall: 0.3rem;
 
 @for $i from 1 through 80 {
   .w-#{$i} {
-    width: #{$i/4}rem;
+    width: #{math.div($i, 4)}rem;
   }
 }
 
 @for $i from 1 through 40 {
   .h-#{$i} {
-    height: #{$i/4}rem;
+    height: #{math.div($i, 4)}rem;
   }
 }
 
 @for $i from 1 through 8 {
   .m-#{$i} {
-    margin: #{$i/4}rem;
+    margin: #{math.div($i, 4)}rem;
   }
   .mt-#{$i} {
-    margin-top: #{$i/4}rem;
+    margin-top: #{math.div($i, 4)}rem;
   }
   .mr-#{$i} {
-    margin-right: #{$i/4}rem;
+    margin-right: #{math.div($i, 4)}rem;
   }
   .mb-#{$i} {
-    margin-bottom: #{$i/4}rem;
+    margin-bottom: #{math.div($i, 4)}rem;
   }
   .ml-#{$i} {
-    margin-left: #{$i/4}rem;
+    margin-left: #{math.div($i, 4)}rem;
   }
   .p-#{$i} {
-    padding: #{$i/4}rem;
+    padding: #{math.div($i, 4)}rem;
   }
   .pt-#{$i} {
-    padding-top: #{$i/4}rem;
+    padding-top: #{math.div($i, 4)}rem;
   }
   .pr-#{$i} {
-    padding-right: #{$i/4}rem;
+    padding-right: #{math.div($i, 4)}rem;
   }
   .pb-#{$i} {
-    padding-bottom: #{$i/4}rem;
+    padding-bottom: #{math.div($i, 4)}rem;
   }
   .pl-#{$i} {
-    padding-left: #{$i/4}rem;
+    padding-left: #{math.div($i, 4)}rem;
   }
 }
