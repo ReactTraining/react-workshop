@@ -1,0 +1,11 @@
+@import 'YesterTech/styles/global-styles';
+@import 'YesterTech/styles/center-lesson';
+
+html {
+  font-size: 25pt;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}

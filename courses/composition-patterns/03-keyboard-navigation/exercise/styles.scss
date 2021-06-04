@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5rem;
+  font-size: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.disclosure {
+  --br: 6px;
+  font: inherit;
+  width: 22em;
+  max-width: 100%;
+  border: 1px solid #777;
+  border-radius: var(--br);
+
+  &__button {
+    --mx: 0.5em;
+    --my: 1em;
+    appearance: none;
+    font: inherit;
+    font-weight: bold;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: var(--mx) var(--my);
+    gap: 0.5em;
+    width: calc(100% - var(--my) * 2);
+    text-align: left;
+    box-shadow: none;
+    text-shadow: none;
+    border: 0;
+    background: #fff;
+    padding: 0.5em 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__button-icon {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 0.25em;
+  }
+
+  &__panel {
+    --px: 1em;
+    --py: 1em;
+    padding: var(--px) var(--py);
+    border-top: 1px solid #777;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote {
+    margin: 0;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.accordion {
+  --br: 6px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--br);
+
+  &[data-button-focused] {
+    box-shadow: 0 0 0 4px royalblue;
+  }
+
+  &__item {
+    h3 {
+      font: inherit;
+      margin: 0;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &__button {
+    position: relative;
+
+    &:focus::before {
+      position: absolute;
+      content: '';
+      display: block;
+      top: calc(var(--mx) * -1);
+      right: calc(var(--my) * -1);
+      bottom: calc(var(--mx) * -1);
+      left: calc(var(--my) * -1);
+      background: rgba(65, 105, 225, 0.2);
+      border-radius: var(--br);
+    }
+  }
+}
+
+.accordion__item:not(:last-child) .accordion__button:focus::before {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.accordion__item:not(:first-child) .accordion__button:focus::before {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

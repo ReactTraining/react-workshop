@@ -13,6 +13,7 @@ const courseAppNames = {
   'core-v1': 'YesterTech',
   'core-v2': 'ProjectPlanner',
   electives: 'YesterTech',
+  'composition-patterns': 'YesterTech',
 }
 
 function getCourseAppPath(courseName) {
