@@ -4,7 +4,7 @@ import { Centered } from 'ProjectPlanner/Centered'
 import { Tiles } from 'ProjectPlanner/Tiles'
 import { useUser } from 'ProjectPlanner/hooks/dataHooks'
 
-const UserProfile: React.FC = () => {
+export const UserProfile: React.FC = () => {
   const userId = parseInt(useParams<{ userId: string }>().userId)
   const user = useUser(userId)
 
@@ -12,7 +12,7 @@ const UserProfile: React.FC = () => {
     <Centered size={50}>
       <div className="flex">
         <aside className="mr-4 w-40 spacing-large">
-          <img src={user?.avatarUrl!} alt={`Picture of ${user?.name}`} style={{ width: '100%' }} />
+          <img src={user?.avatarUrl!} alt={user?.name} style={{ width: '100%' }} />
           <div className="spacing-small">
             <Fake />
             <Fake />

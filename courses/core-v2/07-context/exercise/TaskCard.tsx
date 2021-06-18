@@ -16,7 +16,7 @@ type Props = {
 
 export const TaskCard: React.FC<Props> = ({ task, onClick }) => {
   const colors = useContext(ThemeContext)
-  const divRef = useRef<HTMLDivElement>(null!)
+  const divRef = useRef<HTMLDivElement>()
 
   React.useEffect(() => {
     if (colors) {
