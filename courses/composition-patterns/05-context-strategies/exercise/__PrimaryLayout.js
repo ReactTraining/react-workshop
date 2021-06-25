@@ -17,20 +17,15 @@ import { getInt } from 'YesterTech/utils'
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi'
 import { MdShoppingCart } from 'react-icons/md'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
+import { useAppState } from './App'
 
 import '@reach/menu-button/styles.css'
 import 'YesterTech/PrimaryLayout.scss'
 import 'YesterTech/PrimaryHeader.scss'
 
-import { useFavoriteProduct } from './App'
-import { useAuthState, useAuthDispatch } from './App'
-import { useShoppingCart } from './App'
-
 function PrimaryLayout() {
   const history = useHistory()
-  const dispatch = useAuthDispatch()
-  const { authenticated, user } = useAuthState()
-  const { cart } = useShoppingCart()
+  const { dispatch, authenticated, user, cart } = useAppState()
   const { key } = useLocation()
 
   // Get the authenticated user
@@ -100,9 +95,7 @@ function PrimaryLayout() {
 }
 
 function PrimaryHeader() {
-  const dispatch = useAuthDispatch()
-  const { authenticated, user } = useAuthState()
-  const { getCartSize } = useShoppingCart()
+  const { dispatch, authenticated, user, getCartSize } = useAppState()
   const cartSize = getCartSize()
 
   function handleLogout() {
@@ -163,13 +156,13 @@ function PrimaryHeader() {
 function BrowseProducts() {
   const urlQuery = useLocation().search
   const search = React.useMemo(() => queryString.parse(urlQuery), [urlQuery])
-  const page = search.page != null ? getInt(search.page, 10) : 1
+  const page = typeof search.page === 'string' ? getInt(search.page, 10) : 1
 
   // Get Products (Paginated) and Total
-  const getProducts = React.useCallback(() => api.products.getProducts(search, page), [
-    search,
-    page,
-  ])
+  const getProducts = React.useCallback(
+    () => api.products.getProducts(search, page),
+    [search, page]
+  )
   const [response, loading] = usePromise(getProducts)
   const products = response?.products
   const totalResults = response?.totalResults
@@ -220,7 +213,7 @@ function BrowseProductItem({
   rating = 0,
 }) {
   // Cart
-  const { addToCart, updateQuantity, getQuantity } = useShoppingCart()
+  const { addToCart, updateQuantity, getQuantity } = useAppState()
   const quantity = getQuantity(productId)
 
   return (
@@ -229,7 +222,7 @@ function BrowseProductItem({
         <ProductImage src={imagePath} alt={name} />
       </Column>
       <Column flex className="spacing-small">
-        <h2 size={3}>
+        <h2>
           <Link to={`/products/${productId}`}>
             {name} ({year})
           </Link>
@@ -266,7 +259,7 @@ function BrowseProductItem({
 }
 
 function SaveFavorite({ productId }) {
-  const { isFavorite, addFavorite, removeFavorite } = useFavoriteProduct()
+  const { isFavorite, addFavorite, removeFavorite } = useAppState()
   const favorite = isFavorite(productId)
   const action = favorite ? removeFavorite : addFavorite
 

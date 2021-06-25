@@ -4,6 +4,15 @@ import PrimaryLayout from 'YesterTech/PrimaryLayout'
 import { getInt } from 'YesterTech/utils'
 import * as storage from 'YesterTech/localStorage'
 import 'YesterTech/styles/global-styles.scss'
+import type {
+  AuthActions,
+  AuthDispatch,
+  AuthState,
+  FavoriteProductContextValue,
+  ShoppingCartActions,
+  ShoppingCartContextValue,
+  ShoppingCartState,
+} from './types'
 
 const PrimaryLayoutMemoed = React.memo(PrimaryLayout)
 
@@ -23,30 +32,26 @@ function App() {
 
 // Auth context/state
 
-/** @type {import('./types').AuthState} */
-const initialState = {
+const initialAuthStateContext: AuthState = {
   authenticated: false,
   user: null,
 }
 
-/** @type {React.Context<import('./types').AuthState>} */
-const AuthStateContext = React.createContext(initialState)
+const AuthStateContext = React.createContext<AuthState>(initialAuthStateContext)
 
-/** @type {React.Context<import('./types').AuthDispatch>} */
-const AuthDispatchContext = React.createContext(function dispatch() {})
+const AuthDispatchContext = React.createContext<AuthDispatch>(function dispatch() {})
 
 /**
- * @param {import('./types').AuthState} state
- * @param {import('./types').AuthActions} action
- * @return {import('./types').AuthState}
+ * @param state
+ * @param action
  */
-function authReducer(state, action) {
+function authReducer(state: AuthState, action: AuthActions): AuthState {
   switch (action.type) {
     case 'LOGIN': {
       return { ...state, authenticated: true, user: action.user }
     }
     case 'LOGOUT': {
-      return { ...initialState }
+      return { ...initialAuthStateContext }
     }
     default:
       return state
@@ -54,7 +59,7 @@ function authReducer(state, action) {
 }
 
 function AuthStateProvider({ children }) {
-  const [state, dispatch] = React.useReducer(authReducer, initialState)
+  let [state, dispatch] = React.useReducer(authReducer, initialAuthStateContext)
 
   return (
     <AuthDispatchContext.Provider value={dispatch}>
@@ -73,21 +78,37 @@ export function useAuthState() {
 
 // Shopping cart context/state
 
-/** @type {React.Context<import('./types').ShoppingCartContextValue>} */
-const ShoppingCartContext = React.createContext({})
+const initialShoppingCartContext: ShoppingCartContextValue = {
+  addToCart() {},
+  updateQuantity() {},
+  removeFromCart() {},
+  getQuantity() {
+    return 0
+  },
+  getCartSize() {
+    return 0
+  },
+  getCartTotal() {
+    return 0
+  },
+  cart: [],
+}
 
-/** @type {React.Context<import('./types').AuthDispatch>} */
-const ShoppingCartDispatchContext = React.createContext(function dispatch() {})
+const ShoppingCartContext = React.createContext<ShoppingCartContextValue>(
+  initialShoppingCartContext
+)
 
 /**
- * @param {import('./types').ShoppingCartState} state
- * @param {import('./types').ShoppingCartActions} action
- * @return {import('./types').ShoppingCartState}
+ * @param state
+ * @param action
  */
-function shoppingCartReducer(state, action) {
+function shoppingCartReducer(
+  state: ShoppingCartState,
+  action: ShoppingCartActions
+): ShoppingCartState {
   switch (action.type) {
     case 'ADD': {
-      const found = state.cart.find((p) => p.productId === getInt(action.productId, 10))
+      let found = state.cart.find((p) => p.productId === getInt(action.productId, 10))
       if (!found) {
         return {
           ...state,
@@ -116,9 +137,9 @@ function shoppingCartReducer(state, action) {
       return { ...state, cart }
     }
     case 'REMOVE': {
-      const c = state.cart
-      const index = c.findIndex((p) => p.productId === action.productId)
-      const updatedCart = [...c.slice(0, index), ...c.slice(index + 1)]
+      let c = state.cart
+      let index = c.findIndex((p) => p.productId === action.productId)
+      let updatedCart = [...c.slice(0, index), ...c.slice(index + 1)]
       return { ...state, cart: updatedCart }
     }
     default:
@@ -127,12 +148,12 @@ function shoppingCartReducer(state, action) {
 }
 
 export const ShoppingCartProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(shoppingCartReducer, {
+  let [state, dispatch] = React.useReducer(shoppingCartReducer, {
     cart: storage.getCart() || [],
   })
 
   /** @type {import('./types').ShoppingCartContextValue} */
-  const value = {
+  let value: import('./types').ShoppingCartContextValue = {
     ...state,
     addToCart(productId, name, price) {
       dispatch({ type: 'ADD', productId, name, price })
@@ -161,7 +182,7 @@ export const ShoppingCartProvider = ({ children }) => {
 }
 
 export function useShoppingCart() {
-  const cartState = React.useContext(ShoppingCartContext)
+  let cartState = React.useContext(ShoppingCartContext)
 
   React.useEffect(() => {
     storage.updateCart(cartState.cart)
@@ -172,8 +193,7 @@ export function useShoppingCart() {
 
 // Favorite product context/state
 
-/** @type {React.Context<import('./types').FavoriteProductContextValue>} */
-const FavoriteProductContext = React.createContext({
+const FavoriteProductContext = React.createContext<FavoriteProductContextValue>({
   isFavorite() {
     return false
   },
@@ -182,11 +202,11 @@ const FavoriteProductContext = React.createContext({
 })
 
 export function FavoriteProductProvider({ children }) {
-  const [favorites, setFavorites] = React.useState(() => {
+  let [favorites, setFavorites] = React.useState(() => {
     return storage.getFavorites()
   })
 
-  const firstRenderRef = React.useRef(true)
+  let firstRenderRef = React.useRef(true)
 
   React.useEffect(() => {
     if (!firstRenderRef.current) {
@@ -195,8 +215,7 @@ export function FavoriteProductProvider({ children }) {
     firstRenderRef.current = false
   }, [favorites])
 
-  /** @type {import('./types').FavoriteProductContextValue} */
-  const value = {
+  let value: FavoriteProductContextValue = {
     isFavorite(productId) {
       return favorites.includes(productId)
     },
