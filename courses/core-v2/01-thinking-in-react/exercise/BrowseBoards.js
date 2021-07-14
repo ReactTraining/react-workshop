@@ -5,6 +5,7 @@ export const BrowseBoards = () => {
   const boards = [
     { id: 1, name: 'Board One' },
     { id: 2, name: 'Board Two' },
+    { id: 3, name: 'Board Three' },
   ]
 
   function removeBoard(boardId) {
