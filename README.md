@@ -94,7 +94,7 @@ Choose one from list [1...5 / 0]: 4
 Do you want us to remember this course selection? [y/n]: y
 ```
 
-If choosing `y` to the "remember" question you won't get the "Which Course?" menu again.
+If you choose `y` to "remember" the selection, you won't get the "Which Course?" menu again the next time you do `npm start`.
 
 After a course is chosen:
 
