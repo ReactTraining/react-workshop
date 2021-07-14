@@ -29,6 +29,9 @@ export const BrowseBoards = () => {
   )
 }
 
+// A nice visual explanation of keys
+// https://twitter.com/dan_abramov/status/1415279090446204929
+
 function Heading({ children, size = 1, ...rest }) {
   // For the bonus task, see if you can program this component to be used
   // instead of <h1> and <h2>. See the README for more info.
