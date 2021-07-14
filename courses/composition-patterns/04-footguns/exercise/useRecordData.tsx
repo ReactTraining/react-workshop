@@ -9,13 +9,17 @@ const content = {
 
 let apiCallCount = 0
 
-async function getRecordData(pathname) {
+async function getRecordData(pathname: string) {
   console.log(`API CALL # ${++apiCallCount}`)
   // this makes a network call
-  return await new Promise((res, rej) =>
+  return await new Promise<{ content: string }>((res, rej) =>
     window.setTimeout(() => {
       try {
-        res({ content: content[pathname] })
+        if (pathname in content) {
+          res({ content: content[pathname] })
+        } else {
+          rej(`Path "${pathname} is not valid"`)
+        }
       } catch (err) {
         rej('Oh no, something when wrong!')
       }
@@ -23,16 +27,9 @@ async function getRecordData(pathname) {
   )
 }
 
-/**
- * @param {string} pathname
- * @return {*}
- */
-export function useRecordData(pathname) {
-  const [data, setData] = React.useState({})
-
-  // Mary says: we use a temp URL variable to prevent fetching data twice due to
-  // a re-render
-  const [oldPathname, setOldPathname] = React.useState('')
+export function useRecordData(pathname: string) {
+  let [data, setData] = React.useState<{ content?: string; error?: any }>({})
+  let [oldPathname, setOldPathname] = React.useState('')
 
   React.useEffect(() => {
     let cancelled = false
@@ -53,7 +50,7 @@ export function useRecordData(pathname) {
       cancelled = true
     }
 
-    function sendError(response) {
+    function sendError(response: any) {
       if (!cancelled) {
         setOldPathname(pathname)
         setData({ error: response })

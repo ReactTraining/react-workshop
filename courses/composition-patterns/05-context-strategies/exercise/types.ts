@@ -98,3 +98,59 @@ export interface FavoriteProductContextValue {
   addFavorite(productId: number): void
   removeFavorite(productId: number): void
 }
+
+export interface AppState {
+  authenticated: boolean
+  user: null | UserNoPassword
+  cart: CartProduct[]
+  favorites: number[]
+}
+
+export interface AppContextValue extends AppState {
+  dispatch: React.Dispatch<AppActions>
+
+  // shopping cart
+  addToCart(
+    productId: CartProduct['productId'],
+    name: CartProduct['name'],
+    price: CartProduct['price']
+  ): void
+  updateQuantity(productId: CartProduct['productId'], quantity: CartProduct['quantity']): void
+  removeFromCart(productId: CartProduct['productId']): void
+  getQuantity(productId: CartProduct['productId']): number
+  getCartSize(): number
+  getCartTotal(): number
+
+  // favorite products
+  isFavorite(productId: number): boolean
+  addFavorite(productId: number): void
+  removeFavorite(productId: number): void
+}
+
+export type AppActions =
+  | {
+      type: 'LOGIN'
+      user: UserNoPassword
+    }
+  | {
+      type: 'LOGOUT'
+    }
+  | {
+      type: 'ADD'
+      productId: CartProduct['productId']
+      name: CartProduct['name']
+      price: CartProduct['price']
+    }
+  | {
+      type: 'UPDATE'
+      quantity: CartProduct['quantity']
+      productId: CartProduct['productId']
+    }
+  | {
+      type: 'REMOVE'
+      productId: CartProduct['productId']
+    }
+  | {
+      type: 'SET_FAVORITES'
+      favorites: number[] | ((prevState: number[]) => number[])
+    }

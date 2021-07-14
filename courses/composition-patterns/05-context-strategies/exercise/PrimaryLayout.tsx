@@ -17,12 +17,11 @@ import { getInt } from 'YesterTech/utils'
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi'
 import { MdShoppingCart } from 'react-icons/md'
 import { Menu, MenuList, MenuButton, MenuItem, MenuLink } from '@reach/menu-button'
+import { useAppState } from './App'
 
 import '@reach/menu-button/styles.css'
 import 'YesterTech/PrimaryLayout.scss'
 import 'YesterTech/PrimaryHeader.scss'
-
-import { useAppState } from './App'
 
 function PrimaryLayout() {
   const history = useHistory()
@@ -157,13 +156,13 @@ function PrimaryHeader() {
 function BrowseProducts() {
   const urlQuery = useLocation().search
   const search = React.useMemo(() => queryString.parse(urlQuery), [urlQuery])
-  const page = search.page != null ? getInt(search.page, 10) : 1
+  const page = typeof search.page === 'string' ? getInt(search.page, 10) : 1
 
   // Get Products (Paginated) and Total
-  const getProducts = React.useCallback(() => api.products.getProducts(search, page), [
-    search,
-    page,
-  ])
+  const getProducts = React.useCallback(
+    () => api.products.getProducts(search, page),
+    [search, page]
+  )
   const [response, loading] = usePromise(getProducts)
   const products = response?.products
   const totalResults = response?.totalResults
@@ -223,7 +222,7 @@ function BrowseProductItem({
         <ProductImage src={imagePath} alt={name} />
       </Column>
       <Column flex className="spacing-small">
-        <h2 size={3}>
+        <h2>
           <Link to={`/products/${productId}`}>
             {name} ({year})
           </Link>

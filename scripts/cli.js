@@ -221,7 +221,10 @@ function selectLesson() {
   const aliasBasePath = `${courseAppNames[selectedCourse]}`
   fs.readdirSync(lessonPath).forEach((file) => {
     const name = path.basename(file).replace(/\.(js|ts|tsx)$/, '')
+
     alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
+    // WINDOWS HACK
+    // alias[path.join(aliasBasePath, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
   })
 
   return {

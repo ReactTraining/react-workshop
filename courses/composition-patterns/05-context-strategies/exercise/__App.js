@@ -4,6 +4,19 @@ import PrimaryLayout from 'YesterTech/PrimaryLayout'
 import { getInt } from 'YesterTech/utils'
 import * as storage from 'YesterTech/localStorage'
 import 'YesterTech/styles/global-styles.scss'
+// import type {
+//   CartProduct,
+//   AppState,
+//   AppContextValue,
+//   AppActions,
+//   AuthActions,
+//   AuthDispatch,
+//   AuthState,
+//   FavoriteProductContextValue,
+//   ShoppingCartActions,
+//   ShoppingCartContextValue,
+//   ShoppingCartState,
+// } from './types'
 
 const PrimaryLayoutMemoed = React.memo(PrimaryLayout)
 
@@ -17,14 +30,23 @@ function App() {
   )
 }
 
-const AppStateContext = React.createContext()
-
+/** @type {import('./types').AppState} */
 const initialState = {
   // auth state
   authenticated: false,
   user: null,
 
   // shopping cart state
+  cart: [],
+
+  // favorite products state
+  favorites: storage.getFavorites(),
+}
+
+/** @type {import('./types').AppContextValue} */
+const initialContext = {
+  ...initialState,
+  dispatch() {},
   addToCart() {},
   updateQuantity() {},
   removeFromCart() {},
@@ -37,9 +59,6 @@ const initialState = {
   getCartTotal() {
     return 0
   },
-  cart: [],
-
-  // favorite products state
   isFavorite() {
     return false
   },
@@ -47,22 +66,22 @@ const initialState = {
   removeFavorite() {},
 }
 
+/** @type {React.Context<import('./types').AppContextValue>} */
+const AppStateContext = React.createContext(initialContext)
+
 function AppProvider({ children }) {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  let [state, dispatch] = React.useReducer(reducer, initialState)
 
-  const [favorites, setFavorites] = React.useState(() => {
-    return storage.getFavorites()
-  })
-
-  const firstRenderRef = React.useRef(true)
+  let firstRenderRef = React.useRef(true)
   React.useEffect(() => {
     if (!firstRenderRef.current) {
-      storage.updateFavorites(favorites)
+      storage.updateFavorites(state.favorites)
     }
     firstRenderRef.current = false
-  }, [favorites])
+  }, [state.favorites])
 
-  const context = {
+  /** @type {import('./types').AppContextValue} */
+  let context = {
     ...state,
     dispatch,
     addToCart(productId, name, price) {
@@ -87,13 +106,16 @@ function AppProvider({ children }) {
       return state.cart.reduce((total, item) => total + item.quantity * item.price, 0)
     },
     isFavorite(productId) {
-      return favorites.includes(productId)
+      return state.favorites.includes(productId)
     },
     addFavorite(productId) {
-      setFavorites((favorites) => favorites.concat(productId))
+      dispatch({ type: 'SET_FAVORITES', favorites: (favorites) => favorites.concat(productId) })
     },
     removeFavorite(productId) {
-      setFavorites((favorites) => favorites.filter((id) => id !== productId))
+      dispatch({
+        type: 'SET_FAVORITES',
+        favorites: (favorites) => favorites.filter((id) => id !== productId),
+      })
     },
   }
 
@@ -101,9 +123,10 @@ function AppProvider({ children }) {
 }
 
 /**
- * @param {import('./types').AuthState} state
- * @param {import('./types').AuthActions} action
- * @return {import('./types').AuthState}
+ *
+ * @param {import('./types').AppState} state
+ * @param {import('./types').AppActions} action
+ * @returns {import('./types').AppState}
  */
 function reducer(state, action) {
   switch (action.type) {
@@ -117,7 +140,7 @@ function reducer(state, action) {
 
     // shopping cart actions
     case 'ADD': {
-      const found = state.cart.find((p) => p.productId === getInt(action.productId, 10))
+      let found = state.cart.find((p) => p.productId === getInt(action.productId, 10))
       if (!found) {
         return {
           ...state,
@@ -146,10 +169,20 @@ function reducer(state, action) {
       return { ...state, cart }
     }
     case 'REMOVE': {
-      const c = state.cart
-      const index = c.findIndex((p) => p.productId === action.productId)
-      const updatedCart = [...c.slice(0, index), ...c.slice(index + 1)]
+      let c = state.cart
+      let index = c.findIndex((p) => p.productId === action.productId)
+      let updatedCart = [...c.slice(0, index), ...c.slice(index + 1)]
       return { ...state, cart: updatedCart }
+    }
+
+    // favorites actions
+    case 'SET_FAVORITES': {
+      let { favorites: prevState } = state
+      let { favorites: nextState } = action
+      return {
+        ...state,
+        favorites: Array.isArray(nextState) ? nextState : nextState(prevState),
+      }
     }
 
     default:
