@@ -174,7 +174,7 @@ function selectLesson() {
     const lessonTypesPath = path.resolve(
       __dirname,
       '..',
-      `courses/${selectedCourse}/${selectedLesson}`
+      path.join('courses', selectedCourse, selectedLesson)
     )
     const lessonTypeOptions = fs.readdirSync(lessonTypesPath).filter((item) => {
       return fs.lstatSync(path.resolve(lessonTypesPath, item)).isDirectory()

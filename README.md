@@ -7,9 +7,22 @@ We have new workshop material for 2021 🎉. Be sure to checkout https://reacttr
 
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
-Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If your having these or other issues see the Troubleshooting section below.
+Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If you're having these or other issues see the Troubleshooting section below.
 
-## The "What do I need to do before attending React Training" Checklist:
+## Table of Contents
+
+- [The "What do I need to do before attending React Training" Checklist](#the-what-do-i-need-to-do-before-attending-react-training-checklist)
+  - [Install Git, Node, and npm](#install-git-node-and-npm)
+  - [Install Workshop Code](#install-workshop-code)
+    - [Running the Course and Lesson Material](#running-the-course-and-lesson-material)
+    - [Prettier Plugin](#prettier-plugin)
+    - [Database](#database)
+- [Updating Workshop Code](#updating-workshop-code)
+- [Troubleshooting](#troubleshooting)
+  - [Windows Users](#windows-users)
+- [License](#license)
+
+## The "What do I need to do before attending React Training" Checklist
 
 - [ ] Bring a laptop (don't forget a long power cord).
 - [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
@@ -17,27 +30,27 @@ Before attending the training, please make sure you install the code (not just c
 - [ ] [Learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/).
 - [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
 - [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
-- [ ] WAIT! Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and Proxies are so diverse and out of our control.
+- [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and proxies are so diverse and out of our control.
 
-## Install Git, Node, and NPM
+### Install Git, Node, and npm
 
 If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
 
 **Need to install Git?** - http://git-scm.com/downloads
 
-**Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) instead of installing from source. Installing from source works, but it's difficult to maintain your node version later on (which is why `nvm` exists)
+**Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) instead of installing from source. Installing from source works, but it's difficult to maintain your Node version later on (which is why `nvm` exists)
 
 **Windows Users!** Please read the [Windows Users](#windows-users) section below for installing Node and WSL.
 
 If you need to verify that you have NVM installed: `nvm --version`. Then install Node:
 
 ```sh
-# Installs latest LTS version of node
+# Installs latest LTS version of Node
 # See this page for more install options: https://github.com/nvm-sh/nvm#usage
 $ nvm install node
 ```
 
-Verify you have Git, Node, and NPM installed. Installing Node will install NPM.
+Verify you have Git, Node, and npm installed. Installing Node will install npm.
 
 ```sh
 $ git --version
@@ -47,7 +60,7 @@ $ npm --version
 
 You don't necessarily need the latest version of Node for this workshop.
 
-## Install Workshop Code
+### Install Workshop Code
 
 Then **clone**, **install**, and **run** the app:
 
@@ -74,7 +87,7 @@ Everything is working if the code compiles and you can visit `http://localhost:3
 
 If something goes wrong, you may need to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
 
-## Running the Course and Lesson Material
+#### Running the Course and Lesson Material
 
 While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
 
@@ -137,13 +150,13 @@ Shortcut!
 
 If you have a course preference already and you run `npm start 1` (or any valid lesson number), it will skip all the way to the end where you choose between exercise and lecture.
 
-## Prettier Plugin
+#### Prettier Plugin
 
 (not required, but nice)
 
 You might notice as the instructors save their code that a tool called "Prettier" is automatically formatting things. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. Clicking the install button on the website will open VSCode and install it as a plugin. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
 
-## Database
+#### Database
 
 When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry about the database, it's not even a real database. It's a tool called `json-server` that treats a JSON file like a restful database and runs 100% within this repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
@@ -151,13 +164,13 @@ When you do `npm install` we run a `postinstall` script to copy a `db-seed.json`
 
 There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db-port` as a command for you in case this happens. All this does is quit the processes associated with port 3333. If you have any problems you can do this manually.
 
-## Updating
+## Updating Workshop Code
 
 If you've already cloned the repo but you need to get updated code, then follow these steps:
 
 - First, `cd` into the root directory of the repo
 - Then do an `ls` command to ensure you see a `package.json` file listed. If you don't you're not in the root folder of the repo
-- Clear out any dirty files in your git working tree (`git stash` is a safe way to do it, `git reset ---hard` is how to live dangerously)
+- Clear out any dirty files in your Git working tree (`git stash` is a safe way to do it, `git reset ---hard` is how to live dangerously)
 - Then run these steps to get the updates:
 
 ```sh
@@ -171,7 +184,7 @@ Then you should be able to do your `npm start` again.
 
 A few common problems:
 
-- **You're having problems cloning the repository.** Some corporate networks block port 22, which git uses to communicate with GitHub over SSH. Instead of using SSH, clone the repo over HTTPS. Use the following command to tell git to always use `https` instead of `git`:
+- **You're having problems cloning the repository.** Some corporate networks block port 22, which Git uses to communicate with GitHub over SSH. Instead of using SSH, clone the repo over HTTPS. Use the following command to tell Git to always use `https` instead of `git`:
 
 ```sh
 $ git config --global url."https://".insteadOf git://
@@ -181,7 +194,7 @@ $ git config --global url."https://".insteadOf git://
   insteadOf = git://
 ```
 
-- **You're having trouble installing Node.** We recommend using [nvm](https://github.com/creationix/nvm). nvm makes it really easy to use multiple versions of node on the same machine painlessly. After you install nvm, install the latest stable version of node with the following command:
+- **You're having trouble installing Node.** We recommend using [nvm](https://github.com/creationix/nvm). nvm makes it really easy to use multiple versions of Node on the same machine painlessly. After you install nvm, install the latest stable version of Node with the following command:
 
 ```sh
 $ nvm use default stable
@@ -192,10 +205,10 @@ $ nvm use default stable
 ```sh
 $ sudo rm -rf node_modules
 
-# If you installed node with nvm (suggested):
+# If you installed Node with nvm (suggested):
 $ sudo rm -rf ~/.npm
 
-# If you installed node with Homebrew:
+# If you installed Node with Homebrew:
 $ sudo rm -rf /usr/local/lib/node_modules
 
 # Then (look ma, no sudo!):
@@ -206,7 +219,15 @@ $ npm install
 
 - **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` and see if that fixes it. If you're on Windows, see the [Windows Users](#windows-users) section below.
 
-## Windows Users
+- **The app launches and runs, but I don't see my changes reflected in the browser.** There is a known issue in one of Webpack's dependencies when running on Node 14 on certain platforms that breaks the dev server. If you experience this, try updating the start script in `package.json` as follows:
+
+```diff
+  "scripts": {
+-    "start": "node scripts/start.js"
++    "start": "CHOKIDAR_USEPOLLING=true node scripts/start.js"
+```
+
+### Windows Users
 
 Don't use spaces in your repo folder name, we've had some issues with Windows users regarding this if you're not using WSL. **However, you should use the Windows Subsystem for Linux (WSL) instead of GitBash or PowerShell**. Just about all of our Windows issues come from non WSL users. Even Microsoft documentation recommends it for running Node projects:
 
