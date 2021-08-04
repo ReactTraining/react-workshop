@@ -1,7 +1,7 @@
 import React from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Task } from './index'
-import { TaskColor } from './TaskColor'
+import { useTaskColor } from './useTaskColor'
 import 'ProjectPlanner/TaskCard.scss'
 
 type Props = {
@@ -10,19 +10,20 @@ type Props = {
 }
 
 export const TaskCard: React.FC<Props> = ({ task, onClick }) => {
+  const taskColor = useTaskColor(task)
+
   return (
-    <TaskColor task={task}>
-      <div
-        onClick={() => {
-          onClick()
-        }}
-        className="task-card"
-      >
-        <div className="task-card-content spacing-small">
-          <Heading size={3}>{task.name}</Heading>
-          <div className="task-card-content">{task.content}</div>
-        </div>
+    <div
+      onClick={() => {
+        onClick()
+      }}
+      className="task-card"
+      style={{ '--taskColor': taskColor }}
+    >
+      <div className="task-card-content spacing-small">
+        <Heading size={3}>{task.name}</Heading>
+        <div className="task-card-content">{task.content}</div>
       </div>
-    </TaskColor>
+    </div>
   )
 }

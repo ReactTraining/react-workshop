@@ -15,7 +15,7 @@ import 'ProjectPlanner/PrimaryHeader.scss'
 
 // https://reactjs.org/docs/code-splitting.html#route-based-code-splitting
 // Lazy load this component and demonstrate suspense
-import { UserProfile } from 'ProjectPlanner/UserProfile'
+import { UserProfile } from './UserProfile'
 
 const App: React.FC = () => {
   return (

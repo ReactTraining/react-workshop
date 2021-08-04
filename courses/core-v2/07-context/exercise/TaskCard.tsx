@@ -1,13 +1,16 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Heading } from 'ProjectPlanner/Heading'
 import { Task } from './index'
-// import { TaskColor } from './TaskColor'
 import 'ProjectPlanner/TaskCard.scss'
 
+// This is for Task: 1
 // We'll only need to import ThemeContext until we make a custom provider
 import { ThemeContext } from './index'
 // Then we can import useTheme
 // import { useTheme } from './ThemeContext'
+
+// This is for Task: 2
+// import { useTaskColor } from './useTaskColor'
 
 type Props = {
   onClick(): void
@@ -15,24 +18,21 @@ type Props = {
 }
 
 export const TaskCard: React.FC<Props> = ({ task, onClick }) => {
+  // For Task: 2
+  // Put all of this into a custom hook called useTaskColor //////
   const colors = useContext(ThemeContext)
-  const divRef = useRef<HTMLDivElement>()
+  let taskColor = ''
 
-  React.useEffect(() => {
-    if (colors) {
-      let statusColor: string | null = null
-      if (task) {
-        if (task.completedMinutes === 0) {
-          statusColor = colors.red
-        } else if (task.completedMinutes >= task.minutes) {
-          statusColor = colors.green
-        } else {
-          statusColor = colors.blue
-        }
-      }
-      divRef.current.style.setProperty(`--taskColor`, statusColor)
+  if (colors && task) {
+    if (task.completedMinutes === 0) {
+      taskColor = colors.red
+    } else if (task.completedMinutes >= task.minutes) {
+      taskColor = colors.green
+    } else {
+      taskColor = colors.blue
     }
-  }, [colors, task])
+  }
+  ////////////////////////////////////////////////////////////////
 
   return (
     <div
@@ -40,7 +40,7 @@ export const TaskCard: React.FC<Props> = ({ task, onClick }) => {
         onClick()
       }}
       className="task-card"
-      ref={divRef}
+      style={{ '--taskColor': taskColor }}
     >
       <div className="task-card-content spacing-small">
         <Heading size={3}>{task.name}</Heading>

@@ -39,12 +39,6 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
 So, you're essentially creating a utility called `ThemeProvider` that can be used to provide context onto anything, and it doesn't add a bunch of code to `App` which we probably want to maintain as minimal.
 
-## ✅ BONUS TASK!
+## ✅ Task 2: Custom Hook for useTaskColor
 
-Currently, `TaskCard` has to do a lot of work to turn the theme colors into a `ref` so it can apply the right color to `--taskColor`. Imagine if we wanted to add `--taskColor` to other things and having to do this work all over again.
-
-Let's take a look at `TaskColor` and see how it could be used as a utility.
-
-It basically just does all that repetitive work and adds the ref to an arbitrary `div` element. This means we can take the context stuff out of `TaskCard` and just implement `TaskColor` around all the JSX.
-
-7. Implement `TaskColor` on `TaskCard` and `TaskDialog`
+If you finished the last task correctly, your context will still work and the left border of the `TaskCard` will change as the task's data changes. The `TaskDialog` and the `TaskCard` both need to have logic for figuring out their `--taskColor` CSS custom property. The `TaskDialog` has already moved it's code to a custom hook called `useTaskColor`. Implement the code for that hook by copying the code from `TaskCard`. Then in `TaskCard` use the hook instead of repeating this code.

@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom'
 import { TaskDialog } from './TaskDialog'
 import { TaskCard } from './TaskCard'
 import { getTheme } from './utils'
-// import { ThemeProvider } from './ThemeContext'
 import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
+
+// Migrate code into this custom ThemeProvider
+// import { ThemeProvider } from './ThemeContext'
 
 type Colors = {
   [key: string]: string

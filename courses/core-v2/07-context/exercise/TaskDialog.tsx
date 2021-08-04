@@ -6,7 +6,7 @@ import { Heading } from 'ProjectPlanner/Heading'
 import { Minutes } from 'ProjectPlanner/Minutes'
 import { Progress } from 'ProjectPlanner/Progress'
 import { Task } from './index'
-// import { TaskColor } from './TaskColor'
+import { useTaskColor } from './useTaskColor'
 import 'ProjectPlanner/TaskDialog.scss'
 
 type Props = {
@@ -17,11 +17,11 @@ type Props = {
 
 export const TaskDialog: React.FC<Props> = ({ task, update, onClose }) => {
   const complete = (task && task.minutes === task.completedMinutes && task.minutes > 0) || false
+  const taskColor = useTaskColor(task)
 
   return (
     <Dialog onClose={onClose} aria-label="Edit Task">
-      {/* Put TaskColor on the inside of Dialog, for reasons the instructor can explain later */}
-      <div className="spacing">
+      <div className="spacing" style={{ '--taskColor': taskColor }}>
         <div className="flex">
           <div className="flex-1 spacing">
             <input
