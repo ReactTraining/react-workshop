@@ -4,7 +4,7 @@
 
 - [What is React?](https://reacttraining.com/what-is-react)
 
-  - What is a Web Application vs a website/
+  - How is a web application different from a website
   - React is Free
   - Who's using React?
 
