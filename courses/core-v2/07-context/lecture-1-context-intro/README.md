@@ -12,5 +12,4 @@
 
 - Teach the basic concepts of context.
 - Migrate the theme colors from a prop-drilling strategy to context
-- Use `ThemeContext` to stay consistent with the exercise they'll be doing
-- When context is finished, migrate to a `ThemProvider` custom component.
+- When basic context is finished, migrate to custom provider component.

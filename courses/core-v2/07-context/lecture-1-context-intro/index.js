@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { Heading } from 'ProjectPlanner/Heading'
 import { api } from 'ProjectPlanner/api'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
@@ -6,13 +7,7 @@ import { Notice } from 'ProjectPlanner/Notice'
 import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
 
-/**
- * This is JS and not TS on purpose to help explain context
- * without the extra noise TS brings to it:
- * https://reacttraining.com/blog/react-context-with-typescript/
- */
-
-export const App = () => {
+function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -32,7 +27,7 @@ export const App = () => {
   )
 }
 
-const PrimaryLayout = ({ user, setUser }) => {
+function PrimaryLayout({ user, setUser }) {
   function logout() {
     api.auth.logout().then(() => {
       setUser(null)
@@ -51,7 +46,7 @@ const PrimaryLayout = ({ user, setUser }) => {
   )
 }
 
-const UnauthenticatedLayout = ({ setUser }) => {
+function UnauthenticatedLayout({ setUser }) {
   function login(user) {
     setUser(user)
   }
@@ -63,7 +58,7 @@ const UnauthenticatedLayout = ({ setUser }) => {
   )
 }
 
-export const LoginForm = ({ onAuthenticated }) => {
+function LoginForm({ onAuthenticated }) {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
@@ -141,3 +136,5 @@ export const LoginForm = ({ onAuthenticated }) => {
     </>
   )
 }
+
+ReactDOM.render(<App />, document.getElementById('root'))

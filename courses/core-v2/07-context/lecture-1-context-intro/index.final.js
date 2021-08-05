@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { Heading } from 'ProjectPlanner/Heading'
 import { api } from 'ProjectPlanner/api'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
@@ -8,7 +9,7 @@ import './styles.scss'
 
 const AuthContext = React.createContext()
 
-export const App = () => {
+function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -25,13 +26,17 @@ export const App = () => {
 
   return (
     <AuthContext.Provider value={context}>
-      {user ? <PrimaryLayout /> : <UnauthenticatedLayout />}
+      {user ? (
+        <PrimaryLayout user={user} setUser={setUser} />
+      ) : (
+        <UnauthenticatedLayout setUser={setUser} />
+      )}
     </AuthContext.Provider>
   )
 }
 
-const PrimaryLayout = () => {
-  const { setUser, user } = useContext(AuthContext)
+function PrimaryLayout() {
+  const { user, setUser } = useContext(AuthContext)
 
   function logout() {
     api.auth.logout().then(() => {
@@ -51,7 +56,7 @@ const PrimaryLayout = () => {
   )
 }
 
-const UnauthenticatedLayout = () => {
+function UnauthenticatedLayout() {
   const { setUser } = useContext(AuthContext)
 
   function login(user) {
@@ -65,7 +70,7 @@ const UnauthenticatedLayout = () => {
   )
 }
 
-export const LoginForm = ({ onAuthenticated }) => {
+function LoginForm({ onAuthenticated }) {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
@@ -143,3 +148,5 @@ export const LoginForm = ({ onAuthenticated }) => {
     </>
   )
 }
+
+ReactDOM.render(<App />, document.getElementById('root'))
