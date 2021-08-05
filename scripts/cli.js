@@ -14,6 +14,8 @@ const courseAppNames = {
   'core-v2': 'ProjectPlanner',
   electives: 'YesterTech',
   'composition-patterns': 'YesterTech',
+  'typescript-basics': 'YesterTech',
+  'typescript-react': 'YesterTech',
 }
 
 function getCourseAppPath(courseName) {

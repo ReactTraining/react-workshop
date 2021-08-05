@@ -100,6 +100,8 @@ Which Course?
 [4] core-v1
 [5] core-v2
 [6] electives
+[7] typescript-basics
+[8] typescript-react
 [0] CANCEL
 
 Choose one from list [1...5 / 0]: 4
