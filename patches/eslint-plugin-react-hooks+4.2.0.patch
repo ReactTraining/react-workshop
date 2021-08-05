@@ -1,0 +1,58 @@
+diff --git a/node_modules/eslint-plugin-react-hooks/cjs/eslint-plugin-react-hooks.development.js b/node_modules/eslint-plugin-react-hooks/cjs/eslint-plugin-react-hooks.development.js
+index 29fb123..2338d1e 100644
+--- a/node_modules/eslint-plugin-react-hooks/cjs/eslint-plugin-react-hooks.development.js
++++ b/node_modules/eslint-plugin-react-hooks/cjs/eslint-plugin-react-hooks.development.js
+@@ -1714,7 +1714,25 @@ var ExhaustiveDeps = {
+       var reactiveHook = node.callee;
+       var reactiveHookName = getNodeWithoutReactNamespace(reactiveHook).name;
+       var declaredDependenciesNode = node.arguments[callbackIndex + 1];
+-      var isEffect = /Effect($|[^a-z])/g.test(reactiveHookName); // Check the declared dependencies for this reactive hook. If there is no
++      var isEffect = /Effect($|[^a-z])/g.test(reactiveHookName);
++
++      // https://github.com/facebook/react/commit/e8eff119e036485b74b2acb6f57045390703f6fb#diff-e7b8b0cc43bf42cc2bd0fdb76d88af41a82879f4a27e76d8768574a82d678b29
++      // Check whether a callback is supplied. If there is no callback supplied
++      // then the hook will not work and React will throw a TypeError.
++      // So no need to check for dependency inclusion.
++      if (!callback) {
++        reportProblem({
++          node: reactiveHook,
++          message:
++            `React Hook ${reactiveHookName} requires an effect callback. ` +
++            `Did you forget to pass a callback to the hook?`,
++        });
++        return;
++      }
++
++
++
++      // Check the declared dependencies for this reactive hook. If there is no
+       // second argument then the reactive callback will re-run on every render.
+       // So no need to check for dependency inclusion.
+ 
+@@ -2261,6 +2279,12 @@ function analyzePropertyChain(node, optionalChains) {
+   } else if (node.type === 'ChainExpression' && !node.computed) {
+     var expression = node.expression;
+ 
++    // https://github.com/facebook/react/commit/eb58c3909aa19fb6ffbed27b9c9dba4aada3cb8e
++    // fixes https://github.com/facebook/react/issues/20204
++    if (expression.type === 'CallExpression') {
++      throw new Error(`Unsupported node type: ${expression.type}`);
++    }
++
+     var _object2 = analyzePropertyChain(expression.object, optionalChains);
+ 
+     var _property2 = analyzePropertyChain(expression.property, null);
+diff --git a/node_modules/eslint-plugin-react-hooks/index.js b/node_modules/eslint-plugin-react-hooks/index.js
+index 0e91baf..8edc90c 100644
+--- a/node_modules/eslint-plugin-react-hooks/index.js
++++ b/node_modules/eslint-plugin-react-hooks/index.js
+@@ -3,7 +3,8 @@
+ // TODO: this doesn't make sense for an ESLint rule.
+ // We need to fix our build process to not create bundles for "raw" packages like this.
+ if (process.env.NODE_ENV === 'production') {
+-  module.exports = require('./cjs/eslint-plugin-react-hooks.production.min.js');
++  // module.exports = require('./cjs/eslint-plugin-react-hooks.production.min.js');
++  module.exports = require('./cjs/eslint-plugin-react-hooks.development.js');
+ } else {
+   module.exports = require('./cjs/eslint-plugin-react-hooks.development.js');
+ }
