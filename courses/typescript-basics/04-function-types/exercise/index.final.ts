@@ -1,5 +1,4 @@
-// Converts a string to a slug (hyphen-lower-case)
-export function slugify(str) {
+export function slugify(str: string): string {
   return str
     .replace(/([a-z])([A-Z])/g, '$1-$2')
     .replace(/[\s_]+/g, '-')
@@ -7,24 +6,37 @@ export function slugify(str) {
     .toLowerCase()
 }
 
-// Converts all elements in array into a string separated by separator.
-export function join(array, separator = ',') {
+export function join(array: any[], separator = ','): string {
   return array.join(separator)
 }
 
 // Gets an array of an object's keys
-export function keys(object) {
-  return Object.keys(object)
+export function keys<Obj extends {}>(object: Obj): Array<keyof Obj> {
+  return Object.keys(object) as Array<keyof Obj>
 }
 
 // Reduces a function into a single value (think array.reduce)
-export function reduce(array, reducer, initialValue) {
+export function reduce<ReturnType, ArrayItem>(
+  array: ArrayItem[],
+  reducer: (
+    previousValue: ReturnType,
+    currentValue: ArrayItem,
+    index: number,
+    array: ArrayItem[]
+  ) => ReturnType,
+  initialValue: ReturnType
+) {
+  array.flat()
   return array.reduce(reducer, initialValue)
 }
 
 // Takes an array of values that might also be arrays, and flattens them 1 level
 // deep. Both depth and result are optional
-export function flatten(array, depth = 1, result = []) {
+export function flatten<ArrayType extends any[], Depth extends number = 1>(
+  array: ArrayType,
+  depth: Depth = 1 as Depth,
+  result: FlatArray<ArrayType, Depth>[] = []
+): FlatArray<ArrayType, Depth>[] {
   if (array == null || !Array.isArray(array)) {
     throw Error('Argument must be an array!')
   }
@@ -43,7 +55,7 @@ export function flatten(array, depth = 1, result = []) {
         result.push(...value)
       }
     } else {
-      result[result.length] = value
+      result[result.length] = value as any
     }
   }
   return result
@@ -53,7 +65,12 @@ export function flatten(array, depth = 1, result = []) {
 // first and try to parse the numeric value if the arguments are not numbers.
 // The user might also pass a single argument where the values to be added are
 // in an array.
-export function add(first, ...values) {
+export function add(values: Array<string | number>): number
+export function add(...values: Array<string | number>): number
+export function add(
+  first: Array<string | number> | string | number,
+  ...values: Array<string | number>
+): number {
   let allValues = Array.isArray(first) ? first : [first, ...values]
   return allValues.reduce<number>((total, value) => {
     let v = typeof value === 'string' ? parseFloat(value) : typeof value === 'number' ? value : null

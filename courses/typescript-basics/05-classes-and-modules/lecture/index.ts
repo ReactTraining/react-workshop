@@ -4,4 +4,4 @@ import 'YesterTech/styles/center-lesson.scss'
 
 // Let's go!
 const rootElem = document.getElementById('root')
-rootElem.innerHTML = '<h1>Hello, world!</h1>'
+rootElem!.innerHTML = '<h1>Hello, world!</h1>'
