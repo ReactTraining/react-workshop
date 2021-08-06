@@ -1,0 +1,72 @@
+@import 'YesterTech/styles/global-styles';
+@import 'YesterTech/styles/_theme';
+@import 'YesterTech/styles/center-lesson';
+
+// This is for more obvious as to what has focus
+$pink: #ff00c8;
+
+.button:focus {
+  box-shadow: inset 0 0 0 5px $pink;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid $blue;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: $pink;
+    outline: 2px solid $pink;
+  }
+}
+
+::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+#root {
+  width: 30em;
+  margin: 3em auto;
+}
+
+[data-tab] {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  background-color: #fff;
+  color: $blue;
+
+  &:focus {
+    box-shadow: inset 0 0 0 5px $pink;
+  }
+
+  &[data-selected] {
+    color: #fff;
+    background-color: $bright-blue;
+  }
+
+  &[disabled] {
+    background: linear-gradient(#eee, #fafafa);
+    box-shadow: inset 0 0 0 1px #ddd;
+    color: #777;
+    cursor: default;
+  }
+}
+
+[data-tab-panels] {
+  padding: 0.5em 0;
+}
+
+[data-tab-list] + [data-tab-panels] {
+  border-top: 2px solid $bright-blue;
+}
+
+[data-tab-panels] + [data-tab-list] {
+  border-top: 2px solid $bright-blue;
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.reset.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  }
+}
