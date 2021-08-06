@@ -33,7 +33,7 @@ export function updateCart(cart: CartProduct[]) {
   localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify(cart))
 }
 
-export function getCart() {
+export function getCart(): CartProduct[] | undefined {
   try {
     const cart = localStorage.getItem(LOCAL_STORAGE_KEY_CART)
     if (!cart) return
