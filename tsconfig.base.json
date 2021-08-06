@@ -4,11 +4,9 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "checkJs": false,
     "baseUrl": "./",
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": false,
     "importHelpers": true,
     "jsx": "react",
     "target": "ESNext",
