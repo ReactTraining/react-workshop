@@ -11,8 +11,8 @@ const Heading: React.FC<HeadingProps> = ({
 }) => <Component className={classnames('heading', `size-${size}`, className)} {...rest} />
 
 interface HeadingProps extends React.ComponentPropsWithoutRef<'h1'> {
-  as?: any
-  size?: number
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  size?: 1 | 2 | 3 | 4
 }
 
 export default Heading
