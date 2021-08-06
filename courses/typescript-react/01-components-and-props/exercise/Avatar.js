@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { VisuallyHidden } from '@reach/visually-hidden'
-import './Avatar.scss'
+import 'YesterTech/Avatar.scss'
 
 function Avatar({ className, alt = 'Avatar', children, style, src, size = 3, ...domProps }) {
   className = classnames('avatar', className)
