@@ -35,8 +35,8 @@ function SelectBase({
     onValueChange
   )
   let [isOpen, setIsOpen] = React.useState(false)
-  let listRef = React.useRef<HTMLDivElement>()
-  let buttonRef = React.useRef<HTMLButtonElement>()
+  let listRef = React.useRef<HTMLDivElement>(null)
+  let buttonRef = React.useRef<HTMLButtonElement>(null)
 
   if (!isControlled && value === undefined && options.length > 0) {
     setValue(options[0])
@@ -179,14 +179,14 @@ function slugify(string: string): string {
   return string.trim().toLowerCase().replace(/\s+/g, '-')
 }
 
-function composeClassNames(...classNames: string[]): string {
+function composeClassNames(...classNames: (string | null | undefined)[]): string {
   return classNames.filter(Boolean).join(' ')
 }
 
 function composeEventHandlers<
   EventType extends React.SyntheticEvent<any>,
   Handler extends React.EventHandler<EventType>
->(userEventHandler: Handler, internalEventHandler: Handler) {
+>(userEventHandler: Handler | undefined | null, internalEventHandler: Handler) {
   return function (event: EventType): void {
     userEventHandler?.(event)
     if (!event.defaultPrevented) {
@@ -274,7 +274,7 @@ function useControlledState<T>(
   }, [controlledStateChanged])
 
   let [internalValue, setInternalValue] = React.useState(defaultValue)
-  let value = isControlled ? externalValue! : internalValue
+  let value = isControlled ? externalValue! : internalValue!
 
   function setValue(newValue: T) {
     if (!isControlled) {

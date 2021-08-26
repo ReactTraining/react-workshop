@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <p>What is you favorite fruit?</p>
-      <Select>
+      <Select selectedOption={selectedOption} setSelectedOption={setSelectedOption}>
         <SelectOption value="Banana" />
         <SelectOption value="Kiwi" />
         <SelectOption value="Apple" />
@@ -19,8 +19,3 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-
-// This works OK but needs a lot more!
-// - Support for proper labels for assistive technology
-// - Proper keyboard event handling
-// - More nuanced mouse/pointer event handling

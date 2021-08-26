@@ -13,8 +13,8 @@ function SelectBase({
   ...domProps
 }: SelectBaseProps) {
   let [isOpen, setIsOpen] = React.useState(false)
-  let listRef = React.useRef<HTMLDivElement>()
-  let buttonRef = React.useRef<HTMLButtonElement>()
+  let listRef = React.useRef<HTMLDivElement>(null)
+  let buttonRef = React.useRef<HTMLButtonElement>(null)
 
   // Re-focus the select button when the menu closes, but since it's initially
   // closed we need to skip the initial render
@@ -143,14 +143,14 @@ function slugify(string: string): string {
   return string.trim().toLowerCase().replace(/\s+/g, '-')
 }
 
-function composeClassNames(...classNames: string[]): string {
+function composeClassNames(...classNames: (string | null | undefined)[]): string {
   return classNames.filter(Boolean).join(' ')
 }
 
 function composeEventHandlers<
   EventType extends React.SyntheticEvent<any>,
   Handler extends React.EventHandler<EventType>
->(userEventHandler: Handler, internalEventHandler: Handler) {
+>(userEventHandler: Handler | undefined | null, internalEventHandler: Handler) {
   return function (event: EventType): void {
     userEventHandler?.(event)
     if (!event.defaultPrevented) {
