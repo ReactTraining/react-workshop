@@ -101,8 +101,12 @@ const BrowseBoards: React.FC = () => {
   )
 }
 
+type ParamsType = {
+  boardId: string
+}
+
 const Board: React.FC = () => {
-  const { boardId } = useParams<{ boardId: string }>()
+  const { boardId } = useParams<ParamsType>()
 
   return (
     <Centered size={50}>

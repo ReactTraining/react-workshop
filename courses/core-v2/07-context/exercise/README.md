@@ -1,44 +1,59 @@
 # Context
 
-## ✅ Task 1: Custom Context Provider
+## ✅ Task 1: Implement Context Provider
 
-Context is already setup and working in `index.tsx`
+Start by opening `Board.js` and creating a context variable:
 
-1. Migrate the working context code from `index.tsx` into the `ThemeContext.tsx` file.
-
-There are basically three parts to context:
-
-- Creating the context object (outside of your components)
-- The Provider JSX where the `value` prop is the data being passed down through context
-- The Consumer using `useContext(/* Context Object Here*/)`
-
-2. In the list above, the first two things can be found in `index.tsx` file near the `App` component. Migrate those into `ThemeContext.tsx` first.
-3. For the third thing in that list, you'll want to open `TaskCard.tsx` where context is being consumed. You can see that `useContext` is being used and we're passing in the `ThemeContext` that used to exist in the `index.tsx` file. But now `ThemeContext` should be in the `ThemeContext.tsx` file.
-4. Instead of just importing `ThemeContext` from its new location, try to make a custom hook called `useTheme` in `ThemeContext.tsx`.
-5. `useTheme` will just return `useContext(ThemeContext)` so that way when `TaskCard` uses `useTheme()`, it will get the context returned. See the `.final` files if you need help on this one.
-6. In the `App` component, wrap the `PrimaryLayout` in your new `ThemeProvider` instead of the provider it had before. The end result here is that we're moving the context logic away from `App`. The `App` component will have:
-
-```tsx
-// All of the context stuff has been moved out of index and into
-// this ThemeProvider component. So the new App component in index
-// will be very simple looking compared to before and it's JSX will
-// be just this:
-<ThemeProvider>
-  <PrimaryLayout />
-</ThemeProvider>
+```js
+// Don't forget to `export` it like this
+export const BoardContext = React.createContext()
 ```
 
-Here's what's going on - `ThemeProvider` is just an ordinary component that you're passing `PrimaryLayout` into. But inside `ThemeProvider` you're going to take the `children` (which is `PrimaryLayout`) and provide context to the `children` like this:
+Remember, this variable is how we make the provider and the corresponding consumers which is why we must export it so the consumer(s) can use it.
 
-```tsx
-export const ThemeProvider: React.FC = ({ children }) => {
-  const colors = getTheme()
-  return <ThemeContext.Provider value={colors}>{children}</ThemeContext.Provider>
+There are three parts to context:
+
+- Creating the context variable (`BoardContext` in our case)
+  - Do this outside of the React components
+- The Provider where the `value` prop is the data being passed down through context
+- The Consumer using `useContext(BoardContext)`
+
+After you have the context variable, use it in the form of JSX to make a provider. Be sure to wrap the provider around anything that might consume context. This also happens in `Board.js`
+
+```js
+// You'll see the context variable is already made for you in Board.js
+<BoardContext.Provider value={context}>
+  <OtherStuffHere />
+</BoardContext.Provider>
+```
+
+## ✅ Task 2: Implement Context Consumer
+
+Now that we have the provider, any React tree descendants of that provider can consume this context. Open the `TaskCard.js` file to setup the consumer
+
+The whole point here is that the `TaskCard` component gets a `taskId` prop. Before we were using side effects to do a network request for the data of each card. But that would be an architectural problem if there were many cards and each was starting its own side effect for a network request. Since the `Board.js` component already has an array of all the tasks, we can pass down the tasks to all the components below it through context. But instead of passing the actual array down, let's pass down a `getTask` function.
+
+The good news is, we already did that if you setup Task 1 from above correctly. The `Board.js` file should be passing down context like this:
+
+```js
+const getTask = (taskId) => {
+  return tasks.find((task) => task.id === taskId)
 }
+
+const context = {
+  getTask,
+}
+
+<BoardContext.Provider value={context}>
+  <OtherStuffHere />
+</BoardContext.Provider>
 ```
 
-So, you're essentially creating a utility called `ThemeProvider` that can be used to provide context onto anything, and it doesn't add a bunch of code to `App` which we probably want to maintain as minimal.
+Now in the `Card.js` file, you can consume that function from context like this:
 
-## ✅ Task 2: Custom Hook for useTaskColor
+```js
+const { getTask } = useContext(BoardContext)
+const task = getTask(taskId)
+```
 
-If you finished the last task correctly, your context will still work and the left border of the `TaskCard` will change as the task's data changes. The `TaskDialog` and the `TaskCard` both need to have logic for figuring out their `--taskColor` CSS custom property. The `TaskDialog` has already moved it's code to a custom hook called `useTaskColor`. Implement the code for that hook by copying the code from `TaskCard`. Then in `TaskCard` use the hook instead of repeating this code.
+Pay attention to where `BoardContext` comes from, remember we have to import that context variable from `Board.js`
