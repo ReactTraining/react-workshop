@@ -23,7 +23,7 @@ export const Board = () => {
   }, [boardId])
 
   const getTask = (taskId) => {
-    return tasks.find((task) => task.id === taskId)
+    return tasks?.find((task) => task.id === taskId)
   }
 
   const context = {
