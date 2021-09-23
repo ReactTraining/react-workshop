@@ -49,11 +49,13 @@ const context = {
 </BoardContext.Provider>
 ```
 
-Now in the `Card.js` file, you can consume that function from context like this:
+Now in the `TaskCard.js` file, you can consume that function from context like this:
 
 ```js
 const { getTask } = useContext(BoardContext)
 const task = getTask(taskId)
 ```
+
+Note that we didn't program this exercise so that you can click on a Task Card to open the dialog.
 
 Pay attention to where `BoardContext` comes from, remember we have to import that context variable from `Board.js`
