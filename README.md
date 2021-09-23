@@ -176,7 +176,7 @@ If you've already cloned the repo but you need to get updated code, then follow 
 - Then run these steps to get the updates:
 
 ```sh
-git pull origin master
+git pull origin main
 npm install
 ```
 

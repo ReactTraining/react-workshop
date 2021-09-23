@@ -53,7 +53,7 @@ Main takeaways:
 
 ## 2. Indexes with `useDescendant()` and `useDescendants()` (optional)
 
-`useDescendants` is a way for a particular descendant (in our case `MenuItem`) to "register" itself with the top node of a Compound Component for the purposes of providing it's ref and index (order that it showed up). It's particularly useful since with Compound Components, children's indexes are unknown. See this page for a detailed explanation: https://github.com/reach/reach-ui/tree/master/packages/descendants
+`useDescendants` is a way for a particular descendant (in our case `MenuItem`) to "register" itself with the top node of a Compound Component for the purposes of providing it's ref and index (order that it showed up). It's particularly useful since with Compound Components, children's indexes are unknown. See this page for a detailed explanation: https://github.com/reach/reach-ui/tree/develop/packages/descendants
 
 ## 3. Keyboard Events
 

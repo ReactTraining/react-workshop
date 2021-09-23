@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createPortal } from 'react-dom'
 
 // Checkout the real Reach Portal
-// https://github.com/reach/reach-ui/blob/master/packages/portal/src/index.tsx
+// https://github.com/reach/reach-ui/blob/develop/packages/portal/src/index.tsx
 
 // This component will create a DOM element called <reach-portal /> and append
 // it to the DOM, then we will mount the `children` to that <reach-portal />.

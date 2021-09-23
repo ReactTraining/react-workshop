@@ -4,7 +4,7 @@ import { useRect } from '@reach/rect'
 import { useForkedRef } from '../../utils'
 
 // Checkout the real Reach Popover
-// https://github.com/reach/reach-ui/blob/master/packages/popover/src/index.tsx
+// https://github.com/reach/reach-ui/blob/develop/packages/popover/src/index.tsx
 
 // Why should popups be portalled? We're trying to get around the problems that
 // arise in CSS when you try to position a floating box next to a target (like
