@@ -1,56 +1,57 @@
 # Welcome to React Training!
 
-We have new workshop material for 2021 🎉. Be sure to checkout https://reacttraining.com/workshops to see our schedule of public workshops. We offer:
+Be sure to also checkout https://reacttraining.com/workshops to see our schedule of public workshops. We offer:
 
 - Monthly Public Workshops
 - Private/tailored Corporate Workshops
 
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
-Before attending the training, please make sure you install the code (not just clone) and run the app to make sure it works. The most common problems for not being able to install and run are related to network configurations at the workshop venue like proxies. If you're having these or other issues see the Troubleshooting section below.
-
 ## Table of Contents
 
-- [The "What do I need to do before attending React Training" Checklist](#the-what-do-i-need-to-do-before-attending-react-training-checklist)
-  - [Install Git, Node, and npm](#install-git-node-and-npm)
-  - [Install Workshop Code](#install-workshop-code)
-    - [Running the Course and Lesson Material](#running-the-course-and-lesson-material)
-    - [Prettier Plugin](#prettier-plugin)
-    - [Database](#database)
+- [How to get ready for the workshop](#how-to-get-ready-for-the-workshop)
+- [Setup For Mac and Linux Users (Unix Users)](#setup-for-mac-and-linux-users-unix-users)
+- [Setup For Windows Users](#setup-for-windows-users)
+- [Consider Using VSCode](#consider-using-vscode)
+- [Clone and Install](#clone-and-install)
+- [Running the code](#running-the-code)
+- [Running the code on Windows](#running-the-code-on-windows)
+- [Database](#database)
 - [Updating Workshop Code](#updating-workshop-code)
 - [Troubleshooting](#troubleshooting)
-  - [Windows Users](#windows-users)
+- [Improvements?](#improvements)
 - [License](#license)
 
-## The "What do I need to do before attending React Training" Checklist
+## How to get ready for the workshop
 
-- [ ] Bring a laptop (don't forget a long power cord).
-- [ ] Install this code (if you can't see the app in the browser after doing `npm run app`, then you don't quite have it installed yet).
-- [ ] Don't use spaces in the repo folder name if you do a custom folder. We've seen issues with Windows users when they do that. Also for Windows users, use WSL and read the [Windows Users](#windows-users) section below.
+- [ ] Make sure you have Git and Node installed first. **Windows Users** see the special section below on this.
+- [ ] Install this code (instructions below)
 - [ ] [Learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/).
 - [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
-- [ ] You can take notes in the workshop, but just keep in mind we already wrote some for you. Checkout the "student lesson notes" file(s) in the root of the repo
 - [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and proxies are so diverse and out of our control.
 
-### Install Git, Node, and npm
+## Setup For Mac and Linux Users (Unix Users)
 
-If you have any problems with these steps, make sure you see the [Troubleshooting](#troubleshooting) section below.
+If you have any problems with these steps, see the **Troubleshooting** section at the bottom of this page.
 
-**Need to install Git?** - http://git-scm.com/downloads
+- **Need to install Git?** - http://git-scm.com/downloads
+- **Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
 
-**Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) instead of installing from source. Installing from source works, but it's difficult to maintain your Node version later on (which is why `nvm` exists)
+Installing from source works, but it's difficult to maintain your Node version later on (which is why `nvm` exists).
 
-**Windows Users!** Please read the [Windows Users](#windows-users) section below for installing Node and WSL.
+Note that **NPM (Node Package Manager)** is a command-line tool that will also be installed with Node
 
-If you need to verify that you have NVM installed: `nvm --version`. Then install Node:
+If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I use? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# Installs latest LTS version of Node
-# See this page for more install options: https://github.com/nvm-sh/nvm#usage
-$ nvm install node
+# For Node 16 (for example)
+$ nvm install 16
+
+# See this page for more install options:
+# https://github.com/nvm-sh/nvm#usage
 ```
 
-Verify you have Git, Node, and npm installed. Installing Node will install npm.
+Verify you have Git, Node, and npm installed. Installing Node will install NPM:
 
 ```sh
 $ git --version
@@ -58,111 +59,130 @@ $ node --version
 $ npm --version
 ```
 
-You don't necessarily need the latest version of Node for this workshop.
+Now jump to **Clone and Install** below
 
-### Install Workshop Code
+<hr />
 
-Then **clone**, **install**, and **run** the app:
+## Setup For Windows Users
+
+If you have any problems with these steps, see the **Troubleshooting** section at the bottom of this page.
+
+- **Need to install Git?** - http://git-scm.com/downloads
+- **Need to install Node?** We recommend using a version manager for Node. The NVM (Node Version Manager) tool that lots of devs use is only for Mac and Linux, so there's a special [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows). Version. Microsoft also recommends this approach in this article. Be sure to follow all their steps:
+
+✅ https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows
+
+> Microsoft: "There are multiple ways to install Node.js. We recommend using a version manager as versions change very quickly. You will likely need to switch between multiple versions based on the needs of different projects you're working on"
+
+Installing from source works, but it's difficult to maintain your Node version later on (which is why version managers exist)
+
+Note that **NPM (Node Package Manager)** is a command-line tool that will also be installed with Node.
+
+If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I install? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# Clone the repo to your local machine (This just clones, it does not "install")
+# For Node 16 (for example)
+$ nvm install 16
+
+# IMPORTANT: You'll be also prompt to `nvm use`
+# the version number that you install. You may
+# need to be running your shell as admin in order
+# to do this.
+```
+
+Verify you have Git, Node, and npm installed. Installing Node will install NPM:
+
+```sh
+$ git --version
+$ node --version
+$ npm --version
+```
+
+## Consider Using VSCode
+
+Consider using [VSCode](https://code.visualstudio.com/download) -- a lightweight version of Visual Studio that isn't at all tied to .NET.
+
+If you're a Java/C# developer, we know you have you're editors for those languages, but you can expect a less optimal experience with poor tooling when you write JavaScript in those tools.
+
+## Clone and Install
+
+Installing is the same for **Mac, Linux, and Windows** users:
+
+```sh
+# Clone the repo to your local machine
 $ git clone https://github.com/ReactTraining/react-workshop.git
 
-# Whichever directory you run the above command from, that directory should
-# now have a folder called `react-workshop`.
+# Whichever directory you run the above command from, that
+# directory should now have a folder called `react-workshop`.
 
-# Change directory to the `react-workshop` folder:
+# Change directory to the project's root folder
 $ cd react-workshop
 
-# Install and run. Make sure you do these two commands from within the `react-workshop` folder:
+# From the project's root folder
 $ npm install
-
-# After this command, a menu will show some different app options. Choose #1 by typing `1`
-$ npm run app
-
-# If you have issues, read below.
 ```
 
-Everything is working if the code compiles and you can visit `http://localhost:3000/` in a browser.
+## Running the code
 
-If something goes wrong, you may need to see the [Troubleshooting](#troubleshooting) section below. We even have a special section for [Windows Users](#windows-users)
+🚨 **Windows users**, your way of running the code might be different. See the section for **Running the code on Windows** after this section.
 
-#### Running the Course and Lesson Material
+If you have any issues running the code, we have a general **Troubleshooting** section at the bottom of this page.
 
-While in the workshop, you will be asked to do `npm start` to see a menu for courses and then lessons. The first time you run this, you'll be asked which course, and if you want to save your preferences so you're not asked again.
+```sh
+# If you're in the root path of the repo
 
-```
-Which Course?
+# Run the full project
+$ npm start app
 
-[1] advanced-composition
-[2] advanced-hooks
-[3] composition-patterns
-[4] core-v1
-[5] core-v2
-[6] electives
-[7] typescript-basics
-[8] typescript-react
-[0] CANCEL
-
-Choose one from list [1...5 / 0]: 4
-
-Do you want us to remember this course selection? [y/n]: y
-```
-
-If you choose `y` to "remember" the selection, you won't get the "Which Course?" menu again the next time you do `npm start`.
-
-After a course is chosen:
-
-```
+# Run a lecture or exercise
 $ npm start
-
-Which Lesson of core-v2?
-
-[1] 01-thinking-in-react
-[2] 02-state
-[3] 03-forms
-[4] 04-data-fetching
-[5] 05-effects
-[6] 06-client-side-routing
-[7] 07-context
-[8] 08-authentication
-[9] 09-app-state
-[a] 10-testing
-[b] 11-react-query
-[c] context-with-theme
-[d] FULL APP
-[e] 👈 BACK TO COURSE SELECTION
-[0] CANCEL
-
-Choose one from list [1...9, a...e, 0]: 1
 ```
 
-After choosing a lesson, you'll be asked which material you want to run:
+In both of those commands you'll get a CLI menu asking what you want to do next. To make sure you can run the code, just do `npm start app` and choose any of the apps in the menu. Then go to `localhost:3000` in your browser.
 
+👍 If the app shows up in the browser, you're ready to go.
+
+Remember to [learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop. Many of our attendees say this article was essential for their preparedness for the workshop.
+
+See you soon.
+
+## Running the code on Windows
+
+You can do the above **Running the Code** section after you read these common issues on Windows.
+
+If the issue you have is not listed here, it might be listed in our general **Troubleshooting** section at the bottom of this page.
+
+- **Don't use spaces** for your repo folder name (if you change it from the default `react-workshop`), we've had some issues with Windows users regarding this.
+
+- **PowerShell Users**: We've tested this repo out with PowerShell and it seems to work fine. If something doesn't seem to work, see the **Troubleshooting** section below.
+
+- 🚨 **GitBash Users**: Doing `npm start` or `npm start app` seems to be broken if you open a normal GitBash terminal. However we noticed that if you're in VSCode and you open the terminal window from within VSCode `` Ctrl+` `` (it will probably be PowerShell by default). You can use the `+` plus sign on the right to make a new terminal that is GitBash and we've had success running the code from that GitBash window from within VSCode.
+
+- **WSL (Windows Subsystem for Linux)**
+
+We think we fixed some of our recent issues with PowerShell and GitBash, but historically we've recommended WSL because it always seems to work well but it takes a bit of effort to setup:
+
+- WSL 2 Installation: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+- Node on Windows: https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2
+
+When running the code, if the app launches and runs but you can't see your changes reflected in the browser -- there is a known issue in one of Webpack's dependencies when running on Node 14 on certain platforms that breaks the dev server. If you experience this, try updating the start script in `package.json` as follows:
+
+```diff
+  "scripts": {
+-    "start": "node scripts/start.js"
++    "start": "CHOKIDAR_USEPOLLING=true node scripts/start.js"
 ```
-Which lesson type of 01-thinking-in-react?
 
-[1] exercise
-[2] lecture
-[3] 👈 BACK TO LESSON SELECTION
-[0] CANCEL
-```
+If you're not using WSL and you experience issues, they might be:
 
-Shortcut!
+- Repos with spaces can fail to build.
+- Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 
-If you have a course preference already and you run `npm start 1` (or any valid lesson number), it will skip all the way to the end where you choose between exercise and lecture.
-
-#### Prettier Plugin
-
-(not required, but nice)
-
-You might notice as the instructors save their code that a tool called "Prettier" is automatically formatting things. If you use VSCode, here is the [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) you need to install. Clicking the install button on the website will open VSCode and install it as a plugin. However you install it, many code editors will just pick up on the settings we've setup for prettier in our `package.json` file.
-
-#### Database
+## Database
 
 When you start our code, it will start the app at port `3000` and a small local database at port `3333`. Don't worry about the database, it's not even a real database. It's a tool called `json-server` that treats a JSON file like a restful database and runs 100% within this repo so as soon as you quit the app and if you remove the repo, you've removed the database.
 
-When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/ProjectPlanner/database`.
+When you do `npm install` we run a `postinstall` script to copy a `db-seed.json` file to `db.json`. We're using Node for this in a way that is supposed to help with cross-platform filesystem stuff. But incase it fails, you'll just have to copy this file manually. The file is in `apps/[project name]/database`.
 
 There are some rare times when you quit the app the background process for port `3333` remains open and this will prevent you from starting the app again until the port is closed. So we made `npm run kill-db-port` as a command for you in case this happens. All this does is quit the processes associated with port 3333. If you have any problems you can do this manually.
 
@@ -196,11 +216,29 @@ $ git config --global url."https://".insteadOf git://
   insteadOf = git://
 ```
 
-- **You're having trouble installing Node.** We recommend using [nvm](https://github.com/creationix/nvm). nvm makes it really easy to use multiple versions of Node on the same machine painlessly. After you install nvm, install the latest stable version of Node with the following command:
+<hr />
 
-```sh
-$ nvm use default stable
+- **You're having trouble installing Node.** We recommend using a node version manager. See the sections above for setting these up -- it's different from Mac/Linux vs Windows.
+
+<hr />
+
+- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If you're on Windows, see the sections above for running the code as a Windows user.
+
+If you're missing the `db.json` file the app also won't run. See the **Database** section above for more details.
+
+<hr />
+
+- **You were able to run the code once but not again** and you're getting something like `JSON-SERVER was not able to start. Port 3333 might still be open from a previous run.`
+
+Sometimes the background process for the database doesn't shut down property. It's rare but you can do:
+
 ```
+$ npm run kill-db-port
+```
+
+If this script doesn't work for any reason, just kill port `3333` on your machine which is the database's port.
+
+<hr />
 
 - **You don't have permissions to install stuff.** You might see an error like `EACCES` during the `npm install` step. If that's the case, it probably means that at some point you did an `sudo npm install` and installed some stuff with root permissions. To fix this, you need to forcefully remove all files that npm caches on your machine and re-install without sudo.
 
@@ -217,50 +255,9 @@ $ sudo rm -rf /usr/local/lib/node_modules
 $ npm install
 ```
 
-- **You can't start the app with `npm start` or `npm start app`.** Make sure you can see a `node_modules` folder at the root. If you can't you need to run `npm install` from the root of the repo. If that's not the issue and you've ran the app before but now it's not running, try `npm run kill-db-port` (Mac/Linux). We run a small local database for our curriculum project on port `3333` and there's some circumstances where it doesn't get killed correctly when you exited the app last time.
+## Improvements?
 
-- **The app launches but there doesn't seem to be any data. The `/products` page just says "No Results"**. This just means that your `db.json` file is missing for whatever reason. Run `npm run create-db` and see if that fixes it. If you're on Windows, see the [Windows Users](#windows-users) section below.
-
-- **The app launches and runs, but I don't see my changes reflected in the browser.** There is a known issue in one of Webpack's dependencies when running on Node 14 on certain platforms that breaks the dev server. If you experience this, try updating the start script in `package.json` as follows:
-
-```diff
-  "scripts": {
--    "start": "node scripts/start.js"
-+    "start": "CHOKIDAR_USEPOLLING=true node scripts/start.js"
-```
-
-### Windows Users
-
-Don't use spaces in your repo folder name, we've had some issues with Windows users regarding this if you're not using WSL. **However, you should use the Windows Subsystem for Linux (WSL) instead of GitBash or PowerShell**. Just about all of our Windows issues come from non WSL users. Even Microsoft documentation recommends it for running Node projects:
-
-- WSL 2 Installation: https://docs.microsoft.com/en-us/windows/wsl/install-win10
-- Node on Windows: https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2
-
-From their docs:
-
-> "There are multiple ways to install Node.js. We recommend using a version manager as versions change very quickly. You will likely need to switch between multiple versions based on the needs of different projects you're working on"
-
-They will recommend you install `nvm` (Node Version Manager). We agree!
-
-<hr />
-
-Not using WSL can have a few problems that might arise in a Windows Environment:
-
-- Repos with spaces can fail to build.
-- Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
-- Error after install. Chances are the `npm install` went well but we also do a `postinstall` script to create the `database.json` file. See the [Database](#database) section above for details.
-- If you're able to successfully run the app once but it doesn't start on the subsequent runs, chances are the database port didn't shut down when you recently stopped the app. See the [Database](#database) section above for details.
-- If you do `npm run app` or `npm start` and you get weird errors instead of our menu system, we don't know what that is yet but the only reporters have been using GitBash instead of PowerShell.
-
-<hr />
-
-If you're a Windows user who already does active JS/Node development then you should be good-to-go. Otherwise this section might be able to help.
-
-Consider using [VSCode](https://code.visualstudio.com/download) (A lightweight version of Visual Studio) for our workshops as it is probably more appropriately suited for modern JavaScript development than Visual Studio, Eclipse, IntelliJ, etc. It has a terminal built-in which uses PowerShell by default, but you can configure it to use WSL which is what we recommend.
-
-If you want, you can go into Windows' settings to turn on file extensions. In JavaScript projects, it's common to have a filename like `.gitignore` which would be difficult to see without extensions turned on. It's not required though.
-
-If these instructions for Windows users can be improved, please let us know or make a PR!
+If these instructions can be improved, please let us know or make a PR!
 
 ## License
 

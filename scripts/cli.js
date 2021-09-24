@@ -152,14 +152,14 @@ function selectLesson() {
       console.log(`\nWhich lesson of ${selectedCourse}?`)
       const modifiedLessonOptions = lessonOptions.concat([
         'FULL APP',
-        '👈 BACK TO COURSE SELECTION',
+        '<-- BACK TO COURSE SELECTION',
       ])
       const choice = readlineSync.keyInSelect(modifiedLessonOptions)
       if (choice === -1) {
         process.exit(0)
       } else if (modifiedLessonOptions[choice] === 'FULL APP') {
         return { appPath: getCourseAppPath(selectedCourse) }
-      } else if (modifiedLessonOptions[choice] === '👈 BACK TO COURSE SELECTION') {
+      } else if (modifiedLessonOptions[choice] === '<-- BACK TO COURSE SELECTION') {
         preferences.course = null
         selectedCourse = null
         // Starts CLI menu over
@@ -188,11 +188,11 @@ function selectLesson() {
 
     console.clear()
     console.log(`\nWhich lesson type of ${selectedLesson}?`)
-    const modifiedLessonTypeOptions = lessonTypeOptions.concat(['👈 BACK TO LESSON SELECTION'])
+    const modifiedLessonTypeOptions = lessonTypeOptions.concat(['<-- BACK TO LESSON SELECTION'])
     const choice = readlineSync.keyInSelect(modifiedLessonTypeOptions)
     if (choice === -1) {
       process.exit(0)
-    } else if (modifiedLessonTypeOptions[choice] === '👈 BACK TO LESSON SELECTION') {
+    } else if (modifiedLessonTypeOptions[choice] === '<-- BACK TO LESSON SELECTION') {
       selectedLesson = null
       // Starts CLI menu over
       continue
@@ -225,8 +225,11 @@ function selectLesson() {
     const name = path.basename(file).replace(/\.(js|ts|tsx)$/, '')
 
     alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
+
     // WINDOWS HACK
-    // alias[path.join(aliasBasePath, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
+    // On windows machines, the paths will have double back-slashes which we want
+    // for the full file paths (the values of this object) but not the aliases (the keys)
+    alias[path.join(aliasBasePath, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
   })
 
   return {

@@ -52,7 +52,7 @@ server.listen(port, 'localhost', function (err) {
       },
     ]).catch((err) => {
       console.error(
-        'JSON-SERVER was not able to start. Its port 3333 might still be open from a previous run. Try running `npm run kill-db-port` to kill the port\n\n'
+        'JSON-SERVER was not able to start. Port 3333 might still be open from a previous run. Try running `npm run kill-db-port` to kill the port\n\n'
       )
       console.error(err)
       process.exit(1)
