@@ -37,8 +37,6 @@ If you have any problems with these steps, see the **Troubleshooting** section a
 - **Need to install Git?** - http://git-scm.com/downloads
 - **Need to install Node?** We recommend using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
 
-Installing from source works, but it's difficult to maintain your Node version later on (which is why `nvm` exists).
-
 Note that **NPM (Node Package Manager)** is a command-line tool that will also be installed with Node
 
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I use? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
@@ -68,13 +66,11 @@ Now jump to **Clone and Install** below
 If you have any problems with these steps, see the **Troubleshooting** section at the bottom of this page.
 
 - **Need to install Git?** - http://git-scm.com/downloads
-- **Need to install Node?** We recommend using a version manager for Node. The NVM (Node Version Manager) tool that lots of devs use is only for Mac and Linux, so there's a special [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows). Version. Microsoft also recommends this approach in this article. Be sure to follow all their steps:
+- **Need to install Node?** We recommend using a version manager for Node. The NVM (Node Version Manager) tool that lots of devs use is only for Mac and Linux, so there's a special [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) version. Microsoft also recommends this approach in this article. Be sure to follow all their steps:
 
-✅ https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows
+https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows
 
 > Microsoft: "There are multiple ways to install Node.js. We recommend using a version manager as versions change very quickly. You will likely need to switch between multiple versions based on the needs of different projects you're working on"
-
-Installing from source works, but it's difficult to maintain your Node version later on (which is why version managers exist)
 
 Note that **NPM (Node Package Manager)** is a command-line tool that will also be installed with Node.
 
@@ -85,9 +81,8 @@ If you need to verify that you have NVM installed, do: `nvm version`. Then insta
 $ nvm install 16
 
 # IMPORTANT: You'll be also prompt to `nvm use`
-# the version number that you install. You may
-# need to be running your shell as admin in order
-# to do this.
+# the version number that you installed. You may
+# need to run your shell as admin in order to do this.
 ```
 
 Verify you have Git, Node, and npm installed. Installing Node will install NPM:
@@ -138,9 +133,11 @@ $ npm start app
 $ npm start
 ```
 
-In both of those commands you'll get a CLI menu asking what you want to do next. To make sure you can run the code, just do `npm start app` and choose any of the apps in the menu. Then go to `localhost:3000` in your browser.
+In both of those commands you'll get a CLI menu asking what you want to do next. To make sure you can run the code, just do `npm start app` and choose any of the apps in the menu.
 
-👍 If the app shows up in the browser, you're ready to go.
+Go to `localhost:3000` in your browser. You have to do this manually.
+
+If the application renders up in the browser, you're ready to go. 👍
 
 Remember to [learn the JavaScript syntax that matters the most to React](https://reacttraining.com/blog/javascript-the-react-parts/) before attending the workshop. Many of our attendees say this article was essential for their preparedness for the workshop.
 
@@ -150,7 +147,7 @@ See you soon.
 
 You can do the above **Running the Code** section after you read these common issues on Windows.
 
-If the issue you have is not listed here, it might be listed in our general **Troubleshooting** section at the bottom of this page.
+Some issues are not Windows-specific so they will be listed in the general **Troubleshooting** section at the bottom of this page.
 
 - **Don't use spaces** for your repo folder name (if you change it from the default `react-workshop`), we've had some issues with Windows users regarding this.
 
