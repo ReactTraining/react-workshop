@@ -13,7 +13,7 @@ export const Board: React.FC = () => {
 
   useEffect(() => {
     api.boards.getBoard(boardId).then((data: any) => {
-      const { taskGroups, tasks, ...board } = data
+      const { taskGroups, ...board } = data
       setBoard(board)
       setTaskGroups(taskGroups)
     })

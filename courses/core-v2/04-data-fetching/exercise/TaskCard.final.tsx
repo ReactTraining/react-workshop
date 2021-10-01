@@ -16,6 +16,7 @@ export const TaskCard: React.FC<Props> = ({ taskId, onClick }) => {
       onClick={() => {
         onClick()
       }}
+      role="button"
       className="task-card"
     >
       <div className="task-card-content spacing-small">
