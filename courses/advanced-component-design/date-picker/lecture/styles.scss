@@ -1,0 +1,65 @@
+@import 'ProjectPlanner/styles/center-lesson';
+
+html {
+  // Just so everything is a little bigger
+  font-size: 20pt;
+}
+
+[data-datepicker] button {
+  all: unset;
+  text-align: center;
+  cursor: pointer;
+}
+
+[data-datepicker-calendar] {
+  font-size: 0.7em;
+}
+
+[data-datepicker-calendar-dayofweek] {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+[data-datepicker-calendar-boxes] {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+[data-datepicker-calendar-boxes] > button {
+  aspect-ratio: var(--datePickerCalendarBoxRatio, 16 / 9);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  text-align: center;
+}
+
+[data-datepicker-calendar-boxes] > button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+[data-datepicker-calendar-boxes]
+  > button:not([disabled]):not([data-selected]):not([data-between]):hover {
+  background-color: var(--datePickerCalendarBoxHover, rgba(0, 0, 0, 0.2));
+  --datePickerCalendarBoxToday: transparent;
+}
+
+[data-datepicker-calendar-boxes] > button[data-selected] {
+  background-color: var(--datePickerCalendarBoxSelected, #aaa);
+  border-radius: 0;
+  --datePickerCalendarBoxToday: transparent;
+}
+
+[data-datepicker-calendar-boxes] > button[data-between] {
+  background-color: var(--datePickerCalendarBoxBetween, #ddd);
+  border-radius: 0;
+  --datePickerCalendarBoxToday: transparent;
+}
+
+[data-datepicker-calendar-boxes] > button[data-today] {
+  border: 1px solid var(--datePickerCalendarBoxToday, rgba(0, 0, 0, 0.2));
+}
+
+[data-datepicker-calendar-boxes] > button:first-child {
+  grid-column: var(--datePickerCalendarBoxOffset, 0);
+}

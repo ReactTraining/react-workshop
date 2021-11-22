@@ -8,6 +8,7 @@ const readlineSync = require('readline-sync')
 
 // Which App does each curriculum get its files from:
 const courseAppNames = {
+  'advanced-component-design': 'ProjectPlanner',
   'advanced-composition': 'YesterTech',
   'advanced-hooks': 'YesterTech',
   'core-v1': 'YesterTech',
