@@ -35,7 +35,7 @@ This repo contains the latest course material for [React Training](https://react
 
 That's totally okay if you don't know JS very well as long as you know how to program in any other language you'll do fine in the workshop. However, JavaScript has changed a lot since 2015 and if you're not used to its modern syntax, you might struggle a bit with React and our material **so please read** [this primer article](https://reacttraining.com/blog/javascript-the-react-parts/) that will get you ready. People often tell us the primer article was the thing that made the workshop successful for them.
 
-This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers so just go in with the expectation that on average, our attendees usually have several years (sometimes decades) of programming experience so the pase is going to be more appropriate for them.
+This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers so just go in with the expectation that on average, our attendees usually have at least a year (sometimes decades) of programming experience so the pace is going to be more appropriate for them.
 
 Going into the workshop, we presume you know:
 
