@@ -32,7 +32,9 @@ This repo contains the latest course material for [React Training](https://react
 
 ❗️❗️❗️ Please Read ❗️❗️❗️
 
-This workshop assumes you know how to program. We do get some attending our workshops who don't anticipate how JavaScript-heavy the workshop is. You don't necessarily have to be good at JavaScript going into the workshop, that's why we have the "Learn the JavaScript syntax" article listed above. Please read it. We get TONS of feedback from those who read it that it's what made the workshop a success for them. We get TONS of questions in our workshops about basic JS things from those who didn't read the article. As long as you know how to program in any programming language, you'll be fine in the workshop -- even if you're not good at JavaScript, as long as you read that article.
+This workshop assumes you know how to program. We do get some attending our workshops who don't anticipate how JavaScript-heavy the workshop is. You don't necessarily have to be good at JavaScript going into the workshop, that's why we have the "Learn the JavaScript syntax" article listed above. Please read it. It's meant to teach those who are good programmers in other languages some of the newer syntax that we have in JavaScript is unique to JavaScript.
+
+We get TONS of feedback from those who read it that it's what made the workshop a success for them. We get TONS of questions in our workshops about basic JS things from those who didn't read the article. As long as you know how to program in any programming language, you'll be fine in the workshop -- even if you're not good at JavaScript, as long as you read that article.
 
 ## Setup For Mac and Linux Users (Unix Users)
 
