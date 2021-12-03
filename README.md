@@ -10,6 +10,7 @@ This repo contains the latest course material for [React Training](https://react
 ## Table of Contents
 
 - [How to get ready for the workshop](#how-to-get-ready-for-the-workshop)
+- [Not good at JavaScript? Not a programmer?](#not-good-at-JavaScrip-not-a-programmer)
 - [Setup For Mac and Linux Users (Unix Users)](#setup-for-mac-and-linux-users-unix-users)
 - [Setup For Windows Users](#setup-for-windows-users)
 - [Consider Using VSCode](#consider-using-vscode)
@@ -26,13 +27,13 @@ This repo contains the latest course material for [React Training](https://react
 
 - [ ] Make sure you have Git and Node installed first. **Windows Users** see the special section below on this.
 - [ ] Install this code (instructions below)
-- [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/).
+- [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). ** Required Reading**
 - [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
 - [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and proxies are so diverse and out of our control.
 
-## Not good at JavaScript?
+## Not good at JavaScript? Not a programmer?
 
-That's totally okay as long as you know how to program in any other language you'll do fine in the workshop. However, JavaScript has changed a lot since 2015 and if you're not used to its modern syntax, you might struggle a bit with React and our material **so please read** [this primer article](https://reacttraining.com/blog/javascript-the-react-parts/) that will get you ready. People often tell us the primer article was the thing that made the workshop successful for them.
+That's totally okay if you don't know JS very well as long as you know how to program in any other language you'll do fine in the workshop. However, JavaScript has changed a lot since 2015 and if you're not used to its modern syntax, you might struggle a bit with React and our material **so please read** [this primer article](https://reacttraining.com/blog/javascript-the-react-parts/) that will get you ready. People often tell us the primer article was the thing that made the workshop successful for them.
 
 This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers so just go in with the expectation that on average, our attendees usually have several years (sometimes decades) of programming experience so the pase is going to be more appropriate for them.
 
