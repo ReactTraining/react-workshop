@@ -28,8 +28,8 @@ This repo contains the latest course material for [React Training](https://react
 - [ ] Make sure you have Git and Node installed first. **Windows Users** see the special section below on this.
 - [ ] Install this code (instructions below)
 - [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). **Required Reading**
-- [ ] Highly recommend watching this 10m video - [Story of React](https://www.youtube.com/watch?v=Wm_xI7KntDs)
-- [ ] We have some [additional reading material](./reading) for those who are interested in getting a head start
+- [ ] We highly recommend watching this 10m video - [The Story of React](https://www.youtube.com/watch?v=Wm_xI7KntDs)
+- [ ] We have some [additional reading material](./reading) for those who are interested in learning more things before the workshop (not required though).
 - [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and proxies are so diverse and out of our control.
 
 ## Not good at JavaScript? Not a programmer?
