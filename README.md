@@ -30,7 +30,7 @@ This repo contains the latest course material for [React Training](https://react
 - [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). **Required Reading**
 - [ ] We highly recommend watching this 10m video - [The Story of React](https://www.youtube.com/watch?v=Wm_xI7KntDs)
 - [ ] We have some [additional reading material](./reading) for those who are interested in learning more things before the workshop (not required though).
-- [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues. We normally see at companies that use these things that someone on your team knows how to get around the problem. We can't really help out because the issues surrounding VPN's and proxies are so diverse and out of our control.
+- [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues that are out of our control. Most of the time we see that your peers will be able to help you out since this will be very specific to your company's security policies.
 
 ## Not good at JavaScript? Not a programmer?
 
