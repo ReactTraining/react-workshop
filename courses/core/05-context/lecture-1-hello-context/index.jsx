@@ -2,6 +2,11 @@ import React, { useState, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import './styles.scss'
 
+/**
+ * Context is a little weird in TypeScript so we'll teach it with
+ * vanilla JS first. https://reacttraining.com/blog/react-context-with-typescript/
+ */
+
 //////// App.tsx
 
 function App() {

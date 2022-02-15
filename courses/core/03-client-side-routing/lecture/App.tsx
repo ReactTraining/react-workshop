@@ -29,6 +29,7 @@ export function App() {
             <Route path=":courseSlug" element={<BrowseCourseLessons />} />
           </Route>
         </Route>
+        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </BrowserRouter>
   )
