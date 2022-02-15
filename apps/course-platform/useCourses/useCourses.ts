@@ -1,6 +1,6 @@
-import { usePromise } from '../hooks/usePromise'
-import { api } from '../utils/api'
-import type { CourseWithLessons } from '../utils/types'
+import { usePromise } from 'course-platform/usePromise'
+import { api } from 'course-platform/utils/api'
+import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function useCourses() {
   const p = api.courses.getAll
