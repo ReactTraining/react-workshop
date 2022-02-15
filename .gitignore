@@ -6,3 +6,6 @@ dist-ssr
 
 # database
 db.json
+
+# Curriculum
+preferences.json
