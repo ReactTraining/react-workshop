@@ -9,6 +9,7 @@ This repo contains the latest course material for [React Training](https://react
 
 ## Table of Contents
 
+- [Quick Start](#quick-start)
 - [How to get ready for the workshop](#how-to-get-ready-for-the-workshop)
 - [Not good at JavaScript? Not a programmer?](#not-good-at-javascript-not-a-programmer)
 - [Setup For Mac and Linux Users (Unix Users)](#setup-for-mac-and-linux-users-unix-users)
@@ -22,6 +23,16 @@ This repo contains the latest course material for [React Training](https://react
 - [Troubleshooting](#troubleshooting)
 - [Improvements?](#improvements)
 - [License](#license)
+
+## Quick Start
+
+```sh
+npm install
+npm start app
+# visit: localhost:3000
+```
+
+If the app loads, then everything works and you're ready.
 
 ## How to get ready for the workshop
 
