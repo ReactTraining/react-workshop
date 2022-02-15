@@ -1,5 +1,5 @@
 {
-  "name": "vite-example",
+  "name": "react-training-workshop",
   "version": "0.0.0",
   "scripts": {
     "start": "node scripts/start.js",
