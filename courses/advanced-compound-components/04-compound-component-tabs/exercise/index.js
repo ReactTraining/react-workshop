@@ -1,8 +1,7 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+// import { useState } from 'react'
+import ReactDOM from 'react-dom'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
 import { TaskOne, TaskTwo, TaskThree } from './Tasks'
-import Heading from 'YesterTech/Heading'
 import './styles.scss'
 
 function App() {
@@ -15,15 +14,15 @@ function App() {
       </TabList>
       <TabPanels>
         <TabPanel className="spacing">
-          <Heading size={3}>Primary Tasks</Heading>
+          <h3>Primary Tasks</h3>
           <TaskOne />
         </TabPanel>
         <TabPanel className="spacing">
-          <Heading size={3}>Bonus Tasks</Heading>
+          <h3>Bonus Tasks</h3>
           <TaskTwo />
         </TabPanel>
         <TabPanel className="spacing">
-          <Heading size={3}>Bonus Tasks</Heading>
+          <h3>Bonus Tasks</h3>
           <TaskThree />
         </TabPanel>
       </TabPanels>
@@ -31,4 +30,5 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

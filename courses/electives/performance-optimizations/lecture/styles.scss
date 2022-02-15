@@ -1,0 +1,20 @@
+@import 'course-platform/styles/all.scss';
+@import 'course-platform/styles/center-lesson.css';
+
+#root {
+  width: 25em;
+  min-height: 20em;
+}
+
+html {
+  font-size: 20pt;
+}
+
+hr {
+  border-color: #444;
+}
+
+.primary-nav-item.active {
+  color: var(--textColor);
+  font-weight: bold;
+}

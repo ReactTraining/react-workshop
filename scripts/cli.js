@@ -8,9 +8,10 @@ const readlineSync = require('readline-sync')
 
 // Which App does each curriculum get its files from:
 const courseAppNames = {
-  core: 'course-platform',
   'advanced-component-design': 'course-platform',
   'advanced-compound-components': 'course-platform',
+  core: 'course-platform',
+  electives: 'course-platform',
 }
 
 function getCourseAppPath(courseName) {
