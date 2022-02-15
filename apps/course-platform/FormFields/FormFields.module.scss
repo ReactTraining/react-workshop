@@ -1,0 +1,30 @@
+.fieldWrap {
+  > label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.3em;
+  }
+
+  &:global(.required) {
+    > label {
+      position: relative;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: -0.8em;
+        top: 0.65em;
+        color: var(--blue2);
+        font-size: 0.5em;
+      }
+    }
+  }
+}
+
+.fieldWrapError {
+  margin-top: 0.4em;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--pink);
+}

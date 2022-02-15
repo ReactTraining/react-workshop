@@ -1,0 +1,41 @@
+.text-blue {
+  color: var(--blue2);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-small {
+  font-size: 0.7em;
+}
+
+.text-large {
+  font-size: 1.3em;
+}
+
+.text-icon {
+  > * {
+    vertical-align: middle;
+  }
+  > span + svg {
+    margin-left: 0.3em;
+  }
+  > svg + span {
+    margin-left: 0.5em;
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

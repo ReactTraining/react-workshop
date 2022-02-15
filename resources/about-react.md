@@ -1,0 +1,5 @@
+- Version Numbers
+- One of the first JS frameworks to do something non-MVC
+- Components made from classes or functions, but functions preferred
+- Usually one component per file
+- The main idea in React is to sync state with the DOM. You "describe" what the DOM looks like based on different states. Then you change the state and React changes the DOM for you

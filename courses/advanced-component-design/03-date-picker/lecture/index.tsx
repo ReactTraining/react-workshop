@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ReactDOM from 'react-dom'
 import dayjs from 'dayjs'
 import { DatePicker, DatePickerCalendar } from './DatePicker.final'
-import 'ProjectPlanner/styles/global-styles.scss'
 import './styles.scss'
 
 function App() {
@@ -38,4 +37,5 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root')!)
+root.render(<App />)

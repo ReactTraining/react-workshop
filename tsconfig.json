@@ -1,9 +1,25 @@
 {
-  // For lessons, TypeScript will use tsconfig.dev.json which is auto generated
-  // on each launch of a lesson to adjust includes to be specific for the
-  // lesson. Both extend tsconfig.base.json, but we need the file that VS Code
-  // uses for intellisense to use the tsconfig.json filename so that files in
-  // the courses don't show a bunch of errors.
-  "extends": "./tsconfig.base.json",
-  "include": ["apps", "types", "__mocks__/@types", "courses"]
+  "compilerOptions": {
+    "strict": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "skipLibCheck": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    // Only needed for types with react 18 beta
+    "types": ["react/next", "react-dom/next", "jest"],
+    "baseUrl": "./",
+    "paths": {
+      "course-platform/*": ["apps/course-platform/*"]
+    }
+  }
 }

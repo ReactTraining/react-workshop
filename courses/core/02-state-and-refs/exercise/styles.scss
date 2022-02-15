@@ -1,0 +1,14 @@
+@import 'course-platform/styles/all.scss';
+@import 'course-platform/styles/center-lesson.css';
+
+body {
+  background-color: var(--blue4);
+}
+
+.field-wrap {
+  > label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+}

@@ -1,0 +1,17 @@
+.component {
+  flex: 1;
+  max-width: 900px;
+
+  :global {
+    .chat-board {
+      border-radius: 0.5em;
+      border: 1px solid var(--blue3);
+      padding: var(--gutter);
+      overflow: scroll;
+      height: 400px;
+    }
+    .chat-controls {
+      margin-top: var(--gutter);
+    }
+  }
+}

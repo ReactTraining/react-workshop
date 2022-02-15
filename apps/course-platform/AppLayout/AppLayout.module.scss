@@ -1,0 +1,63 @@
+.component {
+  min-height: 100vh;
+  background-color: var(--blue4);
+
+  :global {
+    .primary-header {
+      background-color: var(--blue1);
+      padding-right: var(--gutter);
+      > div:first-child {
+        padding: var(--gutter);
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .primary-sidebar {
+      width: 100px;
+      background-color: var(--blue3);
+
+      > nav > a {
+        display: block;
+        padding: 0.8em 0;
+        color: #fff;
+        text-decoration: none;
+
+        svg,
+        span {
+          display: block;
+          margin: 0 auto;
+          text-align: center;
+        }
+        span {
+          font-size: 0.7em;
+          text-transform: uppercase;
+          font-weight: bold;
+          margin-top: 0.5em;
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+        &.active {
+          background-color: var(--blue2);
+          color: #fff;
+          span {
+            color: inherit;
+          }
+        }
+      }
+    }
+
+    .primary-content {
+      padding: var(--gutter);
+
+      // Full height child
+      display: flex;
+      flex-direction: column;
+      > * {
+        flex: 1;
+      }
+    }
+  }
+}

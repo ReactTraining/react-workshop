@@ -1,0 +1,20 @@
+.component {
+  line-height: 1em;
+  margin: 0;
+  color: var(--headingColor);
+  font-family: var(--headingFontFamily);
+  font-weight: var(--headingFontWeight);
+
+  &:global(.size-1) {
+    font-size: 3em;
+  }
+  &:global(.size-2) {
+    font-size: 2em;
+  }
+  &:global(.size-3) {
+    font-size: 1.6em;
+  }
+  &:global(.size-4) {
+    font-size: 1.3em;
+  }
+}

@@ -1,0 +1,32 @@
+@import 'course-platform/styles/all.scss';
+@import 'course-platform/styles/center-lesson.css';
+
+body {
+  background-color: var(--blue4);
+}
+
+.course-listing {
+  background-color: var(--blue4);
+  padding: var(--gutter);
+}
+
+.heading {
+  line-height: 1em;
+  margin: 0;
+  color: var(--headingColor);
+  font-family: var(--headingFontFamily);
+  font-weight: var(--headingFontWeight);
+
+  &.size-1 {
+    font-size: 3em;
+  }
+  &.size-2 {
+    font-size: 2em;
+  }
+  &.size-3 {
+    font-size: 1.6em;
+  }
+  &.size-4 {
+    font-size: 1.3em;
+  }
+}

@@ -1,0 +1,50 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fontFamily), Arial;
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
+}
+
+input[type='checkbox'] {
+  accent-color: var(--blue2);
+  width: 1.5em;
+  height: 1.5em;
+}
+
+hr {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--lineColor);
+}
+
+a {
+  color: var(--linkColor);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+svg {
+  font-size: 1em;
+}
+
+img {
+  max-width: 100%;
+}

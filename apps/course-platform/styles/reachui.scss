@@ -1,0 +1,32 @@
+@forward '@reach/menu-button/styles';
+@forward '@reach/dialog/styles';
+
+/**
+ * Menu List
+ */
+
+[data-reach-menu-list] {
+  box-shadow: var(--shadow);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+[data-reach-menu-item][data-selected] {
+  background-color: var(--blue2);
+}
+
+a[data-reach-menu-item] {
+  text-decoration: none;
+}
+
+/**
+ * Dialog
+ */
+
+[data-reach-dialog-content] {
+  padding: 0 !important;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  min-width: 400px;
+  margin: 18vh auto;
+}

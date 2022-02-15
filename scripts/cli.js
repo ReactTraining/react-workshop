@@ -8,27 +8,23 @@ const readlineSync = require('readline-sync')
 
 // Which App does each curriculum get its files from:
 const courseAppNames = {
-  'advanced-component-design': 'ProjectPlanner',
-  'advanced-composition': 'YesterTech',
-  'advanced-hooks': 'YesterTech',
-  'core-v1': 'YesterTech',
-  'core-v2': 'ProjectPlanner',
-  electives: 'YesterTech',
-  'composition-patterns': 'YesterTech',
-  'typescript-basics': 'YesterTech',
-  'typescript-react': 'YesterTech',
+  core: 'course-platform',
+  'advanced-component-design': 'course-platform',
+  'advanced-compound-components': 'course-platform',
 }
 
 function getCourseAppPath(courseName) {
   return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
 }
 
-module.exports = function () {
+// export function cli(fullApp) {
+module.exports = function (fullApp) {
   console.clear()
 
   // Are we trying to choose an app or a lesson to load
-  const { appPath, alias, selectedCourse, selectedLessonType, selectedLesson } =
-    process.argv[2] === 'app' ? { appPath: getAppPath() } : selectLesson()
+  const { appPath, alias, selectedCourse, selectedLessonType, selectedLesson } = fullApp
+    ? { appPath: getAppPath() }
+    : selectLesson()
 
   return {
     appPath,
@@ -223,7 +219,7 @@ function selectLesson() {
   const alias = {}
   const aliasBasePath = `${courseAppNames[selectedCourse]}`
   fs.readdirSync(lessonPath).forEach((file) => {
-    const name = path.basename(file).replace(/\.(js|ts|tsx)$/, '')
+    const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
 
     alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
 
@@ -243,7 +239,7 @@ function selectLesson() {
 }
 
 /****************************************
-  Get appPath
+  appPath
 *****************************************/
 
 function getAppPath() {

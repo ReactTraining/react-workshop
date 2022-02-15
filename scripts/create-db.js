@@ -14,18 +14,10 @@ for (const appPath of getDirectories(APPS_ROOT_PATH)) {
   } catch (err) {}
 }
 
-/**
- * @param {string} pathname
- * @returns {boolean}
- */
 function isDirectory(pathname) {
   return fs.lstatSync(pathname).isDirectory()
 }
 
-/**
- * @param {string} pathname
- * @returns {string[]}
- */
 function getDirectories(pathname) {
   return fs
     .readdirSync(pathname)

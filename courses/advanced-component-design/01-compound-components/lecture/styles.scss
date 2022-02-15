@@ -1,5 +1,5 @@
-@import 'YesterTech/styles/_theme.scss';
-@import 'YesterTech/styles/center-lesson';
+@import 'course-platform/styles/all.scss';
+@import 'course-platform/styles/center-lesson.css';
 
 #root {
   width: 30em;
@@ -7,24 +7,24 @@
 }
 
 .tab {
-  font-size: 0.7rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-block;
-  padding: 0.5rem 0.8rem;
+  padding: 0.7rem 1rem;
   cursor: pointer;
   background-color: #fff;
-  color: $blue;
+  color: var(--blue2);
 
   &[data-selected] {
     color: #fff;
-    background-color: $bright-blue;
+    background-color: var(--blue1);
   }
 
   &[disabled] {
     background: linear-gradient(#eee, #fafafa);
     box-shadow: inset 0 0 0 1px #ddd;
-    color: #777;
+    color: var(--blue3);
     cursor: default;
   }
 }
@@ -34,9 +34,9 @@
 }
 
 .tab-list + .tab-panels {
-  border-top: 2px solid $bright-blue;
+  border-top: 2px solid var(--blue2);
 }
 
 .tab-panels + .tab-list {
-  border-top: 2px solid $bright-blue;
+  border-top: 2px solid var(--blue2);
 }

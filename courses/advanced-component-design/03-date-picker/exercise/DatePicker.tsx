@@ -73,7 +73,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     setBaseMonth,
   }
 
-  return <Context.Provider value={context}>{children}</Context.Provider>
+  return <Context.Provider value={context}>{children}<.Provider>
 }
 
 /****************************************
