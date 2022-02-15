@@ -1,6 +1,6 @@
 # Reading Material for pre and post-workshop
 
-React Cheat Sheet - https://devhints.io/react
+React Cheat Sheet - https://devhints.io/react#hooks-new
 TypeScript Cheet Sheet - https://github.com/typescript-cheatsheets/react
 
 ## Newer to JavaScript or Front-End Concepts?
