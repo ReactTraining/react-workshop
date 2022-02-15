@@ -51,4 +51,5 @@ Remember these problems we've had the whole time? Let's fix them:
 ❌ Can't abstract compound component elements into other components
 */
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

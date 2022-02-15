@@ -10,6 +10,7 @@ const readlineSync = require('readline-sync')
 const courseAppNames = {
   'advanced-component-design': 'course-platform',
   'advanced-compound-components': 'course-platform',
+  'advanced-hooks': 'course-platform',
   core: 'course-platform',
   electives: 'course-platform',
 }

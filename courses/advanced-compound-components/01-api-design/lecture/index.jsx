@@ -28,4 +28,5 @@ function App() {
    - data-state: 'open' or 'collapsed' to button and panel (for CSS)
 */
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

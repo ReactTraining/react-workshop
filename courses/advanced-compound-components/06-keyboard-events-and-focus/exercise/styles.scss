@@ -12,7 +12,7 @@ input {
   display: block;
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid $blue;
+  border: 1px solid var(--blue1);
   font-size: 1rem;
 
   &:focus {
@@ -39,7 +39,7 @@ input {
   padding: 0.5rem 0.8rem;
   cursor: pointer;
   background-color: #fff;
-  color: $blue;
+  color: var(--blue1);
 
   &:focus {
     box-shadow: inset 0 0 0 5px $pink;
@@ -47,7 +47,7 @@ input {
 
   &[data-selected] {
     color: #fff;
-    background-color: $bright-blue;
+    background-color: var(--blue2);
   }
 
   &[disabled] {
@@ -63,9 +63,9 @@ input {
 }
 
 [data-tab-list] + [data-tab-panels] {
-  border-top: 2px solid $bright-blue;
+  border-top: 2px solid var(--blue2);
 }
 
 [data-tab-panels] + [data-tab-list] {
-  border-top: 2px solid $bright-blue;
+  border-top: 2px solid var(--blue2);
 }

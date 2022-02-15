@@ -1,0 +1,33 @@
+@import 'course-platform/styles/all.scss';
+@import 'course-platform/styles/center-lesson.css';
+
+html {
+  font-size: 20pt;
+}
+
+hr {
+  border-color: #444;
+}
+
+@mixin lesson-label {
+  position: fixed;
+  font-size: 0.5rem;
+  top: 1em;
+  left: 1em;
+  color: #aaa;
+}
+
+.closure-basics::before {
+  @include lesson-label;
+  content: 'Lesson: Closure Basics';
+}
+
+.stopwatch::before {
+  @include lesson-label;
+  content: 'Lesson: Stopwatch';
+}
+
+.phony-hooks::before {
+  @include lesson-label;
+  content: 'Lesson: Phony Hooks';
+}

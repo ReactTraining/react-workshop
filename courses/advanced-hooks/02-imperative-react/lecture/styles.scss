@@ -1,0 +1,23 @@
+@import 'course-platform/styles/all.scss';
+
+html {
+  font-size: 20pt;
+}
+
+body {
+  padding: 4rem 2rem;
+}
+
+button {
+  color: var(--blue2);
+}
+
+// Just incase the instructor wants to do a refactor
+.popover,
+[data-popover] {
+  background-color: #000;
+  color: #fff;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.6rem;
+  border-radius: 0.3rem;
+}

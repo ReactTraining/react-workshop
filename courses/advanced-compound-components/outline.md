@@ -2,7 +2,7 @@
 
 ## Overview
 
-The advanced curriculum is approxamently one day's worth of material and teaches:
+The advanced curriculum is approximately one day's worth of material and teaches:
 
 - Better, more composable API's (Compound Components)
 - Advanced scenarios with context

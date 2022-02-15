@@ -26,7 +26,7 @@ html {
 }
 
 [data-menu-item][data-selected] {
-  background-color: $bright-blue;
+  background-color: var(--blue2);
   color: #fff;
   outline: none;
 }

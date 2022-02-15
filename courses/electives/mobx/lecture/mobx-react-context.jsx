@@ -92,4 +92,5 @@ function Report() {
 // can wrap `Report` and be used incase the `store.count` were used
 // in the body of `Report` before the JSX
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

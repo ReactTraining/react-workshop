@@ -1,5 +1,4 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import store from './store'
 import PrimaryLayout from './PrimaryLayout'
@@ -12,4 +11,5 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
