@@ -5,7 +5,7 @@ import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
-// import { useAllCourses } from 'course-platform/useAllCourses'
+// import { useCourses } from './courseData'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {

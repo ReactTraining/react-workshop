@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Icon } from 'course-platform/Icon'
-// import { useCourses } from './useCourses'
+// import { useCourses } from './courseData'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 type Props = {

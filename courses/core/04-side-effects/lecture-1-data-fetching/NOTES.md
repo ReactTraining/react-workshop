@@ -8,8 +8,6 @@ Start in `BrowseCourseLessons` with a basic data-fetching effect. Teach these co
 - Cleanup Function
 - Using `useCallback`
 
-In `BrowseCourses` we fetch all courses the same as `PreviousNextCourse`. These effects can be turned into a custom hook at `useAllCourses`
-
 ### Event-based Side Effects
 
 In `BrowseCourses` there's a working `removeCourse` function that can be used to start conversations about:

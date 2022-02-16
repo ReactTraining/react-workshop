@@ -4,13 +4,12 @@ import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
-import { useCourses } from './useCourses'
+import { useCourses } from './courseData'
 
 export function BrowseCourses() {
   const [courses, setCourses] = useCourses()
   const isLoading = courses === null
 
-  // Write a useEffect to get all courses
   function removeCourse(courseId: number) {
     if (!courses) return
     api.courses.removeCourse(courseId).then(() => {
