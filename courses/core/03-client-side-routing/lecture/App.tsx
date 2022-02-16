@@ -56,7 +56,3 @@ export function App() {
 //     </AppLayout>
 //   )
 // }
-
-// function StubPage({ name }: any) {
-//   return <div>Stub Page {name}</div>
-// }
