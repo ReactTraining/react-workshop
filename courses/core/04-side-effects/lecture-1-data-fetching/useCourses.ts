@@ -3,7 +3,7 @@ import { api } from 'course-platform/utils/api'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function useCourses() {
-  // Custom Hook
+  return []
 }
 
 // export function useCourses() {
