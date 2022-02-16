@@ -14,6 +14,7 @@ export function BrowseCourses() {
 
   // Write a useEffect to get all courses
   // HINT: The `PreviousNextCourse.tsx` component has the same one you'll write here
+
   // api.courses.getAll().then((courses) => {
   // })
 
