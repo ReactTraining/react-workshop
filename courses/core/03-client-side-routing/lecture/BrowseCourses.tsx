@@ -4,11 +4,11 @@ import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 
 export function BrowseCourses() {
-  const [courses, setCourses] = useState([
+  const courses = [
     { id: 1, name: 'React', slug: 'react', lessons: 3 },
     { id: 2, name: 'JavaScript', slug: 'javascript', lessons: 2 },
     { id: 3, name: 'CSS', slug: 'css', lessons: 4 },
-  ])
+  ]
 
   return (
     <div className="card spacing">
