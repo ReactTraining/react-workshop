@@ -29,7 +29,9 @@ export function AddCourseForm() {
         <Formik
           onSubmit={(values) => {
             return api.courses.create(values.name, values.slug).then(() => {
-              fetchCourses()
+              // In some lessons there is no fetchCourses because there is
+              // no context
+              fetchCourses && fetchCourses()
               navigate('../')
             })
           }}
