@@ -4,7 +4,7 @@ import { Icon } from 'course-platform/Icon'
 import { AddCourse } from './AddCourse.final'
 
 export function BrowseCourses() {
-  const [lessons, setLessons] = useState(0)
+  const [minLessons, setMinLessons] = useState(0)
   const [courses, setCourses] = useState([
     { id: 1, name: 'React', lessons: 3 },
     { id: 2, name: 'JavaScript', lessons: 2 },
@@ -24,13 +24,13 @@ export function BrowseCourses() {
       <div className="flex-split">
         <Heading size={1}>Courses</Heading>
         <div className="text-center spacing">
-          <div className="text-small">At least {lessons} lessons</div>
-          <Counter count={lessons} setCount={setLessons} />
+          <div className="text-small">At least {minLessons} lessons</div>
+          <Counter count={minLessons} setCount={setMinLessons} />
         </div>
       </div>
       <div className="spacing">
         {courses
-          .filter((course) => course.lessons >= lessons)
+          .filter((course) => course.lessons >= minLessons)
           .map((course) => {
             return <CourseListing key={course.id} name={course.name} lessons={course.lessons} />
           })}
@@ -68,7 +68,6 @@ function Counter({ count, setCount, min = 0 }: CounterProps) {
         </button>
       </div>
       <input
-        className="form-field w-15 text-center"
         type="text"
         value={count}
         onChange={(event) => setCount(parseInt(event.target.value))}

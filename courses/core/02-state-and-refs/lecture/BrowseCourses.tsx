@@ -4,13 +4,13 @@ import { Icon } from 'course-platform/Icon'
 // import { AddCourse } from './AddCourse'
 
 export function BrowseCourses() {
+  const minLessons = 0
+
   const courses = [
     { id: 1, name: 'React', lessons: 5 },
     { id: 2, name: 'JavaScript', lessons: 4 },
     { id: 3, name: 'CSS', lessons: 3 },
   ]
-
-  const lessons = 0
 
   return (
     <div className="card spacing">
@@ -18,15 +18,15 @@ export function BrowseCourses() {
       <hr />
       <div className="flex-split">
         <Heading size={1}>Courses</Heading>
-        <div className="text-center spacing">
-          <div className="text-small">At least {lessons} lessons</div>
+        <div className="counter text-center spacing">
+          <div className="text-small">At least {minLessons} lessons</div>
           <div className="inline-flex flex-gap">
             <div>
               <button className="button button-small">
                 <Icon name="minus" />
               </button>
             </div>
-            <div className="text-large w-15">{lessons}</div>
+            <div className="input">{minLessons}</div>
             <div>
               <button className="button button-small">
                 <Icon name="plus" />
