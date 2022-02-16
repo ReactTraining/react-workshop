@@ -3,11 +3,8 @@ import { Icon } from 'course-platform/Icon'
 import { SearchCourses } from 'course-platform/SearchCourses'
 import styles from './AppSubLayouts.module.scss'
 
-/****************************************
-  Utility For Sub Layouts
-*****************************************/
-
 type AppSubLayoutProps = {
+  // Right Header Slot
   rightHeader?: any
 }
 
@@ -25,15 +22,6 @@ const AppSubLayout: React.FC<AppSubLayoutProps> = ({ children, rightHeader }) =>
   )
 }
 
-/****************************************
-  CoursesSubLayout
-*****************************************/
-
-// const coursesNav: SubLayoutNavType[] = [
-//   { icon: 'home', label: 'All Courses', to: '' },
-//   { icon: 'createCourse', label: 'Add Course', to: 'add' },
-// ]
-
 export function CoursesSubLayout() {
   return (
     <AppSubLayout rightHeader={<SearchCourses />}>
@@ -49,12 +37,6 @@ export function CoursesSubLayout() {
   )
 }
 
-/****************************************
-  StudentsSubLayout
-*****************************************/
-
-// const studentsNav: SubLayoutNavType[] = [{ icon: 'student', label: 'All Students', to: '' }]
-
 export function StudentsSubLayout() {
   return (
     <AppSubLayout>
@@ -65,12 +47,6 @@ export function StudentsSubLayout() {
     </AppSubLayout>
   )
 }
-
-/****************************************
-  ChatSubLayout
-*****************************************/
-
-// const chatNav: SubLayoutNavType[] = [{ icon: 'chat', label: 'All Chat Messages', to: '' }]
 
 export function ChatSubLayout() {
   return (

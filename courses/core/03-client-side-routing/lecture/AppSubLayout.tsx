@@ -2,7 +2,7 @@ import { Outlet, NavLink } from 'react-router-dom'
 import { Icon } from 'course-platform/Icon'
 import styles from '../../../../apps/course-platform/AppSubLayouts/AppSubLayouts.module.scss'
 
-export function AppSubLayout() {
+export function CoursesSubLayout() {
   return (
     <div className={styles.component}>
       <header className="flex-split">

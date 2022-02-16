@@ -8,7 +8,7 @@ import './styles.scss'
 // Layouts
 import { WebsiteLayout } from 'course-platform/WebsiteLayout'
 import { AppLayout } from 'course-platform/AppLayout'
-// import { AppSubLayout } from 'course-platform/AppSubLayout'
+// import { CoursesSubLayout } from 'course-platform/AppSubLayout'
 
 // Pages
 import { HomePage } from 'course-platform/HomePage'
