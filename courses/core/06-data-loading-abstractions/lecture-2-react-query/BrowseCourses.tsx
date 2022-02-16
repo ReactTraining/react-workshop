@@ -1,39 +1,59 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
-import { useCoursesContext } from './CoursesContext'
+import { useCourses, useRemoveCourse } from './useCourses'
+import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
-  // // Course Data
+  // // Course Data From Context
   // const { getCourses, isLoading, fetchCourses } = useCoursesContext()
   // const courses = getCourses()
 
-  // Course Data
-  const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
-  const isLoading = courses === null
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+  } = useQuery('courses', () => api.courses.getAll(), {
+    staleTime: 1000 * 30,
+  })
 
-  useEffect(() => {
-    let isCurrent = true
-    api.courses.getAll().then((courses) => {
-      if (!isCurrent) return
-      setCourses(courses)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+  // Course Data From React Query
+  // const { courses, isLoading, refetch } = useCourses()
 
+  // ✅ Remove course via API
+  // ✅ Renew cache by refetching
+  // ❌ Requires two serial network requests
+  // ❌ over-fetches (why do we need to get all courses again)
   function removeCourse(courseId: number) {
     if (!courses) return
     api.courses.removeCourse(courseId).then(() => {
-      // fetchCourses()
+      refetch()
     })
   }
+
+  // // ✅ Remove course via API
+  // // ✅ Renew cache by selectively updating the array in the cache
+  // // ❌ Tedious - Removing an item from an array should be abstracted
+  // // ❌ Not Reusable - Should be a hook
+  // // ❌ If we make our own hook, the rest of the app will not know we're mutating
+  // function removeCourse(courseId: number) {
+  //   if (!courses) return
+  //   api.courses.removeCourse(courseId).then(() => {
+  //     queryClient.setQueryData<CourseWithLessons[]>('courses', (courses) => {
+  //       if (!courses) return []
+  //       // They give us the old cache, we give them a new array.
+  //       const i = courses.findIndex((c) => c.id === courseId)
+  //       return [...courses.slice(0, i), ...courses.slice(i + 1)]
+  //     })
+  //   })
+  // }
+
+  // Use React Query Mutations Instead
 
   return (
     <div className="card spacing">
@@ -56,7 +76,8 @@ export function BrowseCourses() {
               return (
                 <Row key={course.id}>
                   <Col flex>
-                    <Link to={course.slug} className="text-large">
+                    {/* We don't explore the rest of the app */}
+                    <Link to="." className="text-large">
                       <b>{course.name}</b>
                     </Link>
                   </Col>

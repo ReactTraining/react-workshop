@@ -1,39 +1,13 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
-import { useCoursesContext } from './CoursesContext'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { useCourses, useRemoveCourse } from './useCourses'
 
 export function BrowseCourses() {
-  // // Course Data
-  // const { getCourses, isLoading, fetchCourses } = useCoursesContext()
-  // const courses = getCourses()
-
-  // Course Data
-  const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
-  const isLoading = courses === null
-
-  useEffect(() => {
-    let isCurrent = true
-    api.courses.getAll().then((courses) => {
-      if (!isCurrent) return
-      setCourses(courses)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
-
-  function removeCourse(courseId: number) {
-    if (!courses) return
-    api.courses.removeCourse(courseId).then(() => {
-      // fetchCourses()
-    })
-  }
+  const { courses, isLoading } = useCourses()
+  const removeCourse = useRemoveCourse()
 
   return (
     <div className="card spacing">
@@ -56,7 +30,8 @@ export function BrowseCourses() {
               return (
                 <Row key={course.id}>
                   <Col flex>
-                    <Link to={course.slug} className="text-large">
+                    {/* We don't explore the rest of the app */}
+                    <Link to="." className="text-large">
                       <b>{course.name}</b>
                     </Link>
                   </Col>

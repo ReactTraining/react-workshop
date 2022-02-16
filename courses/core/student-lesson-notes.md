@@ -148,3 +148,93 @@ useEffect(() => {
 - `useContext` docs: https://reactjs.org/docs/hooks-reference.html#usecontext
 
 ---
+
+## Lesson 6: Data Loading Abstractions
+
+- Many teams make a general abstraction for useEffect and data loading. The one made in the workshop is called usePromise because it's so generic it can actually be used for any promise-based side-effect.
+- From that, you can make many custom hooks like:
+
+```js
+function useUsers() {
+  const p = api.users.getUsers // The promise
+  const { results, ...rest } = usePromise(p)
+  return { results, ...rest }
+}
+```
+
+- You can even do some cache-like strategies and fetch from within Context Providers and provide data through context as needed.
+
+### React Query
+
+React Query is a professional cache-based data fetching abstraction so you don't have to make your own. It's also very well known and battle-tested. This could be our `useCourses` instead:
+
+```js
+function useUsers() {
+  const { data, ...rest } = useQuery('users', () => api.users.getUsers(), {
+    staleTime: 1000 * 30,
+  })
+  return { data, ...rest }
+}
+```
+
+- Notice both instances of useCourses are abstracting `api.users.getUsers`
+- You can fetch data with React Query, or if you want to update your server's data you can keep your cache in sync by doing "mutations" on the cache or invalidate it.
+- After reading some docs, here's a nice guide to learn a lot more about React Query: https://tkdodo.eu/blog/practical-react-query. The creator of React Query read it and said it was "Fantastic!!!"
+
+---
+
+## Performance Optimizations
+
+Keep in mind that the term "stable" in React means that the identity of a variable will not change between re-renders.
+
+```ts
+// useMemo calls the fn in the render phase (synchronously) and "memoizes"
+// the return value as x in this example based on the input of the dep array.
+// This is mostly used for:
+// 1. stabilizing values in render phases
+// 2. preventing slow pure functions from being called over and over in render phases
+const x = useMemo(fn, [])
+
+// useCallback never calls the fn passed in. Instead it "memoizes" the function itself
+// by stabilizing it and returning it. This is mostly used for:
+// 1. stabilizing functions that will end up in other dependency arrays
+// 2. stabilizing functions that will be passed as pros to memoized components
+const fn = useCallback(fn, [])
+
+// The memo() HoC function enhances the component so that it itself is memoized and
+// will not re-render unless its props change. Remember that functions being passed
+// as props may not be stable by default and may need to be wrapped in useCallback
+// at the owner level
+const MyComponent = React.memo((props) => {
+  // ...
+})
+
+// useTransition is an opt-in "concurrent-mode" feature of React that allows us to
+// designate some state setting as being interruptible. In other words, if frequent
+// re-rendering is happening, React can prioritize other state setting
+const { startTransition } = useTransition()
+setStateA() // High Priority
+startTransition(() => {
+  setStateB() // Low Priority (Can be interrupted)
+})
+
+// This one has little to do with performance, but is used in the lesson. This will
+// create a unique id that hydrates correctly if doing SSR->CSR and is mostly used for
+// cases where you need an HTML id to be unique (probably for a11y)
+const id = useId()
+```
+
+---
+
+## Group Chat
+
+This is an exercise only and has no new material.
+
+---
+
+## Testing
+
+- Be sure to see the GUIDE.md in the testing folder for information on setting up unit testing
+- The main principal of React unit testing is - Test the component the way the user uses it, not the implementation details of the component.
+- In other words, `render(<Comp />)` render the component in the test and issue events onto the component similarly to how the user clicks, submits forms, or uses keyboard events on the component. Then observe the fake DOM in the unit test to see if the component renders what you'd expect. The "fake DOM" is orchestrated through Jest and JSDOM.
+- Mock out (with Jest) the React-tree architecture above your component (Context, Redux, etc) or environmental things like the URL, and mock out sub (child) components. This allows you to test your component in isolation.

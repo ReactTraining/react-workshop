@@ -1,6 +1,6 @@
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
-const COURSES = 10000
+const COURSES = 1000
 
 let lessonId = 0
 function makeLesson(courseSlug: string) {

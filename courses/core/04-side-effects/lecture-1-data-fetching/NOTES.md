@@ -62,7 +62,7 @@ export function usePromise<T>(promise: any, defaultRun: boolean = true) {
 
 Keeping state in sync with the database can be tricky -- like when we add a lesson to our list from the modal dialog or when we delete a lesson.
 
-Let's discus various strategies for deleting a lesson and updating our state:
+Let's discuss various strategies for deleting a lesson and updating our state:
 
 - Refresh the page (bad)
 - The "delete" api could in theory return a new list of results that match the original query for the page
