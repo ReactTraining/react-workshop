@@ -34,9 +34,9 @@ export function LessonProfile() {
     if (lesson) {
       if (lesson.draftContent) {
         setIsDraft(true)
-        setContent(lesson.draftContent)
+        setContent(lesson.draftContent || '')
       } else {
-        setContent(lesson.content)
+        setContent(lesson.content || '')
       }
     }
   }, [lesson])
