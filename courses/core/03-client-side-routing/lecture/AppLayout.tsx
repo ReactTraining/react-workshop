@@ -55,3 +55,7 @@ export function AppLayout() {
     </div>
   )
 }
+
+export function AppSubLayout() {
+  return null
+}

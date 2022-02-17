@@ -6,14 +6,13 @@ import './styles.scss'
 // https://remix-routing-demo.netlify.app/invoices
 
 // Layouts
-import { WebsiteLayout } from 'course-platform/WebsiteLayout'
-import { AppLayout } from 'course-platform/AppLayout'
-// import { CoursesSubLayout } from 'course-platform/AppSubLayout'
+import { WebsiteLayout } from './WebsiteLayout'
+import { AppLayout, AppSubLayout } from './AppLayout'
 
 // Pages
 import { HomePage } from 'course-platform/HomePage'
-import { BrowseCourses } from 'course-platform/BrowseCourses'
-import { BrowseCourseLessons } from 'course-platform/BrowseCourseLessons'
+import { BrowseCourses } from './BrowseCourses'
+import { BrowseCourseLessons } from './BrowseCourseLessons'
 
 export function App() {
   return (
@@ -34,25 +33,3 @@ export function App() {
     </BrowserRouter>
   )
 }
-
-// URL: localhost:3000
-// Component Tree:
-// function App() {
-//   return (
-//     <WebsiteLayout>
-//       <HomePage />
-//     </WebsiteLayout>
-//   )
-// }
-
-// URL: localhost:3000/admin/courses/react
-// Component Tree:
-// function App() {
-//   return (
-//     <AppLayout>
-//       <AppSubLayout>
-//         <BrowseCourseLessons />
-//       </AppSubLayout>
-//     </AppLayout>
-//   )
-// }
