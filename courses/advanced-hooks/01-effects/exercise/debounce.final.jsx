@@ -1,12 +1,12 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { saveClapsToDatabase } from './utils'
 
-function ClapButton(): React.ReactElement {
-  const [claps, setClaps] = React.useState(0)
-  const [queueClaps, setQueueClaps] = React.useState(0)
+function ClapButton() {
+  const [claps, setClaps] = useState(0)
+  const [queueClaps, setQueueClaps] = useState(0)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (queueClaps > 0) {
       const id = setTimeout(() => {
         saveClapsToDatabase(queueClaps).then((latestClaps) => {
@@ -23,7 +23,7 @@ function ClapButton(): React.ReactElement {
   }
 
   return (
-    <div className="text-center spacing debounce">
+    <div className="text-center spacing">
       <button onClick={clap} className="button">
         Clap
       </button>
@@ -36,7 +36,5 @@ function ClapButton(): React.ReactElement {
   )
 }
 
-ReactDOM.render(<ClapButton />, document.getElementById('root'))
-
-// One of our instructors wrote a blog article on this exact topic of "debouncing claps":
-// https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<ClapButton />)

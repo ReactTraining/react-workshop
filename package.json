@@ -21,6 +21,7 @@
     "firebase": "^9.6.1",
     "formik": "^2.2.9",
     "json-server": "^0.17.0",
+    "lodash.debounce": "^4.0.8",
     "markdown-it": "^12.2.0",
     "mobx": "^6.3.13",
     "mobx-react": "^7.2.1",

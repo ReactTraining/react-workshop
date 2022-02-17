@@ -1,9 +1,9 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { Component, useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import debounce from 'lodash.debounce'
 import { saveClapsToDatabase } from './utils'
 
-class ClapButton extends React.Component {
+class ClapButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,7 +31,7 @@ class ClapButton extends React.Component {
 
   render() {
     return (
-      <div className="text-center spacing debounce">
+      <div className="text-center spacing">
         <button onClick={this.clap} className="button">
           Clap
         </button>

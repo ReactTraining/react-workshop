@@ -12,8 +12,8 @@ You're encouraged to take notes, but we don't want that to get in the way of lis
 - JSX is a syntax for easily creating nested function calls for each DOM element we want to make. Babel is a compiler that converts each JSX element into a `_jsx('div')` function call.
 - The instructor might show you that JSX compiles into `React.createElement('div')` instead, this is historically true in React 16 and below. At the time of this writing, React is on version 17 and if you're using 17 with modern a modern babel setup then your JSX compiles into the newer `_jsx()`.
 - The return value of a component (JSX turned into `_jsx('div')`) is like an "instruction manual" for how to create DOM elements.
-- In a typical React application, `ReactDOM.render()` is only used once. As React changes our JSX responses from our components, React will also take care of updating the DOM to reflect those JSX changes.
-- A function that returns JSX is a "component" in React. There are also older ways of creating components with classes. Function-based and class-based components can intermingle in the same app.
+- In a typical React application, using `ReactDOM.createRoot()` to mount the application is used once. When components in our tree re-render and provide new instructions form JSX, React will take care of updating the DOM for us.
+- A "component" is a function or a class that renders instructions for the DOM via JSX. In a function component, the JSX is simply returned. In a class component, there is a render method that returns JSX. While function components are preferred by most React developers, you can still use class components and both component types can be used together on the same application.
 
 Docs: https://reactjs.org/docs/introducing-jsx.html
 
