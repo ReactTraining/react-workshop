@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Heading } from 'course-platform/Heading'
-import { Icon } from 'course-platform/Icon'
-// import { AddCourse } from './AddCourse'
+import { Counter } from './Counter'
+import { AddCourse } from './AddCourse'
 
 export function BrowseCourses() {
   const minLessons = 0
@@ -14,25 +14,17 @@ export function BrowseCourses() {
 
   return (
     <div className="card spacing">
-      [Add Course Form]
+      <AddCourse
+        onSubmit={(values) => {
+          console.log(values)
+        }}
+      />
       <hr />
       <div className="flex-split">
         <Heading size={1}>Courses</Heading>
-        <div className="counter text-center spacing">
+        <div className="text-center spacing">
           <div className="text-small">At least {minLessons} lessons</div>
-          <div className="inline-flex flex-gap">
-            <div>
-              <button className="button button-small">
-                <Icon name="minus" />
-              </button>
-            </div>
-            <div className="input">{minLessons}</div>
-            <div>
-              <button className="button button-small">
-                <Icon name="plus" />
-              </button>
-            </div>
-          </div>
+          <Counter />
         </div>
       </div>
       <div className="spacing">
