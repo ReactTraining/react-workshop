@@ -11,6 +11,7 @@ export function Signup() {
             aria-label="Username"
             type="text"
             placeholder="Username"
+            autoComplete="off"
             required
           />
         </div>

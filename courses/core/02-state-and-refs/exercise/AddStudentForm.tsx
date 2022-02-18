@@ -24,7 +24,7 @@ export function AddStudentForm() {
 
       <div className="field-wrap">
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" className="form-field" required />
+        <input id="username" type="text" className="form-field" required autoComplete="off" />
       </div>
 
       <div>

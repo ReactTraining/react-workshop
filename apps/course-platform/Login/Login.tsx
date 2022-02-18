@@ -58,6 +58,7 @@ export const Login = ({ onSuccess }: Props) => {
             onChange={(e) => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
+            autoComplete="off"
             required
           />
         </div>

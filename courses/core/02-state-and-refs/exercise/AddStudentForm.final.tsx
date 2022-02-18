@@ -54,6 +54,7 @@ export function AddStudentForm() {
           id="username"
           type="text"
           className="form-field"
+          autoComplete="off"
           required
         />
       </div>
