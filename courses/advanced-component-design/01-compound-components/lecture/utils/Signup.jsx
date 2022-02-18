@@ -9,7 +9,6 @@ export function Signup() {
           <input
             className="form-field"
             aria-label="Username"
-            onChange={(e) => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
             required
@@ -26,7 +25,7 @@ export function Signup() {
         </div>
         <footer>
           <button type="submit" className="button">
-            Login
+            Signup
           </button>
         </footer>
       </form>

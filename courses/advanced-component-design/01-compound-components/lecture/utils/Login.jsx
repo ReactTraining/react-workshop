@@ -9,7 +9,6 @@ export function Login() {
           <input
             className="form-field"
             aria-label="Username"
-            onChange={(e) => setUsername(e.target.value)}
             type="text"
             placeholder="Username"
             required
