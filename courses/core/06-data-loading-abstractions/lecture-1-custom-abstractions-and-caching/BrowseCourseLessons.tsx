@@ -14,11 +14,6 @@ export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
-  // // Course and Lesson Data
-  // const { getCourse, isLoading, fetchCourses } = useCoursesContext()
-  // const course = getCourse(courseSlug)
-  // const lessons = course?.lessons
-
   // Course and Lesson Data
   const [course, setCourse] = useState<CourseWithLessons | null>(null)
   const lessons = course?.lessons

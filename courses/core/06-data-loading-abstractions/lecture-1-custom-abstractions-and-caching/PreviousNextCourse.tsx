@@ -10,11 +10,6 @@ type Props = {
 }
 
 export function PreviousNextCourse({ courseId }: Props) {
-  // // Course Data
-  // const { getCourses } = useCoursesContext()
-  // const courses = getCourses()
-
-  // Course Data
   const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
 
   useEffect(() => {

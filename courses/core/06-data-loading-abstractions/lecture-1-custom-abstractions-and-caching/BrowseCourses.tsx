@@ -9,11 +9,6 @@ import { useCoursesContext } from './CoursesContext'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
-  // // Course Data
-  // const { getCourses, isLoading, fetchCourses } = useCoursesContext()
-  // const courses = getCourses()
-
-  // Course Data
   const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
   const isLoading = courses === null
 
