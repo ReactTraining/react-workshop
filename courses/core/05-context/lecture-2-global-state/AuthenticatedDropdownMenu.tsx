@@ -1,9 +1,7 @@
-import { useContext } from 'react'
 import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button'
 import { api } from 'course-platform/utils/api'
 import { Avatar } from 'course-platform/Avatar'
 // import { useAuthContext } from './AuthContext'
-// import { AuthContext } from './App'
 
 // Temporary
 type Props = {

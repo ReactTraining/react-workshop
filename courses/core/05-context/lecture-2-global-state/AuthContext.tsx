@@ -1,15 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { api } from 'course-platform/utils/api'
 import type { User } from 'course-platform/utils/types'
 
-type AuthContextActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
-
-type State = {
+type Context = {
   authenticated: boolean | null
   user: User | null
-}
-
-type Context = State & {
   login(user: User): void
   logout(): void
 }
@@ -17,34 +12,17 @@ type Context = State & {
 const AuthContext = createContext<Context>(null!)
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(
-    (state: State, action: AuthContextActions) => {
-      switch (action.type) {
-        case 'LOGIN': {
-          return { authenticated: true, user: action.user }
-        }
-        case 'LOGOUT': {
-          return { user: null, authenticated: false }
-        }
-        default:
-          return state
-      }
-    },
-    {
-      // Null, meaning not determined yet.
-      // False, meaning determined and not logged in
-      // True, meaning logged in
-      authenticated: null,
-      user: null,
-    }
-  )
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   const login = (user: User) => {
-    dispatch({ type: 'LOGIN', user })
+    setAuthenticated(true)
+    setUser(user)
   }
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' })
+    setAuthenticated(false)
+    setUser(null)
   }
 
   useEffect(() => {
@@ -62,7 +40,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   const context: Context = {
-    ...state,
+    authenticated,
+    user,
     login,
     logout,
   }
@@ -72,8 +51,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 export function useAuthContext() {
   const context = useContext(AuthContext)
-  // if (!context) {
-  //   throw Error('Use of `useAuthContext` is outside of `AuthProvider`')
-  // }
+  if (!context) {
+    throw Error('Use of `useAuthContext` is outside of `AuthProvider`')
+  }
   return context || {}
 }

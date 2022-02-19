@@ -1,11 +1,9 @@
-import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Logo } from 'course-platform/Logo'
 import { Centered } from 'course-platform/Centered'
 import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
 import styles from '../../../../apps/course-platform/WebsiteHeader/WebsiteHeader.module.scss'
 // import { useAuthContext } from './AuthContext'
-// import { AuthContext } from './App'
 
 // Temporary
 type Props = {

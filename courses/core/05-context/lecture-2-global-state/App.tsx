@@ -16,16 +16,8 @@ import { BrowseCourses } from 'course-platform/BrowseCourses'
 import { BrowseCourseLessons } from 'course-platform/BrowseCourseLessons'
 import { LessonProfile } from 'course-platform/LessonProfile'
 
-// type Context = {
-//   authenticated: boolean | null
-//   user: User | null
-//   login(user: User): void
-//   logout(): void
-// }
-
 export function App() {
   const navigate = useNavigate()
-  // const location = useLocation()
 
   /****************************************
     Authentication
@@ -40,7 +32,6 @@ export function App() {
     setUser(user)
 
     // Redirect
-    // navigate(location.state?.backTo?.pathname || '/admin')
     navigate('/admin')
   }
 

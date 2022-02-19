@@ -6,7 +6,6 @@ import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
 import { Icon } from 'course-platform/Icon'
 import styles from '../../../../apps/course-platform/AppLayout/AppLayout.module.scss'
 // import { useAuthContext } from './AuthContext'
-// import { AuthContext } from './App'
 
 // Temporary
 type Props = {
@@ -14,10 +13,7 @@ type Props = {
 }
 
 export function AppLayout({ authenticated, user, logout }: Props) {
-  // const location = useLocation()
-
   if (authenticated === false) {
-    // return <Navigate to="/login" replace state={{ backTo: location }} />
     return <Navigate to="/login" replace />
   }
 
