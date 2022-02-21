@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
@@ -7,33 +7,20 @@ import { CreateLessonDialog } from 'course-platform/CreateLessonDialog'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
 import { PreviousNextCourse } from 'course-platform/PreviousNextCourse'
-import { useCoursesContext } from './CoursesContext'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { useCourse } from './useCourses'
 
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
-  // Course and Lesson Data
-  const [course, setCourse] = useState<CourseWithLessons | null>(null)
+  // Hook for React Query
+  const { course, isLoading, refetch } = useCourse(courseSlug)
   const lessons = course?.lessons
-  const isLoading = course === null
-
-  useEffect(() => {
-    let isCurrent = true
-    api.courses.getCourse(courseSlug).then((course) => {
-      if (!isCurrent) return
-      setCourse(course)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [courseSlug])
 
   function removeLesson(lessonId: number) {
     if (!lessons) return
     api.courses.removeLesson(lessonId).then(() => {
-      // fetchCourses()
+      refetch()
     })
   }
 

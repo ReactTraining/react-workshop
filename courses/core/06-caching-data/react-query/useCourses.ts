@@ -4,7 +4,17 @@ import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 /**
- * Courses Data
+ * Hooks for Courses (Custom Abstraction)
+ */
+
+// export function useCourses() {
+//   const p = api.courses.getAll
+//   const { results: courses, ...rest } = usePromise<CourseWithLessons[]>(p)
+//   return { courses, ...rest }
+// }
+
+/**
+ * Hooks For Courses Data (React Query)
  */
 
 export function useCourses() {
@@ -25,19 +35,6 @@ export function useCourse(courseSlug: string) {
   return { course, ...rest }
 }
 
-/**
- * ✅ This is a working useCreateCourse. Yours can differ, as long as it works
- */
-export function useCreateCourse() {
-  type Data = { name: string; slug: string }
-  const mutation = useMutation(({ name, slug }: Data) => api.courses.create(name, slug), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('courses')
-    },
-  })
-  return mutation.mutate
-}
-
 export function useRemoveCourse() {
   const mutation = useMutation((courseId: number) => api.courses.removeCourse(courseId), {
     mutationKey: 'courses',
@@ -45,9 +42,11 @@ export function useRemoveCourse() {
       // After a successful database mutation, update the local cache in the browser
       queryClient.setQueryData<CourseWithLessons[]>('courses', (cache) => {
         if (!cache) return []
-        // They give us the old cache, we give them a new array. Provide
-        // A function that decides what to remove
-        return removeArrayItems(cache, (course: CourseWithLessons) => course.id === courseId)
+        const i = cache.findIndex((course: CourseWithLessons) => course.id === courseId)
+        return [...cache.slice(0, i), ...cache.slice(i + 1)]
+
+        // This would be nice (see below)
+        // return removeArrayItems(cache, (course: CourseWithLessons) => course.id === courseId)
       })
     },
   })

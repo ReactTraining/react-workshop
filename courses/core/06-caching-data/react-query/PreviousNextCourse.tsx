@@ -1,27 +1,15 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'course-platform/utils/api'
 import { Icon } from 'course-platform/Icon'
-import { useCoursesContext } from './CoursesContext'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { useCourses } from './useCourses'
 
 type Props = {
   courseId?: number
 }
 
 export function PreviousNextCourse({ courseId }: Props) {
-  const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
+  const { courses, isLoading } = useCourses()
 
-  useEffect(() => {
-    let isCurrent = true
-    api.courses.getAll().then((courses) => {
-      if (!isCurrent) return
-      setCourses(courses)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+  if (isLoading) return null
 
   // Previous and Next
   const i = (courses?.map((c) => c.id) || []).indexOf(courseId || -1)

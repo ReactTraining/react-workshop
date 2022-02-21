@@ -43,8 +43,9 @@ export const CoursesProvider: React.FC = ({ children }) => {
 
 export function useCoursesContext() {
   const context = useContext(Context)
-  if (!context) {
-    throw Error('Use of `useCourseContext` is outside of `CoursesProvider`')
-  }
+  // Some lessons break if this is here
+  // if (!context) {
+  //   throw Error('Use of `useCourseContext` is outside of `CoursesProvider`')
+  // }
   return context || {}
 }
