@@ -1,11 +1,16 @@
 import ReactDOM from 'react-dom'
-import { BrowseCourses } from './BrowseCourses'
-import { Counter } from './Counter'
-import './styles.scss'
-
-function App() {
-  return <BrowseCourses />
-}
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from 'course-platform/AuthContext'
+// import { CoursesProvider } from 'course-platform/CoursesContext'
+import { App } from 'course-platform/App'
+import 'course-platform/styles/all.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
-root.render(<App />)
+
+root.render(
+  <BrowserRouter>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </BrowserRouter>
+)

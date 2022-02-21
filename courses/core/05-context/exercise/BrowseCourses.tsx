@@ -1,60 +1,135 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
-import { Counter } from './Counter'
-import { AddCourse } from './AddCourse'
+import { DataGrid, Row, Col } from 'course-platform/DataGrid'
+import { Loading } from 'course-platform/Loading'
+import { NoResults } from 'course-platform/NoResults'
+import { useCoursesContext } from './CoursesContext'
+import { useCourses } from './useCourses'
 
 export function BrowseCourses() {
-  const [minLessons, setMinLessons] = useState(0)
-  const [courses, setCourses] = useState([
-    { id: 1, name: 'React', lessons: 3 },
-    { id: 2, name: 'JavaScript', lessons: 2 },
-    { id: 3, name: 'CSS', lessons: 4 },
-  ])
+  const { courses, isLoading, refetch } = useCourses()
 
-  function onSubmit(course: any) {
-    const id = courses.length + 1
-    const newCourse = { ...course, id }
-    setCourses(courses.concat(newCourse))
+  function removeCourse(courseId: number) {
+    if (!courses) return
+    api.courses.removeCourse(courseId).then(() => {
+      refetch()
+    })
   }
 
   return (
     <div className="card spacing">
-      <AddCourse onSubmit={onSubmit} />
-      <hr />
-      <div className="flex-split">
-        <Heading size={1}>Courses</Heading>
-        <div className="text-center spacing">
-          <div className="text-small">At least {minLessons} lessons</div>
-          <Counter count={minLessons} setCount={setMinLessons} />
-        </div>
-      </div>
-      <div className="spacing">
-        {courses
-          .filter((course) => course.lessons >= minLessons)
-          .map((course) => {
-            return <CourseListing key={course.id} name={course.name} lessons={course.lessons} />
-          })}
-      </div>
+      <Heading>Courses</Heading>
+
+      {isLoading && !courses && <Loading />}
+      {!isLoading && Array.isArray(courses) && courses.length === 0 ? (
+        <NoResults>
+          <div className="spacing">
+            <p>No Courses</p>
+            <Link to="add" className="button">
+              Add Course
+            </Link>
+          </div>
+        </NoResults>
+      ) : (
+        <>
+          <DataGrid>
+            {courses?.map((course) => {
+              return (
+                <Row key={course.id}>
+                  <Col flex>
+                    <Link to={course.slug} className="text-large">
+                      <b>{course.name}</b>
+                    </Link>
+                  </Col>
+                  <Col width={150}>Lessons: {course.lessons.length}</Col>
+                  <Col>
+                    <button
+                      className="button button-small button-outline"
+                      onClick={() => removeCourse(course.id)}
+                    >
+                      Remove
+                    </button>
+                  </Col>
+                </Row>
+              )
+            })}
+          </DataGrid>
+          <footer>
+            <Link to="add" className="button">
+              Add Course
+            </Link>
+          </footer>
+        </>
+      )}
     </div>
   )
 }
 
-/**
- * CourseListing
- */
+// import { Link } from 'react-router-dom'
+// import { api } from 'course-platform/utils/api'
+// import { Heading } from 'course-platform/Heading'
+// import { DataGrid, Row, Col } from 'course-platform/DataGrid'
+// import { Loading } from 'course-platform/Loading'
+// import { NoResults } from 'course-platform/NoResults'
+// import { useCoursesContext } from './CoursesContext'
+// import { useCourses } from './useCourses'
 
-type CourseListingProps = {
-  name: string
-  lessons: number
-}
+// export function BrowseCourses() {
+//   const { courses, isLoading, refetch } = useCourses()
 
-function CourseListing({ name, lessons }: CourseListingProps) {
-  return (
-    <div className="course-listing flex-split">
-      <Heading as="h2" size={3}>
-        {name}
-      </Heading>
-      <div>Lessons: {lessons}</div>
-    </div>
-  )
-}
+//   function removeCourse(courseId: number) {
+//     if (!courses) return
+//     api.courses.removeCourse(courseId).then(() => {
+//       refetch()
+//     })
+//   }
+
+//   return (
+//     <div className="card spacing">
+//       <Heading>Courses</Heading>
+
+//       {isLoading && !courses && <Loading />}
+//       {!isLoading && Array.isArray(courses) && courses.length === 0 ? (
+//         <NoResults>
+//           <div className="spacing">
+//             <p>No Courses</p>
+//             <Link to="add" className="button">
+//               Add Course
+//             </Link>
+//           </div>
+//         </NoResults>
+//       ) : (
+//         <>
+//           <DataGrid>
+//             {courses?.map((course) => {
+//               return (
+//                 <Row key={course.id}>
+//                   <Col flex>
+//                     <Link to={course.slug} className="text-large">
+//                       <b>{course.name}</b>
+//                     </Link>
+//                   </Col>
+//                   <Col width={150}>Lessons: {course.lessons.length}</Col>
+//                   <Col>
+//                     <button
+//                       className="button button-small button-outline"
+//                       onClick={() => removeCourse(course.id)}
+//                     >
+//                       Remove
+//                     </button>
+//                   </Col>
+//                 </Row>
+//               )
+//             })}
+//           </DataGrid>
+//           <footer>
+//             <Link to="add" className="button">
+//               Add Course
+//             </Link>
+//           </footer>
+//         </>
+//       )}
+//     </div>
+//   )
+// }
