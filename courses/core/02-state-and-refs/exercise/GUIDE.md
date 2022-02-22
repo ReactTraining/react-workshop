@@ -1,10 +1,10 @@
 # State
 
-The main task is to make the fields "controlled" in the signup form so when the form is submitted, it will "console log" the main form fields: fullName, username, and password
+The main task is to make the fields "controlled" in the signup form so when the form is submitted, it will "console log" the main form fields: fullName and username
 
 ## ✅ Task 1: Controlled Form Fields
 
-The form fields are uncontrolled to start, we need to make them controlled with state. The state for the main fields (fullName, username, and password) is already setup for you.
+The form fields are uncontrolled to start, we need to make them controlled with state. The state for the main fields (fullName and username) is already setup for you.
 
 You need to:
 
@@ -19,7 +19,6 @@ If you want to solve this in a different (more advanced) way, try storing the ma
 const [formValues, setFormValues] = useState({
   fullName: '',
   username: '',
-  password: '',
 })
 ```
 
@@ -41,7 +40,7 @@ const fullNameRef = useRef<HTMLInputElement>(null!)
 
 ## ✅ Bonus: Only do bonuses if your group is fast at the other tasks
 
-See if you can figure out a way to utilize the "Auto Username" checkbox. It is not controlled yet so make it controlled just like the "Show Password" checkbox.
+See if you can figure out a way to utilize the "Auto Username" checkbox. It is not controlled yet so make it controlled with an `onChange` event.
 
 Then make the `username` value for the user automatically if they have that checkbox checked. Take the `fullName` value and format it like this for the `username`:
 
