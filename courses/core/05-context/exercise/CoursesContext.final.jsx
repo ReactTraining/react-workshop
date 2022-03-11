@@ -4,12 +4,11 @@ import { useCourses } from './useCourses'
 const Context = createContext()
 
 export const CoursesProvider = ({ children }) => {
-  const { courses, isLoading, error, refetch } = useCourses()
+  const { courses, isLoading, refetch } = useCourses()
 
   const context = {
     refetch,
     isLoading,
-    error,
     courses,
     getCourse(courseSlug) {
       return courses?.find((c) => c.slug === courseSlug)

@@ -5,7 +5,6 @@ export const CoursesProvider = ({ children }) => {
   // const context = {
   //   refetch,
   //   isLoading,
-  //   error,
   //   courses,
   //   getCourse(courseSlug) {
   //     return courses?.find((c) => c.slug === courseSlug)

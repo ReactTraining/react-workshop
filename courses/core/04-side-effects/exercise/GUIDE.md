@@ -10,6 +10,6 @@
 
 ## ✅ Task 2: Custom Hook
 
-1. Since we now have the same useEffect logic twice, refactor `BrowseCourses` and `PreviousNextCourse` to use the existing `useAllCourses.ts` custom hook.
+1. Since we now have the same useEffect logic twice, refactor `BrowseCourses` and `PreviousNextCourse` to use the existing `useCourses.ts` custom hook.
 
 Remember, the main reason for custom hooks is code-reuse, not "state sharing" between the two components.
