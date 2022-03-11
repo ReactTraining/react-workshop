@@ -6,9 +6,11 @@ Currently, three components all use the `useCourses` custom hook abstraction ind
 - `BrowseCourseLessons`
 - `PreviousNextCourse`
 
-In one way this is nice because each is not repeating code, but the bad thing perhaps is that we are running the same query over and over as the user navigates around the app.
+In one way this is nice because each is not repeating code, but it's also bad because we're running the same network request over and over as the user navigates around the app.
 
-What if we moved this `useCourses` data into a state that is lifted up for everyone to use. Then to avoid the deep prop drilling, we can pass down the state through context.
+Instead we could call `useCourses()` just once and store the data in state that is lifted. As the user navigates around the app, we could just pass that data down to every component that needs it. This would work but we want to avoid prop drilling for this. So let's lift the state but pass the data down through context.
+
+Since the user logs into this app and their courses and individual to their account, we can make a global state context provider that calls `useCourses()` once and then passes the state down through context...
 
 # Task 1: Create an abstraction for Context
 
