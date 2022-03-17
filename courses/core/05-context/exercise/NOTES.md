@@ -8,9 +8,26 @@ Currently, three components all use the `useCourses` custom hook abstraction ind
 
 In one way this is nice because each is not repeating code, but it's also bad because we're running the same network request over and over as the user navigates around the app.
 
-Instead we could call `useCourses()` just once and store the data in state that is lifted. As the user navigates around the app, we could just pass that data down to every component that needs it. This would work but we want to avoid prop drilling for this. So let's lift the state but pass the data down through context.
+Instead of calling `useCourses()` individually at each component that needs the data, we could lift the call to `useCourses` and call it once to fetch data at a higher spot in our tree. This can be considered "lifted state" which we will pass down the data to all three of our components. We don't want to do prop drilling, so let's pass the data down through context.
 
-Since the user logs into this app and their courses and individual to their account, we can make a global state context provider that calls `useCourses()` once and then passes the state down through context...
+```jsx
+// If it helps, this is a visual of what we're starting with:
+<App>
+  <BrowseCourses /> // fetches it's own data with useCourses
+  <BrowseCourseLessons /> // fetches it's own data with useCourses
+  <PreviousNextCourse /> // fetches it's own data with useCourses
+</App>
+
+
+// And this is a visual of what we'll end up with
+<CoursesProvider> // fetches data once with useCourses
+  <App>
+    <BrowseCourses /> // get data from context
+    <BrowseCourseLessons /> // get data from context
+    <PreviousNextCourse /> // get data from context
+  </App>
+</CoursesProvider>
+```
 
 # Task 1: Create an abstraction for Context
 
