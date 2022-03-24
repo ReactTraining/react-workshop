@@ -19,7 +19,7 @@ export function AddStudentForm() {
       <Heading>Add Student</Heading>
       <div className="field-wrap">
         <label htmlFor="full-name">Full Name</label>
-        <input id="full-name" type="text" className="form-field" required />
+        <input id="full-name" type="text" className="form-field" required autoComplete="off" />
       </div>
 
       <div className="field-wrap">

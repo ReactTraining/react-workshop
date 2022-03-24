@@ -37,6 +37,7 @@ export function AddStudentForm() {
           type="text"
           className="form-field"
           required
+          autoComplete="off"
           ref={fullNameRef}
         />
       </div>
