@@ -1,95 +1,99 @@
 # Context
 
-Currently, three components all use the `useCourses` custom hook abstraction individually:
+For this exercise we'll be using the third-party tool `dayjs`:
 
-- `BrowseCourses`
-- `BrowseCourseLessons`
-- `PreviousNextCourse`
+```ts
+dayjs('2000-01-05').format('DD/MM/YYYY')) // 05/01/2000
+dayjs('2000/01/05').format('DD/MM/YYYY')) // 05/01/2000
+dayjs().format('DD/MM/YYYY'))             // (Current date in DD/MM/YYYY format)
+dayjs(new Date()).format('DD/MM/YYYY'))   // (Current date in DD/MM/YYYY format)
 
-In one way this is nice because each is not repeating code, but it's also bad because we're running the same network request over and over as the user navigates around the app.
+// date is a special dayjs object
+const date = new dayjs()
 
-Instead of calling `useCourses()` individually at each component that needs the data, we could lift the call to `useCourses` and call it once to fetch data at a higher spot in our tree. This can be considered "lifted state" which we will pass down the data to all three of our components. We don't want to do prop drilling, so let's pass the data down through context.
+// When you use .format() you'll get a string returned
+function format(f: string, d: string, ) {
+  return new dayjs(d || new Date()).format(f)
+}
+
+// If today was 2000-01-05 -- Output would be: 01
+// because we didn't pass a second argument for the date
+// and so the current date was used `new dayjs(new Date())`
+// and for output format we asked for was just for the month
+// in two digit format
+format('MM')
+```
+
+If you wish to see other formatting options: https://day.js.org/docs/en/display/format
+
+## ✅ Task 1: Understand Compound Components
+
+First, let's understand what a compound component is. It's essentially making one visual component from several React components like this:
 
 ```jsx
-// If it helps, this is a visual of what we're starting with:
-<App>
-  <BrowseCourses /> // fetches it's own data with useCourses
-  <BrowseCourseLessons /> // fetches it's own data with useCourses
-  <PreviousNextCourse /> // fetches it's own data with useCourses
-</App>
-
-
-// And this is a visual of what we'll end up with
-<CoursesProvider> // fetches data once with useCourses
-  <App>
-    <BrowseCourses /> // get data from context
-    <BrowseCourseLessons /> // get data from context
-    <PreviousNextCourse /> // get data from context
-  </App>
-</CoursesProvider>
+<DateDisplay date="2022/11/14">
+  <DateMonth format="MMMM" />
+  <DateDay />,
+  <DateYear />
+</DateDisplay>
 ```
 
-# Task 1: Create an abstraction for Context
+The above JSX would yield an output of: `November 14, 2022` (notice the comma in the JSX)
 
-1. In the `index.tsx` file, we render the `App` with some other providers wrapped around it. You need to wrap the `CourseProvider` in a similar way to the other providers. This file doesn't have a `final` to review.
-2. Open `CoursesContext.jsx`. Notice it's not TypeScript, this will make it easier if you're newer to React and TypeScript to stay focused on just context with React.
-3. Open `BrowseCourses.tsx` and find this line of code:
+The main point of this is so that we can re-arrange the children components and give the developer a very nice API for making formatted dates. The default format for month is `MM` which means doing this JSX would yield something different:
 
-```tsx
-const { courses, isLoading, refetch } = useCourses()
+```jsx
+<DateDisplay date="2022/11/14">
+  <DateMonth />
+  <DateDay />,
+  <DateYear />
+</DateDisplay>
 ```
 
-This is what we need to put in the `CoursesProvider` abstraction now. Keep it in the `BrowseCourses` page for now but make a copy of it at the top of `CoursesProvider`.
+Yield: `11 14, 2022`
 
-4. Now you need to make the context which has three parts:
+Maybe you're thinking it could have been one component like this instead?
 
-- Make the context variable, remember this goes outside of the components
-- Make the provider JSX and wrap the children (there's a comment where the children variable is now). Remember to pass a `context` variable into the provider as a `value` prop. We have the `context` variable made for you (commented out)
-- Make a custom hook for consuming the context (already made for you). You just need to add the `useContext` part:
+```jsx
+<DateDisplay date="2022/11/14" format="MM DD, YYYY" />
+```
+
+This would work too (and it's not a compound component). But with this "monolithic" approach, how would you also embed span tags or any other markup around the individual parts like the month, day, and year?
+
+Only a compound component gives us the full control.
+
+## ✅ Task 2: Create Context
+
+In `DateDisplay.jsx` there is a context variable that needs to be passed down to all children components. Right now each child component is making its own `date` variable but we would rather pass down one from context so we can set a custom date just once like this:
+
+```jsx
+<DateDisplay date="2022/11/14">
+  <DateMonth />
+  <DateDay />,
+  <DateYear />
+</DateDisplay>
+```
+
+Then each of `<DateMonth />`, `<DateDay />`, `<DateYear />` can retrieve that context value to use.
+
+1. Create a context variable:
 
 ```js
-// Part One: Create Context Variable
-const CoursesContext = createContext()
-
-// Part Two: Create Provider
-<CourseContext.Provider value={context}>{children}</CourseContext.Provider>
-
-// Part Three: Consume Context
-const context = useContext(CourseContext)
+const DateContext = createContext()
 ```
 
-👀 If you have steps 1-4 done, you should be able to render your code without errors. However, even though context is ready to be used, nobody is using it. Go to these three files and change out their use of the `useCourses` custom hook for `useCoursesContext` instead:
+2. Create a provider around the `children` prop:
 
-5. `BrowseCourses.tsx`
-6. `PreviousNextCourse.tsx`
-
-These two files will be the easiest because you just need to switch from `useCourses` to `useCoursesContext`
-
-```js
-// const { courses, isLoading, refetch } = useCourses()
-const { courses, isLoading, refetch } = useCoursesContext()
+```jsx
+<DateContext.Provider value={context}>{children}</DateContext.Provider>
 ```
 
-There is no final file provided because it's just one line of code that changes.
+3. Consume the context
 
-7. `BrowseCourseLessons.tsx`
+```jsx
+// useContext will return whatever was passed into the `value` prop of the provider
+const context = useContext(DateContext)
 
-This last file is a little more tricky because it wants the _lessons_ of a particular course and the course itself. Here's how we are currently doing that:
-
-```tsx
-// Get a course
-const { courses, isLoading, refetch } = useCourses()
-const course = courses?.find((c) => c.slug === courseSlug)
-const lessons = course?.lessons
+// Since the context object passed has a date property, we could do this too:
+const { date } = useContext(DateContext)
 ```
-
-Notice how we derive the `course` and `lessons` from the array of courses. Sure we could have had a special ApI call just for those things but starting from this point is a bit easier to refactor into where we're going with context. Here's what it needs to be now:
-
-```tsx
-// Get a course
-const { getCourse, isLoading, refetch } = useCourses()
-const course = getCourse(courseSlug)
-const lessons = course?.lessons
-```
-
-Notice that one of the items passed down through context is a `getCourse` function and we can call that with the slug we have to get the course we want. Then we can dig into that course to get the lessons the same way.

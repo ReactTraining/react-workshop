@@ -1,5 +1,12 @@
 # Side Effects
 
+There are two components that need the same data fetched:
+
+- `BrowseCourses.tsx`
+- `PreviousNextCourse.tsx`
+
+You will need to complete the `useEffect` in `BrowseCourses.tsx` first in order to click on a course to see that course's lessons. On that lessons page, you'll see "Next and Previous" arrows is the `PreviousNextCourse.tsx` component.
+
 ## ✅ Task 1: Get Courses
 
 1. Open `BrowseCourses.tsx`.
@@ -10,6 +17,8 @@
 
 ## ✅ Task 2: Custom Hook
 
-1. Since we now have the same useEffect logic twice, refactor `BrowseCourses` and `PreviousNextCourse` to use the existing `useCourses.ts` custom hook.
+1. Since we now have the same useEffect logic twice, refactor `BrowseCourses` and `PreviousNextCourse` to use the existing `useCourses` custom hook that is in `courseData.ts`.
 
-Remember, the main reason for custom hooks is code-reuse, not "state sharing" between the two components.
+👀 Be sure to import that hook into each component where you need it.
+
+Remember, the main reason for custom hooks is "code-reuse", not "state sharing" between the two components. In other words, each component that uses this hook will have it's own instance of state - so they will not be sharing the same state.

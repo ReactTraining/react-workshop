@@ -10,9 +10,8 @@ import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
-  // // 1. Previous Approach: Course Data From Context
-  // const { getCourses, isLoading, fetchCourses } = useCoursesContext()
-  // const courses = getCourses()
+  // 1. Previous Approach: Fetch in every component
+  // const { courses } = useCourses()
 
   // 2. New Approach: Use React Query (useEffect and caching library)
   const {
