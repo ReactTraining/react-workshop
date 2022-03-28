@@ -1,7 +1,7 @@
 import { useParams, useLocation } from 'react-router-dom'
 import { Heading } from 'course-platform/Heading'
 
-export function BrowseCourseLessons() {
+export default function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const { state } = useLocation()
 

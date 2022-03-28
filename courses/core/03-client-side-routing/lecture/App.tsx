@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { lazy, BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import 'course-platform/styles/all.scss'
 import './styles.scss'
 
@@ -12,7 +12,9 @@ import { AppLayout, AppSubLayout } from './AppLayout'
 // Pages
 import { HomePage } from 'course-platform/HomePage'
 import { BrowseCourses } from './BrowseCourses'
-import { BrowseCourseLessons } from './BrowseCourseLessons'
+
+// Let's Lazy load this
+import BrowseCourseLessons from './BrowseCourseLessons'
 
 export function App() {
   return (
