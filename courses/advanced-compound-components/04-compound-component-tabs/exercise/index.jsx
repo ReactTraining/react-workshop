@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
 import { TaskOne, TaskTwo, TaskThree } from './Tasks'
 import './styles.scss'

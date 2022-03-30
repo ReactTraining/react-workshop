@@ -1,5 +1,5 @@
 import { Component, useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import debounce from 'lodash.debounce'
 import { saveClapsToDatabase } from './utils'
 

@@ -1,5 +1,5 @@
 // import React from 'react' <-- We don't need this anymore (React 17)
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { FaTrash } from 'react-icons/fa'
 import './styles.scss'
 

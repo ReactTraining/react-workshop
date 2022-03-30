@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClientProvider } from 'react-query'
 import { AuthProvider } from 'course-platform/AuthContext'

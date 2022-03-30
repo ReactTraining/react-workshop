@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import './styles.scss'
 
 /**

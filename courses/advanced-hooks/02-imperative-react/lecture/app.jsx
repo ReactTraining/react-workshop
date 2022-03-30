@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { position } from './utils'
 import './styles.scss'
 

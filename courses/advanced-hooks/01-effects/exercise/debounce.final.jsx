@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { saveClapsToDatabase } from './utils'
 
 function ClapButton() {

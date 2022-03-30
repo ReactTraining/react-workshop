@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import dayjs from 'dayjs'
 import { DatePicker, DatePickerCalendar } from './DatePicker.final'
 import './styles.scss'

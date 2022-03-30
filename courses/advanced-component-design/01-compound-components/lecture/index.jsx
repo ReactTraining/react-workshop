@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { Login } from './utils/Login'
 import { Signup } from './utils/Signup'
 import './styles.scss'

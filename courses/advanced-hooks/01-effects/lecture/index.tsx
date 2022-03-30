@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 
 // 1. The closure of useEffect "captures" state (basic example)
 import { App } from './closure-basics'
