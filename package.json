@@ -7,7 +7,7 @@
     "test": "NODE_PATH=./apps jest",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",
-    "postinstall": "npm run create-db",
+    "//postinstall": "npm run create-db",
     "create": "plop"
   },
   "dependencies": {
