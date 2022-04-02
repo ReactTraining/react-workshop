@@ -1,4 +1,5 @@
-import { lazy, BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+// import { lazy } from React
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import 'course-platform/styles/all.scss'
 import './styles.scss'
 
