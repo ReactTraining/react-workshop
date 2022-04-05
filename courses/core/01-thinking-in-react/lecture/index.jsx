@@ -1,8 +1,11 @@
-// import React from 'react' <-- We don't need this anymore (React 17)
+import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { FaTrash } from 'react-icons/fa'
 import './styles.scss'
 
 // This is our "entry" file for our build system.
-// Let's start making our React app and "mount" it
-// to the DOM
+
+// 1. Use React to make our app
+// 2. "mount" the app to the DOM
+
+// Let's go

@@ -1,4 +1,4 @@
-// import { lazy } from React
+// import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import 'course-platform/styles/all.scss'
 import './styles.scss'
