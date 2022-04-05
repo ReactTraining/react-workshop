@@ -13,6 +13,8 @@ import { AppLayout, AppSubLayout } from './AppLayout'
 // Pages
 import { HomePage } from 'course-platform/HomePage'
 import { BrowseCourses } from './BrowseCourses'
+import { BrowseStudents } from 'course-platform/BrowseStudents'
+import { ChatPage } from 'course-platform/ChatPage'
 
 // Let's Lazy load this
 import BrowseCourseLessons from './BrowseCourseLessons'
@@ -29,6 +31,12 @@ export function App() {
           <Route path="courses">
             <Route index element={<BrowseCourses />} />
             <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+          </Route>
+          <Route path="students">
+            <Route index element={<BrowseStudents />} />
+          </Route>
+          <Route path="chat">
+            <Route index element={<ChatPage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate replace to="/" />} />
