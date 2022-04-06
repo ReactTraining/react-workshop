@@ -16,9 +16,19 @@ export function AddStudentForm() {
     setFormValues({ ...formValues, [field]: value })
   }
 
+  function getUsername() {
+    return autoUsername
+      ? formValues.fullName.toLowerCase().replaceAll(/\s/g, '')
+      : formValues.username
+  }
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    console.log(formValues)
+
+    // Get the form values
+    console.log({ ...formValues, username: getUsername() })
+
+    // Reset form, set focus
     setFormValues(initialFormValues)
     fullNameRef.current.focus()
   }
@@ -45,11 +55,7 @@ export function AddStudentForm() {
       <div className="field-wrap">
         <label htmlFor="username">Username</label>
         <input
-          value={
-            autoUsername
-              ? formValues.fullName.toLowerCase().replaceAll(/\s/g, '')
-              : formValues.username
-          }
+          value={getUsername()}
           disabled={autoUsername}
           onChange={(e) => setField('username', e.target.value)}
           id="username"
