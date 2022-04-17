@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { api } from 'course-platform/utils/api'
 import { Avatar } from 'course-platform/Avatar'
 import { useAuthContext } from 'course-platform/AuthContext'
@@ -12,7 +12,7 @@ export function ChatPage() {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [messagesLoaded, setMessagesLoaded] = useState(false)
-  const [subscribeCreatedAt, setSubscribeCreatedAt] = useState(() => Date.now())
+  const [subscribeCreatedAt, setSubscribeCreatedAt] = useState<number | null>(null)
   const [scrolledToBottom, setScrolledToBottom] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null!)
 
@@ -29,12 +29,14 @@ export function ChatPage() {
     })
   }
 
+  // Get Initial Messages
   useEffect(() => {
     let isCurrent = true
     api.chat.getMessages().then((messages) => {
       if (isCurrent) {
         setMessages(messages)
         setMessagesLoaded(true)
+        setSubscribeCreatedAt(Date.now())
       }
     })
     return () => {
@@ -42,17 +44,23 @@ export function ChatPage() {
     }
   }, [])
 
+  // Once we've loaded initial messages in the above effect, it will
+  // set the `subscribeCreatedAt` timestamp that will tell this effect
+  // to create a subscription for any new message after that time:
   useEffect(() => {
-    if (messagesLoaded) {
+    if (subscribeCreatedAt) {
       const cleanup = api.chat.subscribe(subscribeCreatedAt, (newMessages: ChatMessage[]) => {
         setMessages((messages) => {
           return (messages || []).concat(newMessages)
         })
+        // Renew this timestamp to cause the next render
+        // to destroy the previous subscription and create
+        // a new one
         setSubscribeCreatedAt(Date.now())
       })
       return cleanup
     }
-  }, [messagesLoaded, subscribeCreatedAt])
+  }, [subscribeCreatedAt])
 
   useEffect(() => {
     if (scrolledToBottom) {
@@ -62,7 +70,10 @@ export function ChatPage() {
 
   function onBoardScroll(event: any) {
     const e = event.target
-    const bottom = e.scrollHeight === e.scrollTop + e.clientHeight
+    // See if the user scrolled to the bottom
+    const bottom = e.scrollHeight <= Math.ceil(e.scrollTop + e.clientHeight)
+    // If the user is in a different scroll position from what we have
+    // in state, update the state
     if (scrolledToBottom !== bottom) {
       setScrolledToBottom(bottom)
     }
@@ -80,9 +91,7 @@ export function ChatPage() {
                   <Avatar src={message.avatarUrl} size={4} />
                 </div>
                 <div className="spacing-small">
-                  <div>
-                    <b>{message.user}</b>
-                  </div>
+                  <b className="block">{message.user}</b>
                   <div>{message.text}</div>
                 </div>
               </div>

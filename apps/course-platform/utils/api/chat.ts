@@ -13,41 +13,49 @@ import {
   doc,
 } from 'firebase/firestore'
 
+const DEFAULT_THREAD = 'all'
+
 export async function postMessage(
   text: string,
   userId: number,
   user: string,
-  avatarUrl: string | null
+  avatarUrl: string | null,
+  thread: string = DEFAULT_THREAD
 ): Promise<void> {
-  text = text.replace('angular is cool', 'react is cool')
-  text = text.replace('javascript sucks', 'javascript is amazing')
   if (text.trim().toLowerCase() === 'clear') {
     // "clear" is a special chat message to delete all chats
     clear()
   } else {
-    // const docRef = await addDoc(collection(db, 'chat'), {
     await addDoc(collection(db, 'chat'), {
       userId,
       user,
       text,
       created: Date.now(),
       avatarUrl: avatarUrl || '',
+      thread,
     })
     // return docRef.id // not used but maybe later
   }
 }
 
-export async function getMessages() {
+export async function getMessages(thread: string = DEFAULT_THREAD) {
   const q = query(collection(db, 'chat'), orderBy('created', 'asc'), limit(100))
   const querySnapshot = await getDocs(q)
   const messages: ChatMessage[] = []
   querySnapshot.forEach((doc) => {
-    messages.push({ id: doc.id, ...doc.data() } as ChatMessage)
+    const data = doc.data()
+    if (thread === 'all' || data.thread === thread) {
+      messages.push({ id: doc.id, ...data } as ChatMessage)
+    }
   })
   return messages
 }
 
-export function subscribe(createdAfter: number, cb: (m: ChatMessage[]) => void) {
+export function subscribe(
+  createdAfter: number,
+  cb: (m: ChatMessage[]) => void,
+  thread: string = DEFAULT_THREAD
+) {
   const q = query(
     collection(db, 'chat'),
     where('created', '>', createdAfter),
@@ -57,7 +65,11 @@ export function subscribe(createdAfter: number, cb: (m: ChatMessage[]) => void) 
     if (querySnapshot.size === 0) return
     const messages: ChatMessage[] = []
     querySnapshot.forEach((doc) => {
-      messages.push({ id: doc.id, ...doc.data() } as ChatMessage)
+      // messages.push({ id: doc.id, ...doc.data() } as ChatMessage)
+      const data = doc.data()
+      if (thread === 'all' || data.thread === thread) {
+        messages.push({ id: doc.id, ...data } as ChatMessage)
+      }
     })
     cb(messages)
   })

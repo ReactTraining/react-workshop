@@ -5,53 +5,43 @@ import { useAuthContext } from 'course-platform/AuthContext'
 import type { ChatMessage } from 'course-platform/utils/types'
 import styles from '../../../../apps/course-platform/ChatPage/ChatPage.module.scss'
 
+const THREAD = 'all'
+
 export function ChatPage() {
   const { user } = useAuthContext()
   const chatBoardRef = useRef<HTMLDivElement>(null!)
 
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [subscribeCreatedAt, setSubscribeCreatedAt] = useState(() => Date.now())
+  const [startSubscription, setStartSubscription] = useState<number | null>(null)
   const [scrolledToBottom, setScrolledToBottom] = useState(true)
+
+  // Get initial messages
+  // api.chat.getMessages(THREAD).then((messages) => {
+  // })
+
+  // Subscribe to new messages
+  // const cleanup = api.chat.subscribe(
+  //   Date.now(),
+  //   (newMessages) => {
+  //   },
+  //   THREAD
+  // )
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!user || !input) return
-    api.chat.postMessage(input, user.id, user.name, user.avatarUrl).then(() => {
-      // What do you want to do here?
+    api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD).then(() => {
+      // If the message was `clear`, let's clear the state to be an empty array
     })
   }
 
-  // 🟢 useEffect Here
-  // api.chat.getMessages().then((messages) => {
-  //   setMessages(messages)
-  // })
-
-  // 🔵 useEffect Here
-
-  // The issue is we're unsubscribing and re-subscribing on every new message
-
-  // useEffect(() => {
-  //   if (messagesLoaded) {
-  //     const cleanup = api.chat.subscribe(subscribeCreatedAt, (newMessages: ChatMessage[]) => {
-  //       setMessages((messages) => {
-  //         return (messages || []).concat(newMessages)
-  //       })
-  //       setSubscribeCreatedAt(Date.now())
-  //     })
-  //     return cleanup
-  //   }
-  // }, [messagesLoaded, subscribeCreatedAt])
-
-  useEffect(() => {
-    if (scrolledToBottom) {
-      chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
-    }
-  }, [messages, scrolledToBottom])
-
   function onBoardScroll(event: any) {
     const e = event.target
-    const bottom = e.scrollHeight === e.scrollTop + e.clientHeight
+    // See if the user scrolled to the bottom
+    const bottom = e.scrollHeight <= Math.ceil(e.scrollTop + e.clientHeight)
+    // If the user is in a different scroll position from what we have
+    // in state, update the state
     if (scrolledToBottom !== bottom) {
       setScrolledToBottom(bottom)
     }
@@ -60,8 +50,7 @@ export function ChatPage() {
   return (
     <div className={styles.component}>
       <div className="chat-board spacing" ref={chatBoardRef} onScroll={onBoardScroll}>
-        {messagesLoaded &&
-          messages.length > 0 &&
+        {messages.length > 0 &&
           messages.map((message) => {
             return (
               <div key={message.id} className="chat-message flex flex-gap">
