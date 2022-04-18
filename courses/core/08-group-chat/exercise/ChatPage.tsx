@@ -5,19 +5,21 @@ import { useAuthContext } from 'course-platform/AuthContext'
 import type { ChatMessage } from 'course-platform/utils/types'
 import styles from '../../../../apps/course-platform/ChatPage/ChatPage.module.scss'
 
-const THREAD = 'all'
+const THREAD_NAME = 'all'
 
 export function ChatPage() {
   const { user } = useAuthContext()
   const chatBoardRef = useRef<HTMLDivElement>(null!)
 
   const [input, setInput] = useState('')
-  const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [startSubscription, setStartSubscription] = useState<number | null>(null)
   const [scrolledToBottom, setScrolledToBottom] = useState(true)
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+
+  // You'll use Date.now() for this state (which is a number)
+  const [startSubscription, setStartSubscription] = useState<number | null>(null)
 
   // Get initial messages
-  // api.chat.getMessages(THREAD).then((messages) => {
+  // api.chat.getMessages(THREAD_NAME).then((messages) => {
   // })
 
   // Subscribe to new messages
@@ -25,14 +27,16 @@ export function ChatPage() {
   //   Date.now(),
   //   (newMessages) => {
   //   },
-  //   THREAD
+  //   THREAD_NAME
   // )
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!user || !input) return
-    api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD).then(() => {
-      // If the message was `clear`, let's clear the state to be an empty array
+    api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD_NAME).then(() => {
+      // noop (no operation)
+      // We don't need to do anything when we post a message here to get it added to state. The
+      // subscription will do that for us
     })
   }
 

@@ -2,16 +2,16 @@
 
 There's already a firebase database ready to go for you. You can use the following APIs to access it:
 
-BEFORE YOU START: Change the `thread` variable from `all` to something that only you and your group will use so you're messages don't interfere with other's working on the same chat database
+⭐️ BEFORE YOU START ⭐️ Change the `THREAD_NAME` variable from `all` to something that only you and your group will use so you're messages don't interfere with other's working on the same chat database. All your chat messages will be isolated by that name.
 
 ```js
-const thread = 'all' // change to any string
+const THREAD_NAME = 'all' // change
 
 // Get Messages (Promise)
-api.chat.getMessages(thread).then((messages) => {})
+api.chat.getMessages(THREAD_NAME).then((messages) => {})
 
 // Post Message (Promise)
-api.chat.postMessage(input, userId, userName, avatarUrl, thread).then(/* no data */)
+api.chat.postMessage(input, userId, userName, avatarUrl, THREAD_NAME).then(/* no data */)
 
 // Subscribe To Messages after a certain time (Subscription). This will return
 // a function that can be called later to unsubscribe
@@ -53,8 +53,4 @@ Scroll to the bottom of the chat view after new messages are rendered. Here is t
 chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
 ```
 
-The key part to that is to scroll AFTER messages are rendered. If you set new state for messages and then try to immediately scroll, it wont work because setting state doesn't mean the DOM is updated yet to measure `scrollHeight` yet. It will work if the `useEffect` that sets messages finishes the next re-render and then you scroll from another `useEffect`.
-
-## Task 4
-
-If the user typed the word "clear", this should clear the chat. Set the messages to be an empty array upon the successful call to `api.chat.postMessage`
+The key part to that is to scroll AFTER messages are rendered. If you set new state for messages and then try to immediately scroll, it wont work because setting state doesn't mean the DOM is updated yet to measure `scrollHeight` yet.

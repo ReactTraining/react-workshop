@@ -5,22 +5,22 @@ import { useAuthContext } from 'course-platform/AuthContext'
 import type { ChatMessage } from 'course-platform/utils/types'
 import styles from '../../../../apps/course-platform/ChatPage/ChatPage.module.scss'
 
-const THREAD = 'all'
+const THREAD_NAME = 'all'
 
 export function ChatPage() {
   const { user } = useAuthContext()
   const chatBoardRef = useRef<HTMLDivElement>(null!)
+  const inputRef = useRef<HTMLInputElement>(null!)
 
   const [input, setInput] = useState('')
+  const [scrolledToBottom, setScrolledToBottom] = useState(true)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [startSubscription, setStartSubscription] = useState<number | null>(null)
-  const [scrolledToBottom, setScrolledToBottom] = useState(true)
-  const inputRef = useRef<HTMLInputElement>(null!)
 
   // Get Initial Messages
   useEffect(() => {
     let isCurrent = true
-    api.chat.getMessages(THREAD).then((messages) => {
+    api.chat.getMessages(THREAD_NAME).then((messages) => {
       if (isCurrent) {
         setMessages(messages)
         setStartSubscription(Date.now())
@@ -43,24 +43,22 @@ export function ChatPage() {
             return (messages || []).concat(newMessages)
           })
 
-          chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
-
           // Renew this timestamp to cause the next render
           // to destroy the previous subscription and create
           // a new one
           setStartSubscription(Date.now())
         },
-        THREAD
+        THREAD_NAME
       )
       return cleanup
     }
   }, [startSubscription])
 
-  // useEffect(() => {
-  //   if (scrolledToBottom) {
-  //     chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
-  //   }
-  // }, [messages, scrolledToBottom])
+  useEffect(() => {
+    if (scrolledToBottom) {
+      chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
+    }
+  }, [messages, scrolledToBottom])
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -68,7 +66,7 @@ export function ChatPage() {
     const clear = input.toLowerCase().trim() === 'clear'
     setInput('')
     inputRef.current.focus()
-    api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD).then(() => {
+    api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD_NAME).then(() => {
       if (clear) {
         setMessages([])
       }
