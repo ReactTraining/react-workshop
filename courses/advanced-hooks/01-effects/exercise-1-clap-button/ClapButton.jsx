@@ -1,9 +1,8 @@
 import { Component, useState, useEffect } from 'react'
-import * as ReactDOM from 'react-dom/client'
 import debounce from 'lodash.debounce'
 import { saveClapsToDatabase } from './utils'
 
-class ClapButton extends Component {
+export class ClapButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -45,8 +44,25 @@ class ClapButton extends Component {
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<ClapButton />)
+// If you want to start from a function component instead of refactoring:
 
-// One of our instructors wrote a blog article on this exact topic of "debouncing claps":
-// https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/
+// function ClapButton() {
+//   const [claps, setClaps] = useState(0)
+//   const [queueClaps, setQueueClaps] = useState(0)
+
+//   function clap() {
+//   }
+
+//   return (
+//     <div className="text-center spacing">
+//       <button onClick={clap} className="button">
+//         Clap
+//       </button>
+//       <hr />
+//       <div className="horizontal-spacing">
+//         <span>Queue Claps: {queueClaps}</span>
+//         <span>Claps: {claps}</span>
+//       </div>
+//     </div>
+//   )
+// }

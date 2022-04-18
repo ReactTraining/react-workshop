@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { saveClapsToDatabase } from './utils'
 
-function ClapButton() {
+export function ClapButton() {
   const [claps, setClaps] = useState(0)
   const [queueClaps, setQueueClaps] = useState(0)
 
@@ -18,7 +18,7 @@ function ClapButton() {
     }
   }, [queueClaps])
 
-  const clap = () => {
+  function clap() {
     setQueueClaps(queueClaps + 1)
   }
 

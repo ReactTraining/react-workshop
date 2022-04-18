@@ -1,6 +1,8 @@
-# Advanced useEffects Concepts
+# Clap Button
 
-## Task: Convert working class-based component to function-based with Hooks
+## Task 1
+
+Convert working class-based component to function-based with Hooks
 
 Depending on your comfort level with the older class-based way of writing React components, you may or may not want to start with the class-based code we've given you. If you're not as comfortable, maybe it's best to just start with a blank function component and work your way up from there.
 
@@ -19,3 +21,8 @@ saveClapsToDatabase(queueClaps).then((latestClaps) => {
 
 4. When the promise resolves, set `queueClaps` back to `0` and update the `claps` to be the `latestClaps`.
 5. Make sure you do a cleanup function. 🤔 What do you think needs to be cleaned up?
+
+---
+
+One of our instructors wrote a blog article on this exact topic of "debouncing claps":
+https://reacttraining.com/blog/blog-claps-and-lessons-on-hooks/

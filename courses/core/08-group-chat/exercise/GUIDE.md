@@ -2,6 +2,8 @@
 
 There's already a firebase database ready to go for you. You can use the following APIs to access it:
 
+⭐️ IMPORTANT ⭐️ You might want to make your own user with your avatar. If you use the "signup" feature in the app, choose a username that matches your one from GitHub and we'll grab the avatar image for you.
+
 ⭐️ BEFORE YOU START ⭐️ Change the `THREAD_NAME` variable from `all` to something that only you and your group will use so you're messages don't interfere with other's working on the same chat database. All your chat messages will be isolated by that name.
 
 ```js
