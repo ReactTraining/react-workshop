@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { wrapEvent, useForkedRef } from '../../utils'
-import { useId } from '../../useId'
 
 import {
   createDescendantContext,
@@ -22,7 +21,7 @@ export const Accordion = React.forwardRef(
     forwardedRef
   ) => {
     const [selectedIndex, setSelectedIndex] = React.useState(defaultIndex)
-    const accordionId = useId(id)
+    const accordionId = React.useId(id)
 
     const isControlled = controlledIndex != null
     const { current: startsControlled } = React.useRef(isControlled)

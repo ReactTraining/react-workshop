@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
 const TabsContext = React.createContext()
@@ -17,7 +16,7 @@ export const Tabs = React.forwardRef(
     const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     const context = {
-      tabsId: useId(id),
+      tabsId: React.useId(id),
       selectedIndex: isControlled ? controlledIndex : selectedIndex,
       setSelectedIndex: (index) => {
         onChange && onChange(index)

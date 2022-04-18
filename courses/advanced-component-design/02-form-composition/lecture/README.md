@@ -67,8 +67,6 @@ function FieldWrap({ label, name, ...props }: FieldWrapProps) {
 
 This tightly couples the input to the wrapper code though and makes it difficult to customize the wrapper and the input. If we wanted to pass in an extra `className` or any other spreadable props in, where would they go?
 
-This would be a good time to implement `useId` for generic ids.
-
 Our current abstraction is also difficult to use if we wanted to wrap `textarea` and `select`. So we could replace the `<input />` with a `<Field />` instead. Now we can pass `<FieldWrap as="textarea">` and it will be spread into `<Field>`.
 
 However, we can't do fancy custom input fields like `FieldDatePicker`. The wrapper abstraction and the "field" abstraction are tightly coupled and don't allow us to make more decisions for what kind of input is being wrapped.

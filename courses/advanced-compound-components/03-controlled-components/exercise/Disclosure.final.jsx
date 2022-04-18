@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { useId } from '../../useId'
 import { wrapEvent } from '../../utils'
 
 const DisclosureContext = React.createContext()
@@ -23,7 +22,7 @@ export function Disclosure({
 
   const [isOpen, setIsOpen] = React.useState(defaultOpen)
 
-  const id = useId(props.id)
+  const id = React.useId(props.id)
   const panelId = `panel-${id}`
 
   const context = {

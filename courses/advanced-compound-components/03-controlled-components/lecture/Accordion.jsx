@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { wrapEvent } from '../../utils'
-import { useId } from '../../useId'
 
 const AccordionContext = React.createContext()
 
@@ -11,7 +10,7 @@ const AccordionContext = React.createContext()
 export const Accordion = React.forwardRef(
   ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
     const [selectedIndex, setSelectedIndex] = React.useState(defaultIndex)
-    const accordionId = useId(id)
+    const accordionId = React.useId(id)
 
     children = React.Children.map(children, (child, index) => {
       const panelId = `accordion-${accordionId}-panel-${index}`

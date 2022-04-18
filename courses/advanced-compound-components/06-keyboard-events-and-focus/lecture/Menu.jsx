@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Popover } from './Popover'
-import { useId } from '../../useId'
 import { wrapEvent, useForkedRef } from '../../utils'
 import {
   createDescendantContext,
@@ -24,8 +23,10 @@ export function Menu({ children, id, defaultOpen = false }) {
   const buttonRef = React.useRef(null)
   const popoverRef = React.useRef(null)
 
+  const menuId = React.useId(id)
+
   const context = {
-    buttonId: `menu-button-${useId(id)}`,
+    buttonId: `menu-button-${menuId}`,
     isOpen,
     setIsOpen,
     menuRef,

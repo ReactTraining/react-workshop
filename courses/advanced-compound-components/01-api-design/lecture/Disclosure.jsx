@@ -1,10 +1,6 @@
 import * as React from 'react'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 
-// Import or write our own:
-// import { useId } from '../../useId'
-// function useId() {}
-
 export function Disclosure({ children, label, defaultIsOpen = false }) {
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen)
 

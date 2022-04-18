@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { useId } from '../../useId'
 // import { wrapEvent } from '../../utils'
 
 export function Disclosure({ children, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = React.useState(defaultOpen)
-  const id = useId(props.id)
+  const id = React.useId(props.id)
   const panelId = `panel-${id}`
 
   children = React.Children.map(children, (child) => {
