@@ -110,11 +110,10 @@ export function DatePickerCalendar({
 
   return (
     <div className="spacing">
-      <button data-datepicker-change-month="" onClick={() => setBaseMonth(1)}>
+      <button className="button" data-datepicker-change-month="" onClick={() => setBaseMonth(1)}>
         Next Month
       </button>
 
-      <hr />
       <div data-datepicker-calendar="" style={style}>
         <div data-datepicker-calendar-dayofweek="">
           <div>S</div>

@@ -15,14 +15,18 @@ export function App() {
   }
 
   return (
-    <div>
+    <div className="spacing">
       <DatePicker selectRange>
-        <div className="spacing">
-          <DatePickerCalendar />
-          <hr />
-          <DatePickerCalendar offset={1} />
+        <div className="flex flex-gap-large">
+          <div className="flex-1">
+            <DatePickerCalendar />
+          </div>
+          <div className="flex-1">
+            <DatePickerCalendar offset={1} />
+          </div>
         </div>
       </DatePicker>
+      <hr />
       <div>Date: {day.format('DD')}</div>
       <div className="horizontal-spacing">
         <button className="button" onClick={previous}>

@@ -15,8 +15,18 @@ export function App() {
   // }
 
   return (
-    <div>
-      <DatePicker />
+    <div className="spacing">
+      <DatePicker selectRange />
+      {/* <hr />
+      <div>Date: {day.format('DD')}</div>
+      <div className="horizontal-spacing">
+        <button className="button" onClick={previous}>
+          Previous
+        </button>
+        <button className="button" onClick={forward}>
+          Forward
+        </button>
+      </div> */}
     </div>
   )
 }
