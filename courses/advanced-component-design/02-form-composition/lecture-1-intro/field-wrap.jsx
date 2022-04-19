@@ -5,11 +5,11 @@ import { Formik, Form, Field, useField } from 'formik'
 const initialValues = { email: '', password: '' }
 
 export function App() {
-  function handleSubmit(values: typeof initialValues) {
+  function handleSubmit(values) {
     console.log(values)
   }
 
-  function handleValidation(values: any): any {
+  function handleValidation(values) {
     // Not a very good way to verify emails
     return values.email.search('@') < 0 ? { email: 'Invalid Email' } : null
   }
