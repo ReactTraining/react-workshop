@@ -53,7 +53,8 @@
 }
 
 [data-datepicker-calendar-boxes] > button[data-today] {
-  border: 1px solid var(--datePickerCalendarBoxToday, rgba(0, 0, 0, 0.2));
+  color: #fff;
+  background-color: var(--blue2);
 }
 
 [data-datepicker-calendar-boxes] > button:first-child {

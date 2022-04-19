@@ -160,3 +160,42 @@ export function DatePickerCalendar({
     </div>
   )
 }
+
+/****************************************
+  DatePicker Navigation
+*****************************************/
+
+// type DatePickerChangeMonthProps = {
+//   to: number | D
+// } & React.HTMLAttributes<HTMLButtonElement>
+
+// export const DatePickerChangeMonth: React.FC<DatePickerChangeMonthProps> = ({
+//   children,
+//   to,
+//   ...props
+// }) => {
+//   const { setBaseMonth } = useContext(Context)
+//   return (
+//     <button {...props} data-datepicker-change-month="" onClick={() => setBaseMonth(to)}>
+//       {children}
+//     </button>
+//   )
+// }
+
+/****************************************
+  Labels
+*****************************************/
+
+// type DatePickerLabelProps = {
+//   offset?: number
+//   format?: string
+// } & React.HTMLAttributes<HTMLDivElement>
+
+// export const DatePickerLabel: React.FC<DatePickerLabelProps> = ({
+//   format = 'MMMM',
+//   offset = 0,
+//   ...props
+// }) => {
+//   const { baseMonthFirst } = useContext(Context)
+//   return <div {...props}>{baseMonthFirst.add(offset, 'month').format(format)}</div>
+// }
