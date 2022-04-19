@@ -13,6 +13,13 @@ type D = dayjs.Dayjs // smaller alias
 // we'll always store it as an array
 type SelectedDates = [] | [D] | [D, D]
 
+// type ContextType = {
+//   selectedDates: SelectedDates
+//   selectDate(date: D): void
+//   baseMonthFirst: D
+//   setBaseMonth(to: number | D): void
+// }
+
 /****************************************
   DatePicker
 *****************************************/
@@ -72,9 +79,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   DatePickerCalendar
 *****************************************/
 
-// type Offset = -1 | 0 | 1
+type Offset = -1 | 0 | 1
 type DatePickerCalendarProps = {
-  // offset?: Offset
+  offset?: Offset
   selectedDates: SelectedDates
   selectDate(date: D): void
   baseMonthFirst: D
@@ -82,13 +89,14 @@ type DatePickerCalendarProps = {
 }
 
 export function DatePickerCalendar({
+  offset = 0,
   selectedDates,
   selectDate,
   baseMonthFirst,
   setBaseMonth,
 }: DatePickerCalendarProps) {
   // The first day of the base month
-  const theFirst = baseMonthFirst
+  const theFirst = offset === 0 ? baseMonthFirst : baseMonthFirst.add(offset, 'month')
 
   // The day of the week of the first day of the month
   const dayOfWeek = theFirst.day()

@@ -4,22 +4,39 @@ import {
   DatePickerCalendar,
   DatePickerChangeMonth,
   DatePickerLabel,
-} from './DatePicker'
+} from './DatePicker.final'
+// import {
+//   DatePicker,
+//   DatePickerCalendar,
+//   DatePickerChangeMonth,
+//   DatePickerLabel,
+// } from './DatePicker'
 import './styles.scss'
 
 function App() {
   return (
     <div>
-      <DatePicker selectRange>
+      <DatePicker>
         <div className="spacing">
           <header className="flex-split">
-            <button className="button">Previous</button>
-            <button className="button">Next</button>
+            <DatePickerChangeMonth to={-1} className="button">
+              Previous
+            </DatePickerChangeMonth>
+            <DatePickerChangeMonth to={1} className="button">
+              Next
+            </DatePickerChangeMonth>
           </header>
-          <div>Month Label</div>
+
+          <div>
+            <DatePickerLabel />
+          </div>
           <DatePickerCalendar />
+
           <hr />
-          <div>Next Month Label</div>
+
+          <div>
+            <DatePickerLabel offset={1} />
+          </div>
           <DatePickerCalendar offset={1} />
         </div>
       </DatePicker>
