@@ -1,4 +1,3 @@
-import React from 'react'
 import { Formik, Form, Field, useField } from 'formik'
 
 export function App() {
