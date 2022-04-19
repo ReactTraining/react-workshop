@@ -8,9 +8,8 @@ export function App() {
   }
 
   function handleValidation(values) {
-    // A terrible regular expression for emails, but the point is we can do
-    // validation and we'll do a better job later
-    return /^\S+@\S+$/.test(values.email) ? {} : { email: 'Invalid Email' }
+    // Not a very good way to verify emails
+    return values.email.search('@') < 0 ? { email: 'Invalid Email' } : null
   }
 
   return (

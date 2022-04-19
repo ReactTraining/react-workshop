@@ -57,7 +57,7 @@ export function App() {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {/* noValidate in the form now */}
+      {/* noValidate in the form now because we don't want HTML5 validation too */}
       <Form className="spacing" noValidate>
         <FieldInput name="email" label="Email" type="Email" autoComplete="off" required />
         <FieldInput
@@ -76,22 +76,15 @@ export function App() {
   )
 }
 
-function FieldDatePicker({ name, label, ...props }) {
+function FieldWrap({ label, name, required = false, children }) {
+  const [field, meta] = useField(name)
+  const id = useId()
   return (
-    <FieldWrap name={name} label={label}>
-      {(field) => {
-        return (
-          <div className="form-field-icon">
-            <div className="form-field-icon-input-wrap">
-              <input {...field} {...props} type="text" />
-            </div>
-            <div className="form-field-icon-wrap">
-              <BsCalendar3 />
-            </div>
-          </div>
-        )
-      }}
-    </FieldWrap>
+    <div className={classnames('field-wrap', { required })}>
+      <label htmlFor={id}>{label}</label>
+      <div>{children({ id, name, ...field })}</div>
+      {meta.error && <div>{meta.error}</div>}
+    </div>
   )
 }
 
@@ -113,14 +106,21 @@ function FieldInput({ name, label, required = false, type = 'text', className, .
   )
 }
 
-function FieldWrap({ label, name, required = false, children }) {
-  const [field, meta] = useField(name)
-  const id = useId()
+function FieldDatePicker({ name, label, ...props }) {
   return (
-    <div className={classnames('field-wrap', { required })}>
-      <label htmlFor={id}>{label}</label>
-      <div>{children({ id, name, ...field })}</div>
-      {meta.error && <div>{meta.error}</div>}
-    </div>
+    <FieldWrap name={name} label={label}>
+      {(field) => {
+        return (
+          <div className="form-field-icon">
+            <div className="form-field-icon-input-wrap">
+              <input {...field} {...props} type="text" />
+            </div>
+            <div className="form-field-icon-wrap">
+              <BsCalendar3 />
+            </div>
+          </div>
+        )
+      }}
+    </FieldWrap>
   )
 }

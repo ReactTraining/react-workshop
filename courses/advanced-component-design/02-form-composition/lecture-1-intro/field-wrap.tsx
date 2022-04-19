@@ -9,8 +9,9 @@ export function App() {
     console.log(values)
   }
 
-  function handleValidation() {
-    return { email: 'invalid' }
+  function handleValidation(values: any): any {
+    // Not a very good way to verify emails
+    return values.email.search('@') < 0 ? { email: 'Invalid Email' } : null
   }
 
   return (
@@ -18,33 +19,36 @@ export function App() {
       <Form className="spacing">
         <FieldEmail />
         <FieldPassword />
-        <button type="submit" className="button">
-          Submit
-        </button>
+        {/* <FieldDatePicker /> */}
+        <button className="button">Submit</button>
       </Form>
     </Formik>
   )
 }
 
+/**
+ * Fields
+ */
+
 function FieldEmail() {
-  const [_, meta] = useField('email')
+  const [field, meta] = useField('email')
   const id = 'email'
   return (
     <div className="field-wrap spacing-small">
       <label htmlFor={id}>Email</label>
-      <Field id={id} name="email" type="email" autoComplete="off" className="form-field" />
+      <input {...field} id={id} type="email" autoComplete="off" className="form-field" />
       {meta.error && <p>{meta.error}</p>}
     </div>
   )
 }
 
 function FieldPassword() {
-  const [_, meta] = useField('password')
+  const [field, meta] = useField('password')
   const id = 'password'
   return (
     <div className="field-wrap spacing-small">
       <label htmlFor={id}>Password</label>
-      <Field name="password" type="password" className="form-field" />
+      <input {...field} name="password" type="password" className="form-field" />
       {meta.error && <p>{meta.error}</p>}
     </div>
   )
