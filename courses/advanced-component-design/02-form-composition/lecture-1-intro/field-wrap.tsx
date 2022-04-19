@@ -20,7 +20,9 @@ export function App() {
         <FieldEmail />
         <FieldPassword />
         {/* <FieldDatePicker /> */}
-        <button className="button">Submit</button>
+        <button type="submit" className="button">
+          Submit
+        </button>
       </Form>
     </Formik>
   )
