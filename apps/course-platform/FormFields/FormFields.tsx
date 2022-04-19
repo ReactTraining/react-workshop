@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import React, { useId, forwardRef } from 'react'
 import classnames from 'classnames'
 import { useField } from 'formik'
 import styles from './FormFields.module.scss'
@@ -48,7 +48,7 @@ type CustomFieldProps = {
 
 type FieldInputProps = CustomFieldProps & React.InputHTMLAttributes<HTMLInputElement>
 
-export const FieldInput = React.forwardRef<HTMLInputElement, FieldInputProps>(
+export const FieldInput = forwardRef<HTMLInputElement, FieldInputProps>(
   ({ label, name, className, required = false, type = 'text', ...props }, ref) => {
     return (
       <FieldWrap label={label} name={name} required={required}>
@@ -74,7 +74,7 @@ export const FieldInput = React.forwardRef<HTMLInputElement, FieldInputProps>(
 
 type FieldSelectProps = CustomFieldProps & React.HTMLAttributes<HTMLSelectElement>
 
-export const FieldSelect = React.forwardRef<HTMLSelectElement, FieldSelectProps>(
+export const FieldSelect = forwardRef<HTMLSelectElement, FieldSelectProps>(
   ({ label, name, className, required = false, ...props }, ref) => {
     return (
       <FieldWrap label={label} name={name} required={required}>
