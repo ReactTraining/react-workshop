@@ -53,6 +53,7 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "find-process": "^1.4.5",
     "jest": "^27.5.1",
+    "mock-match-media": "^0.3.0",
     "plop": "^3.0.5",
     "readline-sync": "^1.4.10",
     "sass": "^1.43.2",

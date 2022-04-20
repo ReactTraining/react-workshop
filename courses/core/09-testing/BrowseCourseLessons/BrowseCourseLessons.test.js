@@ -6,7 +6,6 @@ import { BrowseCourseLessons } from './BrowseCourseLessons'
 
 // Mock modules
 import { useCoursesContext } from 'course-platform/CoursesContext'
-import { api } from 'course-platform/utils/api'
 
 /**
  * Mocks
@@ -15,21 +14,18 @@ import { api } from 'course-platform/utils/api'
 jest.mock('react-router-dom', () => ({
   // use actual library code for all non-hook parts
   ...jest.requireActual('react-router-dom'),
+  Link: ({ children }) => <a href="/">{children}</a>,
   useParams: () => ({
     // arbitrary value to mock the URL
     courseSlug: 'react',
   }),
 }))
 
-// jest.mock('ProjectPlanner/TaskGroup', () => ({
-//   TaskGroup: () => <div data-testid="mockTaskGroup" />,
-// }))
-
-jest.mock('course-platform/utils/api')
+jest.mock('course-platform/PreviousNextCourse', () => ({
+  PreviousNextCourse: () => null,
+}))
 
 jest.mock('course-platform/CoursesContext', () => ({
-  __esModule: true,
-  // BoardProvider: ({ children }) => children,
   // mock values setup in tests:
   useCoursesContext: jest.fn(),
 }))
@@ -39,14 +35,28 @@ jest.mock('course-platform/CoursesContext', () => ({
  */
 
 describe('BrowseCourseLessons', () => {
-  it('should ...', () => {
+  it('should render message for no course', () => {
     useCoursesContext.mockReturnValue({
       getCourse: () => null,
       isLoading: false,
     })
     render(<BrowseCourseLessons />)
-    // todo: finish
-    // const input = screen.getByTestId('input')
-    // expect(input.value).toEqual('0')
+    screen.getByText('Not Found')
+  })
+  it('Should render message for no lessons', () => {
+    useCoursesContext.mockReturnValue({
+      getCourse: () => ({ lessons: [] }),
+      isLoading: false,
+    })
+    render(<BrowseCourseLessons />)
+    screen.getByText('No Lessons for this Course')
+  })
+  it('Should render lessons', () => {
+    useCoursesContext.mockReturnValue({
+      getCourse: () => ({ lessons: [{ id: 1, slug: 'react', name: 'React' }] }),
+      isLoading: false,
+    })
+    render(<BrowseCourseLessons />)
+    screen.getByText('React')
   })
 })
