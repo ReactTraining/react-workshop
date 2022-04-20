@@ -4,29 +4,27 @@ import { Heading } from 'course-platform/Heading'
 import { Notice } from 'course-platform/Notice'
 
 export function useDelayedCallback(cb) {
-  const [state, setState] = useState(null)
+  const [callbackValue, setCallbackValue] = useState(null)
   const [ms, setMs] = useState(0)
 
-  function queueState(state, ms) {
-    setState(state)
+  function queueState(callbackValue, ms) {
+    setCallbackValue(callbackValue)
     setMs(ms)
   }
 
   useEffect(() => {
-    if (state !== null) {
-      let isCurrent = true
+    if (callbackValue !== null) {
       const id = setTimeout(() => {
-        if (isCurrent) {
-          cb(state)
-          setState(null)
-        }
+        cb(callbackValue)
+        setCallbackValue(null)
       }, ms)
       return () => {
-        isCurrent = false
         clearTimeout(id)
       }
     }
-  }, [state, cb, ms])
+    // Let's talk about why we might need to do this
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [callbackValue, ms])
 
   return queueState
 }
@@ -39,7 +37,7 @@ export const Signup = () => {
   const [avatarUrl, setAvatarUrl] = useState('')
 
   // Notice with Timeout
-  const [showNotice, setShowNotice] = useState()
+  const [showNotice, setShowNotice] = useState(false)
   const setShowNoticeDelayed = useDelayedCallback(setShowNotice)
 
   // Other State
@@ -79,7 +77,7 @@ export const Signup = () => {
             {showNotice && <Notice>Form has been submitted</Notice>}
 
             <div>
-              <label for="full-name">Full Name</label>
+              <label htmlFor="full-name">Full Name</label>
               <input
                 type="text"
                 className="form-field"
@@ -89,11 +87,11 @@ export const Signup = () => {
               />
             </div>
             <div>
-              <label for="full-name">Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 className="form-field"
-                id="full-name"
+                id="username"
                 autoComplete="off"
                 placeholder="If you use your github username, we'll load your avatar"
                 onBlur={() => fetchAvatar(username)}
@@ -102,11 +100,11 @@ export const Signup = () => {
               />
             </div>
             <div>
-              <label for="full-name">Full Name</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="text"
                 className="form-field"
-                id="full-name"
+                id="password"
                 autoComplete="off"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

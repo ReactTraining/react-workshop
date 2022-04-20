@@ -26,16 +26,16 @@ function MyComponent() {
 }
 ```
 
-You will need internal state for your hook to track the delayedValue. We call it `state` here:
+Think of `queueState`'s job as being to set some temporary state, we call it `callbackValue`. Then an effect will see that state changes and it will start a timeout to wait to call the `cb` callback function with that temp `callbackValue`
 
 ```js
 export function useDelayedCallback(cb) {
-  const [state, setState] = useState(null)
+  const [callbackValue, setCallbackValue] = useState(null)
 
-  function queueState(state, ms) {}
+  function queueState(callbackValue, ms) {
+    // ...
+  }
 
   return queueState
 }
 ```
-
-You'll also need to keep track of the milliseconds passed in and use a `useEffect` to run a JavaScript timeout when `state` or the milliseconds change. When the timeout resolves, call the callback.
