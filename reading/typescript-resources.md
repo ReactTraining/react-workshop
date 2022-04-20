@@ -33,9 +33,6 @@ https://fettblog.eu/typescript-react/hooks/
 Typing Custom Hooks
 https://fettblog.eu/typescript-react-typeing-custom-hooks/
 
-Argument against React.FC (Helps to learn TS syntax better)
-https://fettblog.eu/typescript-react-why-i-dont-use-react-fc/
-
 Generics and Arrow Functions
 https://www.carlrippon.com/generic-arrow-functions/
 

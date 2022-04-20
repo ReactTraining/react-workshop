@@ -60,3 +60,13 @@
 [data-datepicker-calendar-boxes] > button:first-child {
   grid-column: var(--datePickerCalendarBoxOffset, 0);
 }
+
+.popover {
+  background-color: #fff;
+  border-radius: 0.3em;
+}
+
+.select-date-range {
+  width: 500px;
+  padding: var(--gutter);
+}

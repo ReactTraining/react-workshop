@@ -114,7 +114,7 @@ export function BrowseCourses() {
 //   removeCourse(id: number): void
 // }
 
-// const CourseList: React.FC<Props> = memo(({ courses, removeCourse }) => {
+// const CourseList = memo(({ courses, removeCourse }: Props) => {
 //   return (
 
 //   )

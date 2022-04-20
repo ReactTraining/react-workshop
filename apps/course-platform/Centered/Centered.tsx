@@ -1,15 +1,11 @@
 type Props = {
+  children: React.ReactNode
   as?: string | React.ElementType
   size?: number
   className?: string
 }
 
-export const Centered: React.FC<Props> = ({
-  as: Component = 'div',
-  size = 60,
-  children,
-  ...rest
-}) => {
+export function Centered({ as: Component = 'div', size = 60, children, ...rest }: Props) {
   return (
     <Component
       style={{

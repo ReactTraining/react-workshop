@@ -16,7 +16,7 @@ export function WebsiteLayout() {
   )
 }
 
-const WebsiteHeader: React.FC = () => {
+const WebsiteHeader = () => {
   return (
     <header className="spacing">
       <Centered>

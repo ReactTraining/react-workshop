@@ -4,10 +4,6 @@ import classnames from 'classnames'
 import { BsCalendar3 } from 'react-icons/bs'
 import { Formik, Form, useField } from 'formik'
 
-/**
- * Validation Schema. You can use this code in Node and in the front-end
- */
-
 const dateExp = /^(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/
 
 const formSchema = yup.object().shape({
@@ -31,10 +27,6 @@ const formSchema = yup.object().shape({
 //   password: schemas.password.required('Required'),
 //   dob: schemas.date.required('Required'),
 // })
-
-/**
- * Front End App
- */
 
 export function App() {
   function handleSubmit(values) {

@@ -29,7 +29,7 @@ type ContextType = {
 type DatePickerProps = {
   selectRange?: boolean
   disablePastDays?: boolean
-  // All the DayJS types
+  // All the types DayJS can receive
   baseMonth?: string | number | D | Date | null | undefined
   onSelectDate?: (selectedDate: SelectedDates) => void
 }

@@ -71,7 +71,7 @@ export const SearchListingsForm: React.FC<SearchListingsFormProps> = ({
           {children}
         </Form>
       </Formik>
-    <.Provider>
+    </Context.Provider>
   )
 }
 
