@@ -21,7 +21,10 @@ export function TaskOne() {
         context.
       </li>
       <li>Add a `data-selected` attribute to the tab that is selected.</li>
-      <li>Add these ARIA roles to the appropriate places: `tablist`, `tab`, and `tabpanel`</li>
+      <li>
+        Add these ARIA roles to the appropriate places: `tablist`, `tab`, and `tabpanel`. Note that
+        it's not `aria-role=""` it's just `role=""`.
+      </li>
       <li>Add aria-selected="true" (or false) for each tab.</li>
       <li>Forward refs.</li>
     </ul>
