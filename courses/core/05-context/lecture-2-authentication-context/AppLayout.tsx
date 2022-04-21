@@ -1,20 +1,17 @@
-import { useContext } from 'react'
-import { Outlet, Link, NavLink, Navigate, useLocation } from 'react-router-dom'
+import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom'
 import { Loading } from 'course-platform/Loading'
 import { Logo } from 'course-platform/Logo'
 import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
 import { Icon } from 'course-platform/Icon'
+import { useAuthContext } from './AuthContext'
 import styles from '../../../../apps/course-platform/AppLayout/AppLayout.module.scss'
-// import { useAuthContext } from './AuthContext'
 
-// Temporary
-type Props = {
-  [key: string]: any
-}
+export function AppLayout() {
+  const navigate = useNavigate()
+  const { authenticated } = useAuthContext()
 
-export function AppLayout({ authenticated, user, logout }: Props) {
   if (authenticated === false) {
-    return <Navigate to="/login" replace />
+    return navigate('/login')
   }
 
   if (authenticated === null) {
@@ -30,7 +27,7 @@ export function AppLayout({ authenticated, user, logout }: Props) {
           </Link>
         </div>
         <nav>
-          <AuthenticatedDropdownMenu user={user} logout={logout} />
+          <AuthenticatedDropdownMenu />
         </nav>
       </header>
       <div className="flex-1 flex">
