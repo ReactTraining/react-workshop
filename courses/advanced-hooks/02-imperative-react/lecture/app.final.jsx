@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
 
@@ -18,7 +18,7 @@ const Portal = ({ children }) => {
     }
   }, [])
 
-  return portalNode.current ? ReactDOM.createPortal(children, portalNode.current) : null
+  return portalNode.current ? createPortal(children, portalNode.current) : null
 }
 
 const Popover = ({ children, targetRef }) => {

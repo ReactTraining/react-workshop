@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { Disclosure } from './Disclosure'
 // import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'

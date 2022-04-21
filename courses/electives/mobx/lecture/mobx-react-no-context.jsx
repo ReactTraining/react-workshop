@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { makeAutoObservable } from 'mobx'
 import { Observer, observer } from 'mobx-react'
 

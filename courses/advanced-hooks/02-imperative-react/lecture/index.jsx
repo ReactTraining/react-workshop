@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 // import { App } from './app.final'
 import { App } from './app'
 import './styles.scss'

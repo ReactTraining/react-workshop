@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from './Accordion'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.scss'

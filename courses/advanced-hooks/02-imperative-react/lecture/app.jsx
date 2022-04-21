@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
