@@ -8,8 +8,8 @@ const PanelContext = React.createContext()
 export const Tabs = React.forwardRef(
   ({ children, onChange, index: controlledIndex, id, ...props }, forwardedRef) => {
     const isControlled = controlledIndex != null
-    const { current: wasControlled } = React.useRef(isControlled)
-    if ((!isControlled && wasControlled) || (isControlled && !wasControlled)) {
+    const { current: startedControlled } = React.useRef(isControlled)
+    if (isControlled !== startedControlled) {
       console.warn('Cannot change from controlled to uncontrolled or vice versa.')
     }
 
