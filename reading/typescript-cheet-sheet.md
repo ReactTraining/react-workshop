@@ -17,25 +17,15 @@ const Comp = () => <div /> // Arrow function with "implicit return"
 You can use any of those in TypeScript but there will be some considerations depending on the path you take. The most conventional approach is as follows:
 
 ```tsx
-// Instead of this plain arrow function in JS:
-const Comp = ({ name }) => {
-  return <div />
+type Props = {
+  children: React.ReactNode
+  name: string
 }
 
-// Do this in TS:
-const Comp: React.FC = ({ name }) => {
+// Here's a common way to type the props of a component
+function Comp({ children, name }: Props) => {
   return <div />
 }
-
-// Or this if you have props:
-type Props = { name: string }
-const Comp: React.FC<Props> = ({ name }) => {
-  return <div />
-}
-
-// `React.FC` is an alias for `React.FunctionComponent`
-// Using it with generics or without, you get children props automatically. This
-// can be controversial: https://github.com/facebook/create-react-app/pull/8177
 ```
 
 ## State with useState
@@ -159,7 +149,7 @@ function useToggle(value: boolean) {
   return [state, toggle]
 }
 
-export const MyComponent: React.FC = () => {
+export function MyComponent() {
   const [value, toggle] = useToggle(false)
 
   // With the array returned from the hook, Typescript will infer that any value
@@ -227,7 +217,11 @@ type ContextType = {
 
 const Context = React.createContext<ContextType | null>(null)
 
-export const UserProvider: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode
+}
+
+export function UserProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null)
   React.useEffect(/* fetch data async */)
 

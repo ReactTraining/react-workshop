@@ -13,7 +13,11 @@ type ContextType = {
 
 const Context = createContext<ContextType>(null!)
 
-export const CoursesProvider: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode
+}
+
+export function CoursesProvider({ children }: Props) {
   const { courses, isLoading, error, refetch } = useCourses()
 
   const context: ContextType = {

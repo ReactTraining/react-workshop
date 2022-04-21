@@ -2,9 +2,10 @@ import React from 'react'
 import classnames from 'classnames'
 import styles from './DataGrid.module.scss'
 
-type DataGridProps = React.HTMLAttributes<HTMLDivElement>
+type ChildrenProps = { children: React.ReactNode }
+type DataGridProps = ChildrenProps & React.HTMLAttributes<HTMLDivElement>
 
-export const DataGrid: React.FC<DataGridProps> = ({ children, className, ...rest }) => {
+export function DataGrid({ children, className, ...rest }: DataGridProps) {
   return (
     <div {...rest} className={classnames(styles.dataGrid, className)} role="table">
       {children}
@@ -16,9 +17,9 @@ export const DataGrid: React.FC<DataGridProps> = ({ children, className, ...rest
  * Row
  */
 
-type RowProps = React.HTMLAttributes<HTMLDivElement>
+type RowProps = ChildrenProps & React.HTMLAttributes<HTMLDivElement>
 
-export const Row: React.FC<RowProps> = ({ children, className, ...props }) => {
+export function Row({ children, className, ...props }: RowProps) {
   return (
     <div {...props} className={classnames(styles.row, className)} role="row">
       {children}
@@ -33,15 +34,16 @@ export const Row: React.FC<RowProps> = ({ children, className, ...props }) => {
 type ColProps = {
   width?: number
   flex?: boolean
-} & React.HTMLAttributes<HTMLDivElement>
+} & ChildrenProps &
+  React.HTMLAttributes<HTMLDivElement>
 
-export const Col: React.FC<ColProps> = ({ children, width, flex = false, className, ...props }) => {
+export function Col({ children, width, flex = false, className, ...props }: ColProps) {
   return (
     <div
       {...props}
       className={classnames(styles.col, { 'data-grid-col-flex': flex }, className)}
       style={width ? { width } : undefined}
-      role="col"
+      role="cell"
     >
       {children}
     </div>

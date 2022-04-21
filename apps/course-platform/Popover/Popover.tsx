@@ -4,11 +4,12 @@ import { position } from 'course-platform/utils/position'
 import styles from './Popover.module.css'
 
 type Props = {
+  children: React.ReactNode
   targetRef: React.MutableRefObject<HTMLElement>
   onClose?: () => void
 }
 
-export const Popover: React.FC<Props> = ({ children, onClose, targetRef }) => {
+export function Popover({ children, onClose, targetRef }: Props) {
   const popoverRef = useRef<HTMLDivElement>()
   const [inlineStyles, setInlineStyles] = useState({})
 
@@ -18,6 +19,7 @@ export const Popover: React.FC<Props> = ({ children, onClose, targetRef }) => {
     }
     window.addEventListener('click', listener)
     return () => window.removeEventListener('click', listener)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function initPopoverRef(el: HTMLDivElement) {

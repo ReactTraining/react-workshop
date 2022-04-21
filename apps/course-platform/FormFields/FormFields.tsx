@@ -12,18 +12,16 @@ type FieldWrapProps = {
   name: string
   required?: boolean
   className?: string
-  error?: string
-  children(field: { id: string; name: string; [key: string]: any }): JSX.Element
+  children(field: { id: string; name: string; [key: string]: any }): React.ReactNode
 }
 
-export const FieldWrap: React.FC<FieldWrapProps> = ({
+export function FieldWrap({
   label,
   name,
   required = false,
-  error,
   children,
   className = '',
-}) => {
+}: FieldWrapProps) {
   const [field, meta] = useField(name)
   const id = useId()
 

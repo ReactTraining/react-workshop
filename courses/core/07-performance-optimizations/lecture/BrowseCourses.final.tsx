@@ -102,7 +102,7 @@ type Props = {
   removeCourse(id: number): void
 }
 
-const CourseList: React.FC<Props> = memo(({ courses, removeCourse }) => {
+const CourseList = memo(({ courses, removeCourse }: Props) => {
   return (
     <DataGrid>
       {courses?.map((course) => {

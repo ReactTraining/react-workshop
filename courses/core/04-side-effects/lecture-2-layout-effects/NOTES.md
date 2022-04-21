@@ -5,7 +5,7 @@ We usually start with useEffect and go through some hurdles with it (how the sta
 ```tsx
 type Props = { width?: number }
 
-export const AppSidebar: React.FC<Props> = ({ width = 1200 }) => {
+export function AppSidebar({ width = 1200 }: Props) {
   const query = `(min-width: ${width}px)`
   const [isWide, setIsWide] = useState(false)
 

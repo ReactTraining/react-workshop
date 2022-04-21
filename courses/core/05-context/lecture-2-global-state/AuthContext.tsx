@@ -11,7 +11,11 @@ type Context = {
 
 const AuthContext = createContext<Context>(null!)
 
-export const AuthProvider: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode
+}
+
+export function AuthProvider({ children }: Props) {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null)
   const [user, setUser] = useState<User | null>(null)
 

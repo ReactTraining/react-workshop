@@ -4,11 +4,12 @@ import { SearchCourses } from 'course-platform/SearchCourses'
 import styles from './AppSubLayouts.module.scss'
 
 type AppSubLayoutProps = {
+  children: React.ReactNode
   // Right Header Slot
   rightHeader?: any
 }
 
-const AppSubLayout: React.FC<AppSubLayoutProps> = ({ children, rightHeader }) => {
+function AppSubLayout({ children, rightHeader }: AppSubLayoutProps) {
   return (
     <div className={styles.component}>
       <header className="flex-split">

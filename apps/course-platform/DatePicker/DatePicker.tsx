@@ -27,6 +27,7 @@ type ContextType = {
 *****************************************/
 
 type DatePickerProps = {
+  children: React.ReactNode
   selectRange?: boolean
   disablePastDays?: boolean
   // All the types DayJS can receive
@@ -36,13 +37,13 @@ type DatePickerProps = {
 
 const Context = createContext<ContextType>(null!)
 
-export const DatePicker: React.FC<DatePickerProps> = ({
+export function DatePicker({
   children,
   selectRange = false,
   disablePastDays = false,
   baseMonth,
   onSelectDate,
-}) => {
+}: DatePickerProps) {
   const [selectedDates, setSelectedDates] = useState<SelectedDates>([])
 
   // A DateJS (D) Object for the first day of the month
@@ -160,14 +161,11 @@ export function DatePickerCalendar({ offset = 0 }: DatePickerCalendarProps) {
 *****************************************/
 
 type DatePickerChangeMonthProps = {
+  children: React.ReactNode
   to: number | D
 } & React.HTMLAttributes<HTMLButtonElement>
 
-export const DatePickerChangeMonth: React.FC<DatePickerChangeMonthProps> = ({
-  children,
-  to,
-  ...props
-}) => {
+export function DatePickerChangeMonth({ children, to, ...props }: DatePickerChangeMonthProps) {
   const { setBaseMonth } = useContext(Context)
   return (
     <button {...props} data-datepicker-change-month="" onClick={() => setBaseMonth(to)}>
@@ -185,11 +183,7 @@ type DatePickerMonthProps = {
   format?: string
 } & React.HTMLAttributes<HTMLDivElement>
 
-export const DatePickerMonth: React.FC<DatePickerMonthProps> = ({
-  format = 'MMMM',
-  offset = 0,
-  ...props
-}) => {
+export function DatePickerMonth({ format = 'MMMM', offset = 0, ...props }: DatePickerMonthProps) {
   const { baseMonthFirst } = useContext(Context)
   return <div {...props}>{baseMonthFirst.add(offset, 'month').format(format)}</div>
 }

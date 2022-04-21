@@ -16,7 +16,11 @@ type Context = State & {
 
 const AuthContext = createContext<Context>(null!)
 
-export const AuthProvider: React.FC = ({ children }) => {
+type Props = {
+  children: React.ReactNode
+}
+
+export function AuthProvider({ children }: Props) {
   const [state, dispatch] = useReducer(
     (state: State, action: AuthContextActions) => {
       switch (action.type) {
