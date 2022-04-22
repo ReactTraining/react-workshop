@@ -3,4 +3,10 @@ import { App } from './App'
 import './styles.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
-root.render(<App />)
+root.render(
+  <App
+    onSubmit={(values) => {
+      console.log(values)
+    }}
+  />
+)

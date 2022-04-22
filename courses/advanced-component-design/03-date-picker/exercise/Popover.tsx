@@ -5,7 +5,7 @@ import { position } from 'course-platform/utils/position'
 type Props = {
   children: React.ReactNode
   targetRef: React.MutableRefObject<HTMLElement>
-  onClose?: () => void
+  onClose: () => void
 }
 
 export function Popover({ children, onClose, targetRef }: Props) {
