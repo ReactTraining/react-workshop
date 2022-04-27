@@ -1,3 +1,0 @@
-# DatePicker
-
-## ✅ Task 1

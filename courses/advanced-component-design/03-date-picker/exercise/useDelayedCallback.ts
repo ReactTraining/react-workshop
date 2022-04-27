@@ -11,13 +11,8 @@ export function useDelayedCallback<T>(cb: (v: T) => void) {
 
   useEffect(() => {
     if (callbackValue !== null) {
-      const id = setTimeout(() => {
-        cb(callbackValue)
-        setCallbackValue(null)
-      }, ms)
-      return () => {
-        clearTimeout(id)
-      }
+      const id = setTimeout(() => cb(callbackValue), ms)
+      return () => clearTimeout(id)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callbackValue, ms])

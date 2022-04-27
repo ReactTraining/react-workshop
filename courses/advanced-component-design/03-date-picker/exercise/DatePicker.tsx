@@ -131,6 +131,7 @@ export function DatePickerCalendar({ offset = 0 }: DatePickerCalendarProps) {
           return (
             <button
               key={day}
+              type="button"
               data-selected={selected ? '' : undefined}
               data-selected-first={selectedFirst ? '' : undefined}
               data-selected-last={selectedLast ? '' : undefined}

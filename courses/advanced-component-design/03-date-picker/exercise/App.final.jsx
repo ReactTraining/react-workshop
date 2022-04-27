@@ -1,7 +1,6 @@
 import * as yup from 'yup'
 import { Formik, Form } from 'formik'
-import { FieldInput, FieldDateRangePicker } from './FormFields'
-import { SelectDateRange } from './SelectDateRange'
+import { FieldInput, FieldDateRangePicker } from './FormFields.final'
 
 // YYYY-MM-DD
 const dateExp = /^(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/
@@ -31,12 +30,7 @@ export function App({ onSubmit }) {
           required
           placeholder="At least 8 characters"
         />
-        {/* <FieldDateRangePicker label="Date Range" /> */}
-        <SelectDateRange
-          onSelect={(start, end) => {
-            console.log(start, end)
-          }}
-        />
+        <FieldDateRangePicker startName="startDate" endName="endDate" label="Date Range" />
         <button type="submit" className="button">
           Submit
         </button>

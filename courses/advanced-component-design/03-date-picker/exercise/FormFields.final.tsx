@@ -72,22 +72,42 @@ export function FieldInput({
  */
 
 type FieldDateRangePickerProps = {
+  startName: string
+  endName: string
   label: string
 } & React.HTMLAttributes<HTMLInputElement>
 
-export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerProps) {
+export function FieldDateRangePicker({
+  startName,
+  endName,
+  label,
+  ...props
+}: FieldDateRangePickerProps) {
   const [openPopover, setOpenPopover] = useState(false)
   const setOpenPopoverDelayed = useDelayedCallback(setOpenPopover)
   const targetRef = useRef<HTMLDivElement>(null!)
   const id = useId()
 
-  // const [field, meta, helpers] = useField(fieldName);
+  // Example: const [field, meta, helpers] = useField(name);
+  const startData = useField(startName)
+  const setStart = startData[2].setValue
+  const startValue = dayjs(startData[0].value).format('MMM D, YYYY')
+
+  const endData = useField(endName)
+  const setEnd = endData[2].setValue
+  const endValue = dayjs(endData[0].value).format('MMM D, YYYY')
+
+  function onSelect(startDate: string, endDate: string) {
+    setStart(startDate)
+    setEnd(endDate)
+    setOpenPopoverDelayed(false, 1000)
+  }
 
   return (
     <>
       {openPopover && (
         <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}>
-          Put SelectDateRange Here
+          <SelectDateRange onSelect={onSelect} />
         </Popover>
       )}
 
@@ -108,7 +128,7 @@ export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerPr
                 type="text"
                 readOnly
                 id={id}
-                value={``}
+                value={startData[0].value && `${startValue} to ${endValue}`}
                 placeholder="Select a Date Range"
               />
             </div>
