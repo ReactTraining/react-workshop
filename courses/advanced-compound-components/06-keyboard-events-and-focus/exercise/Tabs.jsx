@@ -96,8 +96,8 @@ export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) 
     <div
       role="tabpanel"
       {...props}
-      id={`tabs-${tabsId}-tab-${index}`}
-      aria-labelledby={`tabs-${tabsId}-panel-${index}`}
+      id={`tabs-${tabsId}-panel-${index}`}
+      aria-labelledby={`tabs-${tabsId}-tab-${index}`}
       hidden={!selected}
       data-tab-panel=""
       ref={forwardedRef}
