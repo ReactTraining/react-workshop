@@ -11,17 +11,17 @@ dayjs(new Date()).format('DD/MM/YYYY'))   // (Current date in DD/MM/YYYY format)
 // date is a special dayjs object
 const date = new dayjs()
 
-// When you use .format() you'll get a string returned
-function format(f: string, d: string, ) {
-  return new dayjs(d || new Date()).format(f)
+function formatDate(f: string, d?: string) {
+  // When you use .format() you'll get a string returned
+  return dayjs(d || new Date()).format(f)
 }
 
 // If today was 2000-01-05 -- Output would be: 01
-// because we didn't pass a second argument for the date
-// and so the current date was used `new dayjs(new Date())`
-// and for output format we asked for was just for the month
-// in two digit format
-format('MM')
+formatDate('MM')
+// Since we didn't pass a second argument for the date
+// and so the current date was used: `dayjs(new Date())`,
+// the dayjs object returned will be today. Then we just
+// return today but formatted to your liking
 ```
 
 If you wish to see other formatting options: https://day.js.org/docs/en/display/format
