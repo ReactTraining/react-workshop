@@ -145,6 +145,8 @@ $ cd react-workshop
 $ npm install
 ```
 
+If you're having issues due to dependencies and a modern version of Node, try `npm install --save --legacy-peer-deps` instead.
+
 ## Running the code
 
 🚨 **Windows users**, your way of running the code might be different. See the section for **Running the code on Windows** after this section.
