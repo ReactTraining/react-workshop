@@ -24,24 +24,21 @@ export function App() {
     navigate('/admin')
   }
 
-  // prettier-ignore
   return (
-   
-      <Routes>
-        <Route path="/" element={<WebsiteLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="login" element={<Login onSuccess={onLogin} />} />
+    <Routes>
+      <Route path="/" element={<WebsiteLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<Login onSuccess={onLogin} />} />
+      </Route>
+      <Route path="admin" element={<AppLayout />}>
+        <Route index element={<Navigate replace to="courses" />} />
+        <Route path="courses" element={<CoursesSubLayout />}>
+          <Route index element={<BrowseCourses />} />
+          <Route path="add" element={<AddCourseForm />} />
+          <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+          <Route path=":courseSlug/:lessonSlug" element={<LessonProfile />} />
         </Route>
-        <Route path="admin" element={<AppLayout />}>
-          <Route index element={<Navigate replace to="courses" />} />
-          <Route path="courses" element={<CoursesSubLayout />}>
-            <Route index element={<BrowseCourses />} />
-            <Route path="add" element={<AddCourseForm />} />
-            <Route path=":courseSlug" element={<BrowseCourseLessons />} />
-            <Route path=":courseSlug/:lessonSlug" element={<LessonProfile />} />
-          </Route>
-        </Route>
-      </Routes>
- 
+      </Route>
+    </Routes>
   )
 }
