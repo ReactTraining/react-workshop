@@ -83,7 +83,7 @@ AccordionItem.displayName = 'AccordionItem'
  */
 
 export const AccordionButton = React.forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { panelId, selected, selectPanel } = React.useContext(AccordionContext)
+  const { buttonId, panelId, selected, selectPanel } = React.useContext(AccordionContext)
 
   return (
     <button
@@ -92,6 +92,7 @@ export const AccordionButton = React.forwardRef(({ children, onClick, ...props }
       data-accordion-button=""
       data-state={selected ? 'open' : 'collapsed'}
       aria-expanded={selected}
+      id={buttonId}
       aria-controls={panelId}
       ref={forwardedRef}
     >
