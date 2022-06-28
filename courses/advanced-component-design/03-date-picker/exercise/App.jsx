@@ -31,7 +31,7 @@ export function App({ onSubmit }) {
           required
           placeholder="At least 8 characters"
         />
-        {/* <FieldDateRangePicker label="Date Range" /> */}
+        <FieldDateRangePicker label="Date Range" />
         <SelectDateRange
           onSelect={(start, end) => {
             console.log(start, end)

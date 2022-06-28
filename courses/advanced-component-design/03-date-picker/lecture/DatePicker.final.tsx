@@ -173,9 +173,9 @@ export function DatePickerChangeMonth({ children, to, ...props }: DatePickerChan
 type DatePickerLabelProps = {
   offset?: number
   format?: string
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLLabelElement>
 
 export function DatePickerLabel({ format = 'MMMM', offset = 0, ...props }: DatePickerLabelProps) {
   const { baseMonthFirst } = useContext(Context)
-  return <div {...props}>{baseMonthFirst.add(offset, 'month').format(format)}</div>
+  return <label {...props}>{baseMonthFirst.add(offset, 'month').format(format)}</label>
 }
