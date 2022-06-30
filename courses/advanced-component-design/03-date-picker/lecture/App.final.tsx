@@ -21,7 +21,7 @@ export function App() {
           </div>
         </div>
         <hr />
-        <div className="horizontal-spacing">
+        <div className="flex flex-split">
           <DatePickerChangeMonth to={-1} className="button">
             Previous
           </DatePickerChangeMonth>

@@ -15,10 +15,13 @@ export function PreviousNextCourse({ courseId }: Props) {
   // Get All Courses
   useEffect(() => {
     let isCurrent = true
-    api.courses.getAll().then((courses) => {
-      if (!isCurrent) return
-      setCourses(courses)
-    })
+    async function foo() {
+      const course = await api.courses.getAll()
+      if (isCurrent) {
+        setCourse(course)
+      }
+    }
+    foo()
     return () => {
       isCurrent = false
     }

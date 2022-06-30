@@ -7,7 +7,7 @@ type Props = {
 }
 
 export function PreviousNextCourse({ courseId }: Props) {
-  const { courses, isLoading } = useCourses()
+  const { courses, isLoading } = useCourses() // useQuery('courses')
 
   if (isLoading) return null
 

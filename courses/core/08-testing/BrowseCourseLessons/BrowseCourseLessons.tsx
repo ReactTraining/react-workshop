@@ -10,12 +10,12 @@ export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
 
   // Data
-  const { getCourse, isLoading, fetchCourses } = useCoursesContext()
+  const { getCourse, isLoading, fetchCourses } = useCoursesContext() // useEffect
   const course = getCourse(courseSlug)
   const lessons = course?.lessons || []
 
   if (!isLoading && !course) {
-    return <div className="card">Not Found</div>
+    return <div className="card">Not . Found</div>
   }
 
   return (
