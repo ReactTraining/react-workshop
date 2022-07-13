@@ -10,7 +10,7 @@ export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
 
   // Data
-  const { getCourse, isLoading, fetchCourses } = useCoursesContext()
+  const { getCourse, isLoading, fetchCourses } = useCoursesContext() // make my own cache before react-query
   const course = getCourse(courseSlug)
   const lessons = course?.lessons || []
 
@@ -30,6 +30,7 @@ export function BrowseCourseLessons() {
               <PreviousNextCourse courseId={course?.id} />
             </nav>
           </div>
+
           <div className="card spacing">
             <Heading size={2}>Lessons</Heading>
 

@@ -1,4 +1,4 @@
-// import { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import 'course-platform/styles/all.scss'
 import './styles.scss'
@@ -16,8 +16,7 @@ import { BrowseCourses } from './BrowseCourses'
 import { BrowseStudents } from 'course-platform/BrowseStudents'
 import { ChatPage } from 'course-platform/ChatPage'
 
-// Let's Lazy load this
-import BrowseCourseLessons from './BrowseCourseLessons'
+const BrowseCourseLessons = lazy(() => import('./BrowseCourseLessons'))
 
 export function App() {
   return (
@@ -30,7 +29,14 @@ export function App() {
           <Route index element={<Navigate replace to="courses" />} />
           <Route path="courses">
             <Route index element={<BrowseCourses />} />
-            <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+            <Route
+              path=":courseSlug"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <BrowseCourseLessons />
+                </Suspense>
+              }
+            />
           </Route>
           <Route path="students">
             <Route index element={<BrowseStudents />} />
