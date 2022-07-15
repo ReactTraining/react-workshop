@@ -70,8 +70,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I use? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 16 (for example)
-$ nvm install 16
+# For Node 18 (for example)
+$ nvm install 18
 
 # See this page for more install options:
 # https://github.com/nvm-sh/nvm#usage
@@ -105,8 +105,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I install? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 16 (for example)
-$ nvm install 16
+# For Node 18 (for example)
+$ nvm install 18
 
 # IMPORTANT: You'll be also prompt to `nvm use`
 # the version number that you installed. You may
