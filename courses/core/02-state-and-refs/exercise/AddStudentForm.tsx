@@ -4,6 +4,7 @@ import { Heading } from 'course-platform/Heading'
 export function AddStudentForm() {
   const [fullName, setFullName] = useState('')
   const [username, setUsername] = useState('')
+
   const [autoUsername, setAutoUsername] = useState(true)
 
   function handleSubmit(event: React.FormEvent) {

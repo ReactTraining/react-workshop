@@ -1,7 +1,13 @@
-export function Heading({ children, size = 1, ...rest }) {
+export function Heading({ as: El = 'h1', children, size = 1, ...props }) {
   return (
-    <h1 {...rest} className="heading size-1">
+    <El {...props} className={`heading size-${size}`}>
       {children}
-    </h1>
+    </El>
   )
 }
+
+// const person = { name: 'brad', age: 89 }
+// const personjob = { occupation: 'web' }
+
+// const wholePerson = { person } //  { person: { name: 'brad', age: 89 } }
+// const wholePerson = { ...person, ...personjob } //  { name: 'brad', age: 89, occupation: 'web }
