@@ -15,7 +15,6 @@ export function BrowseCourses() {
     <div className="card spacing">
       <h1 className="heading size-1">Courses</h1>
       <div className="spacing">
-        {/* Start Iteration */}
         <div className="course-listing flex-split">
           <h2 className="heading size-3">Course Name</h2>
           <div className="flex-split flex-gap-large">
@@ -27,7 +26,6 @@ export function BrowseCourses() {
             </div>
           </div>
         </div>
-        {/* End Iteration */}
       </div>
     </div>
   )

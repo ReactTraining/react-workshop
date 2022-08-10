@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
@@ -12,20 +12,41 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
+// <CourseWithLessons | null>
+
+function useApi(api) {
+  const [results, setResults] = useState<any>(null)
+
+  // Any variable that we "close over" that CAN CHANGE!!!
+  useEffect(() => {
+    let isCurrent = true
+    api().then((results) => {
+      if (isCurrent) {
+        setResults(results)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [api]) // ===
+
+  return results
+}
+
 export function BrowseCourseLessons() {
-  const courseSlug = useParams().courseSlug!
+  const courseSlug = useParams().courseSlug! // useState
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
+  // if courseSlug changes, I want getCourse identity to change for the dep
+
   // Course and Lesson Data
-  const [course, setCourse] = useState<CourseWithLessons | null>(null)
+  const getCourse = useCallback(() => api.courses.getCourse(courseSlug), [courseSlug])
+  const course = useApi(getCourse)
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
-
   function removeLesson(lessonId: number) {
-    // if (!lessons) return
+    if (!lessons) return
     // api.courses.removeLesson(lessonId).then(() => {
     //   const i = lessons.findIndex((l) => l.id === lessonId)
     //   setCourse({

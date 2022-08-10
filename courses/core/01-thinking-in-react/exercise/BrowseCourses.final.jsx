@@ -1,3 +1,5 @@
+import { Heading } from './Heading'
+
 export function BrowseCourses() {
   const courses = [
     { id: 1, name: 'React', lessons: 5 },
@@ -11,12 +13,14 @@ export function BrowseCourses() {
 
   return (
     <div className="card spacing">
-      <h1 className="heading size-1">Courses</h1>
+      <Heading>Courses</Heading>
       <div className="spacing">
         {courses.map((course) => {
           return (
             <div key={course.id} className="course-listing flex-split">
-              <h2 className="heading size-3">{course.name}</h2>
+              <Heading as="h2" size={2}>
+                {course.name}
+              </Heading>
               <div className="flex-split flex-gap-large">
                 <div>Lessons: {course.lessons}</div>
                 <div>
