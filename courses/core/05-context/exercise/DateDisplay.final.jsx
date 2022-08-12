@@ -15,6 +15,7 @@ export function DateDisplay({ children, date }) {
 
 export function DateYear({ format = 'YYYY' }) {
   const { date } = useContext(DateContext)
+
   return <>{date.format(format)}</>
 }
 

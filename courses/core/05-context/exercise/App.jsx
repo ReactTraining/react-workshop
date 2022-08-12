@@ -1,22 +1,28 @@
 // import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
 import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
 
+function SimpleDateDisplay({ date }) {
+  return (
+    <DateDisplay date={date}>
+      <span className="date-card">
+        <DateMonth format="MMMM" />
+      </span>
+      <span className="date-card">
+        <DateDay />
+      </span>
+      <span className="date-card">
+        <DateYear />
+      </span>
+    </DateDisplay>
+  )
+}
+
 export function App() {
   return (
     <div className="spacing-large">
-      <div className="text-large text-center horizontal-spacing">
-        <DateDisplay>
-          <span className="date-card">
-            <DateMonth format="MMMM" />
-          </span>
-          <span className="date-card">
-            <DateDay />
-          </span>
-          <span className="date-card">
-            <DateYear />
-          </span>
-        </DateDisplay>
-      </div>
+      <div className="text-large text-center horizontal-spacing"></div>
+
+      <SimpleDateDisplay date=""></SimpleDateDisplay>
 
       <p>
         A "compound component" is a pattern where one visual component is actually made with several

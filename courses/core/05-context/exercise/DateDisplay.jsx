@@ -4,9 +4,9 @@ import dayjs from 'dayjs'
 // 1. Create a Context
 
 export function DateDisplay({ children, date = '' }) {
-  // const context = {
-  //   date: dayjs(date || new Date()),
-  // }
+  const context = {
+    date: dayjs(date || new Date()),
+  }
 
   // 2. Use the context variable to create a provider around the children
   return children
