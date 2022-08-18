@@ -10,21 +10,31 @@ import { Icon } from 'course-platform/Icon'
 //   min?: number
 // }
 
-export function Counter() {
-  let count = 0
+export function Counter({ count, setCount }) {
+  function subtract() {
+    if (count > 0) {
+      setCount(count - 1)
+    }
+  }
+
+  function add() {
+    setCount(count + 1)
+  }
 
   return (
-    <div className="counter inline-flex flex-gap">
-      <div>
-        <button className="button button-small">
-          <Icon name="minus" />
-        </button>
-      </div>
-      <div className="input">{count}</div>
-      <div>
-        <button className="button button-small">
-          <Icon name="plus" />
-        </button>
+    <div>
+      <div className="counter inline-flex flex-gap">
+        <div>
+          <button onClick={subtract} className="button button-small">
+            <Icon name="minus" />
+          </button>
+        </div>
+        <input type="text" value={count} onChange={(e) => setCount(parseInt(e.target.value))} />
+        <div>
+          <button onClick={add} className="button button-small">
+            <Icon name="plus" />
+          </button>
+        </div>
       </div>
     </div>
   )

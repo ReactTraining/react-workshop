@@ -5,10 +5,25 @@ import { Notice } from 'course-platform/Notice'
 
 export function useDelayedCallback(cb) {
   const [callbackValue, setCallbackValue] = useState(null)
+  const [ms, setMs] = useState(0)
 
   function queueState(callbackValue, ms) {
-    // ...
+    setCallbackValue(callbackValue)
+    setMs(ms)
   }
+
+  useEffect(() => {
+    if (callbackValue !== null) {
+      const id = setTimeout(() => {
+        cb(callbackValue)
+        setCallbackValue(null)
+      }, ms)
+      return () => {
+        clearTimeout(id)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [callbackValue, ms])
 
   return queueState
 }
@@ -22,7 +37,7 @@ export const Signup = () => {
 
   // Notice with Timeout
   const [showNotice, setShowNotice] = useState(false)
-  // const setShowNoticeDelayed = useDelayedCallback(setShowNotice)
+  const setShowNoticeDelayed = useDelayedCallback(setShowNotice)
 
   // Other State
   const [loadingAvatar, setLoadingAvatar] = useState(false)
@@ -30,7 +45,7 @@ export const Signup = () => {
   function onSubmit(e) {
     e.preventDefault()
     setShowNotice(true)
-    // setShowNoticeDelayed(false, 2000)
+    setShowNoticeDelayed(false, 2000)
   }
 
   function fetchAvatar(username) {

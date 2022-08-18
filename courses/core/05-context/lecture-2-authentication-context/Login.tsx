@@ -24,6 +24,7 @@ export const Login = ({ onSuccess }: Props) => {
       .login(username, password)
       .then((user: User) => {
         onSuccess(user)
+        setNotice('Login Succ')
       })
       .catch((error) => {
         setError(error)

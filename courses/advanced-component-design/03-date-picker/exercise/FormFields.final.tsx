@@ -89,6 +89,7 @@ export function FieldDateRangePicker({
   const id = useId()
 
   // Example: const [field, meta, helpers] = useField(name);
+
   const startData = useField(startName)
   const setStart = startData[2].setValue
   const startValue = dayjs(startData[0].value).format('MMM D, YYYY')

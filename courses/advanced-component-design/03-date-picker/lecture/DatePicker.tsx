@@ -25,7 +25,7 @@ type SelectedDates = [] | [D] | [D, D]
 *****************************************/
 
 type DatePickerProps = {
-  children: React.ReactNode
+  // children: React.ReactNode
   selectRange?: boolean
   // All the types DayJS can receive
   baseMonth?: string | number | D | Date | null | undefined

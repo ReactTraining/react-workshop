@@ -8,9 +8,7 @@ export function WebsiteLayout() {
       <WebsiteHeader />
       <hr />
       <main>
-        <Centered>
-          <Outlet />
-        </Centered>
+        <Centered>here</Centered>
       </main>
     </div>
   )

@@ -1,21 +1,41 @@
 // import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
 import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
 
+function Button({ onClick, children }) {
+  return <button>{children}</button>
+}
+
+function Icon() {}
+
+function ShoppingCartButton() {
+  function onClick() {}
+  return (
+    <Button onClick={onClick}>
+      <Icon />
+      Add to cart
+    </Button>
+  )
+}
+
+function App() {
+  return <ShoppingCartButton></ShoppingCartButton>
+}
+
+function SimpleDateDisplay() {
+  return (
+    <DateDisplay>
+      <DateMonth format="MMMM" />
+      <DateDay />
+      <DateYear />
+    </DateDisplay>
+  )
+}
+
 export function App() {
   return (
     <div className="spacing-large">
       <div className="text-large text-center horizontal-spacing">
-        <DateDisplay>
-          <span className="date-card">
-            <DateMonth format="MMMM" />
-          </span>
-          <span className="date-card">
-            <DateDay />
-          </span>
-          <span className="date-card">
-            <DateYear />
-          </span>
-        </DateDisplay>
+        <SimpleDateDisplay />
       </div>
 
       <p>
