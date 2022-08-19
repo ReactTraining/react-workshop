@@ -23,19 +23,16 @@ export function BrowseCourses() {
   })
 
   // // 3. New Approach tucked under custom hook abstraction
-  // const { courses, isLoading, refetch } = useCourses()
-  // // const removeCourse = useRemoveCourse()
-
   // ✅ Remove course via API
   // ✅ Renew cache by refetching
   // ❌ Requires two serial network requests
   // ❌ over-fetches (why do we need to get all courses again)
-  function removeCourse(courseId: number) {
-    if (!courses) return
-    api.courses.removeCourse(courseId).then(() => {
-      refetch()
-    })
-  }
+  // function removeCourse(courseId: number) {
+  //   if (!courses) return
+  //   api.courses.removeCourse(courseId).then(() => {
+  //     refetch()
+  //   })
+  // }
 
   // // ✅ Remove course via API
   // // ✅ Renew cache by selectively updating the array in the cache
@@ -45,7 +42,7 @@ export function BrowseCourses() {
   // function removeCourse(courseId: number) {
   //   if (!courses) return
   //   api.courses.removeCourse(courseId).then(() => {
-  //     queryClient.setQueryData<CourseWithLessons[]>('courses', (courses) => {
+  //     queryClient.setQueryData('courses', (courses) => {
   //       if (!courses) return []
   //       // They give us the old cache, we give them a new array.
   //       const i = courses.findIndex((c) => c.id === courseId)
