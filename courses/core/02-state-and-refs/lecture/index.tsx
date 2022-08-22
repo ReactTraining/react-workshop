@@ -1,13 +1,12 @@
 import * as ReactDOM from 'react-dom/client'
 // import { BrowseCourses } from './BrowseCourses.final'
-// import { BrowseCourses } from './BrowseCourses'
-import { Counter } from './Counter'
+import { BrowseCourses } from './BrowseCourses'
 import './styles.scss'
 
 function App() {
   return (
     <div className="text-center">
-      <Counter />
+      <BrowseCourses />
     </div>
   )
 }

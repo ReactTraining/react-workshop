@@ -21,8 +21,13 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
+  // Will run at the end of the first render phase (always)
+  // Will run again at the end of reRenders if the dep arr variables change
+  useEffect(() => {
+    api.courses.getCourse(courseSlug).then((course) => {
+      setCourse(course)
+    })
+  }, [courseSlug]) // oldCourseSlug !== newCourseSlug
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return
