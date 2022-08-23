@@ -12,22 +12,34 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
+function useApi(api) {
+  const [results, setResults] = useState<any>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api().then((results) => {
+      if (isCurrent) {
+        setResults(results)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [api])
+
+  return results
+}
+
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
   // Course and Lesson Data
-  const [course, setCourse] = useState<CourseWithLessons | null>(null)
+  const getCourse = useCallback(() => api.courses.getCourse(courseSlug), [courseSlug])
+  const course = useApi(getCourse)
+
   const lessons = course && course.lessons
   const isLoading = course === null
-
-  // Will run at the end of the first render phase (always)
-  // Will run again at the end of reRenders if the dep arr variables change
-  useEffect(() => {
-    api.courses.getCourse(courseSlug).then((course) => {
-      setCourse(course)
-    })
-  }, [courseSlug]) // oldCourseSlug !== newCourseSlug
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return

@@ -9,6 +9,8 @@ import './styles.scss'
 export function App() {
   return (
     <div className="spacing">
+      <h1>Heading</h1>
+      <hr />
       <DatePicker selectRange>
         <div className="flex flex-gap-large">
           <div className="flex-1">

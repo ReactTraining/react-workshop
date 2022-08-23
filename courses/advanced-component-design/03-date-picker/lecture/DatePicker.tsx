@@ -38,7 +38,7 @@ export function DatePicker({ selectRange = false, baseMonth, onSelectDate }: Dat
   const [selectedDates, setSelectedDates] = useState<SelectedDates>([])
 
   // A DateJS (D) Object for the first day of the month
-  const [baseMonthFirst, setBaseMonthFirst] = useState<D>(() => {
+  const [baseMonthFirst, setBaseMonthFirst] = useState(() => {
     return dayjs(baseMonth || new Date()).startOf('month')
   })
 
