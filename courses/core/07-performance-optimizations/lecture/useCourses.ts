@@ -29,5 +29,5 @@ for (let i = 0; i < COURSES; i++) {
 
 // Mock out the useCourses with 1000s of fakes
 export function useCourses() {
-  return { courses, isLoading: false, error: null, refetch: () => {} }
+  return courses
 }

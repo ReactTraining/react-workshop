@@ -1,18 +1,16 @@
-import { memo, useState, useId, useMemo, useTransition, useCallback } from 'react'
+import { useState, useId, useMemo, useTransition, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
-import { useCoursesContext } from 'course-platform/CoursesContext'
 import { Heading } from 'course-platform/Heading'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { RecentLessons } from 'course-platform/RecentLessons'
 import { AppSidebar } from 'course-platform/AppSidebar'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { useCourses } from './useCourses'
 
 export function BrowseCourses() {
-  const { getCourses, isLoading, fetchCourses } = useCoursesContext()
-  const allCourses = getCourses()
+  const allCourses = useCourses()
   const [courses, setCourses] = useState(allCourses)
 
   const [minLessons, setMinLessons] = useState(0)
@@ -26,7 +24,7 @@ export function BrowseCourses() {
 
   function removeCourse(courseId: number) {
     api.courses.removeCourse(courseId).then(() => {
-      fetchCourses()
+      // refetch()
     })
   }
 
