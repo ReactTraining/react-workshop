@@ -9,8 +9,8 @@ import { PreviousNextCourse } from 'course-platform/PreviousNextCourse'
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
 
-  // Data
-  const { getCourse, isLoading, fetchCourses } = useCoursesContext()
+  // If the data were coming from context
+  const { getCourse, isLoading } = useCoursesContext()
   const course = getCourse(courseSlug)
   const lessons = course?.lessons || []
 
@@ -33,14 +33,15 @@ export function BrowseCourseLessons() {
           <div className="card spacing">
             <Heading size={2}>Lessons</Heading>
 
-            {isLoading && !lessons && <Loading />}
-            {!isLoading && Array.isArray(lessons) && lessons.length === 0 ? (
+            {isLoading && <Loading />}
+            {!isLoading && Array.isArray(lessons) && lessons.length === 0 && (
               <NoResults>
                 <div className="spacing">
                   <p>No Lessons for this Course</p>
                 </div>
               </NoResults>
-            ) : (
+            )}
+            {!isLoading && Array.isArray(lessons) && lessons.length > 0 && (
               <DataGrid>
                 {lessons?.map((lesson) => {
                   return (
