@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { Heading } from 'course-platform/Heading'
 import { Loading } from 'course-platform/Loading'
@@ -16,6 +16,9 @@ export const Login = ({ onSuccess }: Props) => {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const usernameId = useId() // :r0:
+  const emailId = useId() // :r1:
 
   function handleLogin(event: React.FormEvent) {
     event.preventDefault()
@@ -52,7 +55,9 @@ export const Login = ({ onSuccess }: Props) => {
         )}
 
         <div>
+          <label htmlFor={usernameId}>Username</label>
           <input
+            id={usernameId}
             className="form-field"
             aria-label="Username"
             onChange={(e) => setUsername(e.target.value)}
