@@ -9,7 +9,7 @@ import './styles.scss'
 export function App() {
   return (
     <div>
-      <DatePicker selectRange />
+      <DatePicker />
     </div>
   )
 }

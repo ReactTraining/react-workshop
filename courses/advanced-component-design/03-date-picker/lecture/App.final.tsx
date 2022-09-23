@@ -12,8 +12,8 @@ export function App() {
       <DatePicker selectRange>
         <div className="flex flex-gap-large">
           <div className="flex-1">
-            <DatePickerLabel />
             <DatePickerCalendar />
+            <DatePickerLabel />
           </div>
           <div className="flex-1">
             <DatePickerLabel offset={1} />

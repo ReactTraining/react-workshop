@@ -87,7 +87,11 @@ export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerPr
     <>
       {openPopover && (
         <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}>
-          Put SelectDateRange Here
+          <SelectDateRange
+            onSelect={(start, end) => {
+              console.log(start, end)
+            }}
+          />
         </Popover>
       )}
 
