@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom/client'
-// import { AddStudentForm } from './AddStudentForm.final'
-import { AddStudentForm } from './AddStudentForm'
+import { AddStudentForm } from './AddStudentForm.final'
+// import { AddStudentForm } from './AddStudentForm'
 import './styles.scss'
 
 function App() {

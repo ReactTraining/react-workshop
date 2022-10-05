@@ -39,7 +39,6 @@ export function AddStudentForm() {
       <div className="field-wrap">
         <label htmlFor="full-name">Full Name</label>
         <input
-          value={formValues.fullName}
           onChange={(e) => {
             setField('fullName', e.target.value)
           }}
