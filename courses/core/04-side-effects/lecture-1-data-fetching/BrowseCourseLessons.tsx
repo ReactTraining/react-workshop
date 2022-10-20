@@ -13,7 +13,7 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // https://github.com/facebook/react/pull/22114
 
 export function BrowseCourseLessons() {
-  const courseSlug = useParams().courseSlug!
+  const courseSlug = useParams().courseSlug! // useState
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
   // Course and Lesson Data
@@ -21,8 +21,19 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
+  // Network
+  // localStorage
+  // cookies
+  // working document / window
+  // working with the dom directly (imperative work with refs)
+
+  // We first mount
+  // Run again, if the values in the dep array change
+  useEffect(() => {
+    api.courses.getCourse(courseSlug).then((course) => {
+      setCourse(course)
+    })
+  }, [courseSlug])
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return
