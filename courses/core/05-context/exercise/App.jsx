@@ -1,9 +1,27 @@
 // import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
 import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
 
+function CommonDateDisplay() {
+  return (
+    <DateDisplay>
+      <span className="date-card">
+        <DateMonth format="MMMM" />
+      </span>
+      <span className="date-card">
+        <DateDay />
+      </span>
+      <span className="date-card">
+        <DateYear />
+      </span>
+    </DateDisplay>
+  )
+}
+
 export function App() {
   return (
     <div className="spacing-large">
+      <CommonDateDisplay></CommonDateDisplay>
+
       <div className="text-large text-center horizontal-spacing">
         <DateDisplay>
           <span className="date-card">
