@@ -58,8 +58,7 @@ export function BrowseCourses() {
           </div>
         </div>
 
-        {isLoading && !courses && <Loading />}
-        {!isLoading && Array.isArray(courses) && courses.length === 0 ? (
+        {Array.isArray(courses) && courses.length === 0 ? (
           <NoResults>
             <div className="spacing">
               <p>No Courses</p>

@@ -5,13 +5,12 @@ import { Heading } from 'course-platform/Heading'
 import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
-import { useCourses, useRemoveCourse } from './useCourses'
 import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
   // 1. Previous Approach: Fetch in every component
-  // const { courses } = useCourses()
+  // const [courses] = useCourses()
 
   // 2. New Approach: Use React Query (useEffect and caching library)
   const {

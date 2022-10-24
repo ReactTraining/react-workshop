@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useQuery } from 'react-query'
 import { useParams, Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
@@ -7,14 +8,19 @@ import { CreateLessonDialog } from 'course-platform/CreateLessonDialog'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
 import { PreviousNextCourse } from 'course-platform/PreviousNextCourse'
-import { useCourse } from './useCourses'
 
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
-  // Hook for React Query
-  const { course, isLoading, refetch } = useCourse(courseSlug)
+  const {
+    data: course,
+    isLoading,
+    refetch,
+  } = useQuery(['course', courseSlug], () => api.courses.getCourse(courseSlug), {
+    staleTime: 1000 * 30,
+  })
+
   const lessons = course?.lessons
 
   function removeLesson(lessonId: number) {

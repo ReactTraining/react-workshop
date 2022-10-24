@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { api } from 'course-platform/utils/api'
 import { Icon } from 'course-platform/Icon'
-import { useCourses } from './useCourses'
 
 type Props = {
   courseId?: number
 }
 
 export function PreviousNextCourse({ courseId }: Props) {
-  const { courses, isLoading } = useCourses()
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+  } = useQuery('courses', () => api.courses.getAll(), {
+    staleTime: 1000 * 30,
+  })
 
   if (isLoading) return null
 
