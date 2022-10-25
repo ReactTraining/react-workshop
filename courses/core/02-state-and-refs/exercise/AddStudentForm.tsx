@@ -2,15 +2,22 @@ import { useState, useRef } from 'react'
 import { Heading } from 'course-platform/Heading'
 
 export function AddStudentForm() {
-  const [fullName, setFullName] = useState('')
-  const [username, setUsername] = useState('')
+  const [formValues, setFormValues] = useState({
+    fullName: '',
+    username: '',
+  })
+
+  function setField(field, value) {
+    setFormValues({ ...formValues, [field]: value })
+  }
+
   const [autoUsername, setAutoUsername] = useState(true)
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
     console.log({
-      fullName,
-      username,
+      fullName: formValues.fullName,
+      username: formValues.username,
     })
   }
 
@@ -19,12 +26,32 @@ export function AddStudentForm() {
       <Heading>Add Student</Heading>
       <div className="field-wrap">
         <label htmlFor="full-name">Full Name</label>
-        <input id="full-name" type="text" className="form-field" required autoComplete="off" />
+        <input
+          id="full-name"
+          type="text"
+          className="form-field"
+          required
+          autoComplete="off"
+          value={formValues.fullName}
+          onChange={(e) => {
+            setField('fullName', e.target.value)
+          }}
+        />
       </div>
 
       <div className="field-wrap">
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" className="form-field" required autoComplete="off" />
+        <input
+          value={formValues.username}
+          onChange={(e) => {
+            setField('username', e.target.value)
+          }}
+          id="username"
+          type="text"
+          className="form-field"
+          required
+          autoComplete="off"
+        />
       </div>
 
       <div>

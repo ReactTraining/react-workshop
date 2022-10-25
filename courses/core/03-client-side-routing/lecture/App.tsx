@@ -19,28 +19,29 @@ import { ChatPage } from 'course-platform/ChatPage'
 // Let's Lazy load this
 import BrowseCourseLessons from './BrowseCourseLessons'
 
-export function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<WebsiteLayout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-        <Route path="admin" element={<AppLayout />}>
-          <Route index element={<Navigate replace to="courses" />} />
-          <Route path="courses">
-            <Route index element={<BrowseCourses />} />
-            <Route path=":courseSlug" element={<BrowseCourseLessons />} />
-          </Route>
-          <Route path="students">
-            <Route index element={<BrowseStudents />} />
-          </Route>
-          <Route path="chat">
-            <Route index element={<ChatPage />} />
-          </Route>
-        </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
-    </BrowserRouter>
-  )
-}
+// export function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<WebsiteLayout />}>
+//           <Route index element={<HomePage />} />
+//           <Route path="contact" element={<div>contact</div>} />
+//         </Route>
+//         <Route path="admin" element={<AppLayout />}>
+//           <Route index element={<Navigate replace to="courses" />} />
+//           <Route path="courses">
+//             <Route index element={<BrowseCourses />} />
+//             <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+//           </Route>
+//           <Route path="students">
+//             <Route index element={<BrowseStudents />} />
+//           </Route>
+//           <Route path="chat">
+//             <Route index element={<ChatPage />} />
+//           </Route>
+//         </Route>
+//         <Route path="*" element={<Navigate replace to="/" />} />
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }

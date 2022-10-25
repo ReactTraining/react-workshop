@@ -3,5 +3,6 @@ import * as ReactDOM from 'react-dom/client'
 import { App } from 'course-platform/App'
 import 'course-platform/styles/all.scss'
 
+// React 18
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(<App />)

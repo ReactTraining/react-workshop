@@ -1,5 +1,7 @@
 // import { Heading } from './Heading'
 
+const addOne = (n1) => n1 + 1
+
 export function BrowseCourses() {
   const courses = [
     { id: 1, name: 'React', lessons: 5 },
@@ -7,29 +9,51 @@ export function BrowseCourses() {
     { id: 3, name: 'CSS', lessons: 3 },
   ]
 
+  return (
+    <div className="card spacing">
+      <h1 className="heading size-1">Courses</h1>
+      <div className="spacing">
+        {courses.map((course) => {
+          return (
+            <CourseListing
+              key={course.id}
+              id={course.id}
+              name={course.name}
+              lessons={course.lessons}
+              className="foo"
+            />
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function CourseListing({ id, name, lessons, className }) {
   function removeCourse(courseId) {
     console.log('Remove', courseId)
   }
 
   return (
-    <div className="card spacing">
-      <h1 className="heading size-1">Courses</h1>
-      <div className="spacing">
-        {/* Start Iteration */}
-        <div className="course-listing flex-split">
-          <h2 className="heading size-3">Course Name</h2>
-          <div className="flex-split flex-gap-large">
-            <div>Lessons: 5</div>
-            <div>
-              <button className="button" onClick={null}>
-                Remove
-              </button>
-            </div>
-          </div>
+    <div className={`course-listing flex-split ${className}`}>
+      <h2 className="heading size-3">{name}</h2>
+      <div className="flex-split flex-gap-large">
+        <div>Lessons: {lessons}</div>
+        <div>
+          <Button id="special-button" onClick={() => removeCourse(id)}>
+            Remove
+          </Button>
         </div>
-        {/* End Iteration */}
       </div>
     </div>
+  )
+}
+
+function Button({ onClick, children, ...props }) {
+  return (
+    <button {...props} className="button" onClick={onClick}>
+      {children}
+    </button>
   )
 }
 
