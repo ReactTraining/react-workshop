@@ -12,21 +12,11 @@ export function AddStudentForm() {
 
   const fullNameRef = useRef<HTMLInputElement>(null!)
 
-  function setField(field: string, value: string) {
-    setFormValues({ ...formValues, [field]: value })
-  }
-
-  function getUsername() {
-    return autoUsername
-      ? formValues.fullName.toLowerCase().replaceAll(/\s/g, '')
-      : formValues.username
-  }
-
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
 
     // Get the form values
-    console.log({ ...formValues, username: getUsername() })
+    console.log(formValues)
 
     // Reset form, set focus
     setFormValues(initialFormValues)
@@ -41,7 +31,12 @@ export function AddStudentForm() {
         <input
           value={formValues.fullName}
           onChange={(e) => {
-            setField('fullName', e.target.value)
+            setFormValues({
+              fullName: e.target.value,
+              username: autoUsername
+                ? e.target.value.toLowerCase().replaceAll(/\s/g, '')
+                : formValues.username,
+            })
           }}
           id="full-name"
           type="text"
@@ -55,9 +50,9 @@ export function AddStudentForm() {
       <div className="field-wrap">
         <label htmlFor="username">Username</label>
         <input
-          value={getUsername()}
+          value={formValues.username}
           disabled={autoUsername}
-          onChange={(e) => setField('username', e.target.value)}
+          onChange={(e) => setFormValues({ ...formValues, username: e.target.value })}
           id="username"
           type="text"
           className="form-field"
