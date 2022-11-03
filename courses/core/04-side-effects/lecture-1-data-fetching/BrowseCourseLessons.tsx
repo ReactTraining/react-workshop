@@ -12,20 +12,21 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-function useApi<T>(api) {
-  const [results, setResults] = useState<T>(null)
+function useApi(api) {
+  const [results, setResults] = useState<any>(null)
 
+  // any variable that we "close over" that CAN CHANGE
   useEffect(() => {
-    let isCurrent = true
+    let current = true
     api().then((results) => {
-      if (isCurrent) {
+      if (current) {
         setResults(results)
       }
     })
     return () => {
-      isCurrent = false
+      current = false
     }
-  }, [api])
+  }, [api]) // ===
 
   return results
 }
@@ -36,12 +37,9 @@ export function BrowseCourseLessons() {
 
   // Course and Lesson Data
   const getCourse = useCallback(() => api.courses.getCourse(courseSlug), [courseSlug])
-  const course = useApi<CourseWithLessons | null>(getCourse)
-
+  const course = useApi(getCourse)
   const lessons = course && course.lessons
   const isLoading = course === null
-
-  // "stable" if it doesn't change between renders
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return

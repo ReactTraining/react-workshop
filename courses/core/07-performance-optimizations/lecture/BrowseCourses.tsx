@@ -9,22 +9,17 @@ import { RecentLessons } from 'course-platform/RecentLessons'
 import { AppSidebar } from 'course-platform/AppSidebar'
 import { useCourses } from './useCourses'
 
-// BrowseCourses() fast (1)
-// BrowseCourses() fast (2)
-// BrowseCourses() slow (3000)
-
 export function BrowseCourses() {
-  const allCourses = useCourses()
+  const allCourses = useCourses() // 10000
   const [courses, setCourses] = useState(allCourses)
-
   const [minLessons, setMinLessons] = useState(0)
   const filterLessonsId = useId()
 
   const [pending, startTransition] = useTransition()
   function filterCourses(minLessons: number) {
-    setMinLessons(minLessons)
+    setMinLessons(minLessons) // fast
     startTransition(() => {
-      setCourses(allCourses?.filter((c) => c.lessons.length >= minLessons))
+      setCourses(allCourses?.filter((c) => c.lessons.length >= minLessons)) // slow
     })
   }
 
@@ -42,7 +37,7 @@ export function BrowseCourses() {
             <Heading>Courses</Heading>
             <div>
               Showing {courses?.length}
-              {/* {pending && '...'} */}
+              {pending && '...'}
             </div>
           </div>
           <div>

@@ -65,9 +65,7 @@ const Define = ({ children }) => {
 
   React.useLayoutEffect(() => {
     const listener = (event) => {
-      if (event.target !== buttonRef.current) {
-        setOpen(false)
-      }
+      setOpen(false)
     }
     window.addEventListener('click', listener)
     return () => window.removeEventListener('click', listener)
@@ -77,7 +75,10 @@ const Define = ({ children }) => {
     <>
       <button
         ref={buttonRef}
-        onClick={() => setOpen(!open)}
+        onClick={(e) => {
+          e.stopPropagation() // stops the bubble
+          setOpen(!open)
+        }}
         // This works, sort of. But it fails if we want to select the
         // text of the popup itself. So do the window listener instead.
         // onBlur={() => setOpen(false)}

@@ -10,33 +10,66 @@ const THREAD_NAME = 'all'
 export function ChatPage() {
   const { user } = useAuthContext()
   const chatBoardRef = useRef<HTMLDivElement>(null!)
+  const inputRef = useRef<HTMLInputElement>(null!)
 
   const [input, setInput] = useState('')
   const [scrolledToBottom, setScrolledToBottom] = useState(true)
   const [messages, setMessages] = useState<ChatMessage[]>([])
-
-  // You'll use Date.now() for this state (which is a number)
   const [startSubscription, setStartSubscription] = useState<number | null>(null)
 
-  // Get initial messages
-  // api.chat.getMessages(THREAD_NAME).then((messages) => {
-  // })
+  // Get Initial Messages
+  useEffect(() => {
+    let isCurrent = true
+    api.chat.getMessages(THREAD_NAME).then((messages) => {
+      if (isCurrent) {
+        setMessages(messages)
+        setStartSubscription(Date.now())
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
-  // Subscribe to new messages
-  // const cleanup = api.chat.subscribe(
-  //   Date.now(),
-  //   (newMessages) => {
-  //   },
-  //   THREAD_NAME
-  // )
+  // Once we've loaded initial messages in the above effect, it will
+  // set the `startSubscription` timestamp that will tell this effect
+  // to create a subscription for any new message after that time:
+  useEffect(() => {
+    if (startSubscription) {
+      const cleanup = api.chat.subscribe(
+        startSubscription,
+        (newMessages: ChatMessage[]) => {
+          setMessages((messages) => {
+            return (messages || []).concat(newMessages)
+          })
+
+          // Renew this timestamp to cause the next render
+          // to destroy the previous subscription and create
+          // a new one
+          setStartSubscription(Date.now())
+        },
+        THREAD_NAME
+      )
+      return cleanup
+    }
+  }, [startSubscription])
+
+  useEffect(() => {
+    if (scrolledToBottom) {
+      chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
+    }
+  }, [messages, scrolledToBottom])
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!user || !input) return
+    const clear = input.toLowerCase().trim() === 'clear'
+    setInput('')
+    inputRef.current.focus()
     api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD_NAME).then(() => {
-      // noop (no operation)
-      // We don't need to do anything when we post a message here to get it added to state. The
-      // subscription will do that for us
+      if (clear) {
+        setMessages([])
+      }
     })
   }
 
@@ -70,7 +103,12 @@ export function ChatPage() {
           })}
       </div>
       <form onSubmit={onSubmit} className="chat-controls spacing">
-        <input className="form-field" value={input} onChange={(e) => setInput(e.target.value)} />
+        <input
+          ref={inputRef}
+          className="form-field"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
         <div>
           <button type="submit" className="button">
             Send

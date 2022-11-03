@@ -3,21 +3,57 @@ import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
 
-// const targetRect = targetRef.current.getBoundingClientRect()
-// const popoverRect = popoverRef.current.getBoundingClientRect()
-// setStyles(position(targetRect, popoverRect))
+function Portal({ children }) {
+  const [root, setRoot] = React.useState(null)
 
-const Popover = ({ children }) => {
-  return <div className="popover">{children}</div>
+  React.useEffect(() => {
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+    setRoot(root)
+    return () => {
+      document.body.removeChild(root)
+    }
+  }, [])
+
+  return root ? createPortal(children, root) : null
+}
+
+const Popover = ({ children, targetRef }) => {
+  const [styles, setStyles] = React.useState({})
+
+  const popoverRef = React.useRef()
+
+  function initRef(node) {
+    if (!popoverRef.current && node !== null) {
+      popoverRef.current = node
+      const targetRect = targetRef.current.getBoundingClientRect()
+      const popoverRect = popoverRef.current.getBoundingClientRect()
+      setStyles(position(targetRect, popoverRect))
+    }
+  }
+
+  return (
+    <Portal>
+      <div ref={initRef} className="popover" style={{ position: 'absolute', ...styles }}>
+        {children}
+      </div>
+    </Portal>
+  )
 }
 
 const Define = ({ children }) => {
   const [open, setOpen] = React.useState(false)
 
+  const buttonRef = React.useRef()
+
   return (
     <>
-      <button onClick={() => setOpen(!open)}>{children}</button>
-      {open && <Popover>Hooks are a way to compose behavior into components</Popover>}
+      <button ref={buttonRef} onClick={() => setOpen(!open)}>
+        {children}
+      </button>
+      {open && (
+        <Popover targetRef={buttonRef}>Hooks are a way to compose behavior into components</Popover>
+      )}
     </>
   )
 }
@@ -31,3 +67,9 @@ export function App() {
     </p>
   )
 }
+
+;<div>
+  <div>
+    <button></button>
+  </div>
+</div>

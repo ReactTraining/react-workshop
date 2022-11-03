@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { api } from 'course-platform/utils/api'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { useAuthContext } from './AuthContext'
 import type { User } from 'course-platform/utils/types'
@@ -18,6 +20,20 @@ import { LessonProfile } from 'course-platform/LessonProfile'
 export function App() {
   const navigate = useNavigate()
   const { dispatch } = useAuthContext()
+
+  useEffect(() => {
+    let isCurrent = true
+    api.auth.getAuthenticatedUser().then((user: User) => {
+      if (user && isCurrent) {
+        dispatch({ type: 'LOGIN', user })
+      } else {
+        dispatch({ type: 'LOGOUT' })
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
   function onLogin(user: User) {
     dispatch({ type: 'LOGIN', user })

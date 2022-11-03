@@ -34,6 +34,7 @@ export function ChatPage() {
   // Once we've loaded initial messages in the above effect, it will
   // set the `startSubscription` timestamp that will tell this effect
   // to create a subscription for any new message after that time:
+
   useEffect(() => {
     if (startSubscription) {
       const cleanup = api.chat.subscribe(
