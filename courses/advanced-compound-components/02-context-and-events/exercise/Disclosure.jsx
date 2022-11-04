@@ -3,7 +3,7 @@ import * as React from 'react'
 
 export function Disclosure({ children, defaultOpen = false, ...props }) {
   const [isOpen, setIsOpen] = React.useState(defaultOpen)
-  const id = React.useId(props.id)
+  const id = React.useId()
   const panelId = `panel-${id}`
 
   children = React.Children.map(children, (child) => {

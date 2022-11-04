@@ -21,7 +21,7 @@ const Portal = ({ children }) => {
   return portalNode.current ? createPortal(children, portalNode.current) : null
 }
 
-const Popover = ({ children, targetRef }) => {
+const Popover = ({ children, targetRef, ...props }) => {
   const popoverRef = React.useRef(null)
   const [styles, setStyles] = React.useState({})
 
@@ -44,10 +44,9 @@ const Popover = ({ children, targetRef }) => {
   return (
     <Portal>
       <div
+        {...props}
         ref={initPopoverRef}
         data-popover=""
-        // So the window won't close the popup when it gets the click
-        onClick={(e) => e.stopPropagation()}
         style={{
           position: 'absolute',
           ...styles,
@@ -63,7 +62,7 @@ const Define = ({ children }) => {
   const [open, setOpen] = React.useState(false)
   const buttonRef = React.useRef()
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const listener = (event) => {
       if (event.target !== buttonRef.current) {
         setOpen(false)
@@ -77,15 +76,16 @@ const Define = ({ children }) => {
     <>
       <button
         ref={buttonRef}
-        onClick={() => setOpen(!open)}
-        // This works, sort of. But it fails if we want to select the
-        // text of the popup itself. So do the window listener instead.
-        // onBlur={() => setOpen(false)}
+        onClick={() => {
+          setOpen(!open)
+        }}
       >
         {children}
       </button>
       {open && (
-        <Popover targetRef={buttonRef}>Hooks are a way to compose behavior into components</Popover>
+        <Popover onClick={(e) => e.stopPropagation()} targetRef={buttonRef}>
+          Hooks are a way to compose behavior into components
+        </Popover>
       )}
     </>
   )

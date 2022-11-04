@@ -22,7 +22,7 @@ export function Disclosure({
 
   const [isOpen, setIsOpen] = React.useState(defaultOpen)
 
-  const id = React.useId(props.id)
+  const id = React.useId()
   const panelId = `panel-${id}`
 
   const context = {

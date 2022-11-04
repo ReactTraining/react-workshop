@@ -41,8 +41,6 @@ module.exports = function (fullApp) {
   Select Lesson
 *****************************************/
 
-let askedToRemember = false
-
 function selectLesson() {
   /**
    * Load Preferences
@@ -100,9 +98,11 @@ function selectLesson() {
     }
 
     // See if they want to save their choice to `preferences.json`
-    if (!preferences.course && !askedToRemember) {
-      askedToRemember = true
-      if (readlineSync.keyInYN('\nDo you want us to remember this course selection?')) {
+    if (!preferences.course) {
+      // const remember = readlineSync.keyInYN('\nDo you want us to remember this course selection?')
+      // if (remember) {
+      if (true) {
+        // lets just always save
         try {
           fs.writeFileSync(
             preferencesPath,
