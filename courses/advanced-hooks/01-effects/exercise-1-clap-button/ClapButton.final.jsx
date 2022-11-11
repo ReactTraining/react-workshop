@@ -10,8 +10,8 @@ export function ClapButton() {
     if (queueClaps > 0) {
       const id = setTimeout(() => {
         saveClapsToDatabase(queueClaps).then((latestClaps) => {
-          setClaps(latestClaps)
           setQueueClaps(0)
+          setClaps(latestClaps)
         })
       }, 1000)
       return () => clearTimeout(id)
