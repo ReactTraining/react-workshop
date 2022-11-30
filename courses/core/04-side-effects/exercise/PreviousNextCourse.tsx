@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Icon } from 'course-platform/Icon'
-// import { useCourses } from './courseData'
+import { useCourses } from './courseData'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 type Props = {
@@ -10,19 +10,7 @@ type Props = {
 }
 
 export function PreviousNextCourse({ courseId }: Props) {
-  const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
-
-  // Get All Courses
-  useEffect(() => {
-    let isCurrent = true
-    api.courses.getAll().then((courses) => {
-      if (!isCurrent) return
-      setCourses(courses)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+  const [courses] = useCourses()
 
   // Previous and Next
   const i = (courses?.map((c) => c.id) || []).indexOf(courseId || -1)
