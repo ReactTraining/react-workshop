@@ -1,24 +1,53 @@
 import * as React from 'react'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 
-export function Disclosure({ children, label, defaultIsOpen = false }) {
+export function Disclosure({ children, onChange, label, defaultIsOpen = false }) {
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen)
+
+  const id = React.useId()
 
   function onSelect() {
     setIsOpen(!isOpen)
+    typeof onChange === 'function' && onChange(!isOpen)
   }
 
-  // Notice how awful it is to compose class names. We'll fix it with data-attributes
+  children = React.Children.map(children, (child) => {
+    return React.cloneElement(child, { onSelect, isOpen, id })
+  })
 
-  return (
-    <div className="disclosure">
-      <button onClick={onSelect} className={`disclosure-button ${isOpen ? 'open' : 'collapsed'}`}>
-        {isOpen ? <FaAngleDown /> : <FaAngleRight />}
-        <span>{label}</span>
-      </button>
-      <div className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`} hidden={!isOpen}>
+  return children
+}
+
+export const DisclosureButton = React.forwardRef(
+  ({ onSelect, id, isOpen, children, ...props }, forwardedRef) => {
+    return (
+      <button
+        {...props}
+        ref={forwardedRef}
+        onClick={onSelect}
+        data-state={isOpen ? 'open' : 'collapsed'}
+        data-disclosure-button=""
+        aria-expanded={isOpen}
+        aria-controls={id}
+      >
         {children}
-      </div>
+      </button>
+    )
+  }
+)
+
+DisclosureButton.displayName = 'DisclosureButton'
+
+export const DisclosurePanel = ({ isOpen, children, id, ...props }) => {
+  return (
+    <div
+      {...props}
+      id={id}
+      data-state={isOpen ? 'open' : 'collapsed'}
+      data-disclosure-panel=""
+      hidden={!isOpen}
+    >
+      {children}
     </div>
   )
 }
