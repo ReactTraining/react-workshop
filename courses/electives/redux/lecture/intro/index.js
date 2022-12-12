@@ -1,21 +1,14 @@
 import { createStore, combineReducers } from 'redux'
+import counterReducer from './reducers/counterReducer'
+import authReducer from './reducers/authReducer'
 
-const initialState = { count: 0 }
+const reducers = combineReducers({
+  counterState: counterReducer,
+  authState: authReducer,
+})
+const store = createStore(reducers)
 
-const counterReducer = (state, action) => {
-  if (typeof state === 'undefined') return initialState
-  switch (action.type) {
-    case 'INCREMENT':
-      return { ...state, count: state.count + 1 }
-    case 'DECREMENT':
-      return { ...state, count: state.count - 1 }
-    default:
-      return state
-  }
-}
-
-const store = createStore(counterReducer)
-
+// Some Comp
 store.subscribe(() => {
   console.log(store.getState())
 })
@@ -23,13 +16,3 @@ store.subscribe(() => {
 store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'INCREMENT' })
-
-// Next, show multiple reducers (code needs to be moved up)
-
-// import counterReducer from './reducers/counterReducer'
-// import authReducer from './reducers/authReducer'
-// const reducers = combineReducers({
-//   counterState: counterReducer,
-//   authState: authReducer
-// })
-// const store = createStore(reducers)

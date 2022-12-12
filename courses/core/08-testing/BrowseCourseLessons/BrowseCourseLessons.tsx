@@ -10,7 +10,7 @@ export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
 
   // If the data were coming from context
-  const { getCourse, isLoading } = useCoursesContext()
+  const { getCourse, isLoading } = useCoursesContext() // useContext - useEffect
   const course = getCourse(courseSlug)
   const lessons = course?.lessons || []
 

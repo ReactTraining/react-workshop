@@ -1,5 +1,5 @@
 // import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import 'course-platform/styles/all.scss'
 import './styles.scss'
 
@@ -28,6 +28,7 @@ export function App() {
         </Route>
         <Route path="admin" element={<AppLayout />}>
           <Route index element={<Navigate replace to="courses" />} />
+
           <Route path="courses">
             <Route index element={<BrowseCourses />} />
             <Route path=":courseSlug" element={<BrowseCourseLessons />} />

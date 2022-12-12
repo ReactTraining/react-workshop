@@ -22,4 +22,5 @@ function Counter({ dispatch }) {
   )
 }
 
+// HOC
 export default connect()(Counter)

@@ -4,25 +4,36 @@
 import { useState } from 'react'
 import { Icon } from 'course-platform/Icon'
 
-// type CounterProps = {
-//   count: number
-//   setCount(count: number): void
-//   min?: number
-// }
+type CounterProps = {
+  count: number
+  setCount(count: number): void
+}
 
-export function Counter() {
-  let count = 0
+export function Counter({ count, setCount }: CounterProps) {
+  function subtract() {
+    setCount(count - 1)
+  }
+
+  function add() {
+    setCount(count + 1)
+  }
 
   return (
     <div className="counter inline-flex flex-gap">
       <div>
-        <button className="button button-small">
+        <button onClick={subtract} className="button button-small">
           <Icon name="minus" />
         </button>
       </div>
-      <div className="input">{count}</div>
+      <input
+        type="text"
+        value={count}
+        onChange={(event) => {
+          setCount(parseInt(event.target.value))
+        }}
+      />
       <div>
-        <button className="button button-small">
+        <button onClick={add} className="button button-small">
           <Icon name="plus" />
         </button>
       </div>

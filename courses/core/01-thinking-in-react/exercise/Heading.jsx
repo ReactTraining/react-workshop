@@ -1,7 +1,7 @@
-export function Heading({ children, size = 1, ...rest }) {
+export function Heading({ as: El = 'h1', children, size = 1, ...rest }) {
   return (
-    <h1 {...rest} className="heading size-1">
+    <El {...rest} className={`heading size-${size}`}>
       {children}
-    </h1>
+    </El>
   )
 }
