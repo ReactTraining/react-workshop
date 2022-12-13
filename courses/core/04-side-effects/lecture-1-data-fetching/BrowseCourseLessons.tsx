@@ -21,8 +21,20 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
+  // any variables that we "close over" that can change
+  useEffect(() => {
+    let isCurrent = true
+    api.courses.getCourse(courseSlug).then((course) => {
+      if (isCurrent) {
+        setCourse(course)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+    // If we use obj, arrays, or fn's in our dep array, red flag, we need to make
+    // sure they are stable, if they're not already, we can do so with useMemo or useCallback
+  }, [courseSlug]) // ===
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return
