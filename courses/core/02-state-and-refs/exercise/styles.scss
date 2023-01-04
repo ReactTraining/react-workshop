@@ -1,8 +1,13 @@
 @import 'course-platform/styles/all.scss';
-@import 'course-platform/styles/center-lesson.css';
 
-body {
-  background-color: var(--blue4);
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 60px;
+}
+
+.card {
+  border-radius: 0.2em;
 }
 
 .field-wrap {

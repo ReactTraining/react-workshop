@@ -1,10 +1,36 @@
+import { useState } from 'react'
+import { Heading } from 'course-platform/Heading'
 import * as ReactDOM from 'react-dom/client'
-// import { AddStudentForm } from './AddStudentForm.final'
-import { AddStudentForm } from './AddStudentForm'
+import { Tiles } from 'course-platform/Tiles'
+import { BackgroundPicker } from './BackgroundPicker'
+// import { LoginForm } from './LoginForm.final'
+import { LoginForm } from './LoginForm'
 import './styles.scss'
 
+type User = null | {
+  userId: number
+  name: string
+}
+
 function App() {
-  return <AddStudentForm />
+  const [user, setUser] = useState<User>(null)
+  const [colors, setColors] = useState(['#7989C8', '#60D7E6'])
+
+  return (
+    <div className="app" style={{ background: `linear-gradient(${colors[0]}, ${colors[1]})` }}>
+      <Tiles minSize={25}>
+        <div className="card box-shadow">
+          <LoginForm onSuccess={setUser} />
+        </div>
+        <div className="card box-shadow spacing">
+          {!user ? <Heading>Not Logged In</Heading> : <Heading>Welcome {user.name}</Heading>}
+          <hr />
+          <p>Pick a background color:</p>
+          <BackgroundPicker colors={colors} setColors={setColors} />
+        </div>
+      </Tiles>
+    </div>
+  )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
