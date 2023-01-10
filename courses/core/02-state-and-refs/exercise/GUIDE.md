@@ -17,9 +17,8 @@ const [formValues, setFormValues] = useState({
   password: '',
 })
 
-// There are some tradeoffs to option one vs two. Some tasks might be
-// easier and some might be more difficult with option one
-// (and same for option two).
+// There are some tradeoffs to option one vs two. Some things will
+// be easier if you do option one, some will be more difficult.
 ```
 
 If you do option two, keep in mind you'll be setting an object for your state and you'll want to keep all the existing state when setting just one form field:
