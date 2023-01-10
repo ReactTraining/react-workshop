@@ -5,10 +5,21 @@ type Props = {
 }
 
 export function AddCourse({ onSubmit }: Props) {
+  const courseNameRef = useRef<HTMLInputElement>(null!) // { current: null }
+
+  const [courseName, setCourseName] = useState('')
+  const [lessons, setLessons] = useState(0)
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    // 👀 Let's get the real values
-    onSubmit({ name: 'Course Name', lessons: 5 })
+    onSubmit({ name: courseName, lessons })
+
+    // Reset
+    setCourseName('')
+    setLessons(0)
+
+    // Focus
+    courseNameRef.current.focus()
   }
 
   return (
@@ -19,10 +30,20 @@ export function AddCourse({ onSubmit }: Props) {
           className="form-field"
           placeholder="Course Name"
           aria-label="Course Name"
+          value={courseName}
+          onChange={(e) => setCourseName(e.target.value)}
+          ref={courseNameRef}
         />
       </div>
       <div className="flex-1">
-        <input type="number" className="form-field" placeholder="Lessons" aria-label="Lessons" />
+        <input
+          value={lessons}
+          onChange={(e) => setLessons(parseInt(e.target.value))}
+          type="number"
+          className="form-field"
+          placeholder="Lessons"
+          aria-label="Lessons"
+        />
       </div>
       <button className="button" type="submit">
         Add Course
