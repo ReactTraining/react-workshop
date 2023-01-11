@@ -6,11 +6,14 @@ type Props = {
   onSuccess: (user: { userId: number; name: string }) => void
 }
 
+const initFormValues = {
+  username: '',
+  password: '',
+}
+
 export function LoginForm({ onSuccess }: Props) {
-  const [formValues, setFormValues] = useState({
-    username: 'admin',
-    password: 'admin',
-  })
+  const [formValues, setFormValues] = useState(initFormValues)
+
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(false)
 
@@ -46,10 +49,7 @@ export function LoginForm({ onSuccess }: Props) {
     onSuccess(user)
 
     // Reset form and set focus
-    setFormValues({
-      username: '',
-      password: '',
-    })
+    setFormValues(initFormValues)
     usernameRef.current.focus()
   }
 

@@ -9,9 +9,6 @@ import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
-  // 1. Previous Approach: Fetch in every component
-  // const [courses] = useCourses()
-
   // 2. New Approach: Use React Query (useEffect and caching library)
   const {
     data: courses,
@@ -25,33 +22,33 @@ export function BrowseCourses() {
   // const { courses, isLoading, refetch } = useCourses()
   // // const removeCourse = useRemoveCourse()
 
-  // ✅ Remove course via API
-  // ✅ Renew cache by refetching
-  // ❌ Requires two serial network requests
-  // ❌ over-fetches (why do we need to get all courses again)
-  function removeCourse(courseId: number) {
-    if (!courses) return
-    api.courses.removeCourse(courseId).then(() => {
-      refetch()
-    })
-  }
-
   // // ✅ Remove course via API
-  // // ✅ Renew cache by selectively updating the array in the cache
-  // // ❌ Tedious - Removing an item from an array should be abstracted
-  // // ❌ Not Reusable - Should be a hook
-  // // ❌ If we make our own hook, the rest of the app will not know we're mutating
+  // // ✅ Renew cache by refetching
+  // // ❌ Requires two serial network requests
+  // // ❌ over-fetches (why do we need to get all courses again)
   // function removeCourse(courseId: number) {
   //   if (!courses) return
   //   api.courses.removeCourse(courseId).then(() => {
-  //     queryClient.setQueryData<CourseWithLessons[]>('courses', (courses) => {
-  //       if (!courses) return []
-  //       // They give us the old cache, we give them a new array.
-  //       const i = courses.findIndex((c) => c.id === courseId)
-  //       return [...courses.slice(0, i), ...courses.slice(i + 1)]
-  //     })
+  //     refetch()
   //   })
-  // }
+  }
+
+  // ✅ Remove course via API
+  // ✅ Renew cache by selectively updating the array in the cache
+  // ❌ Tedious - Removing an item from an array should be abstracted
+  // ❌ Not Reusable - Should be a hook
+  // ❌ If we make our own hook, the rest of the app will not know we're mutating
+  function removeCourse(courseId: number) {
+    if (!courses) return
+    api.courses.removeCourse(courseId).then(() => {
+      queryClient.setQueryData('courses', (courses) => {
+        if (!courses) return []
+        // They give us the old cache, we give them a new array.
+        const i = courses.findIndex((c) => c.id === courseId)
+        return [...courses.slice(0, i), ...courses.slice(i + 1)]
+      })
+    })
+  }
 
   // Use React Query Mutations Instead
 
