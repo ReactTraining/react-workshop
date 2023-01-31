@@ -1,6 +1,7 @@
 import { useState, useRef, useId } from 'react'
 import { Heading } from 'course-platform/Heading'
 import { Notice } from 'course-platform/Notice'
+import { login } from './utils'
 
 type Props = {
   onSuccess: (user: { userId: number; name: string }) => void
@@ -12,28 +13,25 @@ export function LoginForm({ onSuccess }: Props) {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(false)
 
+  // This is for Task 2 and setting the focus back to the username
   const usernameRef = useRef<HTMLInputElement>(null!)
+
+  // Ask the instructor about these if useId hasn't been discussed yet
   const usernameId = useId()
   const passwordId = useId()
 
   function handleLogin(event: React.FormEvent) {
     event.preventDefault()
 
-    // Task 2: Change to check the values of the username and password. If they are not "admin",
-    // then set the error as shown
-    // if (/* your logic */) {
-    //   setError(true)
-    //   return
-    // }
-
-    // Let's pretend the network requests to verify login credentials was
-    // successful and now we have this user data. Don't change this:
-    const user = {
-      userId: 1,
-      name: 'Admin',
-    }
-
-    onSuccess(user)
+    // Task 2: See Guide.md for details
+    login(/* username, password */)
+      .then((user) => {
+        onSuccess(user)
+        // Reset form and set focus
+      })
+      .catch(() => {
+        // Set Error to false
+      })
   }
 
   return (

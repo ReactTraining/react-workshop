@@ -29,25 +29,21 @@ setFormValues({ ...formValues, username: event.target.value })
 
 ## ✅ Task 2: Form Submission
 
-Complete the if-statement to allow for a successful login if the username and password are both "admin. You can see that setting the error to be `true` will create an error `<Notice type="error" />` in the JSX.
+We have a promise-based login function created for you that will resolve if you pass a username and password that are both "admin" and will reject if they're not.
 
-As an optional second part to task two, reset the form and put the focus back on the username after the form is successfully submitted. There is already a ref for you called `usernameRef`
+We have the arguments commented out for login because we don't know how you decided to program your state for those two variables. Pass in `username` and `password` and when the promise resolves (for a successful login) we'll give you a `user` object from the server. Call `onSuccess` with that user object (we're already doing this for you) and then you'll need to program the form to clear and to reset focus back to the username.
 
-## ✅ Task 3: Login Flow
+When you test the form, type bad credentials to see the promise reject. The `.catch` will allow you to set some error state which will lead to a re-render that shows the `<Notice type="error" />` in the JSX.
+
+## ✅ Task 3: Test your Form
 
 When you fill out the form and login, you should be able to follow this flow of your code:
 
-1. The if-statement you wrote is mimicking the back-end logic. After the if-statement we have a user object that we pretend we got from the backend.
-2. We call `onSuccess` with the user object which gets stored as state in the `App` component.
-3. The state change causes a re-render and new instructions for the UI of app. Now a welcome message will show for the logged in Admin user.
-4. To make things easier to test, you can start the state with the string `admin` instead of an empty string so the form is pre-populated with the `admin` values:
+1. With good credentials, the `login` function should resolve and call `onSuccess` with a `user` object.
+2. Open the index file which creates `<LoginForm onSuccess={setUser} />`. Make sure you understand how the user object will be added to state in the `App` component (this is already complete).
+3. The state change causes a re-render and the JSX conditionally shows a welcoming message now.
 
-```ts
-const [username, setUsername] = useState('admin')
-const [password, setPassword] = useState('admin')
-```
-
-If you get this far, you're done. Move onto the Bonus section if you wish.
+If you get this far, you're done. Move onto the Bonus section if you think you'll have time.
 
 ## ✅ Bonus: Checkbox for "Show password"
 

@@ -1,6 +1,7 @@
 import { useState, useRef, useId } from 'react'
 import { Heading } from 'course-platform/Heading'
 import { Notice } from 'course-platform/Notice'
+import { login } from './utils'
 
 type Props = {
   onSuccess: (user: { userId: number; name: string }) => void
@@ -28,29 +29,20 @@ export function LoginForm({ onSuccess }: Props) {
   function handleLogin(event: React.FormEvent) {
     event.preventDefault()
 
-    if (
-      formValues.username.toLowerCase() !== 'admin' ||
-      formValues.password.toLowerCase() !== 'admin'
-    ) {
-      setError(true)
-      return
-    }
+    login(formValues.username, formValues.password)
+      .then((user) => {
+        onSuccess(user)
 
-    // Let's pretend the network requests to verify login credentials was
-    // successful and now we have this user data
-    const user = {
-      userId: 1,
-      name: 'Admin',
-    }
-
-    onSuccess(user)
-
-    // Reset form and set focus
-    setFormValues({
-      username: '',
-      password: '',
-    })
-    usernameRef.current.focus()
+        // Reset form and set focus
+        setFormValues({
+          username: '',
+          password: '',
+        })
+        usernameRef.current.focus()
+      })
+      .catch(() => {
+        setError(true)
+      })
   }
 
   return (
