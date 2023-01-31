@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from 'course-platform/utils/api'
 import { Heading } from 'course-platform/Heading'
@@ -12,19 +12,34 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
+function useApi<T>(api) {
+  const [results, setResults] = useState<T>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api().then((results) => {
+      if (isCurrent) {
+        setResults(results)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [api]) // ===
+
+  return results
+}
+
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
   // Course and Lesson Data
-  const [course, setCourse] = useState<CourseWithLessons | null>(null)
+  const getCourse = useCallback(() => api.courses.getCourse(courseSlug), [courseSlug])
+  const course = useApi<null | CourseWithLessons>(getCourse)
 
   const lessons = course && course.lessons
   const isLoading = course === null
-
-  // api.courses.getCourse(courseSlug).then((course) => {
-  //   setCourse(course)
-  // })
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return
