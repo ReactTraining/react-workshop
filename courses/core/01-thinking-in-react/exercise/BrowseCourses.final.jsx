@@ -20,7 +20,12 @@ export function BrowseCourses() {
               <div className="flex-split flex-gap-large">
                 <div>Lessons: {course.lessons}</div>
                 <div>
-                  <button className="button" onClick={() => removeCourse(course.id)}>
+                  <button
+                    className="button"
+                    onClick={(e) => {
+                      removeCourse(course.id)
+                    }}
+                  >
                     Remove
                   </button>
                 </div>
