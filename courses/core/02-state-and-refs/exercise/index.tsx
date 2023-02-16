@@ -3,8 +3,8 @@ import { Heading } from 'course-platform/Heading'
 import * as ReactDOM from 'react-dom/client'
 import { Tiles } from 'course-platform/Tiles'
 import { BackgroundPicker } from './BackgroundPicker'
-import { LoginForm } from './LoginForm.final'
-// import { LoginForm } from './LoginForm'
+// import { LoginForm } from './LoginForm.final'
+import { LoginForm } from './LoginForm'
 import './styles.scss'
 
 type User = null | {
