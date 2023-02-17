@@ -8,7 +8,8 @@ type Props = {
 }
 
 export function LoginForm({ onSuccess }: Props) {
-  // Task 1: Make state for username and password here. See more in the Guide.md
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(false)
@@ -24,13 +25,13 @@ export function LoginForm({ onSuccess }: Props) {
     event.preventDefault()
 
     // Task 2: See Guide.md for details
-    login(/* username, password */)
+    login(username, password)
       .then((user) => {
         onSuccess(user)
         // Reset form and set focus
       })
       .catch(() => {
-        // Set Error to false
+        setError(true)
       })
   }
 
@@ -48,10 +49,10 @@ export function LoginForm({ onSuccess }: Props) {
       <div className="field-wrap">
         <label htmlFor={usernameId}>Username</label>
         <input
-          // value={}
-          // onChange={(e) => {
-          //   //e.target.value
-          // }}
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value)
+          }}
           id={usernameId}
           type="username"
           className="form-field"
@@ -63,15 +64,25 @@ export function LoginForm({ onSuccess }: Props) {
 
       <div className="field-wrap">
         <label htmlFor={passwordId}>Password</label>
-        <input id={passwordId} type="password" className="form-field" autoComplete="off" required />
+        <input
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value)
+          }}
+          id={passwordId}
+          type={showPassword ? 'text' : 'password'}
+          className="form-field"
+          autoComplete="off"
+          required
+        />
       </div>
 
       <div>
         <label className="vertical-middle horizontal-spacing">
           <input
             type="checkbox"
-            checked={false}
-            // onChange={}
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
           />
           <span>Show Password</span>
         </label>
