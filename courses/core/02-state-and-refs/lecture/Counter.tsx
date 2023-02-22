@@ -4,15 +4,13 @@
 import { useState, Fragment } from 'react'
 import { Icon } from 'course-platform/Icon'
 
-// type CounterProps = {
-//   count: number
-//   setCount(count: number): void
-//   min?: number
-// }
+type CounterProps = {
+  count: number
+  setCount(count: number): void
+  min?: number
+}
 
-export function Counter({ min = 0 }) {
-  const [count, setCount] = useState(0)
-
+export function Counter({ count, setCount, min = 0 }: CounterProps) {
   function subtract() {
     if (count > min) {
       setCount(count - 1)
@@ -30,7 +28,13 @@ export function Counter({ min = 0 }) {
           <Icon name="minus" />
         </button>
       </div>
-      <div className="input">{count}</div>
+      <input
+        type="text"
+        value={count}
+        onChange={(e) => {
+          setCount(parseInt(e.target.value))
+        }}
+      />
       <div>
         <button onClick={add} className="button button-small">
           <Icon name="plus" />
