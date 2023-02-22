@@ -12,42 +12,45 @@ import type { CourseWithLessons } from 'course-platform/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-export function BrowseCourseLessons() {
-  const courseSlug = useParams().courseSlug!
-  const [createLessonDialog, setCreateLessonDialog] = useState(false)
+function useApi(api) {
+  const [results, setResults] = useState<any>(null)
 
-  // Course and Lesson Data
-  const [course, setCourse] = useState<CourseWithLessons | null>(null)
-  const lessons = course && course.lessons
-  const isLoading = course === null
-
-  // - Error Boundaries
-  // - Dep Array
-  // - Make useApi
-  // - React Router Fetching
-  // - exercise
-
+  // Any variable that we close over that can change
   useEffect(() => {
     let isCurrent = true
-    api.courses.getCourse(courseSlug).then((course) => {
+    api().then((results) => {
       if (isCurrent) {
-        setCourse(course)
+        setResults(results)
       }
     })
     return () => {
       isCurrent = false
     }
-  }, [courseSlug])
+  }, [api])
+
+  return results
+}
+
+export function BrowseCourseLessons() {
+  const courseSlug = useParams().courseSlug!
+  const [createLessonDialog, setCreateLessonDialog] = useState(false)
+
+  // Course and Lesson Data
+  const getCourse = useCallback(() => api.courses.getCourse(courseSlug), [courseSlug])
+  const course = useApi(getCourse)
+
+  const lessons = course && course.lessons
+  const isLoading = course === null
 
   function removeLesson(lessonId: number) {
-    if (!lessons) return
-    api.courses.removeLesson(lessonId).then(() => {
-      const i = lessons.findIndex((l) => l.id === lessonId)
-      setCourse({
-        ...course,
-        lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
-      })
-    })
+    // if (!lessons) return
+    // api.courses.removeLesson(lessonId).then(() => {
+    //   const i = lessons.findIndex((l) => l.id === lessonId)
+    //   setCourse({
+    //     ...course,
+    //     lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
+    //   })
+    // })
   }
 
   return (
