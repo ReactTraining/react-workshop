@@ -23,7 +23,7 @@ There are many benefits to not doing an SPA though, especially for performance a
 
 Learn more about using Remix/Node with a different stack for your data here: https://remix.run/docs/en/v1/guides/bff
 
-Next and Remix seem like they are very similar but there are substantial differences. For example Remix can be hosted anywhere that does Node or similar JS runtimes. Next hosting is usually done with their parent company Vercel and it can be difficult to host anywhere else. For transparency, the owners of ReactTraining are also the creators of Remix.
+Next and Remix seem like they are very similar at first but there are substantial differences. For example Remix can be hosted anywhere that does a JS runtime. Next hosting is usually done with their parent company Vercel and it can be difficult to host anywhere else. For transparency, the owners of ReactTraining are also the creators of Remix.
 
 ## Where can I practice React in the browser without running a local environment
 
@@ -41,6 +41,8 @@ There's no one right way to organize React code. We agree with the React docs th
 https://reactjs.org/docs/faq-structure.html
 
 Usually you'll have a `/src` or `/app` folder in your repo where all your React code goes. Inside that it's common to have a `/components` folder for your common re-usable components (forms, buttons, dialogs, etc). From there it's common to have folders that are in the `/src` folder related to pages or specific areas of your app like `/customer-profile` or `/shopping-cart`.
+
+If you're using a meta-framework like Remix.run or NextJS, they handle routing with the filesystem. That means you'll have a "pages" folder where from there your folder and filenames literally become routes for the URL.
 
 ## Error Handling
 
