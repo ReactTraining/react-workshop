@@ -1,8 +1,8 @@
 # Are you a Java or C# dev trying to learn TypeScript?
 
-If you're coming from Java or C# here is a great starting point for you to understand some differences - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html
+If you're coming from Java or C#, this is a great article for you to understand some differences between your ideas of typed languages vs TypeScript - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html
 
-In general, it can be easier to think of TS as a "linter" more so than a programming language. Ultimately, your types will not end up in production code. TS will "compile" to JS which in this case mostly just means that the types are stripped out so the end result is valid JS
+In general, it can be easier to think of TS as a "linter" more so than a programming language. Ultimately, your types will not end up in production code. TS will "compile" to JS which in this case mostly just means that the types are stripped out so the end result is valid JS.
 
 Also here are some high level points:
 

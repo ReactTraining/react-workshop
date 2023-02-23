@@ -20,3 +20,7 @@ TypeScript Cheet Sheet - https://github.com/typescript-cheatsheets/react
 - [TypeScript/React Cheat Sheet](./typescript-cheet-sheet.md)
 - [Are you coming to TypeScript from Java or C#?](./java-and-csharp.md)
 - [Lots of TypeScript Resources](./typescript-resources.md)
+
+## Followup Reading
+
+- [What do I need to know after I take the Core workshop?](./post-workshop-material.md)
