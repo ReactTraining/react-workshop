@@ -13,7 +13,7 @@ export function AuthenticatedDropdownMenu() {
   }
 
   return (
-    <Menu as="div" data-theme="light">
+    <Menu as="div" className="dropdown-menu" data-theme="light">
       <Menu.Button aria-label="My Account Menu">
         <Avatar src={user?.avatarUrl} size={2} />
       </Menu.Button>

@@ -1,3 +1,8 @@
+.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown-items {
   display: none;
   box-shadow: var(--shadow);
@@ -5,7 +10,8 @@
   border-radius: 0.3em;
   overflow: hidden;
   position: absolute;
-  right: 1em;
+  right: 0.5em;
+  top: calc(100% + 0.5em);
 
   flex-direction: column;
   &[data-headlessui-state='open'] {
