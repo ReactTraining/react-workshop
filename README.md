@@ -27,7 +27,11 @@ This repo contains the latest course material for [React Training](https://react
 ## Quick Start
 
 ```sh
-npm install --legacy-peer-deps
+npm install
+
+# If you see "peer dependency" issues
+# npm install  --legacy-peer-deps
+
 npm start app
 # visit: localhost:3000
 ```
@@ -142,7 +146,10 @@ $ git clone https://github.com/ReactTraining/react-workshop.git
 $ cd react-workshop
 
 # From the project's root folder
-$ npm install --legacy-peer-deps
+$ npm install
+
+# If you see "peer dependency" issues
+# npm install  --legacy-peer-deps
 ```
 
 ## Running the code
