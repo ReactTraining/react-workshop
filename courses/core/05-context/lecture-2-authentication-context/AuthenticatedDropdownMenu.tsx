@@ -1,4 +1,4 @@
-import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button'
+import { Menu } from '@headlessui/react'
 import { api } from 'course-platform/utils/api'
 import { Avatar } from 'course-platform/Avatar'
 import { useAuthContext } from './AuthContext'
@@ -13,13 +13,15 @@ export function AuthenticatedDropdownMenu() {
   }
 
   return (
-    <Menu>
-      <MenuButton className="avatar-menu primary-nav-item">
+    <Menu as="div" data-theme="light">
+      <Menu.Button aria-label="My Account Menu">
         <Avatar src={user?.avatarUrl} size={2} />
-      </MenuButton>
-      <MenuList className="nav-user-dropdown">
-        <MenuItem onSelect={onLogout}>Logout</MenuItem>
-      </MenuList>
+      </Menu.Button>
+      <Menu.Items className="dropdown-items" static>
+        <Menu.Item>
+          <button onClick={onLogout}>Logout</button>
+        </Menu.Item>
+      </Menu.Items>
     </Menu>
   )
 }

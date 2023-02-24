@@ -1,0 +1,15 @@
+.component {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  > div {
+    background-color: #fff;
+    box-shadow: var(--shadow);
+    width: 800px;
+    padding: 1em;
+    margin: auto;
+  }
+}

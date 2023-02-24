@@ -1,5 +1,6 @@
 import React from 'react'
-import { Dialog as ReachDialog } from '@reach/dialog'
+import { Dialog as HeadlessDialog } from '@headlessui/react'
+import styles from './Dialog.module.scss'
 
 type Props = {
   children: React.ReactNode
@@ -10,9 +11,11 @@ type Props = {
 
 export function Dialog({ onClose, children, ...props }: Props) {
   return (
-    <ReachDialog {...props} onDismiss={onClose}>
-      <div className="p-5">{children}</div>
-    </ReachDialog>
+    <HeadlessDialog as="div" open={true} {...props} onClose={onClose} className={styles.component}>
+      <div>
+        <HeadlessDialog.Panel>{children}</HeadlessDialog.Panel>
+      </div>
+    </HeadlessDialog>
   )
 }
 

@@ -161,7 +161,12 @@ type DatePickerChangeMonthProps = {
 export function DatePickerChangeMonth({ children, to, ...props }: DatePickerChangeMonthProps) {
   const { setBaseMonth } = useContext(Context)
   return (
-    <button {...props} data-datepicker-change-month="" onClick={() => setBaseMonth(to)}>
+    <button
+      type="button"
+      {...props}
+      data-datepicker-change-month=""
+      onClick={() => setBaseMonth(to)}
+    >
       {children}
     </button>
   )

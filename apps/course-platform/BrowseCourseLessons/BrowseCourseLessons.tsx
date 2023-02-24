@@ -7,7 +7,6 @@ import { DataGrid, Row, Col } from 'course-platform/DataGrid'
 import { AppSidebar } from 'course-platform/AppSidebar'
 import { RecentLessons } from 'course-platform/RecentLessons'
 import { CreateLessonDialog } from 'course-platform/CreateLessonDialog'
-import { LessonPreviewDialog } from 'course-platform/LessonPreviewDialog'
 import { Loading } from 'course-platform/Loading'
 import { NoResults } from 'course-platform/NoResults'
 import { PreviousNextCourse } from 'course-platform/PreviousNextCourse'
@@ -75,21 +74,12 @@ export function BrowseCourseLessons() {
                           </div>
                         </Col>
                         <Col>
-                          <div className="horizontal-spacing">
-                            <button
-                              className="button button-small button-outline"
-                              onClick={() => removeLesson(lesson.id)}
-                            >
-                              Remove
-                            </button>
-                            <button
-                              className="button button-small button-outline"
-                              onClick={() => setPreviewLesson(lesson)}
-                              disabled={!lesson.content}
-                            >
-                              Preview
-                            </button>
-                          </div>
+                          <button
+                            className="button button-small button-outline"
+                            onClick={() => removeLesson(lesson.id)}
+                          >
+                            Remove
+                          </button>
                         </Col>
                       </Row>
                     )
@@ -113,14 +103,6 @@ export function BrowseCourseLessons() {
           course={course}
           onClose={() => setCreateLessonDialog(false)}
           onCreate={fetchCourses}
-        />
-      )}
-      {previewLesson && (
-        <LessonPreviewDialog
-          lesson={previewLesson}
-          onClose={() => {
-            setPreviewLesson(null)
-          }}
         />
       )}
     </>

@@ -1,5 +1,5 @@
 import { useRef, useState, useLayoutEffect } from 'react'
-import { Portal } from '@reach/portal'
+import { Portal } from 'course-platform/PortalX'
 import { position } from 'course-platform/utils/position'
 import styles from './Popover.module.css'
 
@@ -23,13 +23,12 @@ export function Popover({ children, onClose, targetRef }: Props) {
   }, [])
 
   function initPopoverRef(el: HTMLDivElement) {
-    if (!popoverRef.current) {
+    if (el && !popoverRef.current) {
       popoverRef.current = el
-      if (targetRef.current && popoverRef.current) {
-        const targetRect = targetRef.current.getBoundingClientRect()
-        const popoverRect = popoverRef.current.getBoundingClientRect()
-        setInlineStyles(position(targetRect, popoverRect))
-      }
+      const targetRect = targetRef.current.getBoundingClientRect()
+      const popoverRect = popoverRef.current.getBoundingClientRect()
+
+      setInlineStyles(position(targetRect, popoverRect))
     }
   }
 
@@ -37,12 +36,9 @@ export function Popover({ children, onClose, targetRef }: Props) {
     <Portal>
       <div
         ref={initPopoverRef}
-        className={`${styles.component} box-shadow`}
+        className={styles.component}
         onClick={(e) => e.stopPropagation()}
-        style={{
-          position: 'absolute',
-          ...inlineStyles,
-        }}
+        style={inlineStyles}
       >
         {children}
       </div>

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import dayjs from 'dayjs'
 import { useField } from 'formik'
 import { BsCalendar3 } from 'react-icons/bs'
-import { Popover } from './Popover'
+import { Popover } from 'course-platform/PopoverX'
 import { SelectDateRange } from './SelectDateRange'
 import { useDelayedCallback } from './useDelayedCallback'
 
