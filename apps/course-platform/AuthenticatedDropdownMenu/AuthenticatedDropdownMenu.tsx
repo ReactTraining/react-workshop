@@ -23,6 +23,11 @@ export function AuthenticatedDropdownMenu() {
         <Menu.Item>
           <a href="https://reacttraining.com/workshops">More Workshops</a>
         </Menu.Item>
+        <Menu.Item>
+          <a href="https://github.com/ReactTraining/react-workshop/blob/main/reading/post-workshop-materials.md">
+            Post Workshop Reading Material
+          </a>
+        </Menu.Item>
       </Menu.Items>
     </Menu>
   )

@@ -30,7 +30,7 @@ This repo contains the latest course material for [React Training](https://react
 npm install
 
 # If you see "peer dependency" issues
-# npm install  --legacy-peer-deps
+# npm install --legacy-peer-deps
 
 npm start app
 # visit: localhost:3000
@@ -149,7 +149,7 @@ $ cd react-workshop
 $ npm install
 
 # If you see "peer dependency" issues
-# npm install  --legacy-peer-deps
+# npm install --legacy-peer-deps
 ```
 
 ## Running the code
