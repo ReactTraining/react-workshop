@@ -7,13 +7,13 @@ import { BackgroundPicker } from './BackgroundPicker'
 import { LoginForm } from './LoginForm'
 import './styles.scss'
 
-type User = null | {
+type User = {
   userId: number
   name: string
 }
 
 function App() {
-  const [user, setUser] = useState<User>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [colors, setColors] = useState(['#7989C8', '#60D7E6'])
 
   return (
