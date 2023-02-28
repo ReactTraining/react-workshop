@@ -198,7 +198,7 @@ const x = useMemo(fn, [])
 // useCallback never calls the fn passed in. Instead it "memoizes" the function itself
 // by stabilizing it and returning it. This is mostly used for:
 // 1. stabilizing functions that will end up in other dependency arrays
-// 2. stabilizing functions that will be passed as pros to memoized components
+// 2. stabilizing functions that will be passed as props to memoized components
 const fn = useCallback(fn, [])
 
 // The memo() HoC function enhances the component so that it itself is memoized and

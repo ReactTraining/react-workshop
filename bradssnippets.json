@@ -1,0 +1,58 @@
+[
+   "console.log": {
+    "prefix": "con",
+    "body": ["console.log($0)"]
+  },
+  "css custom properties": {
+    "prefix": "var",
+    "body": ["var(--$0);"]
+  },
+  "const": {
+    "prefix": "const",
+    "body": ["const { $1 } = $0"]
+  },
+  "function": {
+    "prefix": "f",
+    "body": ["function $0() {", "  ", "}"]
+  },
+  "getElementById('')": {
+    "prefix": "el",
+    "body": ["document.getElementById('$0')"]
+  },
+  "React.lazy": {
+    "prefix": "lazy",
+    "body": ["const $1 = React.lazy(() => import('$0'))"]
+  },
+  "Suspense": {
+    "prefix": "suspense",
+    "body": ["<Suspense fallback={<div>loading...</div>}>$0</Suspense>"]
+  },
+  "ReactDOM": {
+    "prefix": "ReactDOM",
+    "body": ["ReactDOM.render(<${0:App} />, document.getElementById('root'))"]
+  },
+  "props": {
+    "prefix": "props",
+    "body": "$0={$0}"
+  },
+  "props2": {
+    "prefix": "props2",
+    "body": "$1={$1} $0={$0}"
+  },
+  "props3": {
+    "prefix": "props3",
+    "body": "$1={$1} $2={$2} $0={$0}"
+  },
+  "useState": {
+    "prefix": "state",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($0)"]
+  },
+  "useEffect": {
+    "prefix": "effect",
+    "body": ["useEffect(() => {", "  ${0}", "}, [])"]
+  },
+  "React.createElement": {
+    "prefix": "create",
+    "body": ["React.createElement($1, null, $0)"]
+  },
+]
