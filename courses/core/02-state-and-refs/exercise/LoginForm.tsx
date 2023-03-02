@@ -30,7 +30,7 @@ export function LoginForm({ onSuccess }: Props) {
         // Reset form and set focus
       })
       .catch(() => {
-        // Set Error to false
+        // Figure out how to display the JSX error message already written below in the <Notice>
       })
   }
 
