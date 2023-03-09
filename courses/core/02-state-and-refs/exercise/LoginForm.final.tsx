@@ -12,6 +12,7 @@ export function LoginForm({ onSuccess }: Props) {
     username: 'admin',
     password: 'admin',
   })
+
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(false)
 
