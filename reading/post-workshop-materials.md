@@ -16,8 +16,8 @@ Traditionally, React is used as an SPA. That's how we teach it in our workshops.
 
 Our personal preference is Vite.
 
-https://create-react-app.dev/
-https://vitejs.dev/guide/
+- https://create-react-app.dev/
+- https://vitejs.dev/guide/
 
 There are many benefits to not doing an SPA though, especially for performance and SEO. It does require you to host React in a JavaScript runtime on the server (like Node). You can still use Java/C#/Ruby/Python too but the server responding with HTML will be JavaScript. You can treat the JS server as a thin HTTP response layer that uses another server for data (Java/C#, etc). In order to orchestrate React running on the server and then rehydrating to the client correctly, you'll probably want to use a "meta framework" like Remix.run or NextJS. These take care of the bundling/compiling too so you won't need CRA or Vite.
 
