@@ -21,18 +21,28 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
+  // any variables that we "close over" that CAN CHANGE!!!
+  useEffect(() => {
+    let isCurrent = true
+    api.courses.getCourse(courseSlug).then((course) => {
+      if (isCurrent) {
+        setCourse(course)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [courseSlug])
 
   function removeLesson(lessonId: number) {
-    // if (!lessons) return
-    // api.courses.removeLesson(lessonId).then(() => {
-    //   const i = lessons.findIndex((l) => l.id === lessonId)
-    //   setCourse({
-    //     ...course,
-    //     lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
-    //   })
-    // })
+    if (!lessons) return
+    api.courses.removeLesson(lessonId).then(() => {
+      const i = lessons.findIndex((l) => l.id === lessonId)
+      setCourse({
+        ...course,
+        lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
+      })
+    })
   }
 
   return (

@@ -1,5 +1,5 @@
-// import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
-import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
+import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
+// import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
 
 export function App() {
   return (

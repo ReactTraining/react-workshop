@@ -25,6 +25,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<WebsiteLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="contact" element={<div></div>} />
         </Route>
         <Route path="admin" element={<AppLayout />}>
           <Route index element={<Navigate replace to="courses" />} />
