@@ -3,9 +3,29 @@ import * as ReactDOM from 'react-dom/client'
 import { FaTrash } from 'react-icons/fa'
 import './styles.scss'
 
-// This is our "entry" file for our build system.
+function Button({ onClick, children }) {
+  return (
+    <button onClick={onClick} type="button" className="button">
+      {children}
+    </button>
+  )
+}
 
-// 1. Use React to make our app
-// 2. "mount" the app to the DOM
+function App() {
+  function onClick() {
+    // logic for removing ...
+  }
 
-// Let's go
+  return (
+    <div>
+      <Button onClick={onClick}>
+        <FaTrash />
+        <span>Remove Course</span>
+        <FaTrash />
+      </Button>
+    </div>
+  )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
