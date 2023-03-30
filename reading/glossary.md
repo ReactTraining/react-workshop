@@ -12,11 +12,11 @@ Stands for "Document Object Model". It's an API which allows JavaScript to manip
 
 ## Node
 
-Around 2009, developers created a "run-time" for JavaScript on the server. A "run-time" is just a technical term for "the ability to parse and execute code". That runtime is called Node. So, Node is essentially JavaScript that runs on the server.
+Node is not so much a programming language, but a run-time for JavaScript to run on the server. As such, the JS code you write for node has different globals. In the browser, JS has things like `window` and `document`. These are missing in Node. Node has things that browser JS doesn't have like `process` and access to the filesystem and the ability to make a server.
 
 ## NPM
 
-Stands for "Node Package Manager" and is the de facto standard JavaScript and Node dependency manager front back-end and front-end third-party dependencies.
+Stands for "Node Package Manager" and is the de-facto standard JavaScript and Node dependency manager front back-end and front-end third-party dependencies. When you install Node, you get NPM with it.
 
 ## Dependency (Third-party Dependency)
 
@@ -25,10 +25,6 @@ Any third-party code that your application depends on. If you have a React appli
 ## Module
 
 Modules are just JavaScript files. In Node, a `.js` file (module) can be imported into another file with `require()` or `import`. A module goes a beyond what has been traditional `.js` files in the past though because modules encapsulate their contents. Only the things that are exported can be imported into other files. For client-side code, your `.js` files can also be modules if you're using a bundler that bundles your code and re-writes it in ways that make each file's contents encapsulated just like they would have been in Node. Webpack and Rollup are examples of client-side bundlers.
-
-## MVC
-
-A paradigm for organizing framework code. It stands for Model, View, Controller — its three logical categories for framework organization.
 
 ## Reactive Programming
 
