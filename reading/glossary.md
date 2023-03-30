@@ -24,7 +24,7 @@ Any third-party code that your application depends on. If you have a React appli
 
 ## Module
 
-A JavaScript file that is re-usable in an application. Third-part dependencies are modules but the application code your developers write will also be in modules.
+Modules are just JavaScript files. In Node, a `.js` file (module) can be imported into another file with `require()` or `import`. A module goes a beyond what has been traditional `.js` files in the past though because modules encapsulate their contents. Only the things that are exported can be imported into other files. For client-side code, your `.js` files can also be modules if you're using a bundler that bundles your code and re-writes it in ways that make each file's contents encapsulated just like they would have been in Node. Webpack and Rollup are examples of client-side bundlers.
 
 ## MVC
 
