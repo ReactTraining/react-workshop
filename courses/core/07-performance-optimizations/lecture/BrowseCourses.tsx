@@ -8,6 +8,8 @@ import { RecentLessons } from 'course-platform/RecentLessons'
 import { AppSidebar } from 'course-platform/AppSidebar'
 import { useCourses } from './useCourses'
 
+// https://github.com/reactwg/react-18/discussions/41
+
 export function BrowseCourses() {
   const allCourses = useCourses()
   const [courses, setCourses] = useState(allCourses)

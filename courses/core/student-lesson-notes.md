@@ -10,7 +10,6 @@ You're encouraged to take notes, but we don't want that to get in the way of lis
   - Composable: You can build small re-usable parts which can be used to build bigger, more complex things
   - Declarative: We write in a style where we say "what" we want. When we write HTML, `<select>` is declarative because we simply describe the dropdown menu we want but without programming "how" it works. React can be considered declarative in two ways. First, when we write JSX we are describing what we want the UI to be but we're not working directly on the DOM. React does the DOM stuff for us so we could say that our instructions are declarative and React does the real DOM work which is imperative. Second, we can abstract UI into small components. We might have a special `<RemoveButton />` that can be used as an element declaratively and another React programmer programs how it works.
 - JSX is a syntax for easily creating nested function calls for each DOM element we want to make. Babel is a compiler that converts each JSX element into a `_jsx('div')` function call.
-- The instructor might show you that JSX compiles into `React.createElement('div')` instead, this is historically true in React 16 and below. At the time of this writing, React is on version 17 and if you're using 17 with modern a modern babel setup then your JSX compiles into the newer `_jsx()`.
 - The return value of a component (JSX turned into `_jsx('div')`) is like an "instruction manual" for how to create DOM elements.
 - In a typical React application, using `ReactDOM.createRoot()` to mount the application is used once. When components in our tree re-render and provide new instructions form JSX, React will take care of updating the DOM for us.
 - A "component" is a function or a class that renders instructions for the DOM via JSX. In a function component, the JSX is simply returned. In a class component, there is a render method that returns JSX. While function components are preferred by most React developers, you can still use class components and both component types can be used together on the same application.
@@ -183,7 +182,7 @@ function useUsers() {
 
 ---
 
-## Performance Optimizations
+## Lesson 7: Performance Optimizations
 
 Keep in mind that the term "stable" in React means that the identity of a variable will not change between re-renders.
 
@@ -224,15 +223,7 @@ startTransition(() => {
 const id = useId()
 ```
 
----
-
-## Group Chat
-
-This is an exercise only and has no new material.
-
----
-
-## Testing
+## Lesson 8: Testing
 
 - Be sure to see the GUIDE.md in the testing folder for information on setting up unit testing
 - The main principal of React unit testing is - Test the component the way the user uses it, not the implementation details of the component.
