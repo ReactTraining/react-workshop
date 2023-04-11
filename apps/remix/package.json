@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build"
+  }
+}

@@ -19,7 +19,6 @@ function getCourseAppPath(courseName) {
   return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
 }
 
-// export function cli(fullApp) {
 module.exports = function (fullApp) {
   console.clear()
 

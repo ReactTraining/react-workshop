@@ -11,8 +11,6 @@ const startDB = require('./start-db')
 const fullApp = process.argv.includes('app')
 let { appPath, alias, selectedLessonType, selectedLesson } = cli(fullApp)
 
-console.clear()
-
 const fullAppAlias = { 'course-platform': appPath }
 alias = fullApp ? fullAppAlias : { ...alias, ...fullAppAlias }
 
