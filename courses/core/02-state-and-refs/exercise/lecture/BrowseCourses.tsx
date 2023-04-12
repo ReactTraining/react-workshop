@@ -17,7 +17,7 @@ export function BrowseCourses() {
       <AddCourse
         onSubmit={(values) => {
           // setCourses([...courses, values])
-          setCourses(courses.concat(values))
+          setCourses(courses.concat(values)) // ===
         }}
       />
       <hr />

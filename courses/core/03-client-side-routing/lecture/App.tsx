@@ -44,17 +44,3 @@ export function App() {
     </BrowserRouter>
   )
 }
-
-function useParams() {
-  // subscribes to the URL
-}
-
-function BrowseCourseLessons() {
-  const { courseSlug } = useParams() // { courseSlug: 'react' }
-
-  const [course, setCourse] = useState(null)
-
-  // data fetching
-
-  return <div></div>
-}

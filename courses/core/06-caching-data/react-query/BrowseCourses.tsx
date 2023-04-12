@@ -9,9 +9,6 @@ import { queryClient } from './queryClient'
 import type { CourseWithLessons } from 'course-platform/utils/types'
 
 export function BrowseCourses() {
-  // 1. Previous Approach: Fetch in every component
-  // const [courses] = useCourses()
-
   // 2. New Approach: Use React Query (useEffect and caching library)
   const {
     data: courses,
