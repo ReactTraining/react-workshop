@@ -90,7 +90,11 @@ export function LoginForm({ onSuccess }: Props) {
           <input
             type="checkbox"
             checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)}
+            onChange={() =>
+              setShowPassword((oldShowPassword) => {
+                return !oldShowPassword
+              })
+            }
           />
           <span>Show Password</span>
         </label>
