@@ -1,4 +1,4 @@
-import { Heading } from 'course-platform/Heading'
+import { Heading } from 'spa/Heading'
 
 export function Login() {
   return (

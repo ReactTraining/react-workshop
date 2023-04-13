@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Heading } from 'course-platform/Heading'
-import { DataGrid, Row, Col } from 'course-platform/DataGrid'
+import { Heading } from 'spa/Heading'
+import { DataGrid, Row, Col } from 'spa/DataGrid'
 
 export function BrowseCourses() {
   const courses = [

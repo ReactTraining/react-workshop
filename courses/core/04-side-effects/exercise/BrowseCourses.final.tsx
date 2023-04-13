@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { api } from 'course-platform/utils/api'
-import { Heading } from 'course-platform/Heading'
-import { DataGrid, Row, Col } from 'course-platform/DataGrid'
-import { Loading } from 'course-platform/Loading'
-import { NoResults } from 'course-platform/NoResults'
+import { api } from 'spa/utils/api'
+import { Heading } from 'spa/Heading'
+import { DataGrid, Row, Col } from 'spa/DataGrid'
+import { Loading } from 'spa/Loading'
+import { NoResults } from 'spa/NoResults'
 import { useCourses } from './courseData'
 
 export function BrowseCourses() {

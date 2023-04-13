@@ -1,9 +1,9 @@
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { App } from 'course-platform/App'
-import { CoursesProvider } from 'course-platform/CoursesContext'
+import { App } from 'spa/App'
+import { CoursesProvider } from 'spa/CoursesContext'
 import { AuthProvider } from './AuthContext'
-import 'course-platform/styles/all.scss'
+import 'spa/styles/all.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

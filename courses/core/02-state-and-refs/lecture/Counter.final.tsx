@@ -1,4 +1,4 @@
-import { Icon } from 'course-platform/Icon'
+import { Icon } from 'spa/Icon'
 
 type CounterProps = {
   count: number

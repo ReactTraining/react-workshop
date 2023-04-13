@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { api } from 'course-platform/utils/api'
-import { Heading } from 'course-platform/Heading'
-import { DataGrid, Row, Col } from 'course-platform/DataGrid'
-import { CreateLessonDialog } from 'course-platform/CreateLessonDialog'
-import { Loading } from 'course-platform/Loading'
-import { NoResults } from 'course-platform/NoResults'
-import { PreviousNextCourse } from 'course-platform/PreviousNextCourse'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { api } from 'spa/utils/api'
+import { Heading } from 'spa/Heading'
+import { DataGrid, Row, Col } from 'spa/DataGrid'
+import { CreateLessonDialog } from 'spa/CreateLessonDialog'
+import { Loading } from 'spa/Loading'
+import { NoResults } from 'spa/NoResults'
+import { PreviousNextCourse } from 'spa/PreviousNextCourse'
+import type { CourseWithLessons } from 'spa/utils/types'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114

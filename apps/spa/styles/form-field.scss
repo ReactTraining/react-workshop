@@ -1,0 +1,105 @@
+// Resets
+
+::placeholder {
+  color: var(--blue2);
+  font-style: italic;
+}
+
+/* Prevents Chrome's yellow background on autofill
+  https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+  -webkit-transition-delay: 9999s;
+}
+
+// Fields
+
+.form-field {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.7em;
+  background-color: var(--formFieldBackgroundColor);
+  border: 1px solid var(--blue3);
+  font-size: 1em;
+  font-weight: 300;
+  color: var(--textColor);
+  border-radius: 4px;
+  &:focus,
+  &:focus-within {
+    outline: none;
+    border-color: var(--blue2);
+  }
+  &:disabled {
+    background-color: var(--blue4);
+    border-color: var(--blue4);
+  }
+}
+
+[data-theme='dark'] .form-field {
+  &:focus {
+    border-color: var(--blue3);
+  }
+}
+
+textarea.form-field {
+  resize: vertical;
+  max-height: 300px;
+}
+
+select.form-field {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('/spa/images/arrow-down-blue.svg');
+  background-position: calc(100% - 5px) center;
+  background-repeat: no-repeat;
+  padding-right: 1.5em;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+// Form Field with Icon
+
+div.form-field-icon {
+  display: flex;
+  align-items: center;
+  background-color: var(--formFieldBackgroundColor);
+  border: 1px solid var(--blue2);
+  border-radius: 4px;
+  &:focus-within {
+    border-color: var(--blue3);
+  }
+
+  .form-field-icon-input-wrap {
+    flex: 1;
+  }
+
+  input {
+    background-color: transparent;
+    width: 100%;
+    display: block;
+    padding: 0.5em 0.7em;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: 300;
+    color: var(--textColor);
+  }
+  .form-field-icon-wrap {
+    aspect-ratio: 1/1;
+    color: var(--textColor);
+    margin-right: 0.5em;
+  }
+}
+
+[data-theme='dark'] .form-field-icon {
+  &:focus-within {
+    border-color: var(--blue3);
+  }
+}

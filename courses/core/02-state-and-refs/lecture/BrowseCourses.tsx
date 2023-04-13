@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Heading } from 'course-platform/Heading'
+import { Heading } from 'spa/Heading'
 import { Counter } from './Counter'
 import { AddCourse } from './AddCourse'
 

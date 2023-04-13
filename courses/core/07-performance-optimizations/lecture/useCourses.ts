@@ -1,4 +1,4 @@
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import type { CourseWithLessons } from 'spa/utils/types'
 
 const COURSES = 1000
 

@@ -1,6 +1,6 @@
 import { Outlet, Link, NavLink } from 'react-router-dom'
-import { Logo } from 'course-platform/Logo'
-import { Centered } from 'course-platform/Centered'
+import { Logo } from 'spa/Logo'
+import { Centered } from 'spa/Centered'
 
 export function WebsiteLayout() {
   return (

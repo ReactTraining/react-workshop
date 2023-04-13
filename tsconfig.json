@@ -19,7 +19,7 @@
     "types": ["react/next", "react-dom/next", "jest"],
     "baseUrl": "./",
     "paths": {
-      "course-platform/*": ["apps/course-platform/*"]
+      "spa/*": ["apps/spa/*"]
     }
   }
 }

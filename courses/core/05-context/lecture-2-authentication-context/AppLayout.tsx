@@ -1,10 +1,10 @@
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom'
-import { Loading } from 'course-platform/Loading'
-import { Logo } from 'course-platform/Logo'
+import { Loading } from 'spa/Loading'
+import { Logo } from 'spa/Logo'
 import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
-import { Icon } from 'course-platform/Icon'
+import { Icon } from 'spa/Icon'
 import { useAuthContext } from './AuthContext'
-import styles from '../../../../apps/course-platform/AppLayout/AppLayout.module.scss'
+import styles from '../../../../apps/spa/AppLayout/AppLayout.module.scss'
 
 export function AppLayout() {
   const navigate = useNavigate()

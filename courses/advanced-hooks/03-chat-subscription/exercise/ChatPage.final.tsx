@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import { api } from 'course-platform/utils/api'
-import { Avatar } from 'course-platform/Avatar'
-import { useAuthContext } from 'course-platform/AuthContext'
-import type { ChatMessage } from 'course-platform/utils/types'
-import styles from '../../../../apps/course-platform/ChatPage/ChatPage.module.scss'
+import { api } from 'spa/utils/api'
+import { Avatar } from 'spa/Avatar'
+import { useAuthContext } from 'spa/AuthContext'
+import type { ChatMessage } from 'spa/utils/types'
+import styles from '../../../../apps/spa/ChatPage/ChatPage.module.scss'
 
 const THREAD_NAME = 'all'
 

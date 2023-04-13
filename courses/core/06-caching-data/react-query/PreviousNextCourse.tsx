@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
-import { api } from 'course-platform/utils/api'
-import { Icon } from 'course-platform/Icon'
+import { api } from 'spa/utils/api'
+import { Icon } from 'spa/Icon'
 
 type Props = {
   courseId?: number

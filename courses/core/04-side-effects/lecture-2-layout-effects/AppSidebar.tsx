@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
-import { RecentLessons } from 'course-platform/RecentLessons'
+import { RecentLessons } from 'spa/RecentLessons'
 
 export const AppSidebar = () => {
   const [isWide, setIsWide] = useState(true)

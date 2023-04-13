@@ -1,11 +1,11 @@
 import { useState, useId, memo, useTransition, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'course-platform/utils/api'
-import { Heading } from 'course-platform/Heading'
-import { NoResults } from 'course-platform/NoResults'
-import { DataGrid, Row, Col } from 'course-platform/DataGrid'
-import { RecentLessons } from 'course-platform/RecentLessons'
-import { AppSidebar } from 'course-platform/AppSidebar'
+import { api } from 'spa/utils/api'
+import { Heading } from 'spa/Heading'
+import { NoResults } from 'spa/NoResults'
+import { DataGrid, Row, Col } from 'spa/DataGrid'
+import { RecentLessons } from 'spa/RecentLessons'
+import { AppSidebar } from 'spa/AppSidebar'
 import { useCourses } from './useCourses'
 
 // https://github.com/reactwg/react-18/discussions/41

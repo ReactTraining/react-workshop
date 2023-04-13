@@ -1,8 +1,8 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import { Logo } from 'course-platform/Logo'
-import { Icon } from 'course-platform/Icon'
-import styles from '../../../../apps/course-platform/AppLayout/AppLayout.module.scss'
-import subNavStyles from '../../../../apps/course-platform/AppSubLayouts/AppSubLayouts.module.scss'
+import { Logo } from 'spa/Logo'
+import { Icon } from 'spa/Icon'
+import styles from '../../../../apps/spa/AppLayout/AppLayout.module.scss'
+import subNavStyles from '../../../../apps/spa/AppSubLayouts/AppSubLayouts.module.scss'
 
 export function AppLayout() {
   return (

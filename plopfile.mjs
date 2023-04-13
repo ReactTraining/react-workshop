@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 
-const appPath = `apps/course-platform`
+const appPath = `apps/spa`
 
-export default function (plop) {
+export default function create(plop) {
   // controller generator
   plop.setGenerator('Component', {
     prompts: [

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Icon } from 'course-platform/Icon'
+import { Icon } from 'spa/Icon'
 import { useCourses } from './courseData'
 
 type Props = {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from 'react'
-import { api } from 'course-platform/utils/api'
-import type { User } from 'course-platform/utils/types'
+import { api } from 'spa/utils/api'
+import type { User } from 'spa/utils/types'
 
 type AuthActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
 

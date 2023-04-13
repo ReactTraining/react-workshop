@@ -2,36 +2,11 @@ const path = require('path')
 const fs = require('fs')
 const readlineSync = require('readline-sync')
 
-/**
- * CLI Docs are at /docs/cli.md
- */
-
-// // Which App does each curriculum get its files from:
-// const courseAppNames = {
-//   'advanced-component-design': 'course-platform',
-//   'advanced-compound-components': 'course-platform',
-//   'advanced-hooks': 'course-platform',
-//   core: 'course-platform',
-//   electives: 'course-platform',
-// }
-
-// function getCourseAppPath(courseName) {
-//   return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
-// }
-
 module.exports = function () {
   console.clear()
 
   // Run the menu system to get the selection of course and lesson
   return selectLesson()
-
-  // return {
-  //   appPath,
-  //   alias: alias || {},
-  //   selectedCourse,
-  //   selectedLessonType,
-  //   selectedLesson,
-  // }
 }
 
 /****************************************

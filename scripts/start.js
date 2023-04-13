@@ -36,7 +36,7 @@ function startRemix() {
 *****************************************/
 
 async function startSPA() {
-  const appName = 'course-platform'
+  const appName = 'spa'
   const appPath = path.resolve(__dirname, '..', 'apps', appName)
 
   // Get aliases

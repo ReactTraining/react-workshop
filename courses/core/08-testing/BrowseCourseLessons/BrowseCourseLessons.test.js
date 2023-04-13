@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { BrowseCourseLessons } from './BrowseCourseLessons'
 
 // Mock modules
-import { useCoursesContext } from 'course-platform/CoursesContext'
+import { useCoursesContext } from 'spa/CoursesContext'
 
 /**
  * Mocks
@@ -21,11 +21,11 @@ jest.mock('react-router-dom', () => ({
   }),
 }))
 
-jest.mock('course-platform/PreviousNextCourse', () => ({
+jest.mock('spa/PreviousNextCourse', () => ({
   PreviousNextCourse: () => null,
 }))
 
-jest.mock('course-platform/CoursesContext', () => ({
+jest.mock('spa/CoursesContext', () => ({
   // mock values setup in tests:
   useCoursesContext: jest.fn(),
 }))

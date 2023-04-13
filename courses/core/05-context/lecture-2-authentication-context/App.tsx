@@ -1,19 +1,19 @@
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { useAuthContext } from './AuthContext'
-import type { User } from 'course-platform/utils/types'
+import type { User } from 'spa/utils/types'
 
 // Layouts
 import { WebsiteLayout } from './WebsiteLayout'
 import { AppLayout } from './AppLayout'
-import { CoursesSubLayout } from 'course-platform/AppSubLayouts'
+import { CoursesSubLayout } from 'spa/AppSubLayouts'
 
 // Pages
-import { HomePage } from 'course-platform/HomePage'
-import { Login } from 'course-platform/Login'
-import { AddCourseForm } from 'course-platform/AddCourseForm'
-import { BrowseCourses } from 'course-platform/BrowseCourses'
-import { BrowseCourseLessons } from 'course-platform/BrowseCourseLessons'
-import { LessonProfile } from 'course-platform/LessonProfile'
+import { HomePage } from 'spa/HomePage'
+import { Login } from 'spa/Login'
+import { AddCourseForm } from 'spa/AddCourseForm'
+import { BrowseCourses } from 'spa/BrowseCourses'
+import { BrowseCourseLessons } from 'spa/BrowseCourseLessons'
+import { LessonProfile } from 'spa/LessonProfile'
 
 export function App() {
   const navigate = useNavigate()

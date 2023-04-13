@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { WebsiteHeader } from './WebsiteHeader'
-import { Centered } from 'course-platform/Centered'
-import styles from '../../../../apps/course-platform/WebsiteLayout/WebsiteLayout.module.scss'
+import { Centered } from 'spa/Centered'
+import styles from '../../../../apps/spa/WebsiteLayout/WebsiteLayout.module.scss'
 
 export function WebsiteLayout() {
   return (

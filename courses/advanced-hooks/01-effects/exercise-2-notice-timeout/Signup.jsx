@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Avatar } from 'course-platform/Avatar'
-import { Heading } from 'course-platform/Heading'
-import { Notice } from 'course-platform/Notice'
+import { Avatar } from 'spa/Avatar'
+import { Heading } from 'spa/Heading'
+import { Notice } from 'spa/Notice'
 
 export function useDelayedCallback(cb) {
   const [callbackValue, setCallbackValue] = useState(null)

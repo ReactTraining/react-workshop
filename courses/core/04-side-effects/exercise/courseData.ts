@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { api } from 'course-platform/utils/api'
-import type { CourseWithLessons } from 'course-platform/utils/types'
+import { api } from 'spa/utils/api'
+import type { CourseWithLessons } from 'spa/utils/types'
 
 export function useCourses() {
   const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
