@@ -4,13 +4,13 @@
 
 ## Development
 
-Start the Remix development asset server and the Express server by running:
+From your terminal:
 
 ```sh
 npm run dev
 ```
 
-This starts your app in development mode, which will purge the server require cache when Remix rebuilds assets so you don't need a process manager restarting the express server.
+This starts your app in development mode, rebuilding assets on file changes.
 
 ## Deployment
 
@@ -30,7 +30,9 @@ Now you'll need to pick a host to deploy it to.
 
 ### DIY
 
-If you're familiar with deploying express applications you should be right at home just make sure to deploy the output of `remix build`
+If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `remix build`
 
 - `build/`
 - `public/build/`

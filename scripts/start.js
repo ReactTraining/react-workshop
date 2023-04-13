@@ -1,5 +1,7 @@
-const { createServer } = require('vite')
+const shell = require('shelljs')
 const path = require('path')
+const fs = require('fs')
+const { createServer } = require('vite')
 const react = require('@vitejs/plugin-react')
 const cli = require('./cli')
 const startDB = require('./start-db')
@@ -8,29 +10,65 @@ const startDB = require('./start-db')
   CLI Menu
 *****************************************/
 
-const fullApp = process.argv.includes('app')
-let { appPath, alias, selectedLessonType, selectedLesson } = cli(fullApp)
+const { lessonPath, selectedCourse, selectedLessonType, selectedLesson } = cli()
 
-const fullAppAlias = { 'course-platform': appPath }
-alias = fullApp ? fullAppAlias : { ...alias, ...fullAppAlias }
-
-/****************************************
-  Database
-*****************************************/
-
-const dbPath = path.resolve(appPath, 'database', 'db.json')
-startDB(dbPath)
+switch (selectedCourse) {
+  case 'remix':
+    startRemix()
+    break
+  default:
+    startSPA()
+    break
+}
 
 /****************************************
-  Vite Server
+  Remix
 *****************************************/
 
-const port = 3000
+function startRemix() {
+  const appPath = path.resolve(__dirname, '..', 'apps', 'remix')
+  shell.cd(appPath)
+  shell.exec('npm run dev')
+}
 
-async function start() {
+/****************************************
+  SPA (Vite Server)
+*****************************************/
+
+async function startSPA() {
+  const appName = 'course-platform'
+  const appPath = path.resolve(__dirname, '..', 'apps', appName)
+
+  // Get aliases
+  const alias = {}
+
+  if (lessonPath) {
+    // const aliasBasePath = `${courseAppNames[selectedCourse]}`
+    fs.readdirSync(lessonPath).forEach((file) => {
+      const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
+
+      alias[path.join(appName, name)] = path.join(lessonPath, file)
+
+      // WINDOWS HACK
+      // On windows machines, the paths will have double back-slashes which we want
+      // for the full file paths (the values of this object) but not the aliases (the keys)
+      alias[path.join(appName, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
+    })
+  }
+
+  // Add the full app alias last
+  alias[appName] = appPath
+
+  // Database
+  const dbPath = path.resolve(appPath, 'database', 'db.json')
+  startDB(dbPath)
+
+  // Server
+
   // https://vitejs.dev/guide/api-javascript.html#vitedevserver
   // https://vitejs.dev/config/
 
+  const port = 3000
   const server = await createServer({
     plugins: [react()],
     resolve: {
@@ -58,5 +96,3 @@ async function start() {
   )
   console.log(`\nGo to: http://localhost:${port}`)
 }
-
-start()

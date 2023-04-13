@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
+  min-height: -webkit-fill-available;
+  background-image: linear-gradient(to bottom, #efefef, #fff);
+  background-repeat: no-repeat;
+}

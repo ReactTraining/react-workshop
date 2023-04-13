@@ -1,5 +1,4 @@
 const fs = require('fs')
-const path = require('path')
 const concurrently = require('concurrently')
 
 module.exports = function (dbPath) {

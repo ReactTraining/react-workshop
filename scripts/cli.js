@@ -6,34 +6,32 @@ const readlineSync = require('readline-sync')
  * CLI Docs are at /docs/cli.md
  */
 
-// Which App does each curriculum get its files from:
-const courseAppNames = {
-  'advanced-component-design': 'course-platform',
-  'advanced-compound-components': 'course-platform',
-  'advanced-hooks': 'course-platform',
-  core: 'course-platform',
-  electives: 'course-platform',
-}
+// // Which App does each curriculum get its files from:
+// const courseAppNames = {
+//   'advanced-component-design': 'course-platform',
+//   'advanced-compound-components': 'course-platform',
+//   'advanced-hooks': 'course-platform',
+//   core: 'course-platform',
+//   electives: 'course-platform',
+// }
 
-function getCourseAppPath(courseName) {
-  return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
-}
+// function getCourseAppPath(courseName) {
+//   return path.resolve(__dirname, '..', 'apps', courseAppNames[courseName])
+// }
 
-module.exports = function (fullApp) {
+module.exports = function () {
   console.clear()
 
-  // Are we trying to choose an app or a lesson to load
-  const { appPath, alias, selectedCourse, selectedLessonType, selectedLesson } = fullApp
-    ? { appPath: getAppPath() }
-    : selectLesson()
+  // Run the menu system to get the selection of course and lesson
+  return selectLesson()
 
-  return {
-    appPath,
-    alias: alias || {},
-    selectedCourse,
-    selectedLessonType,
-    selectedLesson,
-  }
+  // return {
+  //   appPath,
+  //   alias: alias || {},
+  //   selectedCourse,
+  //   selectedLessonType,
+  //   selectedLesson,
+  // }
 }
 
 /****************************************
@@ -98,19 +96,14 @@ function selectLesson() {
 
     // See if they want to save their choice to `preferences.json`
     if (!preferences.course) {
-      // const remember = readlineSync.keyInYN('\nDo you want us to remember this course selection?')
-      // if (remember) {
-      if (true) {
-        // lets just always save
-        try {
-          fs.writeFileSync(
-            preferencesPath,
-            JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
-          )
-          console.log('\nPreferences are saved in `preferences.json`')
-        } catch (err) {
-          console.error(`\nCould not save preferences to ${preferencesPath}`)
-        }
+      try {
+        fs.writeFileSync(
+          preferencesPath,
+          JSON.stringify({ ...preferences, course: selectedCourse }, null, 2)
+        )
+        console.log('\nPreferences are saved in `preferences.json`')
+      } catch (err) {
+        console.error(`\nCould not save preferences to ${preferencesPath}`)
       }
     }
 
@@ -128,43 +121,24 @@ function selectLesson() {
       process.exit(0)
     }
 
-    // Lesson arg would always be the last arg
-    const selectedLessonArg = process.argv[process.argv.length - 1]
-    const selectByOptionWord = lessonOptions.find((lesson) => {
-      const regex = new RegExp(selectedLessonArg, 'i')
-      return regex.test(lesson)
-    })
+    console.clear()
+    console.log(`\nWhich lesson of ${selectedCourse}?`)
 
-    // See the third or fourth cli argument was meant to be a selectedOption by number
-    // This is for doing `npm start core 2` or `npm start 2` (assuming they have preferences for course)
-    if (!isNaN(selectedLessonArg) && lessonOptions[selectedLessonArg - 1]) {
-      selectedLesson = lessonOptions[selectedLessonArg - 1]
+    const modifiedLessonOptions = lessonOptions.concat(['FULL APP', '<-- BACK TO COURSE SELECTION'])
+    let choice = readlineSync.keyInSelect(modifiedLessonOptions)
 
-      // Or they can do `npm start core state` or `npm start state` (assuming they have preferences for course)
-    } else if (selectByOptionWord) {
-      selectedLesson = selectByOptionWord
-
-      // Show Menu
+    if (choice === -1) {
+      process.exit(0)
+    } else if (modifiedLessonOptions[choice] === 'FULL APP') {
+      // Selecting the FULL APP means we return with just the course selection
+      return { selectedCourse }
+    } else if (modifiedLessonOptions[choice] === '<-- BACK TO COURSE SELECTION') {
+      preferences.course = null
+      selectedCourse = null
+      // Starts CLI menu over
+      continue
     } else {
-      console.clear()
-      console.log(`\nWhich lesson of ${selectedCourse}?`)
-      const modifiedLessonOptions = lessonOptions.concat([
-        'FULL APP',
-        '<-- BACK TO COURSE SELECTION',
-      ])
-      const choice = readlineSync.keyInSelect(modifiedLessonOptions)
-      if (choice === -1) {
-        process.exit(0)
-      } else if (modifiedLessonOptions[choice] === 'FULL APP') {
-        return { appPath: getCourseAppPath(selectedCourse) }
-      } else if (modifiedLessonOptions[choice] === '<-- BACK TO COURSE SELECTION') {
-        preferences.course = null
-        selectedCourse = null
-        // Starts CLI menu over
-        continue
-      } else {
-        selectedLesson = modifiedLessonOptions[choice]
-      }
+      selectedLesson = modifiedLessonOptions[choice]
     }
 
     /**
@@ -187,7 +161,7 @@ function selectLesson() {
     console.clear()
     console.log(`\nWhich lesson type of ${selectedLesson}?`)
     const modifiedLessonTypeOptions = lessonTypeOptions.concat(['<-- BACK TO LESSON SELECTION'])
-    const choice = readlineSync.keyInSelect(modifiedLessonTypeOptions)
+    choice = readlineSync.keyInSelect(modifiedLessonTypeOptions)
     if (choice === -1) {
       process.exit(0)
     } else if (modifiedLessonTypeOptions[choice] === '<-- BACK TO LESSON SELECTION') {
@@ -217,56 +191,10 @@ function selectLesson() {
     process.exit(0)
   }
 
-  const alias = {}
-  const aliasBasePath = `${courseAppNames[selectedCourse]}`
-  fs.readdirSync(lessonPath).forEach((file) => {
-    const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
-
-    alias[path.join(aliasBasePath, name)] = path.join(lessonPath, file)
-
-    // WINDOWS HACK
-    // On windows machines, the paths will have double back-slashes which we want
-    // for the full file paths (the values of this object) but not the aliases (the keys)
-    alias[path.join(aliasBasePath, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
-  })
-
   return {
-    appPath: getCourseAppPath(selectedCourse),
-    alias,
     selectedCourse,
     selectedLessonType,
     selectedLesson,
+    lessonPath,
   }
-}
-
-/****************************************
-  appPath
-*****************************************/
-
-function getAppPath() {
-  const appsPath = path.resolve(__dirname, '..', `apps`)
-  const appOptions = fs.readdirSync(appsPath).filter((item) => {
-    return fs.lstatSync(path.resolve(appsPath, item)).isDirectory()
-  })
-
-  /**
-   * Select which app
-   */
-  let selectedApp
-  if (appOptions.length === 1) {
-    selectedApp = appOptions[0]
-  } else {
-    console.log(`\nWhich App?`)
-    const choice = readlineSync.keyInSelect(appOptions)
-    if (choice === -1) {
-      process.exit(0)
-    }
-    selectedApp = appOptions[choice]
-  }
-
-  /**
-   * App Path
-   */
-  const appPath = path.resolve(__dirname, '..', 'apps', selectedApp)
-  return appPath
 }
