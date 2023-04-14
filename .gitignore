@@ -4,6 +4,12 @@ dist
 dist-ssr
 *.local
 
+# Remix
+.cache
+build
+public/build
+.env
+
 # database
 db.json
 

@@ -1,6 +1,6 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import type { LinksFunction } from '@remix-run/node'
-import stylesheet from '../../../apps/remix/app/styles/app.css'
+import stylesheet from '../../../../apps/remix/app/styles/app.css'
 import { MainLayout } from '~/components/MainLayout'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
