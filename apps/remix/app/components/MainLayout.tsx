@@ -13,7 +13,7 @@ export function MainLayout({ children }: MainLayoutProps) {
     <div>
       <Header />
       <SubHeader />
-      <CenterContent className="pt-6">{children}</CenterContent>
+      <CenterContent className="pt-6 pb-20">{children}</CenterContent>
     </div>
   )
 }
@@ -45,6 +45,9 @@ function SubHeader() {
           </NavLink>
           <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/products">
             Products
+          </NavLink>
+          <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/blog">
+            Blog
           </NavLink>
         </nav>
         <div>
