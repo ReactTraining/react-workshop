@@ -10,9 +10,9 @@ module.exports = {
         // Text
         textColor: colors.slate['500'],
         anchorColor: colors.cyan['400'],
-        headingColor: colors.slate['600'],
-        // Misc
-        lineColor: colors.slate['300'],
+        headingColor: colors.slate['700'],
+        // Brand
+        brandColor: colors.sky['600'],
       },
     },
   },

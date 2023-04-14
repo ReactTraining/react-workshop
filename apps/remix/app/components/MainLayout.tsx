@@ -1,5 +1,8 @@
+import { NavLink } from '@remix-run/react'
+import classnames from 'classnames'
 import { Logo } from './Logo'
 import { AuthenticatedUserNav } from './AuthenticatedUserNav'
+import { Icon } from './Icon'
 
 type MainLayoutProps = {
   children: React.ReactNode
@@ -17,8 +20,8 @@ export function MainLayout({ children }: MainLayoutProps) {
 
 function Header() {
   return (
-    <header>
-      <CenterContent className="bg-white border-b border-lineColor py-3">
+    <header className="d bg-gradient-to-r from-sky-400 to-indigo-600">
+      <CenterContent className="border-b py-3">
         <div className="flex justify-between items-center">
           <div className="">
             <Logo />
@@ -34,10 +37,22 @@ function Header() {
 
 function SubHeader() {
   return (
-    <CenterContent className="bg-white border-b border-lineColor py-3">
+    <CenterContent className="bg-white border-b">
       <div className="flex justify-between items-center">
-        <div className="">Left</div>
-        <div className="">Right</div>
+        <nav className="primary-nav">
+          <NavLink className="inline-block py-3 px-5 -mb-[1px] border-b-2" to="/">
+            Home
+          </NavLink>
+          <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/products">
+            Products
+          </NavLink>
+        </nav>
+        <div>
+          <span className="mr-2">Cart is empty</span>
+          <span className="text-brandColor">
+            <Icon name="cart" />
+          </span>
+        </div>
       </div>
     </CenterContent>
   )

@@ -1,3 +1,9 @@
+import { Icon } from './Icon'
+
 export function Logo() {
-  return <div>Logo</div>
+  return (
+    <div>
+      <Icon name="react" />
+    </div>
+  )
 }

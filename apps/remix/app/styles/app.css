@@ -7,11 +7,163 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+  color: theme(colors.textColor);
 }
 
 body {
   /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
   min-height: -webkit-fill-available;
-  background-image: linear-gradient(to bottom, #efefef, #fff);
+  background-image: linear-gradient(to bottom, theme(colors.slate.100), #fff);
   background-repeat: no-repeat;
+}
+
+/****************************************
+  Headings
+*****************************************/
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Inter';
+    color: theme(colors.headingColor);
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+}
+
+/****************************************
+  Anchors
+*****************************************/
+
+@layer base {
+  a {
+    color: theme(colors.brandColor);
+    text-decoration: none;
+  }
+  a:focus {
+    outline-color: currentColor;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/****************************************
+  Buttons
+*****************************************/
+
+@layer base {
+  .button,
+  button {
+    all: unset;
+    cursor: pointer;
+
+    /* &:hover {
+      outline: 0;
+    } */
+
+    /* > * {
+      vertical-align: middle;
+    }
+    > span + svg {
+      margin-left: 0.2rem;
+    }
+    > svg + span {
+      margin-left: 0.2rem;
+    } */
+  }
+
+  /* Normalize anchors with .button to behave more like buttons */
+  a.button {
+    display: inline-block;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  /* Anchor Looking */
+  button {
+    color: var(--red);
+    font-weight: 300;
+    /* &:hover,
+    &:focus {
+      outline: none;
+    } */
+  }
+
+  /* Button Looking */
+  .button {
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+    line-height: 1.2em;
+    background-color: theme(colors.brandColor);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .button:hover,
+  .button:focus {
+    background-color: theme(colors.sky.700);
+  }
+
+  .button.button-outline {
+    background-color: theme(colors.slate.100);
+    border-color: currentColor;
+    color: theme(colors.brandColor);
+  }
+
+  .button.button-outline:hover,
+  .button.button-outline:focus {
+    color: theme(colors.sky.700);
+  }
+}
+
+/****************************************
+  Form Fields
+*****************************************/
+
+@layer base {
+  input {
+    accent-color: theme(colors.brandColor);
+  }
+
+  input[type='checkbox'] {
+    background: blue;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 1em;
+
+    background: theme(colors.slate.300);
+    height: 0.5rem;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-moz-range-track {
+    background: green;
+    height: 0.5rem;
+  }
+}
+
+/****************************************
+  Primary Nav
+*****************************************/
+
+@layer components {
+  .primary-nav a.active {
+    border-color: theme(colors.brandColor);
+  }
 }
