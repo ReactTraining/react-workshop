@@ -9,10 +9,6 @@ export function get<T>(path: string): Promise<T> {
   return fetch(`${baseURL}${path}`).then((res) => res.json())
 }
 
-export function getRaw(path: string) {
-  return fetch(`${baseURL}${path}`)
-}
-
 export function post<T>(path: string, data: Data): Promise<T> {
   return fetch(`${baseURL}${path}`, {
     method: 'POST',
