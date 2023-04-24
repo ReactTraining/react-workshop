@@ -1,11 +1,27 @@
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-import type { LinksFunction } from '@remix-run/node'
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from '@remix-run/react'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from '~/components/MainLayout'
+import { getSessionUser } from '~/utils/auth.server'
+import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
+export async function loader({ request }: LoaderArgs) {
+  const sessionUser = await getSessionUser(request)
+  return json({ sessionUser })
+}
+
 export default function App() {
+  const { sessionUser } = useLoaderData<typeof loader>()
+
   return (
     <html lang="en">
       <head>
@@ -20,7 +36,7 @@ export default function App() {
         />
       </head>
       <body>
-        <MainLayout>
+        <MainLayout user={sessionUser}>
           <Outlet />
         </MainLayout>
         <ScrollRestoration />

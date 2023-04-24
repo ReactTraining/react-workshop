@@ -62,20 +62,6 @@ body {
   button {
     all: unset;
     cursor: pointer;
-
-    /* &:hover {
-      outline: 0;
-    } */
-
-    /* > * {
-      vertical-align: middle;
-    }
-    > span + svg {
-      margin-left: 0.2rem;
-    }
-    > svg + span {
-      margin-left: 0.2rem;
-    } */
   }
 
   /* Normalize anchors with .button to behave more like buttons */
@@ -86,14 +72,9 @@ body {
   }
 
   /* Anchor Looking */
-  button {
-    color: var(--red);
+  /* button {
     font-weight: 300;
-    /* &:hover,
-    &:focus {
-      outline: none;
-    } */
-  }
+  } */
 
   /* Button Looking */
   .button {
@@ -121,8 +102,8 @@ body {
     color: theme(colors.brandColor);
   }
 
-  .button.button-outline:hover,
-  .button.button-outline:focus {
+  .button.button-warn:hover,
+  .button.button-warn:focus {
     color: theme(colors.sky.700);
   }
 }

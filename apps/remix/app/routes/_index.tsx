@@ -4,6 +4,7 @@ import { BrowseProducts } from '~/components/BrowseProducts'
 import { Heading } from '~/components/Heading'
 import { FilterByCheckbox } from '~/components/FilterByCheckbox'
 import { getProducts } from '~/utils/db.server'
+import { getCart } from '~/utils/cart.server'
 import type { LoaderArgs } from '@remix-run/node'
 import type { V2_MetaFunction } from '@remix-run/react'
 
@@ -11,13 +12,13 @@ export const meta: V2_MetaFunction = () => {
   return [{ title: 'New Remix App' }]
 }
 
-export const loader = async ({ params }: LoaderArgs) => {
-  const products = await getProducts()
-  return json({ products })
+export const loader = async ({ params, request }: LoaderArgs) => {
+  const [products, cart] = await Promise.all([getProducts(), getCart(request)])
+  return json({ products, cart })
 }
 
-export default function Index() {
-  const { products } = useLoaderData<typeof loader>()
+export default function () {
+  const { products, cart } = useLoaderData<typeof loader>()
 
   return (
     <div>
@@ -63,7 +64,7 @@ export default function Index() {
             </div>
             <div className="">[Filter]</div>
           </header>
-          <BrowseProducts products={products} />
+          <BrowseProducts products={products} cart={cart} />
         </div>
       </div>
     </div>

@@ -1,24 +1,29 @@
-import { NavLink } from '@remix-run/react'
-import classnames from 'classnames'
+import { Link, NavLink } from '@remix-run/react'
 import { Logo } from './Logo'
 import { AuthenticatedUserNav } from './AuthenticatedUserNav'
 import { Icon } from './Icon'
+import type { UserType } from '~/utils/db.server'
 
 type MainLayoutProps = {
   children: React.ReactNode
+  user?: UserType
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ children, user }: MainLayoutProps) {
   return (
     <div>
-      <Header />
+      <Header user={user} />
       <SubHeader />
       <CenterContent className="pt-6 pb-20">{children}</CenterContent>
     </div>
   )
 }
 
-function Header() {
+type HeaderProps = {
+  user?: UserType
+}
+
+function Header({ user }: HeaderProps) {
   return (
     <header className="d bg-gradient-to-r from-sky-400 to-indigo-600">
       <CenterContent className="border-b py-3">
@@ -27,7 +32,7 @@ function Header() {
             <Logo />
           </div>
           <div className="">
-            <AuthenticatedUserNav />
+            <AuthenticatedUserNav user={user} />
           </div>
         </div>
       </CenterContent>
@@ -49,6 +54,12 @@ function SubHeader() {
           <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/blog">
             Blog
           </NavLink>
+          <Link className="inline-block py-3 px-5 -mb-[1px]" to="/login">
+            Login
+          </Link>
+          <Link className="inline-block py-3 px-5 -mb-[1px]" to="/logout">
+            Logout
+          </Link>
         </nav>
         <div>
           <span className="mr-2">Cart is empty</span>

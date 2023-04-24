@@ -3,7 +3,7 @@ import { useLoaderData } from '@remix-run/react'
 import { BrowseProducts } from '~/components/BrowseProducts'
 import { Heading } from '~/components/Heading'
 import { FilterByCheckbox } from '~/components/FilterByCheckbox'
-import { getProducts } from '~/utils/db.server'
+import { getProducts } from '~/utils/products.server'
 import type { LoaderArgs } from '@remix-run/node'
 import type { V2_MetaFunction } from '@remix-run/react'
 
