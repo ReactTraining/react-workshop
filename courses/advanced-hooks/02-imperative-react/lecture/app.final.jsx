@@ -76,7 +76,7 @@ const Define = ({ children }) => {
     <>
       <button
         ref={buttonRef}
-        onClick={() => {
+        onClick={(event) => {
           setOpen(!open)
         }}
       >

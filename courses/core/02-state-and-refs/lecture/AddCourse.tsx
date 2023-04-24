@@ -5,16 +5,20 @@ type Props = {
 }
 
 export function AddCourse({ onSubmit }: Props) {
+  const inputRef = useRef()
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    // 👀 Let's get the real values
     onSubmit({ name: 'Course Name', lessons: 5 })
+
+    inputRef.current.focus()
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-gap">
       <div className="flex-1">
         <input
+          ref={inputRef}
           type="text"
           className="form-field"
           placeholder="Course Name"
