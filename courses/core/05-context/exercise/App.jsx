@@ -1,20 +1,26 @@
 // import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay.final'
 import { DateDisplay, DateYear, DateMonth, DateDay } from './DateDisplay'
 
+function SimpleDateDisplay() {
+  return (
+    <DateDisplay>
+      <DateMonth format="MMMM" />
+      <DateDay />
+      <DateYear />
+    </DateDisplay>
+  )
+}
+
 export function App() {
   return (
     <div className="spacing-large">
+      <SimpleDateDisplay></SimpleDateDisplay>
+
       <div className="text-large text-center horizontal-spacing">
         <DateDisplay>
-          <span className="date-card">
-            <DateMonth format="MMMM" />
-          </span>
-          <span className="date-card">
-            <DateDay />
-          </span>
-          <span className="date-card">
-            <DateYear />
-          </span>
+          <DateMonth format="MMMM" />
+          <DateDay />
+          <DateYear />
         </DateDisplay>
       </div>
 

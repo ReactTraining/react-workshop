@@ -20,6 +20,24 @@ function App() {
       </AccordionItem>
       <AccordionItem>
         <AccordionButton>
+          {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
+          <span>What is ARIA?</span>
+        </AccordionButton>
+        <AccordionPanel>
+          A way to make web content more accessible: "Accessible Rich Internet Applications".
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>
+          {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
+          <span>What is ARIA?</span>
+        </AccordionButton>
+        <AccordionPanel>
+          A way to make web content more accessible: "Accessible Rich Internet Applications".
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>
           {index === 1 ? <FaAngleDown /> : <FaAngleRight />}
           <span>What does "a11y" stand for?</span>
         </AccordionButton>

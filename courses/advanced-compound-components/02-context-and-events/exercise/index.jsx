@@ -9,8 +9,14 @@ import './styles.scss'
 function App() {
   return (
     <Disclosure>
-      <DisclosureButton>Click Me</DisclosureButton>
-      <DisclosurePanel>Panel Info</DisclosurePanel>
+      {(isOpen) => {
+        return (
+          <>
+            <DisclosureButton>Click Me</DisclosureButton>
+            <DisclosurePanel>Panel Info</DisclosurePanel>
+          </>
+        )
+      }}
     </Disclosure>
   )
 }

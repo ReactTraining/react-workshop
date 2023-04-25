@@ -17,7 +17,11 @@ export function Disclosure({ children, onChange, defaultOpen = false, ...props }
     },
   }
 
-  return <DisclosureContext.Provider children={children} value={context} />
+  return (
+    <DisclosureContext.Provider value={context}>
+      {typeof children === 'function' ? children(isOpen) : children}
+    </DisclosureContext.Provider>
+  )
 }
 
 export const DisclosureButton = React.forwardRef(

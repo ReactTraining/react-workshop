@@ -24,6 +24,14 @@ function CounterProvider({ children }) {
   return <CounterContext.Provider value={context}>{children}</CounterContext.Provider>
 }
 
+function useCounterContext() {
+  const context = useContext(CounterContext)
+  if (!context) {
+    throw Error('Cannot useContext without a provider')
+  }
+  return context || {}
+}
+
 //////// App.tsx
 
 function App() {
@@ -52,7 +60,7 @@ function Page() {
 //////// Counter.tsx
 
 function Counter() {
-  const { count, setCount } = useContext(CounterContext)
+  const { count, setCount } = useCounterContext()
 
   return (
     <div className="card spacing">
