@@ -39,8 +39,34 @@ export const Accordion = React.forwardRef(
       return <AccordionContext.Provider value={context} children={child} />
     })
 
+    function onKeyDown(event) {
+      event.preventDefault()
+      const i = isControlled ? controlledIndex : selectedIndex
+
+      switch (event.key) {
+        case 'ArrowUp':
+          if (i !== 0) {
+            onChange && onChange(i - 1)
+            if (!isControlled) {
+              setSelectedIndex(i - 1)
+            }
+          }
+          break
+        case 'ArrowDown':
+          if (i < React.Children.count(children) - 1) {
+            onChange && onChange(i + 1)
+            if (!isControlled) {
+              setSelectedIndex(i + 1)
+            }
+          }
+          break
+        default:
+          break
+      }
+    }
+
     return (
-      <div data-accordion="" ref={forwardedRef} {...props}>
+      <div data-accordion="" ref={forwardedRef} onKeyDown={onKeyDown} {...props}>
         {children}
       </div>
     )
