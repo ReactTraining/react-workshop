@@ -5,22 +5,9 @@ const path = require('path')
 const fs = require('fs')
 const shell = require('shelljs')
 
-const APPS_ROOT_PATH = path.join(__dirname, '..', 'apps')
-
-for (const appPath of getDirectories(APPS_ROOT_PATH)) {
-  const dbPath = path.join(appPath, 'database')
-  try {
-    shell.cp(`${dbPath}/db-seed.json`, `${dbPath}/db.json`)
-  } catch (err) {}
-}
-
-function isDirectory(pathname) {
-  return fs.lstatSync(pathname).isDirectory()
-}
-
-function getDirectories(pathname) {
-  return fs
-    .readdirSync(pathname)
-    .map((name) => path.join(pathname, name))
-    .filter(isDirectory)
+const dbPath = path.join(__dirname, '..', 'react', '_full-app', 'database')
+try {
+  shell.cp(`${dbPath}/db-seed.json`, `${dbPath}/db.json`)
+} catch (err) {
+  console.log(`Update to setup: ${dbPath}/db.json`)
 }

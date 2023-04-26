@@ -4,7 +4,7 @@ import { api } from '~/utils/api'
 import { Heading } from '~/Heading'
 import type { Course } from '~/utils/types'
 import { AppSidebar } from '~/AppSidebar'
-// import { RecentLessons } from 'course-platform/RecentLessons'
+// import { RecentLessons } from '~/RecentLessons'
 import { DataGrid, Row, Col } from '~/DataGrid'
 
 export function BrowseCourses() {

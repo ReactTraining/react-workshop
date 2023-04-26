@@ -73,7 +73,7 @@ async function startReact() {
   const appName = '_full-app'
   const appPath = path.resolve(__dirname, '..', 'react', appName)
 
-  // The thing we can use in imports like `from 'spa/file'`
+  // The thing we can use in imports like `from '/file'`
   const appRoot = '~'
 
   // Get aliases

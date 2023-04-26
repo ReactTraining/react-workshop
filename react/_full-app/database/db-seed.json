@@ -5,7 +5,7 @@
       "username": "admin",
       "password": "admin",
       "name": "Bruce Lee",
-      "avatarUrl": "/spa/images/default-admin.jpg"
+      "avatarUrl": "/default-admin.jpg"
     },
     {
       "name": "Brad Westfall",
