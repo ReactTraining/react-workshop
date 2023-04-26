@@ -1,26 +1,26 @@
 import { memo } from 'react'
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import { useAuthContext } from 'spa/AuthContext'
-import type { User } from 'spa/utils/types'
+import { useAuthContext } from '~/AuthContext'
+import type { User } from '~/utils/types'
 
 // Layouts
-import { WebsiteLayout } from 'spa/WebsiteLayout'
-import { AppLayout } from 'spa/AppLayout'
-import { CoursesSubLayout, StudentsSubLayout, ChatSubLayout } from 'spa/AppSubLayouts'
+import { WebsiteLayout } from '~/WebsiteLayout'
+import { AppLayout } from '~/AppLayout'
+import { CoursesSubLayout, StudentsSubLayout, ChatSubLayout } from '~/AppSubLayouts'
 
 // Pages
-import { HomePage } from 'spa/HomePage'
-import { WebsiteCourses } from 'spa/WebsiteCourses'
-import { WebsiteCourseLessons } from 'spa/WebsiteCourseLessons'
-import { WebsiteCourseLesson } from 'spa/WebsiteCourseLesson'
-import { Login } from 'spa/Login'
-import { Signup } from 'spa/Signup'
-import { BrowseCourses } from 'spa/BrowseCourses'
-import { BrowseCourseLessons } from 'spa/BrowseCourseLessons'
-import { AddCourseForm } from 'spa/AddCourseForm'
-import { LessonProfile } from 'spa/LessonProfile'
-import { BrowseStudents } from 'spa/BrowseStudents'
-import { ChatPage } from 'spa/ChatPage'
+import { HomePage } from '~/HomePage'
+import { WebsiteCourses } from '~/WebsiteCourses'
+import { WebsiteCourseLessons } from '~/WebsiteCourseLessons'
+import { WebsiteCourseLesson } from '~/WebsiteCourseLesson'
+import { Login } from '~/Login'
+import { Signup } from '~/Signup'
+import { BrowseCourses } from '~/BrowseCourses'
+import { BrowseCourseLessons } from '~/BrowseCourseLessons'
+import { AddCourseForm } from '~/AddCourseForm'
+import { LessonProfile } from '~/LessonProfile'
+import { BrowseStudents } from '~/BrowseStudents'
+import { ChatPage } from '~/ChatPage'
 
 export const App = memo(() => {
   const { login } = useAuthContext()

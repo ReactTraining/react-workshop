@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from 'react'
-import { api } from 'spa/utils/api'
-import type { User } from 'spa/utils/types'
+import { api } from '~/utils/api'
+import type { User } from '~/utils/types'
 
 type AuthContextActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
 

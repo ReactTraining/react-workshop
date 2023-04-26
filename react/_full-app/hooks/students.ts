@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { usePromise } from 'spa/usePromise'
-import { api } from 'spa/utils/api'
-import type { Student } from 'spa/utils/types'
+import { usePromise } from '~/usePromise'
+import { api } from '~/utils/api'
+import type { Student } from '~/utils/types'
 
 export function useStudents() {
   const p = api.students.getAll

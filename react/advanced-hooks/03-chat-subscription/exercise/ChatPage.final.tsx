@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import { api } from 'spa/utils/api'
-import { Avatar } from 'spa/Avatar'
-import { useAuthContext } from 'spa/AuthContext'
-import type { ChatMessage } from 'spa/utils/types'
-import styles from '../../../../apps/spa/ChatPage/ChatPage.module.scss'
+import { api } from '~/utils/api'
+import { Avatar } from '~/Avatar'
+import { useAuthContext } from '~/AuthContext'
+import type { ChatMessage } from '~/utils/types'
+import styles from '../../../../react/_full-app/ChatPage/ChatPage.module.scss'
 
 const THREAD_NAME = 'all'
 

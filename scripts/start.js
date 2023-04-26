@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 const { createServer } = require('vite')
 const react = require('@vitejs/plugin-react')
-const { selectReactLesson } = require('./cli')
+const { selectReactLesson, selectRemixLesson } = require('./select-lesson')
 const startDB = require('./start-db')
 
 /****************************************
@@ -45,10 +45,16 @@ switch (process.argv[2]) {
 *****************************************/
 
 function startRemix() {
-  console.log('START REMIX')
-  // const appPath = path.resolve(__dirname, '..', 'apps', 'remix')
-  // shell.cd(appPath)
-  // shell.exec('npm run dev')
+  const lessonsPath = path.resolve(__dirname, '..', 'remix/lessons')
+  const { lessonPath } = selectRemixLesson(lessonsPath)
+
+  if (lessonPath) {
+    process.env.REMIX_APP_DIR = lessonPath
+  }
+
+  const appPath = path.resolve(__dirname, '..', 'remix')
+  shell.cd(appPath)
+  shell.exec('npm run dev')
 }
 
 /****************************************
@@ -68,7 +74,7 @@ async function startReact() {
   const appPath = path.resolve(__dirname, '..', 'react', appName)
 
   // The thing we can use in imports like `from 'spa/file'`
-  const appRoot = 'spa'
+  const appRoot = '~'
 
   // Get aliases
   const alias = {}

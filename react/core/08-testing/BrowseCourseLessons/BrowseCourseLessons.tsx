@@ -1,10 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
-import { useCoursesContext } from 'spa/CoursesContext'
-import { Heading } from 'spa/Heading'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
-import { Loading } from 'spa/Loading'
-import { NoResults } from 'spa/NoResults'
-import { PreviousNextCourse } from 'spa/PreviousNextCourse'
+import { useCoursesContext } from '~/CoursesContext'
+import { Heading } from '~/Heading'
+import { DataGrid, Row, Col } from '~/DataGrid'
+import { Loading } from '~/Loading'
+import { NoResults } from '~/NoResults'
+import { PreviousNextCourse } from '~/PreviousNextCourse'
 
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!

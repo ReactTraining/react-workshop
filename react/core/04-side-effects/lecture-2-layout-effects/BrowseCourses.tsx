@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'spa/utils/api'
-import { Heading } from 'spa/Heading'
-import type { Course } from 'spa/utils/types'
-import { AppSidebar } from 'spa/AppSidebar'
+import { api } from '~/utils/api'
+import { Heading } from '~/Heading'
+import type { Course } from '~/utils/types'
+import { AppSidebar } from '~/AppSidebar'
 // import { RecentLessons } from 'course-platform/RecentLessons'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
+import { DataGrid, Row, Col } from '~/DataGrid'
 
 export function BrowseCourses() {
   const [courses, setCourses] = useState<Course[]>(null!)

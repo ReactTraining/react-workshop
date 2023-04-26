@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'spa/utils/api'
-import { Tiles } from 'spa/Tiles'
-import { Heading } from 'spa/Heading'
-import type { CourseWithLessons } from 'spa/utils/types'
+import { api } from '~/utils/api'
+import { Tiles } from '~/Tiles'
+import { Heading } from '~/Heading'
+import type { CourseWithLessons } from '~/utils/types'
 
 export function WebsiteCourses() {
   const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)

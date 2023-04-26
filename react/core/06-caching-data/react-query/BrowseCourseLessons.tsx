@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams, Link } from 'react-router-dom'
-import { api } from 'spa/utils/api'
-import { Heading } from 'spa/Heading'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
-import { CreateLessonDialog } from 'spa/CreateLessonDialog'
-import { Loading } from 'spa/Loading'
-import { NoResults } from 'spa/NoResults'
-import { PreviousNextCourse } from 'spa/PreviousNextCourse'
+import { api } from '~/utils/api'
+import { Heading } from '~/Heading'
+import { DataGrid, Row, Col } from '~/DataGrid'
+import { CreateLessonDialog } from '~/CreateLessonDialog'
+import { Loading } from '~/Loading'
+import { NoResults } from '~/NoResults'
+import { PreviousNextCourse } from '~/PreviousNextCourse'
 
 export function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!

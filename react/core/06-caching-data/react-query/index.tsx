@@ -1,10 +1,10 @@
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClientProvider } from 'react-query'
-import { AuthProvider } from 'spa/AuthContext'
-import { App } from 'spa/App'
+import { AuthProvider } from '~/AuthContext'
+import { App } from '~/App'
 import { queryClient } from './queryClient'
-import 'spa/styles/all.scss'
+import '~/styles/all.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

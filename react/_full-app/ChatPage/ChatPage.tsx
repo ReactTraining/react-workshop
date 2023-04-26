@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { api } from 'spa/utils/api'
-import { Avatar } from 'spa/Avatar'
-import { useAuthContext } from 'spa/AuthContext'
-import type { ChatMessage } from 'spa/utils/types'
+import { api } from '~/utils/api'
+import { Avatar } from '~/Avatar'
+import { useAuthContext } from '~/AuthContext'
+import type { ChatMessage } from '~/utils/types'
 import styles from './ChatPage.module.scss'
 
 export function ChatPage() {

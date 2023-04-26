@@ -1,6 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import { Icon } from 'spa/Icon'
-import styles from '../../../../apps/spa/AppSubLayouts/AppSubLayouts.module.scss'
+import { Icon } from '~/Icon'
+import styles from '../../../../react/_full-app/AppSubLayouts/AppSubLayouts.module.scss'
 
 export function CoursesSubLayout() {
   return (

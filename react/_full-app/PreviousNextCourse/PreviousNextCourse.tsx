@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useCoursesContext } from 'spa/CoursesContext'
-import { Icon } from 'spa/Icon'
+import { useCoursesContext } from '~/CoursesContext'
+import { Icon } from '~/Icon'
 
 type Props = {
   courseId?: number

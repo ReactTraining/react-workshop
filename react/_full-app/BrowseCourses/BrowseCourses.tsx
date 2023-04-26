@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
-import { api } from 'spa/utils/api'
-import { useCoursesContext } from 'spa/CoursesContext'
-import { Heading } from 'spa/Heading'
-import { Loading } from 'spa/Loading'
-import { NoResults } from 'spa/NoResults'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
-import { RecentLessons } from 'spa/RecentLessons'
-import { AppSidebar } from 'spa/AppSidebar'
+import { api } from '~/utils/api'
+import { useCoursesContext } from '~/CoursesContext'
+import { Heading } from '~/Heading'
+import { Loading } from '~/Loading'
+import { NoResults } from '~/NoResults'
+import { DataGrid, Row, Col } from '~/DataGrid'
+import { RecentLessons } from '~/RecentLessons'
+import { AppSidebar } from '~/AppSidebar'
 
 export function BrowseCourses() {
   const { getCourses, isLoading, fetchCourses } = useCoursesContext()

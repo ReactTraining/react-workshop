@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-// import { Icon } from 'spa/Icon'
+// import { Icon } from '~/Icon'
 // // import styles from './SearchCourses.module.scss'
 
 export function SearchCourses() {

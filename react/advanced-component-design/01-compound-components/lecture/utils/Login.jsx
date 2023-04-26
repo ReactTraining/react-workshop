@@ -1,4 +1,4 @@
-import { Heading } from 'spa/Heading'
+import { Heading } from '~/Heading'
 
 export function Login() {
   return (

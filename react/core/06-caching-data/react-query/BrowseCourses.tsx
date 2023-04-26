@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
-import { api } from 'spa/utils/api'
-import { Heading } from 'spa/Heading'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
-import { Loading } from 'spa/Loading'
-import { NoResults } from 'spa/NoResults'
+import { api } from '~/utils/api'
+import { Heading } from '~/Heading'
+import { DataGrid, Row, Col } from '~/DataGrid'
+import { Loading } from '~/Loading'
+import { NoResults } from '~/NoResults'
 import { queryClient } from './queryClient'
-import type { CourseWithLessons } from 'spa/utils/types'
+import type { CourseWithLessons } from '~/utils/types'
 
 export function BrowseCourses() {
   // 1. Previous Approach: Fetch in every component

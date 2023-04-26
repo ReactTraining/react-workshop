@@ -2,7 +2,7 @@
 // https://twitter.com/dan_abramov/status/1308739731551858689
 
 import { useState } from 'react'
-import { Icon } from 'spa/Icon'
+import { Icon } from '~/Icon'
 
 // type CounterProps = {
 //   count: number

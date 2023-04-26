@@ -1,6 +1,6 @@
 import { useState, useRef, useId } from 'react'
-import { Heading } from 'spa/Heading'
-import { Notice } from 'spa/Notice'
+import { Heading } from '~/Heading'
+import { Notice } from '~/Notice'
 import { login } from './utils'
 
 type Props = {

@@ -1,4 +1,4 @@
-import { Icon } from 'spa/Icon'
+import { Icon } from '~/Icon'
 
 type CounterProps = {
   count: number

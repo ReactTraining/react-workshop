@@ -1,6 +1,6 @@
-import { usePromise } from 'spa/usePromise'
-import { api } from 'spa/utils/api'
-import type { CourseWithLessons } from 'spa/utils/types'
+import { usePromise } from '~/usePromise'
+import { api } from '~/utils/api'
+import type { CourseWithLessons } from '~/utils/types'
 
 export function useCourses() {
   const p = api.courses.getAll

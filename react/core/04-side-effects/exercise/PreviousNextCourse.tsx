@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { api } from 'spa/utils/api'
-import { Icon } from 'spa/Icon'
+import { api } from '~/utils/api'
+import { Icon } from '~/Icon'
 // import { useCourses } from './courseData'
-import type { CourseWithLessons } from 'spa/utils/types'
+import type { CourseWithLessons } from '~/utils/types'
 
 type Props = {
   courseId?: number

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { Heading } from 'spa/Heading'
-import { Loading } from 'spa/Loading'
-import { Notice } from 'spa/Notice'
-import { api } from 'spa/utils/api'
-import type { User } from 'spa/utils/types'
+import { Heading } from '~/Heading'
+import { Loading } from '~/Loading'
+import { Notice } from '~/Notice'
+import { api } from '~/utils/api'
+import type { User } from '~/utils/types'
 
 type Props = {
   onSuccess(user: User): void

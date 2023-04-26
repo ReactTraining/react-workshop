@@ -1,6 +1,6 @@
 import { createContext, useContext, useCallback } from 'react'
-import { useCourses } from 'spa/useCourses'
-import type { CourseWithLessons, Lesson } from 'spa/utils/types'
+import { useCourses } from '~/useCourses'
+import type { CourseWithLessons, Lesson } from '~/utils/types'
 
 type ContextType = {
   fetchCourses(): void

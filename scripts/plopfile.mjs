@@ -1,7 +1,6 @@
-import fs from 'fs'
 import path from 'path'
 
-const appPath = path.join('react', '_app')
+const appPath = path.join('react', '_full-app')
 
 export default function create(plop) {
   // controller generator

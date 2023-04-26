@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react'
 import * as yup from 'yup'
 import { Formik, Form } from 'formik'
-import { Dialog } from 'spa/Dialog'
-import { FieldInput } from 'spa/FormFields'
-import { Heading } from 'spa/Heading'
-import { Notice } from 'spa/Notice'
-import { api } from 'spa/utils/api'
-import { schemas } from 'spa/utils/validationSchemas'
-import type { Course, Lesson } from 'spa/utils/types'
+import { Dialog } from '~/Dialog'
+import { FieldInput } from '~/FormFields'
+import { Heading } from '~/Heading'
+import { Notice } from '~/Notice'
+import { api } from '~/utils/api'
+import { schemas } from '~/utils/validationSchemas'
+import type { Course, Lesson } from '~/utils/types'
 
 const formSchema = yup.object().shape({
   name: schemas.lessonName.required('Required'),

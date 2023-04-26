@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { api } from 'spa/utils/api'
-import { useStudents } from 'spa/hooks/students'
-import { Heading } from 'spa/Heading'
-import { AddStudentForm } from 'spa/AddStudentForm'
-import { Loading } from 'spa/Loading'
-import { NoResults } from 'spa/NoResults'
-import { DataGrid, Row, Col } from 'spa/DataGrid'
+import { api } from '~/utils/api'
+import { useStudents } from '~/hooks/students'
+import { Heading } from '~/Heading'
+import { AddStudentForm } from '~/AddStudentForm'
+import { Loading } from '~/Loading'
+import { NoResults } from '~/NoResults'
+import { DataGrid, Row, Col } from '~/DataGrid'
 
 export function BrowseStudents() {
   const { students, isLoading, refetch } = useStudents()

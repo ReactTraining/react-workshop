@@ -1,9 +1,9 @@
 import { Link, NavLink } from 'react-router-dom'
-import { Logo } from 'spa/Logo'
-import { Centered } from 'spa/Centered'
+import { Logo } from '~/Logo'
+import { Centered } from '~/Centered'
 import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
 import { useAuthContext } from './AuthContext'
-import styles from '../../../../apps/spa/WebsiteHeader/WebsiteHeader.module.scss'
+import styles from '../../../../react/_full-app/WebsiteHeader/WebsiteHeader.module.scss'
 
 export function WebsiteHeader() {
   const { authenticated } = useAuthContext()

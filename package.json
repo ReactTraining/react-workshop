@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node scripts/start.js",
-    "test": "NODE_PATH=./apps jest",
+    "test": "NODE_PATH=./react jest",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",
     "postinstall": "npm run create-db",
-    "create": "plop"
+    "template": "cd scripts && plop"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
@@ -87,8 +87,9 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+      "^~(.*)$": "<rootDir>/react/_full-app/$1",
+      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/react/_full-app/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/react/_full-app/__mocks__/styleMock.js"
     },
     "transform": {
       "^.+\\.(ts|tsx|js|jsx)$": "ts-jest"

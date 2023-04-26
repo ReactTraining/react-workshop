@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { WebsiteHeader } from './WebsiteHeader'
-import { Centered } from 'spa/Centered'
-import styles from '../../../../apps/spa/WebsiteLayout/WebsiteLayout.module.scss'
+import { Centered } from '~/Centered'
+import styles from '../../../../react/_full-app/WebsiteLayout/WebsiteLayout.module.scss'
 
 export function WebsiteLayout() {
   return (

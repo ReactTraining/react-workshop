@@ -1,8 +1,8 @@
 import { Menu } from '@headlessui/react'
-import { api } from 'spa/utils/api'
-import { Avatar } from 'spa/Avatar'
-import { Popover } from 'spa/PopoverX'
-import { useAuthContext } from 'spa/AuthContext'
+import { api } from '~/utils/api'
+import { Avatar } from '~/Avatar'
+import { Popover } from '~/PopoverX'
+import { useAuthContext } from '~/AuthContext'
 
 export function AuthenticatedDropdownMenu() {
   const { user, logout } = useAuthContext()

@@ -1,6 +1,6 @@
 // import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import 'spa/styles/all.scss'
+import '~/styles/all.scss'
 import './styles.scss'
 
 // A fun React Router Demo by @DilumSanjaya
@@ -11,10 +11,10 @@ import { WebsiteLayout } from './WebsiteLayout'
 import { AppLayout, AppSubLayout } from './AppLayout'
 
 // Pages
-import { HomePage } from 'spa/HomePage'
+import { HomePage } from '~/HomePage'
 import { BrowseCourses } from './BrowseCourses'
-import { BrowseStudents } from 'spa/BrowseStudents'
-import { ChatPage } from 'spa/ChatPage'
+import { BrowseStudents } from '~/BrowseStudents'
+import { ChatPage } from '~/ChatPage'
 
 // Let's Lazy load this
 import BrowseCourseLessons from './BrowseCourseLessons'

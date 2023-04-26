@@ -1,4 +1,4 @@
-import { useMedia } from 'spa/hooks/useMedia'
+import { useMedia } from '~/hooks/useMedia'
 
 type Props = {
   children: React.ReactNode

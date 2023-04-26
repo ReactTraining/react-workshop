@@ -1,4 +1,4 @@
-import 'spa/index'
+import '~/index'
 
 const showErrorOverlay = (err) => {
   // must be within function call because that's when the element is defined for sure.

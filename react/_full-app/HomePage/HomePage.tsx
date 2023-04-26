@@ -1,5 +1,5 @@
-import { Heading } from 'spa/Heading'
-import { Icon } from 'spa/Icon'
+import { Heading } from '~/Heading'
+import { Icon } from '~/Icon'
 import styles from './HomePage.module.scss'
 
 export function HomePage() {

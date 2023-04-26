@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import MarkdownIt from 'markdown-it'
-import { Heading } from 'spa/Heading'
-import { useCoursesContext } from 'spa/CoursesContext'
+import { Heading } from '~/Heading'
+import { useCoursesContext } from '~/CoursesContext'
 import styles from './WebsiteCourseLesson.module.scss'
 
 const md = new MarkdownIt()

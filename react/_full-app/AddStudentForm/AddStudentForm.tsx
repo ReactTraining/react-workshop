@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { Formik, Form } from 'formik'
-import { FieldInput } from 'spa/FormFields'
-import { Heading } from 'spa/Heading'
-import { Notice } from 'spa/Notice'
-import { api } from 'spa/utils/api'
-import { schemas } from 'spa/utils/validationSchemas'
+import { FieldInput } from '~/FormFields'
+import { Heading } from '~/Heading'
+import { Notice } from '~/Notice'
+import { api } from '~/utils/api'
+import { schemas } from '~/utils/validationSchemas'
 import * as yup from 'yup'
 
 const formSchema = yup.object().shape({

@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import * as yup from 'yup'
-import { Avatar } from 'spa/Avatar'
+import { Avatar } from '~/Avatar'
 import { Formik, Form } from 'formik'
-import { FieldInput } from 'spa/FormFields'
-import { Heading } from 'spa/Heading'
-import { Notice } from 'spa/Notice'
-import { api } from 'spa/utils/api'
-import type { User } from 'spa/utils/types'
-import { schemas } from 'spa/utils/validationSchemas'
+import { FieldInput } from '~/FormFields'
+import { Heading } from '~/Heading'
+import { Notice } from '~/Notice'
+import { api } from '~/utils/api'
+import type { User } from '~/utils/types'
+import { schemas } from '~/utils/validationSchemas'
 
 const formSchema = yup.object().shape({
   name: schemas.fullName.required('Required'),

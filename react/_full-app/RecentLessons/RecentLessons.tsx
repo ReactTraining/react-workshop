@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
-import * as localStorage from 'spa/utils/localStorage'
-import { Heading } from 'spa/Heading'
+import * as localStorage from '~/utils/localStorage'
+import { Heading } from '~/Heading'
 
 type LocalStorageLesson = {
   courseSlug: string

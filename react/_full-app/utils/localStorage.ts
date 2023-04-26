@@ -1,4 +1,4 @@
-import type { User } from 'spa/utils/types'
+import type { User } from '~/utils/types'
 
 /**
  * Auth

@@ -1,6 +1,6 @@
 import { useRef, useState, useLayoutEffect } from 'react'
-import { Portal } from 'spa/PortalX'
-import { position } from 'spa/utils/position'
+import { Portal } from '~/PortalX'
+import { position } from '~/utils/position'
 import styles from './Popover.module.css'
 
 type Props = {

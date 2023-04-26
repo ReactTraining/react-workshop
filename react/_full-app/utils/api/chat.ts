@@ -1,5 +1,5 @@
-import { db } from 'spa/utils/firebase'
-import type { ChatMessage } from 'spa/utils/types'
+import { db } from '~/utils/firebase'
+import type { ChatMessage } from '~/utils/types'
 import {
   collection,
   getDocs,

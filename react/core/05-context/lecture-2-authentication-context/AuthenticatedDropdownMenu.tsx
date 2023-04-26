@@ -1,6 +1,6 @@
 import { Menu } from '@headlessui/react'
-import { api } from 'spa/utils/api'
-import { Avatar } from 'spa/Avatar'
+import { api } from '~/utils/api'
+import { Avatar } from '~/Avatar'
 import { useAuthContext } from './AuthContext'
 
 export function AuthenticatedDropdownMenu() {

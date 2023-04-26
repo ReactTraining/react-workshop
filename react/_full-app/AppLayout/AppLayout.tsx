@@ -1,10 +1,10 @@
 import { Outlet, Link, NavLink, Navigate, useLocation } from 'react-router-dom'
-import { Loading } from 'spa/Loading'
-import { Logo } from 'spa/Logo'
-import { AuthenticatedDropdownMenu } from 'spa/AuthenticatedDropdownMenu'
-import { Icon } from 'spa/Icon'
+import { Loading } from '~/Loading'
+import { Logo } from '~/Logo'
+import { AuthenticatedDropdownMenu } from '~/AuthenticatedDropdownMenu'
+import { Icon } from '~/Icon'
 import styles from './AppLayout.module.scss'
-import { useAuthContext } from 'spa/AuthContext'
+import { useAuthContext } from '~/AuthContext'
 
 export function AppLayout() {
   const location = useLocation()
