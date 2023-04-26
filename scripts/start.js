@@ -111,7 +111,7 @@ async function startReact() {
     resolve: {
       alias,
     },
-    root: process.cwd(),
+    root: path.resolve(process.cwd(), 'react', '_full-app'),
     server: {
       port,
     },
