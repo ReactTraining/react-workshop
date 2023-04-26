@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!)
 
 root.render(
   <App
-    onSubmit={(values) => {
+    onSubmit={(values: any) => {
       console.log(values)
     }}
   />

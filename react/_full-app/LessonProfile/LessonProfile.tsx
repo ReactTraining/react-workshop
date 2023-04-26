@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import { useParams, Link } from 'react-router-dom'
 import MarkdownIt from 'markdown-it'
 import { api } from '~/utils/api'
-import { useDelayedCallback } from '~/hooks/useDelayedCallback'
 import { useCoursesContext } from '~/CoursesContext'
 import { Heading } from '~/Heading'
 import * as localStorage from '~/utils/localStorage'
@@ -19,7 +18,6 @@ export function LessonProfile() {
   const [isSaving, setIsSaving] = useState(false)
   const [isDraft, setIsDraft] = useState(false)
   const [showPublishedNotice, setShowPublishedNotice] = useState(false)
-  const delaySetPublishedNotice = useDelayedCallback<boolean>(setShowPublishedNotice)
 
   const [content, setContent] = useState('')
   const [preview, setPreview] = useState(false)
@@ -75,7 +73,9 @@ export function LessonProfile() {
       setIsDraft(false)
       setIsSaving(false)
       setShowPublishedNotice(true)
-      delaySetPublishedNotice(false, 3000)
+      setTimeout(() => {
+        setShowPublishedNotice(false)
+      }, 3000)
     })
   }
 

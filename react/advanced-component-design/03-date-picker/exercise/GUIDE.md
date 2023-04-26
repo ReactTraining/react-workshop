@@ -24,7 +24,7 @@ Use the values returned to get the field's value and setter function for both fi
 
 4. When a selection is made with `SelectDateRange`, set the formik values accordingly. You can peek at `SelectDateRange` and see that it only calls `onSelect` when two dates are chosen. You will be given `YYYY-MM-DD` strings from `SelectDateRange` and these are the values we want to set in Formik.
 
-5. After selections are made, close the popover. Utilize `useDelayedCallback` so the user gets a chance to see the second date they chose. Without a delayed close, imagine the user clicks the first date and then clicks the second and the selection of the second date immediately closes the popover - probably not great UX.
+5. After selections are made, close the popover. Use a timeout to give the user a small amount of time (about 1 second) to see their selection before it closes
 
 6. Display the chosen dates in the `FieldDateRangePicker` input field. You might notice that the field is `readOnly` because we have that `onClick` established for the containing `div` and we don't actually want the user to type into this field. You can use `dayjs('2000-01-01').format('MMM D, YYYY')` if you want to see a U.S. looking format for the date. Or chose any different format you'd like to see.
 

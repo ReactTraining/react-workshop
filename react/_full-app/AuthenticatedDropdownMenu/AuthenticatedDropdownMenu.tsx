@@ -1,7 +1,6 @@
 import { Menu } from '@headlessui/react'
 import { api } from '~/utils/api'
 import { Avatar } from '~/Avatar'
-import { Popover } from '~/PopoverX'
 import { useAuthContext } from '~/AuthContext'
 
 export function AuthenticatedDropdownMenu() {

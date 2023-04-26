@@ -3,9 +3,8 @@ import classnames from 'classnames'
 import dayjs from 'dayjs'
 import { useField } from 'formik'
 import { BsCalendar3 } from 'react-icons/bs'
-import { Popover } from '~/PopoverX'
+import { Popover } from '~/Popover'
 import { SelectDateRange } from './SelectDateRange'
-import { useDelayedCallback } from './useDelayedCallback'
 
 /**
  * FieldWrap
@@ -77,7 +76,6 @@ type FieldDateRangePickerProps = {
 
 export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerProps) {
   const [openPopover, setOpenPopover] = useState(false)
-  const setOpenPopoverDelayed = useDelayedCallback(setOpenPopover)
   const targetRef = useRef<HTMLDivElement>(null!)
   const id = useId()
 

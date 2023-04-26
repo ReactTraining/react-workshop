@@ -1,5 +1,5 @@
 import { useRef, useState, useLayoutEffect } from 'react'
-import { Portal } from '~/PortalX'
+import { Portal } from '../Portal'
 import { position } from '~/utils/position'
 import styles from './Popover.module.css'
 
