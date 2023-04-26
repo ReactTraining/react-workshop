@@ -3,21 +3,40 @@ const path = require('path')
 const fs = require('fs')
 const { createServer } = require('vite')
 const react = require('@vitejs/plugin-react')
-const cli = require('./cli')
+const { selectReactLesson } = require('./cli')
 const startDB = require('./start-db')
 
 /****************************************
-  CLI Menu
+  Preferences
 *****************************************/
 
-const { lessonPath, selectedCourse, selectedLessonType, selectedLesson } = cli()
+const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
+let preferences = {}
+try {
+  const data = fs.readFileSync(preferencesPath, 'utf8')
+  preferences = JSON.parse(data)
+} catch (err) {
+  // no-op
+}
 
-switch (selectedCourse) {
+function savePreferences(updates) {
+  try {
+    fs.writeFileSync(preferencesPath, JSON.stringify({ ...preferences, ...updates }, null, 2))
+  } catch (err) {
+    // no-op
+  }
+}
+
+/****************************************
+  Choose Course Type (REMIX or SPA)
+*****************************************/
+
+switch (process.argv[2]) {
   case 'remix':
     startRemix()
     break
   default:
-    startSPA()
+    startReact()
     break
 }
 
@@ -26,18 +45,30 @@ switch (selectedCourse) {
 *****************************************/
 
 function startRemix() {
-  const appPath = path.resolve(__dirname, '..', 'apps', 'remix')
-  shell.cd(appPath)
-  shell.exec('npm run dev')
+  console.log('START REMIX')
+  // const appPath = path.resolve(__dirname, '..', 'apps', 'remix')
+  // shell.cd(appPath)
+  // shell.exec('npm run dev')
 }
 
 /****************************************
-  SPA (Vite Server)
+  React SPA (Vite Server)
 *****************************************/
 
-async function startSPA() {
-  const appName = 'spa'
-  const appPath = path.resolve(__dirname, '..', 'apps', appName)
+async function startReact() {
+  const coursesPath = path.resolve(__dirname, '..', 'react')
+
+  const { lessonPath, selectedLessonType, selectedLesson } = selectReactLesson(
+    coursesPath,
+    preferences,
+    savePreferences
+  )
+
+  const appName = '_full-app'
+  const appPath = path.resolve(__dirname, '..', 'react', appName)
+
+  // The thing we can use in imports like `from 'spa/file'`
+  const appRoot = 'spa'
 
   // Get aliases
   const alias = {}
@@ -47,17 +78,17 @@ async function startSPA() {
     fs.readdirSync(lessonPath).forEach((file) => {
       const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
 
-      alias[path.join(appName, name)] = path.join(lessonPath, file)
+      alias[path.join(appRoot, name)] = path.join(lessonPath, file)
 
       // WINDOWS HACK
       // On windows machines, the paths will have double back-slashes which we want
       // for the full file paths (the values of this object) but not the aliases (the keys)
-      alias[path.join(appName, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
+      alias[path.join(appRoot, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
     })
   }
 
   // Add the full app alias last
-  alias[appName] = appPath
+  alias[appRoot] = appPath
 
   // Database
   const dbPath = path.resolve(appPath, 'database', 'db.json')

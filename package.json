@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node scripts/start.js",
-    "//remix": "cd apps/remix && npm",
     "test": "NODE_PATH=./apps jest",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "create-db": "node scripts/create-db",

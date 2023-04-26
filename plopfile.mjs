@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-const appPath = `apps/spa`
+const appPath = path.join('react', '_app')
 
 export default function create(plop) {
   // controller generator
@@ -23,7 +23,7 @@ export default function create(plop) {
         {
           type: 'add',
           path: path.join(appPath, '{{name}}/index.ts'),
-          templateFile: 'utils/plop-component/index.hbs',
+          templateFile: 'scripts/plop-component/index.hbs',
         },
       ]
 
@@ -31,18 +31,18 @@ export default function create(plop) {
         actions.push({
           type: 'add',
           path: path.join(appPath, '{{name}}/{{name}}.module.scss'),
-          templateFile: 'utils/plop-component/scss.hbs',
+          templateFile: 'scripts/plop-component/scss.hbs',
         })
         actions.push({
           type: 'add',
           path: path.join(appPath, '{{name}}/{{name}}.tsx'),
-          templateFile: 'utils/plop-component/component-with-scss.hbs',
+          templateFile: 'scripts/plop-component/component-with-scss.hbs',
         })
       } else {
         actions.push({
           type: 'add',
           path: path.join(appPath, '{{name}}/{{name}}.tsx'),
-          templateFile: 'utils/plop-component/component.hbs',
+          templateFile: 'scripts/plop-component/component.hbs',
         })
       }
 

@@ -1,8 +1,0 @@
-.component {
-  background-color: #fff;
-  border-radius: 0.3em;
-  overflow: hidden;
-  position: absolute;
-  box-shadow: var(--shadow);
-  padding: 1em;
-}
