@@ -1,6 +1,6 @@
+import { useMemo } from 'react'
 import { json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import { BrowseProducts } from '~/components/BrowseProducts'
+import { Outlet, useLoaderData } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { FilterByCheckbox } from '~/components/FilterByCheckbox'
 import { getProducts } from '~/utils/db.server'
@@ -19,6 +19,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 
 export default function () {
   const { products, cart } = useLoaderData<typeof loader>()
+  const context = useMemo(() => ({ products, cart }), [])
 
   return (
     <div>
@@ -64,7 +65,7 @@ export default function () {
             </div>
             <div className="">[Filter]</div>
           </header>
-          <BrowseProducts products={products} cart={cart} />
+          <Outlet context={context} />
         </div>
       </div>
     </div>
