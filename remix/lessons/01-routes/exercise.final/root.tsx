@@ -1,7 +1,7 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-// import { MainLayout } from '~/components/MainLayout'
-import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
+import { LinksFunction } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
+import { MainLayout } from './components/MainLayout'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
@@ -19,8 +19,10 @@ export default function App() {
           rel="stylesheet"
         />
       </head>
-      <body>
-        <Outlet />
+      <body className="p-3">
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

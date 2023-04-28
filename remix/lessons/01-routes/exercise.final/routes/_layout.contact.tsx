@@ -1,7 +1,7 @@
 export default function () {
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Contact</h1>
     </div>
   )
 }
