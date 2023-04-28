@@ -5,18 +5,12 @@ import { Heading } from 'spa/Heading'
 import { DataGrid, Row, Col } from 'spa/DataGrid'
 import { Loading } from 'spa/Loading'
 import { NoResults } from 'spa/NoResults'
-// import { useCourses } from './courseData'
+import { useCourses } from './courseData'
 import type { CourseWithLessons } from 'spa/utils/types'
 
 export function BrowseCourses() {
-  const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
+  const [courses, setCourses] = useCourses()
   const isLoading = courses === null
-
-  // Write a useEffect to get all courses
-  // HINT: The `PreviousNextCourse.tsx` component has the same one you'll write here
-
-  // api.courses.getAll().then((courses) => {
-  // })
 
   function removeCourse(courseId: number) {
     if (!courses) return
