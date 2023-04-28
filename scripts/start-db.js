@@ -1,17 +1,19 @@
 const fs = require('fs')
+const path = require('path')
+const shell = require('shelljs')
 const concurrently = require('concurrently')
 
-module.exports = function (dbPath) {
-  if (dbPath.indexOf(' ') >= 0) {
-    console.error(`We cant start this app if your path has spaces:\n${process.cwd()}\n\n`)
-    process.exit(1)
-  }
+exports.startDatabase = (dbDir) => {
+  const dbPath = path.join(dbDir, 'db.json')
 
-  // This allows the database to run in the background
-  if (fs.existsSync(dbPath)) {
+  try {
+    if (!fs.existsSync(dbPath)) {
+      shell.cp(`${dbDir}/db-seed.json`, dbPath)
+    }
+
     concurrently([
       {
-        command: `npx json-server --watch ${dbPath.replace()} -p 3333 --quiet`,
+        command: `npx json-server --watch ${dbPath} -p 3333 --quiet`,
         name: 'npx json-server database',
       },
     ]).catch((err) => {
@@ -20,9 +22,8 @@ module.exports = function (dbPath) {
       )
       process.exit(1)
     })
-  } else {
-    console.error(`db.json is missing at path ${dbPath}`)
-    console.error('Try running `npm run create-db`')
+  } catch (err) {
+    console.log(err)
     process.exit(1)
   }
 }

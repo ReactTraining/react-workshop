@@ -8,11 +8,11 @@
       "avatarUrl": "/default-admin.jpg"
     },
     {
+      "id": 2,
       "name": "Brad Westfall",
       "username": "bradwestfall",
       "password": "abc123",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4",
-      "id": 2
+      "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4"
     }
   ],
   "courses": [

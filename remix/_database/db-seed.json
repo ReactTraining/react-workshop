@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "bradwestfall",
+      "password": "abc123",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Airpods",
+      "price": 227,
+      "image": "airpods.png"
+    },
+    {
+      "id": 2,
+      "name": "Pixel",
+      "price": 699,
+      "image": "pixel-7.png"
+    },
+    {
+      "id": 3,
+      "name": "AirTags",
+      "price": 99,
+      "image": "airtags.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Surface",
+      "price": 999,
+      "image": "ms-surface.png"
+    },
+    {
+      "id": 5,
+      "name": "Macbook",
+      "price": 1299,
+      "image": "macbook.png"
+    },
+    {
+      "id": 5,
+      "name": "iPhone",
+      "price": 899,
+      "image": "iphone.png"
+    }
+  ]
+}

@@ -4,7 +4,12 @@ const fs = require('fs')
 const { createServer } = require('vite')
 const react = require('@vitejs/plugin-react')
 const { selectReactLesson, selectRemixLesson } = require('./select-lesson')
-const startDB = require('./start-db')
+const { startDatabase } = require('./start-db')
+
+if (process.cwd().indexOf(' ') >= 0) {
+  console.error(`We cant start this app if your path has spaces:\n${process.cwd()}\n\n`)
+  process.exit(1)
+}
 
 /****************************************
   Preferences
@@ -53,6 +58,7 @@ function startRemix() {
   }
 
   const appPath = path.resolve(__dirname, '..', 'remix')
+  startDatabase(path.resolve(appPath, '_database'))
   shell.cd(appPath)
   shell.exec('npm run dev')
 }
@@ -72,6 +78,7 @@ async function startReact() {
 
   const appName = '_full-app'
   const appPath = path.resolve(__dirname, '..', 'react', appName)
+  startDatabase(path.resolve(appPath, '_database'))
 
   // The thing we can use in imports like `from '/file'`
   const appRoot = '~'
@@ -95,10 +102,6 @@ async function startReact() {
 
   // Add the full app alias last
   alias[appRoot] = appPath
-
-  // Database
-  const dbPath = path.resolve(appPath, 'database', 'db.json')
-  startDB(dbPath)
 
   // Server
 
