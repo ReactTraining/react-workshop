@@ -59,6 +59,7 @@ export type ProductType = {
   price: number
   image: string
   brand: string
+  category: string
 }
 
 export async function getProducts(searchParams?: URLSearchParams): Promise<ProductType[]> {
@@ -80,6 +81,22 @@ export async function getProducts(searchParams?: URLSearchParams): Promise<Produ
   const search = new URLSearchParams([...brands, ...categories]).toString()
 
   return await fetch(`${url}/products?${search || ''}`).then((res) => res.json())
+}
+
+export async function getProduct(productId: number) {
+  return (await fetch(`${url}/products?id=${productId}`)
+    .then((res) => res.json())
+    .then((arr) => arr[0])) as ProductType
+}
+
+export async function getRelatedProducts(brand: string, limit = 100, omitIds?: number[]) {
+  if (!brand) return []
+  const all = (await fetch(`${url}/products?brand=${brand}`).then((res) =>
+    res.json()
+  )) as ProductType[]
+  return all
+    .filter((product) => Array.isArray(omitIds) && !omitIds.includes(product.id))
+    .slice(0, limit)
 }
 
 /****************************************

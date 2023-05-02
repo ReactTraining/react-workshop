@@ -16,11 +16,13 @@ export function BrowseProducts({ products, cart }: BrowseProductsProps) {
         {products.map((product) => {
           const quantityInCart = cart.find((item) => item.productId === product.id)?.quantity
           return (
-            <BrowseProductItem
-              key={product.id}
-              product={product}
-              quantityInCart={quantityInCart || 0}
-            />
+            <div className="rounded-lg bg-white shadow-sm">
+              <BrowseProductItem
+                key={product.id}
+                product={product}
+                quantityInCart={quantityInCart || 0}
+              />
+            </div>
           )
         })}
       </Tiles>
@@ -35,7 +37,7 @@ type BrowseProductItemProps = {
 
 export function BrowseProductItem({ product, quantityInCart }: BrowseProductItemProps) {
   return (
-    <div className="p-3 border rounded-lg bg-white overflow-hidden flex flex-col">
+    <div className="p-3 overflow-hidden flex flex-col">
       <img
         src={`/images/products/${product.image}`}
         alt={product.name}

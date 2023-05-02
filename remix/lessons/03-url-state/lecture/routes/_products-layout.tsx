@@ -18,6 +18,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   // const brand = url.searchParams.get('brand')
 
   const [products, brands, cart] = await Promise.all([getProducts(), getBrands(), getCart(request)])
+
   return json({
     products,
     brands,
@@ -38,15 +39,13 @@ export default function () {
   // const brand = search.get('brand')
 
   return (
-    <div>
-      <div className="flex gap-6">
-        <div className="w-72 p-6 border rounded-lg bg-white space-y-6">
-          <FilterByBrand brands={brands} />
-        </div>
-        <div className="flex-1 space-y-3">
-          <Outlet context={context} />
-        </div>
-      </div>
+    <div className="flex gap-6">
+      <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-6">
+        <FilterByBrand brands={brands} />
+      </aside>
+      <main className="flex-1 space-y-3">
+        <Outlet context={context} />
+      </main>
     </div>
   )
 }

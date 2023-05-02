@@ -13,7 +13,7 @@ body {
 body {
   /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
   min-height: -webkit-fill-available;
-  background-image: linear-gradient(to bottom, theme(colors.slate.100), #fff);
+  background-image: linear-gradient(to bottom, theme(colors.slate.200), theme(colors.slate.100));
   background-repeat: no-repeat;
 }
 

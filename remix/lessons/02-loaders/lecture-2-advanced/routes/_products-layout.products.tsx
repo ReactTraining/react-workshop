@@ -22,7 +22,7 @@ export default function () {
         return (
           <div
             key={product.id}
-            className="p-3 border rounded-lg bg-white overflow-hidden flex flex-col"
+            className="p-3 rounded-lg bg-white shadow-sm overflow-hidden flex flex-col"
           >
             <img
               src={`/images/products/${product.image}`}

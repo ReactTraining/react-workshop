@@ -5,13 +5,18 @@ import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const brands = await getBrands()
+  const searchParams = new URL(request.url).searchParams
+  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 
-  return json({ brands })
+  return json({
+    products,
+    brands,
+  })
 }
 
 export default function () {
-  const { brands } = useLoaderData<typeof loader>()
+  const { products, brands } = useLoaderData<typeof loader>()
+  const context = useMemo(() => ({ products }), [products])
 
   return (
     <div className="flex gap-6">
@@ -31,7 +36,7 @@ export default function () {
         })}
       </aside>
       <main className="flex-1 space-y-3">
-        <Outlet />
+        <Outlet context={context} />
       </main>
     </div>
   )

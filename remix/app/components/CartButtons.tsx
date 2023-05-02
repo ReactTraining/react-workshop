@@ -14,7 +14,9 @@ export function AddToCartButton({ productId, quantityInCart }: AddToCartButtonPr
       <input type="hidden" name="productId" value={productId} />
       <button className="button button-outline whitespace-nowrap" type="submit">
         <Icon name="cart" />
-        {quantityInCart > 0 && <span className="ml-2 align-middle">{quantityInCart}</span>}
+        {quantityInCart > 0 && (
+          <span className="ml-2 align-middle inline-block min-w-[1.5em]">{quantityInCart}</span>
+        )}
       </button>
     </fetcher.Form>
   )

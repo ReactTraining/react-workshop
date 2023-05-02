@@ -42,16 +42,14 @@ export default function () {
   const context = useMemo(() => ({ products, cart }), [products])
 
   return (
-    <div>
-      <div className="flex gap-6">
-        <div className="w-72 p-6 border rounded-lg bg-white space-y-6">
-          <FilterByBrand brands={brands} />
-          <FilterByCategory categories={categories} />
-          <FilterByPrice />
-        </div>
-        <div className="flex-1 space-y-3">
-          <Outlet context={context} />
-        </div>
+    <div className="flex gap-6">
+      <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-6">
+        <FilterByBrand brands={brands} />
+        <FilterByCategory categories={categories} />
+        <FilterByPrice />
+      </aside>
+      <div className="flex-1 space-y-3">
+        <Outlet context={context} />
       </div>
     </div>
   )

@@ -1,20 +1,14 @@
-import { useLoaderData, useOutletContext } from '@remix-run/react'
-import { json } from '@remix-run/node'
-import { getProducts, type ProductType } from '~/utils/db.server'
+import { useOutletContext } from '@remix-run/react'
+import { type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 
-// type OutletContext = {
-//   products: ProductType[]
-// }
-
-export const loader = async () => {
-  const products = await getProducts()
-  return json(products)
+type OutletContext = {
+  products: ProductType[]
 }
 
 export default function () {
-  const products = useLoaderData<typeof loader>()
+  const { products } = useOutletContext<OutletContext>()
 
   return (
     <Tiles>
