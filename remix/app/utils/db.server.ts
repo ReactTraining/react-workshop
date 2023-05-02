@@ -58,9 +58,56 @@ export type ProductType = {
   name: string
   price: number
   image: string
+  brand: string
 }
 
-export async function getProducts(): Promise<ProductType[]> {
-  const products = await fetch(`${url}/products`).then((res) => res.json())
-  return products
+export async function getProducts(searchParams?: URLSearchParams): Promise<ProductType[]> {
+  // convert: `brand=a&brand=b` to [['brand', 'a'], ['brand', 'b']]
+  const brands =
+    searchParams
+      ?.get('brand')
+      ?.split(',')
+      ?.filter(Boolean)
+      .map((brand) => ['brand', brand]) || []
+
+  const categories =
+    searchParams
+      ?.get('category')
+      ?.split(',')
+      ?.filter(Boolean)
+      .map((category) => ['category', category]) || []
+
+  const search = new URLSearchParams([...brands, ...categories]).toString()
+
+  return await fetch(`${url}/products?${search || ''}`).then((res) => res.json())
+}
+
+/****************************************
+  Product Brands
+*****************************************/
+
+export type BrandType = {
+  id: number
+  handle: string
+  label: string
+}
+
+export async function getBrands(): Promise<BrandType[]> {
+  const brands = await fetch(`${url}/brands`).then((res) => res.json())
+  return brands
+}
+
+/****************************************
+  Product Categories
+*****************************************/
+
+export type CategoryType = {
+  id: number
+  handle: string
+  label: string
+}
+
+export async function getCategories(): Promise<BrandType[]> {
+  const categories = await fetch(`${url}/categories`).then((res) => res.json())
+  return categories
 }
