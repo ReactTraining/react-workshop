@@ -2,16 +2,16 @@ import { useId } from 'react'
 import { Icon } from './Icon'
 import { Link, useSearchParams } from '@remix-run/react'
 
+/****************************************
+ Filter Link
+ *****************************************/
+
 type Props = {
   children: React.ReactNode
   url: string
   filter: string
   value: string
 }
-
-/****************************************
-  Filter Link
-*****************************************/
 
 export function FilterLink({ children, url, filter, value }: Props) {
   const [search] = useSearchParams()
@@ -46,15 +46,15 @@ export function FilterLinkAll({ children, url, filter }: Omit<Props, 'value'>) {
   return <FilterLinkUI on={on} to={`${url}?${nextSearch.toString()}`} children={children} />
 }
 
+/****************************************
+ UI for both the Filter Links Above
+ *****************************************/
+
 type FilterLinkUIProps = {
   children: React.ReactNode
   on: boolean
   to: string
 }
-
-/****************************************
-  UI for both the Filter Links Above
-*****************************************/
 
 function FilterLinkUI({ children, on, to }: FilterLinkUIProps) {
   const id = useId()

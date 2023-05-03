@@ -11,6 +11,8 @@ import type { LoaderArgs } from '@remix-run/node'
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const productId = parseInt(params.productId!)
+  if (!productId) throw new Response('Invalid Product ID', { status: 404 })
+
   const [product, brands, categories, cart] = await Promise.all([
     getProduct(productId),
     getBrands(),
@@ -18,9 +20,11 @@ export const loader = async ({ params, request }: LoaderArgs) => {
     getCart(request),
   ])
 
+  if (!product) throw new Response('Not found', { status: 404 })
+
   // Deferred Data
   const limit = 3
-  const relatedProductsPromise = getRelatedProducts(product.brand, limit, [productId]).then(sleep())
+  const relatedProductsPromise = getRelatedProducts(product.brand, limit, [productId]) // .then(sleep())
 
   return defer({
     product,
@@ -68,7 +72,7 @@ export default function () {
                       const quantityInCart =
                         cart.find((item) => item.productId === product.id)?.quantity || 0
                       return (
-                        <div className="p-6 border rounded-lg bg-white">
+                        <div className="border rounded-lg bg-white">
                           <BrowseProductItem
                             key={product.id}
                             product={product}

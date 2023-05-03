@@ -86,7 +86,7 @@ export async function getProducts(searchParams?: URLSearchParams): Promise<Produ
 export async function getProduct(productId: number) {
   return (await fetch(`${url}/products?id=${productId}`)
     .then((res) => res.json())
-    .then((arr) => arr[0])) as ProductType
+    .then((arr) => arr[0])) as ProductType | undefined
 }
 
 export async function getRelatedProducts(brand: string, limit = 100, omitIds?: number[]) {

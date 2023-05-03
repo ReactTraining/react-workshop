@@ -1,16 +1,19 @@
-import { useOutletContext } from '@remix-run/react'
-import { type ProductType } from '~/utils/db.server'
-import { type CartItemType } from '~/utils/cart.server'
-import { Tiles } from '~/components/Tiles'
+import { json } from '@remix-run/node'
+import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
 import { Icon } from '~/components/Icon'
+import { Tiles } from '~/components/Tiles'
+import { ProductType } from '~/utils/db.server'
 
-type OutletContext = {
-  products: ProductType[]
-  cart: CartItemType[]
+export async function loader() {
+  const products = (await fetch('http://localhost:3333/products').then((res) =>
+    res.json()
+  )) as ProductType[]
+
+  return json({ products })
 }
 
-export default function () {
-  const { products } = useOutletContext<OutletContext>()
+export default function Index() {
+  const { products } = useLoaderData<typeof loader>()
 
   return (
     <Tiles>
@@ -37,7 +40,9 @@ export default function () {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <button className="button">View</button>
+                  <Link to={product.id.toString()} className="button">
+                    View
+                  </Link>
                 </div>
               </div>
             </div>

@@ -1,11 +1,27 @@
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-import { LinksFunction } from '@remix-run/node'
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from '@remix-run/react'
+import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from './components/MainLayout'
+import { LessonProvider } from '~/components/LessonContext'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
+export async function loader() {
+  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
+  return json({ lesson })
+}
+
 export default function App() {
+  const { lesson } = useLoaderData<typeof loader>()
+
   return (
     <html lang="en">
       <head>
@@ -20,9 +36,11 @@ export default function App() {
         />
       </head>
       <body>
-        <MainLayout>
-          <Outlet />
-        </MainLayout>
+        <LessonProvider selectedLesson={lesson}>
+          <MainLayout>
+            <Outlet />
+          </MainLayout>
+        </LessonProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
