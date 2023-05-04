@@ -14,7 +14,7 @@ export async function requireSessionUser(request: Request) {
     lastName: 'Lee',
     username: 'brucelee',
     email: 'bruce@remix.run',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/2272118?v=4',
+    avatarUrl: '/images/default-admin.jpg',
   }
   return user
 }

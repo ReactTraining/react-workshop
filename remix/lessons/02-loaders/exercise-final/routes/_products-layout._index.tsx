@@ -1,14 +1,11 @@
-import { useOutletContext } from '@remix-run/react'
+import { useOutletContext, useRouteLoaderData } from '@remix-run/react'
 import { type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-
-type OutletContext = {
-  products: ProductType[]
-}
+import type { LoaderData } from './_products-layout'
 
 export default function () {
-  const { products } = useOutletContext<OutletContext>()
+  const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
 
   return (
     <Tiles>

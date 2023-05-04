@@ -3,8 +3,14 @@
     {
       "id": 1,
       "username": "bradwestfall",
-      "password": "abc123",
+      "passwordHash": "$2a$10$.XIL6FcSJPHS6A911pvQOezFSRKWTqkg9f0h2G2EekAUJUTnT5ylu",
       "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4"
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "passwordHash": "$2a$10$4JU6J83VE1WSXR/ujSGMgOxbomUwX3BUzfPC2l5Ze1/AKNu83Ns0a",
+      "avatarUrl": "/images/default-admin.jpg"
     }
   ],
   "brands": [

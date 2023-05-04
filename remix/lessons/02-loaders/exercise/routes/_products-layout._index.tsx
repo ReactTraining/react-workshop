@@ -3,10 +3,7 @@ import { json } from '@remix-run/node'
 import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-
-// type OutletContext = {
-//   products: ProductType[]
-// }
+// import type { LoaderData } from './_products-layout'
 
 export const loader = async () => {
   const products = await getProducts()

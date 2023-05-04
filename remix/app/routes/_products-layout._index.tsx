@@ -1,37 +1,31 @@
-import { useOutletContext } from '@remix-run/react'
+import { Link, useRouteLoaderData } from '@remix-run/react'
 import { BrowseProducts } from '~/components/BrowseProducts'
-import { type ProductType } from '~/utils/db.server'
-import { type CartItemType } from '~/utils/cart.server'
 import type { V2_MetaFunction } from '@remix-run/react'
-import { ProductProfile } from '~/components/ProductProfile'
+import type { LoaderData } from './_products-layout'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: 'Tech Shopper' }]
 }
 
-type OutletContext = {
-  products: ProductType[]
-  cart: CartItemType[]
-}
-
 export default function () {
-  const { products, cart } = useOutletContext<OutletContext>()
-  const featuredProduct = products.slice(-1)[0]
+  const { products, cart } = useRouteLoaderData('routes/_products-layout') as LoaderData
 
   return (
     <>
-      <div className="bg-white rounded-md p-6 shadow-sm">
-        <ProductProfile
-          id={featuredProduct.id}
-          name={featuredProduct.name}
-          image={featuredProduct.image}
-          brand={''}
-          brandHandle={featuredProduct.brand}
-          category={''}
-          categoryHandle={featuredProduct.category}
-          price={featuredProduct.price}
-          quantityInCart={0}
-        />
+      <div className="rounded-md overflow-hidden relative h-72 bg-black">
+        <div className="ml-[50%] p-6 text-white space-y-4">
+          <div className="text-3xl">The New iPhone</div>
+          <p>Remix your life with these fancy cameras</p>
+          <div>
+            <Link
+              to="/products/6"
+              className="inline-block py-2 px-4 text-white border border-white rounded-lg"
+            >
+              Buy Today
+            </Link>
+          </div>
+        </div>
+        <img src="/images/hero.png" alt="iphone hero" className="absolute left-0 bottom-0 w-1/2" />
       </div>
       <BrowseProducts products={products} cart={cart} />
     </>

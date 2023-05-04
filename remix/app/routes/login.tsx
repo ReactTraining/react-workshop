@@ -4,12 +4,13 @@ import { useLoaderData, Form } from '@remix-run/react'
 import type { LoaderArgs, ActionArgs } from '@remix-run/node'
 import { createUserSession, login, registerUser } from '~/utils/auth.server'
 import { usernameExists } from '~/utils/db.server'
+import { FieldWrap } from '~/components/FormFields'
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
   const _action = formData.get('_action')
-  const password = formData.get('password') as string | null
   const username = formData.get('username') as string | null
+  const password = formData.get('password') as string | null
 
   if (!password || !username) return null
 
@@ -35,7 +36,7 @@ export async function action({ request }: ActionArgs) {
   }
 }
 
-export default function Page() {
+export default function () {
   const [type, setType] = useState<'login' | 'register'>('login')
 
   return (
@@ -47,9 +48,8 @@ export default function Page() {
         Login
       </button>
       <Form method="post">
-        <div>
-          <input type="text" name="username" />
-        </div>
+        <input type="text" name="username" />
+
         <br />
         <div>
           <input type="text" name="password" />

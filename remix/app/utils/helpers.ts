@@ -20,3 +20,9 @@ export function createOutletContext<T>() {
   const Context = createContext<T>(null!)
   return { Provider: Context.Provider, useContext: () => useContext<T>(Context) }
 }
+
+// Custom TS utility to unpack loader return types
+// Usage: UnpackLoader<typeof loader>
+export type UnpackLoader<T extends (...args: any) => any> = Awaited<
+  ReturnType<Pick<Awaited<ReturnType<T>>, 'json'>['json']>
+>

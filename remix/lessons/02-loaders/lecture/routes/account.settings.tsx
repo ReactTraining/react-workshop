@@ -1,12 +1,10 @@
 import { Heading } from '~/components/Heading'
-import { FieldWrap } from '../components/FormFields'
-import { useOutletContext } from 'react-router-dom'
+import { FieldWrap } from '~/components/FormFields'
 import { Link } from '@remix-run/react'
-import { useAccountContext } from './account'
+// import type { LoaderData } from './account'
 
 export default function () {
   const settings = { deals: 'weekly', delivery: 'door' }
-  // const { settings } = useOutletContext()
 
   return (
     <>

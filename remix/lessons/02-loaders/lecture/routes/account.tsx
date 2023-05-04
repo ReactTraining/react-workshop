@@ -1,9 +1,11 @@
-import { createContext, useContext } from 'react'
 import { type LoaderArgs, json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import { requireSessionUser, type UserType } from '../utils/auth.server'
-import { UserSettingsType, getUserSettings } from '../utils/db.server'
+import { requireSessionUser } from '../utils/auth.server'
+import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
+import { UnpackLoader } from '~/utils/helpers'
+// type LoaderData = UnpackLoader<typeof loader>
+// useRouteLoaderData('routes/account')
 
 export const loader = async ({ request }: LoaderArgs) => {
   const user = await requireSessionUser(request)
@@ -12,16 +14,8 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ user, settings })
 }
 
-export type ContextType = {
-  user: UserType
-  settings: UserSettingsType
-}
-const AccountContext = createContext<ContextType>(null!)
-export const useAccountContext = () => useContext<ContextType>(AccountContext)
-
 export default function () {
-  const { user, settings } = useLoaderData<typeof loader>()
-  const context: ContextType = { user, settings }
+  const { user } = useLoaderData<typeof loader>()
 
   return (
     <div className="flex gap-6">
@@ -47,9 +41,7 @@ export default function () {
         </div>
       </div>
       <main className="flex-1 p-6 space-y-6 bg-white shadow-sm rounded">
-        <AccountContext.Provider value={context}>
-          <Outlet />
-        </AccountContext.Provider>
+        <Outlet />
       </main>
     </div>
   )

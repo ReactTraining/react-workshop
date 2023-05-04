@@ -3,15 +3,17 @@ import { type LoaderArgs, json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
+import { UnpackLoader } from '~/utils/helpers'
 
 export const loader = async ({ request }: LoaderArgs) => {
   const brands = await getBrands()
-
   return json({ brands })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
-  const { brands } = useLoaderData<typeof loader>()
+  const { brands } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">

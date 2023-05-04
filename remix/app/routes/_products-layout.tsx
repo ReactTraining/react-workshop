@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { json } from '@remix-run/node'
 import { Outlet, useLoaderData, useLocation } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
@@ -13,7 +12,7 @@ import {
 import { getCart } from '~/utils/cart.server'
 import type { LoaderArgs } from '@remix-run/node'
 import type { V2_MetaFunction } from '@remix-run/react'
-import { sortLabel } from '~/utils/helpers'
+import { type UnpackLoader, sortLabel } from '~/utils/helpers'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: 'New Remix App' }]
@@ -37,9 +36,10 @@ export const loader = async ({ request }: LoaderArgs) => {
   })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
-  const { products, brands, categories, cart } = useLoaderData<typeof loader>()
-  const context = useMemo(() => ({ products, cart }), [products])
+  const { brands, categories } = useLoaderData() as LoaderData
 
   return (
     <div className="flex gap-6">
@@ -49,7 +49,7 @@ export default function () {
         <FilterByPrice />
       </aside>
       <div className="flex-1 space-y-3">
-        <Outlet context={context} />
+        <Outlet />
       </div>
     </div>
   )

@@ -18,7 +18,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
 function Header() {
   return (
-    <header className="d bg-gradient-to-r from-sky-400 to-indigo-600">
+    <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
       <CenterContent className="border-b py-3">
         <div className="flex justify-between items-center">
           <div className="">

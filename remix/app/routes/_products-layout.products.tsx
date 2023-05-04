@@ -1,21 +1,14 @@
-import { useOutletContext } from '@remix-run/react'
 import { BrowseProducts } from '~/components/BrowseProducts'
-import { type ProductType } from '~/utils/db.server'
-import { type CartItemType } from '~/utils/cart.server'
-import type { LoaderArgs } from '@remix-run/node'
-import type { V2_MetaFunction } from '@remix-run/react'
+import { V2_MetaFunction, useRouteLoaderData } from '@remix-run/react'
+import type { LoaderData } from './_products-layout'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: 'Products' }]
 }
 
-type OutletContext = {
-  products: ProductType[]
-  cart: CartItemType[]
-}
-
 export default function () {
-  const { products, cart } = useOutletContext<OutletContext>()
+  const { products, cart } = useRouteLoaderData('routes/_products-layout') as LoaderData
+
   return (
     <>
       <header className="flex justify-between items-center">

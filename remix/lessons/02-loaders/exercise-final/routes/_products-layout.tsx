@@ -3,6 +3,7 @@ import { type LoaderArgs, json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
+import { UnpackLoader } from '~/utils/helpers'
 
 export const loader = async ({ request }: LoaderArgs) => {
   const searchParams = new URL(request.url).searchParams
@@ -14,8 +15,10 @@ export const loader = async ({ request }: LoaderArgs) => {
   })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
-  const { products, brands } = useLoaderData<typeof loader>()
+  const { products, brands } = useLoaderData<LoaderData>()
   const context = useMemo(() => ({ products }), [products])
 
   return (
