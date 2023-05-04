@@ -16,12 +16,8 @@ export function BrowseProducts({ products, cart }: BrowseProductsProps) {
         {products.map((product) => {
           const quantityInCart = cart.find((item) => item.productId === product.id)?.quantity
           return (
-            <div className="rounded-lg bg-white shadow-sm">
-              <BrowseProductItem
-                key={product.id}
-                product={product}
-                quantityInCart={quantityInCart || 0}
-              />
+            <div key={product.id} className="rounded-lg bg-white shadow-sm">
+              <BrowseProductItem product={product} quantityInCart={quantityInCart || 0} />
             </div>
           )
         })}

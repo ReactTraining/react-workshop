@@ -1,65 +1,55 @@
-import { useState } from 'react'
 import { json } from '@remix-run/node'
-import { useLoaderData, Form } from '@remix-run/react'
-import type { LoaderArgs, ActionArgs } from '@remix-run/node'
-import { createUserSession, login, registerUser } from '~/utils/auth.server'
-import { usernameExists } from '~/utils/db.server'
+import { Form, Link } from '@remix-run/react'
+import type { ActionArgs } from '@remix-run/node'
+import { createUserSession, login } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
+import { Heading } from '~/components/Heading'
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
-  const _action = formData.get('_action')
-  const username = formData.get('username') as string | null
-  const password = formData.get('password') as string | null
+  const username = formData.get('username') as string | undefined
+  const password = formData.get('password') as string | undefined
 
   if (!password || !username) return null
 
-  switch (_action) {
-    case 'login': {
-      const userId = await login(username, password)
-      if (!userId) {
-        return json('User not found', { status: 400 })
-      }
-      return createUserSession(userId, '/')
-    }
-    case 'register': {
-      const userExists = await usernameExists(username)
-      if (userExists) {
-        return json('Username already registered', { status: 400 })
-      }
-      const userId = await registerUser(username, password)
-      if (!userId) {
-        return json('User registration error', { status: 400 })
-      }
-      return createUserSession(userId, '/')
-    }
+  const userId = await login(username, password)
+  if (!userId) {
+    return json('User not found', { status: 400 })
   }
+  return createUserSession(userId, '/')
 }
 
 export default function () {
-  const [type, setType] = useState<'login' | 'register'>('login')
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const formValues = Object.fromEntries(new FormData(event.currentTarget))
+  }
 
   return (
-    <div>
-      <button onClick={() => setType('register')} className="button">
-        Register
-      </button>
-      <button onClick={() => setType('login')} className="button">
-        Login
-      </button>
-      <Form method="post">
-        <input type="text" name="username" />
-
-        <br />
-        <div>
-          <input type="text" name="password" />
-        </div>
-        <div>
-          <button type="submit" className="button" name="_action" value={type}>
-            Submit
-          </button>
-        </div>
-      </Form>
+    <div className="ml-auto mr-auto max-w-[600px]">
+      <div className="bg-white rounded-md shadow-md p-6 space-y-6">
+        <Heading size={4}>Login</Heading>
+        <Form onSubmit={onSubmit} method="post" className="space-y-3">
+          <FieldWrap label="Username" required>
+            <input className="form-field" type="text" name="username" />
+          </FieldWrap>
+          <FieldWrap label="password" required>
+            <input className="form-field" type="password" name="password" />
+          </FieldWrap>
+          <footer className="flex justify-between items-center">
+            <div>
+              <button type="submit" className="button">
+                Login
+              </button>
+            </div>
+            <div>
+              <Link to="register" type="button">
+                Need an account? Register
+              </Link>
+            </div>
+          </footer>
+        </Form>
+      </div>
     </div>
   )
 }
