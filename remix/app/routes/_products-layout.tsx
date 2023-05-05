@@ -9,7 +9,6 @@ import {
   type BrandType,
   type CategoryType,
 } from '~/utils/db.server'
-import { getCart } from '~/utils/cart.server'
 import type { LoaderArgs } from '@remix-run/node'
 import type { V2_MetaFunction } from '@remix-run/react'
 import { type UnpackLoader, sortLabel } from '~/utils/helpers'
@@ -21,18 +20,16 @@ export const meta: V2_MetaFunction = () => {
 export const loader = async ({ request }: LoaderArgs) => {
   const searchParams = new URL(request.url).searchParams
 
-  const [products, brands, categories, cart] = await Promise.all([
+  const [products, brands, categories] = await Promise.all([
     getProducts(searchParams),
     getBrands(),
     getCategories(),
-    getCart(request),
   ])
 
   return json({
     products,
     brands: brands.sort(sortLabel),
     categories: categories.sort(sortLabel),
-    cart,
   })
 }
 

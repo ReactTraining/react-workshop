@@ -2,19 +2,20 @@ import { Link } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
 import { AddToCartButton, RemoveFromCartButton } from '~/components/CartButtons'
 import type { ProductType } from '~/utils/db.server'
-import type { CartItemType } from '~/utils/cart.server'
+import { useCart } from '~/state/CartContext'
 
 type BrowseProductsProps = {
   products: ProductType[]
-  cart: CartItemType[]
 }
 
-export function BrowseProducts({ products, cart }: BrowseProductsProps) {
+export function BrowseProducts({ products }: BrowseProductsProps) {
+  const { cart } = useCart()
+
   return (
     <div>
       <Tiles>
         {products.map((product) => {
-          const quantityInCart = cart.find((item) => item.productId === product.id)?.quantity
+          const quantityInCart = cart?.find((item) => item.productId === product.id)?.quantity || 0
           return (
             <div key={product.id} className="rounded-lg bg-white shadow-sm">
               <BrowseProductItem product={product} quantityInCart={quantityInCart || 0} />

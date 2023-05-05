@@ -7,7 +7,7 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function () {
-  const { products, cart } = useRouteLoaderData('routes/_products-layout') as LoaderData
+  const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function () {
         </div>
         <div className="">[Filter]</div>
       </header>
-      <BrowseProducts products={products} cart={cart} />
+      <BrowseProducts products={products} />
     </>
   )
 }

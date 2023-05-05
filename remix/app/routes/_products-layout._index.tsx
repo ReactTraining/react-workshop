@@ -8,7 +8,7 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function () {
-  const { products, cart } = useRouteLoaderData('routes/_products-layout') as LoaderData
+  const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function () {
         </div>
         <img src="/images/hero.png" alt="iphone hero" className="absolute left-0 bottom-0 w-1/2" />
       </div>
-      <BrowseProducts products={products} cart={cart} />
+      <BrowseProducts products={products} />
     </>
   )
 }
