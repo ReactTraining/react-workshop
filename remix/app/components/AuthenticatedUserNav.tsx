@@ -1,11 +1,23 @@
 import { UserType } from '~/utils/db.server'
 import { Avatar } from '~/components/Avatar'
+import { Link } from '@remix-run/react'
+import { useAuth } from '~/state/AuthContext'
 
-type Props = {
-  user?: UserType
-}
+export function AuthenticatedUserNav() {
+  const { user } = useAuth()
 
-export function AuthenticatedUserNav({ user }: Props) {
-  return <div>{user ? user.username : 'not logged in'}</div>
-  // return <Avatar src="https://avatars.githubusercontent.com/u/2272118?v=4" />
+  return (
+    <div>
+      {user ? (
+        <Avatar src={user.avatarUrl} />
+      ) : (
+        <Link
+          to="/login"
+          className="border-current border rounded-md text-sky-500 bg-black/20 px-4 py-2 shadow-md"
+        >
+          Login
+        </Link>
+      )}
+    </div>
+  )
 }

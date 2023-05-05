@@ -1,4 +1,6 @@
 import { Link, NavLink } from '@remix-run/react'
+import { useAuth } from '~/state/AuthContext'
+import { useCart } from '~/state/CartContext'
 import { Logo } from './Logo'
 import { AuthenticatedUserNav } from './AuthenticatedUserNav'
 import { Icon } from './Icon'
@@ -12,27 +14,23 @@ type MainLayoutProps = {
 export function MainLayout({ children, user }: MainLayoutProps) {
   return (
     <div>
-      <Header user={user} />
+      <Header />
       <SubHeader />
       <CenterContent className="pt-6 pb-20">{children}</CenterContent>
     </div>
   )
 }
 
-type HeaderProps = {
-  user?: UserType
-}
-
-function Header({ user }: HeaderProps) {
+function Header() {
   return (
-    <header className="d bg-gradient-to-r from-sky-400 to-indigo-600">
+    <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
       <CenterContent className="border-b py-3">
         <div className="flex justify-between items-center">
           <div className="">
             <Logo />
           </div>
           <div className="">
-            <AuthenticatedUserNav user={user} />
+            <AuthenticatedUserNav />
           </div>
         </div>
       </CenterContent>
@@ -41,6 +39,11 @@ function Header({ user }: HeaderProps) {
 }
 
 function SubHeader() {
+  const { user } = useAuth()
+  const { cart } = useCart()
+
+  const quantity = cart?.reduce((total, item) => total + item.quantity, 0) || 0
+
   return (
     <CenterContent className="bg-white border-b">
       <div className="flex justify-between items-center">
@@ -54,15 +57,16 @@ function SubHeader() {
           <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/blog">
             Blog
           </NavLink>
-          <Link className="inline-block py-3 px-5 -mb-[1px]" to="/login">
-            Login
-          </Link>
-          <Link className="inline-block py-3 px-5 -mb-[1px]" to="/logout">
-            Logout
-          </Link>
+          {user && (
+            <Link className="inline-block py-3 px-5 -mb-[1px]" to="/logout">
+              Logout
+            </Link>
+          )}
         </nav>
         <div>
-          <span className="mr-2">Cart is empty</span>
+          <span className="mr-2">
+            {quantity > 0 ? `${quantity} items in your cart` : 'Cart is empty'}
+          </span>
           <span className="text-brandColor">
             <Icon name="cart" />
           </span>

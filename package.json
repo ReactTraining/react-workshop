@@ -29,8 +29,7 @@
     "react-router-dom": "^6.2.1",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
-    "yup": "^0.32.11",
-    "zod": "^3.21.4"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",

@@ -7,20 +7,23 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
-import stylesheet from '~/styles/app.css'
+import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
 import { MainLayout } from '~/components/MainLayout'
 import { getSessionUser } from '~/utils/auth.server'
-import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
+import { AuthProvider } from '~/state/AuthContext'
+import { CartProvider } from '~/state/CartContext'
+import { getCart } from '~/utils/cart.server'
+import stylesheet from '~/styles/app.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
 export async function loader({ request }: LoaderArgs) {
-  const sessionUser = await getSessionUser(request)
-  return json({ sessionUser })
+  const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
+  return json({ sessionUser, cart })
 }
 
 export default function App() {
-  const { sessionUser } = useLoaderData<typeof loader>()
+  const { sessionUser, cart } = useLoaderData<typeof loader>()
 
   return (
     <html lang="en">
@@ -36,9 +39,13 @@ export default function App() {
         />
       </head>
       <body>
-        <MainLayout user={sessionUser}>
-          <Outlet />
-        </MainLayout>
+        <AuthProvider user={sessionUser}>
+          <CartProvider cart={cart}>
+            <MainLayout>
+              <Outlet />
+            </MainLayout>
+          </CartProvider>
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
