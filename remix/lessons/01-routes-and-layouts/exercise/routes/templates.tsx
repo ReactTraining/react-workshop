@@ -1,13 +1,5 @@
 import { Outlet } from '@remix-run/react'
 
-// localhost:3000                    DefaultLayout   "Home Page"
-// localhost:3000/contact            DefaultLayout   "Contact"
-// localhost:3000/auth/login         AuthLayout      "Login"
-// localhost:3000/auth/register      AuthLayout      "Register"
-// localhost:3000/products           ProductsLayout  "Browse Products"
-// localhost:3000/products/1         ProductsLayout  "Product Profile: 1"
-// localhost:3000/products/special   ProductsLayout  "Special Product Profile"
-
 // Gray
 function DefaultLayout() {
   return (

@@ -3,9 +3,9 @@ import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
-import type { LoaderArgs } from '@remix-run/node'
 import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
+import type { LoaderArgs } from '@remix-run/node'
 
 export const loader = async ({ request }: LoaderArgs) => {
   const searchParams = new URL(request.url).searchParams
@@ -48,17 +48,19 @@ function FilterLink({ children, value }: { children: React.ReactNode; value: str
   const id = useId()
   const url = useLocation().pathname
 
-  // Current URL
+  // The current URL
   const [search] = useSearchParams()
-  const brand = search.get('brand')
-  const on = brand === value
+  const urlValue = search.get('brand')?.toLowerCase().split(',')
+  const on = Array.isArray(urlValue) && urlValue.includes(value.toLowerCase())
 
-  // Next URL
+  // The next URL
   const nextSearch = new URLSearchParams(search.toString())
+  const valuesFiltered = Array.isArray(urlValue) ? urlValue.filter((v) => v && v !== value) : []
+
   if (on) {
-    nextSearch.delete('brand')
+    nextSearch.set('brand', valuesFiltered.join(','))
   } else {
-    nextSearch.set('brand', value)
+    nextSearch.set('brand', valuesFiltered.concat(value).join(','))
   }
 
   const to = `${url}?${nextSearch.toString()}`

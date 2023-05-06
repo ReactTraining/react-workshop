@@ -16,4 +16,7 @@ const brand = search.get('brand')
 
 // Delete
 search.delete('brand')
+
+// Serialize the search object into a string
+search.toString()
 ```
