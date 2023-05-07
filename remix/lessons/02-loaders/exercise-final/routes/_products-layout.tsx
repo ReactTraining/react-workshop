@@ -18,8 +18,12 @@ export const loader = async ({ request }: LoaderArgs) => {
 export type LoaderData = UnpackLoader<typeof loader>
 
 export default function () {
-  const { products, brands } = useLoaderData<LoaderData>()
-  const context = useMemo(() => ({ products }), [products])
+  // Task 1
+  // const { products, brands } = useLoaderData<LoaderData>()
+  // const context = useMemo(() => ({ products }), [products])
+
+  // Task 2
+  const { brands } = useLoaderData() as LoaderData
 
   return (
     <div className="flex gap-6">
@@ -39,7 +43,8 @@ export default function () {
         })}
       </aside>
       <main className="flex-1 space-y-3">
-        <Outlet context={context} />
+        {/* <Outlet context={context} /> */}
+        <Outlet />
       </main>
     </div>
   )

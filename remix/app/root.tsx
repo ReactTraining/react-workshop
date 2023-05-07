@@ -14,7 +14,10 @@ import { AuthProvider } from '~/state/AuthContext'
 import { CartProvider } from '~/state/CartContext'
 import { getCart } from '~/utils/cart.server'
 import stylesheet from '~/styles/app.css'
+import type { UnpackLoader } from '~/utils/helpers'
+import type { PropsWithChildren } from 'react'
 
+export { ErrorBoundary } from './error-handler'
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
 export async function loader({ request }: LoaderArgs) {
@@ -22,8 +25,18 @@ export async function loader({ request }: LoaderArgs) {
   return json({ sessionUser, cart })
 }
 
+export type LoaderType = UnpackLoader<typeof loader>
+
 export default function App() {
-  const { sessionUser, cart } = useLoaderData<typeof loader>()
+  return (
+    <Document>
+      <Outlet />
+    </Document>
+  )
+}
+
+function Document({ children }: PropsWithChildren) {
+  const { sessionUser, cart } = useLoaderData() as LoaderType
 
   return (
     <html lang="en">
@@ -41,9 +54,7 @@ export default function App() {
       <body>
         <AuthProvider user={sessionUser}>
           <CartProvider cart={cart}>
-            <MainLayout>
-              <Outlet />
-            </MainLayout>
+            <MainLayout>{children}</MainLayout>
           </CartProvider>
         </AuthProvider>
         <ScrollRestoration />

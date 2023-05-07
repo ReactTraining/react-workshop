@@ -44,50 +44,43 @@ export default function () {
   const categoryLabel = categories.find((c) => c.handle === product.category)?.label as string
 
   return (
-    <div className="flex gap-6">
-      <aside className="w-72 p-6 border rounded-lg bg-white space-y-6">aside</aside>
-      <div className="flex-1 space-y-10">
-        <main className="p-6 border rounded-lg bg-white">
-          <ProductProfile
-            id={product.id}
-            name={product.name}
-            image={product.image}
-            brand={brandLabel}
-            brandHandle={product.brand}
-            category={categoryLabel}
-            categoryHandle={product.category}
-            price={product.price}
-            quantityInCart={quantityInCart}
-          />
-        </main>
-        <div className="space-y-3">
-          <div>Other Products From This Brand</div>
-          <hr />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Await resolve={relatedProductsPromise}>
-              {(products) => {
-                return (
-                  <Tiles>
-                    {products.map((product) => {
-                      const quantityInCart =
-                        cart.find((item) => item.productId === product.id)?.quantity || 0
-                      return (
-                        <div className="border rounded-lg bg-white">
-                          <BrowseProductItem
-                            key={product.id}
-                            product={product}
-                            quantityInCart={quantityInCart}
-                          />
-                        </div>
-                      )
-                    })}
-                  </Tiles>
-                )
-              }}
-            </Await>
-          </Suspense>
-        </div>
+    <>
+      <main className="p-6 border rounded-lg bg-white">
+        <ProductProfile
+          id={product.id}
+          name={product.name}
+          image={product.image}
+          brand={brandLabel}
+          brandHandle={product.brand}
+          category={categoryLabel}
+          categoryHandle={product.category}
+          price={product.price}
+          quantityInCart={quantityInCart}
+        />
+      </main>
+      <div className="space-y-3">
+        <div>Other Products From This Brand</div>
+        <hr />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Await resolve={relatedProductsPromise}>
+            {(products) => {
+              return (
+                <Tiles>
+                  {products.map((product) => {
+                    const quantityInCart =
+                      cart.find((item) => item.productId === product.id)?.quantity || 0
+                    return (
+                      <div key={product.id} className="border rounded-lg bg-white">
+                        <BrowseProductItem product={product} quantityInCart={quantityInCart} />
+                      </div>
+                    )
+                  })}
+                </Tiles>
+              )
+            }}
+          </Await>
+        </Suspense>
       </div>
-    </div>
+    </>
   )
 }

@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node'
-import { Outlet, useLoaderData, useLocation } from '@remix-run/react'
+import { Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { FilterLink, FilterLinkAll } from '~/components/FilterLink'
 import {
@@ -12,6 +12,8 @@ import {
 import type { LoaderArgs } from '@remix-run/node'
 import type { V2_MetaFunction } from '@remix-run/react'
 import { type UnpackLoader, sortLabel } from '~/utils/helpers'
+
+export { ErrorBoundary } from '~/error-handler'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: 'New Remix App' }]
