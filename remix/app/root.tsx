@@ -53,7 +53,7 @@ function Document({ children }: PropsWithChildren) {
       </head>
       <body>
         <AuthProvider user={sessionUser}>
-          <CartProvider cart={cart}>
+          <CartProvider cart={cart || []}>
             <MainLayout>{children}</MainLayout>
           </CartProvider>
         </AuthProvider>

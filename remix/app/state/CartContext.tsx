@@ -2,12 +2,12 @@ import * as React from 'react'
 import type { CartItemType } from '~/utils/cart.server'
 
 type ContextType = {
-  cart: CartItemType[] | undefined
+  cart: CartItemType[]
 }
 
 type Props = {
   children: React.ReactNode
-  cart: CartItemType[] | undefined
+  cart: CartItemType[]
 }
 
 const Context = React.createContext<ContextType>(null!)

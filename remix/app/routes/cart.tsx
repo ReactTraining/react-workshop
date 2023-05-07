@@ -1,5 +1,4 @@
 import { type ActionArgs } from '@remix-run/node'
-import { Heading } from '~/components/Heading'
 import { addToCart, removeFromCart } from '~/utils/cart.server'
 
 export async function action({ request }: ActionArgs) {
@@ -18,12 +17,3 @@ export async function action({ request }: ActionArgs) {
     }
   }
 }
-
-// export default function () {
-//   return (
-//     <div>
-//       <Heading>View Cart</Heading>
-//       <div>...</div>
-//     </div>
-//   )
-// }

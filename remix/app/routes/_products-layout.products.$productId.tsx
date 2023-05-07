@@ -1,23 +1,22 @@
 import { defer } from '@remix-run/node'
 import { Await, useLoaderData } from '@remix-run/react'
 import { getBrands, getCategories, getProduct, getRelatedProducts } from '~/utils/db.server'
-import { getCart } from '~/utils/cart.server'
 import { sortLabel, sleep } from '~/utils/helpers'
 import { ProductProfile } from '~/components/ProductProfile'
 import { Tiles } from '~/components/Tiles'
 import { Suspense } from 'react'
 import { BrowseProductItem } from '~/components/BrowseProducts'
+import { useCart } from '~/state/CartContext'
 import type { LoaderArgs } from '@remix-run/node'
 
-export const loader = async ({ params, request }: LoaderArgs) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const productId = parseInt(params.productId!)
   if (!productId) throw new Response('Invalid Product ID', { status: 404 })
 
-  const [product, brands, categories, cart] = await Promise.all([
+  const [product, brands, categories] = await Promise.all([
     getProduct(productId),
     getBrands(),
     getCategories(),
-    getCart(request),
   ])
 
   if (!product) throw new Response('Not found', { status: 404 })
@@ -30,14 +29,14 @@ export const loader = async ({ params, request }: LoaderArgs) => {
     product,
     brands: brands.sort(sortLabel),
     categories: categories.sort(sortLabel),
-    cart,
     relatedProductsPromise,
   })
 }
 
 export default function () {
-  const { product, brands, categories, cart, relatedProductsPromise } =
-    useLoaderData<typeof loader>()
+  const { product, brands, categories, relatedProductsPromise } = useLoaderData<typeof loader>()
+
+  const { cart } = useCart()
 
   const quantityInCart = cart.find((c) => c.productId === product.id)?.quantity || 0
   const brandLabel = brands.find((b) => b.handle === product.brand)?.label as string
