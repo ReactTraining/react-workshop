@@ -10,7 +10,7 @@ import {
 import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from './components/MainLayout'
-import { LessonProvider } from '~/components/LessonContext'
+import { LessonProvider } from '~/state/LessonContext'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 

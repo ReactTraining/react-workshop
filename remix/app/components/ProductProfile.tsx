@@ -35,7 +35,7 @@ export function ProductProfile({
       <div className="flex-1 space-y-6">
         <header className="mt-3 flex justify-between items-center">
           <Heading>{name}</Heading>
-          <div className="text-xl">${price.toFixed(2)}</div>
+          <div className="text-3xl text-headingColor">${price.toFixed(2)}</div>
         </header>
         <div className="space-x-2">
           <i>

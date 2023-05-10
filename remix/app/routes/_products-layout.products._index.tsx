@@ -13,9 +13,9 @@ export default function () {
     <>
       <header className="flex justify-between items-center">
         <div className="">
-          <b>Products: {products.length}</b>
+          <b>Products Found: {products.length}</b>
         </div>
-        <div className="">[Filter]</div>
+        {/* <div className="">[Filter]</div> */}
       </header>
       <BrowseProducts products={products} />
     </>

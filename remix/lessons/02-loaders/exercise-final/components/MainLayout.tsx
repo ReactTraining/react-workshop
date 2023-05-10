@@ -1,5 +1,5 @@
 import { NavLink } from '@remix-run/react'
-import { SelectedLesson } from '~/components/LessonContext'
+import { SelectedLesson } from '~/state/LessonContext'
 import { Logo } from '~/components/Logo'
 
 type MainLayoutProps = {

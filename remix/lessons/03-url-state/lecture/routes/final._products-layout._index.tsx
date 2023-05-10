@@ -1,16 +1,10 @@
-import { useOutletContext } from '@remix-run/react'
-import { type ProductType } from '~/utils/db.server'
-import { type CartItemType } from '~/utils/cart.server'
+import { useRouteLoaderData } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-
-type OutletContext = {
-  products: ProductType[]
-  cart: CartItemType[]
-}
+import type { LoaderData } from './_products-layout'
 
 export default function () {
-  const { products } = useOutletContext<OutletContext>()
+  const { products } = useRouteLoaderData('routes/final._products-layout') as LoaderData
 
   return (
     <Tiles>

@@ -1,9 +1,9 @@
-import { useId, useMemo } from 'react'
+import { useId } from 'react'
 import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
-import { sortLabel } from '~/utils/helpers'
+import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 import type { LoaderArgs } from '@remix-run/node'
 
@@ -17,9 +17,10 @@ export const loader = async ({ request }: LoaderArgs) => {
   })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
-  const { products, brands } = useLoaderData<typeof loader>()
-  const context = useMemo(() => ({ products }), [products])
+  const { brands } = useLoaderData() as LoaderData
 
   return (
     <div className="flex gap-6">
@@ -38,7 +39,7 @@ export default function () {
         </section>
       </aside>
       <main className="flex-1 space-y-3">
-        <Outlet context={context} />
+        <Outlet />
       </main>
     </div>
   )

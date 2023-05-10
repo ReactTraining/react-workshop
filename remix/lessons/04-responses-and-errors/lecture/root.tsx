@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import {
   Links,
   LiveReload,
@@ -5,12 +6,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   useLoaderData,
+  useRouteError,
 } from '@remix-run/react'
 import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
+import { Heading } from '~/components/Heading'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
@@ -48,3 +52,28 @@ export default function App() {
     </html>
   )
 }
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+
+  let heading = 'Unknown Error'
+  let message = ''
+
+  if (isRouteErrorResponse(error)) {
+    heading = error.status + ' ' + error.statusText
+    message = error.data
+  } else if (error instanceof Error) {
+    heading = 'Page Error'
+    message = error.message
+  }
+
+  return (
+    <div className="bg-white p-6 rounded-md space-y-6">
+      <Heading size={1}>{heading}</Heading>
+      <p>{message}</p>
+    </div>
+  )
+}
+
+// export function Document({ children }: PropsWithChildren) {
+// }

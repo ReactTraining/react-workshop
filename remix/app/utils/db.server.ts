@@ -124,7 +124,7 @@ export type CategoryType = {
   label: string
 }
 
-export async function getCategories(): Promise<BrandType[]> {
+export async function getCategories(): Promise<CategoryType[]> {
   const categories = await fetch(`${url}/categories`).then((res) => res.json())
   return categories
 }

@@ -6,9 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  isRouteErrorResponse,
+  useRouteError,
 } from '@remix-run/react'
 import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
 import { MainLayout } from '~/components/MainLayout'
+import { Heading } from '~/components/Heading'
+import { CenterContent } from '~/components/CenterContent'
 import { getSessionUser } from '~/utils/auth.server'
 import { AuthProvider } from '~/state/AuthContext'
 import { CartProvider } from '~/state/CartContext'
@@ -17,7 +21,6 @@ import stylesheet from '~/styles/app.css'
 import type { UnpackLoader } from '~/utils/helpers'
 import type { PropsWithChildren } from 'react'
 
-export { ErrorBoundary } from './error-handler'
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
 export async function loader({ request }: LoaderArgs) {
@@ -28,16 +31,48 @@ export async function loader({ request }: LoaderArgs) {
 export type LoaderType = UnpackLoader<typeof loader>
 
 export default function App() {
+  const { sessionUser, cart } = useLoaderData() as LoaderType
+
   return (
     <Document>
-      <Outlet />
+      <AuthProvider user={sessionUser}>
+        <CartProvider cart={cart || []}>
+          <MainLayout>
+            <Outlet />
+          </MainLayout>
+        </CartProvider>
+      </AuthProvider>
     </Document>
   )
 }
 
-function Document({ children }: PropsWithChildren) {
-  const { sessionUser, cart } = useLoaderData() as LoaderType
+export function ErrorBoundary() {
+  const error = useRouteError()
 
+  let heading = 'Unknown Error'
+  let message = ''
+
+  if (isRouteErrorResponse(error)) {
+    heading = error.status + ' ' + error.statusText
+    message = error.data
+  } else if (error instanceof Error) {
+    heading = 'Page Error'
+    message = error.message
+  }
+
+  return (
+    <Document>
+      <CenterContent className="pt-6 pb-20">
+        <div className="bg-white p-6 rounded-md space-y-6">
+          <Heading size={1}>{heading}</Heading>
+          <p>{message}</p>
+        </div>
+      </CenterContent>
+    </Document>
+  )
+}
+
+export function Document({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
@@ -52,11 +87,7 @@ function Document({ children }: PropsWithChildren) {
         />
       </head>
       <body>
-        <AuthProvider user={sessionUser}>
-          <CartProvider cart={cart || []}>
-            <MainLayout>{children}</MainLayout>
-          </CartProvider>
-        </AuthProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

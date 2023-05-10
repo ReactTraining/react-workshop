@@ -2,16 +2,15 @@ import { Link, NavLink } from '@remix-run/react'
 import { useAuth } from '~/state/AuthContext'
 import { useCart } from '~/state/CartContext'
 import { Logo } from './Logo'
+import { CenterContent } from './CenterContent'
 import { AuthenticatedUserNav } from './AuthenticatedUserNav'
 import { Icon } from './Icon'
-import type { UserType } from '~/utils/db.server'
 
 type MainLayoutProps = {
   children: React.ReactNode
-  user?: UserType
 }
 
-export function MainLayout({ children, user }: MainLayoutProps) {
+export function MainLayout({ children }: MainLayoutProps) {
   return (
     <div>
       <Header />
@@ -73,18 +72,5 @@ function SubHeader() {
         </div>
       </div>
     </CenterContent>
-  )
-}
-
-type CenterContentProps = {
-  className?: string
-  children: React.ReactNode
-}
-
-export function CenterContent({ children, className }: CenterContentProps) {
-  return (
-    <div className={className}>
-      <div className="ml-auto mr-auto max-w-[1200px] pl-3 pr-3">{children}</div>
-    </div>
   )
 }
