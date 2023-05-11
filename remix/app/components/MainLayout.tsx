@@ -47,17 +47,17 @@ function SubHeader() {
     <CenterContent className="bg-white border-b">
       <div className="flex justify-between items-center">
         <nav className="primary-nav">
-          <NavLink className="inline-block py-3 px-5 -mb-[1px] border-b-2" to="/">
+          <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
             Home
           </NavLink>
-          <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/products">
+          <NavLink to="/products" className="inline-block py-3 px-5 -mb-[1px]">
             Products
           </NavLink>
-          <NavLink className="inline-block py-3 px-5 -mb-[1px]" to="/blog">
+          <NavLink to="/blog" className="inline-block py-3 px-5 -mb-[1px]">
             Blog
           </NavLink>
           {user && (
-            <Link className="inline-block py-3 px-5 -mb-[1px]" to="/logout">
+            <Link to="/logout" className="inline-block py-3 px-5 -mb-[1px]">
               Logout
             </Link>
           )}

@@ -1,16 +1,22 @@
 import { NavLink } from '@remix-run/react'
 import { SelectedLesson } from '~/state/LessonContext'
 import { Logo } from '~/components/Logo'
+import { Icon } from '~/components/Icon'
+import { CartItemType } from '~/utils/cart.server'
+
+type PropsWithCart = {
+  cart: CartItemType[]
+}
 
 type MainLayoutProps = {
   children: React.ReactNode
-}
+} & PropsWithCart
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ children, cart }: MainLayoutProps) {
   return (
     <div>
       <Header />
-      <SubHeader />
+      <SubHeader cart={cart} />
       <CenterContent className="pt-6 pb-20">{children}</CenterContent>
     </div>
   )
@@ -33,20 +39,29 @@ function Header() {
   )
 }
 
-function SubHeader() {
+function SubHeader({ cart }: PropsWithCart) {
+  const quantity = cart?.reduce((total, item) => total + item.quantity, 0) || 0
+
   return (
     <CenterContent className="bg-white border-b">
-      <nav className="primary-nav">
-        <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
-          Home
-        </NavLink>
-        <NavLink to="/start" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
-          Start
-        </NavLink>
-        <NavLink to="/login" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
-          Login
-        </NavLink>
-      </nav>
+      <div className="flex justify-between items-center">
+        <nav className="primary-nav">
+          <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
+            Home
+          </NavLink>
+          <NavLink to="/register" className="inline-block py-3 px-5 -mb-[1px]">
+            Register
+          </NavLink>
+        </nav>
+        <div>
+          <span className="mr-2">
+            {quantity > 0 ? `${quantity} items in your cart` : 'Cart is empty'}
+          </span>
+          <span className="text-brandColor">
+            <Icon name="cart" />
+          </span>
+        </div>
+      </div>
     </CenterContent>
   )
 }

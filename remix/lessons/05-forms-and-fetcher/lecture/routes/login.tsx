@@ -1,10 +1,18 @@
 import { useId } from 'react'
-import classnames from 'classnames'
 import { json } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
 import type { ActionArgs } from '@remix-run/node'
 import { Heading } from '~/components/Heading'
-import * as z from 'zod'
+
+export async function action({ request }: ActionArgs) {
+  const formData = await request.formData()
+
+  // Get the form data one of two ways:
+  const username = formData.get('username')
+  // const formValues = Object.fromEntries(formData)
+  // const username = formValues.username
+  return null
+}
 
 export default function Login() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -29,7 +37,6 @@ export default function Login() {
             <div>
               <input id={usernameId} className="form-field" type="text" name="username" />
             </div>
-            {/* <div className="text-red-500">Input Errors....</div> */}
           </div>
 
           <div className="form-field-wrap space-y-1 required">
@@ -39,7 +46,6 @@ export default function Login() {
             <div>
               <input id={passwordId} className="form-field" type="password" name="password" />
             </div>
-            {/* <div className="text-red-500">Input Errors....</div> */}
           </div>
 
           <footer className="flex justify-between items-center">
@@ -57,10 +63,9 @@ export default function Login() {
 //   children: React.ReactNode
 //   label: string
 //   required?: boolean
-//   errors?: string[] | undefined
 // }
 
-// export function FieldWrap({ children, label, required = false, errors }: FieldWrapProps) {
+// export function FieldWrap({ children, label, required = false }: FieldWrapProps) {
 //   const id = useId()
 //   return (
 //     <div className={classnames('form-field-wrap space-y-1', { required })}>
@@ -68,7 +73,6 @@ export default function Login() {
 //         {label}
 //       </label>
 //       <div>{children}</div>
-//       {errors && <div className="text-red-500">{errors.join(', ')}</div>}
 //     </div>
 //   )
 // }

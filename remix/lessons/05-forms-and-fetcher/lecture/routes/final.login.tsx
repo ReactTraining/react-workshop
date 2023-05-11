@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { json } from '@remix-run/node'
+import { json, redirect } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
-import type { ActionArgs } from '@remix-run/node'
-import { createUserSession, login } from '~/utils/auth.server'
+import { login } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 import * as z from 'zod'
+import type { ActionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
   username: z.string().min(5),
@@ -27,7 +27,8 @@ export async function action({ request }: ActionArgs) {
   const userId = await login(username, password)
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
-  return createUserSession(userId, '/')
+  // Log the user in and redirect if necessary
+  return redirect('/')
 }
 
 export default function Login() {
