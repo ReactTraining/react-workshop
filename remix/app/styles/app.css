@@ -102,9 +102,9 @@ body {
     color: theme(colors.brandColor);
   }
 
-  .button.button-warn:hover,
-  .button.button-warn:focus {
-    color: theme(colors.sky.700);
+  .button[disabled] {
+    background-color: theme(colors.slate.400);
+    color: #fff;
   }
 }
 

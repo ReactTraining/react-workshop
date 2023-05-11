@@ -1,5 +1,4 @@
-import { Session, createCookieSessionStorage, redirect } from '@remix-run/node'
-import { getUser } from './db.server'
+import { Session, createCookieSessionStorage } from '@remix-run/node'
 
 const sessionSecret = 'superdupersecretdefault'
 
