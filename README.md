@@ -1,9 +1,6 @@
 # Welcome to React Training!
 
-Be sure to also checkout https://reacttraining.com/workshops to see our schedule of public workshops. We offer:
-
-- Monthly Public Workshops
-- Private/tailored Corporate Workshops
+Be sure to also checkout https://reacttraining.com/public-workshops to see our schedule of public workshops.
 
 This repo contains the latest course material for [React Training](https://reacttraining.com/).
 
@@ -15,7 +12,6 @@ This repo contains the latest course material for [React Training](https://react
 - [Setup For Mac and Linux Users (Unix Users)](#setup-for-mac-and-linux-users-unix-users)
 - [Setup For Windows Users](#setup-for-windows-users)
 - [Consider Using VSCode](#consider-using-vscode)
-- [Clone and Install](#clone-and-install)
 - [Running the code](#running-the-code)
 - [Running the code on Windows](#running-the-code-on-windows)
 - [Database](#database)
@@ -26,17 +22,14 @@ This repo contains the latest course material for [React Training](https://react
 
 ## Quick Start
 
-```sh
-npm install
+- Do `npm install` first
+- If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
+- Do `npm start`
+- You'll see a menu which asks "Which Course?"
+- Choose the number for "FULL APP"
+- It should be running now on localhost:3000
 
-# If you see "peer dependency" issues
-# npm install --legacy-peer-deps
-
-npm start app
-# visit: localhost:3000
-```
-
-If the app loads, then everything works and you're ready.
+If the app runs, you're ready for the workshop
 
 ## How to get ready for the workshop
 
@@ -44,23 +37,21 @@ If the app loads, then everything works and you're ready.
 - [ ] Install this code (instructions below)
 - [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). Some JS topics are confusing to those who mostly program in other languages -- like JavaScript's Arrow Functions. Please become familiar with them (hint: we talk about them in this article).
 - [ ] We highly recommend watching this 10m video - [The Story of React](https://www.youtube.com/watch?v=Wm_xI7KntDs)
-- [ ] We have some [additional reading material](./reading) for those who are interested in learning more things before the workshop (not required though).
+- [ ] We have some [additional reading material](./docs) for those who are interested in learning more things before the workshop (not required though).
 - [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues that are out of our control. Most of the time we see that your peers will be able to help you out since this will be very specific to your company's security policies.
 
 ## Not good at JavaScript? Not a programmer?
 
 That's totally okay if you don't know JS very well as long as you know how to program in any other language you'll do fine in the workshop. However, JavaScript has changed a lot since 2015 and if you're not used to its modern syntax, you might struggle a bit with React and our material **so please read** [this primer article](https://reacttraining.com/blog/javascript-the-react-parts/) that will get you ready. People often tell us the primer article was the thing that made the workshop successful for them.
 
-This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers so just go in with the expectation that on average, our attendees usually have at least a year (sometimes decades) of programming experience so the pace is going to be more appropriate for them.
+This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers.
 
-Going into the workshop, we presume you know:
+We presume you know:
 
 - How to write HTML
 - How to do Command Line
 - What an API is (in general)
 - HTTP concepts like REST/GET/POST etc, and the general idea of AJAX requests
-
-(Basically, general web developer and programmer concepts)
 
 ## Setup For Mac and Linux Users (Unix Users)
 
@@ -131,27 +122,6 @@ Consider using [VSCode](https://code.visualstudio.com/download) -- a lightweight
 
 If you're a Java/C# developer, we know you have you're editors for those languages, but you can expect a less optimal experience with poor tooling when you write JavaScript in those tools.
 
-## Clone and Install
-
-Installing is the same for **Mac, Linux, and Windows** users:
-
-```sh
-# Clone the repo to your local machine
-$ git clone https://github.com/ReactTraining/react-workshop.git
-
-# Whichever directory you run the above command from, that
-# directory should now have a folder called `react-workshop`.
-
-# Change directory to the project's root folder
-$ cd react-workshop
-
-# From the project's root folder
-$ npm install
-
-# If you see "peer dependency" issues
-# npm install --legacy-peer-deps
-```
-
 ## Running the code
 
 🚨 **Windows users**, your way of running the code might be different. See the section for **Running the code on Windows** after this section.
@@ -197,17 +167,9 @@ We think we fixed some of our recent issues with PowerShell and GitBash, but his
 - WSL 2 Installation: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 - Node on Windows: https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2
 
-When running the code, if the app launches and runs but you can't see your changes reflected in the browser -- there is a known issue in one of Webpack's dependencies when running on Node 14 on certain platforms that breaks the dev server. If you experience this, try updating the start script in `package.json` as follows:
-
-```diff
-  "scripts": {
--    "start": "node scripts/start.js"
-+    "start": "CHOKIDAR_USEPOLLING=true node scripts/start.js"
-```
-
 If you're not using WSL and you experience issues, they might be:
 
-- Repos with spaces can fail to build.
+- Your repo name has spaces in it, sometimes now allowed.
 - Permissions issues when attempting to clone the repo. If you are using WSL but usually use another shell, you may want to copy your SSH keys where WSL can access them. [This article explains why this is necessary and how to do it.](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 
 ## Database
