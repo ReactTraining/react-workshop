@@ -1,13 +1,12 @@
 import { useState } from 'react'
+import * as z from 'zod'
 import { json } from '@remix-run/node'
-import { useLoaderData, Form, useActionData, Link } from '@remix-run/react'
-import type { LoaderArgs, ActionArgs } from '@remix-run/node'
+import { Form, useActionData, Link } from '@remix-run/react'
 import { createUserSession, login, registerUser } from '~/utils/auth.server'
 import { usernameExists } from '~/utils/db.server'
 import { FieldWrap } from '~/components/FormFields'
-import { CenterContent } from '~/components/MainLayout'
 import { Heading } from '~/components/Heading'
-import * as z from 'zod'
+import type { ActionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
   username: z.string().min(5),
