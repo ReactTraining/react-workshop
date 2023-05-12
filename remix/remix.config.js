@@ -7,11 +7,13 @@ module.exports = {
   // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
   // watchPaths: ['./styles'],
+  serverModuleFormat: 'cjs', // Only needed in pre 2.0
+  serverDependenciesToBundle: ['mdx-bundler'],
+  tailwind: true,
   future: {
     v2_errorBoundary: true,
     v2_meta: true,
     v2_normalizeFormMethod: true,
     v2_routeConvention: true,
-    unstable_tailwind: true,
   },
 }
