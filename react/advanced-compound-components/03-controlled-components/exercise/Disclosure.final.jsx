@@ -29,7 +29,7 @@ export function Disclosure({
     isOpen: isControlled ? controlledOpen : isOpen,
     panelId,
     onSelect: () => {
-      onChange && onChange()
+      onChange && onChange(!isOpen)
       if (!isControlled) {
         setIsOpen(!isOpen)
       }

@@ -10,7 +10,7 @@ export function Disclosure({ children, onChange, defaultOpen = false, ...props }
       isOpen,
       panelId,
       onSelect: () => {
-        onChange && onChange()
+        onChange && onChange(!isOpen)
         setIsOpen(!isOpen)
       },
     })
