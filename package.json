@@ -5,6 +5,7 @@
     "start": "node scripts/start.js",
     "kill-db-port": "node scripts/kill-db-port 3333",
     "template": "cd scripts && plop",
+    "install-remix": "cd remix && npm install",
     "test": "NODE_PATH=./react jest"
   },
   "dependencies": {

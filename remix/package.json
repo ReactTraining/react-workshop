@@ -1,7 +1,9 @@
 {
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev"
+    "deploy": "fly deploy --remote-only",
+    "dev": "remix dev",
+    "start": "remix-serve build"
   },
   "dependencies": {
     "@remix-run/node": "^1.16.0",
