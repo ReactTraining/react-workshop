@@ -4,7 +4,7 @@ import { Counter } from './Counter'
 import { AddCourse } from './AddCourse'
 
 export function BrowseCourses() {
-  const minLessons = 0
+  const [minLessons, setMinLessons] = useState(0)
 
   const courses = [
     { id: 1, name: 'React', lessons: 5 },
@@ -24,7 +24,7 @@ export function BrowseCourses() {
         <Heading size={1}>Courses</Heading>
         <div className="text-center spacing">
           <div className="text-small">At least {minLessons} lessons</div>
-          <Counter />
+          <Counter count={minLessons} setCount={setMinLessons} />
         </div>
       </div>
       <div className="spacing">
