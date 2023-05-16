@@ -48,7 +48,7 @@ export default function Login() {
       <div className="bg-white rounded-md shadow-md p-6 space-y-6">
         <Heading size={4}>Login</Heading>
         {error && <div className="notice">{error}</div>}
-        <Form onSubmit={onSubmit} method="post" className="space-y-3">
+        <Form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
           <FieldWrap label="Username" required errors={formErrors?.username}>
             <input className="form-field" type="text" name="username" />
           </FieldWrap>

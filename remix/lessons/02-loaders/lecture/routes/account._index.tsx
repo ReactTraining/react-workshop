@@ -8,7 +8,7 @@ export default function () {
   return (
     <>
       <Heading size={3}>My Account</Heading>
-      <form method="post" className="space-y-6">
+      <form method="post" className="space-y-6" autoComplete="off">
         <FieldWrap label="First Name">
           <input
             name="first-name"
