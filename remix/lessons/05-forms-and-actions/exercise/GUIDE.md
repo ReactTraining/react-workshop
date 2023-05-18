@@ -4,11 +4,12 @@ First, review the loader of `root.tsx`. This loader gets the cart data now. Befo
 
 # Task 1
 
-Get the "Add to Cart" button working. Right now, most of the work is done regarding the action function. The task is to get the buttons to submit data to the action.
+Get the "Add to Cart" button working. Right now, most of the work is done regarding the action function. The task is to get the buttons to submit data to the action with the correct quantity.
 
-1. Wrap each button in a `<Form>` (capital "F")
+1. Wrap each button in a `<Form>` (notice the capital "F")
 2. Include a hidden input field to send the appropriate `product.id`. Remember to include a `name` and `value`
-3. If the method(s) of your forms match what the action expects, and if the hidden field name and value matches, you should be able to add items to the cart and see a visual indication in the UI.
+3. Include a hidden input field to send a `quantity` also. Make the value for the quantity one greater than the current `quantityInCart` value for that item.
+4. If the method(s) of your forms match what the action expects, and if the hidden field name and value matches, you should be able to add items to the cart and see a visual indication in the UI.
 
 Make sure adding to the cart works before you continue
 

@@ -1,24 +1,8 @@
-import { Form, useFetcher, useRouteLoaderData } from '@remix-run/react'
-import { type ActionArgs } from '@remix-run/node'
+import { useRouteLoaderData } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
-import { Icon } from '~/components/Icon'
-import { addToCart, removeFromCart } from '~/utils/cart.server'
 import { AddToCart, RemoveFromCart } from '../components/CartButtons'
 import type { LoaderData as RootLoaderData } from '../root'
 import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
-
-export async function action({ request }: ActionArgs) {
-  const formData = await request.formData()
-  const productId = parseInt(formData.get('productId') as string)
-
-  if (request.method === 'POST') {
-    return await addToCart(request, productId, 1)
-  } else if (request.method === 'DELETE') {
-    return await removeFromCart(request, productId)
-  }
-
-  return null
-}
 
 export default function () {
   const { cart } = useRouteLoaderData('root') as RootLoaderData
@@ -44,13 +28,8 @@ export default function () {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                {/* Task 1 */}
-                <button type="submit" className="button button-outline whitespace-nowrap">
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button type="submit" className="button">
-                  Remove
-                </button>
+                <AddToCart productId={product.id} quantityInCart={quantityInCart} />
+                {quantityInCart > 0 && <RemoveFromCart productId={product.id} />}
               </div>
             </div>
           </div>

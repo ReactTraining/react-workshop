@@ -49,9 +49,6 @@ function SubHeader({ cart }: PropsWithCart) {
           <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
             Home
           </NavLink>
-          <NavLink to="/register" className="inline-block py-3 px-5 -mb-[1px]">
-            Register
-          </NavLink>
         </nav>
         <div>
           <span className="mr-2">

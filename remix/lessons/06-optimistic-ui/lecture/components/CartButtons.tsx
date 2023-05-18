@@ -3,10 +3,10 @@ import { Icon } from '~/components/Icon'
 
 type AddProps = {
   productId: number
-  quantityInCart?: number
+  quantityInCart: number
 }
 
-export function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
+export function AddToCart({ productId, quantityInCart }: AddProps) {
   const fetcher = useFetcher()
 
   return (
