@@ -1,6 +1,7 @@
 const shell = require('shelljs')
 const path = require('path')
 const fs = require('fs')
+const readlineSync = require('readline-sync')
 const { createServer } = require('vite')
 const react = require('@vitejs/plugin-react')
 const { selectReactLesson, selectRemixLesson } = require('./select-lesson')
@@ -33,16 +34,35 @@ function savePreferences(updates) {
 }
 
 /****************************************
-  Choose Course Type (REMIX or SPA)
+  Choose Workshop
 *****************************************/
 
-switch (process.argv[2]) {
+if (!preferences.workshop) {
+  console.log('Which Workshop?')
+  const workshopOptions = ['React', 'Remix']
+  const choice = readlineSync.keyInSelect(workshopOptions)
+  if (choice === -1) process.exit(0)
+  // start over with preferences
+  preferences = {
+    workshop: workshopOptions[choice].toLowerCase(),
+  }
+  fs.writeFileSync(preferencesPath, JSON.stringify(preferences, null, 2))
+}
+
+/****************************************
+  Choose Course From Workshop
+*****************************************/
+
+switch (preferences.workshop.toLowerCase()) {
+  case 'react':
+    startReact()
+    break
   case 'remix':
     startRemix()
     break
   default:
-    startReact()
-    break
+    console.log('No workshop selected in preferences.json')
+    process.exit(1)
 }
 
 /****************************************
