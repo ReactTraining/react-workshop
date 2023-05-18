@@ -33,20 +33,21 @@ export async function setCart(request: Request, cart: CartItemType[]): Promise<S
   return session
 }
 
-export async function addToCart(request: Request, productId: number) {
+export async function addToCart(request: Request, productId: number, quantity: number) {
+  console.log('HERE >>>', quantity)
   const cart = await getCart(request)
   let found = false
   let newCart = cart.map((item) => {
     if (item.productId === productId) {
       found = true
-      return { productId, quantity: item.quantity + 1 }
+      return { productId, quantity }
     } else {
       return item
     }
   })
 
   if (!found) {
-    newCart = cart.concat({ productId, quantity: 1 })
+    newCart = cart.concat({ productId, quantity })
   }
 
   const session = await setCart(request, newCart)

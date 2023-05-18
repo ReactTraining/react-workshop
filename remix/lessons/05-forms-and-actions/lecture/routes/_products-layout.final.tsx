@@ -8,10 +8,11 @@ import type { LoaderData as RouteLoaderData } from './_products-layout'
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
-  const productId = parseInt(formData.get('productId')! as string)
+  const productId = parseInt(formData.get('productId') as string)
+  const quantity = parseInt(formData.get('quantity') as string)
 
   if (request.method === 'POST') {
-    return await addToCart(request, productId)
+    return await addToCart(request, productId, quantity)
   } else if (request.method === 'DELETE') {
     return await removeFromCart(request, productId)
   }
@@ -72,6 +73,7 @@ function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
   return (
     <fetcher.Form method="post">
       <input type="hidden" name="productId" value={productId} />
+      <input type="hidden" name="quantity" value={quantityInCart + 1} />
       <button type="submit" className="button button-outline whitespace-nowrap">
         <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
       </button>
@@ -85,13 +87,12 @@ type RemoveProps = {
 
 function RemoveFromCart({ productId }: RemoveProps) {
   const fetcher = useFetcher()
-  const idle = fetcher.state === 'idle'
 
   return (
     <fetcher.Form method="delete">
       <input type="hidden" name="productId" value={productId} />
-      <button type="submit" className="button" disabled={!idle}>
-        {idle ? 'Remove' : 'Removing...'}
+      <button type="submit" className="button">
+        Remove
       </button>
     </fetcher.Form>
   )

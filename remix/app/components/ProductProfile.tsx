@@ -1,5 +1,5 @@
 import { Heading } from './Heading'
-import { AddToCartButton, RemoveFromCartButton } from './CartButtons'
+import { CartButtons } from './CartButtons'
 import { Link } from '@remix-run/react'
 
 type Props = {
@@ -51,8 +51,7 @@ export function ProductProfile({
           odio sint ipsum obcaecati. Molestiae, inventore? Soluta?
         </p>
         <div className="flex gap-3">
-          <AddToCartButton productId={id} quantityInCart={quantityInCart} />
-          {quantityInCart > 0 && <RemoveFromCartButton productId={id} />}
+          <CartButtons productId={id} quantityInCart={quantityInCart} />
         </div>
       </div>
     </div>

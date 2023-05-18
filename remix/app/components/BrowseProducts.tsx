@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
-import { AddToCartButton, RemoveFromCartButton } from '~/components/CartButtons'
+import { CartButtons } from '~/components/CartButtons'
 import type { ProductType } from '~/utils/db.server'
 import { useCart } from '~/state/CartContext'
 
@@ -46,14 +46,7 @@ export function BrowseProductItem({ product, quantityInCart }: BrowseProductItem
           <b className="block">${product.price}</b>
         </div>
         <div className="flex gap-2">
-          <div className="flex-1">
-            <AddToCartButton productId={product.id} quantityInCart={quantityInCart} />
-          </div>
-          {quantityInCart > 0 && (
-            <div className="flex-1">
-              <RemoveFromCartButton productId={product.id} />
-            </div>
-          )}
+          <CartButtons productId={product.id} quantityInCart={quantityInCart} />
           <div className="w-full flex flex-col">
             <Link to={`/products/${product.id}`} className="button">
               View
