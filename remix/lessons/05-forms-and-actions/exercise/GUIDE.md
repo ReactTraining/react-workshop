@@ -1,6 +1,4 @@
-# Forms and Fetcher
-
-The goal of this exercise is to practice using forms and formData with Remix
+# Forms and Actions
 
 First, review the loader of `root.tsx`. This loader gets the cart data now. Before in the lecture, the cart data was loaded down lower in the loader of `_products-layout._index.tsx`. By "lifting" the loader data, we have access to the cart in the entire UI of our app, not just in that page. When you are able to add items to the cart, you'll notice the "Cart is Empty" message start to change.
 
