@@ -62,7 +62,7 @@ switch (preferences.workshop.toLowerCase()) {
     break
   default:
     console.log('No workshop selected in preferences.json')
-    process.exit(1)
+    process.exit(0)
 }
 
 /****************************************
@@ -70,6 +70,11 @@ switch (preferences.workshop.toLowerCase()) {
 *****************************************/
 
 function startRemix() {
+  if (!fs.existsSync(path.resolve(__dirname, '..', 'remix/node_modules'))) {
+    console.log('Run `npm run install-remix` first then to `npm start` again')
+    process.exit(0)
+  }
+
   const lessonsPath = path.resolve(__dirname, '..', 'remix/lessons')
   const { lessonPath } = selectRemixLesson(lessonsPath)
 

@@ -22,12 +22,25 @@ This repo contains the latest course material for [React Training](https://react
 
 ## Quick Start
 
+For React Workshops (See Remix Next):
+
 - Do `npm install` first
 - If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
 - Do `npm start`
-- You'll see a menu which asks "Which Course?"
-- Choose the number for "FULL APP"
+- Choose "React" from the menu
+- You'll see a list of options to run our curriculum next. Choose "FULL APP"
 - It should be running now on localhost:3000
+
+If the app runs, you're ready for the workshop
+
+For The Remix Workshop
+
+- Do `npm install` first
+- If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
+- Do `npm run install-remix` next
+- Do `npm start`
+- Choose "Remix" from the menu
+- You'll see a list of options to run our curriculum next. Choose "FULL APP"
 
 If the app runs, you're ready for the workshop
 
