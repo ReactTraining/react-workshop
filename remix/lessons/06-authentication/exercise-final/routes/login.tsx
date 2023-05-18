@@ -2,10 +2,10 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { json, redirect } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
-import { verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 import type { ActionArgs } from '@remix-run/node'
+import { createUserSession, verifyUser } from '../utils/auth.server'
 
 const formSchema = z.object({
   username: z.string().min(5, { message: 'Must be at least 5 characters' }),
@@ -27,8 +27,8 @@ export async function action({ request }: ActionArgs) {
   const userId = await verifyUser(username, password)
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
-  // Login and redirect
-  return redirect('/')
+  const redirectPath = '/'
+  return createUserSession(userId, redirectPath)
 }
 
 export default function Login() {

@@ -2,15 +2,15 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { json } from '@remix-run/node'
 import { Form, useActionData, Link } from '@remix-run/react'
-import { createUserSession, login, registerUser } from '~/utils/auth.server'
+import { createUserSession, registerUser } from '~/utils/auth.server'
 import { usernameExists } from '~/utils/db.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 import type { ActionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
-  username: z.string().min(5),
-  password: z.string().min(5),
+  username: z.string().min(5, { message: 'Must be at least 5 characters' }),
+  password: z.string().min(5, { message: 'Must be at least 5 characters' }),
 })
 
 type FormDataType = z.infer<typeof formSchema>
@@ -54,10 +54,10 @@ export default function Register() {
         {error && <div className="notice">{error}</div>}
         <Form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
           <FieldWrap label="Username" required errors={formErrors?.username}>
-            <input className="form-field" type="text" name="username" />
+            {(field) => <input {...field} className="form-field" type="text" name="username" />}
           </FieldWrap>
           <FieldWrap label="Password" required errors={formErrors?.password}>
-            <input className="form-field" type="password" name="password" />
+            {(field) => <input {...field} className="form-field" type="password" name="password" />}
           </FieldWrap>
           <footer className="flex justify-between items-center">
             <div>

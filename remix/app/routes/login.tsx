@@ -3,13 +3,13 @@ import * as z from 'zod'
 import { json } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
 import type { ActionArgs } from '@remix-run/node'
-import { createUserSession, login } from '~/utils/auth.server'
+import { createUserSession, verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 
 const formSchema = z.object({
-  username: z.string().min(5),
-  password: z.string().min(5),
+  username: z.string().min(5, { message: 'Must be at least 5 characters' }),
+  password: z.string().min(5, { message: 'Must be at least 5 characters' }),
 })
 
 type FormDataType = z.infer<typeof formSchema>
@@ -24,7 +24,7 @@ export async function action({ request }: ActionArgs) {
   if (!results.success) return json({ error: 'Invalid Data' }, { status: 400 })
 
   const { username, password } = results.data
-  const userId = await login(username, password)
+  const userId = await verifyUser(username, password)
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
   return createUserSession(userId, '/')
@@ -50,10 +50,10 @@ export default function Login() {
         {error && <div className="notice">{error}</div>}
         <Form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
           <FieldWrap label="Username" required errors={formErrors?.username}>
-            <input className="form-field" type="text" name="username" />
+            {(field) => <input {...field} className="form-field" type="text" name="username" />}
           </FieldWrap>
           <FieldWrap label="Password" required errors={formErrors?.password}>
-            <input className="form-field" type="password" name="password" />
+            {(field) => <input {...field} className="form-field" type="password" name="password" />}
           </FieldWrap>
           <footer className="flex justify-between items-center">
             <div>

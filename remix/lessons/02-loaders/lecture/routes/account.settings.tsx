@@ -11,17 +11,21 @@ export default function () {
       <Heading size={3}>My Settings</Heading>
       <form method="post" className="space-y-6" autoComplete="off">
         <FieldWrap label="Email me about deals">
-          <select name="deals" defaultValue={settings.deals} className="form-field">
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="holidays">Holidays</option>
-          </select>
+          {(field) => (
+            <select {...field} name="deals" defaultValue={settings.deals} className="form-field">
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="holidays">Holidays</option>
+            </select>
+          )}
         </FieldWrap>
         <FieldWrap label="Delivery Preference">
-          <select name="deals" defaultValue={settings.delivery} className="form-field">
-            <option value="door">Door Drop Off</option>
-            <option value="in-person">In-Person</option>
-          </select>
+          {(field) => (
+            <select {...field} name="deals" defaultValue={settings.delivery} className="form-field">
+              <option value="door">Door Drop Off</option>
+              <option value="in-person">In-Person</option>
+            </select>
+          )}
         </FieldWrap>
         <footer className="flex justify-between items-center">
           <div>

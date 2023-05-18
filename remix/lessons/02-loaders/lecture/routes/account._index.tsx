@@ -10,18 +10,37 @@ export default function () {
       <Heading size={3}>My Account</Heading>
       <form method="post" className="space-y-6" autoComplete="off">
         <FieldWrap label="First Name">
-          <input
-            name="first-name"
-            defaultValue={user.firstName}
-            className="form-field"
-            type="text"
-          />
+          {(field) => (
+            <input
+              {...field}
+              className="form-field"
+              name="first-name"
+              defaultValue={user.firstName}
+              type="text"
+            />
+          )}
         </FieldWrap>
         <FieldWrap label="Last Name">
-          <input name="last-name" defaultValue={user.lastName} className="form-field" type="text" />
+          {(field) => (
+            <input
+              {...field}
+              name="last-name"
+              defaultValue={user.lastName}
+              className="form-field"
+              type="text"
+            />
+          )}
         </FieldWrap>
         <FieldWrap label="Email">
-          <input name="email" defaultValue={user.email} className="form-field" type="text" />
+          {(field) => (
+            <input
+              {...field}
+              name="email"
+              defaultValue={user.email}
+              className="form-field"
+              type="text"
+            />
+          )}
         </FieldWrap>
         <footer className="flex justify-between items-center">
           <div />
