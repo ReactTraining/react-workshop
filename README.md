@@ -6,7 +6,7 @@ This repo contains the latest course material for [React Training](https://react
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Quick Install Setup](#quick-install-setup)
 - [How to get ready for the workshop](#how-to-get-ready-for-the-workshop)
 - [Not good at JavaScript? Not a programmer?](#not-good-at-javascript-not-a-programmer)
 - [Setup For Mac and Linux Users (Unix Users)](#setup-for-mac-and-linux-users-unix-users)
@@ -20,7 +20,9 @@ This repo contains the latest course material for [React Training](https://react
 - [Improvements?](#improvements)
 - [License](#license)
 
-## Quick Start
+## Quick Install Setup
+
+Already have Node/NPM installed? Then start here. Otherwise we have some instructions below in this document if you don't.
 
 **For React Workshops**
 
