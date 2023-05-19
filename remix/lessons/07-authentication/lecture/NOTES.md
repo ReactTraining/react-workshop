@@ -1,3 +1,10 @@
+Ways to create sessions
+
+- createSessionStorage (for database)
+- createCookieSessionStorage
+- createMemorySessionStorage
+- createFileSessionStorage
+
 ```ts
 // Create
 const storage = createCookieSessionStorage({

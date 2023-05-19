@@ -40,7 +40,8 @@ export default function Index() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <Link to={product.id.toString()} className="button">
+                  {/* Notice Prefetch */}
+                  <Link prefetch="render" to={product.id.toString()} className="button">
                     View
                   </Link>
                 </div>
