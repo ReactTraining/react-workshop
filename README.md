@@ -48,7 +48,7 @@ If the app runs, you're ready for the workshop
 
 - [ ] Make sure you have Git and Node installed first. **Windows Users** see the special section below on this.
 - [ ] Install this code (instructions below)
-- [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). Some JS topics are confusing to those who mostly program in other languages -- like JavaScript's Arrow Functions. Please become familiar with them (hint: we talk about them in this article).
+- [ ] [Read this JavaScript article as a primer for React](https://reacttraining.com/blog/javascript-the-react-parts/). Some JS topics are confusing to those who mostly program in other languages -- like JavaScript's Arrow Functions.
 - [ ] We highly recommend watching this 10m video - [The Story of React](https://www.youtube.com/watch?v=Wm_xI7KntDs)
 - [ ] We have some [additional reading material](./docs) for those who are interested in learning more things before the workshop (not required though).
 - [ ] **WAIT!** Does your company or computer use VPN's or any sort of proxy? That might cause some issues that are out of our control. Most of the time we see that your peers will be able to help you out since this will be very specific to your company's security policies.
