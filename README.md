@@ -22,7 +22,7 @@ This repo contains the latest course material for [React Training](https://react
 
 ## Quick Start
 
-For React Workshops (See Remix Next):
+**For React Workshops**
 
 - Do `npm install` first
 - If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
@@ -33,7 +33,7 @@ For React Workshops (See Remix Next):
 
 If the app runs, you're ready for the workshop
 
-For The Remix Workshop
+**For The Remix Workshop**
 
 - Do `npm install` first
 - If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
