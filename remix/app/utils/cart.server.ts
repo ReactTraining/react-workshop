@@ -34,7 +34,6 @@ export async function setCart(request: Request, cart: CartItemType[]): Promise<S
 }
 
 export async function addToCart(request: Request, productId: number, quantity: number) {
-  console.log('HERE >>>', quantity)
   const cart = await getCart(request)
   let found = false
   let newCart = cart.map((item) => {
