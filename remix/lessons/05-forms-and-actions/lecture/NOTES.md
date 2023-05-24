@@ -34,6 +34,11 @@ const productId = parseInt(formData.get('productId')! as string)
 
 Demo `useNavigation` and the problems with getting its status for many forms:
 
+- Each time we add to cart, it cancels the previous navigation
+- useNavigation models the page's navigation with one form, not suitable for our single button forms when we have lots of forms
+- If we leave out the product id comparison, all the buttons will respond to "isSubmitting" at the same time.
+- If we put the comparison in and quickly click on buttons, each new click will change the id and visually cancel the previous
+
 ```ts
 const isSubmitting =
   navigation.state === 'submitting' &&
@@ -62,3 +67,9 @@ export async function loader({ request }: LoaderArgs) {
   return json({ cart })
 }
 ```
+
+## Extra
+
+Talk about how our action could respond with `json()` data which we could pick up with `useActionData` similarly to `useLoaderData`.
+
+Lets say an action adds something like a new product to out list. We wouldn't have to query and return that new product from the action because after actions get called, Remix calls the loader to get any new data that may have occurred from the action's mutation of our data
