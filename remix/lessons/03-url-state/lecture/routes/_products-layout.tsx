@@ -8,8 +8,7 @@ import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const searchParams = new URL(request.url).searchParams
-  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
+  const [products, brands] = await Promise.all([getProducts(), getBrands()])
 
   return json({
     products,

@@ -63,7 +63,7 @@ export type ProductType = {
 }
 
 export async function getProducts(searchParams?: URLSearchParams): Promise<ProductType[]> {
-  // convert: `brand=a&brand=b` to [['brand', 'a'], ['brand', 'b']]
+  // convert: `brand=a,b` to [['brand', 'a'], ['brand', 'b']]
   const brands =
     searchParams
       ?.get('brand')
@@ -71,6 +71,7 @@ export async function getProducts(searchParams?: URLSearchParams): Promise<Produ
       ?.filter(Boolean)
       .map((brand) => ['brand', brand]) || []
 
+  // convert: `category=a,b` to [['category', 'a'], ['category', 'b']]
   const categories =
     searchParams
       ?.get('category')

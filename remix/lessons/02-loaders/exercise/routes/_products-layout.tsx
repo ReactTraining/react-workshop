@@ -1,11 +1,10 @@
-import { useMemo } from 'react'
-import { type LoaderArgs, json } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import { getBrands, getProducts } from '~/utils/db.server'
+import { getBrands } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
 import { UnpackLoader } from '~/utils/helpers'
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async () => {
   const brands = await getBrands()
   return json(brands)
 }

@@ -1,5 +1,4 @@
-import { useOutletContext, useRouteLoaderData } from '@remix-run/react'
-import { type ProductType } from '~/utils/db.server'
+import { useRouteLoaderData } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import type { LoaderData } from './_products-layout'

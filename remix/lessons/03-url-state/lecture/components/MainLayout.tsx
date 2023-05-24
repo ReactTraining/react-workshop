@@ -40,6 +40,9 @@ function SubHeader() {
         <NavLink className="inline-block py-3 px-5 -mb-[1px] border-b-2" to="/">
           Home
         </NavLink>
+        <NavLink className="inline-block py-3 px-5 -mb-[1px] border-b-2" to="/page2">
+          Page 2
+        </NavLink>
       </nav>
     </CenterContent>
   )
