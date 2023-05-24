@@ -4,11 +4,21 @@
 
 Demo the basics of `<Form>` and how action is HTTP verbs besides GET.
 
-Explain `formData = new FormData()` and `formData = await request.formData()`
+Play with the `onSubmit` area for a bit and show different React ways to collect form values
+
+```js
+// const formData = new FormData(event.target) // works, but TS complains
+const formData = new FormData(event.currentTarget)
+formData.get('username)
+```
 
 Explain `Object.fromEntries(formData)`
 
+In the action: `formData = await request.formData()`
+
 Refactor fields to a `<FieldWrap>`
+
+Show zod in the final example for validation
 
 ## Browsing Products: Two Forms one Action
 
