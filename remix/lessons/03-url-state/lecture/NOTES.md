@@ -2,10 +2,10 @@ https://medium.com/swlh/urlsearchparams-in-javascript-df524f705317
 
 ```js
 // Three ways to get the search params object
-const url = new URL('https://example.com?a=b')
+const url = new URL('https://example.com?a=b&c=d')
 const search = url.searchParams
 
-const search = new URLSearchParams('https://example.com?a=b')
+const search = new URLSearchParams('a=b&c=d')
 
 // Hooks way
 const [search] = useSearchParams()
