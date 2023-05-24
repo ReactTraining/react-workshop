@@ -18,6 +18,8 @@ In the action: `formData = await request.formData()`
 
 Refactor fields to a `<FieldWrap>`
 
+We can talk about the utility of `useId`
+
 Show zod in the final example for validation
 
 ## Browsing Products: Two Forms one Action

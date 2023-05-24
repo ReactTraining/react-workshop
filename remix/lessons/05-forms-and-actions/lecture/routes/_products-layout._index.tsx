@@ -24,7 +24,6 @@ import type { LoaderData as RouteLoaderData } from './_products-layout'
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
-
   const productId = formData.get('productId')
   console.log('product', productId)
 
@@ -35,17 +34,12 @@ export default function () {
   const { products } = useRouteLoaderData('routes/_products-layout') as RouteLoaderData
 
   function addToCart(productId: number) {
-    const formData = new FormData()
-    formData.set('productId', productId.toString())
-
     fetch('/', {
       method: 'post',
       headers: {
-        // 'Content-Type': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      // body: JSON.stringify(data),
-      body: formData,
+      body: JSON.stringify({ productId }),
     })
   }
 
