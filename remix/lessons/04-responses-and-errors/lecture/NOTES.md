@@ -1,6 +1,6 @@
 # Lecture Notes
 
-What is `Response`
+What is `Response`?
 
 ```js
 async function myFetch() {
@@ -15,7 +15,6 @@ async function myFetch() {
 async function main() {
   const res = await myFetch()
   const data = await res.json()
-
   console.log(data.user) // brad
 }
 
@@ -61,4 +60,4 @@ throw new Response('We cant find this user', { status: 404 })
 
 From Docs: In v1, a thrown Response will render the closest CatchBoundary while all other unhandled exceptions render the ErrorBoundary. In v2 there is no CatchBoundary and all unhandled exceptions will render the ErrorBoundary, response or otherwise.
 
-You cannot use `useLoaderData` or `useRouteLoaderData` in error handler
+You cannot use `useLoaderData` or `useRouteLoaderData` in error handler.
