@@ -1,6 +1,7 @@
 import { LoaderArgs, json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { ProductType } from '~/utils/db.server'
+import { UnpackLoader } from '~/utils/helpers'
 
 export async function loader({ params }: LoaderArgs) {
   const id = params.productId!
@@ -12,7 +13,9 @@ export async function loader({ params }: LoaderArgs) {
   return json(product)
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function ProductProfile() {
-  const product = useLoaderData<typeof loader>()
+  const product = useLoaderData() as LoaderData
   return <h1>ProductProfile: {product.name}</h1>
 }

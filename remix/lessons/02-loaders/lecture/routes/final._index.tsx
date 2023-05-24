@@ -3,6 +3,7 @@ import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import { ProductType } from '~/utils/db.server'
+import { UnpackLoader } from '~/utils/helpers'
 
 export async function loader() {
   const products = (await fetch('http://localhost:3333/products').then((res) =>
@@ -12,8 +13,10 @@ export async function loader() {
   return json({ products })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function Index() {
-  const { products } = useLoaderData<typeof loader>()
+  const { products } = useLoaderData() as LoaderData
 
   return (
     <Tiles>

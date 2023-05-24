@@ -6,8 +6,8 @@ import { Heading } from '~/components/Heading'
 import { UnpackLoader } from '~/utils/helpers'
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const searchParams = new URL(request.url).searchParams
-  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
+  // Solution for task 1
+  const [products, brands] = await Promise.all([getProducts(), getBrands()])
 
   return json({
     products,
@@ -18,11 +18,11 @@ export const loader = async ({ request }: LoaderArgs) => {
 export type LoaderData = UnpackLoader<typeof loader>
 
 export default function () {
-  // Task 1
+  // Solution for task 2 (context)
   // const { products, brands } = useLoaderData<LoaderData>()
   // const context = useMemo(() => ({ products }), [products])
 
-  // Task 2
+  // Solution for task 3 (also the pages need useRouteLoaderData())
   const { brands } = useLoaderData() as LoaderData
 
   return (
