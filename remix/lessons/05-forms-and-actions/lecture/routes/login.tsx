@@ -42,10 +42,11 @@ export async function action({ request }: ActionArgs) {
 }
 
 export default function Login() {
-  // Get the error from the action
+  const usernameId = useId()
+  const passwordId = useId()
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log('Submit')
+    event.preventDefault()
 
     // Three ways to collect form data
     // 1. Refs
@@ -53,13 +54,7 @@ export default function Login() {
     // 3. FormData
     // const formValues = Object.fromEntries(new FormData(event.currentTarget))
     // console.log(formValues)
-
-    // Prevent default only if there is no username and password
-    event.preventDefault()
   }
-
-  const usernameId = useId()
-  const passwordId = useId()
 
   return (
     <div className="ml-auto mr-auto max-w-[600px]">
