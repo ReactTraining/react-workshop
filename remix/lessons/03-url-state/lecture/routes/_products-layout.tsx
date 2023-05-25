@@ -46,19 +46,14 @@ export default function () {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-
-  // Current URL
-  const [search] = useSearchParams()
-  const brand = search.get('brand')
-
-  const url = useLocation().pathname
-  const to = `${url}?brand=google`
+  const on = false
+  const to = useLocation().pathname
 
   return (
     <Link to={to} className="block">
       <input id={id} type="checkbox" className="hidden" />
       <span className="text-brandColor mr-2">
-        {brand === value ? <Icon name="checkboxOn" /> : <Icon name="checkboxOff" />}
+        {on ? <Icon name="checkboxOn" /> : <Icon name="checkboxOff" />}
       </span>
       <label htmlFor={id} className="cursor-pointer">
         {children}
