@@ -53,7 +53,7 @@ Abstract buttons to their own components to `useFetcher`
 
 Use real cookie based `addToCart` and `removeFromCart`. Remember they setup the response so return the `await` (see final)
 
-Compute Quantity
+Compute Quantity in the .map
 
 ```ts
 const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
