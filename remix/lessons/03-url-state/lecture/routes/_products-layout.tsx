@@ -46,9 +46,12 @@ export default function () {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-  const url = useLocation().pathname
 
-  const brand = 'google'
+  // Current URL
+  const [search] = useSearchParams()
+  const brand = search.get('brand')
+
+  const url = useLocation().pathname
   const to = `${url}?brand=google`
 
   return (
