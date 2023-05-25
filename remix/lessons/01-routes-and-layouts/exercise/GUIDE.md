@@ -3,9 +3,9 @@
 The goal of this exercise is to make files for these routes:
 
 ```js
-// URL                               LAYOUTS         CONTENT
-// localhost:3000                    DefaultLayout   "Home Page"
-// localhost:3000/contact            DefaultLayout   "Contact"
+// URL                               SUB LAYOUT      CONTENT
+// localhost:3000                    CommonLayout    "Home Page"
+// localhost:3000/contact            CommonLayout    "Contact"
 // localhost:3000/auth/login         AuthLayout      "Login"
 // localhost:3000/auth/register      AuthLayout      "Register"
 // localhost:3000/products           ProductsLayout  "Browse Products"
@@ -15,32 +15,28 @@ The goal of this exercise is to make files for these routes:
 
 ## Task 1
 
-We have already provided three "layout" components for you in `templates.tsx`. They are color coded so each type of layout looks different. They are Gray, Green, and Blue. Each component needs to be converted to its own file in accordance with the URL scheme above. For example, if you visit `/products`, you should see a page loaded into the `ProductsLayout` and the page should say `<h1>Browse Products</h1>`. Then you can see there are two other pages that also use that same layout for when you visit `/products/1` and `products/special`. This all means you'll need for files, one for the layout and three for the pages.
+We have already provided three sub-layout designs in `templates.tsx`. They are color-coded so each type of sub-layout looks different:
 
-By the time you're done, you should have removed the original `_index.tsx` and `templates.tsx` files as they do not conform to the URL scheme, they're just to get you started.
+Gray - Common Layout
+Green - AuthLayout
+Blue - Product Layout
 
-Here's an example "Page" component. This is about what you'll need for most pages
+Make route files to achieve the URLs that you see at the top of this page. Each URL shows you which layout it uses. For the content of the page, just write a simple h1 heading with the page title like "Home Page" for the home page.
 
-```tsx
-// You could name it Page or any name you like
-export default function Page() {
-  return (
-    <div>
-      <h1>Browse Products</h1>
-    </div>
-  )
-}
+Remember that each of these sub-layouts will go in the MainLayout. Since the MainLayout is always used, it's being used in the root.tsx file.
 
-// Or you could make it an anonymous function
-export default function () {
-  return (
-    <div>
-      <h1>Browse Products</h1>
-    </div>
-  )
-}
+Here's an example of the nesting that we're making assuming you're on a page for products:
+
+```jsx
+<MainLayout>
+  <ProductLayout>
+    <Page />
+  </ProductLayout>
+</MainLayout>
 ```
+
+For example, if you visit `/products`, you should see a page loaded into the `ProductsLayout` and the page should say `<h1>Browse Products</h1>`. If you visit `/products/1` and `products/special`, these would utilize the same `ProductsLayout`.
 
 ## Final
 
-Remember, for this and all exercises, there's a `final` version for you to review if you need to with all the answers. In this case, the final is in `exercise-final`
+Remember, for this and all exercises, there's a `final` version for you to review if you need to with all the answers. In this case, the final is in `exercise-final`.

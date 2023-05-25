@@ -8,3 +8,8 @@ export default function () {
     </div>
   )
 }
+
+// GET    --->     /products [loader] -> [component]
+// POST   --->     /products [action] -> [component]
+// PUT    --->     /products [action] -> [component]
+// DELETE --->     /products [action] -> [component]

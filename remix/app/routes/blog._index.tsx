@@ -3,18 +3,6 @@ import { Link, useLoaderData } from '@remix-run/react'
 import { getAllPosts } from '~/utils/blog.server'
 import { Heading } from '~/components/Heading'
 
-// export const loader = async ({ params }: LoaderArgs) => {
-//   const slug = params.slug
-//   if (!slug) throw new Response('Not found', { status: 404 })
-
-//   try {
-//     const { frontmatter, code } = await getPost(slug)
-//     return json({ frontmatter, code })
-//   } catch (err) {
-//     throw new Response('Not found', { status: 404 })
-//   }
-// }
-
 export async function loader() {
   try {
     const posts = await getAllPosts()

@@ -17,6 +17,31 @@ return new Response(JSON.stringify({ user: 'brad' }), {
 })
 ```
 
+## Misc
+
+This is probably a good time to talk about other exports that we don't have lessons on like these:
+
+```ts
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
+// <link rel="stylesheet" href="remix-generated-path-to-css-file.css" />
+
+export const headers: HeadersFunction = ({ actionHeaders, loaderHeaders, parentHeaders }) => ({
+  'Cache-Control': 'max-age=300, s-maxage=3600',
+})
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Shopping App' },
+    {
+      name: 'description',
+      content: 'Our app description',
+    },
+  ]
+}
+// <title>Shopping App</title>
+// <meta name="description" content="Our app description" />
+```
+
 ## Account
 
 - Load Data in Parallel vs Serial

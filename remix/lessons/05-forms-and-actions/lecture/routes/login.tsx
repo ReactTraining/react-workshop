@@ -65,8 +65,7 @@ export default function Login() {
     <div className="ml-auto mr-auto max-w-[600px]">
       <div className="bg-white rounded-md shadow-md p-6 space-y-6">
         <Heading size={4}>Login</Heading>
-        {/* {error && <div className="notice error">{error}</div>} */}
-        <Form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
+        <form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
           <div className="form-field-wrap space-y-1 required">
             <label htmlFor={usernameId} className="text-lg text-headingColor">
               Username
@@ -90,7 +89,7 @@ export default function Login() {
               Login
             </button>
           </footer>
-        </Form>
+        </form>
       </div>
     </div>
   )
