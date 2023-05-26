@@ -23,14 +23,14 @@ app.all('*', remix.createRequestHandler({ build: require('./build') }))
 
 ## Talking Points
 
-- SPA vs SSR vs CSR
+- SPA vs MPA vs SSR vs CSR
 - Hydration
 - CSS
 - Stale While Revalidate with Fastly
 - Discord
 - Examples - https://github.com/remix-run/examples
 - Remix on the edge with Fly
-- Remix on the edge with CloudFlare
+- Remix on the edge with CloudFlare workers
 
 https://fly.io/docs/languages-and-frameworks/remix/
 https://developers.cloudflare.com/pages/framework-guides/deploy-a-remix-site/
