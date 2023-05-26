@@ -47,7 +47,6 @@ export default function () {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-  const url = useLocation().pathname
 
   // Current URL
   const [search] = useSearchParams()
@@ -61,6 +60,8 @@ function FilterLink({ children, value }: { children: React.ReactNode; value: str
   } else {
     nextSearch.set('brand', value)
   }
+
+  const url = useLocation().pathname
   const to = `${url}?${nextSearch.toString()}`
 
   return (
