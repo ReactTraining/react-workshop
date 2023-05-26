@@ -28,12 +28,12 @@ export async function action({ request }: ActionArgs) {
   const formData = await request.formData()
 
   // Method One: It's difficult to get type-safety from Object.fromEntries
-  // const formValues = Object.fromEntries(formData)
-  // const { username, password } = formValues
+  const formValues = Object.fromEntries(formData)
+  const { username, password } = formValues
 
   // Method Two
-  const username = formData.get('username') as string | null
-  const password = formData.get('password') as string | null
+  // const username = formData.get('username') as string | null
+  // const password = formData.get('password') as string | null
 
   if (!username || !password) return json({ error: 'Invalid Data' }, { status: 400 })
 
