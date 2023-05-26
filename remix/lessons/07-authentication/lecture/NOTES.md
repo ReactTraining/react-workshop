@@ -27,3 +27,7 @@ return redirect('/', {
   },
 })
 ```
+
+Discussion:
+
+Because we need auth all over the UI including the primary header, we get auth data in the root loader and then pass it down through context

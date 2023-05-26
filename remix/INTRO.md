@@ -24,5 +24,12 @@ app.all('*', remix.createRequestHandler({ build: require('./build') }))
 ## Talking Points
 
 - SPA vs SSR vs CSR
-- Discord
+- Rehydration
 - CSS
+- Stale While Revalidate with Fastly
+- Discord
+- Remix on the edge with Fly
+- Remix on the edge with CloudFlare
+
+https://fly.io/docs/languages-and-frameworks/remix/
+https://developers.cloudflare.com/pages/framework-guides/deploy-a-remix-site/
