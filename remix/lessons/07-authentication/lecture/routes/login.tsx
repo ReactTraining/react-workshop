@@ -5,7 +5,7 @@ import { Form, useActionData } from '@remix-run/react'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 import type { ActionArgs } from '@remix-run/node'
-import { storage, verifyUser } from '../utils/auth.server'
+import { createUserSession, storage, verifyUser } from '../utils/auth.server'
 
 const formSchema = z.object({
   username: z.string().min(5, { message: 'Must be at least 5 characters' }),
