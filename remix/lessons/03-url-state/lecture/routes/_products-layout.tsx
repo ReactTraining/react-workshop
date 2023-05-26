@@ -49,6 +49,8 @@ function FilterLink({ children, value }: { children: React.ReactNode; value: str
   const on = false
   const to = useLocation().pathname
 
+  // useSearchParams()
+
   return (
     <Link to={to} className="block">
       <input id={id} type="checkbox" className="hidden" />
