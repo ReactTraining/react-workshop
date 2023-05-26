@@ -35,9 +35,9 @@ export const headers = () => {
 
 ```tsx
 export const loader = async () => {
-  const [user, product] = await Promise.all([getAuth(), getProduct()])
-  const commentsPromise = getProductComments()
-  return defer({ user, product, commentsPromise })
+  const [user, product, comments] = await Promise.all([getAuth(), getProduct(), getComments()])
+
+  return defer({ user, product, comments })
 }
 
 export default function ProductProfile() {

@@ -9,9 +9,13 @@ export default function One() {
   return (
     <div>
       <h1>One</h1>
-      <Link to="/two">Two</Link>
+      <Link to="/two" prefetch="render">
+        Two
+      </Link>
       <br />
-      <Link to="/three">Three</Link>
+      <Link to="/three" prefetch="render">
+        Three
+      </Link>
     </div>
   )
 }

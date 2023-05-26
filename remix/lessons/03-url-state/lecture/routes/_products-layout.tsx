@@ -8,7 +8,10 @@ import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 
 export const loader = async ({ request }: LoaderArgs) => {
-  const [products, brands] = await Promise.all([getProducts(), getBrands()])
+  const searchParams = new URL(request.url).searchParams
+  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
+
+  // here
 
   return json({
     products,
@@ -46,10 +49,20 @@ export default function () {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-  const on = false
-  const to = useLocation().pathname
 
-  // useSearchParams()
+  // Current
+  const [search] = useSearchParams()
+  const brand = search.get('brand')
+  const on = value === brand
+
+  // Next URL
+  if (on) {
+    search.delete('brand')
+  } else {
+    search.set('brand', value)
+  }
+
+  const to = `${useLocation().pathname}?${search.toString()}`
 
   return (
     <Link to={to} className="block">

@@ -18,8 +18,11 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ user, settings })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
   const { user } = useLoaderData<typeof loader>()
+  const context = { name: 'brad' }
 
   return (
     <div className="flex gap-6">
@@ -45,7 +48,7 @@ export default function () {
         </div>
       </div>
       <main className="flex-1 p-6 space-y-6 bg-white shadow-sm rounded">
-        <Outlet />
+        <Outlet context={context} />
       </main>
     </div>
   )
