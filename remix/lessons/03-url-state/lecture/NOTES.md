@@ -11,12 +11,16 @@ const [searchParams, setSearchParams] = useSearchParams()
 Show the native URLSearchParams:
 
 ```js
+// Three ways to get an instance of URL Search Params
+
+// 1. From URLSearchParams
+const search = new URLSearchParams('a=b&c=d')
+
+// 2. From URL
 const url = new URL('https://example.com?a=b&c=d')
 const search = url.searchParams
 
-const search = new URLSearchParams('a=b&c=d')
-
-// Hooks way
+// 3. Hooks way (search is an instance of URLSearchParams)
 const [search] = useSearchParams()
 
 // Getters and setters

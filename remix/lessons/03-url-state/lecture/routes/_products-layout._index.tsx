@@ -7,18 +7,14 @@ import type { LoaderData } from './_products-layout'
 export default function () {
   const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  console.log(searchParams) // instance of URLSearchParams
-
-  const brand = searchParams.get('brand')
-  console.log(brand)
+  // useSearchParams()
 
   return (
     <Tiles>
       {products
-        .filter((p) => {
-          return brand ? p.brand.toLowerCase() === brand : true
-        })
+        // .filter((p) => {
+        //   return brand ? p.brand.toLowerCase() === brand : true
+        // })
         .map((product) => {
           return (
             <div
