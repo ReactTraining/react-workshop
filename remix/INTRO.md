@@ -24,10 +24,11 @@ app.all('*', remix.createRequestHandler({ build: require('./build') }))
 ## Talking Points
 
 - SPA vs SSR vs CSR
-- Rehydration
+- Hydration
 - CSS
 - Stale While Revalidate with Fastly
 - Discord
+- Examples - https://github.com/remix-run/examples
 - Remix on the edge with Fly
 - Remix on the edge with CloudFlare
 
