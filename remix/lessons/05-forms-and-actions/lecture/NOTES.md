@@ -53,21 +53,6 @@ Abstract buttons to their own components to `useFetcher`
 
 Use real cookie based `addToCart` and `removeFromCart`. Remember they setup the response so return the `await` (see final)
 
-Compute Quantity in the .map
-
-```ts
-const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
-```
-
-Add Loader to get cart
-
-```ts
-export async function loader({ request }: LoaderArgs) {
-  const cart = await getCart(request)
-  return json({ cart })
-}
-```
-
 ## Extra
 
 Talk about how our action could respond with `json()` data which we could pick up with `useActionData` similarly to `useLoaderData`.

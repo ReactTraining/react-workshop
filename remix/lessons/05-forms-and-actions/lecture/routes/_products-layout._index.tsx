@@ -8,9 +8,10 @@ import {
 import { type ActionArgs, type LoaderArgs, json } from '@remix-run/node'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import { type UnpackLoader, sleep } from '~/utils/helpers'
-// import { addToCart, removeFromCart, getCart } from '~/utils/cart.server'
+import { getCart } from '~/utils/cart.server'
+// import { addToCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
+import { type UnpackLoader, sleep } from '~/utils/helpers'
 
 // async function addToCart(productId: number) {
 //   console.log('add product', productId)
@@ -30,7 +31,15 @@ export async function action({ request }: ActionArgs) {
   return null
 }
 
+export async function loader({ request }: LoaderArgs) {
+  const cart = await getCart(request)
+  return json({ cart })
+}
+
+type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
+  const { cart } = useLoaderData() as LoaderData
   const { products } = useRouteLoaderData('routes/_products-layout') as RouteLoaderData
 
   function addToCart(productId: number) {
@@ -46,6 +55,8 @@ export default function () {
   return (
     <Tiles>
       {products.map((product) => {
+        const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
+
         return (
           <div
             key={product.id}
@@ -67,7 +78,7 @@ export default function () {
                   className="button button-outline whitespace-nowrap"
                   type="submit"
                 >
-                  <Icon name="cart" />
+                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
                 </button>
                 <button className="button">Remove</button>
               </div>
