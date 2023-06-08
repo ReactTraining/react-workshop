@@ -4,18 +4,31 @@ import './styles.scss'
 export function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState<string | null>(null)
+  const [saving, setSaving] = useState(false)
+
+  const countRef = useRef<number>()
+
+  useEffect(() => {
+    if (saving) {
+      setTimeout(() => {
+        setMessage(`We saved a count of ${count}, but the latest count is ${countRef.current}`)
+      }, 3000)
+    }
+  }, [saving])
 
   function saveToDatabase() {
-    setTimeout(() => {
-      setMessage(
-        `We saved a count of ${count}, but it is stale since the count state may have changed`
-      )
-    }, 3000)
+    setSaving(true)
   }
 
   return (
     <div className="text-center spacing closure-basics">
-      <button className="button" onClick={() => setCount(count + 1)}>
+      <button
+        className="button"
+        onClick={() => {
+          setCount(count + 1)
+          countRef.current = count + 1
+        }}
+      >
         Count: {count}
       </button>
       <hr />

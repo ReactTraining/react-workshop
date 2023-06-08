@@ -11,7 +11,7 @@ function App() {
     <div>
       <p>
         Want to read more about{' '}
-        <button onClick={() => null} className="as-link">
+        <button onClick={() => setIndex(1)} className="as-link">
           a11y
         </button>
       </p>

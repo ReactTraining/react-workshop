@@ -3,7 +3,7 @@ import { wrapEvent } from '../../utils'
 
 const DisclosureContext = React.createContext()
 
-export function Disclosure({ children, onChange, defaultOpen = false, ...props }) {
+export function Disclosure({ children, onChange, defaultOpen = false }) {
   const [isOpen, setIsOpen] = React.useState(defaultOpen)
   const id = React.useId()
   const panelId = `panel-${id}`
