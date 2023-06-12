@@ -1,5 +1,5 @@
-import { createContext, useContext, useReducer, useEffect } from 'react'
-import { api } from '~/utils/api'
+import { createContext, useContext, useReducer, useCallback } from 'react'
+
 import type { User } from '~/utils/types'
 
 type AuthActions = { type: 'LOGIN'; user: User } | { type: 'LOGOUT' }
@@ -13,8 +13,8 @@ type AuthContextType = {
   authenticated: boolean | null
   user: User | null
   dispatch: React.Dispatch<AuthActions>
-  // login(user: User): void
-  // logout(): void
+  login(user: User): void
+  logout(): void
 }
 
 const AuthContext = createContext<AuthContextType>(null!)
@@ -42,34 +42,20 @@ export function AuthProvider({ children }: Props) {
     }
   )
 
-  // const login = (user: User) => {
-  //   dispatch({ type: 'LOGIN', user })
-  // }
+  const login = useCallback((user: User) => {
+    dispatch({ type: 'LOGIN', user })
+  }, [])
 
-  // function logout() {
-  //   dispatch({ type: 'LOGOUT' })
-  // }
-
-  useEffect(() => {
-    let isCurrent = true
-    api.auth.getAuthenticatedUser().then((user: User) => {
-      if (user && isCurrent) {
-        dispatch({ type: 'LOGIN', user })
-      } else {
-        dispatch({ type: 'LOGOUT' })
-      }
-    })
-    return () => {
-      isCurrent = false
-    }
+  const logout = useCallback(() => {
+    dispatch({ type: 'LOGOUT' })
   }, [])
 
   const context: AuthContextType = {
     authenticated: state.authenticated,
     user: state.user,
     dispatch,
-    // login,
-    // logout,
+    login,
+    logout,
   }
 
   return <AuthContext.Provider value={context} children={children} />
