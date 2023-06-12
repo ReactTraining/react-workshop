@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react'
 
 export function BlackBox() {
-  // const spanRef = useRef()
   const [position, setPosition] = useState([0, 0])
 
   return (
@@ -18,18 +17,18 @@ export function BlackBox() {
       <span>
         {position[0]} - {position[1]}
       </span>
-      {/* <BigTree /> */}
+      <BigTree />
     </div>
   )
 }
 
-// function BigTree() {
-//   console.log('render')
-//   return (
-//     <>
-//       {[...Array(10000).keys()].map((n, i) => {
-//         return <div key={i}></div>
-//       })}
-//     </>
-//   )
-// }
+function BigTree() {
+  console.log('render')
+  return (
+    <>
+      {[...Array(40_000).keys()].map((n, i) => {
+        return <div key={i}></div>
+      })}
+    </>
+  )
+}
