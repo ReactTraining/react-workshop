@@ -70,7 +70,7 @@ div.form-field-icon {
   display: flex;
   align-items: center;
   background-color: var(--formFieldBackgroundColor);
-  border: 1px solid var(--blue2);
+  border: 1px solid var(--blue3);
   border-radius: 4px;
   &:focus-within {
     border-color: var(--blue3);
@@ -98,8 +98,8 @@ div.form-field-icon {
   }
 }
 
-[data-theme='dark'] .form-field-icon {
+.form-field-icon {
   &:focus-within {
-    border-color: var(--blue3);
+    border-color: var(--blue2);
   }
 }

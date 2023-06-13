@@ -10,7 +10,11 @@ function App() {
   return (
     <Accordion onChange={setIndex} defaultIndex={0}>
       <AccordionItem>
-        <AccordionButton>
+        <AccordionButton
+          onClick={(event) => {
+            event.preventDefault()
+          }}
+        >
           {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
           <span>What is ARIA?</span>
         </AccordionButton>

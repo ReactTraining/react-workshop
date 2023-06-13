@@ -8,30 +8,33 @@ import './styles.scss'
  */
 
 //////// App.tsx
+const CounterContext = React.createContext()
+
 
 function App() {
   const [count, setCount] = useState(0)
-  return <AppLayout count={count} setCount={setCount} />
-}
+  return <CounterContext.Provider><AppLayout /></CounterContext.Provider>
+} 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(<App />)
 
 //////// AppLayout.tsx
 
-function AppLayout({ count, setCount }) {
-  return <Page count={count} setCount={setCount} />
+function AppLayout() {
+  return <Page />
 }
 
 //////// Page.tsx
 
-function Page({ count, setCount }) {
-  return <Counter count={count} setCount={setCount} />
+function Page() {
+  return <Counter />
 }
 
 //////// Counter.tsx
 
-function Counter({ count, setCount }) {
+function Counter() {
+  const { count, setCount } = useContext(?????) // subscriber to some state
   return (
     <div className="card spacing">
       <h1>Counter</h1>

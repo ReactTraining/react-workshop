@@ -79,14 +79,10 @@ export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerPr
   const targetRef = useRef<HTMLDivElement>(null!)
   const id = useId()
 
-  // const [field, meta, helpers] = useField(fieldName);
-
   return (
     <>
       {openPopover && (
-        <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}>
-          Put SelectDateRange Here
-        </Popover>
+        <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}></Popover>
       )}
 
       <div className="field-wrap">
