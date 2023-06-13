@@ -31,12 +31,8 @@ export function App({ onSubmit }) {
           required
           placeholder="At least 8 characters"
         />
-        <FieldDateRangePicker label="Date Range" />
-        <SelectDateRange
-          onSelect={(start, end) => {
-            console.log(start, end)
-          }}
-        />
+        <FieldDateRangePicker label="Date Range" startName="startDate" endName="endDate" />
+
         <button type="submit" className="button">
           Submit
         </button>

@@ -72,17 +72,42 @@ export function FieldInput({
 
 type FieldDateRangePickerProps = {
   label: string
+  startName: string
+  endName: string
 } & React.HTMLAttributes<HTMLInputElement>
 
-export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerProps) {
+export function FieldDateRangePicker({
+  label,
+  startName,
+  endName,
+  ...props
+}: FieldDateRangePickerProps) {
   const [openPopover, setOpenPopover] = useState(false)
   const targetRef = useRef<HTMLDivElement>(null!)
   const id = useId()
 
+  const startData = useField(startName)
+  const setStartDate = startData[2].setValue
+  const startValue = dayjs(startData[0].value).format('MM/DD/YYYY')
+
+  const endData = useField(endName)
+  const setEndDate = endData[2].setValue
+  const endValue = dayjs(endData[0].value).format('MM/DD/YYYY')
+
   return (
     <>
       {openPopover && (
-        <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}></Popover>
+        <Popover targetRef={targetRef} onClose={() => setOpenPopover(false)}>
+          <SelectDateRange
+            onSelect={(start, end) => {
+              setStartDate(start)
+              setEndDate(end)
+              setTimeout(() => {
+                setOpenPopover(false)
+              }, 500)
+            }}
+          />
+        </Popover>
       )}
 
       <div className="field-wrap">
@@ -102,7 +127,7 @@ export function FieldDateRangePicker({ label, ...props }: FieldDateRangePickerPr
                 type="text"
                 readOnly
                 id={id}
-                value={``}
+                value={`${startValue} - ${endValue}`}
                 placeholder="Select a Date Range"
               />
             </div>
