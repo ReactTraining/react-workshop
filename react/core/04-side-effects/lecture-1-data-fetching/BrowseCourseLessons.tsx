@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { Heading } from '~/Heading'
@@ -12,8 +12,16 @@ import type { CourseWithLessons } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-export function BrowseCourseLessons() {
-  const courseSlug = useParams().courseSlug!
+// BrowseCourseLessons()  courseSlug: 'react'  - run the effect after the render (cleanup)
+// BrowseCourseLessons()  courseSlug: 'react'
+// BrowseCourseLessons()  courseSlug: 'react'
+// BrowseCourseLessons()  courseSlug: 'react'
+// BrowseCourseLessons()  courseSlug: 'react'
+// BrowseCourseLessons()  courseSlug: 'react'
+// BrowseCourseLessons()  courseSlug: 'javascript' - run the effect after _that_ render
+
+export function BrowseCourseLessons({ fn }) {
+  const courseSlug = useParams().courseSlug! // useState
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
   // Course and Lesson Data
@@ -21,18 +29,34 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
-  // api.courses.getCourse(courseSlug)
+  // Any variable that we close over that CAN CHANGE!!!
+  useEffect(() => {
+    let isCurrent = true
+    api.courses.getCourse(courseSlug).then((course) => {
+      if (isCurrent) {
+        setCourse(course)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
+
+  // Data fetching
+  // cookies
+  // localStorage
+  // document / window
+  // dom (directly)
 
   function removeLesson(lessonId: number) {
-    // if (!lessons) return
-    // api.courses.removeLesson(lessonId).then(() => {
-    //   const i = lessons.findIndex((l) => l.id === lessonId)
-    //   setCourse({
-    //     ...course,
-    //     lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
-    //   })
-    // })
+    if (!lessons) return
+    api.courses.removeLesson(lessonId).then(() => {
+      const i = lessons.findIndex((l) => l.id === lessonId)
+      setCourse({
+        ...course,
+        lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
+      })
+    })
   }
 
   return (

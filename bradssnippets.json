@@ -1,0 +1,92 @@
+{
+  "console.log": {
+    "prefix": "con",
+    "body": ["console.log($0)"]
+  },
+  "css custom properties": {
+    "prefix": "var",
+    "body": ["var(--$0);"]
+  },
+  "const": {
+    "prefix": "const",
+    "body": ["const { $1 } = $0"]
+  },
+  "function": {
+    "prefix": "f",
+    "body": ["function $0() {", "  ", "}"]
+  },
+  "getElementById('')": {
+    "prefix": "element",
+    "body": ["document.getElementById('$0')"]
+  },
+  "React.lazy": {
+    "prefix": "lazy",
+    "body": ["const $1 = React.lazy(() => import('$0'))"]
+  },
+  "Suspense": {
+    "prefix": "suspense",
+    "body": ["<Suspense fallback={<div>loading...</div>}>$0</Suspense>"]
+  },
+  "ReactDOM": {
+    "prefix": "ReactDOM",
+    "body": ["ReactDOM.render(<${0:App} />, document.getElementById('root'))"]
+  },
+  "useState": {
+    "prefix": "state",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($0)"]
+  },
+  "useEffect": {
+    "prefix": "effect",
+    "body": ["useEffect(() => {", "  ${0}", "}, [])"]
+  },
+  "jsx": {
+    "prefix": "jsx",
+    "body": ["_jsx($0, {})"]
+  },
+  "children-prop-types": {
+    "prefix": "children",
+    "body": ["children: React.ReactNode"]
+  },
+  "reducer -> useReducer": {
+    "prefix": "reducer",
+    "body": [
+      "const [state, dispatch] = useReducer((state, action) => {",
+      "  switch(action.type) {",
+      "    case '${0}': {",
+      "      return { ...state }",
+      "    }",
+      "    default: return state",
+      "  }",
+      "}, {})"
+    ],
+    "description": "reducer -> useReducer"
+  },
+  "dispatch": {
+    "prefix": "dispatch",
+    "body": ["dispatch({ type: '${0}' })"]
+  },
+  "React: Class Component": {
+    "prefix": "class",
+    "body": [
+      "class $0 extends React.Component {",
+      "  render() {",
+      "    return (",
+      "      <div></div>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
+  "componentDidMount": {
+    "prefix": "cdm",
+    "body": ["componentDidMount() {", "  $1", "}"]
+  },
+  "componentDidUpdate": {
+    "prefix": "cdu",
+    "body": ["componentDidUpdate(prevProps) {", "  $0", "}"]
+  },
+  "componentWillUnmount": {
+    "prefix": "cwu",
+    "body": ["componentWillUnmount() {", "  $0", "}"]
+  }
+}

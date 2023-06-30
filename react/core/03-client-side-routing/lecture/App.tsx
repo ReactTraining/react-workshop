@@ -1,4 +1,4 @@
-// import { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import '~/styles/all.scss'
 import './styles.scss'
@@ -16,31 +16,32 @@ import { BrowseCourses } from './BrowseCourses'
 import { BrowseStudents } from '~/BrowseStudents'
 import { ChatPage } from '~/ChatPage'
 
-// Let's Lazy load this
-import BrowseCourseLessons from './BrowseCourseLessons'
+const BrowseCourseLessons = lazy(() => import('./BrowseCourseLessons'))
 
 export function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<WebsiteLayout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-        <Route path="admin" element={<AppLayout />}>
-          <Route index element={<Navigate replace to="courses" />} />
-          <Route path="courses">
-            <Route index element={<BrowseCourses />} />
-            <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+      <Suspense fallback={<div></div>}>
+        <Routes>
+          <Route path="/" element={<WebsiteLayout />}>
+            <Route index element={<HomePage />} />
           </Route>
-          <Route path="students">
-            <Route index element={<BrowseStudents />} />
+          <Route path="admin" element={<AppLayout />}>
+            <Route index element={<Navigate replace to="courses" />} />
+            <Route path="courses">
+              <Route index element={<BrowseCourses />} />
+              <Route path=":courseSlug" element={<BrowseCourseLessons />} />
+            </Route>
+            <Route path="students">
+              <Route index element={<BrowseStudents />} />
+            </Route>
+            <Route path="chat">
+              <Route index element={<ChatPage />} />
+            </Route>
           </Route>
-          <Route path="chat">
-            <Route index element={<ChatPage />} />
-          </Route>
-        </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }
