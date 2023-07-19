@@ -9,6 +9,7 @@ import { AppSidebar } from '~/AppSidebar'
 import { useCourses } from './useCourses'
 
 // https://github.com/reactwg/react-18/discussions/41
+// https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function BrowseCourses() {
   const allCourses = useCourses()
