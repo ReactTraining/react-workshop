@@ -5,7 +5,16 @@ import type { CourseWithLessons } from '~/utils/types'
 export function useCourses() {
   const [courses, setCourses] = useState<CourseWithLessons[] | null>(null)
 
-  // Put side effect here that was used in both BrowseCourses and PreviousNextCourse
+  useEffect(() => {
+    let isCurrent = true
+    api.courses.getAll().then((courses) => {
+      if (!isCurrent) return
+      setCourses(courses)
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
   // Ask the instructor to cover `as const` which is a TypeScript thing
   return [courses, setCourses] as const

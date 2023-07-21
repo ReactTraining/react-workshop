@@ -13,6 +13,10 @@ export function AddCourse({ onSubmit }: Props) {
   const [courseName, setCourseName] = useState('')
   const [lessons, setLessons] = useState(0)
 
+  useEffect(() => {
+    courseNameRef.current.focus()
+  }, [])
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
     onSubmit({ name: courseName, lessons })

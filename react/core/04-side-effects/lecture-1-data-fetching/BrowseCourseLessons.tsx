@@ -12,7 +12,7 @@ import type { CourseWithLessons } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-export function BrowseCourseLessons() {
+export const BrowseCourseLessons = () => {
   const courseSlug = useParams().courseSlug!
   const [createLessonDialog, setCreateLessonDialog] = useState(false)
 
@@ -21,17 +21,30 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // api.courses.getCourse(courseSlug)
+  // "stable" - means it doesn't change over time
+
+  // Any variable that we "close over" that can change
+  useEffect(() => {
+    let isCurrent = true
+    api.courses.getCourse(courseSlug).then((course) => {
+      if (isCurrent) {
+        setCourse(course)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [courseSlug])
 
   function removeLesson(lessonId: number) {
-    // if (!lessons) return
-    // api.courses.removeLesson(lessonId).then(() => {
-    //   const i = lessons.findIndex((l) => l.id === lessonId)
-    //   setCourse({
-    //     ...course,
-    //     lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
-    //   })
-    // })
+    if (!lessons) return
+    api.courses.removeLesson(lessonId).then(() => {
+      const i = lessons.findIndex((l) => l.id === lessonId)
+      setCourse({
+        ...course,
+        lessons: [...lessons.slice(0, i), ...lessons.slice(i + 1, lessons.length)],
+      })
+    })
   }
 
   return (
