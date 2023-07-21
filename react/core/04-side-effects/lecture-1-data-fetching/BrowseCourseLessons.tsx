@@ -21,16 +21,7 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // apis
-  // dom directly
-  // cookies / localStorage
-  // window / document
-
-  useEffect(() => {
-    api.courses.getCourse(courseSlug).then((course) => {
-      setCourse(course)
-    })
-  }, [])
+  // api.courses.getCourse(courseSlug)
 
   function removeLesson(lessonId: number) {
     // if (!lessons) return
