@@ -39,7 +39,7 @@ function savePreferences(updates) {
 
 if (!preferences.workshop) {
   console.log('Which Workshop?')
-  const workshopOptions = ['React', 'Remix']
+  const workshopOptions = ['React', 'React2', 'Remix']
   const choice = readlineSync.keyInSelect(workshopOptions)
   if (choice === -1) process.exit(0)
   // start over with preferences
@@ -54,9 +54,16 @@ if (!preferences.workshop) {
 *****************************************/
 
 switch (preferences.workshop.toLowerCase()) {
-  case 'react':
-    startReact()
+  case 'react': {
+    const mainPath = path.resolve(process.cwd(), 'react')
+    startReact(mainPath)
     break
+  }
+  case 'react2': {
+    const mainPath = path.resolve(process.cwd(), 'react2')
+    startReact(mainPath)
+    break
+  }
   case 'remix':
     startRemix()
     break
@@ -92,8 +99,8 @@ function startRemix() {
   React SPA (Vite Server)
 *****************************************/
 
-async function startReact() {
-  const coursesPath = path.resolve(__dirname, '..', 'react')
+async function startReact(coursesPath) {
+  // const coursesPath = path.resolve(__dirname, '..', 'react')
 
   const { lessonPath, selectedLessonType, selectedLesson } = selectReactLesson(
     coursesPath,
@@ -102,7 +109,7 @@ async function startReact() {
   )
 
   const appName = '_full-app'
-  const appPath = path.resolve(__dirname, '..', 'react', appName)
+  const appPath = path.resolve(coursesPath, appName)
   startDatabase(path.resolve(appPath, '_database'))
 
   // The thing we can use in imports like `from '/file'`
@@ -139,7 +146,7 @@ async function startReact() {
     resolve: {
       alias,
     },
-    root: path.resolve(process.cwd(), 'react', '_full-app'),
+    root: path.resolve(coursesPath, '_full-app'),
     server: {
       port,
     },
