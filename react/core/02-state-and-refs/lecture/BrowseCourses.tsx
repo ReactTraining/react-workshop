@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { Counter } from './Counter'
 import { AddCourse } from './AddCourse'
 

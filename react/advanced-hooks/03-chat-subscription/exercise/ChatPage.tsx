@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { api } from '~/utils/api'
-import { Avatar } from '~/Avatar'
+import { Avatar } from 'react2/_full-app/src/Avatar'
 import { useAuthContext } from '~/AuthContext'
 import type { ChatMessage } from '~/utils/types'
 import styles from '../../../../react/_full-app/ChatPage/ChatPage.module.scss'

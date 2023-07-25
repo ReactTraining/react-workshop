@@ -1,5 +1,5 @@
-import { Heading } from '~/Heading'
-import { Icon } from '~/Icon'
+import { Heading } from 'react2/_full-app/src/Heading'
+import { Icon } from '~/components/Icon'
 import styles from './HomePage.module.scss'
 
 export function HomePage() {

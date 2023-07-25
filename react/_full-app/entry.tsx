@@ -1,4 +1,4 @@
-import '~/index'
+import 'react2/_full-app/src/index'
 
 const showErrorOverlay = (err) => {
   // must be within function call because that's when the element is defined for sure.

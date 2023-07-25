@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { useCoursesContext } from '~/CoursesContext'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { Loading } from '~/Loading'
 import { NoResults } from '~/NoResults'
 import { DataGrid, Row, Col } from '~/DataGrid'

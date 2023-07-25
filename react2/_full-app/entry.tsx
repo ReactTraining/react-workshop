@@ -1,4 +1,5 @@
 import '~/index'
+import './index.css'
 
 const showErrorOverlay = (err) => {
   // must be within function call because that's when the element is defined for sure.

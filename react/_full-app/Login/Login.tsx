@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { Loading } from '~/Loading'
 import { Notice } from '~/Notice'
 import { api } from '~/utils/api'

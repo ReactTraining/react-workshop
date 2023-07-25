@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '~/utils/api'
-import { Icon } from '~/Icon'
+import { Icon } from '~/components/Icon'
 // import { useCourses } from './courseData'
 import type { CourseWithLessons } from '~/utils/types'
 

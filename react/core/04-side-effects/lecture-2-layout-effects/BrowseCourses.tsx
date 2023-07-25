@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '~/utils/api'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import type { Course } from '~/utils/types'
 import { AppSidebar } from '~/AppSidebar'
 // import { RecentLessons } from '~/RecentLessons'

@@ -2,7 +2,7 @@ import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom'
 import { Loading } from '~/Loading'
 import { Logo } from '~/Logo'
 import { AuthenticatedDropdownMenu } from './AuthenticatedDropdownMenu'
-import { Icon } from '~/Icon'
+import { Icon } from '~/components/Icon'
 import { useAuthContext } from './AuthContext'
 import styles from '../../../../react/_full-app/AppLayout/AppLayout.module.scss'
 

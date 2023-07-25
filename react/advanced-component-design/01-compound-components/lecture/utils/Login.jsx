@@ -1,4 +1,4 @@
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 
 export function Login() {
   return (

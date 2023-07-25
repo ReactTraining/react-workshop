@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { api } from '~/utils/api'
-import { Icon } from '~/Icon'
+import { Icon } from '~/components/Icon'
 
 type Props = {
   courseId?: number

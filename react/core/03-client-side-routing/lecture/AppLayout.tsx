@@ -1,6 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { Logo } from '~/Logo'
-import { Icon } from '~/Icon'
+import { Icon } from '~/components/Icon'
 import styles from '../../../../react/_full-app/AppLayout/AppLayout.module.scss'
 import subNavStyles from '../../../../react/_full-app/AppSubLayouts/AppSubLayouts.module.scss'
 

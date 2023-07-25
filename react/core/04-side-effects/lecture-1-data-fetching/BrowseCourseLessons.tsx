@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { api } from '~/utils/api'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { DataGrid, Row, Col } from '~/DataGrid'
 import { CreateLessonDialog } from '~/CreateLessonDialog'
 import { Loading } from '~/Loading'

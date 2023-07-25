@@ -140,13 +140,15 @@ async function startReact(coursesPath) {
   // https://vitejs.dev/guide/api-javascript.html#vitedevserver
   // https://vitejs.dev/config/
 
+  shell.cd(appPath)
+
   const port = 3000
   const server = await createServer({
     plugins: [react()],
     resolve: {
       alias,
     },
-    root: path.resolve(coursesPath, '_full-app'),
+    // root: path.resolve(coursesPath, '_full-app'),
     server: {
       port,
     },

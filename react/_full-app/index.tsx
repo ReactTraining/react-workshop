@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClientProvider } from 'react-query'
 import { AuthProvider } from '~/AuthContext'
 import { CoursesProvider } from '~/CoursesContext'
-import { App } from '~/App'
+import { App } from 'react2/_full-app/src/App'
 import { queryClient } from '~/utils/queryClient'
 import '~/styles/all.scss'
 

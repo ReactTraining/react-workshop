@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import MarkdownIt from 'markdown-it'
 import { api } from '~/utils/api'
 import { useCoursesContext } from '~/CoursesContext'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import * as localStorage from '~/utils/localStorage'
 import styles from './LessonProfile.module.scss'
 

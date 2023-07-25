@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { api } from '~/utils/api'
 import { useStudents } from '~/hooks/students'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { AddStudentForm } from '~/AddStudentForm'
 import { Loading } from '~/Loading'
 import { NoResults } from '~/NoResults'

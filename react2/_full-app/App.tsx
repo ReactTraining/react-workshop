@@ -1,4 +1,3 @@
 export function App() {
-  console.log('hererere')
-  return <div className="bg-slate-300">app</div>
+  return <div className="bg-yellow-500">react 2 app</div>
 }

@@ -1,5 +1,5 @@
 import { useState, useRef, useId } from 'react'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { Notice } from '~/Notice'
 import { login } from './utils'
 

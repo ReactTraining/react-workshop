@@ -19,7 +19,7 @@
     "types": ["react/next", "react-dom/next", "jest"],
     "baseUrl": "./",
     "paths": {
-      "~/*": ["react/_full-app/*"]
+      "~/*": ["react2/_full-app/*"]
     }
   }
 }

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import MarkdownIt from 'markdown-it'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 import { useCoursesContext } from '~/CoursesContext'
 import styles from './WebsiteCourseLesson.module.scss'
 

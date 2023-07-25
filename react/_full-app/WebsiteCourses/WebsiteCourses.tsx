@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '~/utils/api'
-import { Tiles } from '~/Tiles'
-import { Heading } from '~/Heading'
+import { Tiles } from 'react2/_full-app/src/Tiles'
+import { Heading } from 'react2/_full-app/src/Heading'
 import type { CourseWithLessons } from '~/utils/types'
 
 export function WebsiteCourses() {

@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import { Icon } from '~/Icon'
+import { Icon } from '~/components/Icon'
 import { SearchCourses } from '~/SearchCourses'
 import styles from './AppSubLayouts.module.scss'
 

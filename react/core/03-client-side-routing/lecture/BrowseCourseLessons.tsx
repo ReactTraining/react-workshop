@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom'
-import { Heading } from '~/Heading'
+import { Heading } from 'react2/_full-app/src/Heading'
 
 export default function BrowseCourseLessons() {
   const courseSlug = useParams().courseSlug!
