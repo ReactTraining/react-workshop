@@ -8,7 +8,9 @@ export default function Index() {
         One
       </Link>
       <br />
-      <Link to="/product">iPhone</Link>
+      <Link to="/product" prefetch="render">
+        iPhone
+      </Link>
       {/* <PrefetchPageLinks page="/one" /> */}
     </div>
   )

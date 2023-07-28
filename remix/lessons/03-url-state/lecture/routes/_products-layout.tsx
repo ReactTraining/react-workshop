@@ -7,8 +7,9 @@ import type { LoaderArgs } from '@remix-run/node'
 import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 
-export const loader = async ({ request }: LoaderArgs) => {
-  const [products, brands] = await Promise.all([getProducts(), getBrands()])
+export const loader = async ({ request, params }: LoaderArgs) => {
+  const searchParams = new URL(request.url).searchParams
+  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 
   return json({
     products,
@@ -47,11 +48,22 @@ export default function () {
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
 
-  // useSearchParams()
+  // Current
+  const [searchParams] = useSearchParams()
+  const brand = searchParams.get('brand')
+  const on = brand === value
 
-  const on = false
+  // New
+  const nextUrl = new URLSearchParams(searchParams.toString())
+
+  if (on) {
+    nextUrl.delete('brand')
+  } else {
+    nextUrl.set('brand', value)
+  }
+
   const url = useLocation().pathname
-  const to = url
+  const to = `${url}?${nextUrl.toString()}`
 
   return (
     <Link to={to} className="block">

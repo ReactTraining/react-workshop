@@ -5,9 +5,6 @@ import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
 import { UnpackLoader } from '~/utils/helpers'
 
-// type LoaderData = UnpackLoader<typeof loader>
-// useRouteLoaderData('routes/account')
-
 export const loader = async ({ request }: LoaderArgs) => {
   // These are currently in serial!!
   // That's okay in this case because we need the user before we get the settings
@@ -18,8 +15,10 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ user, settings })
 }
 
+export type LoaderData = UnpackLoader<typeof loader>
+
 export default function () {
-  const { user } = useLoaderData<typeof loader>()
+  const { user, settings } = useLoaderData<typeof loader>()
 
   return (
     <div className="flex gap-6">
@@ -45,7 +44,7 @@ export default function () {
         </div>
       </div>
       <main className="flex-1 p-6 space-y-6 bg-white shadow-sm rounded">
-        <Outlet />
+        <Outlet context={{ settings, user }} />
       </main>
     </div>
   )

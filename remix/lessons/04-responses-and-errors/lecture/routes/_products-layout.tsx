@@ -13,6 +13,8 @@ export const loader = async ({ request }: LoaderArgs) => {
     getCategories(),
   ])
 
+  throw new Error('whatever')
+
   return json({
     products,
     brands: brands.sort(sortLabel),

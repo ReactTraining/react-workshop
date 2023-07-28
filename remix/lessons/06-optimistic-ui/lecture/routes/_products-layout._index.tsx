@@ -29,7 +29,7 @@ export default function () {
               </div>
               <div className="flex gap-2">
                 <AddToCart productId={product.id} quantityInCart={quantityInCart} />
-                {quantityInCart > 0 && <RemoveFromCart productId={product.id} />}
+                <RemoveFromCart productId={product.id} />
               </div>
             </div>
           </div>

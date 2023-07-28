@@ -59,9 +59,12 @@ export function ErrorBoundary() {
   let heading = 'Unknown Error'
   let message = ''
 
+  // throw new Response()
   if (isRouteErrorResponse(error)) {
     heading = error.status + ' ' + error.statusText
     message = error.data
+
+    // throw Error()
   } else if (error instanceof Error) {
     heading = 'Page Error'
     message = error.message
