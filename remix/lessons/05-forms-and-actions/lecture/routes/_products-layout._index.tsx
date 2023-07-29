@@ -28,6 +28,10 @@ export async function action({ request }: ActionArgs) {
   const productId = formData.get('productId')
   console.log('product', productId)
 
+  // addToCart commits to the cookie so we need to return special headers.
+  // Without the return, it wont work
+  // return await addToCart(request, productId, quantity)
+
   return null
 }
 

@@ -34,7 +34,29 @@ search.delete('brand')
 search.toString()
 ```
 
-Even though the code is filtering correctly, we're doing this in a weird place because our component filters on the server and responds with good HTML (that has filtered products). But if the loader gets hit as an XHR endpoint, it will return everything and we'll be filtering on the client.
+Get the FilterLinks to work:
+
+```js
+// Current URL
+const [search] = useSearchParams()
+const brand = search.get('brand')
+
+// Next URL
+const nextSearch = new URLSearchParams(search.toString())
+const on = brand === value
+if (on) {
+  nextSearch.delete('brand')
+} else {
+  nextSearch.set('brand', value)
+}
+
+const url = useLocation().pathname
+const to = `${url}?${nextSearch.toString()}`
+```
+
+Then get the filtering to work which is mostly there but commented out in the index page
+
+Once the filtering is working, we're doing this in a weird place because our component filters on the server and responds with good HTML (that has filtered products). But if the loader gets hit as an XHR endpoint, it will return everything and we'll be filtering on the client.
 
 The purpose of `page2` is to demonstrate this problem in the network tab. Navigate away from the home page and back to the home page shows the loader returning every product to the client.
 

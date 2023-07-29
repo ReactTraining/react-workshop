@@ -46,10 +46,12 @@ export default function () {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-  const on = false
-  const to = useLocation().pathname
 
   // useSearchParams()
+
+  const on = false
+  const url = useLocation().pathname
+  const to = url
 
   return (
     <Link to={to} className="block">
