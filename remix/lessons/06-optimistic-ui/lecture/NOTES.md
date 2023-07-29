@@ -61,7 +61,11 @@ export function CartButtons({ productId, quantityInCart }: AddToCartButtonProps)
       <addFetcher.Form method="post" action="/cart">
         <input type="hidden" name="productId" value={productId} />
         <input type="hidden" name="quantity" value={quantity + 1} />
-        <button className="button button-outline whitespace-nowrap" type="submit">
+        <button
+          className="button button-outline whitespace-nowrap"
+          type="submit"
+          disabled={!!removeFetcher.formData}
+        >
           <Icon name="cart" />
           {quantity > 0 && (
             <span className="ml-2 align-middle inline-block min-w-[1.5em]">{quantity}</span>
