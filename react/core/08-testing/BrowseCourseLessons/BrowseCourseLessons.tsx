@@ -7,7 +7,7 @@ import { NoResults } from '~/NoResults'
 import { PreviousNextCourse } from '~/PreviousNextCourse'
 
 export function BrowseCourseLessons() {
-  const courseSlug = useParams().courseSlug!
+  const courseSlug = useParams().courseSlug! // connects to context and the URL
 
   // If the data were coming from context
   const { getCourse, isLoading } = useCoursesContext()
