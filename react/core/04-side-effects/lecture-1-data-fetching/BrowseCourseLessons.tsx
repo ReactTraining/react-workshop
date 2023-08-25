@@ -21,7 +21,6 @@ export function BrowseCourseLessons() {
   const lessons = course && course.lessons
   const isLoading = course === null
 
-  // Load Course and Lesson Data
   // api.courses.getCourse(courseSlug)
 
   function removeLesson(lessonId: number) {
