@@ -19,7 +19,9 @@ export const Login = ({ onSuccess }: Props) => {
 
   function handleLogin(event: React.FormEvent) {
     event.preventDefault()
+
     setLoading(true)
+
     api.auth
       .login(username, password)
       .then((user: User) => {
