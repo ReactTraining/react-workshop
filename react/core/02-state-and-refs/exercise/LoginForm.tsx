@@ -8,7 +8,10 @@ type Props = {
 }
 
 export function LoginForm({ onSuccess }: Props) {
-  // Task 1: Make state for username and password here. See more in the Guide.md
+  const [formValues, setFormValues] = useState({
+    username: '',
+    password: '',
+  })
 
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(false)
@@ -24,7 +27,7 @@ export function LoginForm({ onSuccess }: Props) {
     event.preventDefault()
 
     // Task 2: See Guide.md for details
-    login(/* username, password */)
+    login(formValues.username, formValues.password)
       .then((user) => {
         onSuccess(user)
         // Reset form and set focus
@@ -48,10 +51,10 @@ export function LoginForm({ onSuccess }: Props) {
       <div className="field-wrap">
         <label htmlFor={usernameId}>Username</label>
         <input
-          // value={}
-          // onChange={(e) => {
-          //   //e.target.value
-          // }}
+          value={formValues.username}
+          onChange={(e) => {
+            setFormValues({ ...formValues, username: e.target.value })
+          }}
           id={usernameId}
           type="username"
           className="form-field"

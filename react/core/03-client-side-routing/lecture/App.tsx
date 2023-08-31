@@ -39,7 +39,6 @@ export function App() {
             <Route index element={<ChatPage />} />
           </Route>
         </Route>
-        <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </BrowserRouter>
   )
