@@ -39,7 +39,7 @@ function savePreferences(updates) {
 
 if (!preferences.workshop) {
   console.log('Which Workshop?')
-  const workshopOptions = ['React', 'React2', 'Remix']
+  const workshopOptions = ['React', 'Remix']
   const choice = readlineSync.keyInSelect(workshopOptions)
   if (choice === -1) process.exit(0)
   // start over with preferences

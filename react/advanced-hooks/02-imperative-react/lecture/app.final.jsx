@@ -1,13 +1,13 @@
-import * as React from 'react'
+import { useEffect, useLayoutEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 import './styles.scss'
 
 const Portal = ({ children }) => {
-  const portalNode = React.useRef(null)
-  const [_, forceUpdate] = React.useState()
+  const portalNode = useRef(null)
+  const [_, forceUpdate] = useState()
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     portalNode.current = document.createElement('portal')
     document.body.appendChild(portalNode.current)
     forceUpdate({})
@@ -22,8 +22,8 @@ const Portal = ({ children }) => {
 }
 
 const Popover = ({ children, targetRef, ...props }) => {
-  const popoverRef = React.useRef(null)
-  const [styles, setStyles] = React.useState({})
+  const popoverRef = useRef(null)
+  const [styles, setStyles] = useState({})
 
   // Doing this work in a ref callback helps overcome a race-condition where
   // we need to ensure the popoverRef has been established. It's established
@@ -46,7 +46,7 @@ const Popover = ({ children, targetRef, ...props }) => {
       <div
         {...props}
         ref={initPopoverRef}
-        data-popover=""
+        className="bg-black text-white rounded py-1 px-3"
         style={{
           position: 'absolute',
           ...styles,
@@ -59,10 +59,10 @@ const Popover = ({ children, targetRef, ...props }) => {
 }
 
 const Define = ({ children }) => {
-  const [open, setOpen] = React.useState(false)
-  const buttonRef = React.useRef()
+  const [open, setOpen] = useState(false)
+  const buttonRef = useRef()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const listener = (event) => {
       if (event.target !== buttonRef.current) {
         setOpen(false)
@@ -76,6 +76,7 @@ const Define = ({ children }) => {
     <>
       <button
         ref={buttonRef}
+        className="text-sky-600"
         onClick={() => {
           setOpen(!open)
         }}

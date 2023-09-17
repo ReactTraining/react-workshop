@@ -1,0 +1,33 @@
+import { Menu } from '@headlessui/react'
+import { api } from 'react/_full-app/utils/api'
+import { Avatar } from 'react2/_full-app/src/Avatar'
+import { useAuthContext } from '~/AuthContext'
+
+export function AuthenticatedDropdownMenu() {
+  const { user, logout } = useAuthContext()
+
+  function onLogout() {
+    api.auth.logout().then(logout)
+  }
+
+  return (
+    <Menu as="div" className="dropdown-menu" data-theme="light">
+      <Menu.Button aria-label="My Account Menu">
+        <Avatar src={user?.avatarUrl} size={2} />
+      </Menu.Button>
+      <Menu.Items className="dropdown-items" static>
+        <Menu.Item>
+          <button onClick={onLogout}>Logout</button>
+        </Menu.Item>
+        <Menu.Item>
+          <a href="https://reacttraining.com/workshops">More Workshops</a>
+        </Menu.Item>
+        <Menu.Item>
+          <a href="https://github.com/ReactTraining/react-workshop/blob/main/reading/post-workshop-materials.md">
+            Post Workshop Reading Material
+          </a>
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  )
+}

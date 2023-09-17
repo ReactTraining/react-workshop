@@ -1,22 +1,24 @@
-import * as React from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { LessonBody, LessonCard } from '~/Lesson'
 import { position } from './utils'
-import './styles.scss'
 
 // const targetRect = targetRef.current.getBoundingClientRect()
 // const popoverRect = popoverRef.current.getBoundingClientRect()
 // setStyles(position(targetRect, popoverRect))
 
 const Popover = ({ children }) => {
-  return <div className="popover">{children}</div>
+  return <div className="bg-black text-white rounded py-1 px-3">{children}</div>
 }
 
 const Define = ({ children }) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <>
-      <button onClick={() => setOpen(!open)}>{children}</button>
+      <button onClick={() => setOpen(!open)} className="text-sky-600">
+        {children}
+      </button>
       {open && <Popover>Hooks are a way to compose behavior into components</Popover>}
     </>
   )
@@ -24,10 +26,14 @@ const Define = ({ children }) => {
 
 export function App() {
   return (
-    <p>
-      Modern React is filled with <Define>Hooks</Define>. They work with function-components and
-      they give us an ability to use state and other React features similarly to class-based
-      components.
-    </p>
+    <LessonBody>
+      <LessonCard>
+        <p>
+          Modern React is filled with <Define>Hooks</Define>. They work with function-components and
+          they give us an ability to use state and other React features similarly to class-based
+          components.
+        </p>
+      </LessonCard>
+    </LessonBody>
   )
 }
