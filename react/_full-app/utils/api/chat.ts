@@ -1,5 +1,5 @@
-import { db } from 'react/_full-app/utils/firebase'
-import type { ChatMessage } from 'react/_full-app/utils/types'
+import { db } from '~/utils/firebase'
+import type { ChatMessage } from '~/utils/types'
 import {
   collection,
   getDocs,

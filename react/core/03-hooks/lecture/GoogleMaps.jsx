@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef, useId } from 'react'
-import { GoogleMap } from '~/maps'
+import { GoogleMap, load } from '~/utils/maps'
+
+load()
 
 export function GoogleMaps() {
   const [formData, setFormData] = useState({
@@ -16,8 +18,6 @@ export function GoogleMaps() {
       lat: Number(formData.get('lat')),
       lng: Number(formData.get('lng')),
     }
-
-    console.log(pos)
 
     GoogleMap(document.getElementById('map'), {
       center: pos,

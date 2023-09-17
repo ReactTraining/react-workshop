@@ -1,4 +1,4 @@
-import type { User } from 'react/_full-app/utils/types'
+import type { User } from '~/utils/types'
 
 /**
  * Auth

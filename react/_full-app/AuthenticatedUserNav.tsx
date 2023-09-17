@@ -1,9 +1,9 @@
-import { Link } from '@remix-run/react'
-import { Avatar } from '~/components/Avatar'
-import { useAuth } from '~/state/AuthContext'
+import { Link } from 'react-router-dom'
+import { Avatar } from '~/Avatar'
+// import { useAuth } from '~/state/AuthContext'
 
 export function AuthenticatedUserNav() {
-  const { user } = useAuth()
+  const user: any = false
 
   return (
     <div>

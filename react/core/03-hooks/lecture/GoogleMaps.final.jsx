@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useId } from 'react'
-import { GoogleMap } from '~/maps'
+import { GoogleMap } from '~/utils/maps'
 
 export function GoogleMaps() {
   const [pos, setPos] = useState({ lat: 40.712, lng: -74.006 })
@@ -43,7 +43,7 @@ function SelectRegion({ onChange }) {
         }}
       >
         {regions.map((region) => {
-          return <option>{region.name}</option>
+          return <option key={region.name}>{region.name}</option>
         })}
       </select>
     </div>

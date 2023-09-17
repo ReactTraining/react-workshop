@@ -41,7 +41,7 @@ body {
   Anchors
 *****************************************/
 
-/* @layer base {
+@layer base {
   a {
     color: theme(colors.brandColor);
     text-decoration: none;
@@ -52,7 +52,7 @@ body {
   a:hover {
     text-decoration: underline;
   }
-} */
+}
 
 /****************************************
   Lists
@@ -222,6 +222,7 @@ body {
   Notice
 *****************************************/
 
+/*
 @layer components {
   .notice {
     padding: 0.5em 1em;
@@ -236,6 +237,7 @@ body {
     color: theme(colors.rose.700);
   }
 }
+*/
 
 /****************************************
   Primary Nav

@@ -1,3 +1,5 @@
+import { MainLayout } from '~/MainLayout'
+
 export function App() {
-  return <div className="bg-yellow-500">react 2 app</div>
+  return <MainLayout>Hello</MainLayout>
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { GoogleMap } from '~/maps'
+import { GoogleMap } from '~/utils/maps'
 
 export function GoogleMaps({ pos }) {
   // Try to avoid referring to the DOM by unsafe references like ids

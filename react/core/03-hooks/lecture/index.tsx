@@ -1,9 +1,10 @@
 import * as ReactDOM from 'react-dom/client'
 import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
+// import { CartReview } from './CartReview.final'
+// import { GoogleMaps } from './GoogleMaps.final'
 import { CartReview } from './CartReview'
-import { GoogleMaps } from './GoogleMaps.final'
-// import { GoogleMaps } from './GoogleMaps'
+import { GoogleMaps } from './GoogleMaps'
 
 /**
  * 1. Refactor to const [formFields, setFormFields] = useState({ ... })
