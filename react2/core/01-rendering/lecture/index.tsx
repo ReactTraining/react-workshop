@@ -1,11 +1,11 @@
 import * as ReactDOM from 'react-dom/client'
-import { Lesson } from '~/Lesson'
+import { LessonBody } from '~/Lesson'
 
 function App() {
   return (
-    <Lesson>
+    <LessonBody>
       <div>Lesson....</div>
-    </Lesson>
+    </LessonBody>
   )
 }
 

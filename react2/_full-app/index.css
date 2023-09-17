@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 14pt;
+}
+
 html,
 body {
   min-height: 100vh;
@@ -12,10 +16,6 @@ body {
 body {
   /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
   min-height: -webkit-fill-available;
-}
-
-.bg-lesson {
-  background-image: linear-gradient(to bottom right, #e5f2f2, #eaf2ff);
 }
 
 /****************************************
@@ -159,6 +159,10 @@ body {
     border-color: theme(colors.sky.400);
   }
 
+  .form-field[disabled] {
+    background-color: theme(colors.slate.100);
+  }
+
   textarea.form-field {
     resize: vertical;
     max-height: 300px;
@@ -173,7 +177,7 @@ body {
     padding-right: 1.5em;
   }
 
-  .form-field-wrap.required > label.form-field-label {
+  /* .form-field-wrap.required > label.form-field-label {
     position: relative;
   }
 
@@ -184,7 +188,7 @@ body {
     top: -0.35em;
     color: var(--red);
     font-size: 1.4em;
-  }
+  } */
 }
 
 @layer base {
