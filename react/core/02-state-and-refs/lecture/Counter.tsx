@@ -1,28 +1,41 @@
 // Read more about imports with React
 // https://twitter.com/dan_abramov/status/1308739731551858689
 
-import { useState } from 'react'
 import { Icon } from '~/Icon'
 
-// type CounterProps = {
-//   count: number
-//   setCount(count: number): void
-//   min?: number
-// }
+type CounterProps = {
+  count: number
+  setCount(count: number): void
+  min?: number
+}
 
-export function Counter() {
-  let count = 0
+export function Counter({ count, setCount, min = 0 }: CounterProps) {
+  function subtract() {
+    if (count > 0) {
+      setCount(count - min)
+    }
+  }
+
+  function add() {
+    setCount(count + 1)
+  }
 
   return (
     <div className="counter inline-flex flex-gap">
       <div>
-        <button className="button button-small">
+        <button onClick={subtract} className="button button-small">
           <Icon name="minus" />
         </button>
       </div>
-      <div className="input">{count}</div>
+      <input
+        type="text"
+        value={count} // makes it controlled
+        onChange={(event) => {
+          setCount(count + 1)
+        }}
+      />
       <div>
-        <button className="button button-small">
+        <button onClick={add} className="button button-small">
           <Icon name="plus" />
         </button>
       </div>

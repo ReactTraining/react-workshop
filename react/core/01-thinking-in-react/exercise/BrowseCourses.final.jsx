@@ -15,7 +15,7 @@ export function BrowseCourses() {
       <div className="spacing">
         {courses.map((course) => {
           return (
-            <div key={course.id} className="course-listing flex-split">
+            <div key={} className="course-listing flex-split">
               <h2 className="heading size-3">{course.name}</h2>
               <div className="flex-split flex-gap-large">
                 <div>Lessons: {course.lessons}</div>
@@ -29,6 +29,9 @@ export function BrowseCourses() {
           )
         })}
       </div>
+      <form action="">
+
+      </form>
     </div>
   )
 }
