@@ -5,7 +5,7 @@ type Props = {
 } & React.HTMLAttributes<HTMLImageElement>
 
 export function Avatar({ src, size = 2, className, ...props }: Props) {
-  return (
+  return src ? (
     <img
       alt="User Avatar"
       loading="lazy"
@@ -14,5 +14,10 @@ export function Avatar({ src, size = 2, className, ...props }: Props) {
       style={{ fontSize: `${size}rem` }}
       className="aspect-square w-[1em] rounded-full"
     />
+  ) : (
+    <div
+      style={{ fontSize: `${size}rem` }}
+      className="aspect-square w-[1em] rounded-full border border-pink-300"
+    ></div>
   )
 }

@@ -3,11 +3,7 @@ type LessonBodyProps = {
 }
 
 export function LessonBody({ children }: LessonBodyProps) {
-  return (
-    <div className="min-h-screen pt-16 pr-32 pl-32 bg-gradient-to-tr from-blue-100 to-pink-50">
-      {children}
-    </div>
-  )
+  return <div className="lesson-body min-h-screen pt-16 pr-32 pl-32">{children}</div>
 }
 
 type LessonCardProps = {

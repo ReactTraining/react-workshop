@@ -59,11 +59,6 @@ switch (preferences.workshop.toLowerCase()) {
     startReact(mainPath)
     break
   }
-  case 'react2': {
-    const mainPath = path.resolve(process.cwd(), 'react2')
-    startReact(mainPath)
-    break
-  }
   case 'remix':
     startRemix()
     break

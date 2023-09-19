@@ -20,7 +20,7 @@ export function Icon({ name, className, size = 1.3, ...rest }: Props) {
       height: `${size}em`,
       verticalAlign: 'middle',
       color: 'currentColor',
-      fill: 'currentColor',
+      // fill: 'currentColor',
     },
   }
 
