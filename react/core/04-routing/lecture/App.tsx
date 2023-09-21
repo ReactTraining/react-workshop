@@ -1,5 +1,5 @@
 import { Avatar } from '~/Avatar'
-import { BrowseVacations } from '~/BrowseVacations'
+import { BrowseVacations } from '~/BrowseVacationsPage'
 import { Icon } from '~/Icon'
 import { Logo } from '~/Logo'
 
@@ -33,9 +33,9 @@ export function App() {
             </a>
           </nav>
         </div>
-        <div>
+        <main className="p-3">
           <BrowseVacations />
-        </div>
+        </main>
       </div>
     </div>
   )

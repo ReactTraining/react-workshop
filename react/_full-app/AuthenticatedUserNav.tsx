@@ -1,22 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Avatar } from '~/Avatar'
-// import { useAuth } from '~/state/AuthContext'
+import { useAuthContext } from '~/AuthContext'
 
 export function AuthenticatedUserNav() {
-  const user: any = false
+  const { user } = useAuthContext()
+  console.log(user)
 
-  return (
-    <div>
-      {user ? (
-        <Avatar src={user.avatarUrl} />
-      ) : (
-        <Link
-          to="/login"
-          className="border-current border rounded-md text-sky-500 bg-black/20 px-4 py-2 shadow-md"
-        >
-          Login
-        </Link>
-      )}
-    </div>
-  )
+  return <div>{user ? <Avatar src={user.avatarUrl || ''} /> : <Link to="/login">Login</Link>}</div>
 }

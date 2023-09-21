@@ -143,7 +143,6 @@ async function startReact(coursesPath) {
     resolve: {
       alias,
     },
-    // root: path.resolve(coursesPath, '_full-app'),
     server: {
       port,
     },

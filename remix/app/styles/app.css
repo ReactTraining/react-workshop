@@ -99,11 +99,6 @@ body {
     white-space: nowrap;
   }
 
-  /* Anchor Looking */
-  /* button {
-    font-weight: 300;
-  } */
-
   /* Button Looking */
   .button {
     font-weight: 500;
@@ -189,10 +184,6 @@ body {
 @layer base {
   input {
     accent-color: theme(colors.brandColor);
-  }
-
-  input[type='checkbox'] {
-    background: blue;
   }
 
   input[type='range'] {

@@ -1,4 +1,4 @@
-import { post, get } from '../fetch-utils'
+import { post, get, patch } from '../fetch-utils'
 import * as storage from '../localStorage'
 import { User } from '../types'
 
@@ -38,4 +38,9 @@ export async function getUsersByIds(ids: number[]): Promise<User[]> {
       return u
     })
   )
+}
+
+export async function saveSearch(userId: number, search: string) {
+  await post(`/searches`, { userId, searchString: search })
+  return true
 }

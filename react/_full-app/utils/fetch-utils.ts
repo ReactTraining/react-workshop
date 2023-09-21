@@ -5,8 +5,18 @@ type Data = {
   [key: string]: any
 }
 
+function unpackResponse(res) {
+  if (res.ok) {
+    return res.json()
+  } else if (res.status === 404) {
+    return Promise.reject('error 404')
+  } else {
+    return Promise.reject('Server Error: ' + res.status)
+  }
+}
+
 export function get<T>(path: string): Promise<T> {
-  return fetch(`${baseURL}${path}`).then((res) => res.json())
+  return fetch(`${baseURL}${path}`).then(unpackResponse)
 }
 
 export function post<T>(path: string, data: Data): Promise<T> {
@@ -16,7 +26,7 @@ export function post<T>(path: string, data: Data): Promise<T> {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then(unpackResponse)
 }
 
 export function put<T>(path: string, data: Data): Promise<T> {
@@ -26,7 +36,7 @@ export function put<T>(path: string, data: Data): Promise<T> {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then(unpackResponse)
 }
 
 export function patch<T>(path: string, data: Data): Promise<T> {
@@ -36,7 +46,7 @@ export function patch<T>(path: string, data: Data): Promise<T> {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then(unpackResponse)
 }
 
 export function httpDelete<T>(path: string): Promise<T> {
@@ -45,5 +55,5 @@ export function httpDelete<T>(path: string): Promise<T> {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then(unpackResponse)
 }

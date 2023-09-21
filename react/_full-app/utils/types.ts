@@ -7,31 +7,11 @@ export type User = {
   avatarUrl: string | null
 }
 
-export type Course = {
+export type Vacation = {
   id: number
   name: string
-  slug: string
-}
-
-export type CourseWithLessons = Course & {
-  lessons: Lesson[]
-}
-
-export type Lesson = {
-  id: number
-  name: string
-  slug: string
-  courseSlug: string
-  content: string
-  draftContent: string
-}
-
-export type Student = {
-  id: number
-  name: string
-  username: string
-  password: string
-  courses: number[]
+  price: number
+  related: number[]
 }
 
 export type ChatMessage = {

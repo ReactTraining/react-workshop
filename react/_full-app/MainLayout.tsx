@@ -1,65 +1,55 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 // import { useAuth } from '~/state/AuthContext'
 // import { useCart } from '~/state/CartContext'
 import { Logo } from '~/Logo'
-import { CenterContent } from '~/CenterContent'
+
+// import { CenterContent } from '~/CenterContent'
 import { AuthenticatedUserNav } from '~/AuthenticatedUserNav'
 import { Icon } from './Icon'
 
-type MainLayoutProps = {
-  children: React.ReactNode
-}
-
-export function MainLayout({ children }: MainLayoutProps) {
-  const user = false
-
-  const cart: any[] = []
-  const quantity = cart.reduce((total, item) => total + item.quantity, 0) || 0
-
+export function MainLayout() {
   return (
-    <div>
-      <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
-        <CenterContent className="border-b py-3">
-          <div className="flex justify-between items-center">
-            <div className="">
-              <Logo />
-            </div>
-            <div className="">
-              <AuthenticatedUserNav />
-            </div>
-          </div>
-        </CenterContent>
-      </header>
-
-      <CenterContent className="bg-white border-b">
-        <div className="flex justify-between items-center">
-          <nav className="primary-nav">
-            <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
-              Home
-            </NavLink>
-            <NavLink to="/products" className="inline-block py-3 px-5 -mb-[1px]">
-              Products
-            </NavLink>
-            <NavLink to="/blog" className="inline-block py-3 px-5 -mb-[1px]">
-              Blog
-            </NavLink>
-            {user && (
-              <Link to="/logout" className="inline-block py-3 px-5 -mb-[1px]">
-                Logout
-              </Link>
-            )}
-          </nav>
-          <div>
-            <span className="mr-2">
-              {quantity > 0 ? `${quantity} items in your cart` : 'Cart is empty'}
-            </span>
-            <span className="text-brandColor">
-              <Icon name="cart" />
-            </span>
-          </div>
+    <div className="flex-1 flex flex-col overflow-hidden">
+      <header className="border-b p-6 flex justify-between items-center">
+        <div>
+          <Logo />
         </div>
-      </CenterContent>
-      <CenterContent className="pt-6 pb-20">{children}</CenterContent>
+        <nav className="flex items-center gap-3">
+          <AuthenticatedUserNav />
+        </nav>
+      </header>
+      <div className="border-b px-6 flex justify-between items-center text-sm">
+        <nav>
+          <NavLink to="/" className="inline-block text-textColor py-2 pr-4">
+            Home
+          </NavLink>
+          <NavLink
+            to="/vacations/deal-of-the-day"
+            className="inline-block text-textColor py-2 px-4"
+          >
+            Deal of the day!
+          </NavLink>
+        </nav>
+        <nav>
+          <a href="/" className="inline-block text-textColor py-2 px-4">
+            Sandy Beaches
+          </a>
+          <a href="/" className="inline-block text-textColor py-2 px-4">
+            Open Spaces
+          </a>
+          <a href="/" className="inline-block text-textColor py-2 px-4">
+            Our Favorites
+          </a>
+          <a href="/" className="inline-block text-textColor py-2 pl-4 border-l">
+            <span>Categories</span>
+            <Icon name="chevronDown" />
+          </a>
+        </nav>
+      </div>
+      {/* Flex for full height children, child needs to be flex: 1 */}
+      <div className="flex-1 flex [&>div]:flex-1 p-3 bg-gradient-to-b from-gray-50 to-white">
+        <Outlet />
+      </div>
     </div>
   )
 }

@@ -8,8 +8,6 @@ html {
 
 html,
 body {
-  min-height: 100vh;
-  width: 100vw;
   overflow-x: hidden;
   color: theme(colors.textColor);
 }
@@ -17,6 +15,12 @@ body {
 body {
   /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
   min-height: -webkit-fill-available;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
 }
 
 .lesson-body {
@@ -30,7 +34,7 @@ body {
   Headings
 *****************************************/
 
-/* @layer base {
+@layer base {
   h1,
   h2,
   h3,
@@ -43,7 +47,7 @@ body {
     margin: 0;
     letter-spacing: 0.03em;
   }
-} */
+}
 
 /****************************************
   Anchors
@@ -101,17 +105,18 @@ body {
     cursor: pointer;
   }
 
+  /* Buttons with icons */
+  .button > span + svg,
+  .button > svg + span {
+    margin-left: 0.8em;
+  }
+
   /* Normalize anchors with .button to behave more like buttons */
   a.button {
     display: inline-block;
     text-decoration: none !important;
     white-space: nowrap;
   }
-
-  /* Anchor Looking */
-  /* button {
-    font-weight: 300;
-  } */
 
   /* Button Looking */
   .button {
@@ -152,10 +157,10 @@ body {
 @layer components {
   .form-field {
     width: 100%;
-    padding: 0.5em 0.7em;
+    padding: 0.3em 0.7em;
     background-color: #fff;
     border: 1px solid theme(colors.slate.300);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
     color: theme(colors.slate.700);
     border-radius: 5px;
@@ -205,7 +210,8 @@ body {
   }
 
   input[type='checkbox'] {
-    background: blue;
+    width: 1em;
+    aspect-ratio: 1/1;
   }
 
   input[type='range'] {

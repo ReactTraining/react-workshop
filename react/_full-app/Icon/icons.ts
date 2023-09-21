@@ -5,20 +5,22 @@ import { HiChevronDown } from 'react-icons/hi'
 import { MdEmail, MdCancel, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 // import { BsArrowRightCircleFill } from 'react-icons/bs'
 // import { TiArrowLeft, TiArrowRight, TiArrowDown } from 'react-icons/ti'
-import { FaTrashAlt, FaPlus, FaMinus } from 'react-icons/fa'
+import { FaTrashAlt, FaPlus, FaMinus, FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 
 export const icons = {
-  email: MdEmail,
-  xCircle: MdCancel,
-  menu: CgMenu,
+  cart: FiShoppingCart,
   chevronDown: HiChevronDown,
   checkboxOn: MdCheckBox,
   checkboxOff: MdCheckBoxOutlineBlank,
-  cart: FiShoppingCart,
+  email: MdEmail,
+  menu: CgMenu,
   minus: FaMinus,
-  plus: FaPlus,
-  trash: FaTrashAlt,
   palm: LuPalmtree,
+  plus: FaPlus,
+  signIn: FaSignInAlt,
+  trash: FaTrashAlt,
+  warning: FaExclamationCircle,
+  xCircle: MdCancel,
 } as const
 
 export type Icons = keyof typeof icons

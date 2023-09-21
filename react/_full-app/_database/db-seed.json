@@ -2,8 +2,8 @@
   "users": [
     {
       "id": 1,
-      "username": "admin",
-      "password": "admin",
+      "username": "user",
+      "password": "user",
       "name": "Bruce Lee",
       "avatarUrl": "/default-admin.jpg"
     },
@@ -13,6 +13,63 @@
       "username": "bradwestfall",
       "password": "abc123",
       "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4"
+    }
+  ],
+  "searches": [],
+  "vacations": [
+    {
+      "id": 1,
+      "name": "Kauai",
+      "price": 1795,
+      "related": [2, 3, 4]
+    },
+    {
+      "id": 2,
+      "name": "Fiji",
+      "price": 2200,
+      "related": [3, 4, 5]
+    },
+    {
+      "id": 3,
+      "name": "Cozumel",
+      "price": 1290,
+      "related": [4, 5, 6]
+    },
+    {
+      "id": 4,
+      "name": "Crete",
+      "price": 1835,
+      "related": [5, 6, 7]
+    },
+    {
+      "id": 5,
+      "name": "Waialua",
+      "price": 2350,
+      "related": [6, 7, 8]
+    },
+    {
+      "id": 6,
+      "name": "Maldives",
+      "price": 3400,
+      "related": [7, 8, 9]
+    },
+    {
+      "id": 7,
+      "name": "Maldives",
+      "price": 3280,
+      "related": [8, 9, 1]
+    },
+    {
+      "id": 8,
+      "name": "Florida Keys",
+      "price": 1560,
+      "related": [9, 1, 2]
+    },
+    {
+      "id": 9,
+      "name": "Tulum",
+      "price": 3200,
+      "related": [1, 2, 3]
     }
   ]
 }
