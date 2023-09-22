@@ -31,8 +31,12 @@ export const router = createBrowserRouter(
       <Route path="login" Component={LoginPage} />
       <Route path="account" Component={AccountSubLayout}>
         <Route index Component={AccountHome} />
+        {/*
+        
+        All Protected by authentication (in AccountSubLayout)
+        
+        */}
       </Route>
-
       <Route path="*" Component={NotFoundPage} />
     </Route>
   )

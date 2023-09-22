@@ -5,7 +5,7 @@ import type { Vacation } from '~/utils/types'
 
 export async function loader({ request }) {
   const searchParams = new URL(request.url).searchParams
-  const maxPrice = searchParams.get('max-price')
+  const maxPrice = searchParams.get('maxPrice')
 
   const dbSearch = new URLSearchParams()
   if (maxPrice) {

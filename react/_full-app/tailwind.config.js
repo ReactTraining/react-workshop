@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
-const colors = require('tailwindcss/colors')
+import colors from 'tailwindcss/colors'
 
-module.exports = {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
   // We go up a directory from _full-app to capture all the lessons
   content: ['./index.html', '../**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -13,7 +14,7 @@ module.exports = {
         anchorColor: colors.cyan['400'],
         headingColor: colors.slate['700'],
         // Brand
-        brandColor: colors.sky['600'],
+        brandColor: colors.blue['400'],
       },
     },
   },

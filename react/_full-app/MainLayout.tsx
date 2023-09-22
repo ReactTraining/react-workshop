@@ -1,13 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom'
-// import { useAuth } from '~/state/AuthContext'
-// import { useCart } from '~/state/CartContext'
-import { Logo } from '~/Logo'
-
-// import { CenterContent } from '~/CenterContent'
 import { AuthenticatedUserNav } from '~/AuthenticatedUserNav'
-import { Icon } from './Icon'
+import { useAuthContext } from '~/AuthContext'
+import { Logo } from '~/Logo'
+import { Icon } from '~/Icon'
 
 export function MainLayout() {
+  const { authenticated } = useAuthContext()
+
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <header className="border-b p-6 flex justify-between items-center">
@@ -23,6 +22,11 @@ export function MainLayout() {
           <NavLink to="/" className="inline-block text-textColor py-2 pr-4">
             Home
           </NavLink>
+          {authenticated && (
+            <NavLink to="/account" className="inline-block text-textColor py-2 px-4">
+              My Account
+            </NavLink>
+          )}
           <NavLink
             to="/vacations/deal-of-the-day"
             className="inline-block text-textColor py-2 px-4"

@@ -135,7 +135,7 @@ body {
 
   .button:hover,
   .button:focus {
-    background-color: theme(colors.sky.700);
+    background-color: theme(colors.blue.500);
   }
 
   .button.button-outline {
@@ -233,27 +233,6 @@ body {
 }
 
 /****************************************
-  Notice
-*****************************************/
-
-/*
-@layer components {
-  .notice {
-    padding: 0.5em 1em;
-    border-radius: 0.5em;
-    background-color: theme(colors.slate.300);
-    border: 1px solid theme(colors.slate.400);
-    color: theme(colors.slate.700);
-  }
-  .notice.error {
-    background-color: theme(colors.rose.200);
-    border: 1px solid theme(colors.rose.400);
-    color: theme(colors.rose.700);
-  }
-}
-*/
-
-/****************************************
   Primary Nav
 *****************************************/
 
@@ -261,4 +240,117 @@ body {
   .primary-nav a.active {
     border-color: theme(colors.brandColor);
   }
+}
+
+/****************************************
+  Date Picker
+*****************************************/
+
+@layer components {
+  [data-datepicker] button {
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  [data-datepicker-calendar] {
+    font-size: 0.7em;
+  }
+
+  [data-datepicker-calendar-dayofweek] {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+  }
+
+  [data-datepicker-calendar-boxes] {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  [data-datepicker-calendar-boxes] > button {
+    aspect-ratio: var(--datePickerCalendarBoxRatio, 16 / 9);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    text-align: center;
+  }
+
+  [data-datepicker-calendar-boxes] > button[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  [data-datepicker-calendar-boxes]
+    > button:not([disabled]):not([data-selected]):not([data-between]):hover {
+    background-color: var(--datePickerCalendarBoxHover, rgba(0, 0, 0, 0.2));
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-boxes] > button[data-selected] {
+    background-color: var(--datePickerCalendarBoxSelected, #aaa);
+    border-radius: 0;
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-boxes] > button[data-between] {
+    background-color: var(--datePickerCalendarBoxBetween, #ddd);
+    border-radius: 0;
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-boxes] > button[data-today] {
+    color: #fff;
+    background-color: var(--datePickerSelectedBackground, #555);
+  }
+
+  [data-datepicker-calendar-boxes] > button:first-child {
+    grid-column: var(--datePickerCalendarBoxOffset, 0);
+  }
+
+  .popover {
+    background-color: #fff;
+    border-radius: 0.3em;
+  }
+
+  .select-date-range {
+    width: 500px;
+    padding: var(--gutter);
+  }
+}
+
+/****************************************
+  Headless UI Dropdown Menu
+*****************************************/
+
+.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-items {
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  right: 0.5em;
+  top: calc(100% + 0.5em);
+  flex-direction: column;
+}
+
+.dropdown-items[data-headlessui-state='open'] {
+  display: flex;
+}
+
+.dropdown-items [id^='headlessui-menu-item'] {
+  display: block;
+  padding: 0.4em 0.8em;
+  color: var(--textColor);
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.dropdown-items [id^='headlessui-menu-item']:hover {
+  background-color: theme(colors.brandColor);
+  color: white;
 }

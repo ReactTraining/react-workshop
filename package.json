@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
-    "@headlessui/react": "^1.7.11",
+    "@headlessui/react": "^1.7.17",
     "@reduxjs/toolkit": "^1.9.3",
     "@tanstack/react-query": "^4.35.3",
     "classnames": "^2.3.1",
@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-popper": "^2.3.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.16.0",
     "redux": "^4.1.2",

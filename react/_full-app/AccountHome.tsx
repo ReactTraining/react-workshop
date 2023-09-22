@@ -1,3 +1,3 @@
 export function AccountHome() {
-  return <div>home</div>
+  return <div>account</div>
 }

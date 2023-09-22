@@ -3,11 +3,11 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { CgMenu } from 'react-icons/cg'
 import { HiChevronDown } from 'react-icons/hi'
 import { MdEmail, MdCancel, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
-// import { BsArrowRightCircleFill } from 'react-icons/bs'
-// import { TiArrowLeft, TiArrowRight, TiArrowDown } from 'react-icons/ti'
 import { FaTrashAlt, FaPlus, FaMinus, FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
+import { BsCalendar2Week } from 'react-icons/bs'
 
 export const icons = {
+  calendar: BsCalendar2Week,
   cart: FiShoppingCart,
   chevronDown: HiChevronDown,
   checkboxOn: MdCheckBox,
