@@ -1,42 +1,79 @@
-import { Avatar } from '~/Avatar'
-import { BrowseVacations } from '~/BrowseVacationsPage'
-import { Icon } from '~/Icon'
-import { Logo } from '~/Logo'
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom'
+import { MainLayout } from './MainLayout'
+
+function HomePage() {
+  return <h1>Home Page</h1>
+}
+
+function PageOne() {
+  return <h1>Page One</h1>
+}
+
+function PageTwo() {
+  return <h1>Page Two</h1>
+}
+
+/**
+ * Without A Router
+ */
+
+// export function App() {
+//   const page = 'one'
+
+//   return (
+//     <MainLayout>
+//       {page === 'home' && <HomePage />}
+//       {page === 'one' && <PageOne />}
+//       {page === 'two' && <PageTwo />}
+//     </MainLayout>
+//   )
+// }
+
+/**
+ * Basic React Router 6 Example: With JSX routes
+ */
 
 export function App() {
   return (
-    <div className="lesson-body min-h-screen p-6 flex">
-      <div className="flex-1 bg-gradient-to-b from-gray-50 to-white rounded-lg shadow-lg overflow-hidden">
-        <header className="border-b p-6 bg-white flex justify-between items-center">
-          <div>
-            <Logo />
-          </div>
-          <nav className="flex items-center gap-3">
-            <span>Welcome Back</span>
-            <Avatar src="" />
-          </nav>
-        </header>
-        <div className="border-b px-6 bg-white">
-          <nav className="text-sm">
-            <a href="/" className="inline-block text-textColor py-2 pr-4 border-r">
-              <span>Categories</span>
-              <Icon name="chevronDown" />
-            </a>
-            <a href="/" className="inline-block text-textColor py-2 px-4">
-              <span>Sandy Beaches</span>
-            </a>
-            <a href="/" className="inline-block text-textColor py-2 px-4">
-              <span>Open Spaces</span>
-            </a>
-            <a href="/" className="inline-block text-textColor py-2 px-4">
-              <span>Our Favorites</span>
-            </a>
-          </nav>
-        </div>
-        <main className="p-3">
-          <BrowseVacations />
-        </main>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index={true} element={<HomePage />}></Route>
+          <Route path="one" element={<PageOne />}></Route>
+          <Route path="two" element={<PageTwo />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
+
+/**
+ * Basic React Router 6 Example: No JSX
+ */
+
+// function App() {
+//   <RouterProvider router={router} />
+// }
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <MainLayout />,
+//     children: [
+//       {
+//         index: true,
+//         element: <PageOne />,
+//       },
+//       {
+//         path: 'two',
+//         element: <PageTwo />,
+//       },
+//     ],
+//   },
+// ])

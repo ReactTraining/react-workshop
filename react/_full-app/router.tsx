@@ -2,7 +2,7 @@ import { Navigate, Route, createBrowserRouter, createRoutesFromElements } from '
 
 // Layouts
 import { MainLayout } from '~/MainLayout'
-import { VacationsSubLayout } from './VacationsSubLayout'
+import { VacationsSubLayout } from '~/VacationsSubLayout'
 import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
