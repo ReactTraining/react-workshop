@@ -24,7 +24,7 @@
 //   return (
 //     <Link to={to} className="block">
 //       <input id={id} type="checkbox" className="hidden" />
-//       <span className="text-brandColor mr-2">
+//       <span className="text-brandBlue mr-2">
 //         {on ? <Icon name="checkboxOn" /> : <Icon name="checkboxOff" />}
 //       </span>
 //       <label htmlFor={id} className="cursor-pointer">

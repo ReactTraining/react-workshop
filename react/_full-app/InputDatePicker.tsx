@@ -20,6 +20,7 @@ export function InputDatePicker({ onSelectDates, value, ...props }: Props) {
       <input
         {...props}
         value={value}
+        readOnly
         type="text"
         className="flex-1 border-none focus:outline-none"
       />

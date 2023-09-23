@@ -55,7 +55,7 @@ body {
 
 @layer base {
   a {
-    color: theme(colors.brandColor);
+    color: theme(colors.brandBlue);
     text-decoration: none;
   }
   a:focus {
@@ -124,7 +124,7 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.08rem;
     line-height: 1.2em;
-    background-color: theme(colors.brandColor);
+    background-color: theme(colors.brandBlue);
     color: #fff;
     border: 1px solid transparent;
     border-radius: 0.2rem;
@@ -141,7 +141,7 @@ body {
   .button.button-outline {
     border-color: currentColor;
     background-color: #fff;
-    color: theme(colors.brandColor);
+    color: theme(colors.brandBlue);
   }
 
   .button[disabled] {
@@ -206,7 +206,7 @@ body {
 
 @layer base {
   input {
-    accent-color: theme(colors.brandColor);
+    accent-color: theme(colors.brandBlue);
   }
 
   input[type='checkbox'] {
@@ -238,7 +238,7 @@ body {
 
 @layer components {
   .primary-nav a.active {
-    border-color: theme(colors.brandColor);
+    border-color: theme(colors.brandBlue);
   }
 }
 
@@ -282,25 +282,28 @@ body {
 
   [data-datepicker-calendar-boxes]
     > button:not([disabled]):not([data-selected]):not([data-between]):hover {
-    background-color: var(--datePickerCalendarBoxHover, rgba(0, 0, 0, 0.2));
+    color: var(--datePickerCalendarBoxHoverText, #fff);
+    background-color: var(--datePickerCalendarBoxHoverBackground, #555);
     --datePickerCalendarBoxToday: transparent;
   }
 
   [data-datepicker-calendar-boxes] > button[data-selected] {
-    background-color: var(--datePickerCalendarBoxSelected, #aaa);
+    color: var(--datePickerCalendarBoxSelectedText, #555);
+    background-color: var(--datePickerCalendarBoxSelectedBackground, #aaa);
     border-radius: 0;
     --datePickerCalendarBoxToday: transparent;
   }
 
   [data-datepicker-calendar-boxes] > button[data-between] {
-    background-color: var(--datePickerCalendarBoxBetween, #ddd);
+    color: var(--datePickerCalendarBoxBetweenText, #555);
+    background-color: var(--datePickerCalendarBoxBetweenBackground, #ddd);
     border-radius: 0;
     --datePickerCalendarBoxToday: transparent;
   }
 
   [data-datepicker-calendar-boxes] > button[data-today] {
-    color: #fff;
-    background-color: var(--datePickerSelectedBackground, #555);
+    color: var(--datePickerCalendarBoxTodayText, #fff);
+    background-color: var(--datePickerCalendarBoxTodayBackground, #555);
   }
 
   [data-datepicker-calendar-boxes] > button:first-child {
@@ -351,6 +354,6 @@ body {
 }
 
 .dropdown-items [id^='headlessui-menu-item']:hover {
-  background-color: theme(colors.brandColor);
+  background-color: theme(colors.brandBlue);
   color: white;
 }

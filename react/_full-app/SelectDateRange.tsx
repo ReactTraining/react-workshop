@@ -14,7 +14,12 @@ type Props = {
 const theme = getTailwindTheme()
 
 const style = {
-  '--datePickerSelectedBackground': theme.extend.colors.brandColor,
+  '--datePickerCalendarBoxTodayText': '#555',
+  '--datePickerCalendarBoxTodayBackground': theme.colors.gray['200'],
+  '--datePickerCalendarBoxHoverBackground': theme.colors.brandBlue,
+  '--datePickerCalendarBoxSelectedText': '#FFF',
+  '--datePickerCalendarBoxSelectedBackground': theme.colors.brandBlue,
+  '--datePickerCalendarBoxBetweenBackground': theme.colors.brandBlueLight,
 } as React.CSSProperties
 
 export function SelectDateRange({ onSelect }: Props) {

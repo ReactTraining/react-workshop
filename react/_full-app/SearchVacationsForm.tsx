@@ -6,6 +6,7 @@ import { api } from '~/utils/api'
 import { InputDatePicker } from '~/InputDatePicker'
 
 export function SearchVacationsForm() {
+  const navigate = useNavigate()
   const { authenticated, user } = useAuthContext()
   const searchId = useId()
   const regionId = useId()
@@ -14,13 +15,14 @@ export function SearchVacationsForm() {
 
   // The current URL
   const url = useLocation().pathname
-  const navigate = useNavigate()
   const [search] = useSearchParams()
   const urlSearch = search.get('search') || ''
   const urlRegion = search.get('region') || ''
   const urlStartDate = search.get('startDate') || ''
   const urlEndDate = search.get('endDate') || ''
   const urlPrice = parseInt(search.get('maxPrice') || '') || 4000
+
+  console.log(urlSearch)
 
   // Controlled Fields
   const [price, setPrice] = useState(urlPrice)
@@ -36,10 +38,12 @@ export function SearchVacationsForm() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const search = new URLSearchParams(new FormData(event.currentTarget) as any)
+
     if (startDate && endDate) {
       search.set('startDate', startDate)
       search.set('endDate', endDate)
     }
+
     const nextURL = `${url}?${search.toString()}`
 
     if (save) {
@@ -59,14 +63,14 @@ export function SearchVacationsForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="flex flex-col gap-1">
-        <label htmlFor={searchId} className="block text-xs">
-          Search
+        <label htmlFor={searchId} className="block text-lg">
+          Search Vacations
         </label>
         <input
           name="search"
           defaultValue={urlSearch}
           type="text"
-          placeholder="Search Vacations"
+          placeholder="On the beach!"
           className="form-field"
           autoComplete="off"
         />
@@ -122,7 +126,7 @@ export function SearchVacationsForm() {
       <hr />
       <div className="flex justify-between items-center">
         {authenticated ? (
-          <label className="space-x-1">
+          <label className="space-x-1 block">
             <input
               onChange={() => setSave(!save)}
               defaultChecked={save}
@@ -134,7 +138,9 @@ export function SearchVacationsForm() {
         ) : (
           <Link to="/login">Login To Save Searches</Link>
         )}
-        <button className="button">Search</button>
+        <button className="button" type="submit">
+          Search
+        </button>
       </div>
     </form>
   )
