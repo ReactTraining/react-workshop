@@ -5,6 +5,7 @@ import { HiChevronDown } from 'react-icons/hi'
 import { MdEmail, MdCancel, MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { FaTrashAlt, FaPlus, FaMinus, FaSignInAlt, FaExclamationCircle } from 'react-icons/fa'
 import { BsCalendar2Week } from 'react-icons/bs'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 export const icons = {
   calendar: BsCalendar2Week,
@@ -18,6 +19,8 @@ export const icons = {
   palm: LuPalmtree,
   plus: FaPlus,
   signIn: FaSignInAlt,
+  star: AiFillStar,
+  starOutline: AiOutlineStar,
   trash: FaTrashAlt,
   warning: FaExclamationCircle,
   xCircle: MdCancel,

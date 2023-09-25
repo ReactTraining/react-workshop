@@ -22,8 +22,6 @@ export function SearchVacationsForm() {
   const urlEndDate = search.get('endDate') || ''
   const urlPrice = parseInt(search.get('maxPrice') || '') || 4000
 
-  console.log(urlSearch)
-
   // Controlled Fields
   const [price, setPrice] = useState(urlPrice)
   const [startDate, setStartDate] = useState(urlStartDate)

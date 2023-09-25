@@ -2,7 +2,7 @@ import { Icon } from './Icon'
 
 export function Logo() {
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 text-lg">
       <span className="text-brandPink">
         <Icon name="palm" />
       </span>

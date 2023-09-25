@@ -1,23 +1,27 @@
 import { useEffect, useState, useRef, useId } from 'react'
 import { GoogleMap, load } from '~/utils/maps'
 
-load()
+/**
+ * 1. Teach refs and use a divRef example for the maps
+ * 2. Use useId() for ids
+ * 3. Refactor to controlled with state (formFields)
+ * 4. Load the map when the page loads (useEffect)
+ * 5. Switch to SelectRegion
+ * 6. Use a mutable ref to keep track of the map instance
+ *    so we can do map.setCenter instead of re-instantiating
+ */
 
 export function GoogleMaps() {
-  const [formData, setFormData] = useState({
-    lat: 40.712,
-    lng: -74.006,
-  })
-
   function handleSubmit(event) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    // const pos = Object.fromEntries(formData)
+    const pos = Object.fromEntries(formData)
+    console.log(pos)
 
-    const pos = {
-      lat: Number(formData.get('lat')),
-      lng: Number(formData.get('lng')),
-    }
+    // const pos = {
+    //   lat: Number(formData.get('lat')),
+    //   lng: Number(formData.get('lng')),
+    // }
 
     GoogleMap(document.getElementById('map'), {
       center: pos,
@@ -35,31 +39,13 @@ export function GoogleMaps() {
             <label htmlFor="lat" className="text-xs">
               Latitude
             </label>
-            <input
-              id="lat"
-              type="text"
-              name="lat"
-              className="form-field"
-              value={formData.lat}
-              onChange={(event) => {
-                setFormData({ ...formData, lat: parseInt(event.target.value) })
-              }}
-            />
+            <input id="lat" type="text" name="lat" className="form-field" defaultValue="40.712" />
           </div>
           <div>
             <label htmlFor="lng" className="text-xs">
               Longitude
             </label>
-            <input
-              id="lng"
-              type="text"
-              name="lng"
-              value={formData.lng}
-              className="form-field"
-              onChange={(event) => {
-                setFormData({ ...formData, lng: parseInt(event.target.value) })
-              }}
-            />
+            <input id="lng" type="text" name="lng" className="form-field" defaultValue="-74.006" />
           </div>
         </div>
         <footer className="mt-3">

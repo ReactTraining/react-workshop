@@ -34,7 +34,7 @@ export function LoginPage() {
       .login(username, password)
       .then((user: User) => {
         login(user)
-        navigate('/')
+        navigate('/account')
       })
       .catch((error) => {
         setError(error)
@@ -51,11 +51,6 @@ export function LoginPage() {
       <Card className="mt-6 space-y-6">
         <Heading>Login</Heading>
         <form onSubmit={handleLogin} className="space-y-3">
-          <Notice>
-            <div>
-              Login with username <b>user</b> and password <b>user</b>
-            </div>
-          </Notice>
           {error && (
             <Notice type="error">
               <Icon name="warning" />
@@ -66,6 +61,7 @@ export function LoginPage() {
           <div>
             <input
               name="username"
+              defaultValue="user"
               aria-label="Username"
               type="text"
               placeholder="Username"
@@ -77,6 +73,7 @@ export function LoginPage() {
           <div>
             <input
               name="password"
+              defaultValue="user"
               aria-label="Password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"

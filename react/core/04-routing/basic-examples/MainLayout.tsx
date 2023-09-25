@@ -2,7 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { Logo } from '~/Logo'
 import { Icon } from '~/Icon'
 
-export function MainLayout() {
+export function MainLayout({ children }) {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <header className="border-b p-6 flex justify-between items-center">
@@ -39,7 +39,7 @@ export function MainLayout() {
         </nav>
       </div>
       <div className="flex-1 flex [&>div]:flex-1 p-3 bg-gradient-to-b from-gray-50 to-white">
-        <Outlet />
+        {children}
       </div>
     </div>
   )

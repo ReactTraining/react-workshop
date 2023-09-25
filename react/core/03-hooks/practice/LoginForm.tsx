@@ -56,14 +56,14 @@ export function LoginForm({ onSubmit }: Props) {
   )
 }
 
-type UserType = { userId: number; lat: number; lng: number }
+type UserType = { userId: number }
 
 // Fake login function
 function login(username: string, password: string): Promise<UserType> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (username.toLowerCase() === 'admin') {
-        resolve({ userId: 1, lat: 40.712, lng: -74.006 })
+        resolve({ userId: 1 })
       } else {
         reject('Invalid username or password')
       }

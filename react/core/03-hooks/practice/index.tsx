@@ -4,7 +4,7 @@ import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Notice } from '~/Notice'
 import { LoginForm } from './LoginForm'
-import { GoogleMaps } from './GoogleMaps'
+// import { GoogleMaps } from './GoogleMaps'
 
 type User = { userId: number; lat: number; lng: number }
 
@@ -18,21 +18,17 @@ function App() {
   return (
     <LessonBody>
       <div className="flex gap-12">
-        <div className="flex-1">
-          <LessonCard>
-            <Heading>Login</Heading>
-            <LoginForm onSubmit={onSubmit} />
-          </LessonCard>
-        </div>
-        <div className="flex-1">
-          <LessonCard>
-            {!user ? (
-              <Notice>Login to see a map</Notice>
-            ) : (
-              <GoogleMaps pos={{ lat: user.lat, lng: user.lng }} />
-            )}
-          </LessonCard>
-        </div>
+        <LessonCard className="flex-1">
+          <Heading>Login</Heading>
+          <LoginForm onSubmit={onSubmit} />
+        </LessonCard>
+        <LessonCard className="flex-1">
+          {!user ? (
+            <Notice>Login to see this page</Notice>
+          ) : (
+            <Heading>Welcome User: {user.userId}</Heading>
+          )}
+        </LessonCard>
       </div>
     </LessonBody>
   )

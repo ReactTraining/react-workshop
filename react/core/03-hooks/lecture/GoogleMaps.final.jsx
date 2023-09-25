@@ -4,18 +4,25 @@ import { GoogleMap } from '~/utils/maps'
 export function GoogleMaps() {
   const [pos, setPos] = useState({ lat: 40.712, lng: -74.006 })
   const mapRef = useRef()
+  const divRef = useRef()
 
   useEffect(() => {
-    GoogleMap(mapRef.current, {
-      center: pos,
-      zoom: 10,
-    })
+    if (!mapRef.current) {
+      GoogleMap(divRef.current, {
+        center: pos,
+        zoom: 10,
+      }).then((map) => {
+        mapRef.current = map
+      })
+    } else {
+      mapRef.current.setCenter(pos)
+    }
   }, [pos])
 
   return (
     <div className="space-y-6">
-      <div className="h-64 bg-slate-200" ref={mapRef} />
-      <SelectRegion onChange={(pos) => setPos(pos)} />
+      <div className="h-64 bg-slate-200" ref={divRef} />
+      <SelectRegion onChange={setPos} />
     </div>
   )
 }

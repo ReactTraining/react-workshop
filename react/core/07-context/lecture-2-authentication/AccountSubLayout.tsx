@@ -1,6 +1,5 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { useAuthContext } from '~/AuthContext'
-import { AccountSidebar } from '~/AccountSidebar'
+import { useAuthContext } from './AuthContext'
 
 export function AccountSubLayout() {
   const { authenticated } = useAuthContext()
@@ -15,7 +14,6 @@ export function AccountSubLayout() {
 
   return (
     <div className="flex -m-3">
-      <AccountSidebar />
       <div className="flex-1 p-3">
         <Outlet />
       </div>

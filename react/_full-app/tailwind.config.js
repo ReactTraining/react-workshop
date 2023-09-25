@@ -14,8 +14,9 @@ export default {
         anchorColor: colors.cyan['400'],
         headingColor: colors.slate['700'],
         // Brand
-        brandBlue: colors.blue['400'],
         brandBlueLight: colors.blue['200'],
+        brandBlue: colors.blue['400'],
+        brandBlueDark: colors.blue['500'],
         brandPink: colors.purple['300'],
       },
     },

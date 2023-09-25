@@ -10,14 +10,14 @@ export function Counter() {
   let count = 0
 
   return (
-    <>
-      <button className="button">
+    <div className="flex">
+      <button className="button flex-1">
         <Icon name="minus" />
       </button>
       <span className="align-middle text-3xl px-6">0</span>
-      <button className="button">
+      <button className="button flex-1">
         <Icon name="plus" />
       </button>
-    </>
+    </div>
   )
 }

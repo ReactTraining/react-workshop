@@ -1,24 +1,32 @@
 import { useLoaderData } from 'react-router-dom'
+import { BrowseVacationsItem } from '~/BrowseVacationsItem'
+import { Card } from '~/Card'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
-import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import type { Vacation } from '~/utils/types'
-import { Card } from '~/Card'
 
-export async function loader({ request }) {
-  const searchParams = new URL(request.url).searchParams
-  const maxPrice = searchParams.get('maxPrice')
-
-  const dbSearch = new URLSearchParams()
-  if (maxPrice) {
-    dbSearch.set('price_lte', maxPrice)
-  }
-
-  return api.vacations.getAll(dbSearch.toString())
+// 2: Finished with loader
+export async function loader() {
+  return api.vacations.getAll()
 }
 
 export function BrowseVacationsPage() {
+  // 2: Finished with loader
   const vacations = useLoaderData() as Vacation[]
+
+  // 1: With useEffect
+  // const [vacations, setVacations] = useState<Vacation[] | null>(null)
+  // useEffect(() => {
+  //   let isCurrent = true
+  //   api.vacations.getAll().then((vacations) => {
+  //     if (isCurrent) {
+  //       setVacations(vacations)
+  //     }
+  //   })
+  //   return () => {
+  //     isCurrent = false
+  //   }
+  // }, [])
 
   return (
     <div>

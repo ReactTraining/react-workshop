@@ -24,7 +24,7 @@ function App() {
                 <div>
                   <Heading>Grocery List</Heading>
                 </div>
-                <div>Filter: 1 quantity</div>
+                <div>Filter Quantity: 1</div>
               </div>
               <GroceryList />
             </div>

@@ -1,12 +1,9 @@
 import { useLoaderData } from 'react-router-dom'
-import classnames from 'classnames'
 import { api } from '~/utils/api'
+import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
-import { useFavoriteContext } from '~/FavoriteContext'
-import { Icon } from '~/Icon'
-import { VacationImage } from '~/VacationImage'
 
 export async function loader({ params }) {
   const id = parseInt(params.vacationId as string)
@@ -18,9 +15,8 @@ export async function loader({ params }) {
 
 export function VacationDetailsPage() {
   const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
-  const { isFavorite, add, remove } = useFavoriteContext()
-  const vacationIsFavorite = isFavorite(vacation.id)
-  const favoriteAction = vacationIsFavorite ? remove : add
+
+  if (!vacation) return <div>Loading...</div>
 
   return (
     <Card>
@@ -37,19 +33,8 @@ export function VacationDetailsPage() {
             />
           </div>
           <div className="flex-1 space-y-6">
-            <header className="md:flex md:justify-between md:items-center">
+            <header>
               <Heading>{vacation.name}</Heading>
-              <div>
-                <button
-                  className={classnames(`button button-outline`, {
-                    '!text-yellow-500': vacationIsFavorite,
-                  })}
-                  onClick={() => favoriteAction(vacation.id)}
-                >
-                  {vacationIsFavorite ? <Icon name="star" /> : <Icon name="starOutline" />}
-                  <span>Favorite</span>
-                </button>
-              </div>
             </header>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non obcaecati nobis suscipit

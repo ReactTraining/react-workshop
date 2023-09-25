@@ -135,7 +135,7 @@ body {
 
   .button:hover,
   .button:focus {
-    background-color: theme(colors.blue.500);
+    background-color: theme(colors.brandBlueDark);
   }
 
   .button.button-outline {

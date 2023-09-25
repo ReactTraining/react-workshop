@@ -29,6 +29,8 @@ export async function load() {
   return Map
 }
 
+load()
+
 export async function GoogleMap(el, opt) {
   const Map = await load()
   const map = new Map(el, opt)

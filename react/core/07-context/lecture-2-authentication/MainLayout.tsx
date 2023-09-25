@@ -1,37 +1,41 @@
-import { NavLink, Outlet } from 'react-router-dom'
-import { AuthenticatedUserNav } from '~/AuthenticatedUserNav'
-import { useAuthContext } from '~/AuthContext'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { Logo } from '~/Logo'
 import { Icon } from '~/Icon'
+import { useAuthContext } from './AuthContext'
+import { api } from '~/utils/api'
 
 export function MainLayout() {
-  const { authenticated } = useAuthContext()
+  const { authenticated, logout } = useAuthContext()
+  const navigate = useNavigate()
+
+  function onLogout() {
+    // Logout of the server
+    api.auth.logout().then(() => {
+      // Then logout of global state and redirect
+      logout()
+      navigate('/')
+    })
+  }
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
-      <header className="border-b p-4 flex justify-between items-center">
+      <header className="border-b p-6 flex justify-between items-center">
         <div>
           <Logo />
         </div>
-        <nav className="flex items-center gap-3">
-          <AuthenticatedUserNav />
-        </nav>
       </header>
       <div className="border-b px-6 flex justify-between items-center text-sm">
         <nav>
-          <NavLink to="/" className="inline-block text-textColor py-2 pr-4">
-            Home
+          <NavLink to="/login" className="inline-block text-textColor py-2 pr-4">
+            Login
           </NavLink>
           {authenticated && (
-            <NavLink to="/account" className="inline-block text-textColor py-2 px-4">
-              My Account
-            </NavLink>
+            <button className="inline-block text-textColor py-2 px-4" onClick={onLogout}>
+              Logout
+            </button>
           )}
-          <NavLink
-            to="/vacations/deal-of-the-day"
-            className="inline-block text-textColor py-2 px-4"
-          >
-            Deal of the day!
+          <NavLink to="/account" className="inline-block text-textColor py-2 px-4">
+            Account
           </NavLink>
         </nav>
         <nav>
@@ -50,7 +54,6 @@ export function MainLayout() {
           </a>
         </nav>
       </div>
-      {/* Flex for full height children, child needs to be flex: 1 */}
       <div className="flex-1 flex [&>div]:flex-1 p-3 bg-gradient-to-b from-gray-50 to-white">
         <Outlet />
       </div>

@@ -1,9 +1,11 @@
+import classNames from 'classnames'
+
 type LessonBodyProps = {
   children: React.ReactNode
 }
 
 export function LessonBody({ children }: LessonBodyProps) {
-  return <div className="lesson-body min-h-screen pt-16 pr-32 pl-32">{children}</div>
+  return <div className="lesson-body flex-1 min-h-screen py-16 px-32">{children}</div>
 }
 
 type LessonCardProps = {
@@ -14,7 +16,10 @@ export function LessonCard({ children, className, ...props }: LessonCardProps) {
   return (
     <div
       {...props}
-      className={`m-auto max-w-[1200px] min-h-[50vh] space-y-6 p-6 bg-white rounded-2xl shadow-lg ${className}`}
+      className={classNames(
+        'ml-auto mr-auto max-w-[1200px] min-h-[250px] space-y-6 p-6 bg-white rounded-2xl shadow-lg',
+        className
+      )}
     >
       {children}
     </div>
