@@ -13,7 +13,7 @@ function App() {
           <Heading>Counter</Heading>
           <Counter />
         </LessonCard>
-        {/* <LessonCard className="flex-1">
+        <LessonCard className="flex-1">
           <div className="flex gap-12">
             <div className="w-56 space-y-6">
               <Heading>Add Item</Heading>
@@ -29,7 +29,7 @@ function App() {
               <GroceryList />
             </div>
           </div>
-        </LessonCard> */}
+        </LessonCard>
       </div>
     </LessonBody>
   )
