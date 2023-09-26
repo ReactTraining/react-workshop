@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useLoaderData } from 'react-router-dom'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
-import type { Vacation } from '~/utils/types'
 import { queryClient } from '~/utils/queryClient'
+import type { Vacation } from '~/utils/types'
 
 // const vacations = await queryClient.ensureQueryData({
 //   queryKey: ['vacations'],

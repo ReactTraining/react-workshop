@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useLoaderData } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
-import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
+import type { Vacation } from '~/utils/types'
 
 // const vacation = await queryClient.ensureQueryData({
 //   queryKey: ['vacation', id],
