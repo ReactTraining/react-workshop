@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
@@ -66,12 +67,12 @@ export function VacationDetailsPage() {
             </p>
           </div>
         </div>
-        <section className="space-y-6">
+        {/* <section className="space-y-6">
           <Heading as="h2" size={4}>
             Similar Destinations
           </Heading>
           <SimilarVacations vacationIds={vacation.related || []} />
-        </section>
+        </section> */}
       </main>
     </Card>
   )
