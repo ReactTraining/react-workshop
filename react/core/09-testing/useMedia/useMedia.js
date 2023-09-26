@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function useMedia(query) {
+export function useMedia(query) {
   const [matches, setMatches] = useState(() => {
     return window && window.matchMedia(query).matches
   })
@@ -14,5 +14,3 @@ function useMedia(query) {
 
   return matches
 }
-
-export default useMedia

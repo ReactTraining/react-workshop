@@ -1,28 +1,27 @@
-import { useLoaderData } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
+import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
-import { VacationImage } from '~/VacationImage'
-import { queryClient } from '~/utils/queryClient'
-import { FavoriteVacationButton } from './FavoriteVacationButton'
-
-export async function loader({ params }) {
-  const id = parseInt(params.vacationId as string)
-
-  // Fetch Data using React Query
-  const vacation = await queryClient.ensureQueryData({
-    queryKey: ['vacation', id],
-    queryFn: () => api.vacations.getVacation(id),
-    staleTime: 1000 * 30,
-  })
-
-  if (!vacation) throw new Response('Not Found', { status: 404 })
-  return vacation
-}
+import type { Vacation } from '~/utils/types'
 
 export function VacationDetailsPage() {
-  const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
+  const vacationId = parseInt(useParams().vacationId!)
+  const [vacation, setVacation] = useState<Vacation | null>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      if (isCurrent) setVacation(vacation)
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [vacationId])
+
+  if (!vacation) return <div>Loading...</div>
 
   return (
     <Card>
@@ -39,11 +38,8 @@ export function VacationDetailsPage() {
             />
           </div>
           <div className="flex-1 space-y-6">
-            <header className="md:flex md:justify-between md:items-center">
+            <header>
               <Heading>{vacation.name}</Heading>
-              <div>
-                <FavoriteVacationButton id={vacation.id} />
-              </div>
             </header>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non obcaecati nobis suscipit

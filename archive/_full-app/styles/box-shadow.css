@@ -1,8 +1,0 @@
-html {
-  --shadow: 0 0 0 1px rgb(136 152 170 / 10%), 0 15px 35px 0 rgb(49 49 93 / 10%),
-    0 5px 15px 0 rgb(0 0 0 / 8%);
-}
-
-.box-shadow {
-  box-shadow: var(--shadow);
-}

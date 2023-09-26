@@ -1,8 +1,0 @@
-.component {
-  display: grid;
-  grid-gap: 1em;
-  // This "tile css algo" requires this grid template-columns property. But
-  // since the minmax value is dynamic, it's supplied as an inline style
-  // via JS:
-  // grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
-}
