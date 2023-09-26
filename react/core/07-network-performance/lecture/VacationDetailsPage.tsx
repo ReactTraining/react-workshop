@@ -37,6 +37,12 @@ export function VacationDetailsPage() {
     }
   }, [vacationId])
 
+  // const { data: vacation } = useQuery(
+  //   ['vacation', vacationId],
+  //   () => api.vacations.getVacation(vacationId),
+  //   { staleTime: 1000 * 30 }
+  // )
+
   if (!vacation) return <div>Loading...</div>
 
   return (
