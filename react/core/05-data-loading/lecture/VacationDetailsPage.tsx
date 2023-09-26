@@ -1,20 +1,20 @@
-import { useLoaderData } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
+import type { Vacation } from '~/utils/types'
 
-export async function loader({ params }) {
-  const id = parseInt(params.vacationId as string)
-  const vacation = await api.vacations.getVacationCached(id)
-
-  if (!vacation) throw new Response('Not Found', { status: 404 })
-  return vacation
-}
+// Setting state on unmounted components
+// https://github.com/facebook/react/pull/22114
 
 export function VacationDetailsPage() {
-  const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
+  const vacationId = parseInt(useParams().vacationId!)
+  const [vacation, setVacation] = useState<Vacation | null>(null)
+
+  // api.vacations.getVacation(vacationId)
 
   if (!vacation) return <div>Loading...</div>
 

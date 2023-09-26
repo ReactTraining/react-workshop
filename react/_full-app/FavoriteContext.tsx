@@ -2,8 +2,7 @@ import { createContext, useContext, useEffect, useLayoutEffect, useState } from 
 
 type Context = {
   favorites: number[]
-  add(id: number): void
-  remove(id: number): void
+  updateFavorite(id: number): void
   isFavorite(id: number): boolean
 }
 
@@ -23,31 +22,26 @@ export function FavoriteProvider({ children }: Props) {
 
   // When the page first loads
   useLayoutEffect(() => {
-    let favorites = JSON.parse(window.localStorage.getItem(LOCAL_KEY) || '[]')
-
-    // Always start off with tree favorites
-    if (favorites.length === 0) {
-      favorites = favorites.concat([1, 2, 3])
-    }
-
+    const favorites = JSON.parse(window.localStorage.getItem(LOCAL_KEY) || '[]')
     setFavorites(favorites)
   }, [])
 
-  const add = (id: number) => {
-    if (!favorites.includes(id)) {
-      setFavorites([id, ...favorites])
+  function updateFavorite(id: number) {
+    if (isFavorite(id)) {
+      setFavorites(favorites.filter((favId) => favId !== id))
+    } else {
+      setFavorites(favorites.concat(id))
     }
   }
 
-  const remove = (id: number) => {
-    setFavorites(favorites.filter((favoriteId) => favoriteId !== id))
+  function isFavorite(id: number) {
+    return favorites.includes(id)
   }
 
   const context: Context = {
     favorites,
-    add,
-    remove,
-    isFavorite: (id: number) => favorites.includes(id),
+    updateFavorite,
+    isFavorite,
   }
 
   return <FavoriteContext.Provider value={context} children={children} />

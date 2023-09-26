@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import { MainLayout } from './MainLayout'
+import { MainLayout } from '~/MainLayout'
 
 const HomePage = () => <h1>Home Page</h1>
 const PageOne = () => <h1>Page One</h1>
@@ -41,31 +41,3 @@ export function App() {
 //     </BrowserRouter>
 //   )
 // }
-
-/**
- * Basic React Router 6 Example: No JSX
- */
-
-// export function App() {
-//   return <RouterProvider router={router} />
-// }
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <MainLayout />,
-//     children: [
-//       {
-//         index: true,
-//         element: <HomePage />,
-//       },
-//       {
-//         path: 'one',
-//         element: <PageOne />,
-//       },
-//       {
-//         path: 'two',
-//         element: <PageTwo />,
-//       },
-//     ],
-//   },
-// ])

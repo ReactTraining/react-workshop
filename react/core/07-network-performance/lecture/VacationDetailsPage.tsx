@@ -1,31 +1,42 @@
-import { useLoaderData } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
+import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
-import { VacationImage } from '~/VacationImage'
-import { queryClient } from '~/utils/queryClient'
-import { FavoriteVacationButton } from './FavoriteVacationButton'
+import type { Vacation } from '~/utils/types'
+import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export async function loader({ params }) {
-  const id = parseInt(params.vacationId as string)
+// const vacation = await queryClient.ensureQueryData({
+//   queryKey: ['vacation', id],
+//   queryFn: () => api.vacations.getVacation(id),
+//   staleTime: 1000 * 30,
+// })
 
-  // Fetch Data using React Query
-  const vacation = await queryClient.ensureQueryData({
-    queryKey: ['vacation', id],
-    queryFn: () => api.vacations.getVacation(id),
-    staleTime: 1000 * 30,
-  })
+// export async function loader({ params }) {
+//   const id = parseInt(params.vacationId as string)
+//   const vacation = await api.vacations.getVacation(id)
 
-  if (!vacation) throw new Response('Not Found', { status: 404 })
-  return vacation
-}
+//   if (!vacation) throw new Response('Not Found', { status: 404 })
+//   return vacation
+// }
 
 export function VacationDetailsPage() {
-  const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
-  // const { isFavorite, add, remove } = useFavoriteContext()
-  // const vacationIsFavorite = isFavorite(vacation.id)
-  // const favoriteAction = vacationIsFavorite ? remove : add
+  const vacationId = parseInt(useParams().vacationId!)
+  const [vacation, setVacation] = useState<Vacation | null>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      if (isCurrent) setVacation(vacation)
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [vacationId])
+
+  if (!vacation) return <div>Loading...</div>
 
   return (
     <Card>

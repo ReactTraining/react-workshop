@@ -17,8 +17,6 @@ import { queryClient } from '~/utils/queryClient'
 import { AccountSidebar } from './AccountSidebar'
 
 function Layout() {
-  const [isWide, setIsWide] = useState(true)
-
   return (
     <LessonBody>
       <LessonCard>
