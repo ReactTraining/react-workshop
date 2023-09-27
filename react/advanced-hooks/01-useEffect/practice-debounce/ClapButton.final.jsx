@@ -23,12 +23,12 @@ export function ClapButton() {
   }
 
   return (
-    <div className="text-center spacing">
+    <div className="space-y-6">
       <button onClick={clap} className="button">
         Clap
       </button>
       <hr />
-      <div className="horizontal-spacing">
+      <div className="space-x-6">
         <span>Queue Claps: {queueClaps}</span>
         <span>Claps: {claps}</span>
       </div>
@@ -36,5 +36,4 @@ export function ClapButton() {
   )
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<ClapButton />)
+ReactDOM.createRoot(document.getElementById('root')).render(<ClapButton />)

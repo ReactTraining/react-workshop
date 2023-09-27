@@ -1,10 +1,16 @@
 import * as ReactDOM from 'react-dom/client'
 // import  { ClapButton } from './ClapButton.final'
 import { ClapButton } from './ClapButton'
-import './styles.scss'
+import { LessonBody, LessonCard } from '~/Lesson'
 
 function App() {
-  return <ClapButton />
+  return (
+    <LessonBody>
+      <LessonCard>
+        <ClapButton />
+      </LessonCard>
+    </LessonBody>
+  )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)

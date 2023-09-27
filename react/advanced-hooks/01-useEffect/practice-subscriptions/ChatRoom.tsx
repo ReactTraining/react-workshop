@@ -2,6 +2,14 @@ import { useState, useEffect, useRef } from 'react'
 import { api } from '~/utils/api'
 import { Avatar } from '~/Avatar'
 
+type Props = {
+  user: {
+    id: number
+    name: string
+    avatarUrl: string
+  }
+}
+
 type ChatMessage = {
   id: string
   user: string
@@ -13,8 +21,9 @@ type ChatMessage = {
 
 const THREAD_NAME = 'all'
 
-export function ChatRoom() {
+export function ChatRoom({ user }: Props) {
   const chatBoardRef = useRef<HTMLDivElement>(null!)
+  // const inputRef = useRef<HTMLInputElement>(null!)
 
   const [input, setInput] = useState('')
   const [scrolledToBottom, setScrolledToBottom] = useState(true)

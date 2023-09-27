@@ -27,6 +27,7 @@ export function CartShippingBilling() {
           id="shippingName"
           type="text"
           className="form-field"
+          autoComplete="off"
           value={shippingName}
           onChange={(e) => setShippingName(e.target.value)}
         />
@@ -62,6 +63,7 @@ export function CartShippingBilling() {
           id="billingName"
           type="text"
           className="form-field"
+          autoComplete="off"
           // Make "controlled"
           // value={ }
           // onChange={ }

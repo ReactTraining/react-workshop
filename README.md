@@ -27,24 +27,25 @@ Already have Node/NPM installed? Then start here. Otherwise we have some instruc
 **For React Workshops**
 
 - Do `npm install` first
-- If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
 - Do `npm start`
 - Choose "React" from the menu
-- You'll see a list of options to run our curriculum next. Choose "FULL APP"
-- It should be running now on localhost:3000
+- You'll see a menu in the terminal. Choose "FULL APP"
+- You should be able to visit localhost:3000 in the browser and see the app
+- You're all set if you see the app.
 
-If the app runs, you're ready for the workshop
+Be sure to read this "JavaScript Primer" article if you think you'll need guidance on modern JavaScript: https://reacttraining.com/blog/javascript-the-react-parts/
 
 **For The Remix Workshop**
 
 - Do `npm install` first
-- If you see "peer dependency" issues, do `npm install --legacy-peer-deps` as suggested
 - Do `npm run install-remix` next
 - Do `npm start`
 - Choose "Remix" from the menu
 - You'll see a list of options to run our curriculum next. Choose "FULL APP"
+- You should be able to visit localhost:3000 in the browser and see the app
+- You're all set if you see the app.
 
-If the app runs, you're ready for the workshop
+Be sure to read this "JavaScript Primer" article if you think you'll need guidance on modern JavaScript: https://reacttraining.com/blog/javascript-the-react-parts/
 
 ## How to get ready for the workshop
 

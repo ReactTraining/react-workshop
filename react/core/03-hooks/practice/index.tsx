@@ -4,9 +4,9 @@ import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Notice } from '~/Notice'
 import { LoginForm } from './LoginForm'
-// import { GoogleMaps } from './GoogleMaps'
+import { AccountPage } from './AccountPage'
 
-type User = { userId: number; lat: number; lng: number }
+export type User = { userId: number }
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -23,11 +23,7 @@ function App() {
           <LoginForm onSubmit={onSubmit} />
         </LessonCard>
         <LessonCard className="flex-1">
-          {!user ? (
-            <Notice>Login to see this page</Notice>
-          ) : (
-            <Heading>Welcome User: {user.userId}</Heading>
-          )}
+          {!user ? <Notice>Login to see this page</Notice> : <AccountPage user={user} />}
         </LessonCard>
       </div>
     </LessonBody>

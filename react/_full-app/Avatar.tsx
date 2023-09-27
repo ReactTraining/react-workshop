@@ -1,3 +1,5 @@
+import classnames from 'classnames'
+
 type Props = {
   src: string
   size?: number
@@ -12,12 +14,12 @@ export function Avatar({ src, size = 2, className, ...props }: Props) {
       {...props}
       src={src}
       style={{ fontSize: `${size}rem` }}
-      className="aspect-square w-[1em] rounded-full"
+      className={classnames('aspect-square w-[1em] rounded-full', className)}
     />
   ) : (
     <div
       style={{ fontSize: `${size}rem` }}
-      className="aspect-square w-[1em] rounded-full border border-pink-300"
-    ></div>
+      className={classnames('aspect-square w-[1em] rounded-full border border-pink-300', className)}
+    />
   )
 }

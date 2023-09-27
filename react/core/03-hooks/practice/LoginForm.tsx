@@ -1,13 +1,15 @@
 import { useState, useId, useRef } from 'react'
 import { Notice } from '~/Notice'
+import type { User } from './index'
 
 type Props = {
-  onSubmit(user: UserType): void
+  onSubmit(user: User): void
 }
 
 export function LoginForm({ onSubmit }: Props) {
+  // Let's supply default values just so we don't have to type as much while testing
   const [username, setUsername] = useState('admin')
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('admin')
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -55,8 +57,6 @@ export function LoginForm({ onSubmit }: Props) {
     </form>
   )
 }
-
-type UserType = { userId: number }
 
 // Fake login function
 function login(username: string, password: string): Promise<UserType> {

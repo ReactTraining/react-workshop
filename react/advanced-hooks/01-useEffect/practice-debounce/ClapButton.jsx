@@ -30,12 +30,11 @@ export class ClapButton extends Component {
 
   render() {
     return (
-      <div className="text-center spacing">
+      <div className="space-y-6">
         <button onClick={this.clap} className="button">
           Clap
         </button>
-        <hr />
-        <div className="horizontal-spacing">
+        <div className="space-x-6">
           <span>Queue Claps: {this.state.queueClaps}</span>
           <span>Claps: {this.state.claps}</span>
         </div>
@@ -54,12 +53,11 @@ export class ClapButton extends Component {
 //   }
 
 //   return (
-//     <div className="text-center spacing">
+//     <div className="space-y-6">
 //       <button onClick={clap} className="button">
 //         Clap
 //       </button>
-//       <hr />
-//       <div className="horizontal-spacing">
+//       <div className="space-x-6">
 //         <span>Queue Claps: {queueClaps}</span>
 //         <span>Claps: {claps}</span>
 //       </div>

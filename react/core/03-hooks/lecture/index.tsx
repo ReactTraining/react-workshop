@@ -14,10 +14,10 @@ function App() {
           <Heading>🗺️ Maps</Heading>
           <GoogleMaps />
         </LessonCard>
-        {/* <LessonCard className="flex-1">
+        <LessonCard className="flex-1">
           <Heading>🎟️ Tickets</Heading>
           <PurchaseTickets />
-        </LessonCard> */}
+        </LessonCard>
       </div>
     </LessonBody>
   )

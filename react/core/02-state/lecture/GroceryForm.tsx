@@ -15,7 +15,7 @@ export function GroceryForm({ onSubmit }: Props) {
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" />
+        <input id="item" type="text" className="form-field" autoComplete="off" />
       </div>
       <div>
         <label htmlFor="quantity">Quantity</label>
