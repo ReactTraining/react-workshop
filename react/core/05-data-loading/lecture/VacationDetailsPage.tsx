@@ -11,7 +11,7 @@ import type { Vacation } from '~/utils/types'
 // https://github.com/facebook/react/pull/22114
 
 export function VacationDetailsPage() {
-  const vacationId = parseInt(useParams().vacationId!)
+  const { vacationId } = useParams()
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
   // api.vacations.getVacation(vacationId)
