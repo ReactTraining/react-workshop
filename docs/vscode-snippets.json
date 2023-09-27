@@ -1,0 +1,117 @@
+{
+  "Remix Export Links": {
+    "prefix": "exportlinks",
+    "body": ["export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]"]
+  },
+  "Remix Export Headers": {
+    "prefix": "exportheaders",
+    "body": [
+      "export const headers: HeadersFunction = ({ actionHeaders, loaderHeaders, parentHeaders }) => ({",
+      "  'Cache-Control': 'max-age=300, s-maxage=3600',",
+      "})"
+    ]
+  },
+  "Remix Export Meta": {
+    "prefix": "exportmeta",
+    "body": [
+      "export const meta: MetaFunction = () => {",
+      "  return [",
+      "    { title: 'Shopping App' },",
+      "    {",
+      "      name: 'description',",
+      "      content: 'Our app description',",
+      "    },",
+      "  ]",
+      "}"
+    ],
+    "description": ""
+  },
+  "Remix Export Loader": {
+    "prefix": "exportloader",
+    "body": [
+      "export const loader = async ({ params }: LoaderArgs) => {",
+      "  return json({ })",
+      "}",
+      "",
+      "// useLoaderData<typeof loader>()"
+    ]
+  },
+  "console.log": {
+    "prefix": "con",
+    "body": ["console.log($0)"]
+  },
+  "css custom properties": {
+    "prefix": "var",
+    "body": ["var(--$0);"]
+  },
+  "const": {
+    "prefix": "const",
+    "body": ["const { $1 } = $0"]
+  },
+  "function": {
+    "prefix": "f",
+    "body": ["function $0() {", "  ", "}"]
+  },
+  "getElementById('')": {
+    "prefix": "element",
+    "body": ["document.getElementById('$0')"]
+  },
+  "React.lazy": {
+    "prefix": "lazy",
+    "body": ["const $1 = React.lazy(() => import('$0'))"]
+  },
+  "Suspense": {
+    "prefix": "suspense",
+    "body": ["<Suspense fallback={<div>loading...</div>}>$0</Suspense>"]
+  },
+  "Props": {
+    "prefix": "Props",
+    "body": ["type Props = {", "  ${0:children}: React.ReactNode", "}"]
+  },
+  "useState": {
+    "prefix": "state",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($0)"]
+  },
+  "useEffect": {
+    "prefix": "effect",
+    "body": ["useEffect(() => {", "  ${0}", "}, [])"]
+  },
+  "jsx": {
+    "prefix": "jsx",
+    "body": ["_jsx($0, {})"]
+  },
+  "children-prop-types": {
+    "prefix": "children",
+    "body": ["children: React.ReactNode"]
+  },
+  "useReducer": {
+    "prefix": "reducer",
+    "body": [
+      "const [state, dispatch] = useReducer((state, action) => {",
+      "  switch(action.type) {",
+      "    case '${0}': {",
+      "      return { ...state }",
+      "    }",
+      "    default: return state",
+      "  }",
+      "}, {})"
+    ],
+    "description": "reducer -> useReducer"
+  },
+  "dispatch": {
+    "prefix": "dispatch",
+    "body": ["dispatch({ type: '${0}' })"]
+  },
+  "React: Class Component": {
+    "prefix": "class",
+    "body": [
+      "class $0 extends React.Component {",
+      "  render() {",
+      "    return (",
+      "      <div></div>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  }
+}
