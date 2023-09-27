@@ -1,41 +1,4 @@
 {
-  "Remix Export Links": {
-    "prefix": "exportlinks",
-    "body": ["export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]"]
-  },
-  "Remix Export Headers": {
-    "prefix": "exportheaders",
-    "body": [
-      "export const headers: HeadersFunction = ({ actionHeaders, loaderHeaders, parentHeaders }) => ({",
-      "  'Cache-Control': 'max-age=300, s-maxage=3600',",
-      "})"
-    ]
-  },
-  "Remix Export Meta": {
-    "prefix": "exportmeta",
-    "body": [
-      "export const meta: MetaFunction = () => {",
-      "  return [",
-      "    { title: 'Shopping App' },",
-      "    {",
-      "      name: 'description',",
-      "      content: 'Our app description',",
-      "    },",
-      "  ]",
-      "}"
-    ],
-    "description": ""
-  },
-  "Remix Export Loader": {
-    "prefix": "exportloader",
-    "body": [
-      "export const loader = async ({ params }: LoaderArgs) => {",
-      "  return json({ })",
-      "}",
-      "",
-      "// useLoaderData<typeof loader>()"
-    ]
-  },
   "console.log": {
     "prefix": "con",
     "body": ["console.log($0)"]
@@ -112,6 +75,43 @@
       "    )",
       "  }",
       "}"
+    ]
+  },
+  "Remix Export Links": {
+    "prefix": "exportlinks",
+    "body": ["export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]"]
+  },
+  "Remix Export Headers": {
+    "prefix": "exportheaders",
+    "body": [
+      "export const headers: HeadersFunction = ({ actionHeaders, loaderHeaders, parentHeaders }) => ({",
+      "  'Cache-Control': 'max-age=300, s-maxage=3600',",
+      "})"
+    ]
+  },
+  "Remix Export Meta": {
+    "prefix": "exportmeta",
+    "body": [
+      "export const meta: MetaFunction = () => {",
+      "  return [",
+      "    { title: 'Shopping App' },",
+      "    {",
+      "      name: 'description',",
+      "      content: 'Our app description',",
+      "    },",
+      "  ]",
+      "}"
+    ],
+    "description": ""
+  },
+  "Remix Export Loader": {
+    "prefix": "exportloader",
+    "body": [
+      "export const loader = async ({ params }: LoaderArgs) => {",
+      "  return json({ })",
+      "}",
+      "",
+      "// useLoaderData<typeof loader>()"
     ]
   }
 }
