@@ -35,6 +35,7 @@ export function PurchaseTickets() {
           className="form-field"
           onChange={(e) => setComments(e.target.value)}
         />
+        <div className="text-xs">Characters: {comments.length}</div>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor={ticketsId} className="text-sm">
