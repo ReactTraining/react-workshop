@@ -15,13 +15,14 @@ export function GoogleMaps() {
   function handleSubmit(event) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    const pos = Object.fromEntries(formData)
-    console.log(pos)
 
-    // const pos = {
-    //   lat: Number(formData.get('lat')),
-    //   lng: Number(formData.get('lng')),
-    // }
+    // This will get everything as a string
+    // const pos = Object.fromEntries(formData)
+
+    const pos = {
+      lat: Number(formData.get('lat')),
+      lng: Number(formData.get('lng')),
+    }
 
     GoogleMap(document.getElementById('map'), {
       center: pos,
