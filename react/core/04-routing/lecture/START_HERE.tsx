@@ -26,13 +26,13 @@ const PageOne = () => <h1>Page One</h1>
 const PageTwo = () => <h1>Page Two</h1>
 
 export function App() {
-  const [page, setPage] = useState('home')
+  const [page, setPage] = useState('/')
 
   return (
     <MainLayout>
-      {page === 'home' && <HomePage />}
-      {page === 'one' && <PageOne />}
-      {page === 'two' && <PageTwo />}
+      {page === '/' && <HomePage />}
+      {page === '/one' && <PageOne />}
+      {page === '/two' && <PageTwo />}
     </MainLayout>
   )
 }
