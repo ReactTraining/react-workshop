@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Icon } from '~/Icon'
 
 // type Props = {
-//   count?: number
+//   count: number
 //   setCount(count: number): void
 // }
 

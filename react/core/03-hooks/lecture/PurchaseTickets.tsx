@@ -1,4 +1,5 @@
 import { useState, useId, useRef, useMemo, useCallback, memo } from 'react'
+import computeTicketPrices from './utils/slowFunction'
 
 /**
  * 1. We can't call hooks while we map, so move attendee inputs to a separate component
@@ -124,9 +125,4 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       </button>
     </div>
   )
-}
-
-// Mimic having a very slow function...
-function computeTicketPrices(tickets: number) {
-  for (let index = 0; index < 800_000_000; index++) {}
 }
