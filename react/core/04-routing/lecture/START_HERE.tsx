@@ -6,7 +6,19 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import { MainLayout } from '~/MainLayout'
+// import { MainLayout } from '~/MainLayout'
+
+type Props = { children: React.ReactNode }
+
+function MainLayout({ children }: Props) {
+  return (
+    <div>
+      <header></header>
+      <main>{children}</main>
+      <footer></footer>
+    </div>
+  )
+}
 
 const HomePage = () => <h1>Home Page</h1>
 const PageOne = () => <h1>Page One</h1>

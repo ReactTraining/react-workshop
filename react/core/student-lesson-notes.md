@@ -68,16 +68,20 @@ function onSubmit(event) {
 - refs can also be used to access data on form submissions of uncontrolled fields
 - useId is a hook to give us an app-wide unique id usually for HTML id's to be unique for accessibility
 - useEffect is a hook for running side-effect code after the component renders
-- useMemo is a hook to "memoize" a value while rendering. In other words "remember" a value so it does't have tobe re-computed again on every render. Only compute it again if the useMemo dependency array changes
+- useMemo is a hook to "memoize" a value while rendering. In other words "remember" a value so it does't have to be re-computed again on every render. Only compute it again if the useMemo dependency array changes
+- React.memo (or just memo) is for memoizing functional components so they get less re-renders. A memoized component will not be subject to re-rendering when the component above it (called the parent or owner component) re-renders unless the props being passed into the memoized component changes.
 
 - Docs for useRef: https://react.dev/reference/react/useRef
 - Docs for useEffect: https://react.dev/reference/react/useEffect
 - Docs for useId: https://react.dev/reference/react/useId
 - Docs for useMemo: https://react.dev/reference/react/useMemo
+- Docs for memo: https://react.dev/reference/react/memo
 
 ## Lesson 4: Routing
 
-The "Overview" pages from the RR6 docs are better notes that we could write here, so lets use them: https://reactrouter.com
+Please see the docs at: https://reactrouter.com
+
+Sometimes things change and we wouldn't want our notes here to become outdated. Their docs are fantastic. There's also really good docs for migrating from earlier versions of React Router to more modern ones.
 
 ## Lesson 5: Data Loading
 
