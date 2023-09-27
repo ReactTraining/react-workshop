@@ -30,11 +30,7 @@ export function BrowseVacationsPage() {
 
   return (
     <div>
-      {!vacations && (
-        <Card>
-          <div>Loading...</div>
-        </Card>
-      )}
+      {!vacations && <div>Loading...</div>}
       {vacations ? (
         <Tiles minSize={15}>
           {vacations.map((vacation) => {
