@@ -1,3 +1,4 @@
+import { useState } from 'react'
 // import {
 //   BrowserRouter,
 //   Route,
@@ -25,7 +26,7 @@ const PageOne = () => <h1>Page One</h1>
 const PageTwo = () => <h1>Page Two</h1>
 
 export function App() {
-  const page: string = 'home'
+  const [page, setPage] = useState('home')
 
   return (
     <MainLayout>
