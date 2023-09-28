@@ -1,14 +1,11 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 // import { LessonBody, LessonCard } from '~/Lesson'
+// import { Icon } from './examples/Icon'
 import { FaTrash } from 'react-icons/fa'
-import { Icon } from './examples/Icon'
-import { Heading } from './examples/Heading'
 
 function App() {
-  return <div>Let's get started</div>
+  // In React, a component is a function that
+  // returns a "blueprint" for React to use
+  // for making the DOM
 }
-
-// React 18
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
