@@ -1,5 +1,5 @@
 import { useState, useId, useRef, useMemo, useCallback, memo } from 'react'
-import computeTicketPrices from './utils/slowFunction'
+import { slowFunction } from '~/utils/helpers'
 
 export function PurchaseTickets() {
   const [tickets, setTickets] = useState(3)
@@ -8,7 +8,7 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const prices = computeTicketPrices(tickets)
+  // const prices = slowFunction(tickets)
   // const onUpdate = (name: string, tickets: number) => {
   //   console.log(name, tickets)
   // }

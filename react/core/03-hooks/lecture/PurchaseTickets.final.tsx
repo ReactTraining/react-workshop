@@ -1,4 +1,5 @@
 import { useState, useId, useRef, useMemo, useCallback, useEffect, memo } from 'react'
+import { slowFunction } from '~/utils/helpers'
 
 export function PurchaseTickets() {
   const [tickets, setTickets] = useState(3)
@@ -7,8 +8,7 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // Just to demo useMemo
-  const prices = useMemo(() => computeTicketPrices(tickets), [tickets])
+  const prices = useMemo(() => slowFunction(tickets), [tickets])
 
   const onUpdate = useCallback((name: string, tickets: number) => {
     console.log(name, tickets)
@@ -101,8 +101,3 @@ const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsPro
     </div>
   )
 })
-
-// Mimic having a very slow function...
-function computeTicketPrices(tickets: number) {
-  for (let index = 0; index < 800_000_000; index++) {}
-}

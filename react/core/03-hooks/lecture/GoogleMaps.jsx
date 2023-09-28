@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useId } from 'react'
-import { GoogleMap, load } from '~/utils/maps'
+import { GoogleMap } from '~/utils/maps'
 
 export function GoogleMaps() {
   function handleSubmit(event) {
@@ -41,7 +41,7 @@ export function GoogleMaps() {
         </div>
         <footer className="mt-3">
           <button type="submit" className="button">
-            Submit
+            Load Map
           </button>
         </footer>
       </form>
