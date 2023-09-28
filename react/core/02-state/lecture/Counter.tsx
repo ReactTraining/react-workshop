@@ -7,17 +7,29 @@ import { Icon } from '~/Icon'
 // }
 
 export function Counter() {
-  let count = 0
+  const [count, setCount] = useState(0)
+  const error = count < 0 ? 'Cannot be less than 0' : null
+
+  function subtract() {
+    setCount(count - 1)
+  }
+
+  function add() {
+    setCount(count + 1)
+  }
 
   return (
-    <div className="flex">
-      <button className="button flex-1">
-        <Icon name="minus" />
-      </button>
-      <span className="align-middle text-3xl px-6">0</span>
-      <button className="button flex-1">
-        <Icon name="plus" />
-      </button>
-    </div>
+    <>
+      <div className="flex">
+        <button onClick={subtract} className="button flex-1">
+          <Icon name="minus" />
+        </button>
+        <span className="align-middle text-3xl px-6">{count}</span>
+        <button onClick={add} className="button flex-1">
+          <Icon name="plus" />
+        </button>
+      </div>
+      {error && <p>{error}</p>}
+    </>
   )
 }

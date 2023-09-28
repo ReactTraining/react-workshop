@@ -7,7 +7,7 @@ import { Avatar } from './Avatar.final'
 
 const user = {
   id: 1,
-  name: 'Your Name Here',
+  name: 'Brad',
   avatarUrl: 'default-admin.jpg',
   // Change the URL to be yours if you want:
   // avatarUrl: 'https://path-to-your-image',

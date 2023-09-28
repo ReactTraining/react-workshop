@@ -14,8 +14,7 @@ export function Icon({ name }) {
 }
 
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  // name: PropTypes.oneOf(['plus', 'star', 'trash']).isRequired
+  name: PropTypes.oneOf(['plus', 'star', 'trash']).isRequired,
 }
 
 // https://github.com/facebook/prop-types

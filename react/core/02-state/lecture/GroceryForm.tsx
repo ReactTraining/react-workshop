@@ -5,19 +5,29 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  function handleSubmit(event) {
-    // Typescript has no idea what "event" is
+  const [name, setName] = useState('')
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+
+    const fields = Object.fromEntries(formData)
+
+    console.log(fields)
+
+    // onSubmit(fields)
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" autoComplete="off" />
+        <input id="item" type="text" className="form-field" autoComplete="off" name="item" />
       </div>
       <div>
         <label htmlFor="quantity">Quantity</label>
-        <input id="quantity" type="text" className="form-field" />
+        <input id="quantity" type="text" className="form-field" name="quantity" />
       </div>
       <footer>
         <button type="submit" className="button">
