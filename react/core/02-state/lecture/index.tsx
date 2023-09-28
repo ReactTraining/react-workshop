@@ -9,7 +9,7 @@ function App() {
   return (
     <LessonBody>
       <div className="flex gap-12">
-        <LessonCard>
+        <LessonCard className="w-64">
           <Heading>Counter</Heading>
           <Counter />
         </LessonCard>

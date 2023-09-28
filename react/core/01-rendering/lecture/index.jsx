@@ -8,6 +8,10 @@ function App() {
   return (
     <LessonBody>
       <LessonCard>
+        <button className="button">
+          <Icon name="trash" />
+          <span>test</span>
+        </button>
         <Heading as="h1">
           <Icon name="trash" />
           My Heading

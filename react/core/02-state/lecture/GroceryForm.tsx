@@ -1,7 +1,12 @@
 import { useState } from 'react'
 
+type Item = {
+  name: string
+  quantity: number
+}
+
 type Props = {
-  onSubmit(values: any): void
+  onSubmit(values: Item): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
@@ -11,7 +16,6 @@ export function GroceryForm({ onSubmit }: Props) {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
-
     const fields = Object.fromEntries(formData)
 
     console.log(fields)
