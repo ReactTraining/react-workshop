@@ -17,7 +17,11 @@ function App() {
           <div className="flex gap-12">
             <div className="w-56 space-y-6">
               <Heading>Add Item</Heading>
-              <GroceryForm onSubmit={() => {}} />
+              <GroceryForm
+                onSubmit={(item) => {
+                  // console.log(item)
+                }}
+              />
             </div>
             <div className="flex-1 space-y-6">
               <div className="flex justify-between items-center">

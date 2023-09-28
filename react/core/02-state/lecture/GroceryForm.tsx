@@ -1,14 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 type Props = {
   onSubmit(values: any): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  function handleSubmit(event: React.FormEvent) {
-    event.preventDefault()
-
-    onSubmit({})
+  function handleSubmit(event) {
+    // Typescript has no idea what "event" is
   }
 
   return (

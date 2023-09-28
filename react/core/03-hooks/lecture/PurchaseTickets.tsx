@@ -1,16 +1,6 @@
 import { useState, useId, useRef, useMemo, useCallback, memo } from 'react'
 import computeTicketPrices from './utils/slowFunction'
 
-/**
- * 1. We can't call hooks while we map, so move attendee inputs to a separate component
- * 2. Now we can do useId and useRef (refs to clear the form)
- * 3. Demo useMemo with the slow running `computeTicketPrices`
- * 4. Demo the comments causing re-renders that cascade down to the attendee fields
- *    and how we can use React.memo to mitigate re-renders
- * 5. Demo useCallback on the onUpdate function if a fn is passed to a memoized component
- * 6. If there's time, demo useEffect for focusing the first attendee input on page load
- */
-
 export function PurchaseTickets() {
   const [tickets, setTickets] = useState(3)
   const [comments, setComments] = useState('')

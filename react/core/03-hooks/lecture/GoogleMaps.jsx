@@ -1,22 +1,12 @@
 import { useEffect, useState, useRef, useId } from 'react'
 import { GoogleMap, load } from '~/utils/maps'
 
-/**
- * 1. Teach refs and use a divRef example for the maps
- * 2. Use useId() for ids
- * 3. Refactor to controlled with state (formFields)
- * 4. Load the map when the page loads (useEffect)
- * 5. Switch to SelectRegion
- * 6. Use a mutable ref to keep track of the map instance
- *    so we can do map.setCenter instead of re-instantiating
- */
-
 export function GoogleMaps() {
   function handleSubmit(event) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
 
-    // This will get everything as a string
+    // This will get everything as a string (we need values as numbers)
     // const pos = Object.fromEntries(formData)
 
     const pos = {
