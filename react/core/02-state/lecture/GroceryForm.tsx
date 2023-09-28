@@ -1,7 +1,12 @@
 import { useState } from 'react'
 
+type Item = {
+  name: string
+  quantity: number
+}
+
 type Props = {
-  onSubmit(values: any): void
+  onSubmit(values: Item): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
