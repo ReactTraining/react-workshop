@@ -8,7 +8,6 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // Demo useMemo and useCallback
   // const prices = computeTicketPrices(tickets)
   // const onUpdate = (name: string, tickets: number) => {
   //   console.log(name, tickets)
