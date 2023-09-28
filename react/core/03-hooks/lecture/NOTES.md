@@ -12,6 +12,6 @@ Purchase Tickets
 1.  We can't call hooks while we map, so move attendee inputs to a separate component
 2.  Now we can do useId and useRef (refs to clear the form)
 3.  Demo useMemo with the slow running `computeTicketPrices`
-4.  Demo the comments causing re-renders that cascade down to the attendee fields and how we can use React.memo to mitigate re-renders
+4.  Demo React.memo on `AddAttendeeFields` to reduce renders from the comments causing lots of state changes
 5.  Demo useCallback on the onUpdate function if a fn is passed to a memoized component
 6.  If there's time, demo useEffect for focusing the first attendee input on page load

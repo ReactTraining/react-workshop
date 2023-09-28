@@ -71,6 +71,29 @@ function onSubmit(event) {
 - useMemo is a hook to "memoize" a value while rendering. In other words "remember" a value so it does't have to be re-computed again on every render. Only compute it again if the useMemo dependency array changes
 - React.memo (or just memo) is for memoizing functional components so they get less re-renders. A memoized component will not be subject to re-rendering when the component above it (called the parent or owner component) re-renders unless the props being passed into the memoized component changes.
 
+```js
+// useMemo calls the fn in the render phase (synchronously) and "memoizes"
+// the return value as x in this example based on the input of the dep array.
+// This is mostly used for:
+// 1. stabilizing values in render phases
+// 2. preventing slow pure functions from being called over and over in render phases
+const x = useMemo(fn, [])
+
+// useCallback never calls the fn passed in. Instead it "memoizes" the function itself
+// by stabilizing it and returning it. This is mostly used for:
+// 1. stabilizing functions that will end up in other dependency arrays
+// 2. stabilizing functions that will be passed as pros to memoized components
+const fn = useCallback(fn, [])
+
+// The memo() HoC function enhances the component so that it itself is memoized and
+// will not re-render unless its props change. Remember that functions being passed
+// as props may not be stable by default and may need to be wrapped in useCallback
+// at the owner level
+const MyComponent = React.memo((props) => {
+  // ...
+})
+```
+
 - Docs for useRef: https://react.dev/reference/react/useRef
 - Docs for useEffect: https://react.dev/reference/react/useEffect
 - Docs for useId: https://react.dev/reference/react/useId
@@ -85,21 +108,19 @@ Sometimes things change and we wouldn't want our notes here to become outdated. 
 
 ## Lesson 5: Data Loading
 
-- `useEffect` Format: `useEffect(fn, [dependencyArray])`
-- `useEffect` is used for side effects. Typically this means we want to do something outside of our component, like a network request or perhaps with cookies/localStorage, and we want to do that side effect any time state changes.
-- The effect callback runs when the component first mounts and then anytime the values in the dependency array change. Having an empty dependency array is a way to ensure the effect only runs once.
-- However, be careful: any variables that your effect uses (depends on) need to be stated in your dependency array. With the older mental model of time and `componentDidMount`, we thought in terms of "this just needs to happen once when we mount". But now with `useEffect` we need to think in terms of "anytime state changes, what do I need to do". Therefore you'll probably need to put values in your dependency array often.
+- `useEffect` is for doing side-effects after render phases (after the JSX has created DOM)
+- The `useEffect` function gets called after the first render, then after any where where the dependency array variables change:
 
 ```js
-useEffect(fn) // runs when a component mounts, and any state changes
+useEffect(fn) // runs when a component mounts, and on any re-render
 useEffect(fn, []) // runs just when a component mounts
 useEffect(fn, [some, example, state]) // runs when a component mounts, and when `some` or `example` or `state` changes.
 ```
 
-- For those who have some React experience, it's easy to compare `useEffect` to things like `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`. However, you might want to consider these differences - https://reacttraining.com/blog/useEffect-is-not-the-new-componentDidMount/
-- Avoid infinite loops: If an effect has no dependency array and also sets state, this will cause an infinite loop. Imagine that the component mounts which calls the effect. Then state is changed which leads to a re-render which means the effect will be called again because there was no dependency array telling react not to run the effect again. Then since the effect runs again and sets state, this creates an infinite loop.
-- In the callback for the effect, you can either return no value or return a function. If a function is returned, it's said to be the "cleanup function". This function is called when the component unmounts or when the dependency array changes.
-- When setting state asynchronously in an effect, there's always a chance the component will become unmounted or the dependency array might change before the set state is called. For both cases, we need to use a cleanup function to ensure we're not setting state on the unmounted component or setting state that was based on the previous values of the dependency array. This is how we might prevent this problem with an `isCurrent` variable:
+- Passing objects, functions, and arrays into the dependency array will mean they need to be stable. Some will already be stable but if they're not, we need to use `useMemo` (for objects/arrays) and `useCallback` (for functions) to make them stable.
+- The `useEffect` function can return a function which is called a "cleanup"
+- The cleanup gets called when the component unmounts or if we switch side effects because the dep array changes
+- Here's a visual of when different parts of useEffect execute
 
 ```js
 useEffect(() => {
@@ -127,38 +148,33 @@ useEffect(() => {
 
 - https://reacttraining.com/blog/useEffect-is-not-the-new-componentDidMount/
 - https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array/
-- Docs: "Using the Effect Hook": https://reactjs.org/docs/hooks-effect.html
-- A very long but complete guide to useEffect: https://overreacted.io/a-complete-guide-to-useeffect/
+- https://reacttraining.com/blog/setting-state-on-unmounted-component
+- https://reacttraining.com/blog/useEffect-cleanup
+- https://reacttraining.com/blog/hooks-you-probably-dont-need
+- Docs: https://react.dev/learn/synchronizing-with-effects
+- Docs: https://react.dev/learn/you-might-not-need-an-effect
 
-## Lesson 5: Context
+## Lesson 6: Context
 
-- Parent components send variables (data) down to their child components via props.
-- Data flows Down ("Unidirectional Data Flow"): React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props. However, if a prop is passed down from parent to child and the prop is a callback function, then we might say that child components can communicate back up to their parents by calling the function. Some would say that "data flows down, and events flow up" the tree.
+- "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
 - When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
 - Context is a way to pass data around our app without having to prop drill.
 - Context gives us a `<Context.Provider />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.
 - When values are passed into the provider's `value` prop, they can be received at any component below the provider with the `useContext` hook. Components using this hook are referred to as "consumers" of the context.
 - When the state changes at the top and is passed down into the provider, the consumers get a re-render to retrieve that new state.
+- Context is commonly a solution for global state for things like authentication, shopping carts, theming, etc...
 
-- Docs on "Lifting State": https://reactjs.org/docs/lifting-state-up.html
-- `useContext` docs: https://reactjs.org/docs/hooks-reference.html#usecontext
+- Docs: https://react.dev/learn/passing-data-deeply-with-context
+- TypeScript and Context: https://reacttraining.com/blog/react-context-with-typescript
 
 ---
 
-## Lesson 6: Data Loading Abstractions
+## Lesson 7: Network Performance
 
-- Many teams make a general abstraction for useEffect and data loading. The one made in the workshop is called usePromise because it's so generic it can actually be used for any promise-based side-effect.
-- From that, you can make many custom hooks like:
-
-```js
-function useUsers() {
-  const p = api.users.getUsers // The promise
-  const { results, ...rest } = usePromise(p)
-  return { results, ...rest }
-}
-```
-
-- You can even do some cache-like strategies and fetch from within Context Providers and provide data through context as needed.
+- We can use React Router loaders so React Router can fetch our data for many component in parallel (avoid waterfalls)
+- We can use React Query to cache our data requests
+- `useQuery` is a hook we could use instead of useEffect to fetch data. But it's a hook so we can only use it _in_ components which might lead to waterfalls
+- We can also use React Query data fetching in React Router loaders with API's like `queryClient.ensureQueryData`
 
 ### React Query
 
@@ -173,38 +189,13 @@ function useUsers() {
 }
 ```
 
-- Notice both instances of useCourses are abstracting `api.users.getUsers`
-- You can fetch data with React Query, or if you want to update your server's data you can keep your cache in sync by doing "mutations" on the cache or invalidate it.
-- After reading some docs, here's a nice guide to learn a lot more about React Query: https://tkdodo.eu/blog/practical-react-query. The creator of React Query read it and said it was "Fantastic!!!"
+- An excellent guide: https://tkdodo.eu/blog/practical-react-query.
 
 ---
 
 ## Lesson 7: Performance Optimizations
 
-Keep in mind that the term "stable" in React means that the identity of a variable will not change between re-renders.
-
 ```ts
-// useMemo calls the fn in the render phase (synchronously) and "memoizes"
-// the return value as x in this example based on the input of the dep array.
-// This is mostly used for:
-// 1. stabilizing values in render phases
-// 2. preventing slow pure functions from being called over and over in render phases
-const x = useMemo(fn, [])
-
-// useCallback never calls the fn passed in. Instead it "memoizes" the function itself
-// by stabilizing it and returning it. This is mostly used for:
-// 1. stabilizing functions that will end up in other dependency arrays
-// 2. stabilizing functions that will be passed as pros to memoized components
-const fn = useCallback(fn, [])
-
-// The memo() HoC function enhances the component so that it itself is memoized and
-// will not re-render unless its props change. Remember that functions being passed
-// as props may not be stable by default and may need to be wrapped in useCallback
-// at the owner level
-const MyComponent = React.memo((props) => {
-  // ...
-})
-
 // useTransition is an opt-in "concurrent-mode" feature of React that allows us to
 // designate some state setting as being interruptible. In other words, if frequent
 // re-rendering is happening, React can prioritize other state setting
