@@ -1,49 +1,28 @@
 import { useState } from 'react'
 import { Icon } from '~/Icon'
 
-// type Item = {
-//   id: number
-//   name: string
-//   quantity: number
-// }
+type Item = {
+  id: number
+  name: string
+  quantity: number
+}
 
-// type Props = {
-//   items: Item[]
-//   setItems(items: items[]): void
-// }
+type Props = {
+  items: Item[]
+  subtractQuantity(id: number): void
+  addQuantity(id: number): void
+}
 
 // A nice visual explanation of keys
 // https://twitter.com/dan_abramov/status/1415279090446204929
 
-export function GroceryList() {
-  const [items, setItems] = useState([
-    { id: 1, name: 'Eggs', quantity: 12 },
-    { id: 2, name: 'Bread', quantity: 1 },
-    { id: 3, name: 'Tomatoes', quantity: 3 },
-  ])
-
-  // Without Cloning (Faster, More Difficult)
-  function subtractQuantity(id: number) {
-    const index = items.findIndex((item) => item.id === id)
-    const newItem = { ...items[index], quantity: items[index].quantity - 1 }
-    if (newItem.quantity === 0) {
-      setItems([...items.slice(0, index), ...items.slice(index + 1)])
-    } else {
-      setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)])
-    }
-  }
-
-  // With Cloning (Slower, Easier)
-  function addQuantity(id: number) {
-    const index = items.findIndex((item) => item.id === id)
-    const newItems = structuredClone(items)
-    newItems[index].quantity++
-    setItems(newItems)
-  }
+export function GroceryList({ items, subtractQuantity, addQuantity }: Props) {
+  const total = 12
 
   return (
     <>
       <div className="space-y-3">
+        {/* Map over items */}
         <div className="flex gap-6 bg-slate-100 p-4">
           <div className="flex-1">Eggs</div>
           <div className="flex-1">Quantity: 12</div>
@@ -62,9 +41,10 @@ export function GroceryList() {
             </button>
           </div>
         </div>
+        {/* End Map */}
       </div>
       <div className="text-2xl">
-        Total: <b>12</b>
+        Total: <b>{total}</b>
       </div>
     </>
   )

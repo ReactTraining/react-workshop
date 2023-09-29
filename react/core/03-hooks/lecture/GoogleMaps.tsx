@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef, useId } from 'react'
+import { useRef, useId } from 'react'
 import { GoogleMap } from '~/utils/maps'
 
 export function GoogleMaps() {
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
 
@@ -48,32 +48,3 @@ export function GoogleMaps() {
     </div>
   )
 }
-
-// function SelectRegion({ onChange }) {
-//   const regions = [
-//     { name: 'New York', lat: 40.712, lng: -74.006 },
-//     { name: 'Chicago', lat: 41.878, lng: -87.629 },
-//     { name: 'San Francisco', lat: 37.774, lng: -122.41 },
-//   ]
-
-//   return (
-//     <div className="flex items-center gap-4">
-//       <label htmlFor="region">Region</label>
-//       <select
-//         id="region"
-//         className="form-field"
-//         onChange={(event) => {
-//           const region = regions.find((region) => region.name === event.target.value)
-//           if (region) {
-//             onChange({ lat: region.lat, lng: region.lng })
-//           }
-//         }}
-//       >
-//         <option>Make Selection</option>
-//         {regions.map((region) => {
-//           return <option>{region.name}</option>
-//         })}
-//       </select>
-//     </div>
-//   )
-// }

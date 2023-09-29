@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 type Item = {
   name: string
@@ -12,6 +12,11 @@ type Props = {
 export function GroceryForm({ onSubmit }: Props) {
   function handleSubmit(event) {
     // Typescript has no idea what "event" is
+    //
+    // Three basic ways to get our form's fields
+    // 1. new FormData
+    // 2. Scrape for it: ids (bad) refs (good)
+    // 3. Controlled with state
   }
 
   return (

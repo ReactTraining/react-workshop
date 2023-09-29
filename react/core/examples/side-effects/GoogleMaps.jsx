@@ -1,7 +1,20 @@
 import { useEffect, useState, useRef, useId } from 'react'
+import { LessonBody, LessonCard } from '~/Lesson'
+import { Heading } from '~/Heading'
 import { GoogleMap } from '~/utils/maps'
 
-export function GoogleMaps() {
+export function App() {
+  return (
+    <LessonBody>
+      <LessonCard className="flex-1">
+        <Heading>🗺️ Maps</Heading>
+        <GoogleMaps />
+      </LessonCard>
+    </LessonBody>
+  )
+}
+
+function GoogleMaps() {
   const [pos, setPos] = useState({ lat: 40.712, lng: -74.006 })
   const mapRef = useRef()
   const divRef = useRef()

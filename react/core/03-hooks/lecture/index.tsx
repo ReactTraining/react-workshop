@@ -3,7 +3,6 @@ import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 // import { PurchaseTickets } from './PurchaseTickets.final'
 import { PurchaseTickets } from './PurchaseTickets'
-// import { GoogleMaps } from './GoogleMaps.final'
 import { GoogleMaps } from './GoogleMaps'
 
 function App() {
@@ -14,10 +13,11 @@ function App() {
           <Heading>🗺️ Maps</Heading>
           <GoogleMaps />
         </LessonCard>
-        <LessonCard className="flex-1">
+        {/* If we have time for useMemo, memo and useCallback */}
+        {/* <LessonCard className="flex-1">
           <Heading>🎟️ Tickets</Heading>
           <PurchaseTickets />
-        </LessonCard>
+        </LessonCard> */}
       </div>
     </LessonBody>
   )
