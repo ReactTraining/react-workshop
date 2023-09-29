@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom/client'
 import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
-// import { CartShippingBilling } from './CartShippingBilling.final'
-import { CartShippingBilling } from './CartShippingBilling'
+import { CartShippingBilling } from './CartShippingBilling.final'
+// import { CartShippingBilling } from './CartShippingBilling'
 // import { GroceryList } from './GroceryList.final'
 import { GroceryList } from './GroceryList'
 

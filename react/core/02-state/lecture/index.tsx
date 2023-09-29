@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
@@ -6,6 +7,12 @@ import { GroceryList } from './GroceryList'
 import { Counter } from './Counter'
 
 function App() {
+  const [items, setItems] = useState([
+    { id: 1, name: 'Eggs', quantity: 12 },
+    { id: 2, name: 'Bread', quantity: 1 },
+    { id: 3, name: 'Tomatoes', quantity: 3 },
+  ])
+
   return (
     <LessonBody>
       <div className="flex gap-12">
@@ -19,7 +26,7 @@ function App() {
               <Heading>Add Item</Heading>
               <GroceryForm
                 onSubmit={(item) => {
-                  // console.log(item)
+                  setItems(items.concat(item))
                 }}
               />
             </div>
@@ -30,7 +37,7 @@ function App() {
                 </div>
                 <div>Filter Quantity: 1</div>
               </div>
-              <GroceryList />
+              <GroceryList items={items} setItems={setItems} />
             </div>
           </div>
         </LessonCard>

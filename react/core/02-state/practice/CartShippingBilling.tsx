@@ -3,6 +3,7 @@ import { useState } from 'react'
 export function CartShippingBilling() {
   const [shippingName, setShippingName] = useState('')
   const [shippingAddress, setShippingAddress] = useState('')
+
   const [isSame, setIsSame] = useState(false)
 
   function onSubmit(event: React.FormEvent) {

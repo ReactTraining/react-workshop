@@ -10,28 +10,34 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  const [name, setName] = useState('')
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
-    const fields = Object.fromEntries(formData)
+    const fields = {
+      name: (formData.get('item') || '').toString(),
+      quantity: parseInt((formData.get('quantity') as string) || ''),
+    }
 
-    console.log(fields)
-
-    // onSubmit(fields)
+    onSubmit(fields)
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" autoComplete="off" name="item" />
+        <input
+          id="item"
+          type="text"
+          className="form-field"
+          autoComplete="off"
+          name="item"
+          required
+        />
       </div>
       <div>
         <label htmlFor="quantity">Quantity</label>
-        <input id="quantity" type="text" className="form-field" name="quantity" />
+        <input id="quantity" type="number" className="form-field" name="quantity" />
       </div>
       <footer>
         <button type="submit" className="button">
