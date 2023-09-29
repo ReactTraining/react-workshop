@@ -7,13 +7,9 @@ import type { Vacation } from '~/utils/types'
 import { VacationImage } from '~/VacationImage'
 import { Icon } from '~/Icon'
 // import { useFavoriteContext } from './FavoriteProvider'
+import { FavoritesContext } from './index'
 
-type Props = {
-  updateFavorite(id: number): void
-  isFavorite(id: number): boolean
-}
-
-export const BrowseVacationsPage = ({ updateFavorite, isFavorite }: Props) => {
+export const BrowseVacationsPage = () => {
   const [vacations, setVacations] = useState<Vacation[] | null>(null)
 
   // Over-simplified useEffect
@@ -48,11 +44,7 @@ export const BrowseVacationsPage = ({ updateFavorite, isFavorite }: Props) => {
                     </div>
                     <div className="flex gap-2">
                       <div className="w-full flex flex-col">
-                        <FavoriteVacationButton
-                          id={vacation.id}
-                          updateFavorite={updateFavorite}
-                          isFavorite={isFavorite}
-                        />
+                        <FavoriteVacationButton id={vacation.id} />
                       </div>
                     </div>
                   </div>
@@ -68,11 +60,10 @@ export const BrowseVacationsPage = ({ updateFavorite, isFavorite }: Props) => {
 
 type ButtonProps = {
   id: number
-  updateFavorite(id: number): void
-  isFavorite(id: number): boolean
 }
 
-function FavoriteVacationButton({ id, updateFavorite, isFavorite }: ButtonProps) {
+function FavoriteVacationButton({ id }: ButtonProps) {
+  const { isFavorite, updateFavorite } = useContext(FavoritesContext)
   const vacationIsFavorite = isFavorite(id)
 
   return (

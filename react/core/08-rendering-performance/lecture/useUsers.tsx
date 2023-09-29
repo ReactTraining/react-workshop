@@ -1,4 +1,4 @@
-const RECORDS = 1000
+const RECORDS = 10000
 
 const users: any[] = []
 

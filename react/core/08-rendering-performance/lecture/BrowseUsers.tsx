@@ -12,15 +12,18 @@ export function BrowseUsers() {
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  // const [pending, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition() // 18
   function filterUsers(minLikes: number) {
-    setMinLikes(minLikes)
-    setUsers(allUsers?.filter((u) => u.likes >= minLikes))
+    setMinLikes(minLikes) // fast
+    startTransition(() => {
+      // low
+      setUsers(allUsers?.filter((u) => u.likes >= minLikes)) // slow (low priority)
+    })
   }
 
-  function editUser(userId: number) {
+  const editUser = useCallback((userId: number) => {
     // start editing the user
-  }
+  }, [])
 
   return (
     <Card className="space-y-6">
@@ -50,28 +53,26 @@ export function BrowseUsers() {
       <hr />
       <div className="space-y-3">
         {users.map((user) => {
-          return (
-            <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
-              <div className="flex-1">{user.name}</div>
-              <div className="flex-1">Liked Vacations: {user.likes}</div>
-              <button className="button" onClick={() => editUser(user.id)}>
-                Edit User
-              </button>
-            </div>
-          )
+          return <UserList user={user} editUser={editUser} />
         })}
       </div>
     </Card>
   )
 }
 
-// type Props = {
-//   courses: any[]
-//   editUser(userId: number): void
-// }
+type Props = {
+  user: any
+  editUser(userId: number): void
+}
 
-// const UserList = memo(({ users, editUser}: Props) => {
-//   return (
-
-//   )
-// })
+const UserList = memo(({ user, editUser }: Props) => {
+  return (
+    <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
+      <div className="flex-1">{user.name}</div>
+      <div className="flex-1">Liked Vacations: {user.likes}</div>
+      <button className="button" onClick={() => editUser(user.id)}>
+        Edit User
+      </button>
+    </div>
+  )
+})

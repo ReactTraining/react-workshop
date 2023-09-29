@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
@@ -10,11 +10,15 @@ import type { Vacation } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+export async function loader({ params }) {
+  const vacationId = parseInt(params.vacationId)
+  const vacation = await api.vacations.getVacation(vacationId)
 
-  // api.vacations.getVacation(vacationId)
+  return vacation
+}
+
+export function VacationDetailsPage() {
+  const vacation = useLoaderData() as Vacation // I have a better way
 
   if (!vacation) return <div>Loading...</div>
 
