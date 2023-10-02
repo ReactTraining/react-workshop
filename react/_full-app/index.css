@@ -30,6 +30,10 @@ body {
   background-blend-mode: screen;
 }
 
+svg {
+  display: inline;
+}
+
 /****************************************
   Headings
 *****************************************/
@@ -46,6 +50,41 @@ body {
     font-weight: 700;
     margin: 0;
     letter-spacing: 0.03em;
+  }
+}
+
+@layer components {
+  .heading {
+    line-height: 1em;
+    margin: 0;
+  }
+
+  .heading.size-1 {
+    font-size: 2em;
+    @media (min-width: 700px) {
+      font-size: 3em;
+    }
+  }
+
+  .heading.size-2 {
+    font-size: 1.5em;
+    @media (min-width: 700px) {
+      font-size: 2em;
+    }
+  }
+
+  .heading.size-3 {
+    font-size: 1.3em;
+    @media (min-width: 700px) {
+      font-size: 1.6em;
+    }
+  }
+
+  .heading.size-4 {
+    font-size: 1.1em;
+    @media (min-width: 700px) {
+      font-size: 1.3em;
+    }
   }
 }
 

@@ -14,7 +14,7 @@ export function Counter() {
       <button className="button flex-1">
         <Icon name="minus" />
       </button>
-      <span className="align-middle text-3xl px-6">0</span>
+      <span className="align-middle text-3xl px-6">{count}</span>
       <button className="button flex-1">
         <Icon name="plus" />
       </button>
