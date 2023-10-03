@@ -33,7 +33,8 @@
     "react-router-dom": "^6.16.0",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",

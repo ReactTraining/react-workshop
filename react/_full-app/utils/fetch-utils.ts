@@ -5,7 +5,7 @@ type Data = {
   [key: string]: any
 }
 
-function unpackResponse(res) {
+function unpackResponse(res: Response) {
   if (res.ok) {
     return res.json()
   } else if (res.status === 404) {
