@@ -26,12 +26,13 @@ body {
 .lesson-body {
   /* background: linear-gradient(#c0f5ff, transparent),
     linear-gradient(to top left, #cb7ad0, transparent),
-    linear-gradient(to top right, #54c4ff, transparent); */
-  background-blend-mode: screen;
-  background-image: conic-gradient(
-    from 0deg at 0% 0% in oklch,
-    oklch(75% 0.5 156) 0%,
-    oklch(70% 0.5 261) 100%
+    linear-gradient(to top right, #54c4ff, transparent);
+  background-blend-mode: screen; */
+  background-image: linear-gradient(
+    58.2deg,
+    rgba(40, 91, 212, 0.73) -3%,
+    rgba(171, 53, 163, 0.45) 49.3%,
+    rgba(255, 204, 112, 0.37) 97.7%
   );
 }
 
