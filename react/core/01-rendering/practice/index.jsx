@@ -1,9 +1,9 @@
 import * as ReactDOM from 'react-dom/client'
-import { ChatRoom } from '../../../advanced-hooks/01-useEffect/practice-subscriptions/ChatRoom.final'
+import { ChatRoom } from './ChatRoom'
 import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 // import { Avatar } from './Avatar.final'
-import { Avatar } from './Avatar.final'
+import { Avatar } from './Avatar'
 
 const user = {
   id: 1,

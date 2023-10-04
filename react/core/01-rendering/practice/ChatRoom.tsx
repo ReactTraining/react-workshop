@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { api } from '~/utils/api'
 import { Avatar } from '~/Avatar'
 
-// import { user } from './inde'
-
 type Props = {
   user: {
     id: number
