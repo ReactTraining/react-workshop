@@ -43,8 +43,8 @@ export function PurchaseTickets() {
       </div>
       <div className="space-y-2">
         {[...Array(tickets).keys()].map((number) => {
-          // Not a good id since it can't guarantee uniqueness
-          const id = number
+          // The "clear" button wants to use refs to clear the inputs
+          // but we can't use useRef() dynamically
 
           return (
             <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
@@ -55,7 +55,7 @@ export function PurchaseTickets() {
                   className="form-field"
                   placeholder="Name"
                   required
-                  aria-label={`${id}-name`}
+                  aria-label={`Ticket ${number} Name`}
                 />
               </div>
               <div className="flex-1">
@@ -64,7 +64,7 @@ export function PurchaseTickets() {
                   className="form-field"
                   placeholder="Email"
                   required
-                  aria-label={`${id}-email`}
+                  aria-label={`Ticket ${number} Email`}
                 />
               </div>
               <button className="button" type="button">
@@ -84,9 +84,9 @@ type AddAttendeeFieldsProps = {
 }
 
 const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
-  const id = 0
-
-  function clear() {}
+  function clear() {
+    // clear with refs
+  }
 
   return (
     <div className="flex items-center gap-2 bg-slate-100 p-2">
@@ -97,7 +97,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           className="form-field"
           placeholder="Name"
           required
-          aria-label={`${id}-name`}
+          aria-label={`Ticket ${ticketNumber} Name`}
         />
       </div>
       <div className="flex-1">
@@ -106,7 +106,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           className="form-field"
           placeholder="Email"
           required
-          aria-label={`${id}-email`}
+          aria-label={`Ticket ${ticketNumber} Email`}
         />
       </div>
       <button className="button" type="button" onClick={clear}>

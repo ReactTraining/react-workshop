@@ -2,6 +2,8 @@ import { useRef, useId } from 'react'
 import { GoogleMap } from '~/utils/maps'
 
 export function GoogleMaps() {
+  // ⭐️ Let's not use hard-coded ids for labels (use useId())
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)

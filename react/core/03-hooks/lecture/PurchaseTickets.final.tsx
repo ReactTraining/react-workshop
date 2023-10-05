@@ -58,7 +58,6 @@ type AddAttendeeFieldsProps = {
 const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsProps) => {
   const nameRef = useRef<HTMLInputElement>(null!)
   const emailRef = useRef<HTMLInputElement>(null!)
-  const id = useId()
 
   useEffect(() => {
     if (ticketNumber === 1) {
@@ -81,7 +80,7 @@ const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsPro
           className="form-field"
           placeholder="Name"
           required
-          aria-label={`${id}-name`}
+          aria-label={`Ticket ${ticketNumber} Name`}
           ref={nameRef}
         />
       </div>
@@ -91,7 +90,7 @@ const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsPro
           className="form-field"
           placeholder="Email"
           required
-          aria-label={`${id}-email`}
+          aria-label={`Ticket ${ticketNumber} Name`}
           ref={emailRef}
         />
       </div>
