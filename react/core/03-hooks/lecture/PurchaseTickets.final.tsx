@@ -8,8 +8,7 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  const prices = useMemo(() => slowFunction(tickets), [tickets])
-
+  const x = useMemo(() => slowFunction(), [])
   const onUpdate = useCallback((name: string, tickets: number) => {
     console.log(name, tickets)
   }, [])
@@ -58,12 +57,6 @@ type AddAttendeeFieldsProps = {
 const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsProps) => {
   const nameRef = useRef<HTMLInputElement>(null!)
   const emailRef = useRef<HTMLInputElement>(null!)
-
-  useEffect(() => {
-    if (ticketNumber === 1) {
-      nameRef.current.focus()
-    }
-  }, [ticketNumber])
 
   function clear() {
     nameRef.current.value = ''

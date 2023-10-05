@@ -13,7 +13,6 @@ export function LoginForm({ onSubmit }: Props) {
   const usernameId = useId()
   const passwordId = useId()
 
-  const formRef = useRef<HTMLFormElement>(null!)
   const usernameRef = useRef<HTMLInputElement>(null!)
   const passwordRef = useRef<HTMLInputElement>(null!)
 
@@ -29,7 +28,6 @@ export function LoginForm({ onSubmit }: Props) {
       return
     }
 
-    setLoading(true)
     login(username, password)
       .then((user) => {
         onSubmit(user)
@@ -38,7 +36,8 @@ export function LoginForm({ onSubmit }: Props) {
       .catch((error) => {
         setError(error)
         setLoading(false)
-        formRef.current.reset()
+        usernameRef.current.value = ''
+        passwordRef.current.value = ''
         usernameRef.current.focus()
       })
   }

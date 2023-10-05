@@ -8,7 +8,7 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const prices = slowFunction(tickets)
+  // const x = slowFunction()
   // const onUpdate = (name: string, tickets: number) => {
   //   console.log(name, tickets)
   // }

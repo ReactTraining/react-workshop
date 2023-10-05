@@ -1,8 +1,11 @@
 import { useRef, useId } from 'react'
-import { GoogleMap } from '~/utils/maps'
+import { renderMap } from '~/utils/maps'
 
 export function GoogleMaps() {
   // ⭐️ Let's not use hard-coded ids for labels (use useId())
+
+  // Use Refs instead
+  const divEl = document.getElementById('map')
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -16,7 +19,7 @@ export function GoogleMaps() {
       lng: Number(formData.get('lng')),
     }
 
-    GoogleMap(document.getElementById('map'), {
+    renderMap(divEl, {
       center: pos,
       zoom: 10,
     })

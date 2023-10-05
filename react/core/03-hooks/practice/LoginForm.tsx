@@ -26,7 +26,6 @@ export function LoginForm({ onSubmit }: Props) {
       return
     }
 
-    setLoading(true)
     login(username, password)
       .then((user) => {
         onSubmit(user)

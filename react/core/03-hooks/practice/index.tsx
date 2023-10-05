@@ -3,10 +3,10 @@ import * as ReactDOM from 'react-dom/client'
 import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Notice } from '~/Notice'
-// import { LoginForm } from './LoginForm.final'
-import { LoginForm } from './LoginForm'
-// import { AccountPage } from './AccountPage.final'
-import { AccountPage } from './AccountPage'
+import { LoginForm } from './LoginForm.final'
+// import { LoginForm } from './LoginForm'
+import { AccountPage } from './AccountPage.final'
+// import { AccountPage } from './AccountPage'
 
 export type User = { userId: number }
 

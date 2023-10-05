@@ -8,7 +8,7 @@ export function sleep(ms = 1000) {
 }
 
 // Mimic having a very slow function...
-export function slowFunction(x: any) {
+export function slowFunction() {
   for (let index = 0; index < 800_000_000; index++) {
     // just being slow, nothing to see here
   }

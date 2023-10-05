@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, memo, useMemo } from 'react'
-import { GoogleMap } from '~/utils/maps'
+import { renderMap } from '~/utils/maps'
 import { Heading } from '~/Heading'
 import { Counter } from './Counter'
 import type { User } from './index'
@@ -53,7 +53,7 @@ const GoogleMaps = memo(({ pos }: GoogleMapsProps) => {
   useEffect(() => {
     console.log('GoogleMaps: SideEffect')
     if (!mapRef.current) {
-      GoogleMap(divRef.current, {
+      renderMap(divRef.current, {
         center: pos,
         zoom: 10,
       }).then((map) => {

@@ -10,6 +10,8 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
+  // Teach refs with typescript
+
   function handleSubmit(event) {
     // Typescript has no idea what "event" is
     //

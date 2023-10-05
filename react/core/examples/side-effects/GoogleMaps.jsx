@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useId } from 'react'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Heading } from '~/Heading'
-import { GoogleMap } from '~/utils/maps'
+import { renderMap } from '~/utils/maps'
 
 export function App() {
   return (
@@ -21,7 +21,7 @@ function GoogleMaps() {
 
   useEffect(() => {
     if (!mapRef.current) {
-      GoogleMap(divRef.current, {
+      renderMap(divRef.current, {
         center: pos,
         zoom: 10,
       }).then((map) => {
