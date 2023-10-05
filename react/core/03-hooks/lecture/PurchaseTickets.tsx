@@ -8,10 +8,13 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const prices = slowFunction(tickets)
-  // const onUpdate = (name: string, tickets: number) => {
-  //   console.log(name, tickets)
-  // }
+  const x = useMemo(() => {
+    return {}
+  }, [])
+
+  const onUpdate = useCallback((name: string, tickets: number) => {
+    console.log(name, tickets)
+  }, [])
 
   return (
     <form className="space-y-6">
@@ -43,35 +46,7 @@ export function PurchaseTickets() {
       </div>
       <div className="space-y-2">
         {[...Array(tickets).keys()].map((number) => {
-          // Not a good id since it can't guarantee uniqueness
-          const id = number
-
-          return (
-            <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
-              <div className="w-20">Ticket {number + 1}</div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  className="form-field"
-                  placeholder="Name"
-                  required
-                  aria-label={`${id}-name`}
-                />
-              </div>
-              <div className="flex-1">
-                <input
-                  type="email"
-                  className="form-field"
-                  placeholder="Email"
-                  required
-                  aria-label={`${id}-email`}
-                />
-              </div>
-              <button className="button" type="button">
-                Clear
-              </button>
-            </div>
-          )
+          return <AddAttendeeFields x={x} key={number} ticketNumber={number} onUpdate={onUpdate} />
         })}
       </div>
     </form>
@@ -80,13 +55,21 @@ export function PurchaseTickets() {
 
 type AddAttendeeFieldsProps = {
   ticketNumber: number
-  // onUpdate(name: string, tickets: number): void
+  x: any
+  onUpdate(name: string, tickets: number): void
 }
 
-const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
-  const id = 0
+const AddAttendeeFields = memo(({ ticketNumber, onUpdate, x }: AddAttendeeFieldsProps) => {
+  console.log('reRender')
+  const id = useId()
+  const nameRef = useRef<HTMLInputElement>(null!)
+  const emailRef = useRef<HTMLInputElement>(null!)
 
-  function clear() {}
+  function clear() {
+    nameRef.current.value = ''
+    emailRef.current.value = ''
+    nameRef.current.focus()
+  }
 
   return (
     <div className="flex items-center gap-2 bg-slate-100 p-2">
@@ -98,6 +81,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           placeholder="Name"
           required
           aria-label={`${id}-name`}
+          ref={nameRef}
         />
       </div>
       <div className="flex-1">
@@ -107,6 +91,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           placeholder="Email"
           required
           aria-label={`${id}-email`}
+          ref={emailRef}
         />
       </div>
       <button className="button" type="button" onClick={clear}>
@@ -114,4 +99,4 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       </button>
     </div>
   )
-}
+})

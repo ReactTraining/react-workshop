@@ -13,11 +13,11 @@ function App() {
           <Heading>🗺️ Maps</Heading>
           <GoogleMaps />
         </LessonCard>
-        {/* If we have time for useMemo, memo and useCallback */}
-        {/* <LessonCard className="flex-1">
+
+        <LessonCard className="flex-1">
           <Heading>🎟️ Tickets</Heading>
           <PurchaseTickets />
-        </LessonCard> */}
+        </LessonCard>
       </div>
     </LessonBody>
   )

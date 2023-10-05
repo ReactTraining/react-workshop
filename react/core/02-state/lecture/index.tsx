@@ -13,13 +13,18 @@ type Item = {
 }
 
 function App() {
+  const [count, setCount] = useState(0)
+
   const [items, setItems] = useState([
     { id: 1, name: 'Eggs', quantity: 12 },
     { id: 2, name: 'Bread', quantity: 1 },
     { id: 3, name: 'Tomatoes', quantity: 3 },
   ])
 
-  function addItem(item: Item) {}
+  function addItem(item: Item) {
+    // setItems([...items, item])
+    setItems(items.concat(item))
+  }
 
   // Without Cloning (Faster, More Difficult)
   function subtractQuantity(id: number) {
@@ -44,8 +49,8 @@ function App() {
     <LessonBody>
       <div className="flex gap-12">
         <LessonCard className="w-64">
-          <Heading>Counter</Heading>
-          <Counter />
+          <Heading>Filter items with more than</Heading>
+          <Counter setCount={setCount} count={count} />
         </LessonCard>
         <LessonCard className="flex-1">
           <div className="flex gap-12">
@@ -56,7 +61,9 @@ function App() {
             <div className="flex-1 space-y-6">
               <div>Filter Quantity: 1</div>
               <GroceryList
-                items={items}
+                items={items.filter((item) => {
+                  return item.quantity >= count
+                })}
                 subtractQuantity={subtractQuantity}
                 addQuantity={addQuantity}
               />
