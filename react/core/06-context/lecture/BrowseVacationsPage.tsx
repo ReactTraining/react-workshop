@@ -6,7 +6,7 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { VacationImage } from '~/VacationImage'
 import { Icon } from '~/Icon'
-// import { useFavoriteContext } from './FavoriteProvider'
+// import { useFavoriteContext } from './FavoriteContext'
 
 type Props = {
   updateFavorite(id: number): void

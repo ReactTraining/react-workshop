@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 
 // type Context = {
+//   favorites: number[]
 //   updateFavorite(id: number): void
 //   isFavorite(id: number): boolean
 // }
@@ -23,6 +24,7 @@ export function FavoriteProvider({ children }: any) {
   }
 
   const context = {
+    favorites,
     updateFavorite,
     isFavorite,
   }
