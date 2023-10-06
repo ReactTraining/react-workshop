@@ -26,10 +26,14 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route path="/" element={<VacationsSubLayout />}>
-        <Route index element={<BrowseVacationsPage />} />
+        <Route index element={<BrowseVacationsPage />} loader={BrowseVacationsLoader} />
       </Route>
       <Route path="vacations" element={<VacationsSubLayout />}>
-        <Route path=":vacationId" element={<VacationDetailsPage />} />
+        <Route
+          path=":vacationId"
+          element={<VacationDetailsPage />}
+          loader={VacationDetailsLoader}
+        />
         <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
       </Route>
       <Route path="login" element={<LoginPage />} />
