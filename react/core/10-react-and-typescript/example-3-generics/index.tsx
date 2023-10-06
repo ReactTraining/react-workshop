@@ -39,7 +39,7 @@
 //   return [defaultState, setState] as const
 // }
 
-// const [x] = useState(123)
+// const [x, set] = useState(123)
 
 /****************************************
   Promise: Generic Sleep Function

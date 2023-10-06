@@ -137,7 +137,7 @@ async function startReact(coursesPath) {
 
   shell.cd(appPath)
 
-  const port = 3000
+  const port = 3001
   const server = await createServer({
     plugins: [react()],
     resolve: {

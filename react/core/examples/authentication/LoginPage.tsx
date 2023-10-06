@@ -10,7 +10,7 @@ import { Notice } from '~/Notice'
 import type { User } from '~/utils/types'
 
 export function LoginPage() {
-  const { login } = useAuthContext()
+  const { login } = useAuthContext() // useContext()
   const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false)
@@ -29,7 +29,6 @@ export function LoginPage() {
       setError('Username and Password are required')
       return
     }
-
     api.auth
       .login(username, password)
       .then((user: User) => {

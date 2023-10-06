@@ -19,22 +19,20 @@ function makeZodSchema(keys: string[]) {
  Basic Form Validation
 *****************************************/
 
-// const formSchema = allRules.pick({ username: true, password: true })
-// // const formSchema = makeZodSchema(['username', 'password'])
+const formSchema = makeZodSchema(['username', 'password'])
 
-// // Can be used in useState<FormErrorType>() for saving state
-// // type FormDataType = z.infer<typeof formSchema>
-// // type FormErrorType = {
-// //   [k in keyof FormDataType]?: string[] | undefined
-// // }
+type FormDataType = z.infer<typeof formSchema>
+type FormErrorType = {
+  [k in keyof FormDataType]?: string[] | undefined
+}
 
-// const formValues = { username: 'admin', password: 'pass' }
-// const results = formSchema.safeParse(formValues)
+const formValues = { username: 'admin', password: 'passrsdfsdfds' }
+const results = formSchema.safeParse(formValues)
 
-// // results.data fails
+// results.data fails
 
-// if (results.success) {
-//   console.log(results.data)
-// } else {
-//   console.log(results.error.flatten().fieldErrors)
-// }
+if (results.success) {
+  console.log(results.data)
+} else {
+  console.log(results.error.flatten().fieldErrors)
+}
