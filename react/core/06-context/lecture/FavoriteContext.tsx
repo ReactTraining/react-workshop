@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useMemo, memo } from 'react'
 
 // type Context = {
 //   favorites: number[]
@@ -6,7 +6,7 @@ import { createContext, useContext, useState } from 'react'
 //   isFavorite(id: number): boolean
 // }
 
-const FavoriteContext = createContext<any>(null)
+const FavoriteContext = createContext()
 
 export function FavoriteProvider({ children }: any) {
   const [favorites, setFavorites] = useState<number[]>([])
@@ -32,5 +32,10 @@ export function FavoriteProvider({ children }: any) {
   return <FavoriteContext.Provider value={context}>{children}</FavoriteContext.Provider>
 }
 
-// function useFavoriteContext() {
-// }
+export function useFavoriteContext() {
+  const context = useContext(FavoriteContext)
+  if (!context) {
+    throw Error('useFavoriteContext() is being called outside of the correct provider')
+  }
+  return context || {}
+}

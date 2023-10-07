@@ -4,24 +4,22 @@ import { Heading } from '~/Heading'
 import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
 import { VacationImage } from '~/VacationImage'
-import { queryClient } from '~/utils/queryClient'
-import { FavoriteVacationButton } from '~/FavoriteVacationButton'
+import { FavoriteVacationButton } from './FavoriteVacationButton'
 
 export async function loader({ params }) {
   const id = parseInt(params.vacationId as string)
-
-  // Fetch Data using React Query
-  const vacation = await queryClient.ensureQueryData({
-    queryKey: ['vacation', id],
-    queryFn: () => api.vacations.getVacation(id),
-    staleTime: 1000 * 30,
-  })
-
+  const vacation = await api.vacations.getVacation(id)
   if (!vacation) throw new Response('Not Found', { status: 404 })
   return vacation
 }
 
-export function VacationDetailsPage() {
+type Props = {
+  favorites: number[]
+  isFavorite(id: number): boolean
+  updateFavorite(id: number): void
+}
+
+export function VacationDetailsPage({ favorites, updateFavorite, isFavorite }: Props) {
   const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
 
   return (
@@ -42,7 +40,11 @@ export function VacationDetailsPage() {
             <header className="md:flex md:justify-between md:items-center">
               <Heading>{vacation.name}</Heading>
               <div>
-                <FavoriteVacationButton id={vacation.id} />
+                <FavoriteVacationButton
+                  id={vacation.id}
+                  updateFavorite={updateFavorite}
+                  isFavorite={isFavorite}
+                />
               </div>
             </header>
             <p>

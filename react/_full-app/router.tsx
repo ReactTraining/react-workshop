@@ -15,18 +15,19 @@ import { AccountHome } from '~/AccountHome'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" Component={MainLayout}>
-      <Route path="/" Component={VacationsSubLayout}>
+    <Route Component={MainLayout}>
+      <Route Component={VacationsSubLayout}>
         <Route index Component={BrowseVacationsPage} loader={BrowseVacationsLoader} />
-      </Route>
-      <Route path="vacations" Component={VacationsSubLayout}>
-        <Route
-          path=":vacationId"
-          Component={VacationDetailsPage}
-          loader={VacationDetailsLoader}
-          errorElement={<ErrorPage />}
-        />
-        <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
+        <Route path="vacations">
+          <Route
+            path=":vacationId"
+            Component={VacationDetailsPage}
+            loader={VacationDetailsLoader}
+            errorElement={<ErrorPage />}
+          />
+          <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
+          <Route index element={<Navigate to="/" />} />
+        </Route>
       </Route>
       <Route path="login" Component={LoginPage} />
       <Route path="account" Component={AccountSubLayout}>

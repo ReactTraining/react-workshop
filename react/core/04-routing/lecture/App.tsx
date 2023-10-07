@@ -24,13 +24,14 @@ export function App() {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route path="/" element={<VacationsSubLayout />}>
+    <Route element={<MainLayout />}>
+      <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
-      </Route>
-      <Route path="vacations" element={<VacationsSubLayout />}>
-        <Route path=":vacationId" element={<VacationDetailsPage />} />
-        <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
+        <Route path="vacations">
+          <Route path=":vacationId" element={<VacationDetailsPage />} />
+          <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
+          <Route index element={<Navigate to="/" />} />
+        </Route>
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="account" element={<AccountSubLayout />}>
