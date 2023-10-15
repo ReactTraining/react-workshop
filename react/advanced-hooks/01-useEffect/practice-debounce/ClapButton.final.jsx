@@ -27,7 +27,6 @@ export function ClapButton() {
       <button onClick={clap} className="button">
         Clap
       </button>
-      <hr />
       <div className="space-x-6">
         <span>Queue Claps: {queueClaps}</span>
         <span>Claps: {claps}</span>
@@ -35,5 +34,3 @@ export function ClapButton() {
     </div>
   )
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<ClapButton />)

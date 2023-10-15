@@ -1,5 +1,7 @@
 import { createStore, combineReducers } from 'redux'
 
+// It's not "bad" to use createStore, they just recommend RTK now
+
 const initialState = { count: 0 }
 
 const counterReducer = (state, action) => {

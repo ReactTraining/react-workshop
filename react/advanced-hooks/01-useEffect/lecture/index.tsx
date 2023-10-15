@@ -6,5 +6,4 @@ import { App } from './closure-basics'
 // 2. Another capturing example (Stopwatch)
 // import { App } from './stopwatch'
 
-const root = ReactDOM.createRoot(document.getElementById('root')!)
-root.render(<App />)
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
