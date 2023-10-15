@@ -75,22 +75,21 @@ function onSubmit(event) {
 // useMemo calls the fn in the render phase (synchronously) and "memoizes"
 // the return value as x in this example based on the input of the dep array.
 // This is mostly used for:
-// 1. stabilizing values in render phases
-// 2. preventing slow pure functions from being called over and over in render phases
+// 1. performance - memoizing the return value a function
+// 2. stabilizing objects and arrays that will end up in other dependency arrays
+// 3. stabilizing objects and arrays that will be passed as props to memoized components (see below)
 const x = useMemo(fn, [])
 
 // useCallback never calls the fn passed in. Instead it "memoizes" the function itself
 // by stabilizing it and returning it. This is mostly used for:
 // 1. stabilizing functions that will end up in other dependency arrays
-// 2. stabilizing functions that will be passed as pros to memoized components
+// 2. stabilizing functions that will be passed as props to memoized components (see below)
 const fn = useCallback(fn, [])
 
-// The memo() HoC function enhances the component so that it itself is memoized and
-// will not re-render unless its props change. Remember that functions being passed
-// as props may not be stable by default and may need to be wrapped in useCallback
-// at the owner level
+// The memo() function enhances the component so that it itself is memoized and
+// will not re-render due to it's owner getting a rerender unless that owner passes new props
 const MyComponent = React.memo((props) => {
-  // ...
+  // your code
 })
 ```
 
