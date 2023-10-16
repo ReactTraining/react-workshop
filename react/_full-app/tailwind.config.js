@@ -17,6 +17,7 @@ export default {
         brandBlueLight: colors.blue['200'],
         brandBlue: colors.blue['400'],
         brandBlueDark: colors.blue['500'],
+        brandPinkLight: colors.purple['100'],
         brandPink: colors.purple['300'],
       },
     },

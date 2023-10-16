@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext } from 'react'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import isBetween from 'dayjs/plugin/isBetween'
@@ -162,12 +162,7 @@ type DatePickerChangeMonthProps = {
 export function DatePickerChangeMonth({ children, to, ...props }: DatePickerChangeMonthProps) {
   const { setBaseMonth } = useContext(Context)
   return (
-    <button
-      type="button"
-      {...props}
-      data-datepicker-change-month=""
-      onClick={() => setBaseMonth(to)}
-    >
+    <button {...props} data-datepicker-change-month="" onClick={() => setBaseMonth(to)}>
       {children}
     </button>
   )

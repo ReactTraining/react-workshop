@@ -313,45 +313,46 @@ svg {
     grid-template-columns: repeat(7, 1fr);
   }
 
-  [data-datepicker-calendar-boxes] > button {
+  [data-datepicker-calendar-box] {
     aspect-ratio: var(--datePickerCalendarBoxRatio, 16 / 9);
     border: 1px solid transparent;
-    border-radius: 3px;
-    text-align: center;
+    display: flex;
   }
 
-  [data-datepicker-calendar-boxes] > button[disabled] {
+  [data-datepicker-calendar-box] time {
+    margin: auto;
+  }
+
+  [data-datepicker-calendar-box][disabled] {
     opacity: 0.5;
     cursor: default;
   }
 
   [data-datepicker-calendar-boxes]
-    > button:not([disabled]):not([data-selected]):not([data-between]):hover {
-    color: var(--datePickerCalendarBoxHoverText, #fff);
-    background-color: var(--datePickerCalendarBoxHoverBackground, #555);
+    > [data-datepicker-calendar-box]:not([disabled]):not([data-selected]):not([data-between]):hover {
+    color: var(--datePickerCalendarBoxHoverText, theme(colors.brandBlueDark));
+    background-color: var(--datePickerCalendarBoxHoverBackground, theme(colors.brandBlueLight));
     --datePickerCalendarBoxToday: transparent;
   }
 
-  [data-datepicker-calendar-boxes] > button[data-selected] {
+  [data-datepicker-calendar-box][data-selected] {
     color: var(--datePickerCalendarBoxSelectedText, #555);
-    background-color: var(--datePickerCalendarBoxSelectedBackground, #aaa);
-    border-radius: 0;
+    background-color: var(--datePickerCalendarBoxSelectedBackground, theme(colors.brandPink));
     --datePickerCalendarBoxToday: transparent;
   }
 
-  [data-datepicker-calendar-boxes] > button[data-between] {
+  [data-datepicker-calendar-box][data-between] {
     color: var(--datePickerCalendarBoxBetweenText, #555);
-    background-color: var(--datePickerCalendarBoxBetweenBackground, #ddd);
-    border-radius: 0;
+    background-color: var(--datePickerCalendarBoxBetweenBackground, theme(colors.brandPinkLight));
     --datePickerCalendarBoxToday: transparent;
   }
 
-  [data-datepicker-calendar-boxes] > button[data-today] {
-    color: var(--datePickerCalendarBoxTodayText, #fff);
-    background-color: var(--datePickerCalendarBoxTodayBackground, #555);
+  [data-datepicker-calendar-box][data-today] {
+    color: var(--datePickerCalendarBoxTodayText, theme(colors.brandBlueDark));
+    background-color: var(--datePickerCalendarBoxTodayBackground, theme(colors.brandBlueLight));
   }
 
-  [data-datepicker-calendar-boxes] > button:first-child {
+  [data-datepicker-calendar-box]:first-child {
     grid-column: var(--datePickerCalendarBoxOffset, 0);
   }
 
