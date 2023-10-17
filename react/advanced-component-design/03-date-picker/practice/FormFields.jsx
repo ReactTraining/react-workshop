@@ -114,6 +114,6 @@ export function FieldDatePicker({ startName, endName, label, required = false, .
 
 // <SelectDateRange
 //   onSelect={(start, end) => {
-//     onSelectDates(start, end)
+//     console.log(start, end)
 //   }}
 // />
