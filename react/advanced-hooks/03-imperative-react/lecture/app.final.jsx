@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
-import './styles.scss'
 
 const Portal = ({ children }) => {
   const portalNode = useRef(null)

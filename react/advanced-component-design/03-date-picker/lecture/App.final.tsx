@@ -18,7 +18,7 @@ export function App() {
           </div>
           <div className="flex-1 space-y-3">
             <h1>
-              <DatePickerLabel offset={1} />
+              <DatePickerLabel offset={2} />
             </h1>
             <DatePickerCalendar offset={1} />
           </div>

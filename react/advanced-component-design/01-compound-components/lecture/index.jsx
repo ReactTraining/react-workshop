@@ -49,7 +49,14 @@ function App() {
     },
   ]
 
-  return <Tabs data={tabData} />
+  return (
+    <Tabs>
+      <TabList>
+        <Tab></Tab>
+        <Tab></Tab>
+      </TabList>
+    </Tabs>
+  )
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />)

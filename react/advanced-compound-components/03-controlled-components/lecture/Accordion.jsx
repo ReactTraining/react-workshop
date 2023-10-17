@@ -1,4 +1,4 @@
-import React, { useState, useId, useContext, createContext } from 'react'
+import React, { useState, useId, useContext, useRef, createContext } from 'react'
 import { wrapEvent } from '../../utils'
 
 const AccordionContext = createContext()
@@ -8,9 +8,18 @@ const AccordionContext = createContext()
  */
 
 export const Accordion = React.forwardRef(
-  ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
+  (
+    { children, onChange, index: controlledIndex, defaultIndex = 0, id, ...props },
+    forwardedRef
+  ) => {
     const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
     const accordionId = useId(id)
+
+    const isControlled = controlledIndex != null
+    const { current: startedControlled } = useRef(isControlled)
+    if (isControlled !== startedControlled) {
+      console.warn('You cannot change between controlled and uncontrolled or vice versa')
+    }
 
     children = React.Children.map(children, (child, index) => {
       const panelId = `accordion-${accordionId}-panel-${index}`
@@ -19,7 +28,7 @@ export const Accordion = React.forwardRef(
       const context = {
         buttonId,
         panelId,
-        selected: selectedIndex === index,
+        selected: isControlled ? controlledIndex === index : selectedIndex === index,
         selectPanel: () => {
           onChange && onChange(index)
           setSelectedIndex(index)

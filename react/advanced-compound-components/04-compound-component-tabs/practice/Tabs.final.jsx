@@ -6,7 +6,7 @@ const TabContext = React.createContext()
 const PanelContext = React.createContext()
 
 export const Tabs = React.forwardRef(
-  ({ children, onChange, index: controlledIndex, id, ...props }, forwardedRef) => {
+  ({ children, onChange, index: controlledIndex, ...props }, forwardedRef) => {
     const isControlled = controlledIndex != null
     const { current: startedControlled } = React.useRef(isControlled)
     if (isControlled !== startedControlled) {
@@ -16,7 +16,7 @@ export const Tabs = React.forwardRef(
     const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     const context = {
-      tabsId: React.useId(id),
+      tabsId: React.useId(),
       selectedIndex: isControlled ? controlledIndex : selectedIndex,
       setSelectedIndex: (index) => {
         onChange && onChange(index)

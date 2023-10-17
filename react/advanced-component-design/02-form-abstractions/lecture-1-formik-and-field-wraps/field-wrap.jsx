@@ -17,9 +17,9 @@ export function App() {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidation}>
       <Form className="space-y-3">
-        <FieldEmail />
-        <FieldPassword />
-        {/* <FieldDatePicker /> */}
+        <FieldInput name="email" label="Email" autoComplete="off" className="form-field" />
+        <FieldInput name="password" label="Password" className="form-field" />
+        <FieldDatePicker />
         <button type="submit" className="button">
           Submit
         </button>
@@ -32,41 +32,43 @@ export function App() {
  * Fields
  */
 
-function FieldEmail() {
-  const [field, meta] = useField('email')
-  const id = 'email'
+function FieldWrap({ children, label, name }) {
+  const [field, meta] = useField(name)
+  const id = useId()
   return (
     <div className="space-y-1">
-      <label htmlFor={id}>Email</label>
-      <input {...field} id={id} type="email" autoComplete="off" className="form-field" />
+      <label htmlFor={id}>{label}</label>
+      {children(field, id)}
       {meta.error && <p className="text-sm text-red-700">{meta.error}</p>}
     </div>
   )
 }
 
-function FieldPassword() {
-  const [field, meta] = useField('password')
-  const id = 'password'
+function FieldInput({ name, label, type = 'text', ...props }) {
   return (
-    <div className="space-y-1">
-      <label htmlFor={id}>Password</label>
-      <input {...field} id={id} name="password" type="password" className="form-field" />
-      {meta.error && <p className="text-sm text-red-700">{meta.error}</p>}
-    </div>
+    <FieldWrap name={name} label={label}>
+      {(field, id) => <input {...field} {...props} id={id} type={type} />}
+    </FieldWrap>
   )
 }
 
-// function FieldDatePicker() {
-//   const id = 'date-picker'
-//   return (
-//     <div className="space-y-1">
-//       <label htmlFor={id}>Date Picker</label>
-//       {/* This div is basically a custom input */}
-//       <div className="form-field inline-flex items-center">
-//         <input id={id} type="text" className="flex-1 border-none focus:outline-none" />
-//         <Icon name="calendar" size={1} className="mb-1" />
-//       </div>
-//       {/* End Custom Input */}
-//     </div>
-//   )
-// }
+function FieldDatePicker() {
+  const id = useId()
+  return (
+    <FieldWrap name="dob" label="DOB">
+      {(field, id) => {
+        return (
+          <div className="form-field inline-flex items-center">
+            <input
+              {...field}
+              id={id}
+              type="text"
+              className="flex-1 border-none focus:outline-none"
+            />
+            <Icon name="calendar" size={1} className="mb-1" />
+          </div>
+        )
+      }}
+    </FieldWrap>
+  )
+}

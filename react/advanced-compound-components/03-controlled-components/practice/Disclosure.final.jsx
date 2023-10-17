@@ -10,8 +10,10 @@ export function Disclosure({
   defaultOpen = false,
   ...props
 }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+
   const isControlled = controlledOpen != null
-  const { current: startedControlled } = useRef(isControlled)
+  const { current: startedControlled } = useRef(isControlled) // registering of the first render boolean
   if (isControlled !== startedControlled) {
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }
@@ -19,8 +21,6 @@ export function Disclosure({
   if (isControlled && defaultOpen) {
     console.warn('defaultOpen should only be used for uncontrolled components.')
   }
-
-  const [isOpen, setIsOpen] = useState(defaultOpen)
 
   const id = useId()
   const panelId = `panel-${id}`
@@ -59,7 +59,7 @@ export const DisclosureButton = React.forwardRef(
         aria-controls={panelId}
         ref={forwardedRef}
       >
-        {children}
+        {typeof children === 'function' ? children(isOpen) : children}
       </button>
     )
   }

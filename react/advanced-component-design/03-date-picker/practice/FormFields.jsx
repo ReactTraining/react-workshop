@@ -37,27 +37,6 @@ export function FieldInput({ name, label, required = false, type = 'text', class
   )
 }
 
-// This is just a reminder of where we left of with the FieldDatePicker
-// export function FieldDatePicker({ name, label, ...props }) {
-//   return (
-//     <FieldWrap name={name} label={label}>
-//       {(field) => {
-//         return (
-//           <div className="form-field inline-flex items-center">
-//             <input
-//               {...field}
-//               {...props}
-//               type="text"
-//               className="flex-1 border-none focus:outline-none"
-//             />
-//             <Icon name="calendar" size={1} className="mb-1" />
-//           </div>
-//         )
-//       }}
-//     </FieldWrap>
-//   )
-// }
-
 export function FieldDatePicker({ startName, endName, label, required = false, ...props }) {
   let [referenceElement, setReferenceElement] = useState()
   let [popperElement, setPopperElement] = useState()
@@ -103,7 +82,11 @@ export function FieldDatePicker({ startName, endName, label, required = false, .
               {...attributes.popper}
               className="absolute z-10 w-[600px] rounded-md shadow-lg p-3 bg-white border border-slate-200/60"
             >
-              👋 Cool Popover from HeadlessUI
+              <SelectDateRange
+                onSelect={(start, end) => {
+                  console.log(start, end)
+                }}
+              />
             </Popover.Panel>
           </Popover>
         </div>
@@ -111,9 +94,3 @@ export function FieldDatePicker({ startName, endName, label, required = false, .
     </div>
   )
 }
-
-// <SelectDateRange
-//   onSelect={(start, end) => {
-//     onSelectDates(start, end)
-//   }}
-// />

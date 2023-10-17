@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import * as ReactDOM from 'react-dom/client'
 // import { Page } from './TwitterFeed.final'
 import { Page } from './TwitterFeed'
@@ -7,6 +7,10 @@ import { LessonBody, LessonCard } from '~/Lesson'
 function App() {
   const [mountPage, setMountPage] = useState(true)
   const [theme, setTheme] = useState('light')
+
+  const options = useMemo(() => {
+    return { theme }
+  }, [theme])
 
   return (
     <LessonBody>
@@ -19,7 +23,7 @@ function App() {
             Theme
           </button>
         </div>
-        {mountPage && <Page theme={theme} />}
+        {mountPage && <Page options={options} />}
       </LessonCard>
     </LessonBody>
   )
