@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { Popover } from '@headlessui/react'
 import { usePopper } from 'react-popper'
 import dayjs from 'dayjs'
-import { SelectDateRange } from '../practice-final/SelectDateRange'
+import { SelectDateRange } from './SelectDateRange'
 import { Icon } from '~/Icon'
 
 export function FieldWrap({ label, name, required = false, children }) {

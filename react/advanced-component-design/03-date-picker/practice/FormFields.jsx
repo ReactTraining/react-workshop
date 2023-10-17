@@ -45,6 +45,9 @@ export function FieldDatePicker({ startName, endName, label, required = false, .
   const [startField, , startHelpers] = useField(startName)
   const [endField, , endHelpers] = useField(endName)
 
+  startHelpers.setValue()
+  startHelpers.setValue()
+
   // useField() returns an array where the third part is an object of helpers.
   // Instead of a user typing into an input field and setting the Formik value,
   // you can programmatically call the helper.setValue('...') method.
