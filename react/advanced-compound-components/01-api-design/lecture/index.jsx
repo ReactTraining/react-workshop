@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom/client'
-// import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure.final'
-import { Disclosure } from './Disclosure'
 import { LessonBody } from '~/Lesson'
 // import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
+// import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure.final'
+import { Disclosure, DisclosureButton, DisclosurePanel } from './Disclosure'
 import './styles.css'
 
 function App() {

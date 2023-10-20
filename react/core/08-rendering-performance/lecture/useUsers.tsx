@@ -1,6 +1,11 @@
 const RECORDS = 1000
 
-const users: any[] = []
+export type UserType = {
+  id: number
+  name: string
+  likes: number
+}
+const users: UserType[] = []
 
 for (let i = 0; i < RECORDS; i++) {
   const id = i + 1

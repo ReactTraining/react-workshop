@@ -23,3 +23,6 @@ export function Disclosure({ children, label, defaultIsOpen = false }) {
     </div>
   )
 }
+
+export const DisclosureButton = ({ children }) => {}
+export const DisclosurePanel = ({ children }) => {}

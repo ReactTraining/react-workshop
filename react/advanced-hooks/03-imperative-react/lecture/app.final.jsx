@@ -1,24 +1,20 @@
-import { useEffect, useLayoutEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
-import './styles.scss'
 
 const Portal = ({ children }) => {
-  const portalNode = useRef(null)
-  const [_, forceUpdate] = useState()
+  const [portalNode, setPortalNode] = useState(null)
 
-  useLayoutEffect(() => {
-    portalNode.current = document.createElement('portal')
-    document.body.appendChild(portalNode.current)
-    forceUpdate({})
+  useEffect(() => {
+    const portalNode = document.createElement('portal')
+    document.body.appendChild(portalNode)
+    setPortalNode(portalNode)
     return () => {
-      if (portalNode.current) {
-        document.body.removeChild(portalNode.current)
-      }
+      document.body.removeChild(portalNode)
     }
   }, [])
 
-  return portalNode.current ? createPortal(children, portalNode.current) : null
+  return portalNode ? createPortal(children, portalNode) : null
 }
 
 const Popover = ({ children, targetRef, ...props }) => {
@@ -94,10 +90,12 @@ const Define = ({ children }) => {
 
 export function App() {
   return (
-    <p>
-      Modern React is filled with <Define>Hooks</Define>. They work with function-components and
-      they give us an ability to use state and other React features similarly to class-based
-      components.
-    </p>
+    <div>
+      <p>
+        Modern React is filled with <Define>Hooks</Define>. They work with function-components and
+        they give us an ability to use state and other React features similarly to class-based
+        components.
+      </p>
+    </div>
   )
 }

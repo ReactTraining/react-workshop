@@ -1,22 +1,22 @@
-import * as React from 'react'
+import React, { useRef, useState, useId, createContext, useContext } from 'react'
 import { wrapEvent } from '../../utils'
 
-const TabsContext = React.createContext()
-const TabContext = React.createContext()
-const PanelContext = React.createContext()
+const TabsContext = createContext()
+const TabContext = createContext()
+const PanelContext = createContext()
 
 export const Tabs = React.forwardRef(
-  ({ children, onChange, index: controlledIndex, id, ...props }, forwardedRef) => {
+  ({ children, onChange, index: controlledIndex, ...props }, forwardedRef) => {
     const isControlled = controlledIndex != null
-    const { current: startedControlled } = React.useRef(isControlled)
+    const { current: startedControlled } = useRef(isControlled)
     if (isControlled !== startedControlled) {
       console.warn('Cannot change from controlled to uncontrolled or vice versa.')
     }
 
-    const [selectedIndex, setSelectedIndex] = React.useState(0)
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
     const context = {
-      tabsId: React.useId(id),
+      tabsId: useId(),
       selectedIndex: isControlled ? controlledIndex : selectedIndex,
       setSelectedIndex: (index) => {
         onChange && onChange(index)
@@ -49,8 +49,8 @@ export const TabList = React.forwardRef(({ children, ...props }, forwardedRef) =
 })
 
 export const Tab = React.forwardRef(({ children, onClick, disabled, ...props }, forwardedRef) => {
-  const index = React.useContext(TabContext)
-  const { tabsId, selectedIndex, setSelectedIndex } = React.useContext(TabsContext)
+  const index = useContext(TabContext)
+  const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
   const selected = index === selectedIndex
 
   function handleClick() {
@@ -88,8 +88,8 @@ export const TabPanels = React.forwardRef(({ children, ...props }, forwardedRef)
 })
 
 export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const index = React.useContext(PanelContext)
-  const { tabsId, selectedIndex } = React.useContext(TabsContext)
+  const index = useContext(PanelContext)
+  const { tabsId, selectedIndex } = useContext(TabsContext)
   const selected = selectedIndex === index
 
   return (

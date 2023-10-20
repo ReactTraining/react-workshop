@@ -1,7 +1,12 @@
-import * as React from 'react'
+import React, { useRef, useState, useId, createContext, useContext } from 'react'
 import { wrapEvent } from '../../utils'
 
 // You know what to do 😉
+
+// Hint: You probably need three contexts
+const TabsContext = createContext()
+const TabContext = createContext()
+const PanelContext = createContext()
 
 export const Tabs = ({ children, ...props }) => {
   return (

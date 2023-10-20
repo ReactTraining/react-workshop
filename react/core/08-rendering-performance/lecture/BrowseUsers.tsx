@@ -1,5 +1,5 @@
 import { useState, useId, memo, useTransition, useCallback } from 'react'
-import { useUsers } from './useUsers'
+import { useUsers, type UserType } from './useUsers'
 import { Card } from '~/Card'
 import { Heading } from '~/Heading'
 
@@ -18,7 +18,7 @@ export function BrowseUsers() {
     setUsers(allUsers?.filter((u) => u.likes >= minLikes))
   }
 
-  function editUser(userId: number) {
+  const editUser = (userId: number) => {
     // start editing the user
   }
 
@@ -49,6 +49,7 @@ export function BrowseUsers() {
       </header>
       <hr />
       <div className="space-y-3">
+        {/* Turn this into <UserList users={users} editUser={editUser} /> */}
         {users.map((user) => {
           return (
             <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
@@ -66,12 +67,20 @@ export function BrowseUsers() {
 }
 
 // type Props = {
-//   courses: any[]
+//   users: UserType[]
 //   editUser(userId: number): void
 // }
-
-// const UserList = memo(({ users, editUser}: Props) => {
-//   return (
-
-//   )
+//
+// const UserList = memo(({ users, editUser }: Props) => {
+//   return users.map((user) => {
+//     return (
+//       <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
+//         <div className="flex-1">{user.name}</div>
+//         <div className="flex-1">Liked Vacations: {user.likes}</div>
+//         <button className="button" onClick={() => editUser(user.id)}>
+//           Edit User
+//         </button>
+//       </div>
+//     )
+//   })
 // })

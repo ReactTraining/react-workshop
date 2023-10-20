@@ -1,7 +1,12 @@
-import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
+import { LessonBody, LessonCard } from '~/Lesson'
 // import { App } from './app.final'
 import { App } from './app'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <LessonBody>
+    <LessonCard>
+      <App />
+    </LessonCard>
+  </LessonBody>
+)

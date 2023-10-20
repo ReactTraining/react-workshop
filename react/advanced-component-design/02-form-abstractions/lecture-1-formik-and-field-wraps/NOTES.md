@@ -34,7 +34,7 @@ Build a formik form similar to this one.
 Since Formik uses Context (Formik is a Provider), show how we can turn `<Field />` into:
 
 ```jsx
-function EmailField() {
+function FieldEmail() {
   return <Field name="email" type="email" autoComplete="off" className="form-field" />
 }
 ```
@@ -42,7 +42,7 @@ function EmailField() {
 Then use it to demonstrate `useField` to get `meta` data like errors:
 
 ```jsx
-function EmailField() {
+function FieldEmail() {
   const [_, meta] = useField('email')
   return (
     <div>
