@@ -26,17 +26,14 @@ import type { Vacation } from '~/utils/types'
 
 export function VacationDetailsPage() {
   const vacationId = parseInt(useParams().vacationId!)
-  const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
-      if (isCurrent) setVacation(vacation)
-    })
-    return () => {
-      isCurrent = false
+  const { data: vacation } = useQuery(
+    ['vacation', vacationId],
+    () => api.vacations.getVacation(vacationId),
+    {
+      staleTime: 1000 * 30,
     }
-  }, [vacationId])
+  )
 
   // const { data: vacation } = useQuery(
   //   ['vacation', vacationId],
@@ -74,12 +71,12 @@ export function VacationDetailsPage() {
             </p>
           </div>
         </div>
-        {/* <section className="space-y-6">
+        <section className="space-y-6">
           <Heading as="h2" size={4}>
             Similar Destinations
           </Heading>
           <SimilarVacations vacationIds={vacation.related || []} />
-        </section> */}
+        </section>
       </main>
     </Card>
   )

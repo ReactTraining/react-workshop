@@ -7,7 +7,7 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as BrowseVacationsLoader } from '~/BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
+import { VacationDetailsPage, loader as VacationDetailsLoader } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'

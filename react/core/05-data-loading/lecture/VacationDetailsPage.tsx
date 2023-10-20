@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLoaderData, useParams } from 'react-router-dom'
+import { useLoaderData, useParams, Params } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
@@ -10,13 +10,38 @@ import type { Vacation } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
+type LoaderArgs = {
+  params: Params
+}
+
+// export async function loader({ params }: LoaderArgs) {
+//   const vacationId = Number(params.vacationId!)
+//   const vacation = await api.vacations.getVacation(vacationId)
+
+//   return vacation
+// }
+
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
+  const vacationId = Number(useParams().vacationId!)
+  // const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
+
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  // api.vacations.getVacation(vacationId)
+  useEffect(() => {
+    let isCurrent = true
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      if (isCurrent) {
+        setVacation(vacation)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [setVacation, vacationId])
 
-  if (!vacation) return <div>Loading...</div>
+  if (!vacation) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Card>

@@ -1,12 +1,26 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate, useEffect } from 'react-router-dom'
 import { Logo } from '~/Logo'
 import { Icon } from '~/Icon'
 import { useAuthContext } from './AuthContext'
 import { api } from '~/utils/api'
 
 export function MainLayout() {
-  const { authenticated, logout } = useAuthContext()
+  const { authenticated, login, logout } = useAuthContext()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    let isCurrent = true
+    api.auth.getAuthenticatedUser().then((user) => {
+      if (user && isCurrent) {
+        login(user)
+      } else {
+        logout()
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
   function onLogout() {
     // Logout of the server

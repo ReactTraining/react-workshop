@@ -1,9 +1,10 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
-// import type { LoaderData } from './account'
+import { useRouteLoaderData } from '@remix-run/react'
+import type { LoaderData } from './account'
 
 export default function () {
-  const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }
+  const { user } = useRouteLoaderData('routes/account') as LoaderData
 
   return (
     <>
