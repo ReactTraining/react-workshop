@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { api } from '~/utils/api'
-import { Avatar } from '~/Avatar'
+import { Avatar } from './Avatar'
 
 type Props = {
   user: {
