@@ -43,35 +43,7 @@ export function PurchaseTickets() {
       </div>
       <div className="space-y-2">
         {[...Array(tickets).keys()].map((number) => {
-          // The "clear" button wants to use refs to clear the inputs
-          // but we can't use useRef() dynamically
-
-          return (
-            <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
-              <div className="w-20">Ticket {number + 1}</div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  className="form-field"
-                  placeholder="Name"
-                  required
-                  aria-label={`Ticket ${number} Name`}
-                />
-              </div>
-              <div className="flex-1">
-                <input
-                  type="email"
-                  className="form-field"
-                  placeholder="Email"
-                  required
-                  aria-label={`Ticket ${number} Email`}
-                />
-              </div>
-              <button className="button" type="button">
-                Clear
-              </button>
-            </div>
-          )
+          return <AddAttendeeFields key={number} ticketNumber={number + 1} />
         })}
       </div>
     </form>
@@ -84,8 +56,13 @@ type AddAttendeeFieldsProps = {
 }
 
 const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
+  const nameRef = useRef<HTMLInputElement>(null!)
+  const emailRef = useRef<HTMLInputElement>(null!)
+
   function clear() {
-    // clear with refs
+    nameRef.current.value = ''
+    emailRef.current.value = ''
+    nameRef.current.focus()
   }
 
   return (
@@ -97,6 +74,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           className="form-field"
           placeholder="Name"
           required
+          ref={nameRef}
           aria-label={`Ticket ${ticketNumber} Name`}
         />
       </div>
@@ -106,6 +84,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
           className="form-field"
           placeholder="Email"
           required
+          ref={emailRef}
           aria-label={`Ticket ${ticketNumber} Email`}
         />
       </div>

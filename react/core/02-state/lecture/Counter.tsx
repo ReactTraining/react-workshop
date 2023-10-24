@@ -1,21 +1,30 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import { Icon } from '~/Icon'
 
-// type Props = {
-//   count: number
-//   setCount(count: number): void
-// }
+type Props = {
+  count: number
+  setCount(count: number): void
+  min?: number
+}
 
-export function Counter() {
-  let count = 0
+export function Counter({ min = 0, count, setCount }: Props) {
+  function subtract() {
+    if (count > min) {
+      setCount(count - 1)
+    }
+  }
+
+  function add() {
+    setCount(count + 1)
+  }
 
   return (
     <div className="flex">
-      <button className="button flex-1">
+      <button onClick={subtract} className="button flex-1">
         <Icon name="minus" />
       </button>
       <span className="align-middle text-3xl px-6">{count}</span>
-      <button className="button flex-1">
+      <button onClick={add} className="button flex-1">
         <Icon name="plus" />
       </button>
     </div>

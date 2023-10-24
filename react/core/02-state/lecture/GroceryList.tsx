@@ -22,26 +22,28 @@ export function GroceryList({ items, subtractQuantity, addQuantity }: Props) {
   return (
     <>
       <div className="space-y-3">
-        {/* Map over items */}
-        <div className="flex gap-6 bg-slate-100 p-4">
-          <div className="flex-1">Eggs</div>
-          <div className="flex-1">Quantity: 12</div>
-          <div className="flex-1 flex gap-2">
-            <button
-              className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-              // onClick={() => subtractQuantity(item.id)}
-            >
-              <Icon name="minus" size={0.6} />
-            </button>
-            <button
-              className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-              // onClick={() => addQuantity(item.id)}
-            >
-              <Icon name="plus" size={0.6} />
-            </button>
-          </div>
-        </div>
-        {/* End Map */}
+        {items.map((item) => {
+          return (
+            <div key={item.id} className="flex gap-6 bg-slate-100 p-4">
+              <div className="flex-1">{item.name}</div>
+              <div className="flex-1">Quantity: {item.quantity}</div>
+              <div className="flex-1 flex gap-2">
+                <button
+                  className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
+                  onClick={() => subtractQuantity(item.id)}
+                >
+                  <Icon name="minus" size={0.6} />
+                </button>
+                <button
+                  className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
+                  onClick={() => addQuantity(item.id)}
+                >
+                  <Icon name="plus" size={0.6} />
+                </button>
+              </div>
+            </div>
+          )
+        })}
       </div>
       <div className="text-2xl">
         Total: <b>{total}</b>
