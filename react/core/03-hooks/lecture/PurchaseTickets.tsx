@@ -8,10 +8,15 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const x = slowFunction()
-  // const onUpdate = (name: string, tickets: number) => {
-  //   console.log(name, tickets)
-  // }
+  // "Stable" means it doesn't change over time, unless you want it to
+
+  const x = useMemo(() => {
+    return slowFunction()
+  }, [])
+
+  const onUpdate = useCallback((name: string, tickets: number) => {
+    console.log(name, tickets)
+  }, [])
 
   return (
     <form className="space-y-6">
@@ -43,7 +48,7 @@ export function PurchaseTickets() {
       </div>
       <div className="space-y-2">
         {[...Array(tickets).keys()].map((number) => {
-          return <AddAttendeeFields key={number} ticketNumber={number + 1} />
+          return <AddAttendeeFields key={number} onUpdate={onUpdate} ticketNumber={number + 1} />
         })}
       </div>
     </form>
@@ -52,10 +57,11 @@ export function PurchaseTickets() {
 
 type AddAttendeeFieldsProps = {
   ticketNumber: number
-  // onUpdate(name: string, tickets: number): void
+  onUpdate(name: string, tickets: number): void
 }
 
-const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
+const AddAttendeeFields = memo(({ ticketNumber }: AddAttendeeFieldsProps) => {
+  console.log('render')
   const nameRef = useRef<HTMLInputElement>(null!)
   const emailRef = useRef<HTMLInputElement>(null!)
 
@@ -93,4 +99,4 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       </button>
     </div>
   )
-}
+})

@@ -47,7 +47,7 @@ describe('VacationDetailsPage', () => {
   it("should show loading indicator when data isn't resolved", () => {
     api.vacations.getVacation.mockResolvedValue(null)
     render(<VacationDetailsPage />)
-    screen.getByText('Loading...')
+    screen.getByText('Loading...') // expect
   })
   it('should show some of the results when the data resolves', async () => {
     api.vacations.getVacation.mockResolvedValue({

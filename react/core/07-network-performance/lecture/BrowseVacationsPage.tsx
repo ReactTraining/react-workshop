@@ -7,28 +7,19 @@ import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { queryClient } from '~/utils/queryClient'
 import type { Vacation } from '~/utils/types'
 
-// const vacations = await queryClient.ensureQueryData({
-//   queryKey: ['vacations'],
-//   queryFn: () => api.vacations.getAll(),
-//   staleTime: 1000 * 30,
-// })
-
-// export async function loader() {
-//   return api.vacations.getAll()
-// }
+// When
+export async function loader() {
+  // How + Cache
+  const vacations = await queryClient.ensureQueryData({
+    queryKey: ['vacations'],
+    queryFn: () => api.vacations.getAll(),
+    staleTime: 1000 * 30,
+  })
+  return vacations
+}
 
 export function BrowseVacationsPage() {
-  const [vacations, setVacations] = useState<Vacation[] | null>(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getAll().then((vacations) => {
-      if (isCurrent) setVacations(vacations)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+  const vacations = useLoaderData() as Vacation[]
 
   return (
     <div>

@@ -5,7 +5,7 @@ export function GoogleMaps() {
   const latId = useId()
   const lngId = useId()
 
-  const mapRef = useRef<HTMLDivElement>(null!)
+  const mapRef = useRef<HTMLDivElement>(null!) // { current: null}
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()

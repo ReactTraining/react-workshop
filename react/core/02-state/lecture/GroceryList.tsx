@@ -17,7 +17,7 @@ type Props = {
 // https://twitter.com/dan_abramov/status/1415279090446204929
 
 export function GroceryList({ items, subtractQuantity, addQuantity }: Props) {
-  const total = 12
+  const total = items.reduce((total, item) => item.quantity + total, 0)
 
   return (
     <>
