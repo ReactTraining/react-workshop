@@ -65,6 +65,7 @@ export function SearchVacationsForm() {
           Search Vacations
         </label>
         <input
+          id={searchId}
           name="search"
           defaultValue={urlSearch}
           type="text"
