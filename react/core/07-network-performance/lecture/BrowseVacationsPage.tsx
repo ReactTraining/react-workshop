@@ -30,6 +30,12 @@ export function BrowseVacationsPage() {
     }
   }, [])
 
+  // const { data: vacations } = useQuery({
+  //   queryKey: ['vacations'],
+  //   queryFn: () => api.vacations.getAll(),
+  //   staleTime: 1000 * 30,
+  // })
+
   return (
     <div>
       {!vacations && <div>Loading...</div>}
