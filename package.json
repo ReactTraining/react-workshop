@@ -38,8 +38,6 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
-    "@remix-run/dev": "^1.15.0",
-    "@remix-run/eslint-config": "^1.15.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^13.1.1",
     "@types/jest": "^27.4.0",
