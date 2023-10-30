@@ -4,7 +4,7 @@ import { json, redirect } from '@remix-run/node'
 import { Form } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getUserPasswordHash } from '~/utils/db.server'
-import type { ActionArgs } from '@remix-run/node'
+import type { ActionFunctionArgs } from '@remix-run/node'
 
 /**
  * Verify User
@@ -24,7 +24,7 @@ import type { ActionArgs } from '@remix-run/node'
  * Remix Action and Component
  */
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
 
   // Method One: It's difficult to get type-safety from Object.fromEntries

@@ -4,7 +4,7 @@ import { json, redirect } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
-import type { ActionArgs } from '@remix-run/node'
+import type { ActionFunctionArgs } from '@remix-run/node'
 import { createUserSession, registerUser, verifyUser } from '../utils/auth.server'
 import { usernameExists } from '~/utils/db.server'
 
@@ -18,7 +18,7 @@ type FormErrorType = {
   [k in keyof FormDataType]?: string[] | undefined
 }
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const formValues = Object.fromEntries(formData)
   const results = formSchema.safeParse(formValues)

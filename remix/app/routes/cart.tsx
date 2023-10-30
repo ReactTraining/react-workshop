@@ -1,7 +1,7 @@
-import { type ActionArgs } from '@remix-run/node'
+import { type ActionFunctionArgs } from '@remix-run/node'
 import { addToCart, removeFromCart } from '~/utils/cart.server'
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const productId = parseInt(formData.get('productId') as string)
   const quantity = parseInt(formData.get('quantity') as string)

@@ -107,7 +107,7 @@
   "Remix Export Loader": {
     "prefix": "exportloader",
     "body": [
-      "export const loader = async ({ params }: LoaderArgs) => {",
+      "export const loader = async ({ params }: LoaderFunctionArgs) => {",
       "  return json({ })",
       "}",
       "",

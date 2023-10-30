@@ -10,7 +10,7 @@ import {
   useLoaderData,
   useRouteError,
 } from '@remix-run/react'
-import { type LinksFunction, json, LoaderArgs } from '@remix-run/node'
+import { type LinksFunction, json, LoaderFunctionArgs } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
@@ -21,7 +21,7 @@ import type { UnpackLoader } from '~/utils/helpers'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   // This is just so we can show you what lesson you're on
   const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
 

@@ -7,9 +7,9 @@ import { Tiles } from '~/components/Tiles'
 import { Suspense } from 'react'
 import { BrowseProductItem } from '~/components/BrowseProducts'
 import { useCart } from '~/state/CartContext'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 
-export const loader = async ({ params }: LoaderArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const productId = parseInt(params.productId!)
   if (!productId) throw new Response('Invalid Product ID', { status: 404 })
 

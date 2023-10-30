@@ -1,5 +1,5 @@
 import { Form, useFetcher, useRouteLoaderData } from '@remix-run/react'
-import { type ActionArgs } from '@remix-run/node'
+import { type ActionFunctionArgs } from '@remix-run/node'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { addToCart, removeFromCart } from '~/utils/cart.server'
@@ -7,7 +7,7 @@ import { AddToCart, RemoveFromCart } from '../components/CartButtons'
 import type { LoaderData as RootLoaderData } from '../root'
 import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const productId = parseInt(formData.get('productId') as string)
 

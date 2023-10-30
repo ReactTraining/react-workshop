@@ -5,9 +5,9 @@ import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
   const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 

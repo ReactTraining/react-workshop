@@ -1,9 +1,9 @@
 import { Link, useRouteLoaderData } from '@remix-run/react'
 import { BrowseProducts } from '~/components/BrowseProducts'
-import type { V2_MetaFunction } from '@remix-run/react'
+import type { MetaFunction } from '@remix-run/react'
 import type { LoaderData } from './_products-layout'
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [{ title: 'Tech Shopper' }]
 }
 

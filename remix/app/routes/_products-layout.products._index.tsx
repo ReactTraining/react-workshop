@@ -1,8 +1,8 @@
 import { BrowseProducts } from '~/components/BrowseProducts'
-import { V2_MetaFunction, useRouteLoaderData } from '@remix-run/react'
+import { MetaFunction, useRouteLoaderData } from '@remix-run/react'
 import type { LoaderData } from './_products-layout'
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [{ title: 'Products' }]
 }
 

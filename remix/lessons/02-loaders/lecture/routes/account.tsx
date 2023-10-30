@@ -1,4 +1,4 @@
-import { type LoaderArgs, json } from '@remix-run/node'
+import { type LoaderFunctionArgs, json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
@@ -8,7 +8,7 @@ import { UnpackLoader } from '~/utils/helpers'
 // type LoaderData = UnpackLoader<typeof loader>
 // useRouteLoaderData('routes/account')
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   // These are currently in serial!!
   // That's okay in this case because we need the user before we get the settings
   // But you'll need to know how to load things in parallel for the exercise

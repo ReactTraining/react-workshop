@@ -5,7 +5,7 @@ import {
   useLoaderData,
   useRouteLoaderData,
 } from '@remix-run/react'
-import { type ActionArgs, type LoaderArgs, json } from '@remix-run/node'
+import { type ActionFunctionArgs, type LoaderFunctionArgs, json } from '@remix-run/node'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
@@ -23,7 +23,7 @@ import { type UnpackLoader, sleep } from '~/utils/helpers'
 //   return Promise.resolve('').then(sleep(3000))
 // }
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const productId = formData.get('productId')
   console.log('product', productId)
@@ -35,7 +35,7 @@ export async function action({ request }: ActionArgs) {
   return null
 }
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
   return json({ cart })
 }

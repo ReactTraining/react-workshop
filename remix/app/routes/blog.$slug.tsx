@@ -2,10 +2,10 @@ import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { MDXContent } from '~/components/MDXContent'
 import { getPost } from '~/utils/blog.server'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 import { Heading } from '~/components/Heading'
 
-export const loader = async ({ params }: LoaderArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const slug = params.slug
   if (!slug) throw new Response('Not found', { status: 404 })
 

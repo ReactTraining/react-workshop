@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 import { Heading } from '~/components/Heading'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { getPost } from '../utils/blog.server'

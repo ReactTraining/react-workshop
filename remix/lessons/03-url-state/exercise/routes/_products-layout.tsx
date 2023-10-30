@@ -3,11 +3,11 @@ import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 import { UnpackLoader, sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
   const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 

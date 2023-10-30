@@ -9,7 +9,7 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from '@remix-run/react'
-import { LinksFunction, LoaderArgs, json } from '@remix-run/node'
+import { LinksFunction, LoaderFunctionArgs, json } from '@remix-run/node'
 import { MainLayout } from '~/components/MainLayout'
 import { Heading } from '~/components/Heading'
 import { CenterContent } from '~/components/CenterContent'
@@ -23,7 +23,7 @@ import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
   return json({ sessionUser, cart })
 }

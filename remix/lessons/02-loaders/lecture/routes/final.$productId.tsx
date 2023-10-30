@@ -1,9 +1,9 @@
-import { LoaderArgs, json } from '@remix-run/node'
+import { LoaderFunctionArgs, json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { ProductType } from '~/utils/db.server'
 import { UnpackLoader } from '~/utils/helpers'
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.productId!
 
   const product = (await fetch(`http://localhost:3333/products/${id}`).then((res) =>

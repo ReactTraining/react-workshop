@@ -6,7 +6,7 @@ import { createUserSession, registerUser } from '~/utils/auth.server'
 import { usernameExists } from '~/utils/db.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
-import type { ActionArgs } from '@remix-run/node'
+import type { ActionFunctionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
   username: z.string().min(5, { message: 'Must be at least 5 characters' }),
@@ -18,7 +18,7 @@ type FormErrorType = {
   [k in keyof FormDataType]?: string[] | undefined
 }
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const formValues = Object.fromEntries(formData)
   const results = formSchema.safeParse(formValues)

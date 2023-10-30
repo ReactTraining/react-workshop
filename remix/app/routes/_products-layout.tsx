@@ -1,16 +1,16 @@
 import { json } from '@remix-run/node'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
-import type { LoaderArgs } from '@remix-run/node'
-import type { V2_MetaFunction } from '@remix-run/react'
+import type { LoaderFunctionArgs } from '@remix-run/node'
+import type { MetaFunction } from '@remix-run/react'
 import { type UnpackLoader, sortLabel } from '~/utils/helpers'
 import { ProductsSidebar } from '~/components/ProductsSidebar'
 
-export const meta: V2_MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return [{ title: 'New Remix App' }]
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
 
   const [products, brands, categories] = await Promise.all([

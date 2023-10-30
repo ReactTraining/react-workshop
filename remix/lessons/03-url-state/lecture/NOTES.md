@@ -65,7 +65,7 @@ Moving the filter to the loader just means our database is returning everything 
 The best solution is to filter from the database standpoint. Our `getProducts()` function will already do that if we pass it searchParams:
 
 ```ts
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
   const products = await getProducts(searchParams)
   // ...
