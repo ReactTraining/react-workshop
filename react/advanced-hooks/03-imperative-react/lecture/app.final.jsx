@@ -26,7 +26,7 @@ const Popover = ({ children, targetRef, ...props }) => {
   // later than we might expect because the div it's applied to is the children
   // of Portal which returns null initially (which it must do)
   function initPopoverRef(el) {
-    // initPopoverRef will be called numerous times, lets do this work once.
+    // initPopoverRef will be called numerous times, let's do this work once.
     if (!popoverRef.current) {
       popoverRef.current = el
       if (targetRef.current && popoverRef.current) {
