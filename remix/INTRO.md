@@ -4,7 +4,7 @@ npx create-remix@latest
 
 What is Remix?
 
-1. A compiler
+1. A compiler (can use vite now)
 2. A server-side HTTP handler
 3. A server framework
 4. A browser framework
