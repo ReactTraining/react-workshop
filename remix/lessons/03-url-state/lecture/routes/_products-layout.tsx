@@ -3,9 +3,9 @@ import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
-import type { LoaderFunctionArgs } from '@remix-run/node'
-import { UnpackLoader, sortLabel } from '~/utils/helpers'
+import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
+import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const [products, brands] = await Promise.all([getProducts(), getBrands()])
@@ -16,10 +16,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   })
 }
 
-export type LoaderData = UnpackLoader<typeof loader>
-
 export default function () {
-  const { brands } = useLoaderData() as LoaderData
+  const { brands } = useLoaderData<typeof loader>()
 
   return (
     <div className="flex gap-6">
