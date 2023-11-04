@@ -23,6 +23,8 @@ export function createOutletContext<T>() {
 
 // Custom TS utility to unpack loader return types
 // Usage: UnpackLoader<typeof loader>
-export type UnpackLoader<T extends (...args: any) => any> = Awaited<
-  ReturnType<Pick<Awaited<ReturnType<T>>, 'json'>['json']>
->
+
+// Not needed anymore since Remix 2.0 fixed loader types
+// export type UnpackLoader<T extends (...args: any) => any> = Awaited<
+//   ReturnType<Pick<Awaited<ReturnType<T>>, 'json'>['json']>
+// >

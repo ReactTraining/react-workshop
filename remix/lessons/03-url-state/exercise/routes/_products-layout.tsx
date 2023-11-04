@@ -4,7 +4,7 @@ import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remi
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import type { LoaderFunctionArgs } from '@remix-run/node'
-import { UnpackLoader, sortLabel } from '~/utils/helpers'
+import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -17,10 +17,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   })
 }
 
-export type LoaderData = UnpackLoader<typeof loader>
+export type LoaderData = typeof loader
 
 export default function () {
-  const { brands } = useLoaderData() as LoaderData
+  const { brands } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">

@@ -21,8 +21,8 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function () {
-  const { cart } = useRouteLoaderData('root') as RootLoaderData
-  const { products } = useRouteLoaderData('routes/_products-layout') as ProductsLayoutLoaderData
+  const { cart } = useRouteLoaderData<RootLoaderData>('root')!
+  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/_products-layout')!
 
   return (
     <Tiles>

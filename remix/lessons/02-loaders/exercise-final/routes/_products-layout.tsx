@@ -2,7 +2,6 @@ import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
-import { UnpackLoader } from '~/utils/helpers'
 
 export const loader = async () => {
   // Solution for task 1
@@ -14,7 +13,7 @@ export const loader = async () => {
   })
 }
 
-export type LoaderData = UnpackLoader<typeof loader>
+export type LoaderData = typeof loader
 
 export default function () {
   // Solution for task 2 (context)
@@ -22,7 +21,7 @@ export default function () {
   // const context = useMemo(() => ({ products }), [products])
 
   // Solution for task 3 (also the pages need useRouteLoaderData())
-  const { brands } = useLoaderData() as LoaderData
+  const { brands } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">

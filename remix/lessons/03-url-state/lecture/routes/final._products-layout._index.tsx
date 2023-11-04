@@ -1,10 +1,10 @@
 import { useRouteLoaderData } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import type { LoaderData } from './_products-layout'
+import type { LoaderData } from './final._products-layout'
 
 export default function () {
-  const { products } = useRouteLoaderData('routes/final._products-layout') as LoaderData
+  const { products } = useRouteLoaderData<LoaderData>('routes/final._products-layout')!
 
   return (
     <Tiles>

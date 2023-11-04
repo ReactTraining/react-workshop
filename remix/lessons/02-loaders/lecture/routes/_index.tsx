@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import { ProductType } from '~/utils/db.server'
-import { UnpackLoader } from '~/utils/helpers'
 
 export default function Index() {
   const [products, setProducts] = useState<ProductType[]>([])

@@ -22,7 +22,7 @@ When the layout component is successfully receiving `brands` and `products` from
 2. Outlets are technically "Context Providers" so you don't need to make your own context the way we would have done for a traditional React SPA.
 3. Get the context value in the page component with `useOutletContext()`
 
-You might see some typescript errors because `useOutletContext()` has no clue what it's receiving. If the code is accurate, it should still work, or you can do `useOutletContext<any>()` to tell TS not to complain.
+You might see some typescript errors because `useOutletContext()` has no clue what it's receiving. If the JS code is accurate, even without types working, it will still run or you can do `useOutletContext<any>()` to tell TS not to complain about the type returned from `useOutletContext`.
 
 ## Task 3
 

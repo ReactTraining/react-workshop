@@ -1,10 +1,10 @@
 import { json } from '@remix-run/node'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
+import { sortLabel } from '~/utils/helpers'
+import { ProductsSidebar } from '~/components/ProductsSidebar'
 import type { LoaderFunctionArgs } from '@remix-run/node'
 import type { MetaFunction } from '@remix-run/react'
-import { type UnpackLoader, sortLabel } from '~/utils/helpers'
-import { ProductsSidebar } from '~/components/ProductsSidebar'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'New Remix App' }]
@@ -26,10 +26,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   })
 }
 
-export type LoaderData = UnpackLoader<typeof loader>
-
 export default function () {
-  const { brands, categories } = useLoaderData() as LoaderData
+  const { brands, categories } = useLoaderData<typeof loader>()
 
   return (
     <div className="flex gap-6">

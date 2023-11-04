@@ -9,7 +9,7 @@ export default function () {
   )
 }
 
-// GET    --->     /products [loader] -> [component]
-// POST   --->     /products [action] -> [component]
-// PUT    --->     /products [action] -> [component]
-// DELETE --->     /products [action] -> [component]
+// GET    --->     /products -> loader() -> component()
+// POST   --->     /products -> action() -> component()
+// PUT    --->     /products -> action() -> component()
+// DELETE --->     /products -> action() -> component()

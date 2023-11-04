@@ -16,8 +16,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   })
 }
 
+export type LoaderData = typeof loader
+
 export default function () {
-  const { brands } = useLoaderData<typeof loader>()
+  const { brands } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">

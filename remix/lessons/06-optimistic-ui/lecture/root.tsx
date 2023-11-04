@@ -17,7 +17,6 @@ import { LessonProvider } from '~/state/LessonContext'
 import { CenterContent } from '~/components/CenterContent'
 import { Heading } from '~/components/Heading'
 import { getCart } from '~/utils/cart.server'
-import type { UnpackLoader } from '~/utils/helpers'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
@@ -29,10 +28,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ lesson, cart })
 }
 
-export type LoaderData = UnpackLoader<typeof loader>
+export type LoaderData = typeof loader
 
 export default function App() {
-  const { lesson, cart } = useLoaderData<typeof loader>()
+  const { lesson, cart } = useLoaderData<LoaderData>()
 
   return (
     <Document>

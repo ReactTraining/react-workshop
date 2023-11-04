@@ -5,7 +5,7 @@ import { useSearchParams } from '@remix-run/react'
 import type { LoaderData } from './_products-layout'
 
 export default function () {
-  const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
+  const { products } = useRouteLoaderData<LoaderData>('routes/_products-layout')!
 
   // useSearchParams()
 

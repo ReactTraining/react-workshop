@@ -3,9 +3,7 @@ import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
-import { UnpackLoader } from '~/utils/helpers'
 
-// type LoaderData = UnpackLoader<typeof loader>
 // useRouteLoaderData('routes/account')
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

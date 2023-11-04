@@ -18,7 +18,6 @@ import { AuthProvider } from '~/state/AuthContext'
 import { CartProvider } from '~/state/CartContext'
 import { getCart } from '~/utils/cart.server'
 import stylesheet from '~/styles/app.css'
-import type { UnpackLoader } from '~/utils/helpers'
 import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
@@ -28,10 +27,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ sessionUser, cart })
 }
 
-export type LoaderType = UnpackLoader<typeof loader>
-
 export default function App() {
-  const { sessionUser, cart } = useLoaderData() as LoaderType
+  const { sessionUser, cart } = useLoaderData<typeof loader>()
 
   return (
     <Document>

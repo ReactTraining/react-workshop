@@ -5,8 +5,8 @@ import type { LoaderData as RootLoaderData } from '../root'
 import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
 
 export default function () {
-  const { cart } = useRouteLoaderData('root') as RootLoaderData
-  const { products } = useRouteLoaderData('routes/_products-layout') as ProductsLayoutLoaderData
+  const { cart } = useRouteLoaderData<RootLoaderData>('root')!
+  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/_products-layout')!
 
   return (
     <Tiles>

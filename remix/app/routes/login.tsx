@@ -2,10 +2,10 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { json } from '@remix-run/node'
 import { Form, Link, useActionData } from '@remix-run/react'
-import type { ActionFunctionArgs } from '@remix-run/node'
 import { createUserSession, verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
+import type { ActionFunctionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
   username: z.string().min(5, { message: 'Must be at least 5 characters' }),

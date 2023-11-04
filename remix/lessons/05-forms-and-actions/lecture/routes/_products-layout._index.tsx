@@ -11,7 +11,7 @@ import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
 // import { addToCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
-import { type UnpackLoader, sleep } from '~/utils/helpers'
+import { sleep } from '~/utils/helpers'
 
 // async function addToCart(productId: number) {
 //   console.log('add product', productId)
@@ -40,11 +40,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ cart })
 }
 
-type LoaderData = UnpackLoader<typeof loader>
-
 export default function () {
-  const { cart } = useLoaderData() as LoaderData
-  const { products } = useRouteLoaderData('routes/_products-layout') as RouteLoaderData
+  const { cart } = useLoaderData<typeof loader>()
+  const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
 
   function addToCart(productId: number) {
     fetch('/', {
