@@ -71,7 +71,7 @@ export default function () {
             />
             <div className="space-y-3 mt-3 border-t">
               <div className="mt-3 flex justify-between items-center">
-                <div className="">{product.name}</div>
+                <div>{product.name}</div>
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
