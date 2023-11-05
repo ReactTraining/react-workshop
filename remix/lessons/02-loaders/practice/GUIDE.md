@@ -1,6 +1,6 @@
 # Loaders
 
-The goal of this exercise is to write loaders for products
+The goal of this practice is to write loaders for products
 
 ## Task 1
 

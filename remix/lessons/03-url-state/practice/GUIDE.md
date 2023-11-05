@@ -1,6 +1,6 @@
 # URL State
 
-The goal of this exercise is to practice using the URL for state. The URL is not only a legitimate place to keep state between the front-end and back-end, it's actually the original place for keeping state before Single Page Apps.
+The goal of this practice is to practice using the URL for state. The URL is not only a legitimate place to keep state between the front-end and back-end, it's actually the original place for keeping state before Single Page Apps.
 
 # Task 1
 

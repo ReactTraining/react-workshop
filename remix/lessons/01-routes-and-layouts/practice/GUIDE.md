@@ -1,6 +1,6 @@
 # Routes And Layouts
 
-The goal of this exercise is to make files for these routes:
+The goal of this practice is to make files for these routes:
 
 ```js
 // URL                               SUB LAYOUT      CONTENT
@@ -39,4 +39,4 @@ For example, if you visit `/products`, you should see a page loaded into the `Pr
 
 ## Final
 
-Remember, for this and all exercises, there's a `final` version for you to review if you need to with all the answers. In this case, the final is in `exercise-final`.
+Remember, for this and all practices, there's a `final` version for you to review if you need to with all the answers. In this case, the final is in `practice-final`.
