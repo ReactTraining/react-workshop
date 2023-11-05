@@ -6,9 +6,9 @@ The goal of this exercise is to practice using the URL for state. The URL is not
 
 The only component you'll need to work on is inside of `_products-layout` called `FilterLink`. Right now, it works for clicking on filters in the UI and toggling the URL so only one brand can be filtered at one time. We want you to re-write the algorithm in `FilterLink` so if the user clicks two checkboxes, we'll have two brands in the filter like this:
 
-localhost:3000/products?brand=apple%20google
+localhost:3000/products?brand=apple%2Cgoogle
 
-Keep in mind that %20 is a URL-encoded comma. When you set the value in your code, you'll set it as `apple,google` and the URLSearchParams class will take care of the encoding for you. When you read the value from the URL, they'll take care of the decoding for you and you'll receive `apple,google`.
+Keep in mind that %2C is a URL-encoded comma. When you set the value in your code, you'll set it as `apple,google` and the URLSearchParams class will take care of the encoding for you. When you read the value from the URL, they'll take care of the decoding for you and you'll receive `apple,google`.
 
 1. When a user clicks Apple, the URL should change to `?brand=apple`
 2. When the user then clicks Google, the URL should change to `?brand=apple%20google`
