@@ -45,13 +45,13 @@ export default function () {
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
 
   function addToCart(productId: number) {
-    fetch('/', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ productId }),
-    })
+    // fetch('/', {
+    //   method: 'post',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ productId }),
+    // })
   }
 
   return (
@@ -76,6 +76,8 @@ export default function () {
               </div>
               <div className="flex gap-2">
                 <button
+                  // This is the more "SPA way" of doing things. We handle a
+                  // click and submit a XHR/fetch request
                   onClick={() => addToCart(product.id)}
                   className="button button-outline whitespace-nowrap"
                   type="submit"
