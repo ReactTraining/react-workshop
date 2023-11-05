@@ -14,10 +14,9 @@ Keep in mind that %2C is a URL-encoded comma. When you set the value in your cod
 2. When the user then clicks Google, the URL should change to `?brand=apple%20google`
 3. When the user then clicks Apple again, it will toggle off in the URL and the URL will be `?brand=google`
 
-Tread this algorithm as if you're just working on an array and taking items in and out of an array.
+Treat this algorithm as if you're just working on an array and taking items on and off the array. Here are some basic JavaScript functions we used in the solution that you might need:
 
 ```js
-// Here are some basic JavaScript functions we used in the solution that you might need:
 myString.split(',') // Turn a string into an array, split by commas
 myString.toLowerCase() // Lower-cases a string
 myArray.join(',') // Turn an array into a string, joined by commas
@@ -25,10 +24,12 @@ Array.isArray(myArray) // Returns true if the array is an array
 myArray.filter(fn) // Returns a new array based on the filter function. See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 myArray.concat(newValue) // Similar to push but this returns a new array with the value added
 
-// URLSearchParams is a web standard to do CRUD operations on the URL search params
+// URLSearchParams is a web standard for CRUD operations on the URL search params.
+// It returns an object that we can do methods on (see below)
 const search = new URLSearchParams('https://example.com?a=b')
 
-// search is an instance of `new URLSearchParams`
+// We can also get this object from `useSearchParams` which returns
+// the same search object based on what's currently in the URL
 const [search] = useSearchParams()
 
 // Getters and setters
