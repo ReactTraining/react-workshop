@@ -51,17 +51,19 @@ function FilterLink({ children, value }: { children: React.ReactNode; value: str
 
   // The current URL
   const [search] = useSearchParams()
-  const urlValue = search.get('brand')?.toLowerCase().split(',')
-  const on = Array.isArray(urlValue) && urlValue.includes(value.toLowerCase())
+  const brands = search.get('brand')?.toLowerCase().split(',') || []
+  const on = brands.includes(value.toLowerCase())
 
   // The next URL
   const nextSearch = new URLSearchParams(search.toString())
-  const valuesFiltered = Array.isArray(urlValue) ? urlValue.filter((v) => v && v !== value) : []
 
   if (on) {
+    // If currently on, built a link that would remove it
+    const valuesFiltered = brands.filter((v) => v && v !== value)
     nextSearch.set('brand', valuesFiltered.join(','))
   } else {
-    nextSearch.set('brand', valuesFiltered.concat(value).join(','))
+    // If currently off, build a link that would add it
+    nextSearch.set('brand', brands.concat(value).join(','))
   }
 
   const to = `${url}?${nextSearch.toString()}`
