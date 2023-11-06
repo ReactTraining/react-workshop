@@ -1,9 +1,11 @@
 Ways to create sessions
 
-- createSessionStorage (for database)
-- createCookieSessionStorage
-- createMemorySessionStorage
-- createFileSessionStorage
+- ✅ `createCookieSessionStorage`
+- ⬜️ `createMemorySessionStorage`
+- ⬜️ `createFileSessionStorage` (node)
+- ⬜️ `createWorkersKVSessionStorage` (Cloudflare Workers)
+- ⬜️ `createArcTableSessionStorage` (architect, Amazon DynamoDB)
+- ⬜️ `createSessionStorage` (custom)
 
 ```ts
 // Create
