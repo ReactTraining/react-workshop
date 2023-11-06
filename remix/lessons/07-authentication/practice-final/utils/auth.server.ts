@@ -43,10 +43,6 @@ const storage = createCookieSessionStorage({
   },
 })
 
-function getSession(request: Request) {
-  return storage.getSession(request.headers.get('Cookie'))
-}
-
 export async function createUserSession(userId: number, redirectTo: string) {
   const session = await storage.getSession()
   session.set('userId', userId)
@@ -58,7 +54,7 @@ export async function createUserSession(userId: number, redirectTo: string) {
 }
 
 export async function getSessionUser(request: Request) {
-  const session = await getSession(request)
+  const session = await storage.getSession(request.headers.get('Cookie'))
   const userId = session.get('userId') as string | undefined
   if (!userId || typeof userId !== 'number') {
     return undefined
@@ -70,7 +66,7 @@ export async function requireSessionUser(
   request: Request,
   redirectTo: string = new URL(request.url).pathname
 ) {
-  const session = await getSession(request)
+  const session = await storage.getSession(request.headers.get('Cookie'))
   const userId = session.get('userId') as string | undefined
   if (!userId || typeof userId !== 'string') {
     const searchParams = new URLSearchParams([['redirectTo', redirectTo]])
@@ -80,7 +76,7 @@ export async function requireSessionUser(
 }
 
 export async function logout(request: Request) {
-  const session = await getSession(request)
+  const session = await storage.getSession(request.headers.get('Cookie'))
   return redirect('/login', {
     headers: {
       'Set-Cookie': await storage.destroySession(session),
