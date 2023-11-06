@@ -6,6 +6,7 @@
 <Link prefetch="none"></Link> // Default
 <Link prefetch="render"></Link>
 <Link prefetch="intent"></Link>
+<Link prefetch="viewport"></Link>
 
 <PrefetchPageLinks page="/path" />
 ```

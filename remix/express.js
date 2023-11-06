@@ -4,3 +4,9 @@ app.get('/products', async (request, response) => {
 
   response.send(<div />)
 })
+
+app.post('/products', async (request, response) => {
+  const product = await getProduct()
+
+  response.send(<div />)
+})

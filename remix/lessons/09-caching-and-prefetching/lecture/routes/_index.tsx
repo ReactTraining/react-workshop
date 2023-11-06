@@ -4,7 +4,7 @@ export default function Index() {
   return (
     <div>
       <h1>Home Page</h1>
-      <Link prefetch="none" to="/one">
+      <Link prefetch="intent" to="/one">
         One
       </Link>
       <br />

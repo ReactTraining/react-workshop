@@ -24,12 +24,10 @@ export async function action({ request }: ActionFunctionArgs) {
   if (!results.success) return json({ error: 'Invalid Data' }, { status: 400 })
 
   const { username, password } = results.data
-  const userId = await verifyUser(username, password)
+  const userId = await verifyUser(username, password) // db
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
-  // Now we need to login
-
-  return redirect('/')
+  return createUserSession(userId, '/')
 }
 
 export default function Login() {

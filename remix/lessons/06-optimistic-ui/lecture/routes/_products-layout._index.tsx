@@ -1,6 +1,6 @@
 import { useRouteLoaderData } from '@remix-run/react'
 import { Tiles } from '~/components/Tiles'
-import { AddToCart, RemoveFromCart } from '../components/CartButtons'
+import { CartButtons } from '../components/CartButtons'
 import type { LoaderData as RootLoaderData } from '../root'
 import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
 
@@ -28,8 +28,7 @@ export default function ProductsIndex() {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <AddToCart productId={product.id} quantityInCart={quantityInCart} />
-                {quantityInCart > 0 && <RemoveFromCart productId={product.id} />}
+                <CartButtons productId={product.id} quantityInCart={quantityInCart} />
               </div>
             </div>
           </div>

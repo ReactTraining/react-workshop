@@ -40,6 +40,7 @@ export default function Login() {
     const results = formSchema.safeParse(formValues)
     if (!results.success) {
       event.preventDefault()
+
       setFormErrors(results.error.flatten().fieldErrors)
     }
   }
