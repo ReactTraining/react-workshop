@@ -4,8 +4,6 @@ import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
 
-// useRouteLoaderData('routes/account')
-
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   // These are currently in serial!!
   // That's okay in this case because we need the user before we get the settings
@@ -16,8 +14,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ user, settings })
 }
 
+export type LoaderData = typeof loader
+
 export default function Account() {
-  const { user } = useLoaderData<typeof loader>()
+  const { user } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">
