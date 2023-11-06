@@ -18,7 +18,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
 }
 
-export default function () {
+export default function BlogPost() {
   const { frontmatter, code } = useLoaderData<typeof loader>()
   const Component = useMemo(() => getMDXComponent(code), [code])
 

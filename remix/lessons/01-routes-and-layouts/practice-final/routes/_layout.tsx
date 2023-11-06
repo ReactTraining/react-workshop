@@ -1,6 +1,6 @@
 import { Outlet } from '@remix-run/react'
 
-export default function () {
+export default function Page() {
   return (
     <div className="p-3 bg-slate-300 border rounded space-y-3">
       <div className="p-3 bg-slate-200 rounded">

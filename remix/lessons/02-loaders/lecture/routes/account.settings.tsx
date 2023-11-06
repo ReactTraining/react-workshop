@@ -2,7 +2,7 @@ import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
 import { Link } from '@remix-run/react'
 
-export default function () {
+export default function AccountSettings() {
   const settings = { deals: 'weekly', delivery: 'door' }
 
   return (

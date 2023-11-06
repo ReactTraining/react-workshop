@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 
-export default function () {
+export default function Index() {
   return (
     <div className="space-y-3">
       <p>👋 Let's build an MDX Blog</p>

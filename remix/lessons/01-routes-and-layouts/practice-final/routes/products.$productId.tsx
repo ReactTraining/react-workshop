@@ -1,6 +1,6 @@
 import { useParams } from '@remix-run/react'
 
-export default function () {
+export default function Page() {
   const productId = useParams().productId!
   return (
     <div>

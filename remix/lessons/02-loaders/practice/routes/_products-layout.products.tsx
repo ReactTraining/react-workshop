@@ -9,7 +9,7 @@ export const loader = async () => {
   return json(products)
 }
 
-export default function () {
+export default function ProductsPage() {
   const products = useLoaderData<typeof loader>()
 
   return (

@@ -20,7 +20,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
-export default function () {
+export default function ProductsIndex() {
   const { cart } = useRouteLoaderData<RootLoaderData>('root')!
   const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/_products-layout')!
 

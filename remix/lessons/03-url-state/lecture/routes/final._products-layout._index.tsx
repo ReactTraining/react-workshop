@@ -3,7 +3,7 @@ import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import type { LoaderData } from './final._products-layout'
 
-export default function () {
+export default function ProductsIndex() {
   const { products } = useRouteLoaderData<LoaderData>('routes/final._products-layout')!
 
   return (

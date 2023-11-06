@@ -40,7 +40,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ cart })
 }
 
-export default function () {
+export default function ProductsIndex() {
   const { cart } = useLoaderData<typeof loader>()
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
 

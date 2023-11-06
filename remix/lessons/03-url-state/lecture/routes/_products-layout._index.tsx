@@ -4,7 +4,7 @@ import { Icon } from '~/components/Icon'
 import { useSearchParams } from '@remix-run/react'
 import type { LoaderData } from './_products-layout'
 
-export default function () {
+export default function ProductsIndex() {
   const { products } = useRouteLoaderData<LoaderData>('routes/_products-layout')!
 
   // useSearchParams()

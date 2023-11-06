@@ -12,7 +12,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ userId: userId !== undefined && parseInt(userId) })
 }
 
-export default function () {
+export default function Index() {
   const { userId } = useLoaderData<typeof loader>()
   return userId ? <div>User ID is {userId}</div> : <div>User is not logged in</div>
 }

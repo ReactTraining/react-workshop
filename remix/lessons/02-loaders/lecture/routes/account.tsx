@@ -16,7 +16,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ user, settings })
 }
 
-export default function () {
+export default function Account() {
   const { user } = useLoaderData<typeof loader>()
 
   return (

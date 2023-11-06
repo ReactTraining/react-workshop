@@ -5,7 +5,7 @@ export const loader = async () => {
   return null
 }
 
-export default function One() {
+export default function PageOne() {
   return (
     <div>
       <h1>One</h1>

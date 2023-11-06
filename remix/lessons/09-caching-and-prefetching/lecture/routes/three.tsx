@@ -3,6 +3,6 @@ export const loader = async () => {
   return null
 }
 
-export default function Three() {
+export default function PageThree() {
   return <h1>Three</h1>
 }

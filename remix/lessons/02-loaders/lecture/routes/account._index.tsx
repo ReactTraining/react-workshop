@@ -1,7 +1,7 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
 
-export default function () {
+export default function AccountIndex() {
   const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }
 
   return (

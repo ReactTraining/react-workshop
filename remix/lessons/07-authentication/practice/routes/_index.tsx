@@ -7,7 +7,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return null
 }
 
-export default function () {
+export default function Index() {
   const user = false // Use useLoaderData instead:
   // const { user } = useLoaderData<typeof loader>()
   return user ? <div>User ID is {user.id}</div> : <div>User is not logged in</div>

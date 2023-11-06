@@ -15,7 +15,7 @@ export const loader = async () => {
 
 export type LoaderData = typeof loader
 
-export default function () {
+export default function Products() {
   // Solution for task 2 (context)
   // const { products, brands } = useLoaderData<LoaderData>()
   // const context = useMemo(() => ({ products }), [products])

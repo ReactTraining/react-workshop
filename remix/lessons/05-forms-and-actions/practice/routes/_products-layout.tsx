@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export type LoaderData = typeof loader
 
-export default function () {
+export default function Products() {
   const { brands, categories } = useLoaderData<LoaderData>()
 
   return (
