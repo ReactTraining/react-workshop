@@ -26,7 +26,10 @@ myArray.concat(newValue) // Similar to push but this returns a new array with th
 
 // URLSearchParams is a web standard for CRUD operations on the URL search params.
 // It returns an object that we can do methods on (see below)
-const search = new URLSearchParams('https://example.com?a=b')
+const search = new URLSearchParams('a=b&foo=bar')
+
+// We can also get this object from new URL:
+const search = new URL('https://site.com?a=b&foo=bar').search
 
 // We can also get this object from `useSearchParams` which returns
 // the same search object based on what's currently in the URL
