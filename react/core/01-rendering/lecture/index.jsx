@@ -5,7 +5,27 @@ import * as ReactDOM from 'react-dom/client'
 import { FaTrash } from 'react-icons/fa'
 
 function App() {
-  // In React, a component is a function that
-  // returns a "blueprint" for React to use
-  // for making the DOM
+  return (
+    <Tabs>
+      <TabList>
+        <div>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+        </div>
+        <Tab>Three</Tab>
+      </TabList>
+
+      <TabPanels>
+        <TabPanel>
+          <p>one!</p>
+        </TabPanel>
+        <TabPanel>
+          <p>two!</p>
+        </TabPanel>
+        <TabPanel>
+          <p>three!</p>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+  )
 }

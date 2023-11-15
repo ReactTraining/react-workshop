@@ -60,6 +60,7 @@ const Define = ({ children }) => {
 
   useEffect(() => {
     const listener = (event) => {
+      console.log('window')
       if (event.target !== buttonRef.current) {
         setOpen(false)
       }

@@ -2,23 +2,59 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 
-const Popover = ({ children }) => {
-  return <div className="bg-black text-white rounded py-1 px-3">{children}</div>
+function Portal({ children }) {
+  const [node, setNode] = useState(null)
+
+  useEffect(() => {
+    const node = document.createElement('div')
+    document.body.appendChild(node)
+    setNode(node)
+    return () => {
+      document.body.removeChild(node)
+    }
+  }, [])
+
+  return node ? createPortal(children, node) : null
+}
+
+const Popover = ({ children, targetRef }) => {
+  const popoverRef = useRef()
+  const [styles, setStyles] = useState({})
+
+  function initRef(node) {
+    if (node && !popoverRef.current) {
+      popoverRef.current = node
+      const targetRect = targetRef.current.getBoundingClientRect()
+      const popoverRect = popoverRef.current.getBoundingClientRect()
+      setStyles(position(targetRect, popoverRect))
+    }
+  }
+
+  return (
+    <Portal>
+      <div
+        ref={initRef}
+        style={{ position: 'absolute', ...styles }}
+        className="bg-black text-white rounded py-1 px-3"
+      >
+        {children}
+      </div>
+    </Portal>
+  )
 }
 
 const Define = ({ children }) => {
   const [open, setOpen] = useState(false)
-
-  // const targetRect = targetRef.current.getBoundingClientRect()
-  // const popoverRect = popoverRef.current.getBoundingClientRect()
-  // setStyles(position(targetRect, popoverRect))
+  const buttonRef = useRef()
 
   return (
     <>
-      <button onClick={() => setOpen(!open)} className="text-sky-600">
+      <button ref={buttonRef} onClick={() => setOpen(!open)} className="text-sky-600">
         {children}
       </button>
-      {open && <Popover>Hooks are a way to compose behavior into components</Popover>}
+      {open && (
+        <Popover targetRef={buttonRef}>Hooks are a way to compose behavior into components</Popover>
+      )}
     </>
   )
 }

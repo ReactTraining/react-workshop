@@ -16,27 +16,16 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-// export async function loader({ params }) {
-//   const id = parseInt(params.vacationId as string)
-//   const vacation = await api.vacations.getVacation(id)
+export async function loader({ params }) {
+  const id = parseInt(params.vacationId as string)
+  const vacation = await api.vacations.getVacation(id)
 
-//   if (!vacation) throw new Response('Not Found', { status: 404 })
-//   return vacation
-// }
+  if (!vacation) throw new Response('Not Found', { status: 404 })
+  return vacation
+}
 
 export function VacationDetailsPage() {
-  const vacationId = parseInt(useParams().vacationId!)
-  const [vacation, setVacation] = useState<Vacation | null>(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
-      if (isCurrent) setVacation(vacation)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [vacationId])
+  const vacation = useLoaderData()
 
   // const { data: vacation } = useQuery(
   //   ['vacation', vacationId],

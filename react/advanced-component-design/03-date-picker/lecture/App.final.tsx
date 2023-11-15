@@ -9,6 +9,14 @@ export function App() {
   return (
     <div className="space-y-3">
       <DatePicker selectRange>
+        <div className="space-x-3">
+          <DatePickerChangeMonth to={-1} className="button">
+            Previous
+          </DatePickerChangeMonth>
+          <DatePickerChangeMonth to={1} className="button">
+            Next
+          </DatePickerChangeMonth>
+        </div>
         <div className="flex gap-6">
           <div className="flex-1 space-y-3">
             <h1>
@@ -24,14 +32,6 @@ export function App() {
           </div>
         </div>
         <hr />
-        <div className="space-x-3">
-          <DatePickerChangeMonth to={-1} className="button">
-            Previous
-          </DatePickerChangeMonth>
-          <DatePickerChangeMonth to={1} className="button">
-            Next
-          </DatePickerChangeMonth>
-        </div>
       </DatePicker>
     </div>
   )

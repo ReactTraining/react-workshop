@@ -35,8 +35,8 @@ export function ChatRoom({ user }: Props) {
     let isCurrent = true
     api.chat.getMessages(THREAD_NAME).then((messages) => {
       if (isCurrent) {
-        setMessages(messages)
         setStartSubscription(Date.now())
+        setMessages(messages)
       }
     })
     return () => {
