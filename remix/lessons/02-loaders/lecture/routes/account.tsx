@@ -16,8 +16,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return json({ user, settings })
 }
 
+export type LoaderData = typeof loader
+
 export default function Account() {
-  const { user } = useLoaderData<typeof loader>()
+  const { user } = useLoaderData<LoaderData>()
 
   return (
     <div className="flex gap-6">

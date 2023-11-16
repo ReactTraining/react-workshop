@@ -4,6 +4,16 @@ import stylesheet from '~/styles/app.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
+function MainLayout({ children }) {
+  return (
+    <div>
+      <header></header>
+      <main>{children}</main>
+      <footer></footer>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <html lang="en">
@@ -19,7 +29,9 @@ export default function App() {
         />
       </head>
       <body>
-        <Outlet />
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
