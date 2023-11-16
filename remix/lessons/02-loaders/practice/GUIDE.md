@@ -9,7 +9,7 @@ In your routes folder, you have two pages for a home page and a `/products` page
 The layout already fetches brands so you'll need to run the promise for `getBrands()` and `getProducts` in parallel and return both results:
 
 ```js
-const [a, b] = await Promise.all(getA(), getB())
+const [a, b] = await Promise.all([getA(), getB()])
 ```
 
 You'll also need to modify how `json()` returns data because you'll want to return brands and products now
