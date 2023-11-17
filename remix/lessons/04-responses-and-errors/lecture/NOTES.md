@@ -7,6 +7,7 @@ return json({ error: 'Invalid Data' }, { status: 400 })
 
 // If you throw a response, the nearest error handler catches it
 throw new Response('Not found', { status: 404 })
+throw new Error()
 ```
 
 Docs: Remix will automatically catch errors and render the nearest error boundary for errors thrown while:

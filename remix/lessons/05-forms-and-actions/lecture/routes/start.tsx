@@ -4,7 +4,15 @@ import { Form, Link, useActionData } from '@remix-run/react'
 export default function Page() {
   return (
     <div>
-      👋 Let's start here. Did you know a form and an anchor are essentially the same thing?
+      <a href="/path?a=b">Here</a>
+
+      <form action="path" method="POST">
+        <input type="text" name="a" value="b" />
+        <input type="text" name="a" value="b" />
+        <input type="text" name="a" value="b" />
+        <input type="text" name="a" value="b" />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   )
 }

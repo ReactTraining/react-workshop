@@ -1,4 +1,4 @@
-import { type ActionFunctionArgs } from '@remix-run/node'
+import { json, type ActionFunctionArgs } from '@remix-run/node'
 import { addToCart, removeFromCart } from '~/utils/cart.server'
 
 export async function action({ request }: ActionFunctionArgs) {

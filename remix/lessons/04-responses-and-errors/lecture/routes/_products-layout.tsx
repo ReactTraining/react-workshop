@@ -13,11 +13,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     getCategories(),
   ])
 
-  return json({
-    products,
-    brands: brands.sort(sortLabel),
-    categories: categories.sort(sortLabel),
-  })
+  throw new Response('Bad', { status: 500 })
+
+  // return json({
+  //   products,
+  //   brands: brands.sort(sortLabel),
+  //   categories: categories.sort(sortLabel),
+  // })
 }
 
 export type LoaderData = typeof loader
