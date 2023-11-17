@@ -29,7 +29,7 @@ myArray.concat(newValue) // Similar to push but this returns a new array with th
 const search = new URLSearchParams('a=b&foo=bar')
 
 // We can also get this object from new URL:
-const search = new URL('https://site.com?a=b&foo=bar').search
+const search = new URL('https://site.com?a=b&foo=bar').searchParams
 
 // We can also get this object from `useSearchParams` which returns
 // the same search object based on what's currently in the URL

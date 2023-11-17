@@ -9,7 +9,7 @@ import { type ActionFunctionArgs, type LoaderFunctionArgs, json } from '@remix-r
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
-// import { addToCart, removeFromCart } from '~/utils/cart.server'
+import { addToCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
 import { sleep } from '~/utils/helpers'
 
@@ -20,23 +20,25 @@ import { sleep } from '~/utils/helpers'
 
 // async function removeFromCart(productId: number) {
 //   console.log('remove product', productId)
-//   return Promise.resolve('').then(sleep(3000))
+//   return Promise.resolve('').then(sleep(2000))
 // }
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
-  const productId = formData.get('productId')
-  console.log('product', productId)
+  const productId = parseInt(formData.get('productId') as string)
+  const quantity = parseInt(formData.get('quantity') as string)
 
-  // addToCart commits to the cookie so we need to return special headers.
-  // Without the return, it wont work
-  // return await addToCart(request, productId, quantity)
+  if (request.method.toLowerCase() === 'post') {
+    return await addToCart(request, productId, quantity)
+  } else if (request.method.toLowerCase() === 'delete') {
+    return await removeFromCart(request, productId)
+  }
 
   return null
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const cart = await getCart(request)
+  const cart = await getCart(request) // read the cookie
   return json({ cart })
 }
 
@@ -44,20 +46,13 @@ export default function ProductsIndex() {
   const { cart } = useLoaderData<typeof loader>()
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
 
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
-
   return (
     <Tiles>
       {products.map((product) => {
         const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
+        // const isSubmitting =
+        //   addForm.state === 'submitting' &&
+        //   parseInt(addForm.formData?.get('productId') as string) === product.id
 
         return (
           <div
@@ -75,16 +70,8 @@ export default function ProductsIndex() {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button className="button">Remove</button>
+                <AddToCart productId={product.id} quantityInCart={quantityInCart} />
+                {quantityInCart > 0 && <RemoveFromCart productId={product.id} />}
               </div>
             </div>
           </div>
@@ -94,19 +81,35 @@ export default function ProductsIndex() {
   )
 }
 
-// type AddProps = {
-//   productId: number
-//   quantityInCart?: number
-// }
+type AddProps = {
+  productId: number
+  quantityInCart?: number
+}
 
-// function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
+function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
+  const addForm = useFetcher()
 
-// }
+  return (
+    <addForm.Form method="post">
+      <input type="hidden" name="productId" value={productId} />
+      <input type="hidden" name="quantity" value={quantityInCart + 1} />
+      <button className="button button-outline whitespace-nowrap" type="submit">
+        <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}{' '}
+      </button>
+    </addForm.Form>
+  )
+}
 
-// type RemoveProps = {
-//   productId: number
-// }
+type RemoveProps = {
+  productId: number
+}
 
-// function RemoveFromCart({ productId }: RemoveProps) {
-
-// }
+function RemoveFromCart({ productId }: RemoveProps) {
+  const removeForm = useFetcher()
+  return (
+    <removeForm.Form method="delete">
+      <input type="hidden" name="productId" value={productId} />
+      <button className="button">Remove</button>
+    </removeForm.Form>
+  )
+}

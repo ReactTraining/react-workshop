@@ -8,13 +8,14 @@ import { getPost } from '../utils/blog.server'
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const slug = params.slug
+
   if (!slug) throw new Response('Not found', { status: 404 })
 
   try {
     const { frontmatter, code } = await getPost(slug)
     return json({ frontmatter, code })
   } catch (err) {
-    throw new Response('Not found', { status: 404 })
+    throw new Response('Not found mmm', { status: 404 })
   }
 }
 
