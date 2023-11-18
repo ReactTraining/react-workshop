@@ -1,4 +1,4 @@
-import { Link, PrefetchPageLinks } from '@remix-run/react'
+import { Link } from '@remix-run/react'
 
 export default function Index() {
   return (
@@ -9,7 +9,6 @@ export default function Index() {
       </Link>
       <br />
       <Link to="/product">iPhone</Link>
-      {/* <PrefetchPageLinks page="/one" /> */}
     </div>
   )
 }
