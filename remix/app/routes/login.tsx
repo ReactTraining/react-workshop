@@ -8,8 +8,8 @@ import { Heading } from '~/components/Heading'
 import type { ActionFunctionArgs } from '@remix-run/node'
 
 const formSchema = z.object({
-  username: z.string().min(5, { message: 'Must be at least 5 characters' }),
-  password: z.string().min(5, { message: 'Must be at least 5 characters' }),
+  username: z.string().min(5, 'Must be at least 5 characters'),
+  password: z.string().min(5, 'Must be at least 5 characters'),
 })
 
 type FormDataType = z.infer<typeof formSchema>

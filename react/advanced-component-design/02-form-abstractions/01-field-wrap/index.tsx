@@ -1,11 +1,11 @@
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
-import { App } from './App'
+import { LoginForm } from './LoginForm'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <LessonBody>
     <LessonCard className="w-96">
-      <App />
+      <LoginForm />
     </LessonCard>
   </LessonBody>
 )

@@ -9,7 +9,10 @@ type Props = {
   onSelect(s: string, e: string): void
 }
 
-// THIS FILE IS HERE SO YOU CAN SEE IT, NO CHANGES WILL BE NEEDED
+// YOU DON'T NEED TO CHANGE THIS FILE
+// This is a "specialization" component for the date picker
+// in case you're curious to see it. Your changes for the
+// practice will be in FormFields.tsx
 
 export function SelectDateRange({ onSelect }: Props) {
   return (

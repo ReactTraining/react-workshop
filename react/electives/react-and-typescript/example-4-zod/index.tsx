@@ -1,9 +1,9 @@
 import * as z from 'zod'
 
 const allRules = z.object({
-  email: z.string().email().max(150, { message: 'Cannot be more than 150 characters' }),
-  username: z.string().min(5, { message: 'Must be at least 5 characters' }),
-  password: z.string().min(5, { message: 'Must be at least 5 characters' }),
+  email: z.string().email().max(150, 'Cannot be more than 150 characters'),
+  username: z.string().min(5, 'Must be at least 5 characters'),
+  password: z.string().min(5, 'Must be at least 5 characters'),
 })
 
 function makeZodSchema(keys: string[]) {
