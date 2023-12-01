@@ -38,11 +38,11 @@ export function VacationDetailsPage() {
     }
   }, [vacationId])
 
-  // const { data: vacation } = useQuery(
-  //   ['vacation', vacationId],
-  //   () => api.vacations.getVacation(vacationId),
-  //   { staleTime: 1000 * 30 }
-  // )
+  // const { data: vacation } = useQuery({
+  //   queryKey: ['vacation', vacationId],
+  //   queryFn: () => api.vacations.getVacation(vacationId),
+  //   staleTime: 1000 * 30, // 30s
+  // })
 
   if (!vacation) return <div>Loading...</div>
 
