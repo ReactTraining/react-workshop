@@ -1,8 +1,11 @@
-export function Avatar() {
+export function Avatar({ src }) {
   return (
-    <div
+    <img
+      alt="User Avatar"
+      loading="lazy"
+      src={src}
       style={{ width: `3em` }}
-      className="aspect-square rounded-full border border-slate-400 bg-slate-100"
+      className="aspect-square rounded-full"
     />
   )
 }

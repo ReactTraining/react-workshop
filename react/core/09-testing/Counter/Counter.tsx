@@ -31,11 +31,10 @@ export function Counter({ count, setCount, min = 0 }: CounterProps) {
         onChange={(event) => setCount(parseInt(event.target.value))}
         data-testid="input"
       />
-      <div>
-        <button onClick={add} className="button button-small" data-testid="add">
-          <Icon name="plus" />
-        </button>
-      </div>
+
+      <button onClick={add} className="button button-small" data-testid="add">
+        <Icon name="plus" />
+      </button>
     </div>
   )
 }

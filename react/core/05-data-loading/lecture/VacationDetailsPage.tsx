@@ -10,12 +10,14 @@ import type { Vacation } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
+export async function loader({ params }) {
+  const vacationId = params.vacationId
+
+  return api.vacations.getVacation(vacationId)
+}
+
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
-
-  // api.vacations.getVacation(vacationId)
-
+  const vacation = useLoaderData() as Awaited<ReturnType<typeof loader>>
   if (!vacation) return <div>Loading...</div>
 
   return (
