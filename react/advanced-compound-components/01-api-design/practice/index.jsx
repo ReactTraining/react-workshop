@@ -7,10 +7,6 @@ import '../lecture/styles.css'
 function App() {
   return (
     <LessonBody>
-      {/*
-      Create a reusable component in the Disclosure.jsx file. This is just
-      giving you the starting DOM structure you're aiming for:
-      */}
       <div className="disclosure">
         <button className="disclosure-button">
           <FaAngleRight />

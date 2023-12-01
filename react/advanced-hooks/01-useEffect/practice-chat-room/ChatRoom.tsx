@@ -34,6 +34,7 @@ export function ChatRoom({ user }: Props) {
 
   // Get initial messages
   // api.chat.getMessages(THREAD_NAME).then((messages) => {
+  // Date.now()
   // })
 
   // Subscribe to new messages

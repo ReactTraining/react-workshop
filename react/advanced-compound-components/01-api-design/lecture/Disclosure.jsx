@@ -1,28 +1,55 @@
 import React, { useState, useId } from 'react'
-import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 
-export function Disclosure({ children, label, defaultIsOpen = false }) {
+export function Disclosure({ children, onChange, defaultIsOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
+
+  const panelId = useId()
 
   function onSelect() {
     setIsOpen(!isOpen)
+    typeof onChange === 'function' && onChange(!isOpen)
   }
 
-  // Notice how awful it is to build class name strings.
-  // We'll fix it with data-attributes
+  children = React.Children.map(children, (child) => {
+    return React.cloneElement(child, {
+      onSelect,
+      isOpen,
+      panelId,
+    })
+  })
 
-  return (
-    <div className="disclosure">
-      <button onClick={onSelect} className={`disclosure-button ${isOpen ? 'open' : 'collapsed'}`}>
-        {isOpen ? <FaAngleDown /> : <FaAngleRight />}
-        <span>{label}</span>
+  return <div data-disclosure="">{children}</div>
+}
+
+export const DisclosureButton = React.forwardRef(
+  ({ children, onSelect, isOpen, panelId, ...props }, forwardedRef) => {
+    return (
+      <button
+        ref={forwardedRef}
+        {...props}
+        onClick={onSelect}
+        data-disclosure-button=""
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        data-disclosure-state={isOpen ? 'open' : 'collapsed'}
+      >
+        {typeof children === 'function' ? children(isOpen) : children}
       </button>
-      <div className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`} hidden={!isOpen}>
-        {children}
-      </div>
+    )
+  }
+)
+
+DisclosureButton.displayName = 'DisclosureButton'
+
+export const DisclosurePanel = ({ children, isOpen, panelId, ...props }) => {
+  return (
+    <div
+      {...props}
+      id={panelId}
+      className={`disclosure-panel ${isOpen ? 'open' : 'collapsed'}`}
+      hidden={!isOpen}
+    >
+      {children}
     </div>
   )
 }
-
-export const DisclosureButton = ({ children }) => {}
-export const DisclosurePanel = ({ children }) => {}
