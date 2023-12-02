@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 
-const Portal = ({ children }) => {
+function Portal({ children }) {
   const [portalNode, setPortalNode] = useState(null)
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Portal = ({ children }) => {
   return portalNode ? createPortal(children, portalNode) : null
 }
 
-const Popover = ({ children, targetRef, ...props }) => {
+function Popover({ children, targetRef, ...props }) {
   const popoverRef = useRef(null)
   const [styles, setStyles] = useState({})
 
@@ -54,7 +54,7 @@ const Popover = ({ children, targetRef, ...props }) => {
   )
 }
 
-const Define = ({ children }) => {
+function Define({ children }) {
   const [open, setOpen] = useState(false)
   const buttonRef = useRef()
 

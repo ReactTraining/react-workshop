@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 // import { Page } from './TwitterFeed.final'
 import { Page } from './TwitterFeed'

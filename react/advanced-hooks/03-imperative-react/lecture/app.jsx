@@ -2,16 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 
-const Popover = ({ children }) => {
-  return <div className="bg-black text-white rounded py-1 px-3">{children}</div>
-}
-
-const Define = ({ children }) => {
-  const [open, setOpen] = useState(false)
-
+function Popover({ children }) {
   // const targetRect = targetRef.current.getBoundingClientRect()
   // const popoverRect = popoverRef.current.getBoundingClientRect()
   // setStyles(position(targetRect, popoverRect))
+  return <div className="bg-black text-white rounded py-1 px-3">{children}</div>
+}
+
+function Define({ children }) {
+  const [open, setOpen] = useState(false)
 
   return (
     <>

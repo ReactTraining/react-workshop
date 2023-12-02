@@ -22,6 +22,8 @@ function Tweet({ id }) {
 }
 
 export function Page({ theme }) {
+  const options = { theme }
+
   return (
     <div className="flex gap-6">
       <Tweet id="1274126046648864768" />
