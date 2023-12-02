@@ -7,6 +7,9 @@ import { Heading } from '~/components/Heading'
 import type { ActionFunctionArgs } from '@remix-run/node'
 import { createUserSession, verifyUser } from '../utils/auth.server'
 
+// Needed for when you make register.tsx
+// import { usernameExists } from '~/utils/db.server'
+
 const formSchema = z.object({
   username: z.string().min(5, 'Must be at least 5 characters'),
   password: z.string().min(5, 'Must be at least 5 characters'),
