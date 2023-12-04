@@ -69,7 +69,7 @@ function onSubmit(event) {
 - useId is a hook to give us an app-wide unique id usually for HTML id's to be unique for accessibility
 - useEffect is a hook for running side-effect code after the component renders
 - useMemo is a hook to "memoize" a value while rendering. In other words "remember" a value so it does't have to be re-computed again on every render. Only compute it again if the useMemo dependency array changes
-- React.memo (or just memo) is for memoizing functional components so they get less re-renders. A memoized component will not be subject to re-rendering when the component above it (called the parent or owner component) re-renders unless the props being passed into the memoized component changes.
+- React.memo (or just memo) is for memoizing function components so they get less re-renders. A memoized component will not be subject to re-rendering when the component above it (called the parent or owner component) re-renders unless the props being passed into the memoized component changes.
 
 ```js
 // useMemo calls the fn in the render phase (synchronously) and "memoizes"
