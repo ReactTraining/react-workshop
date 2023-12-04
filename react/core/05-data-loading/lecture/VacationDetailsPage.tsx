@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
@@ -10,11 +10,31 @@ import type { Vacation } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+// <Vacation | null>
 
-  // api.vacations.getVacation(vacationId)
+function useApi(api: any) {
+  const [results, setResults] = useState<any>(null)
+
+  useEffect(() => {
+    let isCurrent = true
+    api(arg).then((results) => {
+      if (isCurrent) {
+        setResults(results)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [api])
+
+  return results
+}
+
+export function VacationDetailsPage() {
+  const vacationId = parseInt(useParams().vacationId!)
+
+  const stableApi = useCallback(() => api.vacations.getVacation(vacationId), [vacationId])
+  const vacation = useApi(() => api.vacations.getVacation())
 
   if (!vacation) return <div>Loading...</div>
 

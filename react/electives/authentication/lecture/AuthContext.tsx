@@ -29,20 +29,6 @@ export function AuthProvider({ children }: Props) {
     setAuthenticated(false)
   }
 
-  useEffect(() => {
-    let isCurrent = true
-    api.auth.getAuthenticatedUser().then((user) => {
-      if (user && isCurrent) {
-        login(user)
-      } else {
-        logout()
-      }
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
-
   const context = {
     user,
     authenticated,

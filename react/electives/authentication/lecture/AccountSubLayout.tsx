@@ -2,7 +2,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 import { useAuthContext } from './AuthContext'
 
 export function AccountSubLayout() {
-  const { authenticated } = useAuthContext()
+  const { authenticated, login, logout } = useAuthContext()
 
   if (authenticated === false) {
     return <Navigate to="/login" replace />
@@ -11,6 +11,20 @@ export function AccountSubLayout() {
   } else if (authenticated === null) {
     return <div>Loading...</div>
   }
+
+  useEffect(() => {
+    let isCurrent = true
+    api.auth.getAuthenticatedUser().then((user) => {
+      if (user && isCurrent) {
+        login(user)
+      } else {
+        logout()
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
   return (
     <div className="flex -m-3">
