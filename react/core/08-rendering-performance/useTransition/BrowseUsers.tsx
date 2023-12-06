@@ -6,8 +6,13 @@ import { Heading } from '~/Heading'
 // https://github.com/reactwg/react-18/discussions/41
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
+console.time()
+setTimeout(() => {
+  console.timeEnd()
+}, 1000)
+
 export function BrowseUsers() {
-  const allUsers = useUsers(1000) // generate 1000 user objects with random "likes"
+  const allUsers = useUsers(100) // generate 100 user objects with random "likes"
 
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
@@ -15,7 +20,12 @@ export function BrowseUsers() {
   // const [pending, startTransition] = useTransition()
   function filterUsers(minLikes: number) {
     setMinLikes(minLikes)
-    setUsers(allUsers?.filter((u) => u.likes >= minLikes))
+
+    console.time()
+    const filteredUsers = allUsers?.filter((u) => u.likes >= minLikes)
+    console.timeEnd()
+
+    // setUsers(filteredUsers)
   }
 
   const editUser = (userId: number) => {
