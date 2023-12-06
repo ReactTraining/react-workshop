@@ -1,23 +1,23 @@
-const RECORDS = 1000
+import { useMemo } from 'react'
 
 export type UserType = {
   id: number
   name: string
   likes: number
 }
-const users: UserType[] = []
 
-for (let i = 0; i < RECORDS; i++) {
-  const id = i + 1
-  const likes = Math.floor(Math.random() * 10)
-  const user = {
-    id,
-    name: `User ${id}`,
-    likes,
-  }
-  users.push(user)
-}
+export function useUsers(count = 1000) {
+  const users: UserType[] = useMemo(() => {
+    return [...new Array(count).keys()].map((n) => {
+      const id = n + 1
+      const likes = Math.floor(Math.random() * 10)
+      return {
+        id,
+        name: `User ${id}`,
+        likes,
+      }
+    })
+  }, [count])
 
-export function useUsers() {
   return users
 }

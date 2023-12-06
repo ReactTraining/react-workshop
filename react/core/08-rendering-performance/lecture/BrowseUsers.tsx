@@ -1,4 +1,4 @@
-import { useState, useId, memo, useTransition, useCallback } from 'react'
+import { useState, memo, useTransition, useCallback } from 'react'
 import { useUsers, type UserType } from './useUsers'
 import { Card } from '~/Card'
 import { Heading } from '~/Heading'
@@ -7,7 +7,7 @@ import { Heading } from '~/Heading'
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function BrowseUsers() {
-  const allUsers = useUsers() // generates 1000s of users
+  const allUsers = useUsers(1000) // generate 1000 user objects with random "likes"
 
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
@@ -42,7 +42,7 @@ export function BrowseUsers() {
             onChange={(e) => filterUsers(parseInt(e.target.value))}
           />
           <div>
-            Users: <b className="text-slate-800">{users?.length}</b>
+            Showing: <b className="text-slate-800">{users?.length}</b> Users
             {/* {pending && '...'} */}
           </div>
         </div>
@@ -72,15 +72,19 @@ export function BrowseUsers() {
 // }
 //
 // const UserList = memo(({ users, editUser }: Props) => {
-//   return users.map((user) => {
-//     return (
-//       <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
-//         <div className="flex-1">{user.name}</div>
-//         <div className="flex-1">Liked Vacations: {user.likes}</div>
-//         <button className="button" onClick={() => editUser(user.id)}>
-//           Edit User
-//         </button>
-//       </div>
-//     )
-//   })
+//   return (
+//     <>
+//       {users.map((user) => {
+//         return (
+//           <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
+//             <div className="flex-1">{user.name}</div>
+//             <div className="flex-1">Liked Vacations: {user.likes}</div>
+//             <button className="button" onClick={() => editUser(user.id)}>
+//               Edit User
+//             </button>
+//           </div>
+//         )
+//       })}
+//     </>
+//   )
 // })
