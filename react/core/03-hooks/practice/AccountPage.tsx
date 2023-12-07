@@ -14,8 +14,12 @@ type Props = {
 
 export function AccountPage({ user }: Props) {
   const [count, setCount] = useState(0)
+  const [lat, setLat] = useState(40.712)
+  const [lng, setLng] = useState(-74.006)
 
-  const pos = { lat: 40.712, lng: -74.006 }
+  const pos = useMemo(() => {
+    return { lat, lng }
+  }, [lat, lng])
 
   return (
     <div className="space-y-3">
@@ -42,7 +46,7 @@ type GoogleMapsProps = {
   pos: { lat: number; lng: number }
 }
 
-const GoogleMaps = ({ pos }: GoogleMapsProps) => {
+const GoogleMaps = memo(({ pos }: GoogleMapsProps) => {
   const mapRef = useRef<any>()
   const divRef = useRef<HTMLDivElement>(null!)
 
@@ -63,4 +67,4 @@ const GoogleMaps = ({ pos }: GoogleMapsProps) => {
   }, [pos])
 
   return <div className="h-64 bg-slate-200" ref={divRef} />
-}
+})

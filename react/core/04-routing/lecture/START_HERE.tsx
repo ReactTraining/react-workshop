@@ -1,13 +1,13 @@
 import { useState } from 'react'
-// import {
-//   BrowserRouter,
-//   Route,
-//   RouterProvider,
-//   Routes,
-//   createBrowserRouter,
-//   createRoutesFromElements,
-// } from 'react-router-dom'
-// import { MainLayout } from '~/MainLayout'
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom'
+import { MainLayout } from '~/MainLayout'
 
 type Props = { children: React.ReactNode }
 
@@ -41,16 +41,16 @@ export function App() {
  * Basic React Router 6 Example: With JSX routes
  */
 
-// export function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<MainLayout />}>
-//           <Route index={true} element={<HomePage />} />
-//           <Route path="one" element={<PageOne />} />
-//           <Route path="two" element={<PageTwo />} />
-//         </Route>
-//       </Routes>
-//     </BrowserRouter>
-//   )
-// }
+export function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index={true} element={<HomePage />} />
+          <Route path="one" element={<PageOne />} />
+          <Route path="two" element={<PageTwo />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}

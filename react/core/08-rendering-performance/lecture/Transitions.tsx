@@ -13,22 +13,24 @@ export function App() {
   const [minLikes, setMinLikes] = useState(0)
 
   const [pending, startTransition] = useTransition()
+
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
+    setMinLikes(newMinLikes) // high priority (default)
 
     if (newMinLikes !== minLikes) {
-      console.log('start')
-      console.time()
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
+      // startTransition(() => {
+      setUsers(filteredUsers) // low
+      // })
     }
-
-    // setUsers(filteredUsers)
   }
 
-  const editUser = (userId: number) => {
-    // start editing the user
-  }
+  const editUser = useCallback(
+    () => (userId: number) => {
+      // start editing the user
+    },
+    []
+  )
 
   return (
     <Card className="space-y-6">
@@ -58,18 +60,7 @@ export function App() {
       <hr />
       <div className="space-y-3">
         {/* Turn this into <UserList users={users} editUser={editUser} /> */}
-        <UserList users={users} />
-        {/* {users.map((user) => {
-          return (
-            <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
-              <div className="flex-1">{user.name}</div>
-              <div className="flex-1">Liked Vacations: {user.likes}</div>
-              <button className="button" onClick={() => editUser(user.id)}>
-                Edit User
-              </button>
-            </div>
-          )
-        })} */}
+        <UserList users={users} editUser={editUser} />
       </div>
     </Card>
   )
@@ -77,11 +68,14 @@ export function App() {
 
 type Props = {
   users: UserType[]
-  // editUser(userId: number): void
+  editUser(userId: number): void
 }
 
-const UserList = memo(({ users }: Props) => {
-  // const users2 = useDeferredValue(users)
+// UserList() old list
+// UserList() new list
+
+const UserList = memo(({ users, editUser }: Props) => {
+  const users2 = useDeferredValue(users)
 
   return (
     <>

@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+
 import {
   Navigate,
   Route,
@@ -13,10 +15,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from '~/BrowseVacationsPage'
-import { VacationDetailsPage } from '~/VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 export function App() {
   return <RouterProvider router={router} />
@@ -28,7 +31,14 @@ const router = createBrowserRouter(
       <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
-          <Route path=":vacationId" element={<VacationDetailsPage />} />
+          <Route
+            path=":vacationId"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
+          />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
           <Route index element={<Navigate to="/" />} />
         </Route>
