@@ -30,7 +30,7 @@ formatDate('MM')
 
 If you wish to see other formatting options: https://day.js.org/docs/en/display/format
 
-## ✅ What is a compound component?
+## What is a compound component?
 
 First, let's understand what a compound component is. It's essentially making one visual component from several React components like this:
 

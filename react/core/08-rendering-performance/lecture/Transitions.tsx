@@ -1,29 +1,27 @@
-import { useState, memo, useTransition, useCallback } from 'react'
-import { useUsers, type UserType } from './useUsers'
+import { useState, memo, useTransition, useCallback, useDeferredValue } from 'react'
+import { useUsers, type UserType } from './helpers/useUsers'
 import { Card } from '~/Card'
 import { Heading } from '~/Heading'
 
 // https://github.com/reactwg/react-18/discussions/41
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
-console.time()
-setTimeout(() => {
-  console.timeEnd()
-}, 1000)
-
-export function BrowseUsers() {
-  const allUsers = useUsers(100) // generate 100 user objects with random "likes"
+export function App() {
+  const allUsers = useUsers(5000)
 
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  // const [pending, startTransition] = useTransition()
-  function filterUsers(minLikes: number) {
-    setMinLikes(minLikes)
+  const [pending, startTransition] = useTransition()
+  function filterUsers(newMinLikes: number) {
+    setMinLikes(newMinLikes)
 
-    console.time()
-    const filteredUsers = allUsers?.filter((u) => u.likes >= minLikes)
-    console.timeEnd()
+    if (newMinLikes !== minLikes) {
+      console.log('start')
+      console.time()
+      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+      console.timeEnd()
+    }
 
     // setUsers(filteredUsers)
   }
@@ -53,14 +51,15 @@ export function BrowseUsers() {
           />
           <div>
             Showing: <b className="text-slate-800">{users?.length}</b> Users
-            {/* {pending && '...'} */}
+            {pending && '...'}
           </div>
         </div>
       </header>
       <hr />
       <div className="space-y-3">
         {/* Turn this into <UserList users={users} editUser={editUser} /> */}
-        {users.map((user) => {
+        <UserList users={users} />
+        {/* {users.map((user) => {
           return (
             <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
               <div className="flex-1">{user.name}</div>
@@ -70,31 +69,31 @@ export function BrowseUsers() {
               </button>
             </div>
           )
-        })}
+        })} */}
       </div>
     </Card>
   )
 }
 
-// type Props = {
-//   users: UserType[]
-//   editUser(userId: number): void
-// }
-//
-// const UserList = memo(({ users, editUser }: Props) => {
-//   return (
-//     <>
-//       {users.map((user) => {
-//         return (
-//           <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
-//             <div className="flex-1">{user.name}</div>
-//             <div className="flex-1">Liked Vacations: {user.likes}</div>
-//             <button className="button" onClick={() => editUser(user.id)}>
-//               Edit User
-//             </button>
-//           </div>
-//         )
-//       })}
-//     </>
-//   )
-// })
+type Props = {
+  users: UserType[]
+  // editUser(userId: number): void
+}
+
+const UserList = memo(({ users }: Props) => {
+  // const users2 = useDeferredValue(users)
+
+  return (
+    <>
+      {users.map((user) => {
+        return (
+          <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
+            <div className="flex-1">{user.name}</div>
+            <div className="flex-1">Liked Vacations: {user.likes}</div>
+            <button className="button">Edit User</button>
+          </div>
+        )
+      })}
+    </>
+  )
+})
