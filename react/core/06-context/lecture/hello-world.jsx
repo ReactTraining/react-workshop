@@ -25,23 +25,25 @@ export function App() {
   return (
     <LessonBody>
       <LessonCard>
-        <div className="flex justify-between">
-          <div>Favorites: {JSON.stringify(favorites)}</div>
-          <div>
-            <VacationsSubLayout isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          </div>
-        </div>
+        <MainLayout favorites={favorites} isFavorite={isFavorite} updateFavorite={updateFavorite} />
       </LessonCard>
     </LessonBody>
   )
 }
 
 /****************************************
-  VacationsSubLayout.js
+  MainLayout.js
 *****************************************/
 
-function VacationsSubLayout({ isFavorite, updateFavorite }) {
-  return <BrowseVacationsPage isFavorite={isFavorite} updateFavorite={updateFavorite} />
+function MainLayout({ favorites, isFavorite, updateFavorite }) {
+  return (
+    <div className="flex justify-between">
+      <div>Favorites: {JSON.stringify(favorites)}</div>
+      <div>
+        <BrowseVacationsPage isFavorite={isFavorite} updateFavorite={updateFavorite} />
+      </div>
+    </div>
+  )
 }
 
 /****************************************
