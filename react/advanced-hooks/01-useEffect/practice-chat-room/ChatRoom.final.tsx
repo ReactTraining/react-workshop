@@ -90,11 +90,7 @@ export function ChatRoom({ user }: Props) {
     const e = event.target
     // See if the user scrolled to the bottom
     const bottom = e.scrollHeight <= Math.ceil(e.scrollTop + e.clientHeight)
-    // If the user is in a different scroll position from what we have
-    // in state, update the state
-    if (scrolledToBottom !== bottom) {
-      setScrolledToBottom(bottom)
-    }
+    setScrolledToBottom(bottom)
   }
 
   return (
