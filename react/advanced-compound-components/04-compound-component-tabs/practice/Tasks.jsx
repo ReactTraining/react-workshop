@@ -10,9 +10,11 @@ export function TaskOne() {
       </li>
       <li>
         We're going to need to know the index of each tab. You'll need to iterate the `children` of
-        `TabList` which are the Tabs. Use `React.Children.map` and pass the index of the Tab to it.
-        You could use `React.cloneElement` but there are some drawbacks. Another way is to create
-        another type of context so we can pass index down from `TabList` to `Tab`.
+        `TabList`. The children of `TabList` is `Tab`. Use `React.Children.map` to get the index and
+        pass it to each Tab. You could use `React.cloneElement` but there are some drawbacks.
+        Another way is to create another type of context so we can pass index down from `TabList` to
+        `Tab`. Note that you'll need a different context provider than the main `TabsContext`. We
+        made a context for you already called `TabListContext`
       </li>
       <li>
         For the panels, use the HTML `hidden` attribute to hide panels that are not active. Note,

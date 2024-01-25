@@ -4,9 +4,9 @@ import { wrapEvent } from '../../utils'
 // You know what to do 😉
 
 // Hint: You probably need three contexts
-const TabsContext = createContext()
-const TabContext = createContext()
-const PanelContext = createContext()
+const TabsContext = createContext() // For passing general top-level info down
+const TabListContext = createContext() // For passing index down from TabList to Tab
+const TabPanelsContext = createContext() // Same but index down from TabPanels to TabPanel
 
 export const Tabs = ({ children, ...props }) => {
   return (
@@ -29,9 +29,9 @@ export const TabList = ({ children, ...props }) => {
 
 export const Tab = ({ children, ...props }) => {
   return (
-    <div {...props} data-tab="">
+    <button {...props} data-tab="" role="tab">
       {children}
-    </div>
+    </button>
   )
 }
 
