@@ -11,6 +11,7 @@ export function LoginForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-3">
       <FieldInput label="Email" type="email" className="form-field" autoComplete="off" />
+
       <FieldInput label="Password" type="password" className="form-field" />
       <button type="submit" className="button">
         Submit

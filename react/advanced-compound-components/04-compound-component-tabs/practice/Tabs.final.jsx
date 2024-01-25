@@ -14,17 +14,19 @@ export const Tabs = React.forwardRef(
     }
 
     const [selectedIndex, setSelectedIndex] = useState(0)
-
-    const context = {
-      tabsId: useId(),
-      selectedIndex: isControlled ? controlledIndex : selectedIndex,
-      setSelectedIndex: (index) => {
-        onChange && onChange(index)
-        if (!isControlled) {
-          setSelectedIndex(index)
-        }
-      },
-    }
+    const id = useId() // :r0:
+    const context = React.useMemo(() => {
+      return {
+        tabsId: id,
+        selectedIndex: isControlled ? controlledIndex : selectedIndex,
+        setSelectedIndex: (index) => {
+          onChange && onChange(index)
+          if (!isControlled) {
+            setSelectedIndex(index)
+          }
+        },
+      }
+    }, [controlledIndex, isControlled, onChange, selectedIndex])
 
     return (
       <TabsContext.Provider value={context}>

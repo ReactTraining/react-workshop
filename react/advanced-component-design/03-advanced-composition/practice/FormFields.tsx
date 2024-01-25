@@ -103,7 +103,13 @@ export function FieldDatePicker({ startName, endName, label, ...props }: FieldDa
               className="absolute z-10 w-[600px] rounded-md shadow-lg p-3 bg-white border border-slate-200/60"
             >
               {({ close }) => {
-                return <div>Remove this div and replace with SelectDateRange.</div>
+                return (
+                  <SelectDateRange
+                    onSelect={(start, end) => {
+                      console.log(start, end)
+                    }}
+                  />
+                )
               }}
             </Popover.Panel>
           </Popover>

@@ -2,16 +2,18 @@ import { useId, useState } from 'react'
 import * as z from 'zod'
 
 const formSchema = z.object({
-  email: z.string().email(),
+  email: z.string().min(6).email(),
   password: z.string().min(5, 'Must be at least 5 characters'),
 })
 
 type FormDataType = z.infer<typeof formSchema>
+
 type FormErrorType = {
   [k in keyof FormDataType]?: string[] | undefined
 }
 
 export function LoginForm() {
+  const [errors, setErrors] = useState<FormErrorType>()
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

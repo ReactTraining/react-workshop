@@ -19,7 +19,11 @@ function App() {
     { id: 3, name: 'Tomatoes', quantity: 3 },
   ])
 
-  function addItem(item: Item) {}
+  function addItem(item: Item) {
+    setItems([...items, item])
+
+    setItems(items.concat())
+  }
 
   // Without Cloning (Faster, More Difficult)
   function subtractQuantity(id: number) {

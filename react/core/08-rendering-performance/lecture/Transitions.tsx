@@ -7,23 +7,20 @@ import { Heading } from '~/Heading'
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function App() {
-  const allUsers = useUsers(5000)
+  const allUsers = useUsers(10000)
 
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
   const [pending, startTransition] = useTransition()
+
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
+    setMinLikes(newMinLikes) // high
+    const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
 
-    if (newMinLikes !== minLikes) {
-      console.log('start')
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-    }
-
-    // setUsers(filteredUsers)
+    startTransition(() => {
+      setUsers(filteredUsers)
+    })
   }
 
   const editUser = (userId: number) => {
@@ -81,8 +78,6 @@ type Props = {
 }
 
 const UserList = memo(({ users }: Props) => {
-  // const users2 = useDeferredValue(users)
-
   return (
     <>
       {users.map((user) => {

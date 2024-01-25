@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody } from '~/Lesson'
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs'
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from './Tabs.final'
 import { TaskOne, TaskTwo, TaskThree } from './Tasks'
 import './styles.css'
 
