@@ -21,28 +21,31 @@ export const Accordion = React.forwardRef(
       console.warn('Cannot change from controlled to uncontrolled or vice versa.')
     }
 
-    children = React.Children.map(children, (child, index) => {
-      const panelId = `accordion-${accordionId}-panel-${index}`
-      const buttonId = `accordion-${accordionId}-button-${index}`
+    let iRef = useRef(-1)
 
-      const context = {
-        buttonId,
-        panelId,
-        selected: isControlled ? controlledIndex === index : selectedIndex === index,
-        selectPanel: () => {
-          onChange && onChange(index)
-          if (!isControlled) {
-            setSelectedIndex(index)
-          }
-        },
-      }
-      return <AccordionContext.Provider value={context} children={child} />
-    })
+    const context = {
+      registerIndex: (ref) => {
+        if (!ref.current) {
+          ref.current = ++iRef.current
+        }
+        return ref.current
+      },
+      accordionId,
+      isSelected: (index) => (isControlled ? controlledIndex === index : selectedIndex === index),
+      selectPanel: (index) => {
+        onChange && onChange(index)
+        if (!isControlled) {
+          setSelectedIndex(index)
+        }
+      },
+    }
 
     return (
-      <div data-accordion="" ref={forwardedRef} {...props}>
-        {children}
-      </div>
+      <AccordionContext.Provider value={context}>
+        <div data-accordion="" ref={forwardedRef} {...props}>
+          {children}
+        </div>
+      </AccordionContext.Provider>
     )
   }
 )
@@ -53,18 +56,33 @@ Accordion.displayName = 'Accordion'
  * Accordion Item
  */
 
+const AccordionItemContext = React.createContext()
+
 export const AccordionItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { selected } = useContext(AccordionContext)
+  const { isSelected, accordionId, selectPanel, registerIndex } = useContext(AccordionContext)
+
+  const indexRef = useRef()
+  const index = registerIndex(indexRef)
+  const selected = isSelected(index)
+
+  const context = {
+    selected,
+    selectPanel: () => selectPanel(index),
+    panelId: `accordion-${accordionId}-panel-${index}`,
+    buttonId: `accordion-${accordionId}-button-${index}`,
+  }
 
   return (
-    <div
-      {...props}
-      data-accordion-item=""
-      data-state={selected ? 'open' : 'collapsed'}
-      ref={forwardedRef}
-    >
-      {children}
-    </div>
+    <AccordionItemContext.Provider value={context}>
+      <div
+        {...props}
+        data-accordion-item=""
+        data-state={selected ? 'open' : 'collapsed'}
+        ref={forwardedRef}
+      >
+        {children}
+      </div>
+    </AccordionItemContext.Provider>
   )
 })
 
@@ -75,7 +93,7 @@ AccordionItem.displayName = 'AccordionItem'
  */
 
 export const AccordionButton = React.forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected, selectPanel } = useContext(AccordionContext)
+  const { buttonId, panelId, selected, selectPanel } = useContext(AccordionItemContext)
 
   return (
     <button
@@ -100,7 +118,7 @@ AccordionButton.displayName = 'AccordionButton'
  */
 
 export const AccordionPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected } = useContext(AccordionContext)
+  const { buttonId, panelId, selected } = useContext(AccordionItemContext)
 
   return (
     <div

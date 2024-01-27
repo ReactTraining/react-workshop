@@ -5,11 +5,11 @@ export function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState<string | null>(null)
 
+  const countRef = useRef<number>() // { current: undefined }
+
   function saveToDatabase() {
     setTimeout(() => {
-      setMessage(
-        `We saved a count of ${count}, but it is stale since the count state may have changed`
-      )
+      setMessage(`We saved a count of ${count}, but the latest state is ${countRef.current}`)
     }, 3000)
   }
 
@@ -18,7 +18,13 @@ export function App() {
       <LessonCard>
         <div className="m-auto space-y-6">
           <div className="space-x-3">
-            <button className="button" onClick={() => setCount(count + 1)}>
+            <button
+              className="button"
+              onClick={() => {
+                setCount(count + 1)
+                countRef.current = count + 1
+              }}
+            >
               Count: {count}
             </button>
             <button className="button" onClick={saveToDatabase}>

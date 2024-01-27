@@ -6,20 +6,20 @@ import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.css'
 
 function App() {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(null)
 
   return (
     <LessonBody>
       <div className="flex gap-6 max-lg:flex-col">
         <div className="lg:flex-1">
           <LessonCard>
-            <button onClick={() => null} className="button">
+            <button onClick={() => setIndex(1)} className="button">
               Open a11y
             </button>
           </LessonCard>
         </div>
         <div className="lg:flex-1">
-          <Accordion onChange={setIndex}>
+          <Accordion index={index} onChange={setIndex}>
             <AccordionItem>
               <AccordionButton>
                 {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
