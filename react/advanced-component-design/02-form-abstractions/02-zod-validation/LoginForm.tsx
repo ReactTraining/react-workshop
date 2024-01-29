@@ -20,7 +20,9 @@ export function LoginForm() {
     if (!results.success) {
       console.error(results.error.flatten().fieldErrors)
     } else {
+      // Notice the "type" difference
       console.log(formValues)
+      console.log(results.data)
     }
   }
 
