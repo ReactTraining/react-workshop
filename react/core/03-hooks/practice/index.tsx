@@ -4,7 +4,7 @@ import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Notice } from '~/Notice'
 // import { LoginForm } from './LoginForm.final'
-import { LoginForm } from './LoginForm'
+import { LoginForm } from './LoginForm.final'
 // import { AccountPage } from './AccountPage.final'
 import { AccountPage } from './AccountPage'
 

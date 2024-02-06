@@ -10,7 +10,9 @@ export function LoginForm({ onSubmit }: Props) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // These still need to be attached to JSX: <input ref={usernameRef} />
+  const usernameId = useId()
+  const passwordId = useId()
+
   const usernameRef = useRef<HTMLInputElement>(null!)
   const passwordRef = useRef<HTMLInputElement>(null!)
 
@@ -18,8 +20,8 @@ export function LoginForm({ onSubmit }: Props) {
     event.preventDefault()
     setLoading(true)
 
-    const username = ''
-    const password = ''
+    const username = usernameRef.current.value || ''
+    const password = passwordRef.current.value || ''
 
     if (!username || !password) {
       setError('Username and Password are required')
@@ -33,9 +35,8 @@ export function LoginForm({ onSubmit }: Props) {
       })
       .catch((error) => {
         setError(error)
-        setLoading(false)
-        // Reset the form
-        // Put focus back on the username
+        // Clear the input's values
+        // Focus on the username for convenience for the user
       })
   }
 
@@ -44,23 +45,27 @@ export function LoginForm({ onSubmit }: Props) {
       <p>Default values are added to the form for quick testing</p>
       {error && <Notice type="error">{error}</Notice>}
       <div>
-        <label htmlFor="username">Username</label>
+        <label htmlFor={usernameId}>Username</label>
         <input
-          id="username"
+          ref={usernameRef}
+          id={usernameId}
           type="text"
           className="form-field"
           autoComplete="off"
           name="username"
+          // Default values added for your convenience
           defaultValue="admin"
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor={passwordId}>Password</label>
         <input
-          id="password"
+          ref={passwordRef}
+          id={passwordId}
           type="password"
           className="form-field"
           name="password"
+          // Default values added for your convenience
           defaultValue="admin"
         />
       </div>

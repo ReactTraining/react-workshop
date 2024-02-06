@@ -55,6 +55,7 @@ export function LoginForm({ onSubmit }: Props) {
           className="form-field"
           autoComplete="off"
           name="username"
+          // Default values added for your convenience
           defaultValue="admin"
         />
       </div>
@@ -66,6 +67,7 @@ export function LoginForm({ onSubmit }: Props) {
           type="password"
           className="form-field"
           name="password"
+          // Default values added for your convenience
           defaultValue="admin"
         />
       </div>

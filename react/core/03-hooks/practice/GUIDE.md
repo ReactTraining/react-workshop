@@ -6,20 +6,17 @@ Prepare a login form so it operates correctly with good or bad user input. Then 
 
 ## Task 1
 
-In `LoginForm`, there are two refs established for the Username and Password inputs.
+The login form currently works with the credentials `admin` and `admin` (for username and password). You just need to handle the error-case when the credentials are not `admin` and `admin`. In the `catch`, you'll need to:
 
-1. You still need to attach them to the input JSX: `<input ref={...} >`
-2. When the form submits, get the two input values and set them to the `username` and `password` variables
-3. At this point you should be able to submit the form with valid credentials
-4. If you submit the form with invalid credentials, the form will fail but we need to a: reset the form fields and b: put focus back onto the `username` input field.
+1. Set loading to be false.
+2. Clear the input fields so the user has to re-type them.
+3. Focus on the username input field
 
-Setting focus can be done like this, but see if you can figure out how to reset the inputs.
+Hint:
 
 ```js
 usernameRef.current.focus()
 ```
-
-5. Add valid id's to the `username` and `password` via the use `useId()` hook
 
 ## Task 2
 
