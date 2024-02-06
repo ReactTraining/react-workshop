@@ -19,17 +19,22 @@ function App() {
     { id: 3, name: 'Tomatoes', quantity: 3 },
   ])
 
-  function addItem(item: Item) {}
+  function addItem(item: Item) {
+    // Add item to items array
+  }
 
   // Without Cloning (Faster, More Difficult)
   function subtractQuantity(id: number) {
-    const index = items.findIndex((item) => item.id === id)
-    const newItem = { ...items[index], quantity: items[index].quantity - 1 }
-    if (newItem.quantity === 0) {
-      setItems([...items.slice(0, index), ...items.slice(index + 1)])
-    } else {
-      setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)])
-    }
+    // const index = items.findIndex((item) => item.id === id)
+    // const newItem = { ...items[index], quantity: items[index].quantity - 1 }
+    // OLD WAY
+    // if (newItem.quantity === 0) {
+    //   setItems([...items.slice(0, index), ...items.slice(index + 1)])
+    // } else {
+    //   setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)])
+    // }
+    // NEW WAY
+    // setItems(items.with(index, newItem))
   }
 
   // With Cloning (Slower, Easier)

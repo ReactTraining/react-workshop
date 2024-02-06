@@ -19,6 +19,8 @@ export function GroceryForm({ onSubmit }: Props) {
     // 1. new FormData
     // 2. Scrape for it: ids (bad) refs (good)
     // 3. Controlled with state
+
+    onSubmit({ name: 'test', quantity: 1 })
   }
 
   return (
