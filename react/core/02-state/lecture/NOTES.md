@@ -6,11 +6,12 @@ Counter
 
 Grocery Form
 
-1. Teach forms and controlled vs uncontrolled (no refs)
+1. Teach forms and controlled vs uncontrolled
 2. Teach `new FormData(e.currentTarget)`
 3. Teach `Object.fromEntries()`
-4. Teach lifted state
-5. Talk about immutability
+4. Teach refs with TypeScript
+5. Teach lifted state
+6. Talk about immutability
 
 Grocery List
 
