@@ -1,10 +1,14 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 export function ConfirmationCode() {
   const inputRef1 = useRef<HTMLInputElement>(null!)
   const inputRef2 = useRef<HTMLInputElement>(null!)
   const inputRef3 = useRef<HTMLInputElement>(null!)
   const inputRef4 = useRef<HTMLInputElement>(null!)
+
+  useEffect(() => {
+    inputRef1.current.focus()
+  }, [])
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()

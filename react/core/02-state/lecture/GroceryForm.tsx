@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef, useId } from 'react'
 
 type Item = {
   name: string
@@ -10,28 +10,44 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
+  const itemRef = useRef<HTMLInputElement>(null!)
+  const quantityRef = useRef<HTMLInputElement>(null!)
 
-  function handleSubmit(event) {
-    // Typescript has no idea what "event" is
-    //
-    // Three basic ways to get our form's fields
-    // 1. new FormData
-    // 2. Scrape for it: ids (bad) refs (good)
-    // 3. Controlled with state
+  const itemNameId = useId() // :r0:
+  const itemQuantityId = useId() // :r1:
 
-    onSubmit({ name: 'test', quantity: 1 })
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get('name') as string
+    const quantity = parseInt(formData.get('quantity') as string)
+
+    onSubmit({ name, quantity })
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" autoComplete="off" />
+        <input
+          name="name"
+          ref={itemRef}
+          id="item"
+          type="text"
+          className="form-field"
+          autoComplete="off"
+        />
       </div>
       <div>
-        <label htmlFor="quantity">Quantity</label>
-        <input id="quantity" type="text" className="form-field" />
+        <label htmlFor={itemQuantityId}>Quantity</label>
+        <input
+          name="quantity"
+          ref={quantityRef}
+          id={itemQuantityId}
+          type="text"
+          className="form-field"
+        />
       </div>
       <footer>
         <button type="submit" className="button">

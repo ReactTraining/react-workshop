@@ -1,3 +1,5 @@
+import React, { Suspense } from 'react'
+
 import {
   Navigate,
   Route,
@@ -12,14 +14,19 @@ import { VacationsSubLayout } from '~/VacationsSubLayout'
 import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
-import { BrowseVacationsPage } from '~/BrowseVacationsPage'
-import { VacationDetailsPage } from '~/VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+import { VacationDetailsPage } from './VacationDetailsPage'
+
+const BrowseVacationsPage = React.lazy(() => import('./BrowseVacationsPage'))
 
 export function App() {
-  return <RouterProvider router={router} />
+  return (
+    <Suspense fallback={<div>loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }
 
 const router = createBrowserRouter(

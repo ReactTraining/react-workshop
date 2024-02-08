@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Heading } from '~/Heading'
-// import { ConfirmationCode } from './ConfirmationCode.final'
-// import { LoginForm } from './LoginForm.final'
-import { ConfirmationCode } from './ConfirmationCode'
-import { LoginForm } from './LoginForm'
+import { ConfirmationCode } from './ConfirmationCode.final'
+import { LoginForm } from './LoginForm.final'
+// import { ConfirmationCode } from './ConfirmationCode'
+// import { LoginForm } from './LoginForm'
 
 type User = { userId: number }
 
@@ -20,8 +20,7 @@ export function App() {
   return (
     <div>
       <Heading>Login</Heading>
-      <LoginForm onSubmit={onSubmit} />
-      {/* <ConfirmationCode /> */}
+      {!user ? <LoginForm onSubmit={onSubmit} /> : <ConfirmationCode />}
     </div>
   )
 }
