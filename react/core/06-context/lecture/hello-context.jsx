@@ -4,10 +4,12 @@ import { LessonBody, LessonCard } from '~/Lesson'
 import classnames from 'classnames'
 
 /****************************************
-  App.js
+  FavContext.tsx
 *****************************************/
 
-export function App() {
+const FavContext = createContext()
+
+function FavProvider({ children }) {
   const [favorites, setFavorites] = useState([])
 
   function updateFavorite(id) {
@@ -22,10 +24,34 @@ export function App() {
     return favorites.includes(id)
   }
 
+  const context = {
+    favorites,
+    updateFavorite,
+    isFavorite,
+  }
+
+  return <FavContext.Provider value={context}>{children}</FavContext.Provider>
+}
+
+export function useFavContext() {
+  const context = useContext(FavContext)
+  if (!context) {
+    throw Error('You are trying to consume FavContext but there is no provider....')
+  }
+  return context || {}
+}
+
+/****************************************
+  App.js
+*****************************************/
+
+export function App() {
   return (
     <LessonBody>
       <LessonCard>
-        <MainLayout favorites={favorites} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+        <FavProvider>
+          <MainLayout />
+        </FavProvider>
       </LessonCard>
     </LessonBody>
   )
@@ -35,36 +61,42 @@ export function App() {
   MainLayout.js
 *****************************************/
 
-function MainLayout({ favorites, isFavorite, updateFavorite }) {
+function MainLayout() {
   return (
     <div className="flex justify-between">
-      <div>Favorites: {JSON.stringify(favorites)}</div>
       <div>
-        <BrowseVacationsPage isFavorite={isFavorite} updateFavorite={updateFavorite} />
+        <BrowseVacationsPage />
       </div>
     </div>
   )
 }
 
 /****************************************
-  BrowseVacationsPage.js
-*****************************************/
+ BrowseVacationsPage.js
+ *****************************************/
 
-function BrowseVacationsPage({ isFavorite, updateFavorite }) {
+const BrowseVacationsPage = memo(() => {
+  const { favorites } = useContext(FavContext)
+
   return (
-    <div className="flex flex-col gap-2">
-      <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-    </div>
+    <>
+      <div>Favorites: {JSON.stringify(favorites)}</div>
+      <div className="flex flex-col gap-2">
+        <FavoriteVacationButton id={1} />
+        <FavoriteVacationButton id={2} />
+        <FavoriteVacationButton id={3} />
+      </div>
+    </>
   )
-}
+})
 
 /****************************************
   FavoriteVacationButton.js
 *****************************************/
 
-function FavoriteVacationButton({ id, isFavorite, updateFavorite }) {
+function FavoriteVacationButton({ id }) {
+  const { isFavorite, updateFavorite } = useFavContext() // useContext
+
   const vacationIsFavorite = isFavorite(id)
 
   return (

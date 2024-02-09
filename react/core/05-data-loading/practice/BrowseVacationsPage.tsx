@@ -23,7 +23,7 @@ export function BrowseVacationsPage() {
 
   // 1. Start by writing a useEffect to fetch data from
   //    this promise-based function
-  // api.vacations.getAll().then()
+  api.vacations.getAll().then()
 
   // Hint: Your dependency array will be empty because this promise
   // does not have any input dependencies

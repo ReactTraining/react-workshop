@@ -7,23 +7,21 @@ import { Heading } from '~/Heading'
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function App() {
-  const allUsers = useUsers(5000)
+  const allUsers = useUsers(10000)
 
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  const [pending, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition() // 18
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
+    setMinLikes(newMinLikes) // high
 
     if (newMinLikes !== minLikes) {
-      console.log('start')
-      console.time()
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
+      startTransition(() => {
+        setUsers(filteredUsers) // low
+      })
     }
-
-    // setUsers(filteredUsers)
   }
 
   const editUser = (userId: number) => {
@@ -59,17 +57,6 @@ export function App() {
       <div className="space-y-3">
         {/* Turn this into <UserList users={users} editUser={editUser} /> */}
         <UserList users={users} />
-        {/* {users.map((user) => {
-          return (
-            <div key={user.id} className="flex gap-6 bg-slate-100 p-4">
-              <div className="flex-1">{user.name}</div>
-              <div className="flex-1">Liked Vacations: {user.likes}</div>
-              <button className="button" onClick={() => editUser(user.id)}>
-                Edit User
-              </button>
-            </div>
-          )
-        })} */}
       </div>
     </Card>
   )
@@ -81,8 +68,7 @@ type Props = {
 }
 
 const UserList = memo(({ users }: Props) => {
-  // const users2 = useDeferredValue(users)
-
+  console.log('render')
   return (
     <>
       {users.map((user) => {

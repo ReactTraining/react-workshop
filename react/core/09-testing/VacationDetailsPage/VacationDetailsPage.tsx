@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
@@ -31,6 +31,7 @@ export function VacationDetailsPage() {
             <span className="bg-slate-800 text-white text-xs absolute top-0 right-0 py-1 px-2 hidden group-hover:block">
               {vacation.id}
             </span>
+
             <VacationImage
               vacationId={vacation.id}
               alt={vacation.name}
