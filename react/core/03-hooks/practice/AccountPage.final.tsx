@@ -15,9 +15,7 @@ type Props = {
 export function AccountPage({ user }: Props) {
   const [count, setCount] = useState(0)
 
-  const pos = useMemo(() => {
-    return { lat: 40.712, lng: -74.006 }
-  }, [])
+  const posRef = useRef({ lat: 40.712, lng: -74.006 })
 
   return (
     <div className="space-y-3">

@@ -8,10 +8,11 @@ export function PurchaseTickets() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const x = slowFunction()
-  // const onUpdate = (name: string, tickets: number) => {
-  //   console.log(name, tickets)
-  // }
+  const x = useMemo(() => slowFunction(tickets), [tickets]) // old === new
+
+  const onUpdate = useCallback((name: string, tickets: number) => {
+    // work with props and state
+  }, [])
 
   return (
     <form className="space-y-6">
@@ -43,35 +44,7 @@ export function PurchaseTickets() {
       </div>
       <div className="space-y-2">
         {[...Array(tickets).keys()].map((number) => {
-          // The "clear" button wants to use refs to clear the inputs
-          // but we can't use useRef() dynamically
-
-          return (
-            <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
-              <div className="w-20">Ticket {number + 1}</div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  className="form-field"
-                  placeholder="Name"
-                  required
-                  aria-label={`Ticket ${number} Name`}
-                />
-              </div>
-              <div className="flex-1">
-                <input
-                  type="email"
-                  className="form-field"
-                  placeholder="Email"
-                  required
-                  aria-label={`Ticket ${number} Email`}
-                />
-              </div>
-              <button className="button" type="button">
-                Clear
-              </button>
-            </div>
-          )
+          return <AddAttendeeFields key={number} onUpdate={onUpdate} ticketNumber={number + 1} />
         })}
       </div>
     </form>
@@ -80,12 +53,14 @@ export function PurchaseTickets() {
 
 type AddAttendeeFieldsProps = {
   ticketNumber: number
-  // onUpdate(name: string, tickets: number): void
+  onUpdate(name: string, tickets: number): void
 }
 
-const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
+const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsProps) => {
+  const inputRef = useRef<HTMLInputElement>(null!)
+
   function clear() {
-    // clear with refs
+    inputRef.current.value = ''
   }
 
   return (
@@ -93,6 +68,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       <div className="w-20">Ticket {ticketNumber}</div>
       <div className="flex-1">
         <input
+          ref={inputRef}
           type="text"
           className="form-field"
           placeholder="Name"
@@ -114,4 +90,4 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       </button>
     </div>
   )
-}
+})
