@@ -74,7 +74,11 @@ function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
     <fetcher.Form method="post">
       <input type="hidden" name="productId" value={productId} />
       <input type="hidden" name="quantity" value={quantityInCart + 1} />
-      <button type="submit" className="button button-outline whitespace-nowrap">
+      <button
+        type="submit"
+        className="button button-outline whitespace-nowrap"
+        aria-label="Add To Cart"
+      >
         <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
       </button>
     </fetcher.Form>

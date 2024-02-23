@@ -81,6 +81,7 @@ export default function ProductsIndex() {
                   onClick={() => addToCart(product.id)}
                   className="button button-outline whitespace-nowrap"
                   type="submit"
+                  aria-label="Add To Cart"
                 >
                   <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
                 </button>

@@ -21,8 +21,10 @@ When the app gets bigger, we'll want a more general route for the cart action --
 
 1. Move the action in `_products-layout._index.tsx` function and it's dependencies (imports) to a new file at `routes/cart.tsx`.
 2. Refactor your `<Form>` components to have an action prop that points to this new path. By default, the lack of an action told Redux to send your data to the same path you're on which is why you didn't need an action before.
+3. Refactor the `<Form>`s to be `<fetcher.Form>` instead.
+4. You'll need to call `useFetcher` to get a `fetcher` object which replaces `useNavigation`
 
-Example: `<Form method="post" action="/cart">`
+Example: `<fetcher.Form method="post" action="/cart">`
 
 Make sure adding to the cart works before you continue
 
@@ -30,5 +32,3 @@ Make sure adding to the cart works before you continue
 
 1. Move the two buttons and their forms to the `components/CartButtons.tsx` file. We'll use this file to export any cart/button related components (two components for now).
 2. Some of the work in `CartButtons.tsx` has been done for you. Once you get the code moved, you should make sure it still works and you can add to the cart before you continue.
-3. Refactor the `<Form>`s to be `<fetcher.Form>` instead.
-4. You'll need to call `useFetcher` to get a `fetcher` object

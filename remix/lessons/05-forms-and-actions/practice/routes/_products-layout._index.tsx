@@ -45,7 +45,11 @@ export default function ProductsIndex() {
               </div>
               <div className="flex gap-2">
                 {/* Task 1 */}
-                <button type="submit" className="button button-outline whitespace-nowrap">
+                <button
+                  type="submit"
+                  className="button button-outline whitespace-nowrap"
+                  aria-label="Add To Cart"
+                >
                   <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
                 </button>
                 <button type="submit" className="button">
