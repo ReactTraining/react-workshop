@@ -21,7 +21,7 @@ Docs: Remix will automatically catch errors and render the nearest error boundar
 ## What is `Response`?
 
 ```js
-async function myFetch() {
+async function fetch() {
   const res = new Response(JSON.stringify({ user: 'brad' }), {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -31,7 +31,7 @@ async function myFetch() {
 }
 
 async function main() {
-  const res = await myFetch()
+  const res = await fetch()
   const data = await res.json()
   console.log(data.user) // brad
 }
@@ -44,6 +44,7 @@ main()
 ```js
 // These are same
 return json({ user: 'brad' })
+
 return new Response(JSON.stringify({ user: 'brad' }), {
   headers: {
     'Content-Type': 'application/json; charset=utf-8',

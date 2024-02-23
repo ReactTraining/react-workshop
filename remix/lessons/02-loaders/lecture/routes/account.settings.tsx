@@ -1,9 +1,10 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
-import { Link } from '@remix-run/react'
+import { Link, useRouteLoaderData } from '@remix-run/react'
+import type { LoaderType } from './account'
 
 export default function AccountSettings() {
-  const settings = { deals: 'weekly', delivery: 'door' }
+  const { settings } = useRouteLoaderData<LoaderType>('routes/account')!
 
   return (
     <>

@@ -6,33 +6,36 @@ type AddProps = {
   quantityInCart: number
 }
 
-export function AddToCart({ productId, quantityInCart }: AddProps) {
-  const fetcher = useFetcher()
+export function CartButtons({ productId, quantityInCart }: AddProps) {
+  const add = useFetcher()
+  const remove = useFetcher()
+
+  let quantity = quantityInCart
+  if (add.formData) {
+    quantity = parseInt(add.formData.get('quantity')! as string)
+  }
+
+  if (remove.formData) {
+    quantity = 0
+  }
 
   return (
-    <fetcher.Form method="post" action="/cart">
-      <input type="hidden" name="productId" value={productId} />
-      <input type="hidden" name="quantity" value={quantityInCart + 1} />
-      <button type="submit" className="button button-outline whitespace-nowrap">
-        <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-      </button>
-    </fetcher.Form>
-  )
-}
-
-type RemoveProps = {
-  productId: number
-}
-
-export function RemoveFromCart({ productId }: RemoveProps) {
-  const fetcher = useFetcher()
-
-  return (
-    <fetcher.Form method="delete" action="/cart">
-      <input type="hidden" name="productId" value={productId} />
-      <button type="submit" className="button">
-        Remove
-      </button>
-    </fetcher.Form>
+    <>
+      <add.Form method="post" action="/cart">
+        <input type="hidden" name="productId" value={productId} />
+        <input type="hidden" name="quantity" value={quantity + 1} />
+        <button type="submit" className="button button-outline whitespace-nowrap">
+          <Icon name="cart" /> {quantity > 0 && quantity}
+        </button>
+      </add.Form>
+      {quantity > 0 && (
+        <remove.Form method="delete" action="/cart">
+          <input type="hidden" name="productId" value={productId} />
+          <button type="submit" className="button">
+            Remove
+          </button>
+        </remove.Form>
+      )}
+    </>
   )
 }

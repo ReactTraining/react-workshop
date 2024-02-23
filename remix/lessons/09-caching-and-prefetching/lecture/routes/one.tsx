@@ -9,9 +9,13 @@ export default function PageOne() {
   return (
     <div>
       <h1>One</h1>
-      <Link to="/two">Two</Link>
+      <Link prefetch="render" to="/two">
+        Two
+      </Link>
       <br />
-      <Link to="/three">Three</Link>
+      <Link prefetch="render" to="/three">
+        Three
+      </Link>
     </div>
   )
 }
