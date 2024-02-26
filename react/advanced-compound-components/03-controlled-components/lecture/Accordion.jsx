@@ -1,4 +1,4 @@
-import React, { useState, useId, useContext, createContext } from 'react'
+import React, { useState, useId, useContext, createContext, useRef } from 'react'
 import { wrapEvent } from '../../utils'
 
 const AccordionContext = createContext()
@@ -8,9 +8,18 @@ const AccordionContext = createContext()
  */
 
 export const Accordion = React.forwardRef(
-  ({ children, onChange, defaultIndex = 0, id, ...props }, forwardedRef) => {
+  (
+    { children, index: controlledIndex, onChange, defaultIndex = 0, id, ...props },
+    forwardedRef
+  ) => {
     const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
     const accordionId = useId(id)
+
+    const isControlled = controlledIndex != null
+    const { current: startedControlled } = useRef(isControlled)
+    if (isControlled !== startedControlled) {
+      console.warn('You cannot change between.......')
+    }
 
     children = React.Children.map(children, (child, index) => {
       const panelId = `accordion-${accordionId}-panel-${index}`
@@ -19,7 +28,7 @@ export const Accordion = React.forwardRef(
       const context = {
         buttonId,
         panelId,
-        selected: selectedIndex === index,
+        selected: isControlled ? controlledIndex === index : selectedIndex === index,
         selectPanel: () => {
           onChange && onChange(index)
           setSelectedIndex(index)
@@ -28,28 +37,8 @@ export const Accordion = React.forwardRef(
       return <AccordionContext.Provider value={context} children={child} />
     })
 
-    function onKeyDown(event) {
-      event.preventDefault()
-      const i = selectedIndex
-
-      switch (event.key) {
-        case 'ArrowUp':
-          if (i !== 0) {
-            setSelectedIndex(i - 1)
-          }
-          break
-        case 'ArrowDown':
-          if (i < React.Children.count(children) - 1) {
-            setSelectedIndex(i + 1)
-          }
-          break
-        default:
-          break
-      }
-    }
-
     return (
-      <div data-accordion="" onKeyDown={onKeyDown} ref={forwardedRef} {...props}>
+      <div data-accordion="" ref={forwardedRef} {...props}>
         {children}
       </div>
     )

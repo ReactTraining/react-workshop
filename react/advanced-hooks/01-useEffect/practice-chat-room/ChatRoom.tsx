@@ -33,8 +33,7 @@ export function ChatRoom({ user }: Props) {
   const [startSubscription, setStartSubscription] = useState<number | null>(null)
 
   // Get initial messages
-  // api.chat.getMessages(THREAD_NAME).then((messages) => {
-  // })
+  api.chat.getMessages(THREAD_NAME).then((messages) => {})
 
   // Subscribe to new messages
   // const cleanup = api.chat.subscribe(
