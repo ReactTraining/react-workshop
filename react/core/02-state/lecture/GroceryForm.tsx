@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useId } from 'react'
 
 type Item = {
   name: string
@@ -10,28 +10,46 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
+  const quantityId = useId()
+  const itemId = useId()
 
-  function handleSubmit(event) {
-    // Typescript has no idea what "event" is
-    //
-    // Three basic ways to get our form's fields
-    // 1. new FormData
-    // 2. Scrape for it: ids (bad) refs (good)
-    // 3. Controlled with state
+  const [name, setName] = useState('')
+  const [quantity, setQuantity] = useState(0)
 
-    onSubmit({ name: 'test', quantity: 1 })
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    onSubmit({ name, quantity })
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" autoComplete="off" />
+        <label htmlFor={itemId}>Item</label>
+        <input
+          id={itemId}
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value)
+          }}
+          type="text"
+          className="form-field"
+          autoComplete="off"
+          name="name"
+        />
       </div>
       <div>
-        <label htmlFor="quantity">Quantity</label>
-        <input id="quantity" type="text" className="form-field" />
+        <label htmlFor={quantityId}>Quantity</label>
+        <input
+          value={quantity}
+          onChange={(e) => {
+            setQuantity(parseInt(e.target.value))
+          }}
+          id={quantityId}
+          type="text"
+          className="form-field"
+          name="quantity"
+        />
       </div>
       <footer>
         <button type="submit" className="button">
