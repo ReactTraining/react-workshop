@@ -18,23 +18,11 @@ import type { Vacation } from '~/utils/types'
 // }
 
 export function BrowseVacationsPage() {
-  const [vacations, setVacations] = useState<Vacation[] | null>(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getAll().then((vacations) => {
-      if (isCurrent) setVacations(vacations)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
-
-  // const { data: vacations } = useQuery({
-  //   queryKey: ['vacations'],
-  //   queryFn: () => api.vacations.getAll(),
-  //   staleTime: 1000 * 30,
-  // })
+  const { data: vacations } = useQuery({
+    queryKey: ['vacations'],
+    queryFn: () => api.vacations.getAll(),
+    staleTime: 1000 * 30,
+  })
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
@@ -11,10 +11,22 @@ import type { Vacation } from '~/utils/types'
 // https://github.com/facebook/react/pull/22114
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
+  const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  // api.vacations.getVacation(vacationId)
+  // any variable that we "close over" that CAN CHANGE (from what the linter can see)!!!
+  useEffect(() => {
+    let isCurrent = true
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      if (isCurrent) {
+        setVacation(vacation)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+    //
+  }, [setVacation, vacationId])
 
   if (!vacation) return <div>Loading...</div>
 

@@ -13,6 +13,8 @@ export function GroceryForm({ onSubmit }: Props) {
   const quantityId = useId()
   const itemId = useId()
 
+  const nameRef = useRef<HTMLInputElement>(null!)
+
   const [name, setName] = useState('')
   const [quantity, setQuantity] = useState(0)
 
@@ -27,6 +29,7 @@ export function GroceryForm({ onSubmit }: Props) {
       <div>
         <label htmlFor={itemId}>Item</label>
         <input
+          ref={nameRef}
           id={itemId}
           value={name}
           onChange={(e) => {

@@ -4,7 +4,7 @@ import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import type { Vacation } from '~/utils/types'
 
-export function BrowseVacationsPage() {
+export default function BrowseVacationsPage() {
   const [vacations, setVacations] = useState<Vacation[] | null>(null)
 
   useEffect(() => {

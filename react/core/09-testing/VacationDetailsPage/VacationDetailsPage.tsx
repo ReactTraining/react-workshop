@@ -52,7 +52,6 @@ export function VacationDetailsPage() {
           <Heading as="h2" size={4}>
             Similar Destinations
           </Heading>
-          <SimilarVacations vacationIds={vacation.related || []} />
         </section>
       </main>
     </Card>
