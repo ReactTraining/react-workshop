@@ -37,25 +37,29 @@ export function App() {
 
 function MainLayout({ favorites, isFavorite, updateFavorite }) {
   return (
-    <div className="flex justify-between">
-      <div>Favorites: {JSON.stringify(favorites)}</div>
-      <div>
-        <BrowseVacationsPage isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      </div>
-    </div>
+    <BrowseVacationsPage
+      favorites={favorites}
+      isFavorite={isFavorite}
+      updateFavorite={updateFavorite}
+    />
   )
 }
 
 /****************************************
-  BrowseVacationsPage.js
-*****************************************/
+ BrowseVacationsPage.js
+ *****************************************/
 
-function BrowseVacationsPage({ isFavorite, updateFavorite }) {
+function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
   return (
-    <div className="flex flex-col gap-2">
-      <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+    <div className="flex justify-between">
+      <div>Favorites: {JSON.stringify(favorites)}</div>
+      <div>
+        <div className="flex flex-col gap-2">
+          <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+          <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+          <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+        </div>
+      </div>
     </div>
   )
 }
