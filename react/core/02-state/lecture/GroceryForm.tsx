@@ -10,7 +10,11 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // const itemNameRef = useRef<HTMLInputElement>(null!)
+  const itemNameRef = useRef<HTMLInputElement>(null!)
+
+  useEffect(() => {
+    itemNameRef.current.focus()
+  }, [])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -29,7 +33,14 @@ export function GroceryForm({ onSubmit }: Props) {
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" name="itemName" autoComplete="off" />
+        <input
+          ref={itemNameRef}
+          id="item"
+          type="text"
+          className="form-field"
+          name="itemName"
+          autoComplete="off"
+        />
       </div>
       <div>
         <label htmlFor="quantity">Quantity</label>

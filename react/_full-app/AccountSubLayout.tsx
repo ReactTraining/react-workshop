@@ -16,9 +16,7 @@ export function AccountSubLayout() {
   return (
     <div className="flex -m-3">
       <AccountSidebar />
-      <div className="flex-1 p-3">
-        <Outlet />
-      </div>
+      <div className="flex-1 p-3">here</div>
     </div>
   )
 }

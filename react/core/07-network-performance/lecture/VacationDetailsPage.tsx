@@ -26,23 +26,12 @@ import type { Vacation } from '~/utils/types'
 
 export function VacationDetailsPage() {
   const vacationId = parseInt(useParams().vacationId!)
-  const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
-      if (isCurrent) setVacation(vacation)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [vacationId])
-
-  // const { data: vacation } = useQuery({
-  //   queryKey: ['vacation', vacationId],
-  //   queryFn: () => api.vacations.getVacation(vacationId),
-  //   staleTime: 1000 * 30, // 30s
-  // })
+  const { data: vacation } = useQuery({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30, // 30s
+  })
 
   if (!vacation) return <div>Loading...</div>
 

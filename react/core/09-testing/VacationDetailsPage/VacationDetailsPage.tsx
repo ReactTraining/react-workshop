@@ -48,6 +48,7 @@ export function VacationDetailsPage() {
             </p>
           </div>
         </div>
+
         <section className="space-y-6">
           <Heading as="h2" size={4}>
             Similar Destinations
