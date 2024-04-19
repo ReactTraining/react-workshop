@@ -10,28 +10,30 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
+  // const itemNameRef = useRef<HTMLInputElement>(null!)
 
-  function handleSubmit(event) {
-    // Typescript has no idea what "event" is
-    //
-    // Three basic ways to get our form's fields
-    // 1. new FormData
-    // 2. Scrape for it: ids (bad) refs (good)
-    // 3. Controlled with state
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
 
-    onSubmit({ name: 'test', quantity: 1 })
+    const formData = new FormData(event.currentTarget)
+
+    const data = {
+      name: formData.get('itemName') as string,
+      quantity: parseInt(formData.get('quantity') as string),
+    }
+
+    onSubmit(data)
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="item">Item</label>
-        <input id="item" type="text" className="form-field" autoComplete="off" />
+        <input id="item" type="text" className="form-field" name="itemName" autoComplete="off" />
       </div>
       <div>
         <label htmlFor="quantity">Quantity</label>
-        <input id="quantity" type="text" className="form-field" />
+        <input id="quantity" type="text" name="quantity" className="form-field" />
       </div>
       <footer>
         <button type="submit" className="button">

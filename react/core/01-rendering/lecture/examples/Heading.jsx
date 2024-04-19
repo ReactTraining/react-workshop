@@ -5,3 +5,5 @@ export function Heading({ children, size = 1, ...rest }) {
     </h1>
   )
 }
+
+Heading.propTypes = {}

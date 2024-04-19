@@ -2,7 +2,9 @@ import { useRef, useId } from 'react'
 import { renderMap } from '~/utils/maps'
 
 export function GoogleMaps() {
-  // ⭐️ Let's not use hard-coded ids for labels (use useId())
+  const latId = useId() // :r0:
+
+  const mapDivRef = useRef<HTMLDivElement>(null!)
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -17,7 +19,7 @@ export function GoogleMaps() {
     }
 
     // Use Refs Instead
-    renderMap(document.getElementById('map'), {
+    renderMap(mapDivRef.current, {
       center: pos,
       zoom: 10,
     })
@@ -25,15 +27,15 @@ export function GoogleMaps() {
 
   return (
     <div className="space-y-6">
-      <div className="h-64 bg-slate-200" id="map" />
+      <div className="h-64 bg-slate-200" ref={mapDivRef} />
 
       <form onSubmit={handleSubmit}>
         <div className="flex gap-6">
           <div>
-            <label htmlFor="lat" className="text-xs">
+            <label htmlFor={latId} className="text-xs">
               Latitude
             </label>
-            <input id="lat" type="text" name="lat" className="form-field" defaultValue="40.712" />
+            <input id={latId} type="text" name="lat" className="form-field" defaultValue="40.712" />
           </div>
           <div>
             <label htmlFor="lng" className="text-xs">

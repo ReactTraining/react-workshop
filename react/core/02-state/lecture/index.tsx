@@ -13,20 +13,22 @@ type Item = {
 }
 
 function App() {
+  const [count, setCount] = useState(0)
+
   const [items, setItems] = useState([
     { id: 1, name: 'Eggs', quantity: 12 },
-    { id: 2, name: 'Bread', quantity: 1 },
     { id: 3, name: 'Tomatoes', quantity: 3 },
+    { id: 2, name: 'Bread', quantity: 1 },
   ])
 
   function addItem(item: Item) {
-    // Add item to items array
+    setItems(items.concat(items))
   }
 
   // Without Cloning (Faster, More Difficult)
   function subtractQuantity(id: number) {
-    // const index = items.findIndex((item) => item.id === id)
-    // const newItem = { ...items[index], quantity: items[index].quantity - 1 }
+    const index = items.findIndex((item) => item.id === id)
+    const newItem = { ...items[index], quantity: items[index].quantity - 1 }
     // OLD WAY
     // if (newItem.quantity === 0) {
     //   setItems([...items.slice(0, index), ...items.slice(index + 1)])
@@ -34,7 +36,7 @@ function App() {
     //   setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)])
     // }
     // NEW WAY
-    // setItems(items.with(index, newItem))
+    setItems(items.with(index, newItem))
   }
 
   // With Cloning (Slower, Easier)
@@ -50,7 +52,7 @@ function App() {
       <div className="flex gap-12">
         <LessonCard className="w-64">
           <Heading>Counter</Heading>
-          <Counter />
+          <Counter count={count} setCount={setCount} />
         </LessonCard>
         <LessonCard className="flex-1">
           <div className="flex gap-12">
@@ -59,7 +61,7 @@ function App() {
               <GroceryForm onSubmit={addItem} />
             </div>
             <div className="flex-1 space-y-6">
-              <div>Filter Quantity: 1</div>
+              <div>Filter Quantity: {count}</div>
               <GroceryList
                 items={items}
                 subtractQuantity={subtractQuantity}
