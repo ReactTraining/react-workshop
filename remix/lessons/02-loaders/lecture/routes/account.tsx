@@ -4,20 +4,17 @@ import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
 
-// useRouteLoaderData('routes/account')
-
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  // These are currently in serial!!
-  // That's okay in this case because we need the user before we get the settings
-  // But you'll need to know how to load things in parallel for the exercise
   const user = await requireSessionUser(request)
   const settings = await getUserSettings(user.id)
 
   return json({ user, settings })
 }
 
-export default function Account() {
-  const { user } = useLoaderData<typeof loader>()
+export type LoaderType = typeof loader
+
+export default function AccountLayout() {
+  const { user } = useLoaderData<LoaderType>()
 
   return (
     <div className="flex gap-6">

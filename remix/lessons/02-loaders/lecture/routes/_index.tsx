@@ -5,22 +5,22 @@ import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import { ProductType } from '~/utils/db.server'
 
-export default function Index() {
-  const [products, setProducts] = useState<ProductType[]>([])
+// in some utils
+async function getProducts() {
+  const product = await fetch('http://localhost:3333/products').then((res) => res.json())
+  return product as ProductType[]
+}
+///////
 
-  useEffect(() => {
-    let isCurrent = true
-    fetch('http://localhost:3333/products')
-      .then((res) => res.json())
-      .then((products) => {
-        if (isCurrent) {
-          setProducts(products)
-        }
-      })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+// Only in Node
+export async function loader() {
+  const products = await getProducts()
+  return { products }
+}
+
+// Runs in Node but also runs in the client
+export default function Page() {
+  const { products } = useLoaderData<typeof loader>()
 
   return (
     <Tiles>

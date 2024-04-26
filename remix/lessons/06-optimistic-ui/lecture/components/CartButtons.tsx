@@ -1,38 +1,49 @@
 import { useFetcher } from '@remix-run/react'
 import { Icon } from '~/components/Icon'
 
-type AddProps = {
+type AddToCartButtonProps = {
   productId: number
   quantityInCart: number
 }
 
-export function AddToCart({ productId, quantityInCart }: AddProps) {
-  const fetcher = useFetcher()
+export function CartButtons({ productId, quantityInCart }: AddToCartButtonProps) {
+  const addFetcher = useFetcher()
+  const removeFetcher = useFetcher()
+
+  // Optimistic UI
+  let quantity = quantityInCart
+  if (addFetcher.formData) {
+    quantity = parseInt(addFetcher.formData.get('quantity') as string)
+  }
+
+  if (removeFetcher.formData) {
+    quantity = 0
+  }
 
   return (
-    <fetcher.Form method="post" action="/cart">
-      <input type="hidden" name="productId" value={productId} />
-      <input type="hidden" name="quantity" value={quantityInCart + 1} />
-      <button type="submit" className="button button-outline whitespace-nowrap">
-        <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-      </button>
-    </fetcher.Form>
-  )
-}
-
-type RemoveProps = {
-  productId: number
-}
-
-export function RemoveFromCart({ productId }: RemoveProps) {
-  const fetcher = useFetcher()
-
-  return (
-    <fetcher.Form method="delete" action="/cart">
-      <input type="hidden" name="productId" value={productId} />
-      <button type="submit" className="button">
-        Remove
-      </button>
-    </fetcher.Form>
+    <>
+      <addFetcher.Form method="post" action="/cart">
+        <input type="hidden" name="productId" value={productId} />
+        <input type="hidden" name="quantity" value={quantity + 1} />
+        <button
+          className="button button-outline whitespace-nowrap"
+          type="submit"
+          disabled={!!removeFetcher.formData}
+        >
+          <Icon name="cart" />
+          {quantity > 0 && (
+            <span className="ml-2 align-middle inline-block min-w-[1.5em]">{quantity}</span>
+          )}
+        </button>
+      </addFetcher.Form>
+      {quantity > 0 && (
+        <removeFetcher.Form method="delete" action="/cart">
+          <input type="hidden" name="productId" value={productId} />
+          <button className="button" type="submit">
+            Remove
+          </button>
+        </removeFetcher.Form>
+      )}
+    </>
   )
 }

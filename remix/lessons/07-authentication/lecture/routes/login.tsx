@@ -27,9 +27,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const userId = await verifyUser(username, password)
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
-  // Now we need to login
-
-  return redirect('/')
+  return createUserSession(userId, '/')
 }
 
 export default function Login() {

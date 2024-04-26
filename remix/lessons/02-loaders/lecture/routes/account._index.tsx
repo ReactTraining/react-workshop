@@ -1,8 +1,10 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
+import { useRouteLoaderData } from '@remix-run/react'
+import type { LoaderType } from './account'
 
 export default function AccountIndex() {
-  const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }
+  const { user } = useRouteLoaderData<LoaderType>('routes/account')! // remove null and undefined
 
   return (
     <>

@@ -38,9 +38,10 @@ export default function Login() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))
     const results = formSchema.safeParse(formValues)
+
     if (!results.success) {
       event.preventDefault()
-      setFormErrors(results.error.flatten().fieldErrors)
+      setFormErrors(results.error.flatten().fieldErrors) // { firstName: ['err', 'dfd],}
     }
   }
 
