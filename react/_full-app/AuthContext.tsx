@@ -79,5 +79,5 @@ export function useAuthContext() {
   if (!context) {
     throw Error('Use of `useAuthContext` is outside of `AuthProvider`')
   }
-  return context || {}
+  return context || { authenticated: null, user: null }
 }
