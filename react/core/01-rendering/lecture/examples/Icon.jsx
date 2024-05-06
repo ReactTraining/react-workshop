@@ -1,5 +1,4 @@
 import classnames from 'classnames'
-import PropTypes from 'prop-types' // <-- made by the React team
 import { FaTrashAlt, FaPlus } from 'react-icons/fa'
 import { AiFillStar } from 'react-icons/ai'
 
@@ -26,10 +25,3 @@ export function Icon({ name, className, size = 1.3, ...rest }) {
 
   return <Component {...rest} {...props} />
 }
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  // name: PropTypes.oneOf(['plus', 'star', 'trash']).isRequired
-}
-
-// https://github.com/facebook/prop-types
