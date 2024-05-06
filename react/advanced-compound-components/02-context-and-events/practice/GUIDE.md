@@ -10,7 +10,7 @@ const context = {
   /* Put the props that we were passing down with cloneElement here instead */
 }
 
-<DisclosureContext.Provider children={children} value={context} />
+<DisclosureContext children={children} value={context} />
 ```
 
 ## Task Two: Add an `onChange` to `Disclosure`

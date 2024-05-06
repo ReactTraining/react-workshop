@@ -1,4 +1,4 @@
-import React, { useRef, useState, useId, useContext, createContext } from 'react'
+import React, { useRef, useState, useId, use, createContext } from 'react'
 import { wrapEvent } from '../../utils'
 
 const DisclosureContext = createContext()
@@ -37,17 +37,17 @@ export function Disclosure({
   }
 
   return (
-    <DisclosureContext.Provider value={context}>
+    <DisclosureContext value={context}>
       <div {...props} data-disclosure="">
         {children}
       </div>
-    </DisclosureContext.Provider>
+    </DisclosureContext>
   )
 }
 
 export const DisclosureButton = React.forwardRef(
   ({ children, onClick, ...props }, forwardedRef) => {
-    const { isOpen, panelId, onSelect } = useContext(DisclosureContext)
+    const { isOpen, panelId, onSelect } = use(DisclosureContext)
 
     return (
       <button
@@ -68,7 +68,7 @@ export const DisclosureButton = React.forwardRef(
 DisclosureButton.displayName = 'DisclosureButton'
 
 export const DisclosurePanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { isOpen, panelId } = useContext(DisclosureContext)
+  const { isOpen, panelId } = use(DisclosureContext)
 
   return (
     <div

@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, use } from 'react'
 import dayjs from 'dayjs'
 
 // 1. Create a Context
@@ -14,7 +14,7 @@ export function DateDisplay({ children, date = '' }) {
 
 export function DateYear({ format = 'YYYY' }) {
   // 3. (for this and all components below):
-  //    consume the context with useContext
+  //    consume the context with use
 
   const date = dayjs()
   return <>{date.format(format)}</>

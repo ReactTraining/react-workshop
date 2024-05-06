@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react'
+import { createContext, use, useEffect, useLayoutEffect, useState } from 'react'
 
 type Context = {
   favorites: number[]
@@ -44,11 +44,11 @@ export function FavoriteProvider({ children }: Props) {
     isFavorite,
   }
 
-  return <FavoriteContext.Provider value={context} children={children} />
+  return <FavoriteContext value={context} children={children} />
 }
 
 export function useFavoriteContext() {
-  const context = useContext(FavoriteContext)
+  const context = use(FavoriteContext)
   if (!context) {
     throw Error('Use of `useFavoriteContext` is outside of `FavoriteProvider`')
   }

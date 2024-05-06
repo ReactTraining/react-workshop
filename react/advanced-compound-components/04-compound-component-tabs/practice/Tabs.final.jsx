@@ -1,4 +1,4 @@
-import React, { useRef, useState, useId, createContext, useContext } from 'react'
+import React, { useRef, useState, useId, createContext, use } from 'react'
 import { wrapEvent } from '../../utils'
 
 const TabsContext = createContext()
@@ -27,18 +27,18 @@ export const Tabs = React.forwardRef(
     }
 
     return (
-      <TabsContext.Provider value={context}>
+      <TabsContext value={context}>
         <div {...props} data-tabs="" ref={forwardedRef}>
           {children}
         </div>
-      </TabsContext.Provider>
+      </TabsContext>
     )
   }
 )
 
 export const TabList = React.forwardRef(({ children, ...props }, forwardedRef) => {
   children = React.Children.map(children, (child, index) => {
-    return <TabContext.Provider value={index} children={child} />
+    return <TabContext value={index} children={child} />
   })
 
   return (
@@ -49,8 +49,8 @@ export const TabList = React.forwardRef(({ children, ...props }, forwardedRef) =
 })
 
 export const Tab = React.forwardRef(({ children, onClick, disabled, ...props }, forwardedRef) => {
-  const index = useContext(TabContext)
-  const { tabsId, selectedIndex, setSelectedIndex } = useContext(TabsContext)
+  const index = use(TabContext)
+  const { tabsId, selectedIndex, setSelectedIndex } = use(TabsContext)
   const selected = index === selectedIndex
 
   function handleClick() {
@@ -77,7 +77,7 @@ export const Tab = React.forwardRef(({ children, onClick, disabled, ...props }, 
 
 export const TabPanels = React.forwardRef(({ children, ...props }, forwardedRef) => {
   children = React.Children.map(children, (child, index) => {
-    return <PanelContext.Provider value={index} children={child} />
+    return <PanelContext value={index} children={child} />
   })
 
   return (
@@ -88,8 +88,8 @@ export const TabPanels = React.forwardRef(({ children, ...props }, forwardedRef)
 })
 
 export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const index = useContext(PanelContext)
-  const { tabsId, selectedIndex } = useContext(TabsContext)
+  const index = use(PanelContext)
+  const { tabsId, selectedIndex } = use(TabsContext)
   const selected = selectedIndex === index
 
   return (

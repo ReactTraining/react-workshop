@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, use } from 'react'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import isBetween from 'dayjs/plugin/isBetween'
@@ -74,7 +74,7 @@ export function DatePicker({
     setBaseMonth,
   }
 
-  return <Context.Provider value={context}>{children}</Context.Provider>
+  return <Context value={context}>{children}</Context>
 }
 
 /****************************************
@@ -87,7 +87,7 @@ type DatePickerCalendarProps = {
 }
 
 export function DatePickerCalendar({ offset = 0 }: DatePickerCalendarProps) {
-  const { baseMonthFirst, selectDate, selectedDates } = useContext(Context)
+  const { baseMonthFirst, selectDate, selectedDates } = use(Context)
   // The first day of the base month
   const theFirst = offset === 0 ? baseMonthFirst : baseMonthFirst.add(offset, 'month')
 
@@ -160,7 +160,7 @@ type DatePickerChangeMonthProps = {
 } & React.HTMLAttributes<HTMLButtonElement>
 
 export function DatePickerChangeMonth({ children, to, ...props }: DatePickerChangeMonthProps) {
-  const { setBaseMonth } = useContext(Context)
+  const { setBaseMonth } = use(Context)
   return (
     <button {...props} data-datepicker-change-month="" onClick={() => setBaseMonth(to)}>
       {children}
@@ -178,6 +178,6 @@ type DatePickerLabelProps = {
 }
 
 export function DatePickerLabel({ format = 'MMMM', offset = 0 }: DatePickerLabelProps) {
-  const { baseMonthFirst } = useContext(Context)
+  const { baseMonthFirst } = use(Context)
   return <>{baseMonthFirst.add(offset, 'month').format(format)}</>
 }

@@ -158,8 +158,8 @@ useEffect(() => {
 - "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
 - When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
 - Context is a way to pass data around our app without having to prop drill.
-- Context gives us a `<Context.Provider />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.
-- When values are passed into the provider's `value` prop, they can be received at any component below the provider with the `useContext` hook. Components using this hook are referred to as "consumers" of the context.
+- Context gives us a `<Context />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.
+- When values are passed into the provider's `value` prop, they can be received at any component below the provider with the `use` hook. Components using this hook are referred to as "consumers" of the context.
 - When the state changes at the top and is passed down into the provider, the consumers get a re-render to retrieve that new state.
 - Context is commonly a solution for global state for things like authentication, shopping carts, theming, etc...
 

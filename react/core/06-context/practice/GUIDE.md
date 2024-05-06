@@ -91,19 +91,19 @@ const DateContext = createContext()
 ```jsx
 const context = { date: '...' }
 // These are the same, choose either one
-<DateContext.Provider value={context}>{children}</DateContext.Provider>
-<DateContext.Provider value={context} children={children} />
+<DateContext value={context}>{children}</DateContext>
+<DateContext value={context} children={children} />
 ```
 
 3. Consume the context
 
 ```jsx
-// useContext will return whatever was passed into the `value` prop of the provider
-const context = useContext(DateContext)
+// use will return whatever was passed into the `value` prop of the provider
+const context = use(DateContext)
 console.log(context.date)
 
 // Since the context object passed has a date property, we could do this too:
-const { date } = useContext(DateContext)
+const { date } = use(DateContext)
 console.log(date)
 ```
 

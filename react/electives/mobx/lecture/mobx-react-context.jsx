@@ -27,7 +27,7 @@ function StoreProvider({ children }) {
     }
   })
 
-  return <StoreContext.Provider value={store} children={children} />
+  return <StoreContext value={store} children={children} />
 }
 
 /**
@@ -56,7 +56,7 @@ function Layout() {
 }
 
 function Counter() {
-  const store = React.useContext(StoreContext)
+  const store = React.use(StoreContext)
 
   return (
     <div className="space-x-3">
@@ -71,7 +71,7 @@ function Counter() {
 }
 
 function Report() {
-  const store = React.useContext(StoreContext)
+  const store = React.use(StoreContext)
 
   return (
     <Observer>

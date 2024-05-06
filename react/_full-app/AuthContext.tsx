@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from 'react'
+import { createContext, use, useReducer, useEffect } from 'react'
 import { api } from '~/utils/api'
 import type { User } from '~/utils/types'
 
@@ -71,11 +71,11 @@ export function AuthProvider({ children }: Props) {
     logout,
   }
 
-  return <AuthContext.Provider value={context} children={children} />
+  return <AuthContext value={context} children={children} />
 }
 
 export function useAuthContext() {
-  const context = useContext(AuthContext)
+  const context = use(AuthContext)
   if (!context) {
     throw Error('Use of `useAuthContext` is outside of `AuthProvider`')
   }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useId, useContext, createContext } from 'react'
+import React, { useRef, useState, useId, use, createContext } from 'react'
 import { wrapEvent } from '../../utils'
 
 const AccordionContext = createContext()
@@ -36,7 +36,7 @@ export const Accordion = React.forwardRef(
           }
         },
       }
-      return <AccordionContext.Provider value={context} children={child} />
+      return <AccordionContext value={context} children={child} />
     })
 
     function onKeyDown(event) {
@@ -80,7 +80,7 @@ Accordion.displayName = 'Accordion'
  */
 
 export const AccordionItem = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { selected } = useContext(AccordionContext)
+  const { selected } = use(AccordionContext)
 
   return (
     <div
@@ -101,7 +101,7 @@ AccordionItem.displayName = 'AccordionItem'
  */
 
 export const AccordionButton = React.forwardRef(({ children, onClick, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected, selectPanel } = useContext(AccordionContext)
+  const { buttonId, panelId, selected, selectPanel } = use(AccordionContext)
 
   return (
     <button
@@ -126,7 +126,7 @@ AccordionButton.displayName = 'AccordionButton'
  */
 
 export const AccordionPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
-  const { buttonId, panelId, selected } = useContext(AccordionContext)
+  const { buttonId, panelId, selected } = use(AccordionContext)
 
   return (
     <div
