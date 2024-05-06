@@ -2,8 +2,7 @@
 
 import colors from 'tailwindcss/colors'
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+export const config = {
   // We go up a directory from _full-app to capture all the lessons
   content: ['./index.html', '../**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -24,3 +23,5 @@ export default {
   },
   plugins: [],
 }
+
+export default config

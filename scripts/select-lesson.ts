@@ -1,17 +1,14 @@
-const path = require('path')
-const fs = require('fs')
-const readlineSync = require('readline-sync')
+import path from 'path'
+import fs from 'fs'
+import readlineSync from 'readline-sync'
 
 const FULL_APP = 'FULL APP'
-
-exports.selectReactLesson = selectReactLesson
-exports.selectRemixLesson = selectRemixLesson
 
 /****************************************
   Select React Lesson
 *****************************************/
 
-function selectReactLesson(coursesPath, preferences, savePreferences) {
+export function selectReactLesson(coursesPath, preferences, savePreferences) {
   /**
    * Choose a Course and Lesson
    */
@@ -140,7 +137,7 @@ function selectReactLesson(coursesPath, preferences, savePreferences) {
   Select Remix Lesson
 *****************************************/
 
-function selectRemixLesson(lessonsPath) {
+export function selectRemixLesson(lessonsPath) {
   /**
    * Choose a Course and Lesson
    */

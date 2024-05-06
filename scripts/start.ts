@@ -1,11 +1,11 @@
-const shell = require('shelljs')
-const path = require('path')
-const fs = require('fs')
-const readlineSync = require('readline-sync')
-const { createServer } = require('vite')
-const react = require('@vitejs/plugin-react')
-const { selectReactLesson, selectRemixLesson } = require('./select-lesson')
-const { startDatabase } = require('./start-db')
+import shell from 'shelljs'
+import path from 'path'
+import fs from 'fs'
+import readlineSync from 'readline-sync'
+import { createServer } from 'vite'
+import react from '@vitejs/plugin-react'
+import { selectReactLesson, selectRemixLesson } from './select-lesson'
+import { startDatabase } from './start-db'
 
 if (process.cwd().indexOf(' ') >= 0) {
   console.error(`We cant start this app if your path has spaces:\n${process.cwd()}\n\n`)
@@ -17,7 +17,7 @@ if (process.cwd().indexOf(' ') >= 0) {
 *****************************************/
 
 const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
-let preferences = {}
+let preferences: Record<string, string> = {}
 try {
   const data = fs.readFileSync(preferencesPath, 'utf8')
   preferences = JSON.parse(data)
@@ -25,7 +25,7 @@ try {
   // no-op
 }
 
-function savePreferences(updates) {
+function savePreferences(updates: Record<string, string>) {
   try {
     fs.writeFileSync(preferencesPath, JSON.stringify({ ...preferences, ...updates }, null, 2))
   } catch (err) {
@@ -94,7 +94,7 @@ function startRemix() {
   React SPA (Vite Server)
 *****************************************/
 
-async function startReact(coursesPath) {
+async function startReact(coursesPath: string) {
   // const coursesPath = path.resolve(__dirname, '..', 'react')
 
   const { lessonPath, selectedLessonType, selectedLesson } = selectReactLesson(
@@ -111,7 +111,7 @@ async function startReact(coursesPath) {
   const appRoot = '~'
 
   // Get aliases
-  const alias = {}
+  const alias: Record<string, string> = {}
 
   if (lessonPath) {
     // const aliasBasePath = `${courseAppNames[selectedCourse]}`
@@ -139,12 +139,14 @@ async function startReact(coursesPath) {
 
   const port = 3000
   const server = await createServer({
+    configFile: false,
+    root: appPath,
+    server: {
+      port,
+    },
     plugins: [react()],
     resolve: {
       alias,
-    },
-    server: {
-      port,
     },
     optimizeDeps: { include: ['firebase/app', 'firebase/firestore'] },
   })

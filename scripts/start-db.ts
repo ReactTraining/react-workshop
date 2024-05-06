@@ -1,9 +1,9 @@
-const fs = require('fs')
-const path = require('path')
-const shell = require('shelljs')
-const concurrently = require('concurrently')
+import fs from 'fs'
+import path from 'path'
+import shell from 'shelljs'
+import concurrently from 'concurrently'
 
-exports.startDatabase = (dbDir) => {
+export function startDatabase(dbDir: string) {
   const dbPath = path.join(dbDir, 'db.json')
 
   try {
@@ -16,7 +16,7 @@ exports.startDatabase = (dbDir) => {
         command: `npx json-server --watch ${dbPath} -p 3333 --quiet`,
         name: 'npx json-server database',
       },
-    ]).catch((err) => {
+    ]).catch(() => {
       console.error(
         'JSON-SERVER was not able to start. Port 3333 might still be open from a previous run. Try running `npm run kill-db-port` to kill the port\n\n'
       )
