@@ -34,7 +34,9 @@ Already have Node/NPM installed? Then start here. Otherwise we have some instruc
 
 **For React Workshops**
 
-- Do `npm install` first
+NOTE THAT WE'RE ON REACT 19 BETA. This is why you'll need to use the `--force` flag when installing to fix peer dependency issues:
+
+- Do `npm install --force` first
 - Do `npm start`
 - Choose "React" from the menu
 - You'll see a menu in the terminal. Choose "FULL APP"
@@ -45,7 +47,9 @@ Be sure to read this "JavaScript Primer" article if you think you'll need guidan
 
 **For The Remix Workshop**
 
-- Do `npm install` first
+NOTE THAT WE'RE ON REACT 19 BETA. This is why you'll need to use the `--force` flag when installing to fix peer dependency issues:
+
+- Do `npm install --force` first
 - Do `npm run install-remix` next
 - Do `npm start`
 - Choose "Remix" from the menu
@@ -89,8 +93,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I use? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 18 (for example)
-$ nvm install 18
+# For Node 20 (for example)
+$ nvm install 20
 
 # See this page for more install options:
 # https://github.com/nvm-sh/nvm#usage
@@ -124,8 +128,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I install? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 18 (for example)
-$ nvm install 18
+# For Node 20 (for example)
+$ nvm install 20
 
 # IMPORTANT: You'll be also prompt to `nvm use`
 # the version number that you installed. You may
