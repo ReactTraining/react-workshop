@@ -23,7 +23,7 @@ export function GroceryList({ items, subtractQuantity, addQuantity }: Props) {
     <>
       <div className="space-y-3">
         {/* Map over items */}
-        <div className="flex gap-6 bg-slate-100 p-4">
+        <div className="flex gap-6 items-center bg-slate-100 p-4">
           <div className="flex-1">Eggs</div>
           <div className="flex-1">Quantity: 12</div>
           <div className="flex-1 flex gap-2">
