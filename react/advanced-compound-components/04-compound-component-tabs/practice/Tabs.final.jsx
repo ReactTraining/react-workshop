@@ -5,50 +5,48 @@ const TabsContext = createContext()
 const TabContext = createContext()
 const PanelContext = createContext()
 
-export const Tabs = React.forwardRef(
-  ({ children, onChange, index: controlledIndex, ...props }, forwardedRef) => {
-    const isControlled = controlledIndex != null
-    const { current: startedControlled } = useRef(isControlled)
-    if (isControlled !== startedControlled) {
-      console.warn('Cannot change from controlled to uncontrolled or vice versa.')
-    }
-
-    const [selectedIndex, setSelectedIndex] = useState(0)
-
-    const context = {
-      tabsId: useId(),
-      selectedIndex: isControlled ? controlledIndex : selectedIndex,
-      setSelectedIndex: (index) => {
-        onChange && onChange(index)
-        if (!isControlled) {
-          setSelectedIndex(index)
-        }
-      },
-    }
-
-    return (
-      <TabsContext value={context}>
-        <div {...props} data-tabs="" ref={forwardedRef}>
-          {children}
-        </div>
-      </TabsContext>
-    )
+export const Tabs = ({ children, onChange, index: controlledIndex, ...props }) => {
+  const isControlled = controlledIndex != null
+  const { current: startedControlled } = useRef(isControlled)
+  if (isControlled !== startedControlled) {
+    console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }
-)
 
-export const TabList = React.forwardRef(({ children, ...props }, forwardedRef) => {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const context = {
+    tabsId: useId(),
+    selectedIndex: isControlled ? controlledIndex : selectedIndex,
+    setSelectedIndex: (index) => {
+      onChange && onChange(index)
+      if (!isControlled) {
+        setSelectedIndex(index)
+      }
+    },
+  }
+
+  return (
+    <TabsContext value={context}>
+      <div {...props} data-tabs="">
+        {children}
+      </div>
+    </TabsContext>
+  )
+}
+
+export const TabList = ({ children, ...props }) => {
   children = React.Children.map(children, (child, index) => {
     return <TabContext value={index} children={child} />
   })
 
   return (
-    <div {...props} data-tab-list="" role="tablist" ref={forwardedRef}>
+    <div {...props} data-tab-list="" role="tablist">
       {children}
     </div>
   )
-})
+}
 
-export const Tab = React.forwardRef(({ children, onClick, disabled, ...props }, forwardedRef) => {
+export const Tab = ({ children, onClick, disabled, ...props }) => {
   const index = use(TabContext)
   const { tabsId, selectedIndex, setSelectedIndex } = use(TabsContext)
   const selected = index === selectedIndex
@@ -68,26 +66,25 @@ export const Tab = React.forwardRef(({ children, onClick, disabled, ...props }, 
       data-tab=""
       data-selected={selected ? '' : undefined}
       onClick={wrapEvent(onClick, handleClick)}
-      ref={forwardedRef}
     >
       {children}
     </button>
   )
-})
+}
 
-export const TabPanels = React.forwardRef(({ children, ...props }, forwardedRef) => {
+export const TabPanels = ({ children, ...props }) => {
   children = React.Children.map(children, (child, index) => {
     return <PanelContext value={index} children={child} />
   })
 
   return (
-    <div {...props} data-tab-panels="" ref={forwardedRef}>
+    <div {...props} data-tab-panels="">
       {children}
     </div>
   )
-})
+}
 
-export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+export const TabPanel = ({ children, ...props }) => {
   const index = use(PanelContext)
   const { tabsId, selectedIndex } = use(TabsContext)
   const selected = selectedIndex === index
@@ -100,9 +97,8 @@ export const TabPanel = React.forwardRef(({ children, ...props }, forwardedRef) 
       aria-labelledby={`tabs-${tabsId}-tab-${index}`}
       hidden={!selected}
       data-tab-panel=""
-      ref={forwardedRef}
     >
       {children}
     </div>
   )
-})
+}

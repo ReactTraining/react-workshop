@@ -24,9 +24,6 @@ function App() {
 ❌ Be able to pass the underlying button own props (like className, id, etc)
    unless we do strange API things like `buttonProps={}`
 ❌ Convert class-names to data-attributes
-❌ Be able to forward refs to the panel or button.
-❌ Error reporting now refers to the forwarded ref.
-   - Add a displayName to make it easier to debug.
 ❌ Add ARIA
    - aria-expanded on button
    - aria-controls on button

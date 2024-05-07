@@ -20,10 +20,7 @@ const [descendants, setDescendants] = useDescendants()
  * IN ACCORDION ITEM
  */
 
-// Make a ref for useDescendant, we need to merge it
-// with the forwarded ref
 const itemRef = useRef()
-const ref = useForkedRef(itemRef, forwardedRef)
 
 // Now we can register our descendant and get our index
 const index = useDescendant({

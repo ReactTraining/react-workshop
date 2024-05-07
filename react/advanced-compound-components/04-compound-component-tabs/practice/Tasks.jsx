@@ -28,7 +28,6 @@ export function TaskOne() {
         it's not `aria-role=""` it's just `role=""`.
       </li>
       <li>Add aria-selected="true" (or false) for each tab.</li>
-      <li>Forward refs.</li>
     </ul>
   )
 }

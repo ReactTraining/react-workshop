@@ -45,29 +45,24 @@ export function Disclosure({
   )
 }
 
-export const DisclosureButton = React.forwardRef(
-  ({ children, onClick, ...props }, forwardedRef) => {
-    const { isOpen, panelId, onSelect } = use(DisclosureContext)
+export const DisclosureButton = ({ children, onClick, ...props }) => {
+  const { isOpen, panelId, onSelect } = use(DisclosureContext)
 
-    return (
-      <button
-        {...props}
-        onClick={wrapEvent(onClick, onSelect)}
-        data-disclosure-button=""
-        data-state={isOpen ? 'open' : 'collapsed'}
-        aria-expanded={isOpen}
-        aria-controls={panelId}
-        ref={forwardedRef}
-      >
-        {children}
-      </button>
-    )
-  }
-)
+  return (
+    <button
+      {...props}
+      onClick={wrapEvent(onClick, onSelect)}
+      data-disclosure-button=""
+      data-state={isOpen ? 'open' : 'collapsed'}
+      aria-expanded={isOpen}
+      aria-controls={panelId}
+    >
+      {children}
+    </button>
+  )
+}
 
-DisclosureButton.displayName = 'DisclosureButton'
-
-export const DisclosurePanel = React.forwardRef(({ children, ...props }, forwardedRef) => {
+export const DisclosurePanel = ({ children, ...props }) => {
   const { isOpen, panelId } = use(DisclosureContext)
 
   return (
@@ -77,11 +72,8 @@ export const DisclosurePanel = React.forwardRef(({ children, ...props }, forward
       hidden={!isOpen}
       data-disclosure-panel=""
       data-state={isOpen ? 'open' : 'collapsed'}
-      ref={forwardedRef}
     >
       {children}
     </div>
   )
-})
-
-DisclosurePanel.displayName = 'DisclosurePanel'
+}

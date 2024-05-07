@@ -8,6 +8,9 @@
     "strict": true
   },
   // Without this empty include, we were getting
-  // JSX linting errors and import errors
+  // JSX linting errors and import errors. It's likely
+  // due to the fact that we are programmatically creating
+  // the vite config. This include used to reference the
+  // static vite config
   "include": [""]
 }
