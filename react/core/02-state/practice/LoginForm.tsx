@@ -1,30 +1,33 @@
 import { useState } from 'react'
+import type { User } from './App'
 
-type Props = {
-  onSubmit(user: { userId: number }): void
-}
+// This type says that we want an `onSubmit` prop that is
+// a function that when called will be passed one argument
+// which is a User. When you call this fn, it won't return
+// anything (void). User Props like this:
+// function LoginForm({ onSubmit }: Props) {
 
-export function LoginForm({ onSubmit }: Props) {
-  const [loading, setLoading] = useState(false)
+// type Props = {
+//   onSubmit(user: User): void
+// }
 
-  // Task 1
-  // Your main task is you make the username and password fields in this form
-  // "controlled" with state. When the form submits, it already tries to take
-  // the username and password and use them to authenticate. Then it sets
-  // the "user" state in the parent (App) component
+export function LoginForm() {
+  // The logged user
+  const [user, setUser] = useState<User | null>(null)
 
-  // Remake these two variables with useState
-  const username = ''
-  const password = ''
+  // Whether we pending the form submission
+  const [pending, setPending] = useState(false)
 
-  // You don't need to change anything in this function
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log(username, password)
+    const formData = new FormData(event.currentTarget)
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
 
-    setLoading(true)
+    setPending(true)
     login(username, password).then((user) => {
-      onSubmit(user)
+      setPending(false)
+      setUser(user)
     })
   }
 
@@ -37,23 +40,17 @@ export function LoginForm({ onSubmit }: Props) {
           type="text"
           className="form-field"
           autoComplete="off"
-          // value={}
-          // onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter any value"
         />
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          className="form-field"
-          // value={}
-          // onChange={}
-        />
+        <input id="password" type="password" className="form-field" />
       </div>
-      <button type="submit" className="button" disabled={loading}>
-        Login
+      <button type="submit" className="button" disabled={pending}>
+        {!pending ? 'Login' : '...'}
       </button>
+      {user && <div>User ID: {user.userId}</div>}
     </form>
   )
 }

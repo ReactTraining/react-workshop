@@ -1,20 +1,22 @@
 import { useState } from 'react'
+import type { User } from './App'
 
 type Props = {
-  onSubmit(user: { userId: number }): void
+  onSubmit(user: User): void
 }
 
 export function LoginForm({ onSubmit }: Props) {
-  const [loading, setLoading] = useState(false)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [pending, setPending] = useState(false)
 
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log(username, password)
+    const formData = new FormData(event.currentTarget)
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
 
-    setLoading(true)
+    setPending(true)
     login(username, password).then((user) => {
+      setPending(false)
       onSubmit(user)
     })
   }
@@ -28,22 +30,15 @@ export function LoginForm({ onSubmit }: Props) {
           type="text"
           className="form-field"
           autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter any value"
         />
       </div>
       <div>
         <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          className="form-field"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input id="password" type="password" className="form-field" />
       </div>
-      <button type="submit" className="button" disabled={loading}>
-        Login
+      <button type="submit" className="button" disabled={pending}>
+        {!pending ? 'Login' : '...'}
       </button>
     </form>
   )
