@@ -17,10 +17,13 @@ if (process.cwd().indexOf(' ') >= 0) {
 *****************************************/
 
 const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
-let preferences: Record<string, string> = {}
+let preferences: Record<string, string | boolean> = {}
 try {
   const data = fs.readFileSync(preferencesPath, 'utf8')
   preferences = JSON.parse(data)
+  if (preferences.compiledReact === undefined) {
+    preferences.compiledReact = false
+  }
 } catch (err) {
   // no-op
 }
@@ -137,6 +140,17 @@ async function startReact(coursesPath: string) {
 
   shell.cd(appPath)
 
+  const ReactCompilerConfig = {}
+  const plugins = !preferences.compiledReact
+    ? [react()]
+    : [
+        react({
+          babel: {
+            plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
+          },
+        }),
+      ]
+
   const port = 3000
   const server = await createServer({
     configFile: false,
@@ -144,7 +158,7 @@ async function startReact(coursesPath: string) {
     server: {
       port,
     },
-    plugins: [react()],
+    plugins,
     resolve: {
       alias,
     },

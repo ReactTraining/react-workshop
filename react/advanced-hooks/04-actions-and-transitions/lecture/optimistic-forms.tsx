@@ -1,17 +1,6 @@
 import { FormEvent, useState, startTransition, useTransition, useActionState } from 'react'
-
-let itemCount = 0
-async function serverAddItem() {
-  await new Promise((res) => setTimeout(res, 2000))
-  itemCount++
-  // if (itemCount === 5) throw Error('Bad Request')
-
-  return new Response(JSON.stringify({ item: itemCount }), {
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-  })
-}
+import { useFormStatus } from 'react-dom'
+import { serverAddItem } from './helpers/serverAddItem'
 
 /**
  * Example 1
@@ -119,11 +108,11 @@ async function serverAddItem() {
 //   const [pending, startTransition] = useTransition()
 
 //   async function addItemAction() {
-//     console.log('start')
+//     console.log('submit')
 //     startTransition(async () => {
 //       const response = await serverAddItem()
-//       const { item } = await response.json()
-//       setItems((items) => items.concat(`Item ${item}`))
+//       const { items: itemCount } = await response.json()
+//       setItems((items) => items.concat(`Item ${itemCount}`))
 //     })
 //   }
 
@@ -146,17 +135,25 @@ async function serverAddItem() {
  * Example 4: useActionState
  */
 
+// Issues:
+// 1. Without startTransition, each submit happens sequentially (look at console.log('submit'))
+// 2. With startTransition, this fixes issue 1 but the pending status from useActionState
+//    doesn't show up
+// 3. We have to use the startTransition from useTransition to get the pending status
+// of the useActionState to work all while ignoring the useTransition pending status
+
 export function App() {
   const [items, setItems] = useState<string[]>([])
 
+  // const [_, startTransition] = useTransition()
+
   const [state, action, pending] = useActionState(async function () {
-    console.log('start')
-    //startTransition(async () => {
-    const response = await serverAddItem()
-    const { item } = await response.json()
-    setItems((items) => items.concat(`Item ${item}`))
-    //})
-    return null
+    console.log('submit')
+    startTransition(async () => {
+      const response = await serverAddItem()
+      const { items: itemCount } = await response.json()
+      setItems((items) => items.concat(`Item ${itemCount}`))
+    })
   }, null)
 
   return (
@@ -169,7 +166,16 @@ export function App() {
           {i}
         </div>
       ))}
-      {pending && <div>Pending...</div>}
+      {pending && <div>Pending</div>}
     </>
   )
+}
+
+/**
+ * Pending
+ */
+
+function Pending({ children }: { children: React.ReactNode }) {
+  const { pending } = useFormStatus()
+  return pending && children
 }
