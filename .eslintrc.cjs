@@ -15,5 +15,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'prefer-const': 'off',
     'react-compiler/react-compiler': 2,
+    'no-extra-semi': false,
   },
 }

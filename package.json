@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^13.1.1",
+    "@testing-library/react": "^15.0.7",
     "@types/concurrently": "^6.4.0",
     "@types/jest": "^27.4.0",
     "@types/react": "npm:types-react@beta",
