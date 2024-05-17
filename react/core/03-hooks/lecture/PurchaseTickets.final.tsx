@@ -1,9 +1,10 @@
 import { useState, useId, useRef, useMemo, useCallback, useEffect, memo } from 'react'
 import { slowFunction } from '~/utils/helpers'
 
-export function PurchaseTickets() {
+export function App() {
   const [tickets, setTickets] = useState(3)
   const [comments, setComments] = useState('')
+  const attendees = [...Array(tickets).keys()]
 
   const ticketsId = useId()
   const commentsId = useId()
@@ -41,7 +42,7 @@ export function PurchaseTickets() {
         />
       </div>
       <div className="space-y-2">
-        {[...Array(tickets).keys()].map((number) => {
+        {attendees.map((number) => {
           return <AddAttendeeFields key={number} ticketNumber={number + 1} onUpdate={onUpdate} />
         })}
       </div>

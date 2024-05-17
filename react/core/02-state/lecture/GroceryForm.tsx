@@ -12,14 +12,12 @@ type Props = {
 export function GroceryForm({ onSubmit }: Props) {
   // Teach refs with typescript
 
-  function handleSubmit(event) {
-    // Typescript has no idea what "event" is, so use "currentEvent"
-
+  function handleSubmit(event /* <---- WHAT IS THIS EVENT? */) {
+    event.preventDefault()
     // Three basic ways to get our form's fields
-    // 1. new FormData
-    // 2. Scrape for it: ids (bad) refs (good)
-    // 3. Controlled with state
-
+    // 1. Scrape for it: ids (bad) refs (good)
+    // 2. Controlled with state
+    // 3. new FormData
     onSubmit({ name: 'test', quantity: 1 })
   }
 

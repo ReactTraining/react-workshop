@@ -329,7 +329,9 @@ svg {
   }
 
   [data-datepicker-calendar-boxes]
-    > [data-datepicker-calendar-box]:not([disabled]):not([data-selected]):not([data-between]):hover {
+    > [data-datepicker-calendar-box]:not([disabled]):not([data-selected]):not(
+      [data-between]
+    ):hover {
     color: var(--datePickerCalendarBoxHoverText, theme(colors.brandBlueDark));
     background-color: var(--datePickerCalendarBoxHoverBackground, theme(colors.brandBlueLight));
     --datePickerCalendarBoxToday: transparent;

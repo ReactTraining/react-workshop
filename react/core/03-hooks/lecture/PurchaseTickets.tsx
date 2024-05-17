@@ -1,14 +1,18 @@
 import { useState, useId, useRef, useMemo, useCallback, memo } from 'react'
 import { slowFunction } from '~/utils/helpers'
 
-export function PurchaseTickets() {
+export function App() {
   const [tickets, setTickets] = useState(3)
   const [comments, setComments] = useState('')
+
+  // Makes an array like [1,2,3...] to the number of tickets
+  const attendees = [...Array(tickets).keys()]
 
   const ticketsId = useId()
   const commentsId = useId()
 
   // const x = slowFunction()
+
   // const onUpdate = (name: string, tickets: number) => {
   //   console.log(name, tickets)
   // }
@@ -42,7 +46,7 @@ export function PurchaseTickets() {
         />
       </div>
       <div className="space-y-2">
-        {[...Array(tickets).keys()].map((number) => {
+        {attendees.map((number) => {
           // The "clear" button wants to use refs to clear the inputs
           // but we can't use useRef() dynamically
 

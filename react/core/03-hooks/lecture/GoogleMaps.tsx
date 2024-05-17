@@ -1,20 +1,17 @@
-import { useRef, useId } from 'react'
+import { useId, useRef, useEffect, useState } from 'react'
 import { renderMap } from '~/utils/maps'
 
-export function GoogleMaps() {
-  // ⭐️ Let's not use hard-coded ids for labels (use useId())
+// useId
+// useRef
+// useEffect
+
+export function App() {
+  const [lat, setLat] = useState(40.712)
+  const [lng, setLng] = useState(-74.006)
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-
-    // This will get everything as a string (we need values as numbers)
-    // const pos = Object.fromEntries(formData)
-
-    const pos = {
-      lat: Number(formData.get('lat')),
-      lng: Number(formData.get('lng')),
-    }
+    const pos = { lat, lng }
 
     // Use Refs Instead
     renderMap(document.getElementById('map'), {
@@ -33,13 +30,27 @@ export function GoogleMaps() {
             <label htmlFor="lat" className="text-xs">
               Latitude
             </label>
-            <input id="lat" type="text" name="lat" className="form-field" defaultValue="40.712" />
+            <input
+              id="lat"
+              type="number"
+              name="lat"
+              className="form-field"
+              value={lat}
+              onChange={(e) => setLat(Number(e.target.value))}
+            />
           </div>
           <div>
             <label htmlFor="lng" className="text-xs">
               Longitude
             </label>
-            <input id="lng" type="text" name="lng" className="form-field" defaultValue="-74.006" />
+            <input
+              id="lng"
+              type="number"
+              name="lng"
+              className="form-field"
+              value={lng}
+              onChange={(e) => setLng(Number(e.target.value))}
+            />
           </div>
         </div>
         <footer className="mt-3">
