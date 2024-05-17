@@ -3,7 +3,7 @@
     "strict": true,
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2023.Array"],
     "module": "ESNext",
     "skipLibCheck": true,
 

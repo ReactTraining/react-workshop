@@ -46,6 +46,7 @@ function SlowContent() {
 function Item() {
   // Artificially slow
   const startTime = performance.now()
+  // eslint-disable-next-line
   while (performance.now() - startTime < 300) {}
   return <div className="text-red-500">Slow content</div>
 }
