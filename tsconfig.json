@@ -6,6 +6,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2023.Array"],
     "module": "ESNext",
     "skipLibCheck": true,
+    // "esModuleInterop": true, only needed for unit tests examples for certain warnings
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
