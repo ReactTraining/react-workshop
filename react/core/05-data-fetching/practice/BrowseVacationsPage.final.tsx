@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { useLoaderData } from 'react-router-dom'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
-import { Card } from '~/Card'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
@@ -14,7 +14,7 @@ export function BrowseVacationsPage() {
   // 2: Finished with loader
   const vacations = useLoaderData() as Vacation[]
 
-  // 1: With useEffect
+  // 1.A: With useEffect
   // const [vacations, setVacations] = useState<Vacation[] | null>(null)
   // useEffect(() => {
   //   let isCurrent = true
@@ -27,6 +27,13 @@ export function BrowseVacationsPage() {
   //     isCurrent = false
   //   }
   // }, [])
+
+  // 1.B: With useQuery
+  // const { data: vacations } = useQuery({
+  //   queryKey: ['vacations'],
+  //   queryFn: () => api.vacations.getAll(),
+  //   staleTime: 1000 * 30 // 30 seconds
+  // })
 
   return (
     <div>

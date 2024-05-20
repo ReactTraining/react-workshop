@@ -14,8 +14,6 @@ You're encouraged to take notes, but we don't want that to get in the way of lis
 - Component names must start with a capital letter because JSX with a lower-case letter will make DOM and JSX with a capital letter will refer to our component
 - Props are just arguments passed into our components that look like XML or HTML attributes
 - The "children" prop is passed between the opening and closing tag of a component
-- We can provide an array of JSX but we have to supply a "key" prop
-- We can use [].map to iterate over arrays to make arrays of JSX
 - Events can be added to the DOM through special event props on the JSX like `onClick`
 
 Docs: https://react.dev/learn/writing-markup-with-jsx
@@ -29,7 +27,9 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 - State can be considered any variable that changes over time in the component.
 - `useState` Format: `const [value, setValue] = useState(defaultValue)`.
 - The entire component re-renders (the component function gets called again) each time state changes.
-- Multiple state values are done with multiple `useState` or can combined into one `useState`` if we want to use an object.
+- Multiple state values are done with multiple `useState` or can combined into one ` useState`` if we want to use an object like this:  `useState({ name: 'Dave', age: 40 })`
+- We can provide an array of JSX but we have to supply a "key" prop
+- We can use [].map to iterate over arrays to make arrays of JSX
 - The order of hook declarations matters to React, so we can't "conditionalize" calls to `useState`
 - State flows down the React tree not up it. This is called uni-directional data flow
 - A good mental model for React is that UI is a function of state. In other words:
@@ -105,7 +105,7 @@ Please see the docs at: https://reactrouter.com
 
 Sometimes things change and we wouldn't want our notes here to become outdated. Their docs are fantastic. There's also really good docs for migrating from earlier versions of React Router to more modern ones.
 
-## Lesson 5: Data Loading
+## Lesson 5: Data Fetching
 
 - `useEffect` is for doing side-effects after render phases (after the JSX has created DOM)
 - The `useEffect` function gets called after the first render, then after any where where the dependency array variables change:
@@ -153,28 +153,6 @@ useEffect(() => {
 - Docs: https://react.dev/learn/synchronizing-with-effects
 - Docs: https://react.dev/learn/you-might-not-need-an-effect
 
-## Lesson 6: Context
-
-- "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
-- When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
-- Context is a way to pass data around our app without having to prop drill.
-- Context gives us a `<Context />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.
-- When values are passed into the provider's `value` prop, they can be received at any component below the provider with the `use` hook. Components using this hook are referred to as "consumers" of the context.
-- When the state changes at the top and is passed down into the provider, the consumers get a re-render to retrieve that new state.
-- Context is commonly a solution for global state for things like authentication, shopping carts, theming, etc...
-
-- Docs: https://react.dev/learn/passing-data-deeply-with-context
-- TypeScript and Context: https://reacttraining.com/blog/react-context-with-typescript
-
----
-
-## Lesson 7: Network Performance
-
-- We can use React Router loaders so React Router can fetch our data for many component in parallel (avoid waterfalls)
-- We can use React Query to cache our data requests
-- `useQuery` is a hook we could use instead of useEffect to fetch data. But it's a hook so we can only use it _in_ components which might lead to waterfalls
-- We can also use React Query data fetching in React Router loaders with API's like `queryClient.ensureQueryData`
-
 ### React Query
 
 React Query is a professional cache-based data fetching abstraction so you don't have to make your own. It's also very well known and battle-tested. This could be our `useCourses` instead:
@@ -190,27 +168,20 @@ function useUsers() {
 
 - An excellent guide: https://tkdodo.eu/blog/practical-react-query.
 
----
+## Lesson 6: Context
 
-## Lesson 7: Performance Optimizations
+- "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
+- When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
+- Context is a way to pass data around our app without having to prop drill.
+- Context gives us a `<Context />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.
+- When values are passed into the provider's `value` prop, they can be received at any component below the provider with the `use` hook. Components using this hook are referred to as "consumers" of the context.
+- When the state changes at the top and is passed down into the provider, the consumers get a re-render to retrieve that new state.
+- Context is commonly a solution for global state for things like authentication, shopping carts, theming, etc...
 
-```ts
-// useTransition is an opt-in "concurrent-mode" feature of React that allows us to
-// designate some state setting as being interruptible. In other words, if frequent
-// re-rendering is happening, React can prioritize other state setting
-const { startTransition } = useTransition()
-setStateA() // High Priority
-startTransition(() => {
-  setStateB() // Low Priority (Can be interrupted)
-})
+- Docs: https://react.dev/learn/passing-data-deeply-with-context
+- TypeScript and Context: https://reacttraining.com/blog/react-context-with-typescript
 
-// This one has little to do with performance, but is used in the lesson. This will
-// create a unique id that hydrates correctly if doing SSR->CSR and is mostly used for
-// cases where you need an HTML id to be unique (probably for a11y)
-const id = useId()
-```
-
-## Lesson 8: Testing
+## Lesson 7: Testing
 
 - Be sure to see the GUIDE.md in the testing folder for information on setting up unit testing
 - The main principal of React unit testing is - Test the component the way the user uses it, not the implementation details of the component.

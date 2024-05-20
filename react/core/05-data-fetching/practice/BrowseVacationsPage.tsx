@@ -1,32 +1,34 @@
-import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
-import { Card } from '~/Card'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
 
-/**
- * 1: Write useEffect
- * 2: Refactor to using a the React Router loader API
- */
-
-// 2. Then refactor the useEffect to use this loader instead
-//    Keep this function here while you do #1 first.
+// 2. Then refactor the code that was fetching within the component to fetch
+//    from this loader instead. Note that React Router is already importing this
+//    loading and attaching it to the correct route
 export async function loader() {
   return []
 }
 
 export function BrowseVacationsPage() {
-  // 2: You won't need state for Task 2. Use useLoaderData() instead
+  // 1.A: State for the useEffect
   const [vacations, setVacations] = useState<Vacation[] | null>(null)
 
-  // 1. Start by writing a useEffect to fetch data from
-  //    this promise-based function
+  // 1.A: You can skip 1.A if you like
+  // Write a useEffect hook to fetch data and keep it in the above state
   // api.vacations.getAll().then()
 
-  // Hint: Your dependency array will be empty because this promise
-  // does not have any input dependencies
+  // 1.B: You can skip 1.A but you should try to do 1.B. Use "Tanstack Query" to fetch
+  // data instead of useEffect and storing your own state (you won't need useState)
+
+  // const { data } = useQuery({
+  //   queryKey: // an array with "keys" to cache the data
+  //   queryFn: // a function which returns a promise and the promise resolves your data
+  //   staleTime: // miliseconds for how long this data will remain in cache
+  // })
 
   return (
     <div>
