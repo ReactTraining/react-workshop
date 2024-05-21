@@ -1,6 +1,6 @@
-import { FormEvent, useState, startTransition, useTransition, useActionState } from 'react'
+import { type FormEvent, useState, useTransition, useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
-import { serverAddItem } from './helpers/serverAddItem'
+import { serverAddItem, saveUser } from './helpers/mockServer'
 
 /**
  * Example 1
@@ -43,7 +43,9 @@ import { serverAddItem } from './helpers/serverAddItem'
 //   return (
 //     <>
 //       <form onSubmit={handleSubmit}>
-//         <button className="button">Add Item</button>
+//         <button className="button" type="submit">
+//           Add Item
+//         </button>
 //       </form>
 //       {items.map((i) => (
 //         <div key={i} className="border-b">
@@ -65,7 +67,6 @@ import { serverAddItem } from './helpers/serverAddItem'
 
 // export function App() {
 //   const [items, setItems] = useState<string[]>([])
-
 //   const [pending, startTransition] = useTransition()
 
 //   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -79,7 +80,9 @@ import { serverAddItem } from './helpers/serverAddItem'
 //   return (
 //     <>
 //       <form onSubmit={handleSubmit}>
-//         <button className="button">Add Item</button>
+//         <button className="button" type="submit">
+//           Add Item
+//         </button>
 //       </form>
 //       {items.map((i) => (
 //         <div key={i} className="border-b">
@@ -104,7 +107,6 @@ import { serverAddItem } from './helpers/serverAddItem'
 
 // export function App() {
 //   const [items, setItems] = useState<string[]>([])
-
 //   const [pending, startTransition] = useTransition()
 
 //   async function addItemAction() {
@@ -119,7 +121,9 @@ import { serverAddItem } from './helpers/serverAddItem'
 //   return (
 //     <>
 //       <form action={addItemAction}>
-//         <button className="button">Add Item</button>
+//         <button className="button" type="submit">
+//           Add Item
+//         </button>
 //       </form>
 //       {items.map((i) => (
 //         <div key={i} className="border-b">
@@ -132,44 +136,103 @@ import { serverAddItem } from './helpers/serverAddItem'
 // }
 
 /**
- * Example 4: useActionState
+ * Example 4: useActionState for one-click submissions
  */
 
-// Issues:
-// 1. Without startTransition, each submit happens sequentially (look at console.log('submit'))
-// 2. With startTransition, this fixes issue 1 but the pending status from useActionState
-//    doesn't show up
-// 3. We have to use the startTransition from useTransition to get the pending status
-// of the useActionState to work all while ignoring the useTransition pending status
-
 export function App() {
-  const [items, setItems] = useState<string[]>([])
+  const [success, setSuccess] = useState(false)
+  const [errors, setErrors] = useState<string[]>([])
+  const [pending, startTransition] = useTransition()
 
-  // const [_, startTransition] = useTransition()
+  async function action(formData: FormData) {
+    const firstName = formData.get('firstName') as string | undefined
+    const lastName = formData.get('lastName') as string | undefined
 
-  const [state, action, pending] = useActionState(async function () {
-    console.log('submit')
     startTransition(async () => {
-      const response = await serverAddItem()
-      const { items: itemCount } = await response.json()
-      setItems((items) => items.concat(`Item ${itemCount}`))
+      const serverData = await saveUser(firstName, lastName).then((res) => res.json())
+      if (serverData.success) {
+        setSuccess(true)
+        setErrors([])
+      } else {
+        setSuccess(false)
+        setErrors(serverData.errors)
+      }
     })
-  }, null)
+  }
 
   return (
-    <>
-      <form action={action}>
-        <button className="button">Add Item</button>
-      </form>
-      {items.map((i) => (
-        <div key={i} className="border-b">
-          {i}
-        </div>
-      ))}
-      {pending && <div>Pending</div>}
-    </>
+    <form action={action} className="max-w-96 space-y-3">
+      {success && <p>Success!</p>}
+      {errors.length > 0 && <p>{errors.join('. ')}</p>}
+      <input
+        type="text"
+        className="form-field"
+        name="firstName"
+        placeholder="First Name"
+        aria-label="First Name"
+        autoComplete="off"
+      />
+      <input
+        type="text"
+        className="form-field"
+        name="lastName"
+        placeholder="Last Name"
+        aria-label="Last Name"
+        autoComplete="off"
+      />
+      <button className="button" type="submit" disabled={pending}>
+        {pending ? 'Sending Data...' : 'Submit'}
+      </button>
+    </form>
   )
 }
+
+/**
+ * Example 5: When not to use useActionState (rapid-fire multi-submit)
+ */
+
+// Notes:
+// 1. useActionState is designed to "reduce" state sequentially. This means if we
+//    rapid-click the form we get less-idea results:
+// Issues:
+// - Without startTransition, each action when it sets state waits for the previous
+//   action to finish.
+// - With startTransition, this fixes the sequential issue but we're not "reducing"
+//   any state which means we're not really using useActionState as it was designed
+
+// 2. Switch to reducing state instead of useState. Notice that we cannot really use
+//    an async transition in conjunction with "returning state". Also, since we're not
+//    explicitly setting state, setTransition has no value here
+//
+//    Ultimately, it seems like useActionState is designed for one-click submissions
+//    and not rapid-fire multi-submit situations
+
+// export function App() {
+//   const [items, setItems] = useState<string[]>([])
+//   const [pendingTransition, startTransition] = useTransition()
+
+//   const [state, action, pendingActionState] = useActionState(async function () {
+//     const response = await serverAddItem()
+//     const { items: itemCount } = await response.json()
+//     setItems((items) => items.concat(`Item ${itemCount}`))
+//   }, null)
+
+//   return (
+//     <>
+//       <form action={action}>
+//         <button className="button" type="submit">
+//           Add Item
+//         </button>
+//       </form>
+//       {items.map((i) => (
+//         <div key={i} className="border-b">
+//           {i}
+//         </div>
+//       ))}
+//       {pendingActionState && <div>Pending Action State</div>}
+//     </>
+//   )
+// }
 
 /**
  * Pending
