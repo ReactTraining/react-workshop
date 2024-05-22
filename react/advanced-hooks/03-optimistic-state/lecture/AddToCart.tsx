@@ -30,7 +30,7 @@ export function AddToCart() {
 }
 
 // Function mimics slower network response times
-async function updateDatabase(likes: number) {
+async function updateDatabase(items: number) {
   await new Promise((res) => setTimeout(res, 2000))
-  return likes
+  return items
 }
