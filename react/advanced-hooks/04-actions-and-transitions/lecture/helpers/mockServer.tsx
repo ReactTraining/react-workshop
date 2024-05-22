@@ -1,11 +1,16 @@
-let itemCount = 0
+export async function addItem(item: string) {
+  await new Promise((res) => setTimeout(res, 1500))
+  let status = 200
+  type ResponseType = { item?: string; error?: string }
+  let responseData: ResponseType = { item }
 
-export async function addItem() {
-  await new Promise((res) => setTimeout(res, 800))
-  itemCount++
-  // if (itemCount === 5) throw Error('Bad Request')
+  if (item === 'Item 5') {
+    status = 400
+    responseData = { item, error: 'Error saving Item 5' }
+  }
 
-  return new Response(JSON.stringify({ items: itemCount }), {
+  return new Response(JSON.stringify(responseData), {
+    status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },
