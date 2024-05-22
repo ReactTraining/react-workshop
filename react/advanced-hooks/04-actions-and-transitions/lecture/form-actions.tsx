@@ -227,65 +227,73 @@ type Message = {
 // }
 
 /**
- * Example 4: useActionState for one-click submissions
+ * Example 4: useActionState for single-submission forms
  */
 
-// Refactor this "hand-made" action to utilize useActionState
+// 1. Make sure everyone knows how useReducer works and "reducing state"
+// 2. Refactor this "hand-made" action to utilize useActionState
+// 3. Remember the signature changes of the function (prev, asyncFn)
+// 4. Eventually we can replace the two useState's and useTransition with useActionState
 
-function Pending({ children }: { children: React.ReactNode }) {
-  const { pending } = useFormStatus()
-  return pending && children
-}
+// function Pending({ children }: { children: React.ReactNode }) {
+//   const { pending } = useFormStatus()
+//   return pending && children
+// }
 
-export function App() {
-  const [success, setSuccess] = useState(false)
-  const [errors, setErrors] = useState<string[]>([])
-  const [pending, startTransition] = useTransition()
+// type ActionState = {
+//   success: boolean
+//   error: string[]
+// }
 
-  async function action(formData: FormData) {
-    const firstName = formData.get('firstName') as string | undefined
-    const lastName = formData.get('lastName') as string | undefined
+// export function App() {
+//   const [success, setSuccess] = useState(false)
+//   const [errors, setErrors] = useState<string[]>([])
+//   const [pending, startTransition] = useTransition()
 
-    startTransition(async () => {
-      const serverData = await saveUser(firstName, lastName).then((res) => res.json())
-      if (serverData.success) {
-        setSuccess(true)
-        setErrors([])
-      } else {
-        setSuccess(false)
-        setErrors(serverData.errors)
-      }
-    })
-  }
+//   async function action(formData: FormData) {
+//     const firstName = formData.get('firstName') as string | undefined
+//     const lastName = formData.get('lastName') as string | undefined
 
-  // const [state, actionFn, isPending] = useActionState(async fn, initialState)
+//     startTransition(async () => {
+//       const serverData = await saveUser(firstName, lastName).then((res) => res.json())
+//       if (serverData.success) {
+//         setSuccess(true)
+//         setErrors([])
+//       } else {
+//         setSuccess(false)
+//         setErrors(serverData.errors)
+//       }
+//     })
+//   }
 
-  return (
-    <form action={action} className="max-w-96 space-y-3">
-      {success && <p>Success!</p>}
-      {errors.length > 0 && <p>{errors.join('. ')}</p>}
-      <input
-        type="text"
-        className="form-field"
-        name="firstName"
-        placeholder="First Name"
-        aria-label="First Name"
-        autoComplete="off"
-      />
-      <input
-        type="text"
-        className="form-field"
-        name="lastName"
-        placeholder="Last Name"
-        aria-label="Last Name"
-        autoComplete="off"
-      />
-      <button className="button" type="submit" disabled={pending}>
-        {pending ? 'Sending Data...' : 'Submit'}
-      </button>
-    </form>
-  )
-}
+//   // const [state, actionFn, isPending] = useActionState(async fn, initialState)
+
+//   return (
+//     <form action={action} className="max-w-96 space-y-3">
+//       {success && <p>Success!</p>}
+//       {errors.length > 0 && <p>{errors.join('. ')}</p>}
+//       <input
+//         type="text"
+//         className="form-field"
+//         name="firstName"
+//         placeholder="First Name"
+//         aria-label="First Name"
+//         autoComplete="off"
+//       />
+//       <input
+//         type="text"
+//         className="form-field"
+//         name="lastName"
+//         placeholder="Last Name"
+//         aria-label="Last Name"
+//         autoComplete="off"
+//       />
+//       <button className="button" type="submit" disabled={pending}>
+//         {pending ? 'Sending Data...' : 'Submit'}
+//       </button>
+//     </form>
+//   )
+// }
 
 /**
  * Example 5: When to NOT use useActionState (rapid-fire multi-submit)
