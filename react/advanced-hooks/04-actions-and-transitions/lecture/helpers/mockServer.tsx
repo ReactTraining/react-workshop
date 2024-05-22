@@ -1,13 +1,19 @@
-export async function addItem(item: string) {
+type Message = {
+  id: number
+  messageText: string
+}
+let messageCount = 0
+
+export async function addMessage(messageText: string) {
   await new Promise((res) => setTimeout(res, 1500))
   let status = 200
-  type ResponseType = { item?: string; error?: string }
-  let responseData: ResponseType = { item }
+  type ResponseType = { message?: Message; error?: string }
+  let responseData: ResponseType = { message: { id: ++messageCount, messageText } }
 
-  if (item === 'Item 5') {
-    status = 400
-    responseData = { item, error: 'Error saving Item 5' }
-  }
+  // if (item === 'Item 5') {
+  //   status = 400
+  //   responseData = { item, error: 'Error saving message 5' }
+  // }
 
   return new Response(JSON.stringify(responseData), {
     status,
