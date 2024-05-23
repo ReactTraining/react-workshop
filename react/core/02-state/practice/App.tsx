@@ -3,11 +3,12 @@ import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
 
-// Your state's "type" will be Vacation[]
-// which means an array of Vacation objects
-// Keep in mind your state will start as null
-// so the useState generic will be:
-// useState<Vacation[] | null>()
+// Your state's "type" will be Vacation[] which means an array of
+// Vacation objects Keep in mind your state can start of with
+// any initial value, but we recommend this which means your initial
+// state will be an array and your state type is either and empty array
+// or an array of Vacations
+// useState<Vacation[]>([])
 
 export function App() {
   // const [state, setState] = useState(/* initialState */)
