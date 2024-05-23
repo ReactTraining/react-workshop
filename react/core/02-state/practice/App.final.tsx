@@ -4,7 +4,7 @@ import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
 
 export function App() {
-  const [vacations, setVacations] = useState<Vacation[]>([])
+  const [vacations, setVacations] = useState<[] | Vacation[]>([])
   const [pending, setPending] = useState(false)
 
   function loadVacations() {
