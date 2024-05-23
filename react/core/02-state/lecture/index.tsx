@@ -1,65 +1,36 @@
 import { useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
-import { Heading } from '~/Heading'
 import { LessonBody, LessonCard } from '~/Lesson'
-import { GroceryForm } from './GroceryForm'
-import { GroceryList } from './GroceryList'
 import { Counter } from './Counter'
 
-type Item = {
-  id: number
-  name: string
-  quantity: number
-}
+// A nice visual explanation of keys
+// https://twitter.com/dan_abramov/status/1415279090446204929
 
 function App() {
-  const [items, setItems] = useState([
-    { id: 1, name: 'Eggs', quantity: 12 },
-    { id: 2, name: 'Bread', quantity: 1 },
-    { id: 3, name: 'Tomatoes', quantity: 3 },
-  ])
-
-  console.log(items)
-
-  function addItem(item: Item) {
-    // Add item to items array
-  }
-
-  // Without Cloning (Faster, More Difficult)
-  function subtractQuantity(id: number) {
-    const index = items.findIndex((item) => item.id === id)
-    const newItem = { ...items[index], quantity: items[index].quantity - 1 }
-    setItems(items.with(index, newItem))
-  }
-
-  // With Cloning (Slower, Easier)
-  function addQuantity(id: number) {
-    const index = items.findIndex((item) => item.id === id)
-    const newItems = structuredClone(items)
-    newItems[index].quantity++
-    setItems(newItems)
-  }
+  const vacations = [
+    { id: 1, name: 'Maui', hotels: 5 },
+    { id: 2, name: 'Fiji', hotels: 2 },
+    { id: 3, name: 'Cozumel', hotels: 3 },
+    { id: 4, name: 'Crete', hotels: 5 },
+    { id: 5, name: 'Florida Keys', hotels: 1 },
+  ]
 
   return (
     <LessonBody>
       <div className="flex gap-12">
         <LessonCard className="w-64">
-          <Heading>Counter</Heading>
           <Counter />
+          <input type="range" min="0" max="5" step="1" className="w-full" />
         </LessonCard>
         <LessonCard className="flex-1">
-          <div className="flex gap-12">
-            <div className="w-56 space-y-6">
-              <Heading>Add Item</Heading>
-              <GroceryForm onSubmit={addItem} />
-            </div>
-            <div className="flex-1 space-y-6">
-              <div>Filter Quantity: 1</div>
-              <GroceryList
-                items={items}
-                subtractQuantity={subtractQuantity}
-                addQuantity={addQuantity}
-              />
+          <div className="space-y-3">
+            <div className="font-bold text-small">Hotels: 5</div>
+
+            <div>
+              <div className="flex gap-6 items-center bg-slate-100 p-4">
+                <div className="flex-1">Maui</div>
+                <div className="flex-1">Hotels: 5</div>
+              </div>
             </div>
           </div>
         </LessonCard>

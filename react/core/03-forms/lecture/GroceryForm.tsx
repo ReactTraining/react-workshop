@@ -11,6 +11,7 @@ type Props = {
 
 export function GroceryForm({ onSubmit }: Props) {
   // Teach refs with typescript
+  // Teach React 19 actions
 
   function handleSubmit(event /* <---- WHAT IS THIS EVENT? */) {
     event.preventDefault()

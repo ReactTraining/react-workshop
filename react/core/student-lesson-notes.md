@@ -41,7 +41,7 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 
 - Docs: https://react.dev/reference/react/useState
 
-### Forms
+## Lesson 3: Forms
 
 - Form fields in React are either "controlled" or "uncontrolled".
 - By default, fields are "uncontrolled". This means that React is not controlling the value of the field. The user types into the field and whatever they type is the value (just like any HTML form made in the last 25 years). It's "uncontrolled" because React is not controlling the value.
@@ -49,9 +49,16 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 - If form fields have a `name` prop, we can retrieve uncontrolled form values by doing this in the submit event:
 
 ```js
+// Usage: <form onSubmit={onSubmit}></form>
 function onSubmit(event) {
   event.preventDefault() // prevents default form behavior
   const formData = new FormData(event.currentTarget)
+  const plainObject = Object.fromEntries(formData)
+}
+
+// React 19
+// Usage: <form action={formAction}></form>
+async function formAction(formData) {
   const plainObject = Object.fromEntries(formData)
 }
 ```
@@ -60,7 +67,7 @@ function onSubmit(event) {
 
 ---
 
-## Lesson 3: Hooks
+## Lesson 4: Hooks
 
 - A "ref" in React is a reference to a consistent object obtained by `useRef()`
 - We can pass that ref to a DOM node like this: `<div ref={ref}></div>`
@@ -99,13 +106,13 @@ const MyComponent = React.memo((props) => {
 - Docs for useMemo: https://react.dev/reference/react/useMemo
 - Docs for memo: https://react.dev/reference/react/memo
 
-## Lesson 4: Routing
+## Lesson 5: Routing
 
 Please see the docs at: https://reactrouter.com
 
 Sometimes things change and we wouldn't want our notes here to become outdated. Their docs are fantastic. There's also really good docs for migrating from earlier versions of React Router to more modern ones.
 
-## Lesson 5: Data Fetching
+## Lesson 6: Data Fetching
 
 - `useEffect` is for doing side-effects after render phases (after the JSX has created DOM)
 - The `useEffect` function gets called after the first render, then after any where where the dependency array variables change:
@@ -168,7 +175,7 @@ function useUsers() {
 
 - An excellent guide: https://tkdodo.eu/blog/practical-react-query.
 
-## Lesson 6: Context
+## Lesson 7: Context
 
 - "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
 - When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
@@ -181,7 +188,7 @@ function useUsers() {
 - Docs: https://react.dev/learn/passing-data-deeply-with-context
 - TypeScript and Context: https://reacttraining.com/blog/react-context-with-typescript
 
-## Lesson 7: Testing
+## Lesson 8: Testing
 
 - Be sure to see the GUIDE.md in the testing folder for information on setting up unit testing
 - The main principal of React unit testing is - Test the component the way the user uses it, not the implementation details of the component.

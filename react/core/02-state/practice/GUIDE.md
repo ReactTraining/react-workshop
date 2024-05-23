@@ -2,19 +2,24 @@
 
 ## Goals
 
-Allow the user to fill out the login form and submit. Lift the state of the logged-in user for the entire app to have access to.
+Fetch vacation data when the button is clicked. Map over the data to show the results
 
 ## Task 1
 
-When you run the code you'll see that the login form already works. Study the code and see how we're collecting the user data from the form and then calling a `login()` function to simulate logging in. Note that we don't persist your login status anywhere so refreshing will start everything all over.
+The button and data-fetching code are already written. You just need to write the state. We have a generic looking call to `useState` so work with that and change the variable names to be more appropriate for vacations. The initial state should be `null` since you won't have any vacations yet.
 
-Your task is to "lift the state" of the user. This will require you to:
+We have a `Vacation` type which you can use as a generic like this:
 
-1. Move the `user` state from the form up to the `App`.
-2. pass down an `onSubmit` prop from the `App` to the form.
-3. When the user logs in, now call the `onSubmit` function we get as a prop instead of setting state in `LoginForm`.
-4. Move the div that shows the user's id from the form to the app in the right box to observe it changing when you login.
+```ts
+useState<Vacation[] | null>()
+```
+
+This means the state will be either `null` or a `Vacation` array
+
+## Bonus Task
+
+If you feel like you have time, try to implement a "Loading..." indicator so when the button is pushed you can indicate the page is loading. See the final for ideas.
 
 ## Finished When
 
-You can see the user's ID show up in the white box to the right of the form
+You can see all the vacation data show up

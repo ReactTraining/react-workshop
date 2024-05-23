@@ -1,27 +1,47 @@
 import { useState } from 'react'
-import { Heading } from '~/Heading'
-// import { LoginForm } from './LoginForm.final'
-import { LoginForm } from './LoginForm'
-import { LessonBody, LessonCard } from '~/Lesson'
+import { VacationImage } from '~/VacationImage'
+import { api } from '~/utils/api'
+import type { Vacation } from '~/utils/types'
 
-export type User = { userId: number }
+// Your state's "type" will be Vacation[]
+// which means an array of Vacation objects
+// Keep in mind your state will start as null
+// so the useState generic will be:
+// useState<Vacation[] | null>()
 
 export function App() {
+  // const [state, setState] = useState(/* initialState */)
+
+  function loadVacations() {
+    api.vacations.getAll().then((vacations) => {
+      console.log(vacations)
+    })
+  }
+
   return (
-    <LessonBody>
-      <div className="flex gap-6 max-lg:flex-col">
-        <div className="lg:flex-1">
-          <LessonCard>
-            <Heading>Login</Heading>
-            <LoginForm />
-          </LessonCard>
+    <div className="space-y-6 min-w-96">
+      <button className="button block" onClick={loadVacations}>
+        Load Vacations
+      </button>
+      {/* Start Map */}
+
+      {/* <div className="p-3 overflow-hidden flex flex-col">
+        <div className="h-52 -m-3 flex">
+          <VacationImage
+            vacationId={vacation.id}
+            alt={vacation.name}
+            className="block object-cover flex-1"
+          />
         </div>
-        <div className="lg:flex-1">
-          <LessonCard>
-            <div>User ID: </div>
-          </LessonCard>
+        <div className="space-y-3 mt-3 border-t">
+          <div className="mt-3 flex justify-between items-center">
+            <div className="">{vacation.name}</div>
+            <b className="block">${vacation.price}</b>
+          </div>
         </div>
-      </div>
-    </LessonBody>
+      </div> */}
+
+      {/* End Map */}
+    </div>
   )
 }

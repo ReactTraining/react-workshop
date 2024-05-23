@@ -17,7 +17,7 @@ export function LessonCard({ children, className, ...props }: LessonCardProps) {
     <div
       {...props}
       className={classNames(
-        'ml-auto mr-auto max-w-[1200px] min-h-[250px] space-y-6 p-6 bg-white rounded-2xl shadow-lg',
+        'ml-auto mr-auto max-w-[1200px] space-y-6 p-6 bg-white rounded-2xl shadow-lg',
         className
       )}
     >

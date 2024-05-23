@@ -1,30 +1,47 @@
 import { useState } from 'react'
-import { Heading } from '~/Heading'
-import { LoginForm } from './LoginForm.final'
-import { LessonBody, LessonCard } from '~/Lesson'
-
-export type User = { userId: number }
+import { VacationImage } from '~/VacationImage'
+import { api } from '~/utils/api'
+import type { Vacation } from '~/utils/types'
 
 export function App() {
-  const [user, setUser] = useState<User | null>(null)
+  const [vacations, setVacations] = useState<Vacation[]>([])
+  const [pending, setPending] = useState(false)
 
-  function onSubmit(user: User) {
-    setUser(user)
+  function loadVacations() {
+    setPending(true)
+    api.vacations.getAll().then((vacations) => {
+      setPending(false)
+      setVacations(vacations)
+    })
   }
 
   return (
-    <LessonBody>
-      <div className="flex gap-6 max-lg:flex-col">
-        <div className="lg:flex-1">
-          <LessonCard>
-            <Heading>Login</Heading>
-            <LoginForm onSubmit={onSubmit} />
-          </LessonCard>
-        </div>
-        <div className="lg:flex-1">
-          <LessonCard>{user && <div>User ID: {user.userId}</div>}</LessonCard>
-        </div>
-      </div>
-    </LessonBody>
+    <div className="space-y-6 min-w-96">
+      <button className="button block" onClick={loadVacations}>
+        Load Vacations
+      </button>
+      {pending && <div>Loading...</div>}
+      {!pending &&
+        vacations.length > 0 &&
+        vacations.map((vacation) => {
+          return (
+            <div key={vacation.id} className="p-3 overflow-hidden flex flex-col">
+              <div className="h-52 -m-3 flex">
+                <VacationImage
+                  vacationId={vacation.id}
+                  alt={vacation.name}
+                  className="block object-cover flex-1"
+                />
+              </div>
+              <div className="space-y-3 mt-3 border-t">
+                <div className="mt-3 flex justify-between items-center">
+                  <div className="">{vacation.name}</div>
+                  <b className="block">${vacation.price}</b>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+    </div>
   )
 }
