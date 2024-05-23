@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
