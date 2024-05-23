@@ -10,7 +10,7 @@ import type { Vacation } from '~/utils/types'
 // useState<Vacation[] | null>()
 
 export function App() {
-  // const [state, setState] = useState(/* initialState */)
+  const [state, setState] = useState(/* initialState */)
 
   function loadVacations() {
     api.vacations.getAll().then((vacations) => {

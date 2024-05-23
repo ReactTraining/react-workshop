@@ -1,30 +1,36 @@
 import { useId, useRef, useEffect, useState } from 'react'
 import { renderMap } from '~/utils/maps'
 
-// useId
 // useRef
 // useEffect
 
 export function App() {
+  const mapRef = useRef<HTMLDivElement>(null!)
+
   const [lat, setLat] = useState(40.712)
   const [lng, setLng] = useState(-74.006)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  // After the first render, we call this function ALWAYS
+  // after other re-renders, this function gets called only if the dep array parts change
+  useEffect(() => {
     const pos = { lat, lng }
 
     // Use Refs Instead
-    renderMap(document.getElementById('map'), {
+    renderMap(mapRef.current, {
       center: pos,
       zoom: 10,
     })
-  }
+  }, [lat, lng])
+
+  // function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault()
+  // }
 
   return (
     <div className="space-y-6">
-      <div className="h-64 bg-slate-200" id="map" />
+      <div className="h-64 bg-slate-200" ref={mapRef} />
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="flex gap-6">
           <div>
             <label htmlFor="lat" className="text-xs">

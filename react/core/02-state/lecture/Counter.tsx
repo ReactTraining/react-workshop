@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Icon } from '~/Icon'
 
-// type Props = {
-//   count: number
-//   setCount(count: number): void
-// }
+type Props = {
+  count: number
+  setCount(count: number): void
+}
 
-export function Counter({ count, setCount }) {
+export function Counter({ count, setCount }: Props) {
   const error = count < 0 ? 'Cannot be less than 0' : null
 
   function subtract() {
