@@ -13,6 +13,7 @@ export function VacationDetailsPage() {
 
   useEffect(() => {
     let isCurrent = true
+
     api.vacations.getVacation(vacationId).then((vacation) => {
       if (isCurrent) setVacation(vacation)
     })

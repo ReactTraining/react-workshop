@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useLoaderData, useParams } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { useLoaderData, useParams, LoaderFunctionArgs } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
@@ -7,31 +7,45 @@ import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function loader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!)
+  // const vacation = await api.vacations.getVacation(vacationId)
 
-// export async function loader() {
-//   return api.vacations.getVacation(vacationId)
-// }
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
 
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+  return { vacation }
+}
 
 export function VacationDetailsPage() {
-  const vacationId = parseInt(useParams().vacationId!)
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+  const { vacation } = useLoaderData() as Awaited<ReturnType<typeof loader>>
 
-  // api.vacations.getVacation(vacationId)
+  // const { data: vacation } = useQuery({
+  //   queryKey: ['vacation', vacationId],
+  //   queryFn: () => api.vacations.getVacation(vacationId),
+  //   staleTime: 1000 * 30,
+  // })
+
+  // // Any Variable that we "close over" that MIGHT CHANGE!!!
+  // useEffect(() => {
+  //   let isCurrent = true
+  //   api.vacations.getVacation(vacationId).then((vacation) => {
+  //     if (isCurrent) {
+  //       setVacation(vacation)
+  //     }
+  //   })
+  //   return () => {
+  //     isCurrent = false
+  //   }
+  // }, [setVacation, vacationId])
 
   if (!vacation) return <div>Loading...</div>
 

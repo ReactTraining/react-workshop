@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+
 import {
   Navigate,
   Route,
@@ -13,10 +15,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
