@@ -27,7 +27,7 @@ export function BrowseVacationsPage() {
   // const { data } = useQuery({
   //   queryKey: // an array with "keys" to cache the data
   //   queryFn: // a function which returns a promise and the promise resolves your data
-  //   staleTime: // miliseconds for how long this data will remain in cache
+  //   staleTime: // milliseconds for how long this data will remain in cache
   // })
 
   return (
