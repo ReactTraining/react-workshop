@@ -6,7 +6,7 @@ import { Icon } from './examples/Icon'
 import { FaTrash } from 'react-icons/fa'
 
 function App() {
-  return <div>Let's get started</div>
+  // Let's get started
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+const el = document.getElementById('root')

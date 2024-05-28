@@ -65,28 +65,28 @@ svg {
     margin: 0;
   }
 
-  .heading.size-1 {
+  .heading-size-1 {
     font-size: 2em;
     @media (min-width: 700px) {
       font-size: 3em;
     }
   }
 
-  .heading.size-2 {
+  .heading-size-2 {
     font-size: 1.5em;
     @media (min-width: 700px) {
       font-size: 2em;
     }
   }
 
-  .heading.size-3 {
+  .heading-size-3 {
     font-size: 1.3em;
     @media (min-width: 700px) {
       font-size: 1.6em;
     }
   }
 
-  .heading.size-4 {
+  .heading-size-4 {
     font-size: 1.1em;
     @media (min-width: 700px) {
       font-size: 1.3em;
