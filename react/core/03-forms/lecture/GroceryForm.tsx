@@ -13,7 +13,7 @@ export function GroceryForm({ onSubmit }: Props) {
   // Teach refs with typescript
   // Teach React 19 actions
 
-  function handleSubmit(event /* <---- WHAT IS THIS EVENT? */) {
+  function handleSubmit(event /* <---- TS has no idea what this is */) {
     event.preventDefault()
     // Three basic ways to get our form's fields
     // 1. Scrape for it: ids (bad) refs (good)
@@ -25,11 +25,11 @@ export function GroceryForm({ onSubmit }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <label htmlFor="item">Item</label>
+        <label htmlFor="itemName">Item</label>
         <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />
       </div>
       <div>
-        <label htmlFor="quantity">Quantity</label>
+        <label htmlFor="itemQuantity">Quantity</label>
         <input id="itemQuantity" type="text" className="form-field" name="quantity" />
       </div>
       <footer>

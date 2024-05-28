@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLoaderData, useParams } from 'react-router-dom'
+import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
@@ -17,7 +17,7 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-// export async function loader() {
+// export async function loader({ params }: LoaderFunctionArgs) {
 //   return api.vacations.getVacation(vacationId)
 // }
 
