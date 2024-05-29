@@ -22,6 +22,7 @@ import { AccountHome } from '~/AccountHome'
 // Lazy Loading Options:
 // React Way: https://react.dev/reference/react/lazy
 // React Router Way: https://reactrouter.com/en/main/route/lazy
+// Export names must match route props: Rename component to <Component />
 
 const router = createBrowserRouter(
   createRoutesFromElements(
