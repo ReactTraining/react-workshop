@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 14pt;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  color: theme(colors.textColor);
+}
+
+body {
+  /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
+  min-height: -webkit-fill-available;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.lesson-body {
+  background-image: linear-gradient(
+    58.2deg,
+    rgba(40, 91, 212, 0.73) -3%,
+    rgba(171, 53, 163, 0.45) 49.3%,
+    rgba(255, 204, 112, 0.37) 97.7%
+  );
+}
+
+/****************************************
+  Buttons
+*****************************************/
+
+@layer base {
+  .button,
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
+  /* Buttons with icons */
+  .button > span + svg,
+  .button > svg + span {
+    margin-left: 0.8em;
+  }
+
+  /* Normalize anchors with .button to behave more like buttons */
+  a.button {
+    display: inline-block;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  /* Button Looking */
+  .button {
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+    line-height: 1.2em;
+    background-color: theme(colors.brandBlue);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .button:hover,
+  .button:focus {
+    background-color: theme(colors.brandBlueDark);
+  }
+
+  .button.button-outline {
+    border-color: currentColor;
+    background-color: #fff;
+    color: theme(colors.brandBlue);
+  }
+
+  .button[disabled] {
+    background-color: theme(colors.slate.400);
+    color: #fff;
+  }
+}
+
+/****************************************
+  Form Fields
+*****************************************/
+
+@layer components {
+  .form-field {
+    width: 100%;
+    padding: 0.3em 0.7em;
+    background-color: #fff;
+    border: 1px solid theme(colors.slate.300);
+    font-size: 1rem;
+    font-weight: 300;
+    color: theme(colors.slate.700);
+    border-radius: 5px;
+  }
+
+  .form-field:focus,
+  .form-field:focus-within {
+    outline: none;
+    border-color: theme(colors.sky.400);
+  }
+
+  .form-field[disabled] {
+    background-color: theme(colors.slate.100);
+  }
+
+  textarea.form-field {
+    resize: vertical;
+    max-height: 300px;
+  }
+
+  select.form-field {
+    appearance: none;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+');
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    padding-right: 1.5em;
+  }
+
+  /* .form-field-wrap.required > label.form-field-label {
+    position: relative;
+  }
+
+  .form-field-wrap.required > label.form-field-label::after {
+    content: '•';
+    position: absolute;
+    left: -0.7em;
+    top: -0.35em;
+    color: var(--red);
+    font-size: 1.4em;
+  } */
+}
+
+@layer base {
+  input {
+    accent-color: theme(colors.brandBlue);
+  }
+
+  input[type='checkbox'] {
+    width: 1em;
+    aspect-ratio: 1/1;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 1em;
+
+    background: theme(colors.slate.300);
+    height: 0.5rem;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-moz-range-track {
+    background: green;
+    height: 0.5rem;
+  }
+}

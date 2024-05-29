@@ -24,10 +24,6 @@ body {
 }
 
 .lesson-body {
-  /* background: linear-gradient(#c0f5ff, transparent),
-    linear-gradient(to top left, #cb7ad0, transparent),
-    linear-gradient(to top right, #54c4ff, transparent);
-  background-blend-mode: screen; */
   background-image: linear-gradient(
     58.2deg,
     rgba(40, 91, 212, 0.73) -3%,

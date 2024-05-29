@@ -7,6 +7,7 @@
     "start": "vite-node scripts/start.ts",
     "dev": "npm start",
     "kill-db-port": "node scripts/kill-db-port 3333",
+    "install-next": "cd nextjs && npm install",
     "install-remix": "cd remix && npm install",
     "test": "jest"
   },
