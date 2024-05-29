@@ -4,7 +4,7 @@ You're encouraged to take notes, but we don't want that to get in the way of lis
 
 ---
 
-## Lesson 1: Rendering
+## Lesson: Rendering
 
 - A component is a function that "returns JSX"
 - JSX is just syntax sugar for function calls
@@ -22,7 +22,7 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 
 ---
 
-## Lesson 2: State
+## Lesson: State
 
 - State can be considered any variable that changes over time in the component.
 - `useState` Format: `const [value, setValue] = useState(defaultValue)`.
@@ -41,7 +41,13 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 
 - Docs: https://react.dev/reference/react/useState
 
-## Lesson 3: Forms
+## Lesson: Routing
+
+Please see the docs at: https://reactrouter.com
+
+Sometimes things change and we wouldn't want our notes here to become outdated. Their docs are fantastic. There's also really good docs for migrating from earlier versions of React Router to more modern ones.
+
+## Lesson: Forms
 
 - Form fields in React are either "controlled" or "uncontrolled".
 - By default, fields are "uncontrolled". This means that React is not controlling the value of the field. The user types into the field and whatever they type is the value (just like any HTML form made in the last 25 years). It's "uncontrolled" because React is not controlling the value.
@@ -67,7 +73,7 @@ async function formAction(formData) {
 
 ---
 
-## Lesson 4: Hooks
+## Lesson: Hooks
 
 - A "ref" in React is a reference to a consistent object obtained by `useRef()`
 - We can pass that ref to a DOM node like this: `<div ref={ref}></div>`
@@ -106,13 +112,7 @@ const MyComponent = React.memo((props) => {
 - Docs for useMemo: https://react.dev/reference/react/useMemo
 - Docs for memo: https://react.dev/reference/react/memo
 
-## Lesson 5: Routing
-
-Please see the docs at: https://reactrouter.com
-
-Sometimes things change and we wouldn't want our notes here to become outdated. Their docs are fantastic. There's also really good docs for migrating from earlier versions of React Router to more modern ones.
-
-## Lesson 6: Data Fetching
+## Lesson: Data Fetching
 
 - `useEffect` is for doing side-effects after render phases (after the JSX has created DOM)
 - The `useEffect` function gets called after the first render, then after any where where the dependency array variables change:
@@ -160,7 +160,7 @@ useEffect(() => {
 - Docs: https://react.dev/learn/synchronizing-with-effects
 - Docs: https://react.dev/learn/you-might-not-need-an-effect
 
-### React Query
+## Lesson: Data Fetching with React Query
 
 React Query is a professional cache-based data fetching abstraction so you don't have to make your own. It's also very well known and battle-tested. This could be our `useCourses` instead:
 
@@ -175,7 +175,7 @@ function useUsers() {
 
 - An excellent guide: https://tkdodo.eu/blog/practical-react-query.
 
-## Lesson 7: Context
+## Lesson: Context
 
 - "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
 - When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.

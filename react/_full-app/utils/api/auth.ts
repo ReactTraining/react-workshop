@@ -14,7 +14,7 @@ export function login(username: string, password: string) {
       const user = results[0]
       delete user.password
       storage.login(user)
-      return user
+      return user as User
     } else {
       return Promise.reject('User not found')
     }

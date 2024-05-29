@@ -17,12 +17,13 @@ export function BrowseVacationsPage() {
   // 1.A: State for the useEffect
   const [vacations, setVacations] = useState<Vacation[] | null>(null)
 
-  // 1.A: You can skip 1.A if you like
+  // 1.A: You can skip 1.A if you would like.
   // Write a useEffect hook to fetch data and keep it in the above state
   // api.vacations.getAll().then()
 
-  // 1.B: You can skip 1.A but you should try to do 1.B. Use "Tanstack Query" to fetch
-  // data instead of useEffect and storing your own state (you won't need useState)
+  // 1.B: You can skip 1.A but you should try to do 1.B. Use "Tanstack Query" also known
+  // as React Query, to fetch data instead of useEffect and storing your own state
+  // (you won't need useState)
 
   // const { data } = useQuery({
   //   queryKey: // an array with "keys" to cache the data

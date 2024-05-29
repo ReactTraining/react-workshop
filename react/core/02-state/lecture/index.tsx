@@ -15,6 +15,9 @@ function App() {
     { id: 5, name: 'Florida Keys', hotels: 1 },
   ]
 
+  // Do "reduce" for total hotels
+  const totalHotels = 16
+
   return (
     <LessonBody>
       <div className="flex gap-12">
@@ -24,14 +27,16 @@ function App() {
         </LessonCard>
         <LessonCard className="flex-1">
           <div className="space-y-3">
-            <div className="font-bold text-small">Hotels: 5</div>
+            <div className="font-bold text-small">Hotels: {totalHotels}</div>
 
+            {/* Map */}
             <div>
               <div className="flex gap-6 items-center bg-slate-100 p-4">
                 <div className="flex-1">Maui</div>
                 <div className="flex-1">Hotels: 5</div>
               </div>
             </div>
+            {/* End Map */}
           </div>
         </LessonCard>
       </div>

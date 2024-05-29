@@ -3,7 +3,7 @@ import { LessonBody, LessonCard } from '~/Lesson'
 // import { App } from './App.final'
 import { App } from './App'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <LessonBody>
     <LessonCard>
       <App />

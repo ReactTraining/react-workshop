@@ -6,15 +6,7 @@ Fetch vacation data when the button is clicked. Map over the data to show the re
 
 ## Task 1
 
-The button and data-fetching code are already written. You just need to write the state. We have a generic looking call to `useState` so work with that and change the variable names to be more appropriate for vacations. The initial state should be `null` since you won't have any vacations yet.
-
-We have a `Vacation` type which you can use as a generic like this:
-
-```ts
-useState<Vacation[] | null>()
-```
-
-This means the state will be either `null` or a `Vacation` array
+The button and data-fetching code are already written. You just need to write the state. We have a generic looking call to `useState` so work with that and change the variable names to be more appropriate for vacations. The initial state could be `null` or an empty array (whatever you want) to indicate that you have not loaded data yet.
 
 ## Bonus Task
 

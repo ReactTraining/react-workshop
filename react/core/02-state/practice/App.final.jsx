@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
-import type { Vacation } from '~/utils/types'
 
 export function App() {
-  const [vacations, setVacations] = useState<Vacation[]>([])
+  const [vacations, setVacations] = useState([])
   const [pending, setPending] = useState(false)
 
   function loadVacations() {

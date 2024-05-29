@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
-import type { Vacation } from '~/utils/types'
 
-// Your state's "type" will be Vacation[] which means an array of
-// Vacation objects Keep in mind your state can start of with
-// any initial value, but we recommend this which means your initial
-// state will be an array and your state type is either and empty array
-// or an array of Vacations
-// useState<Vacation[]>([])
+// Note that this is a JSX and not a TSX file
+// So you're doing JavaScript not TypeScript
 
 export function App() {
-  // const [state, setState] = useState(/* initialState */)
+  // 1. Setup an initial value
+  // 2. useState returns an array
+  useState(/* initialState */)
 
   function loadVacations() {
     api.vacations.getAll().then((vacations) => {
