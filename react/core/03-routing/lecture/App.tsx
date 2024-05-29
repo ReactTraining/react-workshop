@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import {
   Navigate,
   Route,
@@ -17,6 +18,10 @@ import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+// Lazy Loading Options:
+// React Way: https://react.dev/reference/react/lazy
+// React Router Way: https://reactrouter.com/en/main/route/lazy
 
 const router = createBrowserRouter(
   createRoutesFromElements(
