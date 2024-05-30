@@ -1,0 +1,7 @@
+- RSC stands for React Server Component (or just "Server Component").
+- Components that aren't RSC are "Client Components".
+- Every component "runs" on the server, even the client ones.
+- Client components run on the server and "re-hydrate" when they run again on the client.
+- They're called "Client Components" because they _can_ run on the client. RSC can only run on the server.
+- Using "use client" creates a "client boundary" to which the component it's used and all sub-tree components are now client components.
+- Therefore, if a component doesn't have "use client" it is a server component UNLESS it is within a client boundary.

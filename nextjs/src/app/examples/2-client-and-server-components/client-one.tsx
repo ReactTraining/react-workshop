@@ -3,7 +3,11 @@
 import { useState } from 'react'
 import { ClientTwo } from './client-two'
 
-export function ClientOne() {
+type Props = {
+  children?: React.ReactNode
+}
+
+export function ClientOne({ children }: Props) {
   const [count, setCount] = useState(0)
   return (
     <div className="bg-blue-200 p-4 space-y-4">
@@ -13,7 +17,7 @@ export function ClientOne() {
           {count}
         </button>
       </div>
-      <ClientTwo></ClientTwo>
+      <ClientTwo>{children}</ClientTwo>
     </div>
   )
 }

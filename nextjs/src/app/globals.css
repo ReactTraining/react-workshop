@@ -17,6 +17,10 @@ body {
   min-height: -webkit-fill-available;
 }
 
+a {
+  color: theme(colors.brandBlueDark);
+}
+
 #root {
   min-height: 100vh;
   width: 100vw;
