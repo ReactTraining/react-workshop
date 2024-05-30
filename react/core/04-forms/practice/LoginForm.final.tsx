@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { LessonCard } from '~/Lesson'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,6 +14,9 @@ export function LoginForm() {
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
+    setPending(true)
+    setError('')
+
     login(username, password)
       .then((user) => {
         console.log(user)
@@ -25,19 +28,24 @@ export function LoginForm() {
       })
   }
 
-  // React 19 actions
+  // // React 19 actions
+  // // NOTE: We'll have to show useTransition for pending state
+  // // This setPending(true) will NOT work without it
   // async function loginAction(formData: FormData) {
   //   const username = formData.get('username') as string
   //   const password = formData.get('password') as string
 
+  //   setPending(true)
+  //   setError('')
+
   //   try {
   //     const user = await login(username, password)
   //     console.log(user)
-  //     setPending(false)
-  //     setError('')
+  //     navigate('/account')
   //   } catch (err) {
   //     if (typeof err === 'string') {
   //       setPending(false)
+  //       setError(err)
   //     }
   //   }
   // }
