@@ -48,6 +48,7 @@ if (!preferences.workshop) {
   if (choice === -1) process.exit(0)
   // start over with preferences
   preferences = {
+    compiledReact: false,
     workshop: workshopOptions[choice].toLowerCase(),
   }
   fs.writeFileSync(preferencesPath, JSON.stringify(preferences, null, 2))
