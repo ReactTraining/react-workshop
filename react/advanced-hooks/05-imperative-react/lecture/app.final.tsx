@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 
-function Portal({ children }) {
-  const [portalNode, setPortalNode] = useState(null)
+type PortalProps = { children: React.ReactNode }
+function Portal({ children }: PortalProps) {
+  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
-    const portalNode = document.createElement('portal')
+    const portalNode = document.createElement('div')
     document.body.appendChild(portalNode)
     setPortalNode(portalNode)
     return () => {
@@ -17,15 +18,20 @@ function Portal({ children }) {
   return portalNode ? createPortal(children, portalNode) : null
 }
 
-function Popover({ children, targetRef, ...props }) {
-  const popoverRef = useRef(null)
+type PopoverProps = {
+  children: React.ReactNode
+  targetRef: { current: HTMLElement }
+} & React.HTMLAttributes<HTMLDivElement>
+
+function Popover({ children, targetRef, ...props }: PopoverProps) {
+  const popoverRef = useRef<HTMLDivElement>(null!)
   const [styles, setStyles] = useState({})
 
   // Doing this work in a ref callback helps overcome a race-condition where
   // we need to ensure the popoverRef has been established. It's established
   // later than we might expect because the div it's applied to is the children
   // of Portal which returns null initially (which it must do)
-  function initPopoverRef(el) {
+  function initPopoverRef(el: HTMLDivElement) {
     // initPopoverRef will be called numerous times, let's do this work once.
     if (!popoverRef.current) {
       popoverRef.current = el
@@ -54,12 +60,13 @@ function Popover({ children, targetRef, ...props }) {
   )
 }
 
-function Define({ children }) {
+type DefineProps = { children: React.ReactNode }
+function Define({ children }: DefineProps) {
   const [open, setOpen] = useState(false)
-  const buttonRef = useRef()
+  const buttonRef = useRef<HTMLButtonElement>(null!)
 
   useEffect(() => {
-    const listener = (event) => {
+    const listener = (event: Event) => {
       if (event.target !== buttonRef.current) {
         setOpen(false)
       }

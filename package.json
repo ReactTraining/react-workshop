@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^2.0.4",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^1.9.3",

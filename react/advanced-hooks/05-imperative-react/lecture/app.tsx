@@ -2,14 +2,24 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { position } from './utils'
 
-function Popover({ children }) {
+type PopoverProps = {
+  children: React.ReactNode
+  // targetRef: { current: HTMLElement }
+} & React.HTMLAttributes<HTMLDivElement>
+
+function Popover({ children, ...props }: PopoverProps) {
   // const targetRect = targetRef.current.getBoundingClientRect()
   // const popoverRect = popoverRef.current.getBoundingClientRect()
   // setStyles(position(targetRect, popoverRect))
-  return <div className="bg-black text-white rounded py-1 px-3">{children}</div>
+  return (
+    <div {...props} className="bg-black text-white rounded py-1 px-3">
+      {children}
+    </div>
+  )
 }
 
-function Define({ children }) {
+type DefineProps = { children: React.ReactNode }
+function Define({ children }: DefineProps) {
   const [open, setOpen] = useState(false)
 
   return (
