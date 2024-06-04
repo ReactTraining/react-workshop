@@ -20,9 +20,10 @@ const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
 let preferences: Record<string, string | boolean> = {}
 try {
   const data = fs.readFileSync(preferencesPath, 'utf8')
-  preferences = JSON.parse(data)
+  preferences = JSON.parse(data || '{}')
   if (preferences.compiledReact === undefined) {
     preferences.compiledReact = false
+    savePreferences({})
   }
 } catch (err) {
   // no-op
