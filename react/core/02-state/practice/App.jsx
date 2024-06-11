@@ -23,7 +23,7 @@ export function App() {
       </button>
       {/* Start Map */}
 
-      {/* <div className="p-3 overflow-hidden flex flex-col">
+      {/* <div className="p-3 overflow-hidden flex flex-col max-w-96">
         <div className="h-52 -m-3 flex">
           <VacationImage
             vacationId={vacation.id}

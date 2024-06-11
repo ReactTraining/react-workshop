@@ -24,7 +24,7 @@ export function App() {
         vacations.length > 0 &&
         vacations.map((vacation) => {
           return (
-            <div key={vacation.id} className="p-3 overflow-hidden flex flex-col">
+            <div key={vacation.id} className="p-3 overflow-hidden flex flex-col max-w-96">
               <div className="h-52 -m-3 flex">
                 <VacationImage
                   vacationId={vacation.id}
