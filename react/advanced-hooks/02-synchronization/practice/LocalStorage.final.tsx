@@ -47,7 +47,7 @@ export function LocalStorage() {
           🇫🇷 Salut
         </button>
         <button className="button block" onClick={setStorageValue}>
-          🇮🇳 नमस्ते
+          🇮🇳 Namaste
         </button>
       </div>
     </div>
