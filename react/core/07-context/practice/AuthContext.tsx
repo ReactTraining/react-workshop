@@ -30,17 +30,13 @@ export function AuthProvider({ children }: Props) {
   }
 
   useEffect(() => {
-    let isCurrent = true
     api.auth.getAuthenticatedUser().then((user) => {
-      if (user && isCurrent) {
+      if (user) {
         login(user)
       } else {
         logout()
       }
     })
-    return () => {
-      isCurrent = false
-    }
   }, [])
 
   const context = {

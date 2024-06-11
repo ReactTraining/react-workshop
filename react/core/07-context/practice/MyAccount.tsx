@@ -8,8 +8,12 @@ export function MyAccount() {
   const navigate = useNavigate()
   const { authenticated, user, logout } = useAuthContext()
 
-  if (authenticated === false || !user) {
+  if (authenticated === false) {
     return <Navigate to="/login" replace />
+
+    // Null means it's still pending with our system
+  } else if (authenticated === null) {
+    return <div>Loading...</div>
   }
 
   async function onLogout() {
@@ -21,7 +25,7 @@ export function MyAccount() {
   return (
     <LessonCard>
       <Heading size={3}>My Account</Heading>
-      <div>Welcome {user.name}</div>
+      <div>Welcome {user?.name}</div>
       <div>
         <button onClick={onLogout} className="button">
           Logout

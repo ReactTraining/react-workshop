@@ -20,9 +20,11 @@ import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
 
 // Lazy Loading Options:
-// React Way: https://react.dev/reference/react/lazy
-// React Router Way: https://reactrouter.com/en/main/route/lazy
-// Export names must match route props: Rename component to <Component />
+// 1. React Way: https://react.dev/reference/react/lazy
+//    React.lazy()
+// 2. React Router Way: https://reactrouter.com/en/main/route/lazy
+//    <Route path="a" lazy={() => import("./a")} />
+//    Export names must match route props: Rename component to `export Component`
 
 const router = createBrowserRouter(
   createRoutesFromElements(

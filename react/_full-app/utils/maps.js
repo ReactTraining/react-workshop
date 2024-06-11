@@ -29,8 +29,6 @@ export async function load() {
   return Map
 }
 
-// load()
-
 export async function renderMap(el, opt) {
   const Map = await load()
   const map = new Map(el, opt)

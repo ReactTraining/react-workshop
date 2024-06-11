@@ -177,7 +177,7 @@ function useUsers() {
 
 ## Lesson: Context
 
-- "Unidirectional Data Flow": React's data model is said to be "unidirectional", meaning data flows from parent components down through the tree to child components through props.
+- "Uni-directional Data Flow": React's data model is said to be "uni-directional", meaning data flows from parent components down through the tree to child components through props.
 - When components need to communicate with other components far away in this tree structure, one solution has been to "lift state" high enough to flow the information down to both components. But this could lead to many levels of "prop drilling" -- the process of passing props deep through the component hierarchy.
 - Context is a way to pass data around our app without having to prop drill.
 - Context gives us a `<Context />` component which we can add to the same component that contains the state. Then instead of passing props down through the normal hierarchy, we can pass a `value` into the provider JSX.

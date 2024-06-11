@@ -1,9 +1,13 @@
 import { useId, useRef, useEffect, useState } from 'react'
 import { renderMap } from '~/utils/maps'
 
-// useId
-// useRef
-// useEffect
+// useId()
+// useRef()
+// useEffect()
+
+// Change form to uncontrolled so we can submit form and then
+// set state upon submission. That way we can respond to that state
+// change in useEffect
 
 export function App() {
   const [lat, setLat] = useState(40.712)

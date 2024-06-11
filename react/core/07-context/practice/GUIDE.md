@@ -2,7 +2,7 @@
 
 ## Goals
 
-Authentication is already working, so from that standpoint this practice is more of a "show-and-tell" about authentication. However your practice will be to refactor the code to make it more flexible for authenticating many different possible routes that might get added later.
+Authentication is already working, so from that standpoint this practice is more of a "show-and-tell" about authentication. However your task will be to refactor the code to make it more flexible for authenticating many different possible routes that might get added later.
 
 Right now, going to `/account` requires authentication. But in the future we want to authenticate many routes like `/account/settings` and `account/activity`. All routes starting with `/account` will eventually require authentication.
 

@@ -12,6 +12,9 @@ export function LoginForm() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  // ✨ This is a little note to remind the instructor to demo the final and
+  //    React's new form actions feature
+
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setPending(true)

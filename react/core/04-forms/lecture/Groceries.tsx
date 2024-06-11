@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import * as ReactDOM from 'react-dom/client'
 import { Heading } from '~/Heading'
 import { Icon } from '~/Icon'
-import { LessonBody, LessonCard } from '~/Lesson'
+import { LessonCard } from '~/Lesson'
 import { GroceryForm } from './GroceryForm'
 import { Counter } from './Counter'
 
@@ -47,7 +46,7 @@ export function Groceries() {
       </LessonCard>
       <LessonCard className="flex-1">
         <div className="flex gap-12">
-          <div className="w-56 space-y-6">
+          <div className="w-48 space-y-6">
             <Heading size={3}>Groceries</Heading>
             <GroceryForm onSubmit={addItem} />
           </div>

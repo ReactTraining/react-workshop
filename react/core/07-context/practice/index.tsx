@@ -21,6 +21,10 @@ const router = createBrowserRouter(
   )
 )
 
+// Note to instructor: Demo how we might refactor the useEffect code from
+// inside AuthProvider to be here in App instead. Note that login and logout
+// functions aren't stable right now.
+
 export function App() {
   return (
     <AuthProvider>
@@ -30,6 +34,8 @@ export function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+
+// Note to attendees: This is a hint for Task 1:
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(

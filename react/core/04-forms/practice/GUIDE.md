@@ -2,7 +2,7 @@
 
 ## Goals
 
-Allow the user to fill out the login form and submit. The form already works but we'll be switching from controlled to `formData`
+Allow the user to fill out the login form and submit. The form already works but the task is to switch from controlled state to `formData` for the form fields.
 
 ## Task 1
 
