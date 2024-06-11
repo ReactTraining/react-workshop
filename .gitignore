@@ -10,5 +10,6 @@ build
 public/build
 .env
 
-# database
+# misc
 db.json
+preferences.json
