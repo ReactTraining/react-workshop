@@ -1,4 +1,4 @@
-import { useState, useTransition } from 'react'
+import { useState, useTransition, memo } from 'react'
 import { useUsers, type UserType } from './helpers/useUsers'
 import { Heading } from '~/Heading'
 
@@ -14,7 +14,6 @@ export function App() {
 
   function filterUsers(newMinLikes: number) {
     setMinLikes(newMinLikes)
-
     if (newMinLikes !== minLikes) {
       console.time()
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
@@ -39,6 +38,7 @@ export function App() {
             min="0"
             max="9"
             step="any"
+            // step="1"
             defaultValue={0}
             onChange={(e) => filterUsers(parseInt(e.target.value))}
           />

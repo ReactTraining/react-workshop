@@ -32,16 +32,10 @@ export function ChatRoom({ user }: Props) {
 
   // Get Initial Messages
   useEffect(() => {
-    let isCurrent = true
     api.chat.getMessages(THREAD_NAME).then((messages) => {
-      if (isCurrent) {
-        setMessages(messages)
-        setStartSubscription(Date.now())
-      }
+      setMessages(messages)
+      setStartSubscription(Date.now())
     })
-    return () => {
-      isCurrent = false
-    }
   }, [])
 
   // Once we've loaded initial messages in the above effect, it will

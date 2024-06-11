@@ -1,3 +1,5 @@
 {
-  "compiledReact": false
+  "compiledReact": false,
+  "workshop": "react",
+  "course": "advanced-hooks"
 }

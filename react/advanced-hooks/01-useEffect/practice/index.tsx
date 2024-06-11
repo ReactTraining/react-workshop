@@ -1,6 +1,7 @@
 import * as ReactDOM from 'react-dom/client'
-import { ChatRoom } from './ChatRoom'
 import { LessonBody, LessonCard } from '~/Lesson'
+// import { ChatRoom } from './ChatRoom.final'
+import { ChatRoom } from './ChatRoom'
 
 function App() {
   const user = {

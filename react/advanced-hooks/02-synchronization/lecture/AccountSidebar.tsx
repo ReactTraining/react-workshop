@@ -1,6 +1,8 @@
-import { useState, useEffect, useLayoutEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useSyncExternalStore, useCallback } from 'react'
 import { AccountFavorites } from '~/AccountFavorites'
 import { Heading } from '~/Heading'
+
+// type Props = { width: number }
 
 export function AccountSidebar() {
   const [isWide, setIsWide] = useState(true)
