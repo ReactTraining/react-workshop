@@ -14,7 +14,6 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
@@ -26,13 +25,22 @@ import { AccountHome } from '~/AccountHome'
 //    <Route path="a" lazy={() => import("./a")} />
 //    Export names must match route props: Rename component to `export Component`
 
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
       <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
-          <Route path=":vacationId" element={<VacationDetailsPage />} />
+          <Route
+            path=":vacationId"
+            element={
+              <Suspense fallback={<div>loading more javascript</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
+          />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
           <Route index element={<Navigate to="/" />} />
         </Route>

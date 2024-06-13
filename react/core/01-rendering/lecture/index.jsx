@@ -3,10 +3,30 @@ import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Icon } from './examples/Icon'
-import { FaTrash } from 'react-icons/fa'
 
-function App() {
-  // Let's get started
+function Heading({ as: El = 'h1', children, size = 1, ...props }) {
+  return (
+    <El {...props} className={`heading heading-size-${size}`}>
+      {children}
+    </El>
+  )
 }
 
-const el = document.getElementById('root')
+function App() {
+  return (
+    <LessonBody>
+      <div className="space-y-4">
+        <LessonCard>
+          <Heading>
+            <Icon name="star" color="yellow" />
+            Hello Group
+          </Heading>
+        </LessonCard>
+        <LessonCard>Another</LessonCard>
+      </div>
+    </LessonBody>
+  )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
