@@ -229,6 +229,11 @@ export function App() {
 //   )
 // }
 
+function Pending({ children }: { children: React.ReactNode }) {
+  const { pending } = useFormStatus()
+  return pending && children
+}
+
 /**
  * Example 4: useActionState for single-submission forms
  */
@@ -237,11 +242,6 @@ export function App() {
 // 2. Refactor this "hand-made" action to utilize useActionState
 // 3. Remember the signature changes of the function (prev, asyncFn)
 // 4. Eventually we can replace the two useState's and useTransition with useActionState
-
-function Pending({ children }: { children: React.ReactNode }) {
-  const { pending } = useFormStatus()
-  return pending && children
-}
 
 // type ActionState = {
 //   success: boolean
