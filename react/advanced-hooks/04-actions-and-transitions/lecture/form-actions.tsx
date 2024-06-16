@@ -41,6 +41,9 @@ export function App() {
   const [messages, setMessages] = useState<Message[]>([])
   const [pending, setPending] = useState(false)
 
+  // // 1. Making this an async function makes little difference
+  // // 2. However, setting messages state with the fn approach
+  // //    fixes the fact that messages were being overridden
   // async function handleSubmit(e: FormEvent<HTMLFormElement>) {
   //   e.preventDefault()
   //   setPending(true)
