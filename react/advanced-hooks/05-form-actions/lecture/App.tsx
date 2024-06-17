@@ -245,7 +245,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 
 // type ActionState = {
 //   success: boolean
-//   error: string[]
+//   errors: string[]
 // }
 
 // export function App() {
@@ -257,6 +257,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 //     const firstName = formData.get('firstName') as string | undefined
 //     const lastName = formData.get('lastName') as string | undefined
 
+//     // We won't need this with useActionState
 //     startTransition(async () => {
 //       const serverData = await saveUser(firstName, lastName).then((res) => res.json())
 //       if (serverData.success) {
@@ -269,7 +270,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 //     })
 //   }
 
-//   // const [state, actionFn, isPending] = useActionState(async fn, initialState)
+//   // const [state, actionFn, isPending] = useActionState(async (prev, formData) => {}, initialState)
 
 //   return (
 //     <form action={action} className="max-w-96 space-y-3">
@@ -299,7 +300,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 // }
 
 /**
- * Example 5: When to NOT use useActionState: multi (rapid fire) submissions
+ * Example 5: When to NOT use useActionState: rapid-fire submissions submissions
  */
 
 // START --------------------> Resolve
