@@ -3,7 +3,7 @@ import { SubmitButton } from './SubmitButton'
 
 // This is all server code. So we don't have a "pending"
 // status. But we can use useFormStatus in a 'use client'
-// file.
+// file. See <SubmitButton>
 
 export function LoginForm() {
   console.log('Where does this run?') // server only
