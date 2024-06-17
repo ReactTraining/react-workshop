@@ -4,11 +4,12 @@ import type { Product } from '@/utils/database'
 import { use } from 'react'
 
 type Props = {
-  products: Product[]
+  productsPromise: Promise<Product[]>
 }
 
-export function ListProducts({ products }: Props) {
-  // const products = use(productsPromise)
+export function ListProducts({ productsPromise }: Props) {
+  const products = use(productsPromise)
+
   return (
     <div>
       {products.map((product) => {

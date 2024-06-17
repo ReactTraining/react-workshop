@@ -46,10 +46,8 @@ export function LoginForm() {
           required
         />
       </div>
-      <button type="submit" className="button">
-        Login
-      </button>
-      {/* <SubmitButton>Login</SubmitButton> */}
+
+      <SubmitButton>Login</SubmitButton>
     </form>
   )
 }

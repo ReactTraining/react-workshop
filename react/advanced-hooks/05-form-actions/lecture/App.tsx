@@ -36,70 +36,53 @@ type Message = {
 //    START --------------------> Resolve
 //       START --------------------> Resolve
 
-export function App() {
-  const messageRef = useRef<HTMLInputElement>(null!)
-  const [messages, setMessages] = useState<Message[]>([])
-  const [pending, setPending] = useState(false)
+// export function App() {
+//   const messageRef = useRef<HTMLInputElement>(null!)
+//   const [messages, setMessages] = useState<Message[]>([])
+//   const [pending, setPending] = useState(false)
 
-  // // 1. Making this an async function makes little difference
-  // // 2. However, setting messages state with the fn approach
-  // //    fixes the fact that messages were being overridden
-  // async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-  //   e.preventDefault()
-  //   setPending(true)
-  //   const formData = new FormData(e.currentTarget)
-  //   messageRef.current.value = ''
-  //   messageRef.current.focus()
-  //   const res = await addMessage(formData.get('messageText') as string)
-  //   const { message: newMessage } = await res.json()
-  //   setMessages((messages) => messages.concat(newMessage))
-  //   setPending(false)
-  // }
+//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+//     e.preventDefault()
+//     setPending(true)
+//     const formData = new FormData(e.currentTarget)
+//     messageRef.current.value = ''
+//     messageRef.current.focus()
+//     const data = await addMessage(formData.get('messageText') as string).then((res) => res.json())
+//     const newMessage = data.message
+//     setMessages((messages) => {
+//       return messages.concat(newMessage)
+//     })
+//     setPending(false)
+//   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setPending(true)
-    const formData = new FormData(e.currentTarget)
-    messageRef.current.value = ''
-    messageRef.current.focus()
-    console.log('start')
-    addMessage(formData.get('messageText') as string)
-      .then((res) => res.json())
-      .then(({ message: newMessage }) => {
-        console.log('resolve', messages)
-        setMessages(messages.concat(newMessage))
-        setPending(false)
-      })
-  }
-
-  return (
-    <>
-      <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
-        <input
-          type="text"
-          ref={messageRef}
-          className="form-field"
-          name="messageText"
-          placeholder="Message"
-          aria-label="Message"
-          autoComplete="off"
-          required
-        />
-        <div className="flex gap-3 items-center">
-          <button className="button" type="submit">
-            Submit
-          </button>
-          {pending && <div>Pending...</div>}
-        </div>
-      </form>
-      {messages.map((message) => (
-        <div key={message.id} className="border-b">
-          {message.messageText}
-        </div>
-      ))}
-    </>
-  )
-}
+//   return (
+//     <>
+//       <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
+//         <input
+//           type="text"
+//           ref={messageRef}
+//           className="form-field"
+//           name="messageText"
+//           placeholder="Message"
+//           aria-label="Message"
+//           autoComplete="off"
+//           required
+//         />
+//         <div className="flex gap-3 items-center">
+//           <button className="button" type="submit">
+//             Submit
+//           </button>
+//           {pending && <div>Pending...</div>}
+//         </div>
+//       </form>
+//       {messages.map((message) => (
+//         <div key={message.id} className="border-b">
+//           {message.messageText}
+//         </div>
+//       ))}
+//     </>
+//   )
+// }
 
 /**
  * Example 2: startTransition
@@ -129,7 +112,7 @@ export function App() {
 //     startTransition(async () => {
 //       const res = await addMessage(formData.get('messageText') as string)
 //       const { message: newMessage } = await res.json()
-//       setMessages((messages) => messages.concat(newMessage))
+//       setMessages((messages) => messages.concat(newMessage)) // low
 //     })
 //   }
 
@@ -178,19 +161,7 @@ export function App() {
 //   const [messages, setMessages] = useState<Message[]>([])
 //   const [pending, startTransition] = useTransition()
 
-//   // async function formAction(formData: FormData) {
-//   //   messageRef.current.value = ''
-//   //   messageRef.current.focus()
-//   //   startTransition(async () => {
-//   //     const res = await addMessage(formData.get('messageText') as string)
-//   //     const { message: newMessage } = await res.json()
-//   //     setMessages((messages) => messages.concat(newMessage))
-//   //   })
-//   // }
-
-//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-//     e.preventDefault()
-//     const formData = new FormData(e.currentTarget)
+//   async function formAction(formData: FormData) {
 //     messageRef.current.value = ''
 //     messageRef.current.focus()
 //     startTransition(async () => {
@@ -202,7 +173,7 @@ export function App() {
 
 //   return (
 //     <>
-//       <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
+//       <form action={formAction} className="max-w-96 space-y-3">
 //         <input
 //           type="text"
 //           ref={messageRef}
@@ -217,7 +188,7 @@ export function App() {
 //           <button className="button" type="submit">
 //             Submit
 //           </button>
-//           {pending && <div>Pending...</div>}
+//           <Pending>Pending...</Pending>
 //         </div>
 //       </form>
 //       {messages.map((message) => (
@@ -230,7 +201,7 @@ export function App() {
 // }
 
 function Pending({ children }: { children: React.ReactNode }) {
-  const { pending } = useFormStatus()
+  const { pending } = useFormStatus() // context consumer of <form>
   return pending && children
 }
 
@@ -243,61 +214,65 @@ function Pending({ children }: { children: React.ReactNode }) {
 // 3. Remember the signature changes of the function (prev, asyncFn)
 // 4. Eventually we can replace the two useState's and useTransition with useActionState
 
-// type ActionState = {
-//   success: boolean
-//   errors: string[]
-// }
+type ActionState = {
+  success: boolean
+  errors: string[]
+}
 
-// export function App() {
-//   const [success, setSuccess] = useState(false)
-//   const [errors, setErrors] = useState<string[]>([])
-//   const [pending, startTransition] = useTransition()
+export function App() {
+  const [formState, action, pending] = useActionState<ActionState>(
+    async function (prevState: ActionState, formData: FormData) {
+      const firstName = formData.get('firstName') as string | undefined
+      const lastName = formData.get('lastName') as string | undefined
 
-//   async function action(formData: FormData) {
-//     const firstName = formData.get('firstName') as string | undefined
-//     const lastName = formData.get('lastName') as string | undefined
+      const serverData = await saveUser(firstName, lastName).then((res) => res.json())
+      if (serverData.success) {
+        return {
+          success: true,
+          errors: [],
+        }
+      } else {
+        return {
+          success: false,
+          errors: serverData.errors,
+        }
+      }
+    },
+    {
+      success: false,
+      errors: [],
+    }
+  )
 
-//     // We won't need this with useActionState
-//     startTransition(async () => {
-//       const serverData = await saveUser(firstName, lastName).then((res) => res.json())
-//       if (serverData.success) {
-//         setSuccess(true)
-//         setErrors([])
-//       } else {
-//         setSuccess(false)
-//         setErrors(serverData.errors)
-//       }
-//     })
-//   }
+  const { success, errors } = formState
 
-//   // const [state, actionFn, isPending] = useActionState(async (prev, formData) => {}, initialState)
-
-//   return (
-//     <form action={action} className="max-w-96 space-y-3">
-//       {success && <p>Success!</p>}
-//       {errors.length > 0 && <p>{errors.join('. ')}</p>}
-//       <input
-//         type="text"
-//         className="form-field"
-//         name="firstName"
-//         placeholder="First Name"
-//         aria-label="First Name"
-//         autoComplete="off"
-//       />
-//       <input
-//         type="text"
-//         className="form-field"
-//         name="lastName"
-//         placeholder="Last Name"
-//         aria-label="Last Name"
-//         autoComplete="off"
-//       />
-//       <button className="button" type="submit" disabled={pending}>
-//         {pending ? 'Sending Data...' : 'Submit'}
-//       </button>
-//     </form>
-//   )
-// }
+  return (
+    <form action={action} className="max-w-96 space-y-3">
+      {success && <p>Success!</p>}
+      {errors.length > 0 && <p>{errors.join('. ')}</p>}
+      <input
+        type="text"
+        className="form-field"
+        name="firstName"
+        placeholder="First Name"
+        aria-label="First Name"
+        autoComplete="off"
+        disabled={pending}
+      />
+      <input
+        type="text"
+        className="form-field"
+        name="lastName"
+        placeholder="Last Name"
+        aria-label="Last Name"
+        autoComplete="off"
+      />
+      <button className="button" type="submit" disabled={pending}>
+        {pending ? 'Sending Data...' : 'Submit'}
+      </button>
+    </form>
+  )
+}
 
 /**
  * Example 5: When to NOT use useActionState: rapid-fire submissions submissions

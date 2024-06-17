@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ServerTwo } from './server-two'
 
 type Props = {
   children?: React.ReactNode
@@ -14,7 +15,9 @@ export function ClientTwo({ children }: Props) {
           {count}
         </button>
       </div>
-      <div>{children}</div>
+      <div>
+        <ServerTwo />
+      </div>
     </div>
   )
 }

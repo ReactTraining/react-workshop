@@ -5,20 +5,25 @@ import { Heading } from '~/Heading'
 // https://github.com/reactwg/react-18/discussions/41
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
+// App() fast
+// App() fast
+// App() fast  <---
+// App() slow
+
 export function App() {
   const allUsers = useUsers(5000)
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  const [pending, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition() // concurrent mode
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
+    setMinLikes(newMinLikes) // high
     if (newMinLikes !== minLikes) {
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
+      startTransition(() => {
+        const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+        setUsers(filteredUsers) // low
+      })
     }
   }
 

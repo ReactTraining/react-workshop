@@ -6,9 +6,9 @@ export function App() {
 
   const [pending, start] = useTransition()
   function onChange(index: number) {
-    setNextTabIndex(index)
+    setNextTabIndex(index) // fast
     start(() => {
-      setTabIndex(index)
+      setTabIndex(index) // slow (low priority)
     })
   }
 
