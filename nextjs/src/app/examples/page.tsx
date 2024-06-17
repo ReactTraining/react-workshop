@@ -13,7 +13,10 @@ export default function Home() {
             <Link href="/examples/2-client-and-server-components">Client & Server Components</Link>
           </li>
           <li>
-            <Link href="/examples/3-forms-and-actions">Forms and Actions</Link>
+            <Link href="/examples/3-streaming-to-client">Streaming to Client</Link>
+          </li>
+          <li>
+            <Link href="/examples/4-forms-and-actions">Forms and Actions</Link>
           </li>
         </ul>
       </LessonCard>
