@@ -41,8 +41,8 @@ export async function saveUser(firstName: string | undefined, lastName: string |
   let responseData: Record<string, any> = { success: true }
   const errors: string[] = []
 
-  if (firstName.length === 0) errors.push('First Name is required')
-  if (lastName.length === 0) errors.push('Last Name is required')
+  if (!firstName || firstName.length === 0) errors.push('First Name is required')
+  if (!lastName || lastName.length === 0) errors.push('Last Name is required')
   if (errors.length > 0) {
     status = 400
     responseData = { errors }
