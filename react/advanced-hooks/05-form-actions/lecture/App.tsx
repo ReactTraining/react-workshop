@@ -7,10 +7,10 @@ import {
   useRef,
 } from 'react'
 import { useFormStatus } from 'react-dom'
-import { addMessage, changeQuantity, saveUser } from './helpers/mockServer'
+import { addMessage, makeTempId, saveUser } from './helpers/mockServer'
 
 type Message = {
-  id: number
+  id: number | string
   messageText: string
 }
 
@@ -372,35 +372,56 @@ function Pending({ children }: { children: React.ReactNode }) {
  */
 
 // export function App() {
-//   const [quantity, setQuantity] = useState(0)
-//   const [error, setError] = useState('')
+//   const messageRef = useRef<HTMLInputElement>(null!)
+//   const [messages, setMessages] = useState<Message[]>([])
+//   const [pending, startTransition] = useTransition()
 
-//   const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
-//     quantity,
-//     (currentQuantity, nextQuantity: number) => {
-//       return nextQuantity
+//   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
+//     messages,
+//     (currentMessages, messages: Message[]) => {
+//       return messages
 //     }
 //   )
 
-//   async function addQuantityAction() {
-//     setOptimisticQuantity(optimisticQuantity + 1)
-//     const response = await changeQuantity(optimisticQuantity + 1)
-//     const { quantity: serverQuantity, error } = await response.json()
-//     if (error) {
-//       setError(error)
-//     }
-//     setQuantity(serverQuantity)
+//   async function action(formData: FormData) {
+//     messageRef.current.value = ''
+//     messageRef.current.focus()
+//     const messageText = formData.get('messageText') as string
+
+//     addOptimisticMessage(optimisticMessages.concat({ id: makeTempId(20), messageText }))
+
+//     startTransition(async () => {
+//       const res = await addMessage(messageText)
+//       const { message: newMessage } = await res.json()
+//       setMessages((messages) => messages.concat(newMessage))
+//     })
 //   }
 
 //   return (
 //     <>
-//       <form action={addQuantityAction}>
-//         <button className="button" type="submit">
-//           Add Item <Pending>...</Pending>
-//         </button>
+//       <form action={action} className="max-w-96 space-y-3">
+//         <input
+//           type="text"
+//           ref={messageRef}
+//           className="form-field"
+//           name="messageText"
+//           placeholder="Message"
+//           aria-label="Message"
+//           autoComplete="off"
+//           required
+//         />
+//         <div className="flex gap-3 items-center">
+//           <button className="button" type="submit">
+//             Submit
+//           </button>
+//           {pending && <div>Pending...</div>}
+//         </div>
 //       </form>
-//       <div>Items In Cart: {optimisticQuantity}</div>
-//       {error && <div className="text-red-900">{error}</div>}
+//       {optimisticMessages.map((message) => (
+//         <div key={message.id} className="border-b">
+//           {message.messageText}
+//         </div>
+//       ))}
 //     </>
 //   )
 // }
