@@ -316,9 +316,9 @@ function Pending({ children }: { children: React.ReactNode }) {
 // - With startTransition, this fixes the sequential issue but we're not "reducing"
 //   any state which means we're not really using useActionState as it was designed
 
-// 2. Switch to reducing state instead of useState. Notice that we cannot really use
-//    an async transition in conjunction with "returning state". Also, since we're not
-//    explicitly setting state, setTransition has no value here
+// 2. Since we're "reducing" state now with useActionState, notice that adding the
+//    async startTransition() to fix one issue above starts a new issue: that we can't
+//    "reduce" and return anything for useActionState.
 //
 //    Ultimately, it seems like useActionState is designed for one-click submissions
 //    and not rapid-fire multi-submit situations
