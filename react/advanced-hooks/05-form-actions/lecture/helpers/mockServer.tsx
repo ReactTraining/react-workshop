@@ -35,25 +35,6 @@ export function makeTempId(length: number) {
   return result
 }
 
-export async function changeQuantity(quantity: number) {
-  await new Promise((res) => setTimeout(res, 1500))
-  let status = 200
-  type ResponseType = { quantity: number; error?: string }
-  let responseData: ResponseType = { quantity }
-
-  if (quantity > 5) {
-    status = 400
-    responseData = { quantity: 5, error: 'We only have 5' }
-  }
-
-  return new Response(JSON.stringify(responseData), {
-    status,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-  })
-}
-
 export async function saveUser(firstName: string | undefined, lastName: string | undefined) {
   await new Promise((res) => setTimeout(res, 1500))
   let status = 200
