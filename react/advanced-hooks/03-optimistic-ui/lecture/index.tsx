@@ -1,15 +1,11 @@
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
-import { AddToCart } from './AddToCart'
+import { App } from './App'
 
-function App() {
-  return (
-    <LessonBody>
-      <LessonCard>
-        <AddToCart />
-      </LessonCard>
-    </LessonBody>
-  )
-}
-
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <LessonBody>
+    <LessonCard>
+      <App />
+    </LessonCard>
+  </LessonBody>
+)
