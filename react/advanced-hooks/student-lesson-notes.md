@@ -104,23 +104,6 @@ The React team has alluded to the word "sync" in useSyncExternalStore as meaning
 
 ---
 
-## Lesson: Optimistic UI
-
-"Optimistic UI" is when we give the user the illusion that their event is immediate. It's the idea that their event will have some latency (usually network latency) and instead of waiting for a response to show a successful UI, we anticipate the network will return and we show the successful UI early.
-
-In some cases, we can use state and some tricks to manage our optimistic UI (and state) ourselves. The new hook useOptimistic makes this process easier for form actions:
-
-```jsx
-// Notice this isn't an onSubmit
-<form action={formAction}></form>
-```
-
-While a form action is pending, we can update our optimistic state early (before the form resolves the data) to show the user an early successful UI:
-
-https://react.dev/reference/react/useOptimistic#optimistically-updating-with-forms
-
----
-
 ## Lesson: Transitions
 
 The docs describe transitions as being a way to "let you update the state without blocking the UI". Ordinarily, setting state is a high priority operation:
@@ -146,6 +129,23 @@ function someEvent() {
   })
 }
 ```
+
+---
+
+## Lesson: Optimistic UI
+
+"Optimistic UI" is when we give the user the illusion that their event is immediate. It's the idea that their event will have some latency (usually network latency) and instead of waiting for a response to show a successful UI, we anticipate the network will return and we show the successful UI early.
+
+In some cases, we can use state and some tricks to manage our optimistic UI (and state) ourselves. The new hook useOptimistic makes this process easier for form actions:
+
+```jsx
+// Notice this isn't an onSubmit
+<form action={formAction}></form>
+```
+
+While a form action is pending, we can update our optimistic state early (before the form resolves the data) to show the user an early successful UI:
+
+https://react.dev/reference/react/useOptimistic#optimistically-updating-with-forms
 
 ---
 
