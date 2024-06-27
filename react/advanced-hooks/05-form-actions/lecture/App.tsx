@@ -309,7 +309,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 
 // Notes:
 // 1. useActionState is designed to "reduce" state sequentially. This means if we
-//    rapid-click the form we get less-idea results:
+//    rapid-click the form we get less-than-ideal results:
 // Issues:
 // - Without startTransition, each action when it sets state waits for the previous
 //   action to finish.
