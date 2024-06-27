@@ -32,11 +32,11 @@ export function ChatRoom({ user }: Props) {
   // You'll use Date.now() for this state (which is a number)
   const [startSubscription, setStartSubscription] = useState<number | null>(null)
 
-  // Get initial messages
+  // Get initial messages (getting the past)
   // api.chat.getMessages(THREAD_NAME).then((messages) => {
   // })
 
-  // Subscribe to new messages
+  // Subscribe to new messages (getting the future)
   // const cleanup = api.chat.subscribe(
   //   Date.now(),
   //   (newMessages) => {

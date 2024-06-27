@@ -5,6 +5,9 @@ export function App() {
   const [error, setError] = useState('')
   const [likes, setLikes] = useState(0)
 
+  // likes: 4
+  // optimistic likes: 6
+
   const [optimisticLikes, setOptimisticLikes] = useOptimistic(
     likes,
     (currentLikes, newOptimisticLikes: number) => {

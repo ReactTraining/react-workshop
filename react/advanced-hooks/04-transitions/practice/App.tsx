@@ -2,24 +2,39 @@ import { useState, useTransition, useDeferredValue } from 'react'
 
 export function App() {
   const [tabIndex, setTabIndex] = useState(0)
+  const [nextTabIndex, setNextTabIndex] = useState(0)
+
+  const [pending, startTransition] = useTransition()
+  function onChange(index: number) {
+    setNextTabIndex(index) // high
+    startTransition(() => {
+      setTabIndex(index)
+    })
+  }
 
   return (
     <div>
       <div className="bg-slate-100 rounded-md p-2 mb-5">
-        <Tab onClick={() => setTabIndex(0)} selected={tabIndex === 0}>
+        <Tab onClick={() => onChange(0)} selected={nextTabIndex === 0}>
           Tab
         </Tab>
-        <Tab onClick={() => setTabIndex(1)} selected={tabIndex === 1}>
+        <Tab onClick={() => onChange(1)} selected={nextTabIndex === 1}>
           Slow Tab
         </Tab>
-        <Tab onClick={() => setTabIndex(2)} selected={tabIndex === 2}>
+        <Tab onClick={() => onChange(2)} selected={nextTabIndex === 2}>
           Tab
         </Tab>
       </div>
       <div>
-        {tabIndex === 0 && <div>First Tab</div>}
-        {tabIndex === 1 && <SlowContent />}
-        {tabIndex === 2 && <div>Last Tab</div>}
+        {!pending ? (
+          <>
+            {tabIndex === 0 && <div>First Tab</div>}
+            {tabIndex === 1 && <SlowContent />}
+            {tabIndex === 2 && <div>Last Tab</div>}
+          </>
+        ) : (
+          'Loading...'
+        )}
       </div>
     </div>
   )
