@@ -4,14 +4,21 @@ export function LoginForm() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+
     const values = Object.fromEntries(formData)
     console.log(values)
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-3">
-      <FieldInput label="Email" type="email" className="form-field" autoComplete="off" />
-      <FieldInput label="Password" type="password" className="form-field" />
+      <FieldInput
+        label="Email"
+        name="email"
+        type="email"
+        className="form-field"
+        autoComplete="off"
+      />
+      <FieldInput label="Password" name="password" type="password" className="form-field" />
       <button type="submit" className="button">
         Submit
       </button>

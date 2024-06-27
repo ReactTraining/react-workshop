@@ -8,11 +8,9 @@ type Fields = {
 }
 
 export function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Fields>()
+  const { register, handleSubmit, formState } = useForm<Fields>()
+
+  const { errors } = formState
 
   console.log(errors)
 
@@ -37,12 +35,12 @@ export function LoginForm() {
             required: true,
             min: 0,
             max: 120,
-            // validate: (v) => {
-            //   console.log('validate', typeof v) // depends on `valueAsNumber`
-            //   // return true // if good
-            //   return 'bad'
-            // },
-            // valueAsNumber: true,
+            validate: (v) => {
+              console.log('validate', typeof v) // depends on `valueAsNumber`
+              // return true // if good
+              return 'bad'
+            },
+            valueAsNumber: true,
           })}
           type="number"
           className="form-field"

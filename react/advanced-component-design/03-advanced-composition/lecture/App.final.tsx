@@ -11,10 +11,10 @@ export function App() {
       <DatePicker selectRange>
         <div className="flex gap-6">
           <div className="flex-1 space-y-3">
+            <DatePickerCalendar />
             <h1>
               <DatePickerLabel />
             </h1>
-            <DatePickerCalendar />
           </div>
           <div className="flex-1 space-y-3">
             <h1>

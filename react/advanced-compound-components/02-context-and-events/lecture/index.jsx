@@ -20,6 +20,7 @@ function App() {
             A way to make web content more accessible: "Accessible Rich Internet Applications".
           </AccordionPanel>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionButton>
             {index === 1 ? <FaAngleDown /> : <FaAngleRight />}

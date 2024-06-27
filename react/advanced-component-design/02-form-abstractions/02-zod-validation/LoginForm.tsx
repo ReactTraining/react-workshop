@@ -12,13 +12,15 @@ type FormErrorType = {
 }
 
 export function LoginForm() {
+  const [formErrors, setFormErrors] = useState<FormErrorType>({})
+
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = Object.fromEntries(new FormData(event.currentTarget))
     const results = formSchema.safeParse(formValues)
 
     if (!results.success) {
-      console.error(results.error.flatten().fieldErrors)
+      setFormErrors(results.error.flatten().fieldErrors)
     } else {
       // Notice the "type" difference
       console.log(formValues)

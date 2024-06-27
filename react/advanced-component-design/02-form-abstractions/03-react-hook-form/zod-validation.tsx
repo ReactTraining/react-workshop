@@ -9,10 +9,6 @@ const formSchema = z.object({
   password: z.string().min(5, 'Must be at least 5 characters'),
 })
 
-// type FormDataType = {
-//   email: string
-//   password: string
-// }
 type FormDataType = z.infer<typeof formSchema>
 
 export function LoginForm() {
@@ -25,8 +21,14 @@ export function LoginForm() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-3" noValidate>
-        <FieldInput label="Email" type="email" className="form-field" autoComplete="off" />
-        <FieldInput label="Password" type="email" className="form-field" />
+        <FieldInput
+          label="Email"
+          name="email"
+          type="email"
+          className="form-field"
+          autoComplete="off"
+        />
+        <FieldInput label="Password" name="password" type="email" className="form-field" />
 
         <button type="submit" className="button">
           Submit
@@ -64,10 +66,12 @@ type FieldInputProps = {
   type?: string
 } & React.InputHTMLAttributes<HTMLInputElement>
 
-function FieldInput({ label, type = 'text', ...props }: FieldInputProps) {
-  // const { register } = useFormContext()
+function FieldInput({ label, name, type = 'text', ...props }: FieldInputProps) {
+  const { register } = useFormContext()
 
   return (
-    <FieldWrap label={label}>{(field) => <input {...field} {...props} type={type} />}</FieldWrap>
+    <FieldWrap label={label}>
+      {(field) => <input {...register(name)} {...field} {...props} type={type} />}
+    </FieldWrap>
   )
 }

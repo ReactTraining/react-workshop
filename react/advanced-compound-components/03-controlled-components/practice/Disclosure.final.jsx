@@ -10,7 +10,7 @@ export function Disclosure({
   defaultOpen = false,
   ...props
 }) {
-  const isControlled = controlledOpen != null
+  const isControlled = controlledOpen
   const { current: startedControlled } = useRef(isControlled)
   if (isControlled !== startedControlled) {
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
