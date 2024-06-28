@@ -1,4 +1,4 @@
-import { useState, useTransition, useDeferredValue } from 'react'
+import { useState, useTransition } from 'react'
 
 export function App() {
   const [tabIndex, setTabIndex] = useState(0)

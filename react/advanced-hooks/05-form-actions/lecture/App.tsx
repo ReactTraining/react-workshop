@@ -300,7 +300,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 // }
 
 /**
- * Example 5: When to NOT use useActionState: rapid-fire submissions submissions
+ * Example 5: When to NOT use useActionState: rapid-fire repeat submissions
  */
 
 // START --------------------> Resolve

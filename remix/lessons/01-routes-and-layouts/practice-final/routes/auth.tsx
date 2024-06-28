@@ -1,4 +1,13 @@
+import { redirect, type LoaderFunctionArgs } from '@remix-run/node'
 import { Outlet } from '@remix-run/react'
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  if (request.url.replace(/\/$/, '').endsWith('auth')) {
+    return redirect('/auth/login')
+  }
+
+  return null
+}
 
 export default function Page() {
   return (
