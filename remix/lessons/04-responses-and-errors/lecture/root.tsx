@@ -12,7 +12,7 @@ import {
 } from '@remix-run/react'
 import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
-import { MainLayout } from './components/MainLayout'
+import { CenterContent, MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
 import { Heading } from '~/components/Heading'
 
@@ -68,10 +68,12 @@ export function ErrorBoundary() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-md space-y-6">
-      <Heading size={1}>{heading}</Heading>
-      <p>{message}</p>
-    </div>
+    <CenterContent className="pt-6 pb-20">
+      <div className="bg-white p-6 rounded-md space-y-6">
+        <Heading size={1}>{heading}</Heading>
+        <p>{message}</p>
+      </div>
+    </CenterContent>
   )
 }
 
