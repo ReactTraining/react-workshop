@@ -1,12 +1,13 @@
 # Lecture Notes
 
 ```ts
-// If you want to respond to the component from a loader or action
-// with a non-200 error, you just use json() and set the http status
+// "RETURN" goes to component:
+return new Response('Invalid Data', { status: 400 })
 return json({ error: 'Invalid Data' }, { status: 400 })
 
-// If you throw a response, the nearest error handler catches it
+// "THROW" goes to Error Boundary
 throw new Response('Not found', { status: 404 })
+throw json('Not found', { status: 404 })
 ```
 
 Docs: Remix will automatically catch errors and render the nearest error boundary for errors thrown while:
