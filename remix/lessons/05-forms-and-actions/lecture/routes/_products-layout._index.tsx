@@ -35,6 +35,8 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
+// ⭐️ Loader "Revalidates" After Action
+//  - Will only happen in the future upon action's 200 responses
 export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
   return json({ cart })
