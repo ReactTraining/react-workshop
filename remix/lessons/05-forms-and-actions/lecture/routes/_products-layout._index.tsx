@@ -58,6 +58,7 @@ export default function ProductsIndex() {
     <Tiles>
       {products.map((product) => {
         const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
+        // const isSubmitting = navigation.state === 'submitting' && navigation?.formData?.get('productId') === product.id.toString()
 
         return (
           <div
