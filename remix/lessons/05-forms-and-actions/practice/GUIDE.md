@@ -13,7 +13,7 @@ Get the "Add to Cart" button working. Right now, most of the work is done regard
 
 Make sure adding to the cart works before you continue
 
-Keep in mind that when you send data to an action, you're also telling Remix to then run all the loaders that match the same path. Therefore, the root loader will load the latest cart information after each add and will propagate that new cart information down to all the components that need it. This is already done for you but be sure to explore it.
+Keep in mind that when you send data to an action, you're also telling Remix to then run all the loaders that match the same path - this is called "revalidation". The root loader will load the latest cart information after each "add" and will propagate that new cart information down to all the components that need it. This is already done for you but be sure to explore it.
 
 # Task 2
 
