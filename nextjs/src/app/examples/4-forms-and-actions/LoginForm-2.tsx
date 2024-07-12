@@ -12,7 +12,7 @@ export function LoginForm() {
     'use server'
     const username = formData.get('username') as string
     const password = formData.get('password') as string
-
+    console.log('HERE', username)
     try {
       const user = await login(username, password)
       console.log('Server', user)
@@ -46,9 +46,7 @@ export function LoginForm() {
           required
         />
       </div>
-      <button type="submit" className="button">
-        Login
-      </button>
+
       {/* <SubmitButton>Login</SubmitButton> */}
     </form>
   )
