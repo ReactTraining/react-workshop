@@ -1,26 +1,21 @@
 import { LoaderFunctionArgs, json } from '@remix-run/node'
 import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
-import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import { ProductType } from '~/utils/db.server'
 
-export default function Index() {
-  const [products, setProducts] = useState<ProductType[]>([])
+// Only runs on the serer
+export async function loader() {
+  const products = (await fetch('http://localhost:3333/products').then((res) =>
+    res.json()
+  )) as ProductType[]
 
-  useEffect(() => {
-    let isCurrent = true
-    fetch('http://localhost:3333/products')
-      .then((res) => res.json())
-      .then((products) => {
-        if (isCurrent) {
-          setProducts(products)
-        }
-      })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+  return { products }
+}
+
+// Runs on the server, then runs on the client
+export default function Index() {
+  const { products } = useLoaderData<typeof loader>()
 
   return (
     <Tiles>
@@ -47,7 +42,7 @@ export default function Index() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <Link to={product.id.toString()} className="button">
+                  <Link prefetch="viewport" to={product.id.toString()} className="button">
                     View
                   </Link>
                 </div>

@@ -33,7 +33,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   })
 }
 
-export default function () {
+export default function Page() {
   const { product, brands, categories, relatedProductsPromise } = useLoaderData<typeof loader>()
 
   const { cart } = useCart()

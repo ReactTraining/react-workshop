@@ -13,6 +13,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     getCategories(),
   ])
 
+  // throw new Response('loader had an error', { status: 400 })
+  // // return json({}, { status: 400 })
+
   return json({
     products,
     brands: brands.sort(sortLabel),

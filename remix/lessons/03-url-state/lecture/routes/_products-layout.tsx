@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
@@ -8,7 +8,9 @@ import { Icon } from '~/components/Icon'
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const [products, brands] = await Promise.all([getProducts(), getBrands()])
+  const searchParams = new URL(request.url).searchParams
+
+  const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 
   return json({
     products,
@@ -47,11 +49,19 @@ export default function Products() {
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
 
-  // useSearchParams()
+  const [searchParams] = useSearchParams()
+  const brand = searchParams.get('brand')
 
-  const on = false
+  const on = brand === value
+  const nextSearch = new URLSearchParams(searchParams.toString())
+  if (on) {
+    nextSearch.delete('brand')
+  } else {
+    nextSearch.set('brand', value)
+  }
+
   const url = useLocation().pathname
-  const to = url
+  const to = `${url}?${nextSearch.toString()}`
 
   return (
     <Link to={to} className="block">

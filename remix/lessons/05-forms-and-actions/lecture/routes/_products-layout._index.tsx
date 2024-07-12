@@ -13,20 +13,25 @@ import { getCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
 import { sleep } from '~/utils/helpers'
 
-// async function addToCart(productId: number) {
-//   console.log('add product', productId)
-//   return Promise.resolve('').then(sleep(2000))
-// }
+async function addToCart(productId: number) {
+  console.log('add product', productId)
+  return Promise.resolve('').then(sleep(2000))
+}
 
-// async function removeFromCart(productId: number) {
-//   console.log('remove product', productId)
-//   return Promise.resolve('').then(sleep(3000))
-// }
+async function removeFromCart(productId: number) {
+  console.log('remove product', productId)
+  return Promise.resolve('').then(sleep(3000))
+}
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
-  const productId = formData.get('productId')
-  console.log('product', productId)
+  const productId = parseInt((formData.get('productId') as string) || '')
+
+  if (request.method === 'POST') {
+    await addToCart(productId)
+  } else if (request.method === 'DELETE') {
+    await removeFromCart(productId)
+  }
 
   // addToCart commits to the cookie so we need to return special headers.
   // Without the return, it wont work
@@ -45,16 +50,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function ProductsIndex() {
   const { cart } = useLoaderData<typeof loader>()
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
-
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
 
   return (
     <Tiles>
@@ -78,17 +73,20 @@ export default function ProductsIndex() {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                  aria-label="Add To Cart"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button className="button">Remove</button>
+                <Form method="POST">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button
+                    className="button button-outline whitespace-nowrap"
+                    type="submit"
+                    aria-label="Add To Cart"
+                  >
+                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+                  </button>
+                </Form>
+                <Form method="DELETE">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button className="button">Remove</button>
+                </Form>
               </div>
             </div>
           </div>

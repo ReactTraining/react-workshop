@@ -51,7 +51,7 @@ function FilterLink({ children, value }: { children: React.ReactNode; value: str
 
   // Current URL
   const [search] = useSearchParams()
-  const brand = search.get('brand')
+  const brand = search.get('brand') // google,ms
   const on = brand === value
 
   // Next URL

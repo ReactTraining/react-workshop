@@ -1,8 +1,10 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
+import { requireSessionUser } from '../utils/auth.server'
+import { useOutletContext, useRouteLoaderData } from '@remix-run/react'
 
 export default function AccountIndex() {
-  const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }
+  const { user } = useRouteLoaderData('routes/account')
 
   return (
     <>

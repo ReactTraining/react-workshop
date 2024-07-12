@@ -7,9 +7,6 @@ import { Avatar } from '~/components/Avatar'
 // useRouteLoaderData('routes/account')
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  // These are currently in serial!!
-  // That's okay in this case because we need the user before we get the settings
-  // But you'll need to know how to load things in parallel for the exercise
   const user = await requireSessionUser(request)
   const settings = await getUserSettings(user.id)
 

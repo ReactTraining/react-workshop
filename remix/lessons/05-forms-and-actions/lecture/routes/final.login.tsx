@@ -24,6 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
   if (!results.success) return json({ error: 'Invalid Data' }, { status: 400 })
 
   const { username, password } = results.data
+  console.log(username, password)
   const userId = await verifyUser(username, password)
   if (!userId) return json({ error: 'User not found' }, { status: 400 })
 
@@ -38,9 +39,13 @@ export default function Login() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))
     const results = formSchema.safeParse(formValues)
+
     if (!results.success) {
+      console.log('error')
       event.preventDefault()
       setFormErrors(results.error.flatten().fieldErrors)
+    } else {
+      console.log('submit')
     }
   }
 

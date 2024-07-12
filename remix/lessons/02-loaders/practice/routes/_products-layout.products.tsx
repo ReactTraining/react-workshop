@@ -6,6 +6,7 @@ import { Icon } from '~/components/Icon'
 
 export const loader = async () => {
   const products = await getProducts()
+  console.log('products')
   return json(products)
 }
 
