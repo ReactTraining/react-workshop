@@ -6,6 +6,10 @@ export async function action({ request }: ActionFunctionArgs) {
   const productId = parseInt(formData.get('productId') as string)
   const quantity = parseInt(formData.get('quantity') as string)
 
+  if (quantity === 4) {
+    return new Response('nope', { status: 400 })
+  }
+
   if (request.method === 'POST') {
     return await addToCart(request, productId, quantity)
   } else if (request.method === 'DELETE') {

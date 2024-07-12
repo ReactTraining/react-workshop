@@ -9,39 +9,24 @@ import { type ActionFunctionArgs, type LoaderFunctionArgs, json } from '@remix-r
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
-// import { addToCart, removeFromCart } from '~/utils/cart.server'
+import { addToCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
 import { sleep } from '~/utils/helpers'
-
-async function addToCart(productId: number) {
-  console.log('add product', productId)
-  return Promise.resolve('').then(sleep(2000))
-}
-
-async function removeFromCart(productId: number) {
-  console.log('remove product', productId)
-  return Promise.resolve('').then(sleep(3000))
-}
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const productId = parseInt((formData.get('productId') as string) || '')
+  const quantity = parseInt((formData.get('quantity') as string) || '')
 
   if (request.method === 'POST') {
-    await addToCart(productId)
+    return await addToCart(request, productId, quantity)
   } else if (request.method === 'DELETE') {
-    await removeFromCart(productId)
+    return await removeFromCart(request, productId)
   }
-
-  // addToCart commits to the cookie so we need to return special headers.
-  // Without the return, it wont work
-  // return await addToCart(request, productId, quantity)
 
   return null
 }
 
-// ⭐️ Loader "Revalidates" After Action
-//  - Will only happen in the future upon action's 200 responses
 export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
   return json({ cart })
@@ -55,7 +40,6 @@ export default function ProductsIndex() {
     <Tiles>
       {products.map((product) => {
         const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
-        // const isSubmitting = navigation.state === 'submitting' && navigation?.formData?.get('productId') === product.id.toString()
 
         return (
           <div
@@ -73,20 +57,8 @@ export default function ProductsIndex() {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <Form method="POST">
-                  <input type="hidden" name="productId" value={product.id} />
-                  <button
-                    className="button button-outline whitespace-nowrap"
-                    type="submit"
-                    aria-label="Add To Cart"
-                  >
-                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                  </button>
-                </Form>
-                <Form method="DELETE">
-                  <input type="hidden" name="productId" value={product.id} />
-                  <button className="button">Remove</button>
-                </Form>
+                <AddToCart productId={product.id} quantityInCart={quantityInCart} />
+                <RemoveFromCart productId={product.id} />
               </div>
             </div>
           </div>
@@ -96,19 +68,43 @@ export default function ProductsIndex() {
   )
 }
 
-// type AddProps = {
-//   productId: number
-//   quantityInCart?: number
-// }
+type AddProps = {
+  productId: number
+  quantityInCart?: number
+}
 
-// function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
+function AddToCart({ productId, quantityInCart = 0 }: AddProps) {
+  const addFetcher = useFetcher()
+  const isSubmitting =
+    addFetcher.state === 'submitting' &&
+    addFetcher?.formData?.get('productId') === productId.toString()
 
-// }
+  return (
+    <addFetcher.Form method="POST">
+      <input type="hidden" name="productId" value={productId} />
+      <input type="hidden" name="quantity" value={quantityInCart + 1} />
+      <button
+        className="button button-outline whitespace-nowrap"
+        type="submit"
+        aria-label="Add To Cart"
+      >
+        <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+      </button>
+    </addFetcher.Form>
+  )
+}
 
-// type RemoveProps = {
-//   productId: number
-// }
+type RemoveProps = {
+  productId: number
+}
 
-// function RemoveFromCart({ productId }: RemoveProps) {
+function RemoveFromCart({ productId }: RemoveProps) {
+  const removeFetcher = useFetcher()
 
-// }
+  return (
+    <removeFetcher.Form method="DELETE">
+      <input type="hidden" name="productId" value={productId} />
+      <button className="button">Remove</button>
+    </removeFetcher.Form>
+  )
+}

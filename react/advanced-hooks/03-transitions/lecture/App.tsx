@@ -10,15 +10,15 @@ export function App() {
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  const [pending, startTransition] = useTransition()
+  const [pending, start] = useTransition()
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
+    setMinLikes(newMinLikes) // fast (high)
     if (newMinLikes !== minLikes) {
-      console.time()
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
+      start(() => {
+        setUsers(filteredUsers) // slow (low)
+      })
     }
   }
 

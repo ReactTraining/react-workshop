@@ -8,22 +8,24 @@ const getProduct = () => Promise.resolve({ name: 'iPhone' })
 const getProductComments = () => Promise.resolve(['Good Phone']).then(sleep(3000))
 
 export const loader = async () => {
-  const [user, product, comments] = await Promise.all([
-    getAuth(),
-    getProduct(),
-    getProductComments(),
-  ])
+  const [user, product] = await Promise.all([getAuth(), getProduct()])
 
-  return json({ user, product, comments })
+  const commentsPromise = getProductComments()
+
+  return defer({ user, product, commentsPromise })
 }
 
 export default function ProductProfile() {
-  const { user, product, comments } = useLoaderData<typeof loader>()
+  const { user, product, commentsPromise } = useLoaderData<typeof loader>()
+
+  const comments = use(commentsPromise)
 
   return (
     <div>
       <h1>{product.name}</h1>
-      <div>Comments: {comments[0]}</div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div>Comments: {comments[0]}</div>
+      </Suspense>
     </div>
   )
 }
