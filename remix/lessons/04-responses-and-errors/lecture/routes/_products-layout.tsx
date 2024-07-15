@@ -13,6 +13,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     getCategories(),
   ])
 
+  // throw new Response('Bad Request')
+
   return json({
     products,
     brands: brands.sort(sortLabel),
@@ -36,3 +38,8 @@ export default function Products() {
     </div>
   )
 }
+
+// export function ErrorBoundary() {
+//   // const error = useRouteError()
+//   // isRouteErrorResponse(error)
+// }

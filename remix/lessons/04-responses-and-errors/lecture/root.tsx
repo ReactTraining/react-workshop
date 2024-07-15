@@ -8,6 +8,7 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useLoaderData,
+  useRouteLoaderData,
   useRouteError,
 } from '@remix-run/react'
 import { type LinksFunction, json } from '@remix-run/node'
@@ -53,6 +54,10 @@ export default function App() {
   )
 }
 
+// export function Layout({ children }: PropsWithChildren) {
+//   // useRouteLoaderData('root')!
+// }
+
 export function ErrorBoundary() {
   const error = useRouteError()
 
@@ -76,6 +81,3 @@ export function ErrorBoundary() {
     </CenterContent>
   )
 }
-
-// export function Document({ children }: PropsWithChildren) {
-// }

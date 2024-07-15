@@ -9,6 +9,7 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
+  useRouteLoaderData,
 } from '@remix-run/react'
 import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
@@ -25,17 +26,7 @@ export async function loader() {
 }
 
 export default function App() {
-  const { lesson } = useLoaderData<typeof loader>()
-
-  return (
-    <Document>
-      <LessonProvider selectedLesson={lesson}>
-        <MainLayout>
-          <Outlet />
-        </MainLayout>
-      </LessonProvider>
-    </Document>
-  )
+  return <Outlet />
 }
 
 export function ErrorBoundary() {
@@ -53,18 +44,20 @@ export function ErrorBoundary() {
   }
 
   return (
-    <Document>
-      <CenterContent className="pt-6 pb-20">
-        <div className="bg-white p-6 rounded-md space-y-6">
-          <Heading size={1}>{heading}</Heading>
-          <p>{message}</p>
-        </div>
-      </CenterContent>
-    </Document>
+    <CenterContent className="pt-6 pb-20">
+      <div className="bg-white p-6 rounded-md space-y-6">
+        <Heading size={1}>{heading}</Heading>
+        <p>{message}</p>
+      </div>
+    </CenterContent>
   )
 }
 
-export function Document({ children }: PropsWithChildren) {
+// https://remix.run/docs/en/main/file-conventions/root#layout-export
+
+export function Layout({ children }: PropsWithChildren) {
+  const { lesson } = useRouteLoaderData<typeof loader>('root')!
+
   return (
     <html lang="en">
       <head>
@@ -79,7 +72,9 @@ export function Document({ children }: PropsWithChildren) {
         />
       </head>
       <body>
-        {children}
+        <LessonProvider selectedLesson={lesson}>
+          <MainLayout>{children}</MainLayout>
+        </LessonProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
