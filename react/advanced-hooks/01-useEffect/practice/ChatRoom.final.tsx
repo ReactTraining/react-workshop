@@ -47,7 +47,7 @@ export function ChatRoom({ user }: Props) {
         startSubscription,
         (newMessages: ChatMessage[]) => {
           setMessages((messages) => {
-            return (messages || []).concat(newMessages)
+            return messages.concat(newMessages)
           })
 
           // Renew this timestamp to cause the next render
@@ -84,6 +84,7 @@ export function ChatRoom({ user }: Props) {
     const e = event.target
     // See if the user scrolled to the bottom
     const bottom = e.scrollHeight <= Math.ceil(e.scrollTop + e.clientHeight)
+
     setScrolledToBottom(bottom)
   }
 

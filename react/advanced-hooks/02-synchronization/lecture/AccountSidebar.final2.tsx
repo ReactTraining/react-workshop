@@ -3,12 +3,6 @@ import { AccountFavorites } from '~/AccountFavorites'
 import { Heading } from '~/Heading'
 
 function useQuery(query: string) {
-  // Without Auto-Memoization, this function is unstable and a new function
-  // passed to useSyncExternalStore will cause the cleanup to run. Therefore
-  // each re-render will cause a unsubscribe then a re-subscribe. Solutions:
-  // 1. Auto-Memoization
-  // 2. useCallback
-
   const sub = (cb: any) => {
     const media = window.matchMedia(query)
     media.addEventListener('change', cb)
@@ -19,13 +13,10 @@ function useQuery(query: string) {
     }
   }
 
-  console.log('re-render')
-
   function getSnapshot() {
     return window.matchMedia(query).matches
   }
-
-  return useSyncExternalStore(sub, getSnapshot)
+  return useSyncExternalStore(sub, getSnapshot) // 18
 }
 
 type Props = { width: number }

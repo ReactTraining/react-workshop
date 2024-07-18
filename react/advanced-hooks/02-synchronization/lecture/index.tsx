@@ -15,13 +15,13 @@ import { LessonBody, LessonCard } from '~/Lesson'
 import { queryClient } from '~/utils/queryClient'
 
 // Start Here
-import { AccountSidebar } from './AccountSidebar'
+// import { AccountSidebar } from './AccountSidebar'
 
 // With useLayoutEffect
 // import { AccountSidebar } from './AccountSidebar.final'
 
 // With useSyncExternalStore
-// import { AccountSidebar } from './AccountSidebar.final2'
+import { AccountSidebar } from './AccountSidebar.final2'
 
 function Layout() {
   const [width, setWidth] = useState(1200)

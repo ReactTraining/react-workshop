@@ -4,38 +4,55 @@ import { LessonBody, LessonCard } from '~/Lesson'
 import classnames from 'classnames'
 
 /****************************************
-  App.js
+  FavState
 *****************************************/
 
 export const FavContext = createContext()
 
-export function App() {
+export function FavProvider({ children }) {
   const [favorites, setFavorites] = useState([])
 
-  function updateFavorite(id) {
-    if (isFavorite(id)) {
-      setFavorites(favorites.filter((favId) => favId !== id))
-    } else {
-      setFavorites(favorites.concat(id))
+  const context = useMemo(() => {
+    function updateFavorite(id) {
+      if (isFavorite(id)) {
+        setFavorites(favorites.filter((favId) => favId !== id))
+      } else {
+        setFavorites(favorites.concat(id))
+      }
     }
-  }
 
-  function isFavorite(id) {
-    return favorites.includes(id)
-  }
+    function isFavorite(id) {
+      return favorites.includes(id)
+    }
+    return {
+      favorites,
+      updateFavorite,
+      isFavorite,
+    }
+  }, [favorites])
 
-  const context = {
-    favorites,
-    updateFavorite,
-    isFavorite,
-  }
+  return <FavContext.Provider value={context}>{children}</FavContext.Provider>
+}
 
+function useFavorites() {
+  const context = useContext(FavContext)
+  if (!context) {
+    console.warn('Youre trying to call a context but the provider is not above you')
+  }
+  return context || {}
+}
+
+/****************************************
+  App.js
+*****************************************/
+
+export function App() {
   return (
     <LessonBody>
       <LessonCard>
-        <FavContext.Provider value={context}>
+        <FavProvider>
           <MainLayout />
-        </FavContext.Provider>
+        </FavProvider>
       </LessonCard>
     </LessonBody>
   )
@@ -45,7 +62,8 @@ export function App() {
   MainLayout.js
 *****************************************/
 
-function MainLayout() {
+const MainLayout = () => {
+  console.log('here')
   return <BrowseVacationsPage />
 }
 
@@ -75,7 +93,7 @@ function BrowseVacationsPage() {
 *****************************************/
 
 function FavoriteVacationButton({ id }) {
-  const { isFavorite, updateFavorite } = useContext(FavContext)
+  const { isFavorite, updateFavorite } = useFavorites()
 
   const vacationIsFavorite = isFavorite(id)
 
