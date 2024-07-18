@@ -16,6 +16,8 @@ const counterReducer = (state, action) => {
   }
 }
 
+// "This deprecation is solely a visual indicator that is meant to encourage
+// users to migrate their apps from legacy Redux patterns to use the modern Redux Toolkit APIs."
 const store = createStore(counterReducer)
 
 store.subscribe(() => {
