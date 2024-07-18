@@ -8,6 +8,7 @@ export function App() {
 
   function loadVacations() {
     setPending(true)
+
     api.vacations.getAll().then((vacations) => {
       setPending(false)
       setVacations(vacations)

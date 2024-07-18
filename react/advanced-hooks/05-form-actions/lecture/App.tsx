@@ -323,49 +323,48 @@ function Pending({ children }: { children: React.ReactNode }) {
 //    Ultimately, it seems like useActionState is designed for one-click submissions
 //    and not rapid-fire multi-submit situations
 
-// export function App() {
-//   const messageRef = useRef<HTMLInputElement>(null!)
-//   const [messages, setMessages] = useState<Message[]>([])
-//   const [pending, startTransition] = useTransition()
+export function App() {
+  const messageRef = useRef<HTMLInputElement>(null!)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [pending, startTransition] = useTransition()
 
-//   async function action(formData: FormData) {
-//     messageRef.current.value = ''
-//     messageRef.current.focus()
-//     startTransition(async () => {
-//       const res = await addMessage(formData.get('messageText') as string)
-//       const { message: newMessage } = await res.json()
-//       setMessages((messages) => messages.concat(newMessage))
-//     })
-//   }
+  async function action(formData: FormData) {
+    messageRef.current.value = ''
+    messageRef.current.focus()
 
-//   return (
-//     <>
-//       <form action={action} className="max-w-96 space-y-3">
-//         <input
-//           type="text"
-//           ref={messageRef}
-//           className="form-field"
-//           name="messageText"
-//           placeholder="Message"
-//           aria-label="Message"
-//           autoComplete="off"
-//           required
-//         />
-//         <div className="flex gap-3 items-center">
-//           <button className="button" type="submit">
-//             Submit
-//           </button>
-//           {pending && <div>Pending...</div>}
-//         </div>
-//       </form>
-//       {messages.map((message) => (
-//         <div key={message.id} className="border-b">
-//           {message.messageText}
-//         </div>
-//       ))}
-//     </>
-//   )
-// }
+    const res = await addMessage(formData.get('messageText') as string)
+    const { message: newMessage } = await res.json()
+    setMessages(messages.concat(newMessage))
+  }
+
+  return (
+    <>
+      <form action={action} className="max-w-96 space-y-3">
+        <input
+          type="text"
+          ref={messageRef}
+          className="form-field"
+          name="messageText"
+          placeholder="Message"
+          aria-label="Message"
+          autoComplete="off"
+          required
+        />
+        <div className="flex gap-3 items-center">
+          <button className="button" type="submit">
+            Submit
+          </button>
+          {pending && <div>Pending...</div>}
+        </div>
+      </form>
+      {messages.map((message) => (
+        <div key={message.id} className="border-b">
+          {message.messageText}
+        </div>
+      ))}
+    </>
+  )
+}
 
 /**
  * Example 6: Optimistic Forms

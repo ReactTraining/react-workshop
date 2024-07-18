@@ -41,8 +41,6 @@ export function LoginForm() {
             className="form-field"
             autoComplete="off"
             placeholder="username: user"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>

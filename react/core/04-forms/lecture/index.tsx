@@ -24,4 +24,6 @@ export function App() {
   return <RouterProvider router={router} />
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+const el = document.getElementById('root')!
+
+ReactDOM.createRoot(el).render(<App />)
