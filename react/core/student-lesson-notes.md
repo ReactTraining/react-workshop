@@ -85,10 +85,13 @@ async function formAction(formData) {
 - React.memo (or just memo) is for memoizing function components so they get less re-renders. A memoized component will not be subject to re-rendering when the component above it (called the parent or owner component) re-renders unless the props being passed into the memoized component changes.
 
 ```js
+// ✨ Note that the React Compiler (available as an option for React 19) can apply all three
+// of these for you automatically.
+
 // useMemo calls the fn in the render phase (synchronously) and "memoizes"
 // the return value as x in this example based on the input of the dep array.
 // This is mostly used for:
-// 1. performance - memoizing the return value a function
+// 1. performance - memoizing the return value a slow function
 // 2. stabilizing objects and arrays that will end up in other dependency arrays
 // 3. stabilizing objects and arrays that will be passed as props to memoized components (see below)
 const x = useMemo(fn, [])
