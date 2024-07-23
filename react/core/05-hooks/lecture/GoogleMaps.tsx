@@ -1,8 +1,6 @@
 import { useId, useRef, useEffect, useState } from 'react'
 import { renderMap } from '~/utils/maps'
 
-// useId()
-// useRef()
 // useEffect()
 
 // Change form to uncontrolled so we can submit form and then
@@ -13,20 +11,30 @@ export function App() {
   const [lat, setLat] = useState(40.712)
   const [lng, setLng] = useState(-74.006)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const pos = { lat, lng }
+  const mapsRef = useRef<HTMLDivElement>(null!)
 
-    // Use Refs Instead
-    renderMap(document.getElementById('map'), {
+  // Run after the first render (ALWAYS) aka mount
+  // Runs again if the vars in the dep array change between renders
+  useEffect(() => {
+    const pos = { lat, lng }
+    renderMap(mapsRef.current, {
       center: pos,
       zoom: 10,
     })
+  }, [lat, lng]) // if the stuff in here changes, run again
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const lat = parseInt((formData.get('lat') as string | null) || '')
+    const lng = parseInt((formData.get('lng') as string | null) || '')
+    setLat(lat)
+    setLng(lng)
   }
 
   return (
     <div className="space-y-6">
-      <div className="h-64 bg-slate-200" id="map" />
+      <div className="h-64 bg-slate-200" ref={mapsRef} />
 
       <form onSubmit={handleSubmit}>
         <div className="flex gap-6">
@@ -39,8 +47,9 @@ export function App() {
               type="number"
               name="lat"
               className="form-field"
-              value={lat}
-              onChange={(e) => setLat(Number(e.target.value))}
+              defaultValue={lat}
+              required
+              // onChange={(e) => setLat(Number(e.target.value))}
             />
           </div>
           <div>
@@ -52,8 +61,9 @@ export function App() {
               type="number"
               name="lng"
               className="form-field"
-              value={lng}
-              onChange={(e) => setLng(Number(e.target.value))}
+              defaultValue={lng}
+              required
+              // onChange={(e) => setLng(Number(e.target.value))}
             />
           </div>
         </div>

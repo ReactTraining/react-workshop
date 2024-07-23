@@ -88,7 +88,7 @@ async function formAction(formData) {
 // useMemo calls the fn in the render phase (synchronously) and "memoizes"
 // the return value as x in this example based on the input of the dep array.
 // This is mostly used for:
-// 1. performance - memoizing the return value a function
+// 1. performance - memoizing the return value a slow function
 // 2. stabilizing objects and arrays that will end up in other dependency arrays
 // 3. stabilizing objects and arrays that will be passed as props to memoized components (see below)
 const x = useMemo(fn, [])
