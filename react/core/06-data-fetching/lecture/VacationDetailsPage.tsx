@@ -7,24 +7,35 @@ import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
-
 export async function loader({ params }: LoaderFunctionArgs) {
   const vacationId = parseInt(params.vacationId!) // subscriber to the URL + state
-  const vacation = await api.vacations.getVacation(vacationId)
+
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
+
   return { vacation }
 }
 
-export function VacationDetailsPage() {
-  const { vacation } = useLoaderData() as Awaited<ReturnType<typeof loader>>
+// const [vacation, setVacation] = useState<null | Vacation>(null)
+
+export function VacationDetailsPage({ vacation, setVacation }) {
+  const vacationId = parseInt(useParams().vacationId!)
+  // const { vacation } = useLoaderData() as Awaited<ReturnType<typeof loader>>
+
+  // Any variable that you "close over" that CAN CHANGE!!
+  useEffect(() => {
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      setVacation(vacation)
+    })
+  }, [vacationId, setVacation])
 
   if (!vacation) return <div>Loading...</div>
 

@@ -9,31 +9,28 @@ import { useState, useTransition } from 'react'
 //    done. So we'll need a startTransition
 
 export function LoginForm() {
-  const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
 
   console.log('Where does this run?') // server and client
 
-  // const [pending, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition()
 
   async function loginAction(formData: FormData) {
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
-    // WONT WORK
-    setPending(true)
-    setError('')
+    startTransition(async () => {
+      try {
+        const user = await login(username, password)
+        console.log('client', user)
 
-    try {
-      const user = await login(username, password)
-      console.log('client', user)
-      setPending(false)
-      setError('')
-    } catch (err) {
-      if (typeof err === 'string') {
-        setError(err)
+        setError('')
+      } catch (err) {
+        if (typeof err === 'string') {
+          setError(err)
+        }
       }
-    }
+    })
   }
 
   return (
