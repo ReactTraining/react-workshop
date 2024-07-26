@@ -7,7 +7,7 @@ export function Checkout() {
   const [billingAddress, setBillingAddress] = useState('')
   const [shippingName, setShippingName] = useState('')
   const [shippingAddress, setShippingAddress] = useState('')
-  const [sameAsBilling, setSameAsBilling] = useState(true)
+  const [sameAsBilling, setSameAsBilling] = useState(false)
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -58,7 +58,7 @@ export function Checkout() {
           aria-label="Shipping Name"
           placeholder="Shipping Name"
           autoComplete="off"
-          value={shippingName}
+          value={sameAsBilling ? billingName : shippingName}
           onChange={(e) => setShippingName(e.target.value)}
         />
         <input

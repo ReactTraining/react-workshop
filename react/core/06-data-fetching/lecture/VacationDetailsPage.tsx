@@ -21,17 +21,14 @@ import type { Vacation } from '~/utils/types'
 //   return api.vacations.getVacation(vacationId)
 // }
 
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
-
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+  const vacationId = parseInt(useParams().vacationId!)
 
-  // api.vacations.getVacation(vacationId)
+  const { data: vacation } = useQuery({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    // staleTime: 1000 * 30,
+  })
 
   if (!vacation) return <div>Loading...</div>
 

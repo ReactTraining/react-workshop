@@ -46,21 +46,19 @@ function App() {
           <div className="space-y-3">
             <div className="font-bold text-small">Hotels: {totalHotels}</div>
 
-            {vacations
-              .filter((vacation) => vacation.hotels >= count)
-              .map((vacation) => {
-                return (
-                  <div key={vacation.id}>
-                    <div className="flex gap-6 items-center bg-slate-100 p-4">
-                      <div className="flex-1">{vacation.name}</div>
-                      <div className="flex-1">Hotels: {vacation.hotels}</div>
-                      <button className="button" onClick={() => removeVacation(vacation.id)}>
-                        Remove
-                      </button>
-                    </div>
+            {vacations.map((vacation) => {
+              return (
+                <div key={vacation.id}>
+                  <div className="flex gap-6 items-center bg-slate-100 p-4">
+                    <div className="flex-1">{vacation.name}</div>
+                    <div className="flex-1">Hotels: {vacation.hotels}</div>
+                    <button className="button" onClick={() => removeVacation(vacation.id)}>
+                      Remove
+                    </button>
                   </div>
-                )
-              })}
+                </div>
+              )
+            })}
           </div>
         </LessonCard>
       </div>
