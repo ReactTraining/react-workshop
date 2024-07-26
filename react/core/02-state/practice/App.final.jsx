@@ -8,9 +8,9 @@ export function App() {
 
   function loadVacations() {
     setPending(true)
-    api.vacations.getAll().then((vacations) => {
+    api.vacations.getAll().then((vacation) => {
+      setVacations(vacation)
       setPending(false)
-      setVacations(vacations)
     })
   }
 
