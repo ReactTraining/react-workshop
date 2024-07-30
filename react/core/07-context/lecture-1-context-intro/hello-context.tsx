@@ -7,12 +7,22 @@ import classnames from 'classnames'
   FavState.tsx
 *****************************************/
 
-export const FavContext = createContext()
+type ContextType = {
+  favorites: number[]
+  updateFavorite(id: number): void
+  isFavorite(id: number): void
+}
 
-function FavProvider({ children }) {
-  const [favorites, setFavorites] = useState([])
+export const FavContext = createContext<ContextType>(null!)
 
-  function updateFavorite(id) {
+type Props = {
+  children: React.ReactNode
+}
+
+function FavProvider({ children }: Props) {
+  const [favorites, setFavorites] = useState<number[]>([])
+
+  function updateFavorite(id: number) {
     if (isFavorite(id)) {
       setFavorites(favorites.filter((favId) => favId !== id))
     } else {
@@ -20,11 +30,11 @@ function FavProvider({ children }) {
     }
   }
 
-  function isFavorite(id) {
+  function isFavorite(id: number) {
     return favorites.includes(id)
   }
 
-  const context = {
+  const context: ContextType = {
     favorites,
     updateFavorite,
     isFavorite,
