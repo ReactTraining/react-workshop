@@ -15,13 +15,13 @@ export function Groceries() {
   const [minQuantity, setMinQuantity] = useState(0)
 
   const [items, setItems] = useState([
-    { id: 1, name: 'Eggs', quantity: 12 },
+    { id: 1, name: 'Eggs', quantity: 13 },
     { id: 2, name: 'Bread', quantity: 1 },
     { id: 3, name: 'Tomatoes', quantity: 3 },
   ])
 
   function addItem(item: Item) {
-    // Add item to items array
+    setItems(items.concat(item))
   }
 
   // Without Cloning (Faster, More Difficult)
@@ -61,13 +61,15 @@ export function Groceries() {
                     <div className="flex-1 flex gap-2">
                       <button
                         className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-                        // onClick={() => subtractQuantity(item.id)}
+                        onClick={() => {
+                          subtractQuantity(item.id)
+                        }}
                       >
                         <Icon name="minus" size={0.6} />
                       </button>
                       <button
                         className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-                        // onClick={() => addQuantity(item.id)}
+                        onClick={() => addQuantity(item.id)}
                       >
                         <Icon name="plus" size={0.6} />
                       </button>

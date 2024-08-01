@@ -58,7 +58,8 @@ export function Checkout() {
           aria-label="Shipping Name"
           placeholder="Shipping Name"
           autoComplete="off"
-          value={shippingName}
+          value={sameAsBilling ? billingName : shippingName}
+          disabled={sameAsBilling}
           onChange={(e) => setShippingName(e.target.value)}
         />
         <input

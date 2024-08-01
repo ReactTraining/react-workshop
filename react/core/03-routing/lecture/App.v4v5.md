@@ -18,20 +18,24 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" component={MainLayout} />
+
       </Switch>
     </BrowserRouter>
   )
 }
 
 
-// Version 5 and 6 uses Routes
+// Version 5
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          <MainLayout />
+        <Route path="/" element={<MainLayout />}>
+              <Route path="/" element={<MainLayout />}>
+
         </Route>
+        </Route>
+
       </Routes>
     </BrowserRouter>
   )

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { Tiles } from '~/Tiles'
@@ -12,7 +13,7 @@ export async function loader() {
 
 export function BrowseVacationsPage() {
   // 2: Finished with loader
-  const vacations = useLoaderData() as Vacation[]
+  // const vacations = useLoaderData() as Vacation[]
 
   // 1.A: With useEffect
   // const [vacations, setVacations] = useState<Vacation[] | null>(null)
@@ -29,11 +30,11 @@ export function BrowseVacationsPage() {
   // }, [])
 
   // 1.B: With useQuery
-  // const { data: vacations } = useQuery({
-  //   queryKey: ['vacations'],
-  //   queryFn: () => api.vacations.getAll(),
-  //   staleTime: 1000 * 30 // 30 seconds
-  // })
+  const { data: vacations } = useQuery({
+    queryKey: ['vacations'],
+    queryFn: () => api.vacations.getAll(),
+    staleTime: 1000 * 30, // 30 seconds
+  })
 
   return (
     <div>
