@@ -158,15 +158,8 @@ If you have any issues running the code, we have a general **Troubleshooting** s
 
 ```sh
 # If you're in the root path of the repo
-
-# Run the full project
-$ npm start app
-
-# Run a lecture or exercise
 $ npm start
 ```
-
-In both of those commands you'll get a CLI menu asking what you want to do next. To make sure you can run the code, just do `npm start app` and choose any of the apps in the menu.
 
 Go to `localhost:3000` in your browser. You have to do this manually.
 
