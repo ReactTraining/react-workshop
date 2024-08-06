@@ -42,7 +42,9 @@ export function LoginForm() {
             autoComplete="off"
             placeholder="username: user"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setUsername(e.target.value)
+            }}
             required
           />
         </div>
@@ -52,8 +54,8 @@ export function LoginForm() {
             id="password"
             type="password"
             className="form-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            // value={password}
+            // onChange={(e) => setPassword(e.target.value)}
             placeholder="password: user"
             required
           />

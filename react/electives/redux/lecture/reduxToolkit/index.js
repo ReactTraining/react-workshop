@@ -2,24 +2,9 @@ import { configureStore, createReducer, createAction } from '@reduxjs/toolkit'
 
 const initialState = { count: 0 }
 
-// instead of this...
-
-// const counterReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'INCREMENT':
-//       return { ...state, count: state.count + 1 }
-//     case 'DECREMENT':
-//       return { ...state, count: state.count - 1 }
-//     default:
-//       return state
-//   }
-// }
-
-// do this...
-
 // https://redux-toolkit.js.org/usage/usage-guide#using-action-creators-as-action-types
-const increment = createAction('INCREMENT')
-const decrement = createAction('DECREMENT')
+const increment = createAction() // fn -> { type: 1 }
+const decrement = createAction() // fn -> { type: 2 }
 
 const counterReducer = createReducer(initialState, {
   [increment]: (state, action) => {

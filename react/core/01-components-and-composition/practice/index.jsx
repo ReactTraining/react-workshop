@@ -7,7 +7,7 @@ import { Avatar } from './Avatar'
 
 const user = {
   id: 1,
-  name: 'Your Name Here',
+  name: 'Brad Westfall',
   avatarUrl: 'default-admin.jpg',
   // Change the URL to be yours if you want:
   // avatarUrl: 'https://path-to-your-image',
@@ -24,17 +24,9 @@ function App() {
             <div className="m-auto w-fit flex gap-4 items-center">
               {/* Task One: Convert the img to be an Avatar component like this: */}
 
-              {/* <Avatar src={user.avatarUrl} /> */}
+              <Avatar src={user.avatarUrl} />
 
-              <img
-                alt="User Avatar"
-                loading="lazy"
-                src={user.avatarUrl}
-                style={{ width: `3em` }}
-                className="aspect-square rounded-full"
-              />
-
-              <div className="text-2xl text-slate-700">Your Name Here</div>
+              <div className="text-2xl text-slate-700">{user.name}</div>
             </div>
           </LessonCard>
         </div>

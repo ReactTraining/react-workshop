@@ -1,13 +1,15 @@
-import { useState, createContext, use, useMemo, memo } from 'react'
+import { useState, createContext, useContext, useMemo, memo } from 'react'
 import { Icon } from '~/Icon'
 import { LessonBody, LessonCard } from '~/Lesson'
 import classnames from 'classnames'
 
 /****************************************
-  App.js
+  FavGlobalState.ts
 *****************************************/
 
-export function App() {
+export const FavContext = createContext()
+
+export function FavProvider({ children }) {
   const [favorites, setFavorites] = useState([])
 
   function updateFavorite(id) {
@@ -22,10 +24,34 @@ export function App() {
     return favorites.includes(id)
   }
 
+  const context = {
+    favorites,
+    updateFavorite,
+    isFavorite,
+  }
+
+  return <FavContext.Provider value={context}>{children}</FavContext.Provider>
+}
+
+export function useFavContext() {
+  const context = useContext(FavContext)
+  if (!context) {
+    console.error('You tried to consume context without the FavContext Provider')
+  }
+  return context
+}
+
+/****************************************
+  App.js
+*****************************************/
+
+export function App() {
   return (
     <LessonBody>
       <LessonCard>
-        <MainLayout favorites={favorites} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+        <FavProvider>
+          <MainLayout />
+        </FavProvider>
       </LessonCard>
     </LessonBody>
   )
@@ -35,29 +61,26 @@ export function App() {
   MainLayout.js
 *****************************************/
 
-function MainLayout({ favorites, isFavorite, updateFavorite }) {
-  return (
-    <BrowseVacationsPage
-      favorites={favorites}
-      isFavorite={isFavorite}
-      updateFavorite={updateFavorite}
-    />
-  )
-}
+const MainLayout = memo(() => {
+  console.log('main layout render')
+  return <BrowseVacationsPage />
+})
 
 /****************************************
  BrowseVacationsPage.js
  *****************************************/
 
-function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
+function BrowseVacationsPage() {
+  const { favorites } = useContext(FavContext)
+
   return (
     <div className="flex justify-between">
       <div>Favorites: {JSON.stringify(favorites)}</div>
       <div>
         <div className="flex flex-col gap-2">
-          <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+          <FavoriteVacationButton id={1} />
+          <FavoriteVacationButton id={2} />
+          <FavoriteVacationButton id={3} />
         </div>
       </div>
     </div>
@@ -68,7 +91,8 @@ function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
   FavoriteVacationButton.js
 *****************************************/
 
-function FavoriteVacationButton({ id, isFavorite, updateFavorite }) {
+function FavoriteVacationButton({ id }) {
+  const { isFavorite, updateFavorite } = useFavContext() // useContext
   const vacationIsFavorite = isFavorite(id)
 
   return (
