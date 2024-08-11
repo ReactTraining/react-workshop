@@ -8,7 +8,7 @@ type Props = {
 
 export function Counter({ count, setCount, minCount = 0 }: Props) {
   function subtract() {
-    if (count >= minCount) {
+    if (count > minCount) {
       setCount(count - 1)
     }
   }
