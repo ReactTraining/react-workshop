@@ -13,13 +13,11 @@ export function App() {
   const [pending, startTransition] = useTransition()
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+    setMinLikes(newMinLikes) // fast
+    const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+    startTransition(() => {
+      setUsers(filteredUsers) // slow
+    })
   }
 
   return (
@@ -38,7 +36,7 @@ export function App() {
             min="0"
             max="9"
             step="any"
-            // step="1"
+            step="1"
             defaultValue={0}
             onChange={(e) => filterUsers(parseInt(e.target.value))}
           />
@@ -61,8 +59,8 @@ type Props = {
 }
 
 // See with and without memoization (and auto-memoization ✨)
-const UserList = ({ users }: Props) => {
-  console.log('Re-render UserList')
+const UserList = memo(({ users }: Props) => {
+  // console.log('Re-render UserList')
   return (
     <>
       {users.map((user) => {
@@ -76,4 +74,4 @@ const UserList = ({ users }: Props) => {
       })}
     </>
   )
-}
+})

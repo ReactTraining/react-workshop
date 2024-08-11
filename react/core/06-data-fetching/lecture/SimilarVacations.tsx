@@ -13,7 +13,7 @@ export function SimilarVacations({ vacationIds: ids }: Props) {
   const vacations = useQueries({
     queries: ids.map((id) => {
       return {
-        queryKey: ['vacation', id],
+        queryKey: ['vacation', ids],
         queryFn: () => api.vacations.getVacation(id),
         staleTime: 1000 * 30, // 30s
       }

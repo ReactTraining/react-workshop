@@ -46,10 +46,10 @@ export function LoginForm() {
           required
         />
       </div>
-      <button type="submit" className="button">
+      {/* <button type="submit" className="button">
         Login
-      </button>
-      {/* <SubmitButton>Login</SubmitButton> */}
+      </button> */}
+      <SubmitButton>Login</SubmitButton>
     </form>
   )
 }

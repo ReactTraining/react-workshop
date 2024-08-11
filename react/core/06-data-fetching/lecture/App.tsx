@@ -13,7 +13,7 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
+import { VacationDetailsPage, loader as vacationDetailsLoader } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
@@ -32,8 +32,8 @@ export const router = createBrowserRouter(
         <Route path="vacations">
           <Route
             path=":vacationId"
-            Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            element={<VacationDetailsPage />}
+            loader={vacationDetailsLoader}
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
