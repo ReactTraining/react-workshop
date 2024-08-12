@@ -8,7 +8,7 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export function VacationDetailsPage() {
+export function Component() {
   const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 

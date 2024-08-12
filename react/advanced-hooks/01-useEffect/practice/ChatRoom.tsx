@@ -23,7 +23,7 @@ const THREAD_NAME = 'all'
 
 export function ChatRoom({ user }: Props) {
   const chatBoardRef = useRef<HTMLDivElement>(null!)
-  // const inputRef = useRef<HTMLInputElement>(null!)
+  const inputRef = useRef<HTMLInputElement>(null!)
 
   const [input, setInput] = useState('')
   const [scrolledToBottom, setScrolledToBottom] = useState(true)
@@ -32,25 +32,46 @@ export function ChatRoom({ user }: Props) {
   // You'll use Date.now() for this state (which is a number)
   const [startSubscription, setStartSubscription] = useState<number | null>(null)
 
-  // Get initial messages
-  // api.chat.getMessages(THREAD_NAME).then((messages) => {
-  // })
+  // // Get initial messages
+  useEffect(() => {
+    api.chat.getMessages(THREAD_NAME).then((messages) => {
+      setMessages(messages)
+      setStartSubscription(Date.now())
+    })
+  }, [])
 
-  // Subscribe to new messages
-  // const cleanup = api.chat.subscribe(
-  //   Date.now(),
-  //   (newMessages) => {
-  //   },
-  //   THREAD_NAME
-  // )
+  useEffect(() => {
+    if (startSubscription) {
+      const cleanup = api.chat.subscribe(
+        startSubscription,
+        (newMessages) => {
+          setMessages((messages) => [...messages, ...newMessages])
+          // setMessages((messages) => messages.concat(newMessages))
+          setStartSubscription(Date.now())
+        },
+        THREAD_NAME
+      )
+
+      return cleanup
+    }
+  }, [startSubscription])
+
+  useEffect(() => {
+    if (scrolledToBottom) {
+      chatBoardRef.current.scrollTop = chatBoardRef.current.scrollHeight
+    }
+  }, [messages, scrolledToBottom])
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!user || !input) return
+    setInput('')
+    inputRef.current.focus()
     api.chat.postMessage(input, user.id, user.name, user.avatarUrl, THREAD_NAME).then(() => {
       // noop (no operation)
-      // We don't need to do anything when we post a message here to get it added to state. The
-      // subscription will do that for us
+      if (input === 'clear') {
+        setMessages([])
+      }
     })
   }
 
@@ -88,6 +109,7 @@ export function ChatRoom({ user }: Props) {
       </div>
       <form onSubmit={onSubmit} className="flex gap-2">
         <input
+          ref={inputRef}
           className="form-field flex-1"
           value={input}
           onChange={(e) => setInput(e.target.value)}

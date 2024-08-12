@@ -6,11 +6,10 @@ import { ChatRoom } from './ChatRoom'
 function App() {
   const user = {
     id: 1,
-    name: 'My Name',
-    avatarUrl: 'default-admin.jpg',
+    name: 'Brad Westfall',
 
     // Change the URL to be yours from GitHub or anywhere else:
-    // avatarUrl: 'https://avatars.githubusercontent.com/u/2272118?v=4',
+    avatarUrl: 'https://avatars.githubusercontent.com/u/2272118?v=4',
   }
 
   return (

@@ -13,20 +13,35 @@ export function GroceryForm({ onSubmit }: Props) {
   // Teach refs with typescript
   // Teach React 19 actions
 
-  function handleSubmit(event /* <---- TS has no idea what this is */) {
+  const inputNameRef = useRef() // { current: undefined}
+
+  useEffect(() => {
+    inputNameRef.current.focus()
+  }, [])
+
+  function handleSubmit(event: any) {
     event.preventDefault()
     // Three basic ways to get our form's fields
     // 1. Scrape for it: ids (bad) refs (good)
     // 2. Controlled with state
     // 3. new FormData
     onSubmit({ name: 'test', quantity: 1 })
+    inputNameRef.current.value = ''
+    inputNameRef.current.focus()
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="itemName">Item</label>
-        <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />
+        <input
+          ref={inputNameRef}
+          id="itemName"
+          type="text"
+          className="form-field"
+          autoComplete="off"
+          name="name"
+        />
       </div>
       <div>
         <label htmlFor="itemQuantity">Quantity</label>
