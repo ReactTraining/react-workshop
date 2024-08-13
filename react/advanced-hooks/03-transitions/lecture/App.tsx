@@ -24,7 +24,7 @@ export function App() {
     const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
 
     start(() => {
-      setUsers(filteredUsers) // low (inturuptable): slow
+      setUsers(filteredUsers)
     })
   }
 

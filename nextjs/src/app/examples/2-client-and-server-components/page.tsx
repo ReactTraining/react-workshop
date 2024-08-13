@@ -22,7 +22,9 @@ export default function ServerOne() {
     <div className="bg-purple-200 p-4">
       <div>this is a server only component</div>
       <hr />
-      <ClientOne></ClientOne>
+      <ClientOne>
+        <ServerTwo></ServerTwo>
+      </ClientOne>
     </div>
   )
 }

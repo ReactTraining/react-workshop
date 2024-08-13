@@ -35,7 +35,7 @@ function FavProvider({ children }) {
 }
 
 function useFavContext() {
-  const context = useContext(FavContext)
+  const context = use(FavContext)
   if (!context) {
     // throw
   }

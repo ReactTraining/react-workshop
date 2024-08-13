@@ -1,34 +1,30 @@
-import { useState, useEffect, useLayoutEffect, useSyncExternalStore, useCallback } from 'react'
+import { useState, useLayoutEffect, useSyncExternalStore, useCallback } from 'react'
 import { AccountFavorites } from '~/AccountFavorites'
 import { Heading } from '~/Heading'
 
-// type Props = { width: number }
-
-function useMedia(query: string) {
-  const [matches, setMatches] = useState(true)
-
-  useLayoutEffect(() => {
-    const media = window.matchMedia(query)
-    setMatches(media.matches) // sync
-    const listener = () => {
-      setMatches(media.matches)
-    }
-    media.addEventListener('change', listener)
-    return () => {
-      media.removeEventListener('change', listener)
-    }
-  }, [query])
-
-  return matches
-}
-
 export function AccountSidebar({ width = 1200 }) {
-  const isWide = useMedia(`(min-width: ${width}px)`)
-  const darkMode = useMedia(`(prefers-color-scheme: dark)`)
+  const query = `(min-width: ${width}px)`
+
+  const subscription = useCallback(
+    (cb) => {
+      const media = window.matchMedia(query)
+      media.addEventListener('change', cb)
+      return () => {
+        media.removeEventListener('change', cb)
+      }
+    },
+    [query]
+  )
+
+  function getInitial() {
+    const media = window.matchMedia(query)
+    return media.matches
+  }
+
+  const isWide = useSyncExternalStore(subscription, getInitial)
 
   return isWide ? (
     <aside className="w-60 pr-6 border-r border-slate-300 space-y-6">
-      {darkMode ? 'dark' : 'light'}
       <Heading size={3}>Favorites</Heading>
       <AccountFavorites />
     </aside>
