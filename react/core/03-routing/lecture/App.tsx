@@ -14,10 +14,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+// const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 // Lazy Loading Options:
 // 1. React Way: https://react.dev/reference/react/lazy
@@ -32,7 +33,7 @@ const router = createBrowserRouter(
       <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
-          <Route path=":vacationId" element={<VacationDetailsPage />} />
+          <Route path=":vacationId" lazy={() => import('./VacationDetailsPage')} />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
           <Route index element={<Navigate to="/" />} />
         </Route>

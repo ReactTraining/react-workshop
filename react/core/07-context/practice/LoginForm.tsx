@@ -17,6 +17,8 @@ export function LoginForm() {
     try {
       // Login with server
       const user = await api.auth.login(username, password)
+
+      // set state
       // Login with global state (context)
       login(user)
       navigate('/account')

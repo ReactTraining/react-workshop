@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import { FaTrashAlt, FaPlus } from 'react-icons/fa'
+
 import { AiFillStar } from 'react-icons/ai'
 
 export const icons = {

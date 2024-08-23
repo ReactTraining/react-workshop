@@ -8,7 +8,7 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export function VacationDetailsPage() {
+export function Component() {
   const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
@@ -32,6 +32,7 @@ export function VacationDetailsPage() {
             <span className="bg-slate-800 text-white text-xs absolute top-0 right-0 py-1 px-2 hidden group-hover:block">
               {vacation.id}
             </span>
+
             <VacationImage
               vacationId={vacation.id}
               alt={vacation.name}

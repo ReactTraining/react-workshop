@@ -10,13 +10,13 @@ function App() {
         <div className="text-lg space-x-2 p-2 bg-slate-100 w-fit m-auto rounded-sm -skew-x-6">
           <DateDisplay>
             <span className="bg-slate-300 py-1 px-2 rounded">
+              <DateYear />
+            </span>
+            <span className="bg-slate-300 py-1 px-2 rounded">
               <DateMonth format="MMMM" />
             </span>
             <span className="bg-slate-300 py-1 px-2 rounded">
               <DateDay />
-            </span>
-            <span className="bg-slate-300 py-1 px-2 rounded">
-              <DateYear />
             </span>
           </DateDisplay>
         </div>

@@ -18,11 +18,14 @@ import { ServerTwo } from './server-two'
 // comp "re-render" when it doesn't run on the client
 
 export default function ServerOne() {
+  // fetch data
   return (
     <div className="bg-purple-200 p-4">
       <div>this is a server only component</div>
       <hr />
-      <ClientOne></ClientOne>
+      <ClientOne>
+        <ServerTwo />
+      </ClientOne>
     </div>
   )
 }
