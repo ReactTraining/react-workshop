@@ -3,9 +3,6 @@ import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { Counter } from './Counter'
 
-// A nice visual explanation of keys
-// https://twitter.com/dan_abramov/status/1415279090446204929
-
 function App() {
   const vacations = [
     { id: 1, name: 'Maui', hotels: 5 },
@@ -15,8 +12,7 @@ function App() {
     { id: 5, name: 'Florida Keys', hotels: 1 },
   ]
 
-  // Do "reduce" for total hotels
-  const totalHotels = 16
+  const totalHotels = vacations.reduce((sum, item) => sum + item.hotels, 0)
 
   return (
     <LessonBody>
