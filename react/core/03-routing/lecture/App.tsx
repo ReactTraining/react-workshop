@@ -14,10 +14,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 // Lazy Loading Options:
 // 1. React Way: https://react.dev/reference/react/lazy
@@ -26,15 +27,23 @@ import { AccountHome } from '~/AccountHome'
 //    <Route path="a" lazy={() => import("./a")} />
 //    Export names must match route props: Rename component to `export Component`
 
+// React 19 - auto adds suspense boundary
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
       <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
-          <Route path=":vacationId" element={<VacationDetailsPage />} />
-          <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
           <Route index element={<Navigate to="/" />} />
+          <Route
+            path=":vacationId"
+            element={
+              <Suspense fallback={<div>Loading more js...</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
+          />
+          <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
         </Route>
       </Route>
       <Route path="login" element={<LoginPage />} />

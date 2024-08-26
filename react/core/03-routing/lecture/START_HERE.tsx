@@ -12,12 +12,14 @@ const HomePage = () => <h1>Home Page</h1>
 const PageOne = () => <h1>Page One</h1>
 const PageTwo = () => <h1>Page Two</h1>
 
+// .com/one
+
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index={true} element={<HomePage />} />
+        <Route element={<MainLayout />}>
+          <Route index element={<HomePage />} />
           <Route path="one" element={<PageOne />} />
           <Route path="two" element={<PageTwo />} />
         </Route>
