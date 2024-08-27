@@ -56,3 +56,5 @@ export function useAuthContext() {
   }
   return context || {}
 }
+
+const { user, authenticated } = useAuthContext()

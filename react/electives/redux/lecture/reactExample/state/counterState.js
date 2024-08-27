@@ -5,7 +5,7 @@ export const actions = {
   decrement: createAction('DECREMENT'),
 }
 
-const initialState = { count: 0 }
+const initialState = { count: 106 }
 
 export const counterReducer = createReducer(initialState, {
   [actions.increment]: (state, action) => {

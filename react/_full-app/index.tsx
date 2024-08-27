@@ -8,13 +8,15 @@ import { router } from '~/router'
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <FavoriteProvider>
-          <RouterProvider router={router} />
-        </FavoriteProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <Stripe>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <FavoriteProvider>
+            <RouterProvider router={router} />
+          </FavoriteProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </Stripe>
   )
 }
 

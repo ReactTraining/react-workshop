@@ -2,6 +2,7 @@ import * as ReactDOM from 'react-dom/client'
 import { LoginForm } from './LoginForm'
 import {
   Navigate,
+  Outlet,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -10,12 +11,29 @@ import {
 import { MainLayout } from './MainLayout'
 import { MyAccount } from './MyAccount'
 import { AuthProvider } from './AuthContext'
+import { useAuthContext } from './AuthContext'
+
+export function RequireAuthentication() {
+  const { authenticated } = useAuthContext()
+
+  if (authenticated === false) {
+    return <Navigate to="/login" replace />
+
+    // Null means it's still pending with our system
+  } else if (authenticated === null) {
+    return <div>Loading...</div>
+  }
+  return <Outlet />
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<LoginForm />} />
-      <Route path="account" element={<MyAccount />} />
+      <Route path="account" element={<RequireAuthentication />}>
+        <Route index element={<MyAccount />}></Route>
+      </Route>
+
       <Route path="*" element={<Navigate to="/" />} />
     </Route>
   )
@@ -48,7 +66,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
 //     </Route>
 //   )
 // )
-
-// function RequireAuthentication() {
-//   // 🤔
-// }

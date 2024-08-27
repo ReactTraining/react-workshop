@@ -1,8 +1,10 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { actions } from './state/counterState'
 
-function Counter({ dispatch }) {
+function Counter() {
+  const dispatch = useDispatch()
+
   function decrement() {
     dispatch(actions.decrement())
   }
@@ -22,4 +24,4 @@ function Counter({ dispatch }) {
   )
 }
 
-export default connect()(Counter)
+export default Counter

@@ -14,7 +14,11 @@ type Props = {
 
 export function GroceryForm({ onSubmit }: Props) {
   const nameRef = useRef<HTMLInputElement>(null!)
-  const quantityRef = useRef<HTMLInputElement>(null!)
+  // const quantityRef = useRef<HTMLInputElement>(null!)
+
+  useEffect(() => {
+    nameRef.current.focus()
+  }, [])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -27,6 +31,8 @@ export function GroceryForm({ onSubmit }: Props) {
     } else {
       console.log(results.error)
     }
+
+    nameRef.current.focus()
 
     // const name = (formData.get('quantity') as string | null) || ''
     // const quantity = parseInt((formData.get('quantity') as string | null) || '')

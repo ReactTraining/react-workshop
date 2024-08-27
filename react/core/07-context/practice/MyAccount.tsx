@@ -6,15 +6,7 @@ import { api } from '~/utils/api'
 
 export function MyAccount() {
   const navigate = useNavigate()
-  const { authenticated, user, logout } = useAuthContext()
-
-  if (authenticated === false) {
-    return <Navigate to="/login" replace />
-
-    // Null means it's still pending with our system
-  } else if (authenticated === null) {
-    return <div>Loading...</div>
-  }
+  const { logout, user } = useAuthContext()
 
   async function onLogout() {
     await api.auth.logout()
