@@ -24,7 +24,7 @@
     "eslint": "^8.24.0",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-53bb89e-20240515",
     "firebase": "^9.6.1",
-    "json-server": "^0.17.1",
+    "json-server": "^1.0.0-beta.2",
     "react": "^19.0.0-rc-915b914b3a-20240515",
     "react-dom": "^19.0.0-rc-915b914b3a-20240515",
     "react-hook-form": "^7.48.2",
