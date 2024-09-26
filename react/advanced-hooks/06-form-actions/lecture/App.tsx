@@ -41,20 +41,19 @@ export function App() {
   const [messages, setMessages] = useState<Message[]>([])
   const [pending, setPending] = useState(false)
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setPending(true)
     const formData = new FormData(e.currentTarget)
     messageRef.current.value = ''
     messageRef.current.focus()
     console.log('start')
-    addMessage(formData.get('messageText') as string)
-      .then((res) => res.json())
-      .then(({ message: newMessage }) => {
-        console.log('resolve', messages)
-        setMessages(messages.concat(newMessage))
-        setPending(false)
-      })
+
+    const res = await addMessage(formData.get('messageText') as string)
+    const { message: newMessage } = await res.json()
+    console.log('resolve', messages)
+    setMessages(messages.concat(newMessage))
+    setPending(false)
   }
 
   return (
