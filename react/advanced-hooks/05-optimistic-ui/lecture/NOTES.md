@@ -2,7 +2,7 @@
 
 Start with a basic form submission that asynchronously updates likes:
 
-1. Add own own implementation of `optimisticLikes` with `useState`. Notice how
+1. Add our own implementation of `optimisticLikes` with `useState`. Notice how
    `likes` becomes useless / unused. Set set it but nothing uses it. Also re-factor
    to use transitions. See commented solution in App.tsx
 
