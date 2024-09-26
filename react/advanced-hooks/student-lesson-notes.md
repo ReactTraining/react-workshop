@@ -104,6 +104,28 @@ The React team has alluded to the word "sync" in useSyncExternalStore as meaning
 
 ---
 
+## Lesson: Imperative React
+
+In contrast to React's normal "declarative" approach of "describing the next UI" through re-renders, and in doing so, being somewhat hand's off with the DOM, React also offers some imperative APIs.
+
+- useRef can be described as "an escape hatch to get around the declarative nature of React, and into more of a hands-on imperative approach".
+- Refs can be added to the DOM via an initiation function instead of directly adding the ref via prop:
+
+```jsx
+<div
+  ref={(node) => {
+    // gets called when the div is ready in the DOM
+  }}
+></div>
+```
+
+- Portals are a way to send a component's rendering instructions (UI) to another part of the DOM other than the place that the parent component rendered it.
+- Event bubbling is the JavaScript concept of events that will start at their target and will trigger the event on all the parents and parents of parents of DOM nodes going all they way from the target element to the root HTML element.
+- React components can "imperatively" add events onto DOM nodes like the top window object using useEffect and creating a subscription. See final example in lecture.
+- There is a new CSS "popover" API which will replace common JS strategies soon. It allows us to link two DOM nodes in a way that creates an anchor element and a popover element to create popovers such as tooltips, dropdown menus, or modals.
+
+---
+
 ## Lesson: Transitions
 
 The docs describe transitions as being a way to "let you update the state without blocking the UI". Ordinarily, setting state is a high priority operation:
@@ -201,25 +223,3 @@ return (
 By doing so, the startTransition gives us an easy way to have a "pending status" for the form's submission(s)
 
 For common forms that are not "rapid-fire" multi-submit forms, we can use useActionState to manage an asynchronous action with a built-in async transition to "reduce" the form's state all while managing the pending status and all in one hook. See Example 4 in the lecture
-
----
-
-## Lesson: Imperative React
-
-In contrast to React's normal "declarative" approach of "describing the next UI" through re-renders, and in doing so, being somewhat hand's off with the DOM, React also offers some imperative APIs.
-
-- useRef can be described as "an escape hatch to get around the declarative nature of React, and into more of a hands-on imperative approach".
-- Refs can be added to the DOM via an initiation function instead of directly adding the ref via prop:
-
-```jsx
-<div
-  ref={(node) => {
-    // gets called when the div is ready in the DOM
-  }}
-></div>
-```
-
-- Portals are a way to send a component's rendering instructions (UI) to another part of the DOM other than the place that the parent component rendered it.
-- Event bubbling is the JavaScript concept of events that will start at their target and will trigger the event on all the parents and parents of parents of DOM nodes going all they way from the target element to the root HTML element.
-- React components can "imperatively" add events onto DOM nodes like the top window object using useEffect and creating a subscription. See final example in lecture.
-- There is a new CSS "popover" API which will replace common JS strategies soon. It allows us to link two DOM nodes in a way that creates an anchor element and a popover element to create popovers such as tooltips, dropdown menus, or modals.
