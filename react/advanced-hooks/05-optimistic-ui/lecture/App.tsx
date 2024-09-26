@@ -12,12 +12,10 @@ export function App() {
     e.preventDefault()
 
     const data = (await updateDatabase(likes + 1).then((r) => r.json())) as ResponseData
+    setLikes(data.likes)
+    console.log(data.likes)
 
-    if (!data.error) {
-      console.log(data.likes)
-      setLikes(data.likes)
-    } else {
-      setLikes(data.likes)
+    if (data.error) {
       setError(data.error)
     }
   }
@@ -50,12 +48,10 @@ export function App() {
 //     })
 
 //     const data = (await updateDatabase(opLikes + 1).then((r) => r.json())) as ResponseData
+//     setLikes(data.likes)
+//     console.log(data.likes)
 
-//     if (!data.error) {
-//       console.log(data.likes)
-//       setLikes(data.likes)
-//     } else {
-//       setLikes(data.likes)
+//     if (data.error) {
 //       setError(data.error)
 //     }
 //   }
