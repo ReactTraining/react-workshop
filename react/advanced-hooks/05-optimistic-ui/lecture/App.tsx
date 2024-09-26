@@ -3,7 +3,9 @@ import { type ResponseData, updateDatabase } from './helpers/mockServer'
 
 // Big Takeaways
 // 1. Homegrown optimistic state works with onSubmit, not with actions
-// 2. useOptimistic works with actions, not on submit
+//    Plus it's hard to reconcile errors (see notes)
+// 2. useOptimistic works with actions, not on submit unless we wrap our own transition
+//    Refactor back to onSubmit, see error about transitions, add transition and it works
 
 export function App() {
   const [error, setError] = useState('')
