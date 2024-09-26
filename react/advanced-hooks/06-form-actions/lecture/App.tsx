@@ -41,6 +41,8 @@ export function App() {
   const [messages, setMessages] = useState<Message[]>([])
   const [pending, setPending] = useState(false)
 
+  // const [pending, startTransition] = useTransition()
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setPending(true)
