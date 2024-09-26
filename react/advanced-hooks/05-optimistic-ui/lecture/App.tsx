@@ -1,7 +1,7 @@
-import { useOptimistic, useState, useTransition } from 'react'
+import { useOptimistic, useState } from 'react'
 import { type ResponseData, updateDatabase } from './helpers/mockServer'
 
-// Big takeaways:
+// Big Takeaways
 // 1. Homegrown optimistic state works with onSubmit, not with actions
 // 2. useOptimistic works with actions, not on submit
 
@@ -40,7 +40,6 @@ export function App() {
 //   const [likes, setLikes] = useState(0)
 
 //   const [opLikes, setOpLikes] = useState(0)
-//   const [pending, startTransition] = useTransition()
 
 //   async function submit(e: React.FormEvent) {
 //     e.preventDefault()
