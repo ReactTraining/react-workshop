@@ -1,8 +1,9 @@
 import { useOptimistic, useState, useTransition } from 'react'
 import { type ResponseData, updateDatabase } from './helpers/mockServer'
 
-// Remember that useOptimistic will not work with <form onSubmit />, and requires
-// <form action />
+// Big takeaways:
+// 1. Homegrown optimistic state works with onSubmit, not with actions
+// 2. useOptimistic works with actions, not on submit
 
 export function App() {
   const [error, setError] = useState('')
@@ -13,6 +14,7 @@ export function App() {
 
     const data = (await updateDatabase(likes + 1).then((r) => r.json())) as ResponseData
     setLikes(data.likes)
+
     console.log(data.likes)
 
     if (data.error) {
@@ -32,7 +34,7 @@ export function App() {
   )
 }
 
-// // Step Two: home-made optimistic UI with transitions
+// // Step Two: home-made optimistic UI
 // export function App() {
 //   const [error, setError] = useState('')
 //   const [likes, setLikes] = useState(0)
@@ -43,12 +45,11 @@ export function App() {
 //   async function submit(e: React.FormEvent) {
 //     e.preventDefault()
 
-//     startTransition(() => {
-//       setOpLikes(opLikes + 1)
-//     })
+//     setOpLikes(opLikes + 1)
 
 //     const data = (await updateDatabase(opLikes + 1).then((r) => r.json())) as ResponseData
 //     setLikes(data.likes)
+
 //     console.log(data.likes)
 
 //     if (data.error) {
