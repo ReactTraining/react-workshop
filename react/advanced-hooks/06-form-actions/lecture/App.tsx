@@ -151,8 +151,9 @@ export function App() {
 // 1. Use `action` instead of `onSubmit`
 // 2. Remove `event` and `event.preventDefault` because actions do not
 //    submit the form like `onSubmit` does
+// 3. Show `useFormStatus()` and `<Pending>` component
 
-// By convention, functions that use async transitions are called “Actions”.
+// By convention, functions that use async transitions are called "Actions".
 // https://react.dev/blog/2024/04/25/react-19#by-convention-functions-that-use-async-transitions-are-called-actions
 
 // export function App() {
