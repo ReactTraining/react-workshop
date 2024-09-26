@@ -7,9 +7,9 @@ export async function updateDatabase(likes: number) {
   let status = 200
   let responseData: ResponseData = { likes }
 
-  if (likes === 5) {
+  if (likes >= 5) {
     status = 400
-    responseData = { likes: 4, error: 'Error saving 5 likes' }
+    responseData = { likes: 4, error: 'Error saving 5 or more likes' }
   }
 
   return new Response(JSON.stringify(responseData), {

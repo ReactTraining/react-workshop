@@ -3,7 +3,7 @@
 Start with a basic form submission that asynchronously updates likes:
 
 1. Add our own implementation of `optimisticLikes` with `useState`. Notice how
-   `likes` becomes useless / unused. Set set it but nothing uses it. Also re-factor
+   `likes` becomes useless / unused. We set it but nothing uses it. Also re-factor
    to use transitions. See commented solution in App.tsx
 
 2. Refactor `onSubmit={submit}` to `action={action}` and now the homegrown optimistic likes

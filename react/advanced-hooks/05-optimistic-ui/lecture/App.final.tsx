@@ -16,11 +16,10 @@ export function App() {
     setOptimisticLikes(optimisticLikes + 1)
     const data = (await updateDatabase(optimisticLikes + 1).then((r) => r.json())) as ResponseData
 
-    if (!data.error) {
-      console.log(data.likes)
-      setLikes(data.likes)
-    } else {
-      setLikes(data.likes)
+    setLikes(data.likes)
+    console.log(data.likes)
+
+    if (data.error) {
       setError(data.error)
     }
   }
