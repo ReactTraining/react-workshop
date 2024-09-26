@@ -25,6 +25,10 @@ type Message = {
 // trying to manage one pending state, we get a scenario where the first
 // one that comes back sets pending to false, yet there are still some pending.
 
+// START --------------------> Resolve (sets pending false)
+//    START --------------------> Resolve
+//       START --------------------> Resolve
+
 // Also, we are "closing over" and empty items array three times and when
 // each response resolves, they all try to set their state on that empty array
 // We'll use the setState(fn) approach to avoid closure
@@ -32,9 +36,7 @@ type Message = {
 // Note that the pending status goes to false on the first resolve and yet
 // not of the other items have resolved yet
 
-// START --------------------> Resolve (sets pending false)
-//    START --------------------> Resolve
-//       START --------------------> Resolve
+// Add transitions to manage pending status...
 
 export function App() {
   const messageRef = useRef<HTMLInputElement>(null!)
@@ -88,18 +90,12 @@ export function App() {
 }
 
 /**
- * Example 2: startTransition
+ * Example 1: Finished
  */
-
-// Managing the pending status with a transition fixes the pending issue we
-// were having before. Now the pending status stays pending until all async
-// transitions are finished. This is because we're not managing "pending"
-// ourselves but instead letting a tool that knows about our queue of async
-// transitions is managing it.
 
 // START --------------------> Resolve
 //    START --------------------> Resolve
-//       START --------------------> Resolve
+//       START --------------------> Resolve (sets pending false)
 
 // export function App() {
 //   const messageRef = useRef<HTMLInputElement>(null!)
@@ -149,7 +145,7 @@ export function App() {
 // }
 
 /**
- * Example 3: Form Actions
+ * Example 2: Form Actions
  */
 
 // 1. Use `action` instead of `onSubmit`
@@ -221,7 +217,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * Example 4: useActionState for single-submission forms
+ * Example 3: useActionState for single-submission forms
  */
 
 // 1. Make sure everyone knows how useReducer works and "reducing state"
@@ -286,7 +282,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 // }
 
 /**
- * Example 5: When to NOT use useActionState: rapid-fire repeat submissions
+ * Example 4: When to NOT use useActionState: rapid-fire repeat submissions
  */
 
 // START --------------------> Resolve
@@ -354,7 +350,7 @@ function Pending({ children }: { children: React.ReactNode }) {
 // }
 
 /**
- * Example 6: Optimistic Forms
+ * Example 5: Optimistic Forms
  */
 
 // export function App() {
