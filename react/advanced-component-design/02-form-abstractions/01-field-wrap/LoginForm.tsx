@@ -1,7 +1,6 @@
 import { useId } from 'react'
 
 export function LoginForm() {
-  const emailId = useId()
   const passwordId = useId()
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -11,17 +10,32 @@ export function LoginForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3">
-      <div>
-        <label htmlFor={emailId}>Email</label>
-        <input id={emailId} type="email" name="email" className="form-field" autoComplete="off" />
-      </div>
-      <div>
-        <label htmlFor={passwordId}>Password</label>
-        <input id={passwordId} type="password" name="password" className="form-field" />
-      </div>
+      <FieldInput label="Email" name="email" type="email" autoComplete="off" />
+      <FieldInput label="Password" name="password" type="password" autoComplete="off" />
+
       <button type="submit" className="button">
         Submit
       </button>
     </form>
+  )
+}
+
+function FieldWrap({ label, children, ...props }) {
+  const id = useId()
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      {id}
+    </div>
+  )
+}
+
+function FieldInput({ label, name, type = 'text', ...props }) {
+  return (
+    <FieldWrap label={label}>
+      {(id) => {
+        return <input {...props} id={id} type={type} name={name} className="form-field" />
+      }}
+    </FieldWrap>
   )
 }

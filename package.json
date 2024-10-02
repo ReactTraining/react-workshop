@@ -34,7 +34,8 @@
     "react-router-dom": "^6.23.1",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
-    "zod": "^3.22.2"
+    "zod": "^3.22.2",
+    "zustand": "^5.0.0-rc.2"
   },
   "overrides": {
     "@types/react": "npm:types-react@beta",

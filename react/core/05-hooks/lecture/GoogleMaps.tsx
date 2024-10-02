@@ -13,53 +13,69 @@ export function App() {
   const [lat, setLat] = useState(40.712)
   const [lng, setLng] = useState(-74.006)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const pos = { lat, lng }
+  const latId = useId()
+  const lngId = useId()
 
-    // Use Refs Instead
-    renderMap(document.getElementById('map'), {
+  // Imperative
+  const mapRef = useRef<HTMLDivElement>(null!)
+
+  // After the first render phase (always)
+  // Then it runs again after other renders, if the dep array values change
+  useEffect(() => {
+    const pos = { lat, lng }
+    renderMap(mapRef.current, {
       center: pos,
       zoom: 10,
     })
+  }, [lat, lng])
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const data = new FormData(event.currentTarget)
+    const lat = Number(data.get('lat') as string)
+    const lng = Number(data.get('lng') as string)
+    setLat(lat)
+    setLng(lng)
   }
 
   return (
     <div className="space-y-6">
-      <div className="h-64 bg-slate-200" id="map" />
+      <div className="h-64 bg-slate-200" ref={mapRef} />
 
       <form onSubmit={handleSubmit}>
         <div className="flex gap-6">
           <div>
-            <label htmlFor="lat" className="text-xs">
+            <label htmlFor={latId} className="text-xs">
               Latitude
             </label>
             <input
-              id="lat"
+              id={latId}
               type="number"
               name="lat"
               className="form-field"
-              value={lat}
-              onChange={(e) => setLat(Number(e.target.value))}
+              defaultValue={lat}
+              // value={lat}
+              // onChange={(e) => setLat(Number(e.target.value))}
             />
           </div>
           <div>
-            <label htmlFor="lng" className="text-xs">
+            <label htmlFor={lngId} className="text-xs">
               Longitude
             </label>
             <input
-              id="lng"
+              id={lngId}
               type="number"
               name="lng"
               className="form-field"
-              value={lng}
-              onChange={(e) => setLng(Number(e.target.value))}
+              defaultValue={lng}
+              // onChange={(e) => setLng(Number(e.target.value))}
             />
           </div>
         </div>
         <footer className="mt-3">
           <button type="submit" className="button">
-            Load Map
+            Update
           </button>
         </footer>
       </form>

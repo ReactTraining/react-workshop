@@ -1,14 +1,17 @@
 import classnames from 'classnames'
 import { useFavoriteContext } from '~/FavoriteContext'
 import { Icon } from '~/Icon'
+import { useGlobalState } from './index'
 
 type Props = {
   id: number
 }
 
 export function FavoriteVacationButton({ id }: Props) {
-  const { updateFavorite, isFavorite } = useFavoriteContext()
-  const vacationIsFavorite = isFavorite(id)
+  // const { updateFavorite, favorites } = useFavoriteContext()
+  const { favorites, updateFavorite } = useGlobalState()
+
+  const vacationIsFavorite = favorites.includes(id)
 
   return (
     <button

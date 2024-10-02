@@ -13,6 +13,7 @@ export function App() {
   function loadVacations() {
     // The getAll() method will resolve an array of vacations. We nest our network API calls
     // in objects like api.vacations.getAll() for convenience.
+
     api.vacations.getAll().then((vacations) => {
       console.log(vacations)
     })

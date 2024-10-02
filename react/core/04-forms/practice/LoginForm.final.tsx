@@ -1,6 +1,14 @@
 import { useState, useTransition } from 'react'
 import { LessonCard } from '~/Lesson'
 import { useNavigate } from 'react-router-dom'
+import * as z from 'zod'
+
+const formSchema = z.object({
+  username: z.string().min(5, 'error'),
+  password: z.string().min(5, 'error'),
+})
+
+type FormDataType = z.infer<typeof formSchema>
 
 export function LoginForm() {
   const [pending, setPending] = useState(false)
@@ -10,22 +18,25 @@ export function LoginForm() {
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+    const data = Object.fromEntries(formData)
 
-    const username = formData.get('username') as string
-    const password = formData.get('password') as string
+    const results = formSchema.safeParse(data)
 
-    setPending(true)
-    setError('')
+    if (!results.error) {
+      const formData = results.data
+      setPending(true)
+      setError('')
 
-    login(username, password)
-      .then((user) => {
-        console.log(user)
-        navigate('/account')
-      })
-      .catch((err) => {
-        setError(err)
-        setPending(false)
-      })
+      login(formData.username, formData.password)
+        .then((user) => {
+          console.log(user)
+          navigate('/account')
+        })
+        .catch((err) => {
+          setError(err)
+          setPending(false)
+        })
+    }
   }
 
   // // React 19 actions

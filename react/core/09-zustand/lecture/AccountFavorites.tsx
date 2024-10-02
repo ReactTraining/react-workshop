@@ -3,9 +3,11 @@ import { Icon } from '~/Icon'
 import { useFavoriteContext } from '~/FavoriteContext'
 import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
+import { useGlobalState } from './index'
 
 export function AccountFavorites() {
-  const { favorites, updateFavorite } = useFavoriteContext()
+  const { favorites, updateFavorite } = useGlobalState()
+  console.log(favorites) // [1]
 
   const vacations = useQueries({
     queries: favorites.map((id) => {

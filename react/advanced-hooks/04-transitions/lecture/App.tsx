@@ -10,16 +10,15 @@ export function App() {
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
-  const [pending, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition() // opt-into concurrent mode ui
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
+    setMinLikes(newMinLikes) // high
+
+    startTransition(() => {
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+      setUsers(filteredUsers) // low
+    })
   }
 
   return (
@@ -62,7 +61,7 @@ type Props = {
 
 // See with and without memoization (and auto-memoization ✨)
 const UserList = ({ users }: Props) => {
-  console.log('Re-render UserList')
+  // console.log('Re-render UserList')
   return (
     <>
       {users.map((user) => {

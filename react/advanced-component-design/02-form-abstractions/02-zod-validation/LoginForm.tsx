@@ -12,6 +12,8 @@ type FormErrorType = {
 }
 
 export function LoginForm() {
+  const [errors, setErrors] = useState()
+
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

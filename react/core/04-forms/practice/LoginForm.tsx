@@ -17,6 +17,7 @@ export function LoginForm() {
 
   function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
     setPending(true)
     login(username, password)
       .then((user) => {
