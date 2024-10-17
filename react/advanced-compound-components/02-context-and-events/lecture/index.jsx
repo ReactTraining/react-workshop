@@ -36,7 +36,7 @@ function App() {
 
 /*
 ✅ It works, but needs some improvements...
-❌ With `React.cloneElement` and passing props down, there's a high chance for prop
+✅ With `React.cloneElement` and passing props down, there's a high chance for prop
    collisions when the user of our API (the owner) wants to pass in something that's
    similar to what we passed. Also, when pass data down through props because of
    `cloneElement` and we're also using forwarding props, there's a good chance we'll

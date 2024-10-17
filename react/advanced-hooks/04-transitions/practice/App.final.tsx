@@ -5,6 +5,7 @@ export function App() {
   const [tabIndex, setTabIndex] = useState(0)
 
   const [pending, start] = useTransition()
+
   function onChange(index: number) {
     setNextTabIndex(index)
     start(() => {

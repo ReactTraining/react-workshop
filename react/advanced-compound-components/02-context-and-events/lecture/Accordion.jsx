@@ -1,9 +1,11 @@
-import React, { useState, useId, use, createContext } from 'react'
+import React, { useState, useId, use, createContext, useContext } from 'react'
 import { wrapEvent } from '../../utils'
 
 /**
  * Accordion
  */
+
+const AccordionContext = createContext()
 
 export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }) => {
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
@@ -13,7 +15,7 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
     const panelId = `accordion-${accordionId}-panel-${index}`
     const buttonId = `accordion-${accordionId}-button-${index}`
 
-    return React.cloneElement(child, {
+    const context = {
       buttonId,
       panelId,
       selected: selectedIndex === index,
@@ -21,7 +23,9 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
         onChange && onChange(index)
         setSelectedIndex(index)
       },
-    })
+    }
+
+    return <AccordionContext value={context}>{child}</AccordionContext>
   })
 
   return (
@@ -35,15 +39,8 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
  * Accordion Item
  */
 
-export const AccordionItem = ({ children, buttonId, panelId, selected, selectPanel, ...props }) => {
-  children = React.Children.map(children, (child) => {
-    return React.cloneElement(child, {
-      buttonId,
-      panelId,
-      selected,
-      selectPanel,
-    })
-  })
+export const AccordionItem = ({ children, ...props }) => {
+  const { selected } = use(AccordionContext)
 
   return (
     <div {...props} data-accordion-item="" data-state={selected ? 'open' : 'collapsed'}>
@@ -56,14 +53,8 @@ export const AccordionItem = ({ children, buttonId, panelId, selected, selectPan
  * Accordion Button
  */
 
-export const AccordionButton = ({
-  children,
-  buttonId,
-  panelId,
-  selected,
-  selectPanel,
-  ...props
-}) => {
+export const AccordionButton = ({ children, ...props }) => {
+  const { buttonId, panelId, selected, selectPanel } = use(AccordionContext)
   return (
     <button
       {...props}
@@ -83,10 +74,9 @@ export const AccordionButton = ({
  * Accordion Panel
  */
 
-export const AccordionPanel = ({ children, buttonId, panelId, selected, ...props }) => {
-  // Since we're passing our internal implementations down through props,
-  // and then also forwarding props, some unneeded things are being passed
-  // to the DOM, like props.selectPanel in this case.
+export const AccordionPanel = ({ children, ...props }) => {
+  const { buttonId, panelId, selected } = use(AccordionContext)
+
   return (
     <div
       role="region"

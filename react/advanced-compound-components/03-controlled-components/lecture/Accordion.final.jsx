@@ -20,6 +20,7 @@ export const Accordion = ({
 
   const isControlled = controlledIndex != null
   const { current: startsControlled } = useRef(isControlled)
+
   if (isControlled !== startsControlled) {
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }

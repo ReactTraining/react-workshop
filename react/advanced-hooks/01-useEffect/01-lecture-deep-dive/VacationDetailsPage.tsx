@@ -11,10 +11,20 @@ import type { Vacation } from '~/utils/types'
 // https://github.com/facebook/react/pull/22114
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
+  const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  // api.vacations.getVacation(vacationId)
+  useEffect(() => {
+    let isCurrent = true
+    api.vacations.getVacation(vacationId).then((vacation) => {
+      if (isCurrent) {
+        setVacation(vacation)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+  }, [vacationId])
 
   if (!vacation) return <div>Loading...</div>
 

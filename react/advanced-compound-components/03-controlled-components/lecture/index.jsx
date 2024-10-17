@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from './Accordion'
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from './Accordion.final'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import './styles.css'
 
@@ -13,13 +13,13 @@ function App() {
       <div className="flex gap-6 max-lg:flex-col">
         <div className="lg:flex-1">
           <LessonCard>
-            <button onClick={() => null} className="button">
+            <button onClick={() => setIndex(1)} className="button">
               Open a11y
             </button>
           </LessonCard>
         </div>
         <div className="lg:flex-1">
-          <Accordion onChange={setIndex}>
+          <Accordion index={index} onChange={setIndex}>
             <AccordionItem>
               <AccordionButton>
                 {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
