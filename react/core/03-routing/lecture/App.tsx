@@ -14,10 +14,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 // Lazy Loading Options:
 // 1. React Way: https://react.dev/reference/react/lazy
