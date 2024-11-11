@@ -8,9 +8,12 @@ export const icons = {
   trash: FaTrashAlt,
 }
 
-export function Icon({ name, className, size = 1.3, ...rest }) {
+export function Icon({ name, className, size = 1.3, color, ...rest }) {
   const Component = icons[name]
-  if (!Component) return null
+  if (!Component) {
+    console.warn('this thing doesnt exist')
+    return null
+  }
 
   const props = {
     className: classnames('icon', className),
@@ -19,7 +22,7 @@ export function Icon({ name, className, size = 1.3, ...rest }) {
       width: `${size}em`,
       height: `${size}em`,
       verticalAlign: 'middle',
-      color: 'currentColor',
+      color: color || 'currentColor',
     },
   }
 
