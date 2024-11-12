@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { Tiles } from '~/Tiles'

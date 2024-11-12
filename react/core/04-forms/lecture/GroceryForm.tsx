@@ -15,8 +15,7 @@ export function GroceryForm({ onSubmit }: Props) {
 
   const nameId = useId() // :r0:
 
-  // const nameRef = useRef<HTMLInputElement>(null!)
-  // const quantityRef = useRef<HTMLInputElement>(null!)
+  const nameRef = useRef<HTMLInputElement>(null!)
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -33,7 +32,7 @@ export function GroceryForm({ onSubmit }: Props) {
       <div>
         <label htmlFor={nameId}>Item</label>
         <input
-          // ref={nameRef}
+          ref={nameRef}
           id={nameId}
           type="text"
           className="form-field"

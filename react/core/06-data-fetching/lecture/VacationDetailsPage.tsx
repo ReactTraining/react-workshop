@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
 import { useQuery } from '@tanstack/react-query'
@@ -17,21 +17,34 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-// export async function loader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
-
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function loader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!) // subscriber to the URL, also useState
+  const vacation = await api.vacations.getVacation(vacationId)
+  return vacation
+}
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+  const vacation = useLoaderData()
 
-  // api.vacations.getVacation(vacationId)
+  useQuery({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
+
+  // const [vacation, setVacation] = useState<Vacation | null>(null)
+  // // Any variable that we "close over" that CAN POSSIBLY CHANGE!!!
+  // useEffect(() => {
+  //   let isCurrent = true
+  //   api.vacations.getVacation(vacationId).then((vacation) => {
+  //     if (isCurrent) {
+  //       setVacation(vacation)
+  //     }
+  //   })
+  //   return () => {
+  //     isCurrent = false
+  //   }
+  // }, [setVacation, vacationId])
 
   if (!vacation) return <div>Loading...</div>
 

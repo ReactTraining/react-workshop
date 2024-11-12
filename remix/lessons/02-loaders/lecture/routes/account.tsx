@@ -11,13 +11,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   // That's okay in this case because we need the user before we get the settings
   // But you'll need to know how to load things in parallel for the exercise
   const user = await requireSessionUser(request)
-  const settings = await getUserSettings(user.id)
+  const settings = await getUserSettings(user.id) //db
 
   return json({ user, settings })
 }
 
 export default function Account() {
   const { user } = useLoaderData<typeof loader>()
+  console.log('where did this run')
 
   return (
     <div className="flex gap-6">
