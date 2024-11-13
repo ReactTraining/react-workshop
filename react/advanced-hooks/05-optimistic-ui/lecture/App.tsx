@@ -54,6 +54,7 @@ export function App() {
 //     console.log(data.likes)
 
 //     if (data.error) {
+//       setOpLikes(data.likes)
 //       setError(data.error)
 //     }
 //   }
