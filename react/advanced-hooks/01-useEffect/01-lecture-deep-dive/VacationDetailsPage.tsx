@@ -1,14 +1,31 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom'
 import { api } from '~/utils/api'
+import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
-import { SimilarVacations } from '~/SimilarVacations'
+import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
+
+// const vacation = await queryClient.ensureQueryData({
+//   queryKey: ['vacation', vacationId],
+//   queryFn: () => api.vacations.getVacation(vacationId),
+//   staleTime: 1000 * 30,
+// })
+
+// export async function loader({ params }: LoaderFunctionArgs) {
+//   return api.vacations.getVacation(vacationId)
+// }
+
+// const { data: vacation } = useQuery({
+//   queryKey: ['vacation', vacationId],
+//   queryFn: () => api.vacations.getVacation(vacationId),
+//   staleTime: 1000 * 30,
+// })
 
 export function VacationDetailsPage() {
   const { vacationId } = useParams()
@@ -52,9 +69,4 @@ export function VacationDetailsPage() {
       </main>
     </Card>
   )
-}
-
-// ignore this
-export async function loader() {
-  return null
 }
