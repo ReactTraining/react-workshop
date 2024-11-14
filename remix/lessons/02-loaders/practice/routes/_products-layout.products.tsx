@@ -1,12 +1,11 @@
 import { useLoaderData, useOutletContext } from '@remix-run/react'
-import { json } from '@remix-run/node'
 import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 
 export const loader = async () => {
   const products = await getProducts()
-  return json(products)
+  return products
 }
 
 export default function ProductsPage() {

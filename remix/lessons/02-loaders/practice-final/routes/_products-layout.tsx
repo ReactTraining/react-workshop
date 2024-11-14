@@ -1,4 +1,3 @@
-import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
@@ -7,10 +6,10 @@ export const loader = async () => {
   // Solution for task 1
   const [products, brands] = await Promise.all([getProducts(), getBrands()])
 
-  return json({
+  return {
     products,
     brands,
-  })
+  }
 }
 
 export type LoaderData = typeof loader

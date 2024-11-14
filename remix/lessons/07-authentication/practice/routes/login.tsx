@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as z from 'zod'
-import { json, redirect } from '@remix-run/node'
+import { data } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
@@ -24,11 +24,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const formValues = Object.fromEntries(formData)
   const results = formSchema.safeParse(formValues)
-  if (!results.success) return json({ error: 'Invalid Data' }, { status: 400 })
+  if (!results.success) return data({ error: 'Invalid Data' }, { status: 400 })
 
   const { username, password } = results.data
   const userId = await verifyUser(username, password)
-  if (!userId) return json({ error: 'User not found' }, { status: 400 })
+  if (!userId) return data({ error: 'User not found' }, { status: 400 })
 
   const redirectPath = '/'
   return createUserSession(userId, redirectPath)

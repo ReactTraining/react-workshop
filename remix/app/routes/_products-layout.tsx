@@ -1,4 +1,3 @@
-import { json } from '@remix-run/node'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
@@ -19,11 +18,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     getCategories(),
   ])
 
-  return json({
+  return {
     products,
     brands: brands.sort(sortLabel),
     categories: categories.sort(sortLabel),
-  })
+  }
 }
 
 export default function () {

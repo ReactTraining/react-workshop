@@ -1,10 +1,10 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node'
+import { LoaderFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { getSessionUser } from '../utils/auth.server'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await getSessionUser(request)
-  return json({ user })
+  return { user }
 }
 
 export default function Index() {

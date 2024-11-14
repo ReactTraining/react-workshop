@@ -1,4 +1,3 @@
-import { json } from '@remix-run/node'
 import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
@@ -9,7 +8,7 @@ export async function loader() {
     res.json()
   )) as ProductType[]
 
-  return json({ products })
+  return { products }
 }
 
 export default function Index() {

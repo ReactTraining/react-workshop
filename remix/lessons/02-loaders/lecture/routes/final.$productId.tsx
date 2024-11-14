@@ -9,7 +9,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     res.json()
   )) as ProductType
 
-  return json(product)
+  return product
 }
 
 export default function ProductProfile() {

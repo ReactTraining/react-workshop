@@ -1,5 +1,5 @@
 import { useFetcher, useLoaderData, useRouteLoaderData } from '@remix-run/react'
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json } from '@remix-run/node'
+import { type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { sleep } from '~/utils/helpers'
@@ -22,7 +22,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
-  return json({ cart })
+  return { cart }
 }
 
 type LoaderData = typeof loader

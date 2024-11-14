@@ -7,7 +7,7 @@
 
 ```ts
 // These are same
-return json({ user: 'brad' })
+return { user: 'brad' }
 
 return new Response(JSON.stringify({ user: 'brad' }), {
   headers: {

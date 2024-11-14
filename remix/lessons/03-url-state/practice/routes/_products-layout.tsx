@@ -1,5 +1,4 @@
 import { useId } from 'react'
-import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
@@ -11,10 +10,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
   const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])
 
-  return json({
+  return {
     products,
     brands: brands.sort(sortLabel),
-  })
+  }
 }
 
 export type LoaderData = typeof loader

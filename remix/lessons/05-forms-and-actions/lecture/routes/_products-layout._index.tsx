@@ -5,7 +5,7 @@ import {
   useLoaderData,
   useRouteLoaderData,
 } from '@remix-run/react'
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json } from '@remix-run/node'
+import { type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
@@ -39,7 +39,7 @@ export async function action({ request }: ActionFunctionArgs) {
 //  - Will only happen in the future upon action's 200 responses
 export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
-  return json({ cart })
+  return { cart }
 }
 
 export default function ProductsIndex() {

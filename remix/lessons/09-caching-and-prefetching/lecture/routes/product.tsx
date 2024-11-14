@@ -1,4 +1,3 @@
-import { json, defer } from '@remix-run/node'
 import { sleep } from '~/utils/helpers'
 import { Await, useLoaderData } from '@remix-run/react'
 import { Suspense } from 'react'
@@ -14,7 +13,7 @@ export const loader = async () => {
     getProductComments(),
   ])
 
-  return json({ user, product, comments })
+  return { user, product, comments }
 }
 
 export default function ProductProfile() {
