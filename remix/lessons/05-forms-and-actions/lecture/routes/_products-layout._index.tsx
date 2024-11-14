@@ -46,16 +46,6 @@ export default function ProductsIndex() {
   const { cart } = useLoaderData<typeof loader>()
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
 
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
-
   return (
     <Tiles>
       {products.map((product) => {
@@ -78,16 +68,16 @@ export default function ProductsIndex() {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                  aria-label="Add To Cart"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
+                <Form method="POST">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button
+                    className="button button-outline whitespace-nowrap"
+                    type="submit"
+                    aria-label="Add To Cart"
+                  >
+                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+                  </button>
+                </Form>
                 <button className="button">Remove</button>
               </div>
             </div>

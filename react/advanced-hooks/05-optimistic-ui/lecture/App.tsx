@@ -11,7 +11,7 @@ export function App() {
   const [error, setError] = useState('')
   const [likes, setLikes] = useState(0)
 
-  // future state
+  // // future state
   const [opLikes, setOpLikes] = useOptimistic(likes, (current: number, nextState: number) => {
     return nextState
   })

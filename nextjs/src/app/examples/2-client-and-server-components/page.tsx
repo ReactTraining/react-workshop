@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ClientOne } from './client-one'
 import { ServerTwo } from './server-two'
 
@@ -17,12 +18,19 @@ import { ServerTwo } from './server-two'
 // and passed it as a prop to a server comp, how would that server
 // comp "re-render" when it doesn't run on the client
 
-export default function ServerOne() {
+// ✅ Server comp can own a client comp
+// ✅ Server comp can own server comp
+// ✅ Client comp can own a client comp
+// ❌ Client comp cannot own a server comp
+
+export default async function ServerOne() {
   return (
     <div className="bg-purple-200 p-4">
       <div>this is a server only component</div>
       <hr />
-      <ClientOne></ClientOne>
+      <ClientOne>
+        <ServerTwo />
+      </ClientOne>
     </div>
   )
 }
