@@ -5,8 +5,9 @@ export function App() {
   const [tabIndex, setTabIndex] = useState(0)
 
   const [pending, start] = useTransition()
+
   function onChange(index: number) {
-    setNextTabIndex(index)
+    setNextTabIndex(index) // high (see the gray early)
     start(() => {
       setTabIndex(index)
     })

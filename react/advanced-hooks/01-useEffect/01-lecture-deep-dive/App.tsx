@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+
 import {
   Navigate,
   Route,
@@ -13,11 +15,16 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+// import { VacationDetailsPage } from
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
+
+import { loader as vacationDetailsLoader } from './VacationDetailsPage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,14 +37,18 @@ export const router = createBrowserRouter(
           errorElement={<ErrorPage />}
         />
         <Route path="vacations">
+          <Route index element={<Navigate to="/" />} />
           <Route
             path=":vacationId"
-            Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            element={
+              // <Suspense fallback={<div>Loading JS....</div>}>
+              <VacationDetailsPage />
+              // </Suspense>
+            }
+            loader={vacationDetailsLoader}
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
-          <Route index element={<Navigate to="/" />} />
         </Route>
       </Route>
       <Route path="login" Component={LoginPage} />

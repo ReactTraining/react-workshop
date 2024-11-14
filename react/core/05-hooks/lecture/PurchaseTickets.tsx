@@ -1,9 +1,17 @@
 import { useState, useId, useRef, useMemo, useCallback, memo } from 'react'
 import { slowFunction } from '~/utils/helpers'
 
+/*
+meta data
+state = [
+  [3, fn],
+  ['', fn]
+]
+*/
+
 export function App() {
-  const [tickets, setTickets] = useState(3)
-  const [comments, setComments] = useState('')
+  const [tickets, setTickets] = useTicketsState(3)
+  const [comments, setComments] = useState('') // ['', fn]
 
   // Makes an array like [1,2,3...] to the number of tickets
   const attendees = [...Array(tickets).keys()]
