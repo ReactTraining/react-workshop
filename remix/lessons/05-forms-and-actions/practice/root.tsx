@@ -9,8 +9,8 @@ import {
   useLoaderData,
   useRouteError,
 } from '@remix-run/react'
-import { type LinksFunction, json, LoaderFunctionArgs } from '@remix-run/node'
-import stylesheet from '~/styles/app.css'
+import { type LinksFunction, LoaderFunctionArgs } from '@remix-run/node'
+import stylesheet from '~/styles/app.css?url'
 import { MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
 import { CenterContent } from '~/components/CenterContent'
@@ -24,7 +24,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
 
   const cart = await getCart(request)
-  return json({ lesson, cart })
+  return { lesson, cart }
 }
 
 export type LoaderData = typeof loader

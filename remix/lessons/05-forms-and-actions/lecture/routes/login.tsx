@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import bcrypt from 'bcryptjs'
-import { json, redirect } from '@remix-run/node'
+import { data, redirect } from '@remix-run/node'
 import { Form } from '@remix-run/react'
 import { Heading } from '~/components/Heading'
 import { getUserPasswordHash } from '~/utils/db.server'
@@ -35,7 +35,7 @@ export async function action({ request }: ActionFunctionArgs) {
   // const username = formData.get('username') as string | null
   // const password = formData.get('password') as string | null
 
-  if (!username || !password) return json({ error: 'Invalid Data' }, { status: 400 })
+  if (!username || !password) return data({ error: 'Invalid Data' }, { status: 400 })
 
   // Login and redirect
   return redirect('/')

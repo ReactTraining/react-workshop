@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node'
+import { LoaderFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { storage } from '../utils/auth.server'
 
@@ -9,7 +9,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   // Get the userId from the session if it exists
   let userId = session.get('userId') as string | undefined
 
-  return json({ userId: userId !== undefined && parseInt(userId) })
+  return { userId: userId !== undefined && parseInt(userId) }
 }
 
 export default function Index() {

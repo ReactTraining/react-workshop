@@ -1,7 +1,7 @@
 import { type PropsWithChildren } from 'react'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import { type LinksFunction } from '@remix-run/node'
-import stylesheet from '~/styles/app.css'
+import stylesheet from '~/styles/app.css?url'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 

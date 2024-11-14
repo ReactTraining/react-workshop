@@ -12,8 +12,6 @@ The layout already fetches brands so you'll need to run the promise for `getBran
 const [a, b] = await Promise.all([getA(), getB()])
 ```
 
-You'll also need to modify how `json()` returns data because you'll want to return brands and products now
-
 ## Task 2
 
 When the layout component is successfully receiving `brands` and `products` from `useLoaderData()`, you'll need to figure out a way to pass this data down into the page. Keep in mind that the `<Outlet />` is not an alias for your page such that you can just pass props into it and these props will end up being props in your component. If you need to pass data from a layout into the page that the Outlet represents, you can do context.

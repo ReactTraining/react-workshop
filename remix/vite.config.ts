@@ -5,6 +5,13 @@ import { installGlobals } from '@remix-run/node'
 
 installGlobals()
 
+declare module '@remix-run/node' {
+  // or cloudflare, deno, etc.
+  interface Future {
+    v3_singleFetch: true
+  }
+}
+
 export default defineConfig({
   server: {
     port: 3000,
@@ -16,15 +23,15 @@ export default defineConfig({
 
       ignoredRouteFiles: ['**/*.css'],
 
-      // tailwind: true,
       // Since lessons override the default app directory, we still need to
       // add a watcher to the app dir for shared files that lessons might use
-      //watchPaths: ['./app'],
+      // watchPaths: ['./app'],
       future: {
-        // v2_errorBoundary: true,
-        // v2_meta: true,
-        // v2_normalizeFormMethod: true,
-        // v2_routeConvention: true,
+        v3_fetcherPersist: true,
+        v3_relativeSplatPath: true,
+        v3_throwAbortReason: true,
+        v3_singleFetch: true,
+        v3_lazyRouteDiscovery: true,
       },
     }),
     tsconfigPaths(),

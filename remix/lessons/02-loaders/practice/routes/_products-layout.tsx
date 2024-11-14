@@ -1,11 +1,10 @@
-import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getBrands } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
 
 export const loader = async () => {
   const brands = await getBrands()
-  return json(brands)
+  return brands
 }
 
 export default function Products() {

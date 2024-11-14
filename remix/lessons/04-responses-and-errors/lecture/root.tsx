@@ -10,8 +10,8 @@ import {
   useRouteLoaderData,
   useRouteError,
 } from '@remix-run/react'
-import { type LinksFunction, json } from '@remix-run/node'
-import stylesheet from '~/styles/app.css'
+import { type LinksFunction } from '@remix-run/node'
+import stylesheet from '~/styles/app.css?url'
 import { CenterContent, MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
 import { Heading } from '~/components/Heading'
@@ -20,7 +20,7 @@ export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet
 
 export async function loader() {
   const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
-  return json({ lesson })
+  return { lesson }
 }
 
 export default function App() {
