@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react'
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -48,7 +47,6 @@ export default function App() {
         </LessonProvider>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )

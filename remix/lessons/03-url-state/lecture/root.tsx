@@ -1,12 +1,4 @@
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react'
 import { type LinksFunction, json } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 import { MainLayout } from './components/MainLayout'
@@ -43,7 +35,6 @@ export default function App() {
         </LessonProvider>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )

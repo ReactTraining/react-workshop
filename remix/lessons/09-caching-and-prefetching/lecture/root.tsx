@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react'
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import { type LinksFunction } from '@remix-run/node'
 import stylesheet from '~/styles/app.css'
 
@@ -31,7 +31,6 @@ export function Document({ children }: PropsWithChildren) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )

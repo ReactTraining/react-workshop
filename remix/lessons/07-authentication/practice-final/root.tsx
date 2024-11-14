@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react'
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -82,7 +81,6 @@ export function Document({ children }: PropsWithChildren) {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )

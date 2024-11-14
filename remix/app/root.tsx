@@ -1,6 +1,5 @@
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -17,7 +16,7 @@ import { getSessionUser } from '~/utils/auth.server'
 import { AuthProvider } from '~/state/AuthContext'
 import { CartProvider } from '~/state/CartContext'
 import { getCart } from '~/utils/cart.server'
-import stylesheet from '~/styles/app.css'
+import stylesheet from '~/styles/app.css?url'
 import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
@@ -55,7 +54,6 @@ export function Layout({ children }: PropsWithChildren) {
         </AuthProvider>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )
