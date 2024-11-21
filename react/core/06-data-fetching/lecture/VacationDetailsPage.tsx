@@ -7,31 +7,26 @@ import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+// XHR (very old)  ..... Axios
+// Fetch
 
-// export async function loader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
-
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function loader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!) // subscriber to URL + useState
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId), // fetch
+    staleTime: 1000 * 30,
+  })
+  return vacation
+}
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
-
-  // api.vacations.getVacation(vacationId)
+  const vacation = useLoaderData() as Vacation
 
   if (!vacation) return <div>Loading...</div>
 

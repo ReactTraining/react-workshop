@@ -29,7 +29,7 @@ export function Counter({ count, setCount, min = 0 }: CounterProps) {
         type="text"
         value={count}
         onChange={(event) => setCount(parseInt(event.target.value))}
-        data-testid="input"
+        data-testid="xxxx"
       />
       <div>
         <button onClick={add} className="button button-small" data-testid="add">

@@ -7,7 +7,7 @@ import { Counter } from './Counter'
 describe('Counter', () => {
   it('should display initial count of 0', () => {
     render(<Counter count={0} setCount={() => null} />)
-    const input = screen.getByTestId<HTMLInputElement>('input')
+    const input = screen.getByTestId<HTMLInputElement>('xxxx')
     expect(input.value).toEqual('0')
   })
 
