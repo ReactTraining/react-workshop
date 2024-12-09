@@ -34,7 +34,7 @@ Already have Node/NPM installed? Then start here. Otherwise we have some instruc
 
 **For React Workshops**
 
-NOTE THAT WE'RE ON REACT 19 BETA. This is why you'll need to use the `--force` flag when installing to fix peer dependency issues:
+✨ Note that we are on 19. Some dependencies that will work with v19 just haven't been updated yet to know they can work with it, so you'll have to do the `--force` flag when installing to fix peer dependency issues:
 
 - Do `npm install --force` first
 - Do `npm start`
