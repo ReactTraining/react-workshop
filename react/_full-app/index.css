@@ -174,10 +174,10 @@ svg {
     padding: 0.5rem 1rem;
   }
 
-  .button:hover,
+  /* .button:hover,
   .button:focus {
     background-color: theme(colors.brandBlueDark);
-  }
+  } */
 
   .button.button-outline {
     border-color: currentColor;
