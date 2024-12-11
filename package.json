@@ -23,7 +23,7 @@
     "dayjs": "^1.10.7",
     "eslint": "^8.24.0",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-53bb89e-20240515",
-    "firebase": "^9.6.1",
+    "firebase": "^10.9.0",
     "json-server": "^0.17.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
