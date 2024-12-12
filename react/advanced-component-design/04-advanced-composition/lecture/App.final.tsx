@@ -11,13 +11,13 @@ export function App() {
       <DatePicker selectRange>
         <div className="flex gap-6">
           <div className="flex-1 space-y-3">
-            <h1>
+            <h1 className="text-center">
               <DatePickerLabel />
             </h1>
             <DatePickerCalendar />
           </div>
           <div className="flex-1 space-y-3">
-            <h1>
+            <h1 className="text-center">
               <DatePickerLabel offset={1} />
             </h1>
             <DatePickerCalendar offset={1} />

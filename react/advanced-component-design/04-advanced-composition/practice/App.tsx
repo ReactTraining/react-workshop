@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, FormProvider, useFormContext } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { FieldDatePicker, FieldInput } from './FormFields'
+import { FieldDatePicker, FieldInput } from './FormFields.final'
 import { SelectDateRange } from './SelectDateRange'
 
 // Expects Format: YYYY-MM-DD  Example: 2023-01-30
@@ -33,15 +33,7 @@ export function App() {
           autoComplete="off"
         />
         <FieldDatePicker startName="startDate" endName="endDate" label="Date Range" />
-        {/*
-          Move <SelectDateRange> so it only shows up in the popup. Also integrate
-          it's selection into the React Hook Form values `startDate` and `endDate`
-        */}
-        <SelectDateRange
-          onSelect={(start, end) => {
-            console.log(start, end)
-          }}
-        />
+
         <button type="submit" className="button">
           Submit
         </button>

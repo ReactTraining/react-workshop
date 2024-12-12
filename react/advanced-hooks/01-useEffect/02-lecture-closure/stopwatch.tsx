@@ -3,17 +3,18 @@ import { LessonBody, LessonCard } from '~/Lesson'
 
 export function App() {
   const [active, setActive] = useState(false)
-  const [seconds, setSeconds] = useState(0)
+  const [seconds, setSeconds] = useState(0) // 1
 
   useEffect(() => {
     if (active) {
-      setInterval(() => {
+      const id = setInterval(() => {
         console.log('Set Seconds')
-        setSeconds(seconds + 1)
+        setSeconds((s) => s + 1)
       }, 1000)
+      return () => {
+        clearInterval(id)
+      }
     }
-    // Show what happens when we add seconds to
-    // the dep array, or leave it out ?
   }, [active])
 
   return (

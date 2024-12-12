@@ -7,20 +7,23 @@ const formSchema = z.object({
 })
 
 type FormDataType = z.infer<typeof formSchema>
-type FormErrorType = {
-  [k in keyof FormDataType]?: string[] | undefined
-}
+// type FormErrorType = {
+//   [k in keyof FormDataType]?: string[] | undefined
+// }
+type FormErrorType = z.inferFlattenedErrors<typeof formSchema>['fieldErrors']
 
 export function LoginForm() {
+  const [errors, setErrors] = useState<FormErrorType>({})
+
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = Object.fromEntries(new FormData(event.currentTarget))
+
     const results = formSchema.safeParse(formValues)
 
     if (!results.success) {
-      console.error(results.error.flatten().fieldErrors)
+      setErrors(results.error.flatten().fieldErrors)
     } else {
-      // Notice the "type" difference
       console.log(formValues)
       console.log(results.data)
     }

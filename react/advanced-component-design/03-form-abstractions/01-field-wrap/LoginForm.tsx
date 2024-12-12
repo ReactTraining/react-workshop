@@ -1,27 +1,54 @@
 import { useId } from 'react'
 
 export function LoginForm() {
-  const emailId = useId()
   const passwordId = useId()
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // Get Data
+    const values = Object.fromEntries(new FormData(event.currentTarget))
+    console.log(values)
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3">
-      <div>
-        <label htmlFor={emailId}>Email</label>
-        <input id={emailId} type="email" name="email" className="form-field" autoComplete="off" />
-      </div>
-      <div>
-        <label htmlFor={passwordId}>Password</label>
-        <input id={passwordId} type="password" name="password" className="form-field" />
-      </div>
+    <form onSubmit={onSubmit} className="space-y-3" noValidate>
+      <FieldInput label="Email" name="email" type="email" />
+      <FieldInput label="Password" name="password" type="password" />
+
       <button type="submit" className="button">
         Submit
       </button>
     </form>
+  )
+}
+
+type FieldWrapProps = {
+  children: React.ReactNode | ((stuff: { id: string }) => React.ReactNode)
+  label: string
+  type?: string
+}
+
+function FieldWrap({ children, label, type = 'text', ...props }: FieldWrapProps) {
+  const id = useId()
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      {typeof children === 'function' ? children({ id }) : children}
+    </div>
+  )
+}
+
+type FieldInputProps = {
+  label: string
+  name: string
+  type?: string
+} & React.InputHTMLAttributes<HTMLInputElement>
+
+function FieldInput({ label, name, type = 'text', ...props }: FieldInputProps) {
+  return (
+    <FieldWrap label={label}>
+      {(stuff) => {
+        return <input {...stuff} {...props} type={type} name={name} className="form-field" />
+      }}
+    </FieldWrap>
   )
 }
