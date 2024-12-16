@@ -17,12 +17,19 @@ import { ServerTwo } from './server-two'
 // and passed it as a prop to a server comp, how would that server
 // comp "re-render" when it doesn't run on the client
 
+// RSC can be the owner of a client comp
+// RSC can be the owner of a RSC
+// Client comp can be the owner of a client component (how spas always do it)
+// Client comp (BC THEY RERENDER) CANNOT be the owner of a RSC
+
 export default function ServerOne() {
   return (
     <div className="bg-purple-200 p-4">
       <div>this is a server only component</div>
       <hr />
-      <ClientOne></ClientOne>
+      <ClientOne>
+        <ServerTwo></ServerTwo>
+      </ClientOne>
     </div>
   )
 }

@@ -10,8 +10,8 @@ You're encouraged to take notes, but we don't want that to get in the way of lis
 - useRef
 - useLayoutEffect
 - useSyncExternalStore
-- useOptimistic
 - useTransition
+- useOptimistic
 - useActionState
 - useFormStatus
 

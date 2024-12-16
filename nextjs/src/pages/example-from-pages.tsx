@@ -1,5 +1,5 @@
-// Makes a static HTML file at build-time
-export default function Page() {
+export default function Page({ props }) {
+  console.log('where does this run')
   return <div>Example From Pages</div>
 }
 
@@ -10,9 +10,10 @@ export default function Page() {
 //   }
 // }
 
-// // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
+// // // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
 // export async function getServerSideProps() {
+//   // database / aws lambda
 //   return {
-//     props: {}
+//     props: {},
 //   }
 // }
