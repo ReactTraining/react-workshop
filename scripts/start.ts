@@ -21,7 +21,10 @@ let framework = ''
 
 if (!preferences.framework) {
   console.log('Which Framework?')
-  const options = ['app-react-router-framework', 'app-react-router-spa']
+  const options = [
+    // 'app-react-router-framework',
+    'app-react-router-spa',
+  ]
   const choice = readlineSync.keyInSelect(options)
   if (choice === -1) process.exit(0)
   savePreferences({

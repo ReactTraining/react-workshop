@@ -34,26 +34,10 @@ Already have Node/NPM installed? Then start here. Otherwise we have some instruc
 
 **For React Workshops**
 
-✨ Note that we are on 19. Some dependencies that will work with v19 just haven't been updated yet to know they can work with it, so you'll have to do the `--force` flag when installing to fix peer dependency issues:
-
-- Do `npm install --force` first
+- Do `npm install` first
 - Do `npm start`
-- Choose "React" from the menu
+- Choose `app-react-router-spa` from the menu
 - You'll see a menu in the terminal. Choose "FULL APP"
-- You should be able to visit localhost:3000 in the browser and see the app
-- You're all set if you see the app.
-
-Be sure to read this "JavaScript Primer" article if you think you'll need guidance on modern JavaScript: https://reacttraining.com/blog/javascript-the-react-parts/
-
-**For The Remix Workshop**
-
-NOTE THAT WE'RE ON REACT 19 BETA. This is why you'll need to use the `--force` flag when installing to fix peer dependency issues:
-
-- Do `npm install --force` first
-- Do `npm run install-remix` next
-- Do `npm start`
-- Choose "Remix" from the menu
-- You'll see a list of options to run our curriculum next. Choose "FULL APP"
 - You should be able to visit localhost:3000 in the browser and see the app
 - You're all set if you see the app.
 
