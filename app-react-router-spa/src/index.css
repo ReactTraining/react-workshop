@@ -1,0 +1,423 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-textColor: var(--color-slate-500);
+  --color-anchorColor: var(--color-cyan-400);
+  --color-headingColor: var(--color-slate-700);
+  /* Brand */
+  --color-brandBlueLight: var(--color-blue-200);
+  --color-brandBlue: var(--color-blue-400);
+  --color-brandBlueDark: var(--color-blue-500);
+  --color-brandPinkLight: var(--color-purple-100);
+  --color-brandPink: var(--color-purple-300);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+html {
+  font-size: 14pt;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  color: var(--color-textColor);
+}
+
+body {
+  /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
+  min-height: -webkit-fill-available;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.lesson-body {
+  background-image: linear-gradient(
+    58.2deg,
+    rgba(40, 91, 212, 0.73) -3%,
+    rgba(171, 53, 163, 0.45) 49.3%,
+    rgba(255, 204, 112, 0.37) 97.7%
+  );
+}
+
+svg {
+  display: inline;
+}
+
+/****************************************
+  Headings
+*****************************************/
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Inter';
+    color: var(--color-headingColor);
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+}
+
+@layer components {
+  .heading {
+    line-height: 1em;
+    margin: 0;
+  }
+
+  .heading-size-1 {
+    font-size: 2em;
+    @media (min-width: 700px) {
+      font-size: 3em;
+    }
+  }
+
+  .heading-size-2 {
+    font-size: 1.5em;
+    @media (min-width: 700px) {
+      font-size: 2em;
+    }
+  }
+
+  .heading-size-3 {
+    font-size: 1.3em;
+    @media (min-width: 700px) {
+      font-size: 1.6em;
+    }
+  }
+
+  .heading-size-4 {
+    font-size: 1.1em;
+    @media (min-width: 700px) {
+      font-size: 1.3em;
+    }
+  }
+}
+
+/****************************************
+  Anchors
+*****************************************/
+
+@layer base {
+  a {
+    color: var(--color-brandBlue);
+    text-decoration: none;
+  }
+  a:focus {
+    outline-color: currentColor;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/****************************************
+  Lists
+*****************************************/
+
+@layer base {
+  /* Go back to User Agent Defaults (not the tailwind reset) */
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  /* Go back to User Agent Defaults (not the tailwind reset) */
+  ol {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+}
+
+/****************************************
+  Buttons
+*****************************************/
+
+@layer base {
+  .button,
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
+  /* Buttons with icons */
+  .button > span + svg,
+  .button > svg + span {
+    margin-left: 0.8em;
+  }
+
+  /* Normalize anchors with .button to behave more like buttons */
+  a.button {
+    display: inline-block;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  /* Button Looking */
+  .button {
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+    line-height: 1.2em;
+    background-color: var(--color-brandBlue);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  /* .button:hover,
+  .button:focus {
+    background-color: var(--color-brandBlueDark);
+  } */
+
+  .button.button-outline {
+    border-color: currentColor;
+    background-color: #fff;
+    color: var(--color-brandBlue);
+  }
+
+  .button[disabled] {
+    background-color: var(--color-slate-400);
+    color: #fff;
+  }
+}
+
+/****************************************
+  Form Fields
+*****************************************/
+
+@layer components {
+  .form-field {
+    width: 100%;
+    padding: 0.3em 0.7em;
+    background-color: #fff;
+    border: 1px solid var(--color-slate-300);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-slate.700);
+    border-radius: 5px;
+  }
+
+  .form-field:focus,
+  .form-field:focus-within {
+    outline: none;
+    border-color: var(--color-sky-400);
+  }
+
+  .form-field[disabled] {
+    background-color: var(--color-slate-100);
+  }
+
+  textarea.form-field {
+    resize: vertical;
+    max-height: 300px;
+  }
+
+  select.form-field {
+    appearance: none;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+');
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    padding-right: 1.5em;
+  }
+
+  /* .form-field-wrap.required > label.form-field-label {
+    position: relative;
+  }
+
+  .form-field-wrap.required > label.form-field-label::after {
+    content: '•';
+    position: absolute;
+    left: -0.7em;
+    top: -0.35em;
+    color: var(--red);
+    font-size: 1.4em;
+  } */
+}
+
+@layer base {
+  input {
+    accent-color: var(--color-brandBlue);
+  }
+
+  input[type='checkbox'] {
+    width: 1em;
+    aspect-ratio: 1/1;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 1em;
+
+    background: var(--color-slate-300);
+    height: 0.5rem;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-moz-range-track {
+    background: green;
+    height: 0.5rem;
+  }
+}
+
+/****************************************
+  Primary Nav
+*****************************************/
+
+@layer components {
+  .primary-nav a.active {
+    border-color: var(--color-brandBlue);
+  }
+}
+
+/****************************************
+  Date Picker
+*****************************************/
+
+@layer components {
+  [data-datepicker] button {
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  [data-datepicker-calendar] {
+    font-size: 0.7em;
+  }
+
+  [data-datepicker-calendar-dayofweek] {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+  }
+
+  [data-datepicker-calendar-boxes] {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  [data-datepicker-calendar-box] {
+    aspect-ratio: var(--datePickerCalendarBoxRatio, 16 / 9);
+    border: 1px solid transparent;
+    display: flex;
+  }
+
+  [data-datepicker-calendar-box] time {
+    margin: auto;
+  }
+
+  [data-datepicker-calendar-box][disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  [data-datepicker-calendar-boxes]
+    > [data-datepicker-calendar-box]:not([disabled]):not([data-selected]):not(
+      [data-between]
+    ):hover {
+    color: var(--datePickerCalendarBoxHoverText, var(--color-brandBlueDark));
+    background-color: var(--datePickerCalendarBoxHoverBackground, var(--color-brandBlueLight));
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-box][data-selected] {
+    color: var(--datePickerCalendarBoxSelectedText, #555);
+    background-color: var(--datePickerCalendarBoxSelectedBackground, var(--color-brandPink));
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-box][data-between] {
+    color: var(--datePickerCalendarBoxBetweenText, #555);
+    background-color: var(--datePickerCalendarBoxBetweenBackground, var(--color-brandPinkLight));
+    --datePickerCalendarBoxToday: transparent;
+  }
+
+  [data-datepicker-calendar-box][data-today] {
+    color: var(--datePickerCalendarBoxTodayText, var(--color-brandBlueDark));
+    background-color: var(--datePickerCalendarBoxTodayBackground, var(--color-brandBlueLight));
+  }
+
+  [data-datepicker-calendar-box]:first-child {
+    grid-column: var(--datePickerCalendarBoxOffset, 0);
+  }
+
+  .popover {
+    background-color: #fff;
+    border-radius: 0.3em;
+  }
+
+  .select-date-range {
+    width: 500px;
+    padding: var(--gutter);
+  }
+}
+
+/****************************************
+  Headless UI Dropdown Menu
+*****************************************/
+
+.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-items {
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  right: 0.5em;
+  top: calc(100% + 0.5em);
+  flex-direction: column;
+}
+
+.dropdown-items[data-headlessui-state='open'] {
+  display: flex;
+}
+
+.dropdown-items [id^='headlessui-menu-item'] {
+  display: block;
+  padding: 0.4em 0.8em;
+  color: var(--color-textColor);
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.dropdown-items [id^='headlessui-menu-item']:hover {
+  background-color: var(--color-brandBlue);
+  color: white;
+}

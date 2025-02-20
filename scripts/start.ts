@@ -1,74 +1,50 @@
 import shell from 'shelljs'
-import path from 'path'
 import fs from 'fs'
+import path from 'path'
 import readlineSync from 'readline-sync'
-import { createServer } from 'vite'
-import react from '@vitejs/plugin-react'
-import { selectReactLesson, selectRemixLesson } from './select-lesson'
-import { startDatabase } from './start-db'
+import { selectReactLesson } from './select-lesson'
+import { savePreferences, loadPreferences } from './preferences'
 
 if (process.cwd().indexOf(' ') >= 0) {
-  console.error(`We cant start this app if your path has spaces:\n${process.cwd()}\n\n`)
+  console.error(
+    `We cant start this app if your path has spaces:\n${process.cwd()}\n\nPlease remove spaces and start again`
+  )
   process.exit(1)
 }
 
 /****************************************
-  Preferences
+ Choose Framework
 *****************************************/
 
-const preferencesPath = path.resolve(__dirname, '..', 'preferences.json')
-let preferences: Record<string, string | boolean> = {}
-try {
-  const data = fs.readFileSync(preferencesPath, 'utf8')
-  preferences = JSON.parse(data || '{}')
-  if (preferences.compiledReact === undefined) {
-    preferences.compiledReact = false
-    savePreferences({})
-  }
-} catch (err) {
-  // no-op
-}
+const preferences = loadPreferences()
+let framework = ''
 
-function savePreferences(updates: Record<string, string>) {
-  try {
-    fs.writeFileSync(preferencesPath, JSON.stringify({ ...preferences, ...updates }, null, 2))
-  } catch (err) {
-    // no-op
-  }
-}
-
-/****************************************
-  Choose Workshop
-*****************************************/
-
-if (!preferences.workshop) {
-  console.log('Which Workshop?')
-  const workshopOptions = ['React', 'Remix']
-  const choice = readlineSync.keyInSelect(workshopOptions)
+if (!preferences.framework) {
+  console.log('Which Framework?')
+  const options = ['app-react-router-framework', 'app-react-router-spa']
+  const choice = readlineSync.keyInSelect(options)
   if (choice === -1) process.exit(0)
-  // start over with preferences
-  preferences = {
+  savePreferences({
     compiledReact: false,
-    workshop: workshopOptions[choice].toLowerCase(),
-  }
-  fs.writeFileSync(preferencesPath, JSON.stringify(preferences, null, 2))
+    framework: options[choice].toLowerCase(),
+  })
+  framework = options[choice].toLowerCase()
+} else {
+  framework = preferences.framework.toLowerCase()
 }
 
 /****************************************
-  Choose Course From Workshop
+  Choose Course From Framework
 *****************************************/
 
-switch (preferences.workshop.toLowerCase()) {
-  case 'react': {
-    const mainPath = path.resolve(process.cwd(), 'react')
-    startReact(mainPath)
+switch (framework.toLowerCase()) {
+  case 'app-react-router-spa': {
+    const coursesPath = path.resolve(process.cwd(), 'app-react-router-spa', 'COURSES')
+    startReactSPA(coursesPath)
     break
   }
-  case 'remix':
-    startRemix()
-    break
   default:
-    console.log('No workshop selected in preferences.json')
+    console.log('No framework selected in preferences.json')
     process.exit(0)
 }
 
@@ -76,109 +52,53 @@ switch (preferences.workshop.toLowerCase()) {
   Remix
 *****************************************/
 
-function startRemix() {
-  if (!fs.existsSync(path.resolve(__dirname, '..', 'remix/node_modules'))) {
-    console.log('Run `npm run install-remix` first then to `npm start` again')
-    process.exit(0)
-  }
+// function startRemix() {
+//   if (!fs.existsSync(path.resolve(__dirname, '..', 'remix/node_modules'))) {
+//     console.log('Run `npm run install-remix` first then to `npm start` again')
+//     process.exit(0)
+//   }
 
-  const lessonsPath = path.resolve(__dirname, '..', 'remix/lessons')
-  const { lessonPath } = selectRemixLesson(lessonsPath)
+//   const lessonsPath = path.resolve(__dirname, '..', 'remix/lessons')
+//   const { lessonPath } = selectRemixLesson(lessonsPath)
 
-  if (lessonPath) {
-    process.env.REMIX_APP_DIR = lessonPath
-  }
+//   if (lessonPath) {
+//     process.env.REMIX_APP_DIR = lessonPath
+//   }
 
-  const appPath = path.resolve(__dirname, '..', 'remix')
-  startDatabase(path.resolve(appPath, '_database'))
-  shell.cd(appPath)
-  shell.exec('npm run dev')
-}
+//   const appPath = path.resolve(__dirname, '..', 'remix')
+//   startDatabase(path.resolve(appPath, '_database'))
+//   shell.cd(appPath)
+//   shell.exec('npm run dev')
+// }
 
 /****************************************
   React SPA (Vite Server)
 *****************************************/
 
-async function startReact(coursesPath: string) {
-  // const coursesPath = path.resolve(__dirname, '..', 'react')
+async function startReactSPA(coursesPath: string) {
+  const appName = 'app-react-router-spa'
+  const appPath = path.resolve(process.cwd(), appName)
 
-  const { lessonPath, selectedLessonType, selectedLesson } = selectReactLesson(
-    coursesPath,
-    preferences,
-    savePreferences
-  )
-
-  const appName = '_full-app'
-  const appPath = path.resolve(coursesPath, appName)
-  startDatabase(path.resolve(appPath, '_database'))
-
-  // The thing we can use in imports like `from '/file'`
-  const appRoot = '~'
-
-  // Get aliases
-  const alias: Record<string, string> = {}
-
-  if (lessonPath) {
-    // const aliasBasePath = `${courseAppNames[selectedCourse]}`
-    fs.readdirSync(lessonPath).forEach((file) => {
-      const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
-
-      alias[path.join(appRoot, name)] = path.join(lessonPath, file)
-
-      // WINDOWS HACK
-      // On windows machines, the paths will have double back-slashes which we want
-      // for the full file paths (the values of this object) but not the aliases (the keys)
-      alias[path.join(appRoot, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
-    })
-  }
-
-  // Add the full app alias last
-  alias[appRoot] = appPath
-
-  // Server
-
-  // https://vitejs.dev/guide/api-javascript.html#vitedevserver
-  // https://vitejs.dev/config/
+  selectReactLesson(coursesPath)
+  createDatabaseFromSeed(path.resolve(appPath, 'db'))
 
   shell.cd(appPath)
+  shell.exec('npm run dev')
+}
 
-  const ReactCompilerConfig = {}
-  const plugins = !preferences.compiledReact
-    ? [react()]
-    : [
-        react({
-          babel: {
-            plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
-          },
-        }),
-      ]
+/****************************************
+  Utils
+*****************************************/
 
-  const port = 3000
-  const server = await createServer({
-    configFile: false,
-    root: appPath,
-    server: {
-      port,
-    },
-    plugins,
-    resolve: {
-      alias,
-    },
-    optimizeDeps: { include: ['firebase/app', 'firebase/firestore'] },
-  })
+export function createDatabaseFromSeed(dbDir: string) {
+  const dbPath = path.join(dbDir, 'db.json')
 
-  await server.listen()
-
-  // Helps to force-quit concurrently for json-server when we quit
-  ;['SIGINT', 'SIGTERM'].forEach(function (sig) {
-    process.on(sig, function () {
-      process.exit()
-    })
-  })
-
-  console.clear()
-  console.log(
-    selectedLesson ? `Running Lesson: ${selectedLesson}/${selectedLessonType}` : 'Running Full App'
-  )
-  console.log(`\nGo to: http://localhost:${port}`)
+  try {
+    if (!fs.existsSync(dbPath)) {
+      shell.cp(`${dbDir}/db-seed.json`, dbPath)
+    }
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
+  }
 }

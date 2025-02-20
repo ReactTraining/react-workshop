@@ -1,26 +1,16 @@
 {
   "compilerOptions": {
-    "strict": true,
     "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable", "ES2023.Array"],
     "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "skipLibCheck": true,
-    // "esModuleInterop": true, only needed for unit tests examples for certain warnings
-
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./",
-    "paths": {
-      "~/*": ["react/_full-app/*"]
-    }
+    "rootDir": ".",
+    "allowJs": true,
+    "resolveJsonModule": true
   },
-  "include": ["react"],
-  "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["scripts/**/*"],
+  "exclude": ["node_modules"]
 }

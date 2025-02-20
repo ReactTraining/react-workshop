@@ -4,12 +4,6 @@ dist
 dist-ssr
 *.local
 
-# Remix
-.cache
-build
-public/build
-.env
-
 # misc
 db.json
 preferences.json

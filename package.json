@@ -1,90 +1,26 @@
 {
-  "name": "react-training-workshop",
-  "private": true,
+  "name": "react-training",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite-node scripts/start.ts",
-    "dev": "npm start",
-    "kill-db-port": "node scripts/kill-db-port 3333",
-    "install-next": "cd nextjs && npm install",
-    "install-remix": "cd remix && npm install",
-    "test": "jest"
-  },
-  "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.2",
-    "@headlessui/react": "^2.2.0",
-    "@hookform/error-message": "^2.0.1",
-    "@hookform/resolvers": "^3.3.2",
-    "@reduxjs/toolkit": "^1.9.3",
-    "@tanstack/react-query": "^5.62.3",
-    "babel-plugin-react-compiler": "^0.0.0-experimental-c23de8d-20240515",
-    "classnames": "^2.3.1",
-    "dayjs": "^1.10.7",
-    "eslint": "^8.24.0",
-    "eslint-plugin-react-compiler": "^0.0.0-experimental-53bb89e-20240515",
-    "firebase": "^9.6.1",
-    "json-server": "^0.17.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.48.2",
-    "react-icons": "^4.11.0",
-    "react-popper": "^2.3.0",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.23.1",
-    "redux": "^4.1.2",
-    "redux-logger": "^3.0.6",
-    "zod": "^3.22.2"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
+    "start": "tsx scripts/start.ts",
+    "kill-db-port": "tsx scripts/kill-db-port 3333",
+    "postinstall": "tsx scripts/post-install.ts"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^15.0.7",
     "@types/concurrently": "^6.4.0",
-    "@types/jest": "^27.4.0",
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta",
     "@types/readline-sync": "^1.4.8",
     "@types/shelljs": "^0.8.15",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.14",
-    "concurrently": "^6.3.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.6",
     "find-process": "^1.4.5",
-    "jest": "^27.5.1",
-    "mock-match-media": "^0.3.0",
-    "plop": "^3.0.5",
-    "postcss": "^8.4.27",
     "readline-sync": "^1.4.10",
     "shelljs": "^0.8.5",
-    "tailwindcss": "^3.3.2",
-    "ts-jest": "^29.1.3",
-    "typescript": "^5.2.2",
-    "vite": "^5.4.7",
-    "vite-node": "^1.6.0"
+    "tsx": "^4.19.3",
+    "typescript": "^5.2.2"
   },
   "prettier": {
     "printWidth": 100,
     "semi": false,
     "singleQuote": true,
     "tabWidth": 2
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "^~(.*)$": "<rootDir>/react/_full-app/$1",
-      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/react/_full-app/_mocks/fileMock.js",
-      "\\.(css|scss)$": "<rootDir>/react/_full-app/_mocks/styleMock.js"
-    },
-    "transform": {
-      "^.+\\.(ts|tsx|js|jsx)$": "ts-jest"
-    }
   }
 }
