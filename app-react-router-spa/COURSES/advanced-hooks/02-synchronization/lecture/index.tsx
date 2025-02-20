@@ -9,7 +9,7 @@ import {
   createRoutesFromElements,
 } from 'react-router'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { BrowseVacationsPage, loader as BrowseVacationsLoader } from '~/BrowseVacationsPage'
+import { BrowseVacationsPage } from '~/BrowseVacationsPage'
 import { FavoriteProvider } from '~/FavoriteContext'
 import { LessonBody, LessonCard } from '~/Lesson'
 import { queryClient } from '~/utils/queryClient'
@@ -55,7 +55,7 @@ function Layout() {
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<BrowseVacationsPage />} loader={BrowseVacationsLoader} />
+      <Route index element={<BrowseVacationsPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Route>
   )
