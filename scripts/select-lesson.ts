@@ -10,7 +10,7 @@ const FULL_APP = 'FULL APP'
   Select React Lesson
 *****************************************/
 
-export function selectReactLesson(coursesPath: string) {
+export function selectReactLesson(coursesPath: string): string {
   /**
    * Choose a Course and Lesson
    */
@@ -46,12 +46,12 @@ export function selectReactLesson(coursesPath: string) {
         process.exit(0)
       } else if (courseOptions[choice] === FULL_APP) {
         // EXIT and run full app
-        return {}
+        return ''
       }
       selectedCourse = courseOptions[choice]
     }
 
-    savePreferences({ course: selectedCourse, lessonPath: null })
+    savePreferences({ course: selectedCourse })
 
     /**
      * Lesson Selection
@@ -78,7 +78,7 @@ export function selectReactLesson(coursesPath: string) {
       process.exit(0)
     } else if (lessonOptions[choice] === FULL_APP) {
       // EXIT and run full app
-      return {}
+      return ''
     } else if (lessonOptions[choice] === '<-- BACK TO COURSE SELECTION') {
       preferences.course = null
       selectedCourse = null
@@ -117,17 +117,22 @@ export function selectReactLesson(coursesPath: string) {
     }
   }
 
-  const lessonPath = path.resolve(coursesPath, selectedCourse, selectedLesson, selectedLessonType)
+  const lessonPath = path.resolve(
+    coursesPath,
+    selectedCourse,
+    selectedLesson,
+    selectedLessonType || ''
+  )
 
-  if (fs.existsSync(lessonPath)) {
-    savePreferences({ lessonPath })
-  } else {
+  if (!fs.existsSync(lessonPath) || !lessonPath) {
     console.error(
       `\nWe can't find this ${selectedLessonType}. Maybe \`${selectedLesson}\` doesn't have a ${selectedLessonType}?`
     )
     console.error(`Check this path: ${lessonPath}\n\n`)
     process.exit(0)
   }
+
+  return lessonPath
 }
 
 /****************************************

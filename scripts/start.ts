@@ -25,7 +25,6 @@ if (!preferences.framework) {
   const choice = readlineSync.keyInSelect(options)
   if (choice === -1) process.exit(0)
   savePreferences({
-    compiledReact: false,
     framework: options[choice].toLowerCase(),
   })
   framework = options[choice].toLowerCase()
@@ -79,7 +78,13 @@ async function startReactSPA(coursesPath: string) {
   const appName = 'app-react-router-spa'
   const appPath = path.resolve(process.cwd(), appName)
 
-  selectReactLesson(coursesPath)
+  // Get the lesson path and create an environment variable for vite
+  // config to use. No path means run full app
+  const lessonPath = selectReactLesson(coursesPath)
+  if (lessonPath) {
+    process.env.RT_LESSON_PATH = lessonPath
+  }
+
   createDatabaseFromSeed(path.resolve(appPath, 'db'))
 
   shell.cd(appPath)

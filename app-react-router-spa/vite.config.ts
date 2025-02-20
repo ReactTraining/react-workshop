@@ -5,16 +5,23 @@ import path from 'path'
 import { loadPreferences } from '../scripts/preferences'
 import tailwindcss from '@tailwindcss/vite'
 
-const preferences = loadPreferences()
-const lessonPath = preferences.lessonPath
+/****************************************
+  Curriculum Alias'
+*****************************************/
+
+// If you're in here to learn, just understand that this block of code
+// is only for making dynamic aliases for our curriculum to work, a section
+// like this is not normal in a Vite config file
+
+const lessonPath = process.env.RT_LESSON_PATH || ''
 
 // Get aliases
 const alias: Record<string, string> = {}
 
-// The thing we can use in imports like `from '/file'`
-const appRoot = '~'
-
 if (lessonPath) {
+  // The thing we can use in imports like `from '/file'`
+  const appRoot = '~'
+
   // const aliasBasePath = `${courseAppNames[selectedCourse]}`
   fs.readdirSync(lessonPath).forEach((file) => {
     const name = path.basename(file).replace(/\.(js|jsx|ts|tsx)$/, '')
@@ -27,6 +34,10 @@ if (lessonPath) {
     alias[path.join(appRoot, name).replace(/\\/g, '/')] = path.join(lessonPath, file)
   })
 }
+
+/****************************************
+  Vite Config
+*****************************************/
 
 export default defineConfig({
   server: {
