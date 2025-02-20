@@ -37,11 +37,13 @@ export function App() {
           Move <SelectDateRange> so it only shows up in the popup. Also integrate
           it's selection into the React Hook Form values `startDate` and `endDate`
         */}
+
         <SelectDateRange
           onSelect={(start, end) => {
             console.log(start, end)
           }}
         />
+
         <button type="submit" className="button">
           Submit
         </button>

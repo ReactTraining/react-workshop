@@ -1,9 +1,7 @@
-import { useState, useId } from 'react'
+import { useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import classnames from 'classnames'
 import dayjs from 'dayjs'
-import { Popover } from '@headlessui/react'
-import { usePopper } from 'react-popper'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { SelectDateRange } from './SelectDateRange'
 import { Icon } from '~/Icon'
 
@@ -58,10 +56,6 @@ type FieldDatePickerProps = {
 }
 
 export function FieldDatePicker({ startName, endName, label, ...props }: FieldDatePickerProps) {
-  const [referenceElement, setReferenceElement] = useState()
-  const [popperElement, setPopperElement] = useState()
-  const { styles, attributes } = usePopper(referenceElement, popperElement)
-
   const { formState, setValue, getValues, trigger } = useFormContext()
   const startDateError = formState.errors[startName]?.message
 
@@ -86,7 +80,7 @@ export function FieldDatePicker({ startName, endName, label, ...props }: FieldDa
       <div>
         <div className="form-field ">
           <Popover className="relative">
-            <Popover.Button ref={setReferenceElement} className="flex items-center w-full">
+            <PopoverButton className="flex items-center w-full">
               <input
                 {...props}
                 type="text"
@@ -97,14 +91,9 @@ export function FieldDatePicker({ startName, endName, label, ...props }: FieldDa
                 placeholder="Select a Date Range"
               />
               <Icon name="calendar" size={1} className="mb-1" />
-            </Popover.Button>
+            </PopoverButton>
 
-            <Popover.Panel
-              ref={setPopperElement}
-              style={styles.popper}
-              {...attributes.popper}
-              className="absolute z-10 w-[600px] rounded-md shadow-lg p-3 bg-white border border-slate-200/60"
-            >
+            <PopoverPanel className="absolute z-10 w-[600px] rounded-md shadow-lg p-3 bg-white border border-slate-200/60">
               {({ close }) => {
                 return (
                   <SelectDateRange
@@ -115,7 +104,7 @@ export function FieldDatePicker({ startName, endName, label, ...props }: FieldDa
                   />
                 )
               }}
-            </Popover.Panel>
+            </PopoverPanel>
           </Popover>
         </div>
       </div>
