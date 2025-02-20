@@ -1,0 +1,21 @@
+[data-disclosure] {
+  font-size: 18pt;
+  background: white;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+[data-disclosure-button] {
+  all: unset;
+  background-color: #d1deed;
+  border-radius: 0.2em;
+  padding: 0.2rem;
+  display: block;
+  cursor: pointer;
+}

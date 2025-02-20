@@ -1,0 +1,4 @@
+- https://react.dev/reference/react/useSyncExternalStore
+- https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api
+- https://tkdodo.eu/blog/avoiding-hydration-mismatches-with-use-sync-external-store
+- https://x.com/TkDodo/status/1741068994981826947
