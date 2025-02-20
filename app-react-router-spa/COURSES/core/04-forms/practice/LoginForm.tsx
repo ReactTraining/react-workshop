@@ -7,17 +7,13 @@ export function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  // Replace this "controlled form" state with `new FormData()` in the event
-  // See the GUIDE.md
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  function handleLogin(formData: FormData) {
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
 
-  // ✨ This is a little note to remind the instructor to demo the final and
-  //    React's new form actions feature
-
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
     setPending(true)
+    setError('')
+
     login(username, password)
       .then((user) => {
         console.log(user)
@@ -31,7 +27,7 @@ export function LoginForm() {
 
   return (
     <LessonCard>
-      <form onSubmit={handleLogin} className="space-y-3 max-w-96">
+      <form action={handleLogin} className="space-y-3 max-w-96">
         {error && <div className="text-red-800">{error}</div>}
         <div>
           <label htmlFor="username">Username</label>
@@ -41,8 +37,6 @@ export function LoginForm() {
             className="form-field"
             autoComplete="off"
             placeholder="username: user"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -52,8 +46,6 @@ export function LoginForm() {
             id="password"
             type="password"
             className="form-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="password: user"
             required
           />
