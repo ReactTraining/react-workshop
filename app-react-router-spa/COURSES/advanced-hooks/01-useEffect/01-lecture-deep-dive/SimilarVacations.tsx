@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { api } from '~/utils/api'
 import { Tiles } from '~/Tiles'
 import { VacationImage } from '~/VacationImage'

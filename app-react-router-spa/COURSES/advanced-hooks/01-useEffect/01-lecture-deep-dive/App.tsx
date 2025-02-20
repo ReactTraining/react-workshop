@@ -4,7 +4,7 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-} from 'react-router-dom'
+} from 'react-router'
 
 // Layouts
 import { MainLayout } from '~/MainLayout'

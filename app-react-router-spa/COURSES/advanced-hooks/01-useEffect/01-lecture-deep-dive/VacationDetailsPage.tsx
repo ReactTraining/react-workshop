@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom'
+import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router'
 import { api } from '~/utils/api'
 import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'

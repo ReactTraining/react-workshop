@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData } from 'react-router'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
