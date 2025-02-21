@@ -4,3 +4,4 @@
 export function getTailwindTheme() {
   // const theme = resolveConfig(tailwindConfig).theme
   return {}
+}

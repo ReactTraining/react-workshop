@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
 import path from 'path'
-import { loadPreferences } from '../scripts/preferences'
 import tailwindcss from '@tailwindcss/vite'
 
 /****************************************
@@ -46,7 +45,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react({
-      // Enable React Compiler Demos
       // babel: {
       //   plugins: [['babel-plugin-react-compiler', {}]],
       // },
