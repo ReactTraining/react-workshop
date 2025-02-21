@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "react-router dev"
+    "dev": "react-router dev",
+    "start": "react-router dev"
   },
   "dependencies": {
     "@react-router/node": "^7.1.5",
