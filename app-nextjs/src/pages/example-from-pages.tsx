@@ -1,4 +1,3 @@
-// Makes a static HTML file at build-time
 export default function Page() {
   return <div>Example From Pages</div>
 }
@@ -11,8 +10,9 @@ export default function Page() {
 // }
 
 // // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
-// export async function getServerSideProps() {
-//   return {
-//     props: {}
-//   }
-// }
+export async function getServerSideProps() {
+  // data
+  return {
+    props: {},
+  }
+}
