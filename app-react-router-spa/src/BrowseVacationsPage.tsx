@@ -1,13 +1,22 @@
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
-import { useQuery } from '@tanstack/react-query'
+import { queryClient } from './utils/queryClient'
+import { useLoaderData } from 'react-router'
 
-export function BrowseVacationsPage() {
-  const { data: vacations } = useQuery({
+export async function loader() {
+  const vacations = await queryClient.fetchQuery({
     queryKey: ['vacations'],
     queryFn: () => api.vacations.getAll(),
+    staleTime: 1000 * 30,
   })
+  return vacations
+}
+
+type LoaderData = Awaited<ReturnType<typeof loader>>
+
+export function BrowseVacationsPage() {
+  const vacations = useLoaderData() as LoaderData
 
   return (
     <div>

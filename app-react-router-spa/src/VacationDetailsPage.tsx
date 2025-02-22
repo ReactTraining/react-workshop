@@ -4,26 +4,24 @@ import { SimilarVacations } from '~/SimilarVacations'
 import { Card } from '~/Card'
 import { VacationImage } from '~/VacationImage'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
-import { useParams } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router'
+import { queryClient } from '~/utils/queryClient'
 
-export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const id = parseInt(vacationId as string)
+export async function loader({ params }: LoaderFunctionArgs) {
+  const id = parseInt(params.vacationId!)
 
-  const { data: vacation, isError } = useQuery({
+  const vacation = await queryClient.fetchQuery({
     queryKey: ['vacation', id],
     queryFn: () => api.vacations.getVacation(id),
     staleTime: 1000 * 30,
   })
+  return vacation
+}
 
-  if (isError) {
-    throw new Response('Not Found', { status: 404 })
-  }
+type LoaderData = Awaited<ReturnType<typeof loader>>
 
-  if (!vacation) {
-    return <div>Loading...</div>
-  }
+export function VacationDetailsPage() {
+  const vacation = useLoaderData() as LoaderData
 
   return (
     <Card>
