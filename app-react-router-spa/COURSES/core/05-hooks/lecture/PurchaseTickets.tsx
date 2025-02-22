@@ -11,11 +11,13 @@ export function App() {
   const ticketsId = useId()
   const commentsId = useId()
 
+  const x = {}
+
   // const x = slowFunction()
 
-  // const onUpdate = (name: string, tickets: number) => {
-  //   console.log(name, tickets)
-  // }
+  const onUpdate = (name: string, tickets: number) => {
+    console.log(name, tickets)
+  }
 
   return (
     <form className="space-y-6">
@@ -51,30 +53,7 @@ export function App() {
           // but we can't use useRef() dynamically
 
           return (
-            <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
-              <div className="w-20">Ticket {number + 1}</div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  className="form-field"
-                  placeholder="Name"
-                  required
-                  aria-label={`Ticket ${number} Name`}
-                />
-              </div>
-              <div className="flex-1">
-                <input
-                  type="email"
-                  className="form-field"
-                  placeholder="Email"
-                  required
-                  aria-label={`Ticket ${number} Email`}
-                />
-              </div>
-              <button className="button" type="button">
-                Clear
-              </button>
-            </div>
+            <AddAttendeeFields onUpdate={onUpdate} x={x} key={number} ticketNumber={number + 1} />
           )
         })}
       </div>
@@ -88,8 +67,11 @@ type AddAttendeeFieldsProps = {
 }
 
 const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
+  const inputRef = useRef<HTMLInputElement>(null!)
+  console.log('render')
   function clear() {
-    // clear with refs
+    inputRef.current.value = ''
+    inputRef.current.focus()
   }
 
   return (
@@ -97,6 +79,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       <div className="w-20">Ticket {ticketNumber}</div>
       <div className="flex-1">
         <input
+          ref={inputRef}
           type="text"
           className="form-field"
           placeholder="Name"
