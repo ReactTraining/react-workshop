@@ -3,7 +3,7 @@ import path from 'path'
 
 const apps = [
   // 'app-nextjs',
-  // 'app-react-router-framework',
+  'app-react-router-framework',
   'app-react-router-spa',
 ]
 const rootPath = process.cwd()

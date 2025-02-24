@@ -1,0 +1,167 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "bradwestfall",
+      "passwordHash": "$2a$10$KdDw51K4Yf8xznONigSp2.mf9UIv/J8JWcTvcHF2XefPhqhZ5a2Fi",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/2272118?v=4"
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "passwordHash": "$2a$10$4JU6J83VE1WSXR/ujSGMgOxbomUwX3BUzfPC2l5Ze1/AKNu83Ns0a",
+      "avatarUrl": "/images/default-admin.jpg"
+    }
+  ],
+  "brands": [
+    {
+      "id": 1,
+      "handle": "google",
+      "label": "Google"
+    },
+    {
+      "id": 2,
+      "handle": "apple",
+      "label": "Apple"
+    },
+    {
+      "id": 3,
+      "handle": "nintendo",
+      "label": "Nintendo"
+    },
+    {
+      "id": 4,
+      "handle": "microsoft",
+      "label": "Microsoft"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "handle": "computer",
+      "label": "Computers"
+    },
+    {
+      "id": 2,
+      "handle": "music",
+      "label": "Music"
+    },
+    {
+      "id": 3,
+      "handle": "tv",
+      "label": "TV"
+    },
+    {
+      "id": 4,
+      "handle": "phone",
+      "label": "Phones"
+    },
+    {
+      "id": 5,
+      "handle": "watch",
+      "label": "Watches"
+    },
+    {
+      "id": 6,
+      "handle": "game",
+      "label": "Gaming"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "brand": "apple",
+      "category": "music",
+      "name": "Airpods",
+      "price": 227,
+      "image": "airpods.png"
+    },
+    {
+      "id": 2,
+      "brand": "google",
+      "category": "phone",
+      "name": "Pixel",
+      "price": 699,
+      "image": "pixel-7.png"
+    },
+    {
+      "id": 3,
+      "brand": "apple",
+      "category": "other",
+      "name": "AirTags",
+      "price": 99,
+      "image": "airtags.jpg"
+    },
+    {
+      "id": 4,
+      "brand": "microsoft",
+      "category": "computer",
+      "name": "Surface",
+      "price": 999,
+      "image": "ms-surface.png"
+    },
+    {
+      "id": 5,
+      "brand": "apple",
+      "category": "computer",
+      "name": "Macbook",
+      "price": 1299,
+      "image": "macbook.png"
+    },
+    {
+      "id": 6,
+      "brand": "apple",
+      "category": "phone",
+      "name": "iPhone",
+      "price": 899,
+      "image": "iphone.png"
+    },
+    {
+      "id": 7,
+      "brand": "google",
+      "category": "tv",
+      "name": "Chrome Cast",
+      "price": 49,
+      "image": "chrome-cast.jpg"
+    },
+    {
+      "id": 8,
+      "brand": "google",
+      "name": "Nest Thermostat",
+      "price": 249,
+      "image": "nest-thermostat.jpg"
+    },
+    {
+      "id": 9,
+      "brand": "apple",
+      "category": "tv",
+      "name": "Apple TV",
+      "price": 129,
+      "image": "apple-tv.webp"
+    },
+    {
+      "id": 10,
+      "brand": "apple",
+      "category": "watch",
+      "name": "Apple Watch",
+      "price": 749,
+      "image": "apple-watch.jpg"
+    },
+    {
+      "id": 11,
+      "brand": "google",
+      "category": "watch",
+      "name": "Pixel Watch",
+      "price": 349,
+      "image": "pixel-watch.jpg"
+    },
+    {
+      "id": 12,
+      "brand": "nintendo",
+      "category": "game",
+      "name": "Switch",
+      "price": 299,
+      "image": "switch.jpg"
+    }
+  ]
+}

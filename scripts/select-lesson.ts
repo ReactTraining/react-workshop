@@ -15,9 +15,9 @@ export function selectReactLesson(coursesPath: string): string {
    * Choose a Course and Lesson
    */
 
-  let selectedCourse
-  let selectedLesson
-  let selectedLessonType
+  let selectedCourse: string | undefined
+  let selectedLesson: string | undefined
+  let selectedLessonType: string | undefined
 
   // So we can start over with course selection
   while (!selectedLesson) {
@@ -80,8 +80,8 @@ export function selectReactLesson(coursesPath: string): string {
       // EXIT and run full app
       return ''
     } else if (lessonOptions[choice] === '<-- BACK TO COURSE SELECTION') {
-      preferences.course = null
-      selectedCourse = null
+      preferences.course = undefined
+      selectedCourse = undefined
       // Starts CLI menu over
       continue
     } else {
@@ -109,7 +109,7 @@ export function selectReactLesson(coursesPath: string): string {
     if (choice === -1) {
       process.exit(0)
     } else if (lessonTypeOptions[choice] === '<-- BACK TO LESSON SELECTION') {
-      selectedLesson = null
+      selectedLesson = undefined
       // Starts CLI menu over
       continue
     } else {
@@ -136,84 +136,81 @@ export function selectReactLesson(coursesPath: string): string {
 }
 
 /****************************************
-  Select Remix Lesson
+  Select React Router Framework Lesson
 *****************************************/
 
-// export function selectRemixLesson(lessonsPath: string) {
-//   /**
-//    * Choose a Course and Lesson
-//    */
+export function selectReactRouterFrameworkLesson(lessonsPath: string): string {
+  /**
+   * Choose a Course and Lesson
+   */
 
-//   let selectedLesson
-//   let selectedLessonType
+  let selectedLesson: string | undefined
+  let selectedLessonType: string | undefined
 
-//   // So we can start over with course selection
-//   while (!selectedLesson) {
-//     console.clear()
+  // So we can start over with course selection
+  while (!selectedLesson) {
+    console.clear()
 
-//     /**
-//      * Lesson Selection
-//      */
+    /**
+     * Lesson Selection
+     */
 
-//     // Read lesson options and make a list
-//     let lessonOptions = fs.readdirSync(lessonsPath).filter((item) => {
-//       return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
-//     })
+    // Read lesson options and make a list
+    let lessonOptions = fs.readdirSync(lessonsPath).filter((item) => {
+      return fs.lstatSync(path.resolve(lessonsPath, item)).isDirectory()
+    })
 
-//     lessonOptions = [...lessonOptions, FULL_APP]
-//     let choice = readlineSync.keyInSelect(lessonOptions)
+    lessonOptions = [...lessonOptions, FULL_APP]
+    let choice = readlineSync.keyInSelect(lessonOptions)
 
-//     if (choice === -1) {
-//       // EXIT
-//       process.exit(0)
-//     } else if (lessonOptions[choice] === FULL_APP) {
-//       // EXIT and run full app
-//       return {}
-//     } else {
-//       selectedLesson = lessonOptions[choice]
-//     }
+    if (choice === -1) {
+      // EXIT
+      process.exit(0)
+    } else if (lessonOptions[choice] === FULL_APP) {
+      // EXIT and run full app
+      return ''
+    } else {
+      selectedLesson = lessonOptions[choice]
+    }
 
-//     /**
-//      * Lesson type
-//      */
+    /**
+     * Lesson type
+     */
 
-//     const lessonTypesPath = path.resolve(lessonsPath, selectedLesson)
-//     let lessonTypeOptions = fs.readdirSync(lessonTypesPath).filter((item) => {
-//       return fs.lstatSync(path.resolve(lessonTypesPath, item)).isDirectory()
-//     })
-//     if (lessonTypeOptions.length === 0) {
-//       console.log(`\nThere are no exercises or lectures in ${selectedLesson}`)
-//       process.exit(0)
-//     }
+    const lessonTypesPath = path.resolve(lessonsPath, selectedLesson)
+    let lessonTypeOptions = fs.readdirSync(lessonTypesPath).filter((item) => {
+      return fs.lstatSync(path.resolve(lessonTypesPath, item)).isDirectory()
+    })
+    if (lessonTypeOptions.length === 0) {
+      console.log(`\nThere are no exercises or lectures in ${selectedLesson}`)
+      process.exit(0)
+    }
 
-//     console.clear()
-//     console.log(`\nWhich lesson type of ${selectedLesson}?`)
-//     lessonTypeOptions = [...lessonTypeOptions, '<-- BACK TO LESSON SELECTION']
+    console.clear()
+    console.log(`\nWhich lesson type of ${selectedLesson}?`)
+    lessonTypeOptions = [...lessonTypeOptions, '<-- BACK TO LESSON SELECTION']
 
-//     choice = readlineSync.keyInSelect(lessonTypeOptions)
-//     if (choice === -1) {
-//       process.exit(0)
-//     } else if (lessonTypeOptions[choice] === '<-- BACK TO LESSON SELECTION') {
-//       selectedLesson = null
-//       // Starts CLI menu over
-//       continue
-//     } else {
-//       selectedLessonType = lessonTypeOptions[choice]
-//     }
-//   }
+    choice = readlineSync.keyInSelect(lessonTypeOptions)
+    if (choice === -1) {
+      process.exit(0)
+    } else if (lessonTypeOptions[choice] === '<-- BACK TO LESSON SELECTION') {
+      selectedLesson = undefined
+      // Starts CLI menu over
+      continue
+    } else {
+      selectedLessonType = lessonTypeOptions[choice]
+    }
+  }
 
-//   const lessonPath = path.resolve(lessonsPath, selectedLesson, selectedLessonType)
+  const lessonPath = path.resolve(lessonsPath, selectedLesson, selectedLessonType)
 
-//   // console.log('here', lessonPath)
-//   // process.exit(0)
+  if (!fs.existsSync(lessonPath) || !lessonPath) {
+    console.error(
+      `\nWe can't find this ${selectedLessonType}. Maybe \`${selectedLesson}\` doesn't have a ${selectedLessonType}?`
+    )
+    console.error(`Check this path: ${lessonPath}\n\n`)
+    process.exit(0)
+  }
 
-//   // if (fs.existsSync(lessonPath)) {
-//   //   savePreferences({ lessonPath })
-//   // } else {
-//   //   console.error(
-//   //     `\nWe can't find this ${selectedLessonType}. Maybe \`${selectedLesson}\` doesn't have a ${selectedLessonType}?`
-//   //   )
-//   //   console.error(`Check this path: ${lessonPath}\n\n`)
-//   //   process.exit(0)
-//   // }
-// }
+  return lessonPath
+}

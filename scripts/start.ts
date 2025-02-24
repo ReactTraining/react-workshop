@@ -2,7 +2,7 @@ import shell from 'shelljs'
 import fs from 'fs'
 import path from 'path'
 import readlineSync from 'readline-sync'
-import { selectReactLesson } from './select-lesson'
+import { selectReactLesson, selectReactRouterFrameworkLesson } from './select-lesson'
 import { savePreferences, loadPreferences } from './preferences'
 
 if (process.cwd().indexOf(' ') >= 0) {
@@ -21,10 +21,7 @@ let framework = ''
 
 if (!preferences.framework) {
   console.log('Which Framework?')
-  const options = [
-    // 'app-react-router-framework',
-    'app-react-router-spa',
-  ]
+  const options = ['app-react-router-framework', 'app-react-router-spa']
   const choice = readlineSync.keyInSelect(options)
   if (choice === -1) process.exit(0)
   savePreferences({
@@ -40,9 +37,14 @@ if (!preferences.framework) {
 *****************************************/
 
 switch (framework.toLowerCase()) {
+  case 'app-react-router-framework': {
+    const appPath = path.resolve(process.cwd(), 'app-react-router-framework')
+    startReactRouterFramework(appPath)
+    break
+  }
   case 'app-react-router-spa': {
-    const coursesPath = path.resolve(process.cwd(), 'app-react-router-spa', 'COURSES')
-    startReactSPA(coursesPath)
+    const appPath = path.resolve(process.cwd(), 'app-react-router-spa', 'COURSES')
+    startReactSPA(appPath)
     break
   }
   default:
@@ -51,35 +53,30 @@ switch (framework.toLowerCase()) {
 }
 
 /****************************************
-  Remix
+  React Router Framework (Remix)
 *****************************************/
 
-// function startRemix() {
-//   if (!fs.existsSync(path.resolve(__dirname, '..', 'remix/node_modules'))) {
-//     console.log('Run `npm run install-remix` first then to `npm start` again')
-//     process.exit(0)
-//   }
+function startReactRouterFramework(appPath: string) {
+  const lessonsPath = path.resolve(appPath, 'LESSONS')
 
-//   const lessonsPath = path.resolve(__dirname, '..', 'remix/lessons')
-//   const { lessonPath } = selectRemixLesson(lessonsPath)
+  // Get the lesson path and create an environment variable for RR
+  // config to use. No path means run full app
+  const lessonPath = selectReactRouterFrameworkLesson(lessonsPath)
+  if (lessonPath) {
+    process.env.REMIX_APP_DIR = lessonPath
+  }
 
-//   if (lessonPath) {
-//     process.env.REMIX_APP_DIR = lessonPath
-//   }
-
-//   const appPath = path.resolve(__dirname, '..', 'remix')
-//   startDatabase(path.resolve(appPath, '_database'))
-//   shell.cd(appPath)
-//   shell.exec('npm run dev')
-// }
+  createDatabaseFromSeed(path.resolve(appPath, 'db'))
+  shell.cd(appPath)
+  shell.exec('npm run dev')
+}
 
 /****************************************
   React SPA (Vite Server)
 *****************************************/
 
-async function startReactSPA(coursesPath: string) {
-  const appName = 'app-react-router-spa'
-  const appPath = path.resolve(process.cwd(), appName)
+async function startReactSPA(appPath: string) {
+  const coursesPath = path.resolve(appPath, 'COURSES')
 
   // Get the lesson path and create an environment variable for vite
   // config to use. No path means run full app
