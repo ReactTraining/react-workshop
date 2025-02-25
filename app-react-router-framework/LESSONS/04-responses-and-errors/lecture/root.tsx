@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import {
   Links,
   Meta,
@@ -5,36 +6,25 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  useLoaderData,
   useRouteLoaderData,
-  type LinksFunction,
-  type LoaderFunctionArgs,
-} from 'react-router'
-import { Heading } from '~/components/Heading'
-import { CenterContent } from '~/components/CenterContent'
-import { getSessionUser } from '~/utils/auth.server'
-import { AuthProvider } from '~/state/AuthContext'
-import { CartProvider } from '~/state/CartContext'
-import { getCart } from '~/utils/cart.server'
+  useRouteError,
+} from '@remix-run/react'
+import { type LinksFunction } from '@remix-run/node'
 import stylesheet from '~/index.css?url'
-import type { PropsWithChildren } from 'react'
-
-import type { Route } from './+types/root'
+import { CenterContent, MainLayout } from './components/MainLayout'
+import { LessonProvider } from '~/state/LessonContext'
+import { Heading } from '~/components/Heading'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
-  return { sessionUser, cart }
+export async function loader() {
+  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
+  return { lesson }
 }
-
-type LoaderData = Awaited<ReturnType<typeof loader>>
 
 export default function App() {
-  return <Outlet />
-}
-
-export function Layout({ children }: PropsWithChildren) {
-  const { sessionUser, cart } = useRouteLoaderData<LoaderData>('root')!
+  const { lesson } = useLoaderData<typeof loader>()
 
   return (
     <html lang="en">
@@ -50,9 +40,11 @@ export function Layout({ children }: PropsWithChildren) {
         />
       </head>
       <body>
-        <AuthProvider user={sessionUser}>
-          <CartProvider cart={cart || []}>{children}</CartProvider>
-        </AuthProvider>
+        <LessonProvider selectedLesson={lesson}>
+          <MainLayout>
+            <Outlet />
+          </MainLayout>
+        </LessonProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -60,7 +52,13 @@ export function Layout({ children }: PropsWithChildren) {
   )
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+// export function Layout({ children }: PropsWithChildren) {
+//   // useRouteLoaderData('root')!
+// }
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+
   let heading = 'Unknown Error'
   let message = ''
 
