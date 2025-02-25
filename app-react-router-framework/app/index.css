@@ -13,13 +13,13 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
-  color: var(--colors-textColor);
+  color: var(--color-textColor);
 }
 
 body {
   /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
   min-height: -webkit-fill-available;
-  background-image: linear-gradient(to bottom, var(--colors-slate-200), var(--colors-slate-100));
+  background-image: linear-gradient(to bottom, var(--color-slate-200), var(--color-slate-100));
   background-repeat: no-repeat;
 }
 
@@ -46,7 +46,7 @@ body {
   h5,
   h6 {
     font-family: 'Inter';
-    color: var(--colors-headingColor);
+    color: var(--color-headingColor);
     font-weight: 700;
     margin: 0;
     letter-spacing: 0.03em;
@@ -59,7 +59,7 @@ body {
 
 @layer base {
   a {
-    color: var(--colors-brandColor);
+    color: var(--color-brandColor);
     text-decoration: none;
   }
   a:focus {
@@ -122,7 +122,7 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.08rem;
     line-height: 1.2em;
-    background-color: var(--colors-brandColor);
+    background-color: var(--color-brandColor);
     color: #fff;
     border: 1px solid transparent;
     border-radius: 0.2rem;
@@ -133,17 +133,17 @@ body {
 
   .button:hover,
   .button:focus {
-    background-color: var(--colors-sky-700);
+    background-color: var(--color-sky-700);
   }
 
   .button.button-outline {
     border-color: currentColor;
     background-color: #fff;
-    color: var(--colors-brandColor);
+    color: var(--color-brandColor);
   }
 
   .button[disabled] {
-    background-color: var(--colors-slate-400);
+    background-color: var(--color-slate-400);
     color: #fff;
   }
 }
@@ -157,17 +157,17 @@ body {
     width: 100%;
     padding: 0.5em 0.7em;
     background-color: #fff;
-    border: 1px solid var(--colors-slate-300);
+    border: 1px solid var(--color-slate-300);
     font-size: 1.1rem;
     font-weight: 300;
-    color: var(--colors-slate-700);
+    color: var(--color-slate-700);
     border-radius: 5px;
   }
 
   .form-field:focus,
   .form-field:focus-within {
     outline: none;
-    border-color: var(--colors-sky-400);
+    border-color: var(--color-sky-400);
   }
 
   textarea.form-field {
@@ -200,7 +200,7 @@ body {
 
 @layer base {
   input {
-    accent-color: var(--colors-brandColor);
+    accent-color: var(--color-brandColor);
   }
 
   input[type='range'] {
@@ -210,7 +210,7 @@ body {
     cursor: pointer;
     border-radius: 1em;
 
-    background: var(--colors-slate-300);
+    background: var(--color-slate-300);
     height: 0.5rem;
   }
 
@@ -229,14 +229,14 @@ body {
   .notice {
     padding: 0.5em 1em;
     border-radius: 0.5em;
-    background-color: var(--colors-slate-300);
-    border: 1px solid var(--colors-slate-400);
-    color: var(--colors-slate-700);
+    background-color: var(--color-slate-300);
+    border: 1px solid var(--color-slate-400);
+    color: var(--color-slate-700);
   }
   .notice.error {
-    background-color: var(--colors-rose-200);
-    border: 1px solid var(--colors-rose-400);
-    color: var(--colors-rose-700);
+    background-color: var(--color-rose-200);
+    border: 1px solid var(--color-rose-400);
+    color: var(--color-rose-700);
   }
 }
 
@@ -246,6 +246,6 @@ body {
 
 @layer components {
   .primary-nav a.active {
-    border-color: var(--colors-brandColor);
+    border-color: var(--color-brandColor);
   }
 }

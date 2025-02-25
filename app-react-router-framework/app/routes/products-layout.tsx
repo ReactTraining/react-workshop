@@ -3,6 +3,7 @@ import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { ProductsSidebar } from '~/components/ProductsSidebar'
 import type { LoaderFunctionArgs, MetaFunction } from 'react-router'
+import type { Route } from './+types/products-layout'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'New Remix App' }]
@@ -24,12 +25,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 }
 
-export default function () {
-  const { brands, categories } = useLoaderData<typeof loader>()
+export type LoaderData = Awaited<ReturnType<typeof loader>>
+
+export default function ({ loaderData }: Route.ComponentProps) {
+  const { brands, categories } = loaderData
 
   return (
     <div className="flex gap-6">
-      <aside className="w-72 p-6 rounded-lg border space-y-6">
+      <aside className="w-72 p-6 bg-white rounded-lg shadow-md space-y-6">
         <ProductsSidebar brands={brands} categories={categories} />
       </aside>
       <div className="flex-1 space-y-3">

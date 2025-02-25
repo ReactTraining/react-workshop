@@ -93,7 +93,7 @@ function FilterByPrice() {
           <b>$5000</b>
         </div>
       </div>
-      <input type="range" className="block w-full" />
+      <input type="range" className="block w-full bg-slate-200" />
       <div className="flex justify-between items-center">
         <div className="text-sm">$10</div>
         <div className="text-sm">$5000</div>

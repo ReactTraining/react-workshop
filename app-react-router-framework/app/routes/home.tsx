@@ -1,13 +1,13 @@
-import { Link, useRouteLoaderData } from 'react-router'
+import { type MetaFunction, Link, useRouteLoaderData } from 'react-router'
 import { BrowseProducts } from '~/components/BrowseProducts'
-import type { MetaFunction } from 'react-router'
+import type { LoaderData as ProductsLayoutLoaderData } from './products-layout'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Tech Shopper' }]
 }
 
-export default function () {
-  // const { products } = useRouteLoaderData('routes/_products-layout') as LoaderData
+export default function Page() {
+  const { products } = useRouteLoaderData('routes/products-layout') as ProductsLayoutLoaderData
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function () {
         <img src="/images/hero.png" alt="iphone hero" className="absolute left-0 bottom-0 w-1/2" />
       </div>
 
-      {/* <BrowseProducts products={products} /> */}
+      {products && <BrowseProducts products={products} />}
     </>
   )
 }
