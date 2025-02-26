@@ -1,10 +1,16 @@
 import { useId } from 'react'
-import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from 'react-router'
+import {
+  Link,
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useSearchParams,
+  type LoaderFunctionArgs,
+} from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
-import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const [products, brands] = await Promise.all([getProducts(), getBrands()])

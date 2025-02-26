@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import {
   Links,
   Meta,
@@ -8,8 +8,8 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
+  type LinksFunction,
 } from 'react-router'
-import { type LinksFunction } from '@remix-run/node'
 import stylesheet from '~/index.css?url'
 import { MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'

@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, redirect } from '@remix-run/node'
+import { createCookieSessionStorage, redirect } from 'react-router'
 import { createUser, getUser, getUserPasswordHash } from '~/utils/db.server'
 import bcrypt from 'bcryptjs'
 

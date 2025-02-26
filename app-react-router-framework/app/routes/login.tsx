@@ -30,7 +30,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return createUserSession(userId, '/')
 }
 
-export default function Login() {
+export default function Page() {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
   const { error } = useActionData<typeof action>() || {}
 

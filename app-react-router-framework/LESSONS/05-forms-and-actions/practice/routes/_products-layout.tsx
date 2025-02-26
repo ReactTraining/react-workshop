@@ -1,8 +1,7 @@
-import { Outlet, useLoaderData } from 'react-router'
+import { Outlet, useLoaderData, type LoaderFunctionArgs } from 'react-router'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { ProductsSidebar } from '~/components/ProductsSidebar'
-import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const searchParams = new URL(request.url).searchParams

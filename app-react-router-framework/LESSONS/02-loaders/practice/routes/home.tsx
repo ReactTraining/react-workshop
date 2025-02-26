@@ -1,18 +1,20 @@
-import { Link, useLoaderData, useSearchParams } from 'react-router'
-import { Icon } from '~/components/Icon'
+import { useOutletContext, useRouteLoaderData } from 'react-router'
+import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
-import { ProductType } from '~/utils/db.server'
+import { Icon } from '~/components/Icon'
+import type { Route } from './+types/home'
 
-export async function loader() {
-  const products = (await fetch('http://localhost:3333/products').then((res) =>
-    res.json()
-  )) as ProductType[]
-
-  return { products }
+export const loader = async () => {
+  const products = await getProducts()
+  return products
 }
 
-export default function Index() {
-  const { products } = useLoaderData<typeof loader>()
+export default function ProductsIndex({ loaderData: products }: Route.ComponentProps) {
+  // Task 2: Call useOutletContext()
+
+  // Task 3:
+  // Parent's loader data: Do the same thing in products-home.tsx
+  // useRouteLoaderData<LoaderData>('routes/products-layout')!
 
   return (
     <Tiles>
@@ -39,10 +41,7 @@ export default function Index() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  {/* Notice Prefetch */}
-                  <Link prefetch="render" to={product.id.toString()} className="button">
-                    View
-                  </Link>
+                  <button className="button">View</button>
                 </div>
               </div>
             </div>

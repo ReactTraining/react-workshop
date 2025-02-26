@@ -5,25 +5,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
   useRouteError,
 } from 'react-router'
 import { type LinksFunction } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { CenterContent } from '~/components/CenterContent'
 import stylesheet from '~/index.css?url'
-import { LessonProvider } from '~/state/LessonContext'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export async function loader() {
-  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
-  return { lesson }
-}
-
 export default function App() {
-  const { lesson } = useLoaderData<typeof loader>()
-
   return (
     <html lang="en">
       <head>
@@ -38,9 +29,7 @@ export default function App() {
         />
       </head>
       <body>
-        <LessonProvider selectedLesson={lesson}>
-          <Outlet />
-        </LessonProvider>
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
       </body>

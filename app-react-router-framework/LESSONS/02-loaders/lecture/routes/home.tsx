@@ -1,10 +1,35 @@
-import { useRouteLoaderData } from 'react-router'
-import { Tiles } from '~/components/Tiles'
+import { Link, useLoaderData, useSearchParams, type LoaderFunctionArgs } from 'react-router'
+import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
-import { LoaderData } from './_products-layout'
+import { Tiles } from '~/components/Tiles'
+import type { ProductType } from '~/utils/db.server'
 
-export default function ProductsPage() {
-  const { products } = useRouteLoaderData<LoaderData>('routes/_products-layout')!
+/**** Pretend Express Server***/
+
+// const app = express()
+
+// app.get('/products', (req, res) => {
+//   res.json(getProducts())
+// })
+
+/******************************/
+
+export default function Index() {
+  const [products, setProducts] = useState<any[]>([])
+
+  useEffect(() => {
+    let isCurrent = true
+    fetch('http://localhost:3333/products')
+      .then((res) => res.json())
+      .then((products) => {
+        if (isCurrent) {
+          setProducts(products)
+        }
+      })
+    return () => {
+      isCurrent = false
+    }
+  }, [])
 
   return (
     <Tiles>
@@ -31,7 +56,9 @@ export default function ProductsPage() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <button className="button">View</button>
+                  <Link to={product.id.toString()} className="button">
+                    View
+                  </Link>
                 </div>
               </div>
             </div>

@@ -33,7 +33,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
 }
 
-export default function ({ loaderData }: Route.ComponentProps) {
+export default function Page({ loaderData }: Route.ComponentProps) {
   const { product, brands, categories, relatedProductsPromise } = loaderData
 
   const { cart } = useCart()

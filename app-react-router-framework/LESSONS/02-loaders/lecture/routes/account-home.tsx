@@ -1,5 +1,8 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
+import { useRouteLoaderData } from 'react-router'
+
+// useRouteLoaderData('routes/account-layout')
 
 export default function AccountIndex() {
   const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }

@@ -1,16 +1,19 @@
-import { useLoaderData, useOutletContext } from 'react-router'
-import { getProducts, type ProductType } from '~/utils/db.server'
-import { Tiles } from '~/components/Tiles'
+import { Link, useLoaderData } from 'react-router'
 import { Icon } from '~/components/Icon'
+import { Tiles } from '~/components/Tiles'
+import type { ProductType } from '~/utils/db.server'
+import type { Route } from './+types/final.home'
 
-export const loader = async () => {
-  const products = await getProducts()
-  return products
+export async function loader() {
+  const products = (await fetch('http://localhost:3333/products').then((res) =>
+    res.json()
+  )) as ProductType[]
+
+  return { products }
 }
 
-export default function ProductsPage() {
-  const products = useLoaderData<typeof loader>()
-
+export default function Index({ loaderData: { products } }: Route.ComponentProps) {
+  // const product = useLoaderData<typeof loader>() // OLD REMIX WAY
   return (
     <Tiles>
       {products.map((product) => {
@@ -36,7 +39,10 @@ export default function ProductsPage() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <button className="button">View</button>
+                  {/* Notice Prefetch */}
+                  <Link prefetch="render" to={product.id.toString()} className="button">
+                    View
+                  </Link>
                 </div>
               </div>
             </div>

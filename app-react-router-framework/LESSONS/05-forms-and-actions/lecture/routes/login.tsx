@@ -1,10 +1,9 @@
 import { useId } from 'react'
 import bcrypt from 'bcryptjs'
-import { data, redirect } from '@remix-run/node'
-import { Form } from 'react-router'
+import { data } from '@remix-run/node'
+import { Form, redirect, type ActionFunctionArgs } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getUserPasswordHash } from '~/utils/db.server'
-import type { ActionFunctionArgs } from '@remix-run/node'
 
 /**
  * Verify User

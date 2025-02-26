@@ -1,15 +1,10 @@
-import { useLoaderData, useOutletContext } from 'react-router'
-import { getProducts, type ProductType } from '~/utils/db.server'
+import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
+import type { LoaderData } from './products-layout'
 
-export const loader = async () => {
-  const products = await getProducts()
-  return products
-}
-
-export default function ProductsIndex() {
-  const products = useLoaderData<typeof loader>()
+export default function ProductsPage() {
+  const { products } = useRouteLoaderData<LoaderData>('routes/products-layout')!
 
   return (
     <Tiles>

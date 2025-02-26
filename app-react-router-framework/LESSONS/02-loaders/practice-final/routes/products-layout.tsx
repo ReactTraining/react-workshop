@@ -1,6 +1,7 @@
-import { Link, Outlet, useLoaderData } from 'react-router'
+import { Link, Outlet } from 'react-router'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
+import type { Route } from './+types/products-layout'
 
 export const loader = async () => {
   // Solution for task 1
@@ -12,15 +13,14 @@ export const loader = async () => {
   }
 }
 
-export type LoaderData = typeof loader
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
-export default function Products() {
+export default function Products({ loaderData: { brands } }: Route.ComponentProps) {
   // Solution for task 2 (context)
   // const { products, brands } = useLoaderData<LoaderData>()
   // const context = useMemo(() => ({ products }), [products])
 
-  // Solution for task 3 (also the pages need useRouteLoaderData())
-  const { brands } = useLoaderData<LoaderData>()
+  // Solution for task 3: See products-home.tsx and home.tsx
 
   return (
     <div className="flex gap-6">

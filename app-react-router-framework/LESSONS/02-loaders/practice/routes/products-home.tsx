@@ -1,27 +1,15 @@
-import { LoaderFunctionArgs } from '@remix-run/node'
-import { Link, useLoaderData, useSearchParams } from 'react-router'
-import { useEffect, useState } from 'react'
-import { Icon } from '~/components/Icon'
+import { useOutletContext, useRouteLoaderData } from 'react-router'
+import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
-import { ProductType } from '~/utils/db.server'
+import { Icon } from '~/components/Icon'
+import type { Route } from './+types/products-home'
 
-export default function Index() {
-  const [products, setProducts] = useState<ProductType[]>([])
+export const loader = async () => {
+  const products = await getProducts()
+  return products
+}
 
-  useEffect(() => {
-    let isCurrent = true
-    fetch('http://localhost:3333/products')
-      .then((res) => res.json())
-      .then((products) => {
-        if (isCurrent) {
-          setProducts(products)
-        }
-      })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
-
+export default function ProductsPage({ loaderData: products }: Route.ComponentProps) {
   return (
     <Tiles>
       {products.map((product) => {
@@ -47,9 +35,7 @@ export default function Index() {
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <Link to={product.id.toString()} className="button">
-                    View
-                  </Link>
+                  <button className="button">View</button>
                 </div>
               </div>
             </div>

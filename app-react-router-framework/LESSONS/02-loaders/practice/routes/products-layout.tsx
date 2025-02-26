@@ -1,15 +1,17 @@
 import { Link, Outlet, useLoaderData } from 'react-router'
 import { getBrands } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
+import type { Route } from './+types/products-layout'
 
 export const loader = async () => {
   const brands = await getBrands()
   return brands
 }
 
-export default function Products() {
-  const brands = useLoaderData<typeof loader>()
+// You'll need this type definition in your page components when calling useRouteLoaderData
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
+export default function Products({ loaderData: brands }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-3">

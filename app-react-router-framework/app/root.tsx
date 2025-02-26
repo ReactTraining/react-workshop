@@ -5,16 +5,11 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
-  useRouteLoaderData,
   type LinksFunction,
-  type LoaderFunctionArgs,
 } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { CenterContent } from '~/components/CenterContent'
-import { getSessionUser } from '~/utils/auth.server'
-import { AuthProvider } from '~/state/AuthContext'
-import { CartProvider } from '~/state/CartContext'
-import { getCart } from '~/utils/cart.server'
+
 import stylesheet from '~/index.css?url'
 import type { PropsWithChildren } from 'react'
 
@@ -22,20 +17,11 @@ import type { Route } from './+types/root'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
-  return { sessionUser, cart }
-}
-
-type LoaderData = Awaited<ReturnType<typeof loader>>
-
 export default function App() {
   return <Outlet />
 }
 
 export function Layout({ children }: PropsWithChildren) {
-  const { sessionUser, cart } = useRouteLoaderData<LoaderData>('root')!
-
   return (
     <html lang="en">
       <head>
@@ -50,9 +36,7 @@ export function Layout({ children }: PropsWithChildren) {
         />
       </head>
       <body>
-        <AuthProvider user={sessionUser}>
-          <CartProvider cart={cart || []}>{children}</CartProvider>
-        </AuthProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

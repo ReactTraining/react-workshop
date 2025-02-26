@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node'
-import { useLoaderData } from 'react-router'
+import { useLoaderData, type LoaderFunctionArgs } from 'react-router'
 // import { ??? } from '../utils/auth.server'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

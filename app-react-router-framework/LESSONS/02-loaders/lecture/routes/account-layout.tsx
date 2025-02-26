@@ -1,10 +1,8 @@
-import { type LoaderFunctionArgs } from '@remix-run/node'
-import { Link, Outlet, useLoaderData } from 'react-router'
+import { Link, Outlet, useLoaderData, type LoaderFunctionArgs } from 'react-router'
 import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'
-
-// useRouteLoaderData('routes/account')
+import type { Route } from './+types/account-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   // These are currently in serial!!
@@ -16,9 +14,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return { user, settings }
 }
 
-export default function Account() {
-  const { user } = useLoaderData<typeof loader>()
-
+export default function Account({ loaderData: { user } }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <div className="w-72 flex gap-6">

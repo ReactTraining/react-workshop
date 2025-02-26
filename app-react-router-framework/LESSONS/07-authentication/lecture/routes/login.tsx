@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import * as z from 'zod'
 import { data, redirect } from '@remix-run/node'
-import { Form, useActionData } from 'react-router'
+import { Form, useActionData, type ActionFunctionArgs } from 'react-router'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
-import type { ActionFunctionArgs } from '@remix-run/node'
 import { createUserSession, storage, verifyUser } from '../utils/auth.server'
 
 const formSchema = z.object({

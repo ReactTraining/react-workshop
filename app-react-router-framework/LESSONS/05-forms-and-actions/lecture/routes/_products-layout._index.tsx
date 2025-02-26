@@ -1,9 +1,15 @@
-import { Form, useFetcher, useNavigation, useLoaderData, useRouteLoaderData } from 'react-router'
-import { type ActionFunctionArgs, type LoaderFunctionArgs } from '@remix-run/node'
+import {
+  Form,
+  useFetcher,
+  useNavigation,
+  useLoaderData,
+  useRouteLoaderData,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
-// import { addToCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './_products-layout'
 import { sleep } from '~/utils/helpers'
 
