@@ -1,7 +1,6 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react'
-import { type LinksFunction } from '@remix-run/node'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from 'react-router'
+import { type LinksFunction } from 'react-router'
 import stylesheet from '~/index.css?url'
-import { MainLayout } from './components/MainLayout'
 import { LessonProvider } from '~/state/LessonContext'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
@@ -29,9 +28,7 @@ export default function App() {
       </head>
       <body>
         <LessonProvider selectedLesson={lesson}>
-          <MainLayout>
-            <Outlet />
-          </MainLayout>
+          <Outlet />
         </LessonProvider>
         <ScrollRestoration />
         <Scripts />

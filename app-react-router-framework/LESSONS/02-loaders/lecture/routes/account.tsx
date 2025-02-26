@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs } from '@remix-run/node'
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
+import { Link, Outlet, useLoaderData } from 'react-router'
 import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'

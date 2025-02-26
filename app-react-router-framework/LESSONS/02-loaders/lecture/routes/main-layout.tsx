@@ -1,17 +1,15 @@
-import { NavLink } from '@remix-run/react'
+import { NavLink, Outlet } from 'react-router'
 import { SelectedLesson } from '~/state/LessonContext'
 import { Logo } from '~/components/Logo'
 
-type MainLayoutProps = {
-  children: React.ReactNode
-}
-
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout() {
   return (
     <div>
       <Header />
       <SubHeader />
-      <CenterContent className="pt-6 pb-20">{children}</CenterContent>
+      <CenterContent className="pt-6 pb-20">
+        <Outlet />
+      </CenterContent>
     </div>
   )
 }

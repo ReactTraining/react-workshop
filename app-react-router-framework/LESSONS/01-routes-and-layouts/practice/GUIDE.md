@@ -15,15 +15,17 @@ The goal of this practice is to make files for these routes:
 
 ## Task 1
 
-Each page is nested in two layouts: They are all in the main layout and then there are three different sub layout options. Above you can see the URL that someone can visit to see each page and which sub-layout they'll get. All pages and layouts are already made, you just need to assemble the router in `routes.ts`.
+The only file you'll edit is `routes.tsx`
 
-Sub layouts are color coded as follows:
+Each URL the user can visit loads a page, that page will be built from three files: The main layout, a sub-layout, and the page itself. Above you can see which URL someone will visit to see each sub-layout they'll get. All pages and layouts are already made, you just need to assemble the router in `routes.ts`.
+
+Sub layouts are color coded as follows so you can visually see your success:
 
 Gray - Common Layout
 Green - AuthLayout
 Blue - Product Layout
 
-React Router 7 lets you nest your routing instructions as follows. This example is taken from their docs so lets not assume their file names match up to ours:
+React Router lets you nest your routing instructions as follows. This example is taken from their docs so lets not assume their file names match up to ours:
 
 ```ts
 import { type RouteConfig, route, index, layout, prefix } from '@react-router/dev/routes'

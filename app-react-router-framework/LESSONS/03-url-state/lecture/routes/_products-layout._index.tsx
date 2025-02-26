@@ -1,7 +1,7 @@
-import { useRouteLoaderData } from '@remix-run/react'
+import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import { useSearchParams } from '@remix-run/react'
+import { useSearchParams } from 'react-router'
 import type { LoaderData } from './_products-layout'
 
 export default function ProductsIndex() {

@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from '@remix-run/react'
+import { Link, Outlet, useLoaderData, useLocation, useSearchParams } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import type { LoaderFunctionArgs } from '@remix-run/node'

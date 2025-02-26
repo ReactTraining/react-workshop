@@ -1,4 +1,4 @@
-import { useRouteLoaderData } from '@remix-run/react'
+import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { AddToCart, RemoveFromCart } from '../components/CartButtons'
 import type { LoaderData as RootLoaderData } from '../root'

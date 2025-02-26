@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from '@remix-run/react'
+import { Outlet, useLoaderData } from 'react-router'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import type { LoaderFunctionArgs } from '@remix-run/node'

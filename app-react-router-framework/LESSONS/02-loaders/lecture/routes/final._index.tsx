@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
+import { Link, useLoaderData, useSearchParams } from 'react-router'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import { ProductType } from '~/utils/db.server'

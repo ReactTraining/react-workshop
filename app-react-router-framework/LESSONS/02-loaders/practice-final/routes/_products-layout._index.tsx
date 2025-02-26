@@ -1,4 +1,4 @@
-import { useRouteLoaderData } from '@remix-run/react'
+import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import type { LoaderData } from './_products-layout'

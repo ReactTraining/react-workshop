@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
-import { Form, Link, useActionData } from '@remix-run/react'
+import { Form, Link, useActionData } from 'react-router'
 
 export default function Page() {
   return (

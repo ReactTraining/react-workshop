@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
+import { Link, Outlet, useLoaderData } from 'react-router'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
 

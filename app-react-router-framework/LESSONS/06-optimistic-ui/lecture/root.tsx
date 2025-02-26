@@ -8,7 +8,7 @@ import {
   isRouteErrorResponse,
   useLoaderData,
   useRouteError,
-} from '@remix-run/react'
+} from 'react-router'
 import { type LinksFunction, LoaderFunctionArgs } from '@remix-run/node'
 import stylesheet from '~/index.css?url'
 import { MainLayout } from './components/MainLayout'

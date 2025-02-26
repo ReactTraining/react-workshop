@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext } from '@remix-run/react'
+import { useLoaderData, useOutletContext } from 'react-router'
 import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'

@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from '@remix-run/node'
-import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
+import { Link, useLoaderData, useSearchParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'

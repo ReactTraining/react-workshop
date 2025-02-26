@@ -1,6 +1,6 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
-import { Link } from '@remix-run/react'
+import { Link } from 'react-router'
 
 export default function AccountSettings() {
   const settings = { deals: 'weekly', delivery: 'door' }

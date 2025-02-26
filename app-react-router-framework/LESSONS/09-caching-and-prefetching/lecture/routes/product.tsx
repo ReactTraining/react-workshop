@@ -1,5 +1,5 @@
 import { sleep } from '~/utils/helpers'
-import { Await, useLoaderData } from '@remix-run/react'
+import { Await, useLoaderData } from 'react-router'
 import { Suspense } from 'react'
 
 const getAuth = () => Promise.resolve({ user: {} })

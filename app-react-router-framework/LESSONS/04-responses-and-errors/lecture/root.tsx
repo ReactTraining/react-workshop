@@ -1,20 +1,18 @@
-import { PropsWithChildren } from 'react'
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
   useLoaderData,
-  useRouteLoaderData,
   useRouteError,
-} from '@remix-run/react'
-import { type LinksFunction } from '@remix-run/node'
-import stylesheet from '~/index.css?url'
-import { CenterContent, MainLayout } from './components/MainLayout'
-import { LessonProvider } from '~/state/LessonContext'
+} from 'react-router'
+import { type LinksFunction } from 'react-router'
 import { Heading } from '~/components/Heading'
+import { CenterContent } from '~/components/CenterContent'
+import stylesheet from '~/index.css?url'
+import { LessonProvider } from '~/state/LessonContext'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
@@ -41,9 +39,7 @@ export default function App() {
       </head>
       <body>
         <LessonProvider selectedLesson={lesson}>
-          <MainLayout>
-            <Outlet />
-          </MainLayout>
+          <Outlet />
         </LessonProvider>
         <ScrollRestoration />
         <Scripts />
@@ -51,10 +47,6 @@ export default function App() {
     </html>
   )
 }
-
-// export function Layout({ children }: PropsWithChildren) {
-//   // useRouteLoaderData('root')!
-// }
 
 export function ErrorBoundary() {
   const error = useRouteError()
