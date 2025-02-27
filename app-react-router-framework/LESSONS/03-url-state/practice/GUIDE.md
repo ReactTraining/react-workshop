@@ -1,10 +1,10 @@
 # URL State
 
-The goal of this practice is to practice using the URL for state. The URL is not only a legitimate place to keep state between the front-end and back-end, it's actually the original place for keeping state before Single Page Apps.
+The goal is to practice using the URL for state.
 
 # Task 1
 
-The only component you'll need to work on is inside of `_products-layout` called `FilterLink`. Right now, it works for clicking on filters in the UI and toggling the URL so only one brand can be filtered at one time. We want you to re-write the algorithm in `FilterLink` so if the user clicks two checkboxes, we'll have two brands in the filter like this:
+The only component you'll need to work on is inside of `products-layout` called `FilterLink`. Right now, it works for clicking on filters in the UI and toggling the URL so only one brand can be filtered at one time. We want you to re-write the algorithm in `FilterLink` so if the user clicks two checkboxes, we'll have two brands in the filter like this:
 
 localhost:3000/products?brand=apple%2Cgoogle
 

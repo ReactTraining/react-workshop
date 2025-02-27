@@ -8,9 +8,6 @@ export const loader = async () => {
   return brands
 }
 
-// You'll need this type definition in your page components when calling useRouteLoaderData
-export type LoaderData = Awaited<ReturnType<typeof loader>>
-
 export default function Products({ loaderData: brands }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">

@@ -11,7 +11,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     getCategories(),
   ])
 
-  // throw new Response('Bad Request')
+  throw new Response('Bad Request (thrown on purpose)')
 
   return {
     products,

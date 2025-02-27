@@ -27,8 +27,8 @@ export default function MainLayout() {
           <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
             Home
           </NavLink>
-          <NavLink to="/account" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
-            Account
+          <NavLink to="/page2" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
+            Page 2
           </NavLink>
         </nav>
       </CenterContent>

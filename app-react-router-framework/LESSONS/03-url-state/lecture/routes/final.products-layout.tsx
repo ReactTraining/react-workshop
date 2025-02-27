@@ -1,16 +1,10 @@
 import { useId } from 'react'
-import {
-  Link,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useSearchParams,
-  type LoaderFunctionArgs,
-} from 'react-router'
+import { Link, Outlet, useLocation, useSearchParams, type LoaderFunctionArgs } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
+import type { Route } from './+types/final.products-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
@@ -22,11 +16,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 }
 
-export type LoaderData = typeof loader
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
-export default function Products() {
-  const { brands } = useLoaderData<LoaderData>()
-
+export default function Products({ loaderData: { brands } }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-6">
@@ -52,25 +44,21 @@ export default function Products() {
 
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
-  const url = useLocation().pathname
 
-  // The current URL
+  // Current URL
   const [search] = useSearchParams()
-  const brands = search.get('brand')?.toLowerCase().split(',') || []
-  const on = brands.includes(value.toLowerCase())
+  const brand = search.get('brand')
 
-  // The next URL
+  // Next URL
   const nextSearch = new URLSearchParams(search.toString())
-
+  const on = brand === value
   if (on) {
-    // If currently on, built a link that would remove it
-    const valuesFiltered = brands.filter((v) => v && v !== value)
-    nextSearch.set('brand', valuesFiltered.join(','))
+    nextSearch.delete('brand')
   } else {
-    // If currently off, build a link that would add it
-    nextSearch.set('brand', brands.concat(value).join(','))
+    nextSearch.set('brand', value)
   }
 
+  const url = useLocation().pathname
   const to = `${url}?${nextSearch.toString()}`
 
   return (

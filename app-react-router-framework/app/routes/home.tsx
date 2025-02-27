@@ -1,13 +1,13 @@
 import { type MetaFunction, Link, useRouteLoaderData } from 'react-router'
 import { BrowseProducts } from '~/components/BrowseProducts'
-import type { LoaderData as ProductsLayoutLoaderData } from './products-layout'
+import type { LoaderData } from './products-layout'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Tech Shopper' }]
 }
 
 export default function Page() {
-  const { products } = useRouteLoaderData('routes/products-layout') as ProductsLayoutLoaderData
+  const { products } = useRouteLoaderData('routes/products-layout') as LoaderData
 
   return (
     <>

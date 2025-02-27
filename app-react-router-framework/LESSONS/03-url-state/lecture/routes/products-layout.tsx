@@ -11,6 +11,7 @@ import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
+import type { Route } from './+types/products-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const [products, brands] = await Promise.all([getProducts(), getBrands()])
@@ -21,11 +22,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 }
 
-export type LoaderData = typeof loader
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
-export default function Products() {
-  const { brands } = useLoaderData<LoaderData>()
-
+export default function Products({ loaderData: { brands } }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-6">

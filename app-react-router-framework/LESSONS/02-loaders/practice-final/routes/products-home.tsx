@@ -1,10 +1,10 @@
 import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import type { LoaderData } from './products-layout'
+import { loader as productsLayoutLoader } from './products-layout'
 
 export default function ProductsPage() {
-  const { products } = useRouteLoaderData<LoaderData>('routes/products-layout')!
+  const { products } = useRouteLoaderData<typeof productsLayoutLoader>('routes/products-layout')!
 
   return (
     <Tiles>

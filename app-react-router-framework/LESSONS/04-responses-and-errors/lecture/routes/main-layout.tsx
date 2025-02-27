@@ -1,59 +1,37 @@
-import { NavLink } from 'react-router'
-import { SelectedLesson } from '~/state/LessonContext'
+import { NavLink, Outlet, useLoaderData } from 'react-router'
 import { Logo } from '~/components/Logo'
+import { CenterContent } from '~/components/CenterContent'
 
-type MainLayoutProps = {
-  children: React.ReactNode
+export async function loader() {
+  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
+  return { lesson }
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout() {
+  const { lesson } = useLoaderData<typeof loader>()
+
   return (
     <div>
-      <Header />
-      <SubHeader />
-      <CenterContent className="pt-6 pb-20">{children}</CenterContent>
-    </div>
-  )
-}
-
-function Header() {
-  return (
-    <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
-      <CenterContent className="border-b py-3">
-        <div className="flex justify-between items-center">
-          <div className="">
-            <Logo />
+      <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
+        <CenterContent className="border-b py-3">
+          <div className="flex justify-between items-center">
+            <div className="">
+              <Logo />
+            </div>
+            <div className="text-white/60">{lesson}</div>
           </div>
-          <div className="text-white/60">
-            <SelectedLesson />
-          </div>
-        </div>
+        </CenterContent>
+      </header>
+      <CenterContent className="bg-white border-b">
+        <nav className="primary-nav">
+          <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
+            Home
+          </NavLink>
+        </nav>
       </CenterContent>
-    </header>
-  )
-}
-
-function SubHeader() {
-  return (
-    <CenterContent className="bg-white border-b">
-      <nav className="primary-nav">
-        <NavLink className="inline-block py-3 px-5 -mb-[1px] border-b-2" to="/">
-          Home
-        </NavLink>
-      </nav>
-    </CenterContent>
-  )
-}
-
-type CenterContentProps = {
-  className?: string
-  children: React.ReactNode
-}
-
-export function CenterContent({ children, className }: CenterContentProps) {
-  return (
-    <div className={className}>
-      <div className="ml-auto mr-auto max-w-[1200px] pl-3 pr-3">{children}</div>
+      <CenterContent className="pt-6 pb-20">
+        <Outlet />
+      </CenterContent>
     </div>
   )
 }

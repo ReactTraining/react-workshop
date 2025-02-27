@@ -2,6 +2,7 @@ import { useOutletContext, useRouteLoaderData } from 'react-router'
 import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
+// import { loader as productsLayoutLoader } from './products-layout'
 import type { Route } from './+types/home'
 
 export const loader = async () => {
@@ -13,8 +14,10 @@ export default function ProductsIndex({ loaderData: products }: Route.ComponentP
   // Task 2: Call useOutletContext()
 
   // Task 3:
-  // Parent's loader data: Do the same thing in products-home.tsx
-  // useRouteLoaderData<LoaderData>('routes/products-layout')!
+  // Parent's loader data: Note that <typeof productsLayoutLoader> will refer
+  // to the parent's loader after you remove the local one in this file
+  // Do the same thing in products-home.tsx
+  // useRouteLoaderData<typeof productsLayoutLoader>('routes/products-layout')!
 
   return (
     <Tiles>

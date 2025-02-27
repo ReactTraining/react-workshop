@@ -3,6 +3,7 @@ import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import type { Route } from './+types/products-home'
+// import { loader as productsLayoutLoader } from './products-layout'
 
 export const loader = async () => {
   const products = await getProducts()

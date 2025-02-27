@@ -2,10 +2,10 @@ import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { useSearchParams } from 'react-router'
-import type { LoaderData } from './_products-layout'
+import type { LoaderData } from './products-layout'
 
 export default function ProductsIndex() {
-  const { products } = useRouteLoaderData<LoaderData>('routes/_products-layout')!
+  const { products } = useRouteLoaderData<LoaderData>('routes/products-layout')!
 
   // useSearchParams()
 

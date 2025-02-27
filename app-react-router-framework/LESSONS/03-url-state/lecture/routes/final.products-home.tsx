@@ -1,10 +1,10 @@
 import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import type { LoaderData } from './final._products-layout'
+import type { LoaderData } from './final.products-layout'
 
 export default function ProductsIndex() {
-  const { products } = useRouteLoaderData<LoaderData>('routes/final._products-layout')!
+  const { products } = useRouteLoaderData<LoaderData>('routes/final.products-layout')!
 
   return (
     <Tiles>

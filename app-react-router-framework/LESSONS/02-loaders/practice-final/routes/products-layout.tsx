@@ -13,8 +13,6 @@ export const loader = async () => {
   }
 }
 
-export type LoaderData = Awaited<ReturnType<typeof loader>>
-
 export default function Products({ loaderData: { brands } }: Route.ComponentProps) {
   // Solution for task 2 (context)
   // const { products, brands } = useLoaderData<LoaderData>()
