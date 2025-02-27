@@ -2,7 +2,6 @@ import {
   Form,
   useFetcher,
   useNavigation,
-  useLoaderData,
   useRouteLoaderData,
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
@@ -10,8 +9,9 @@ import {
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { getCart } from '~/utils/cart.server'
-import type { LoaderData as RouteLoaderData } from './_products-layout'
+import type { LoaderData as RouteLoaderData } from './products-layout'
 import { sleep } from '~/utils/helpers'
+import type { Route } from './+types/products-home'
 
 // async function addToCart(productId: number) {
 //   console.log('add product', productId)
@@ -35,16 +35,14 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
-// ⭐️ Loader "Revalidates" After Action
-//  - Will only happen in the future upon action's 200 responses
+// ⭐️ Loader "Revalidates" After successful 200 Action
 export async function loader({ request }: LoaderFunctionArgs) {
   const cart = await getCart(request)
   return { cart }
 }
 
-export default function ProductsIndex() {
-  const { cart } = useLoaderData<typeof loader>()
-  const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
+export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
+  const { products } = useRouteLoaderData<RouteLoaderData>('routes/products-layout')!
 
   function addToCart(productId: number) {
     // fetch('/', {

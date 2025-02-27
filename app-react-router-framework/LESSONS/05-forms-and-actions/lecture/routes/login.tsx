@@ -1,9 +1,9 @@
 import { useId } from 'react'
 import bcrypt from 'bcryptjs'
-import { data } from '@remix-run/node'
-import { Form, redirect, type ActionFunctionArgs } from 'react-router'
+// import { data } from '@remix-run/node'
+import { Form, data, redirect, type ActionFunctionArgs } from 'react-router'
 import { Heading } from '~/components/Heading'
-import { getUserPasswordHash } from '~/utils/db.server'
+// import { getUserPasswordHash } from '~/utils/db.server'
 
 /**
  * Verify User
@@ -20,7 +20,7 @@ import { getUserPasswordHash } from '~/utils/db.server'
 // }
 
 /**
- * Remix Action and Component
+ * Action and Component
  */
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -40,7 +40,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return redirect('/')
 }
 
-export default function Login() {
+export default function Page() {
   const usernameId = useId()
   const passwordId = useId()
 
@@ -48,9 +48,9 @@ export default function Login() {
     event.preventDefault()
 
     // Three ways to collect form data
-    // 1. Refs
-    // 2. Controlled with state
-    // 3. FormData
+    // 1. Controlled with state
+    // 2. Uncontrolled with Refs
+    // 3. Uncontrolled with FormData
     // const formValues = Object.fromEntries(new FormData(event.currentTarget))
     // console.log(formValues)
   }

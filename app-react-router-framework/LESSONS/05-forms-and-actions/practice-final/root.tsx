@@ -1,4 +1,3 @@
-import { type PropsWithChildren } from 'react'
 import {
   Links,
   Meta,
@@ -6,71 +5,21 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
-  useLoaderData,
   useRouteError,
-  type LinksFunction,
-  type LoaderFunctionArgs,
 } from 'react-router'
+import { type LinksFunction } from 'react-router'
 import stylesheet from '~/index.css?url'
-import { MainLayout } from './components/MainLayout'
-import { LessonProvider } from '~/state/LessonContext'
 import { CenterContent } from '~/components/CenterContent'
 import { Heading } from '~/components/Heading'
-import { getCart } from '~/utils/cart.server'
+import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  // This is just so we can show you what lesson you're on
-  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
-
-  const cart = await getCart(request)
-  return { lesson, cart }
-}
-
-export type LoaderData = typeof loader
-
 export default function App() {
-  const { lesson, cart } = useLoaderData<LoaderData>()
-
-  return (
-    <Document>
-      <LessonProvider selectedLesson={lesson}>
-        <MainLayout cart={cart}>
-          <Outlet />
-        </MainLayout>
-      </LessonProvider>
-    </Document>
-  )
+  return <Outlet />
 }
 
-export function ErrorBoundary() {
-  const error = useRouteError()
-
-  let heading = 'Unknown Error'
-  let message = ''
-
-  if (isRouteErrorResponse(error)) {
-    heading = error.status + ' ' + error.statusText
-    message = error.data
-  } else if (error instanceof Error) {
-    heading = 'Page Error'
-    message = error.message
-  }
-
-  return (
-    <Document>
-      <CenterContent className="pt-6 pb-20">
-        <div className="bg-white p-6 rounded-md space-y-6">
-          <Heading size={1}>{heading}</Heading>
-          <p>{message}</p>
-        </div>
-      </CenterContent>
-    </Document>
-  )
-}
-
-export function Document({ children }: PropsWithChildren) {
+export function Layout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
@@ -90,5 +39,29 @@ export function Document({ children }: PropsWithChildren) {
         <Scripts />
       </body>
     </html>
+  )
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+
+  let heading = 'Unknown Error'
+  let message = ''
+
+  if (isRouteErrorResponse(error)) {
+    heading = error.status + ' ' + error.statusText
+    message = error.data
+  } else if (error instanceof Error) {
+    heading = 'Page Error'
+    message = error.message
+  }
+
+  return (
+    <CenterContent className="pt-6 pb-20">
+      <div className="bg-white p-6 rounded-md space-y-6">
+        <Heading size={1}>{heading}</Heading>
+        <p>{message}</p>
+      </div>
+    </CenterContent>
   )
 }

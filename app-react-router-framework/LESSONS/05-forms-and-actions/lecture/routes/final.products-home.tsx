@@ -1,6 +1,5 @@
 import {
   useFetcher,
-  useLoaderData,
   useRouteLoaderData,
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
@@ -9,7 +8,8 @@ import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { sleep } from '~/utils/helpers'
 import { addToCart, removeFromCart, getCart } from '~/utils/cart.server'
-import type { LoaderData as RouteLoaderData } from './_products-layout'
+import type { LoaderData as RouteLoaderData } from './products-layout'
+import type { Route } from './+types/final.products-home'
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
@@ -30,11 +30,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return { cart }
 }
 
-type LoaderData = typeof loader
-
-export default function Products() {
-  const { cart } = useLoaderData<LoaderData>()
-  const { products } = useRouteLoaderData<RouteLoaderData>('routes/_products-layout')!
+export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
+  const { products } = useRouteLoaderData<RouteLoaderData>('routes/products-layout')!
 
   return (
     <Tiles>

@@ -1,18 +1,25 @@
-import { type PropsWithChildren } from 'react'
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, type LinksFunction } from 'react-router'
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  isRouteErrorResponse,
+  useRouteError,
+} from 'react-router'
+import { type LinksFunction } from 'react-router'
 import stylesheet from '~/index.css?url'
+import { CenterContent } from '~/components/CenterContent'
+import { Heading } from '~/components/Heading'
+import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
 export default function App() {
-  return (
-    <Document>
-      <Outlet />
-    </Document>
-  )
+  return <Outlet />
 }
 
-export function Document({ children }: PropsWithChildren) {
+export function Layout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
@@ -26,11 +33,35 @@ export function Document({ children }: PropsWithChildren) {
           rel="stylesheet"
         />
       </head>
-      <body className="p-10">
+      <body>
         {children}
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
+  )
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+
+  let heading = 'Unknown Error'
+  let message = ''
+
+  if (isRouteErrorResponse(error)) {
+    heading = error.status + ' ' + error.statusText
+    message = error.data
+  } else if (error instanceof Error) {
+    heading = 'Page Error'
+    message = error.message
+  }
+
+  return (
+    <CenterContent className="pt-6 pb-20">
+      <div className="bg-white p-6 rounded-md space-y-6">
+        <Heading size={1}>{heading}</Heading>
+        <p>{message}</p>
+      </div>
+    </CenterContent>
   )
 }

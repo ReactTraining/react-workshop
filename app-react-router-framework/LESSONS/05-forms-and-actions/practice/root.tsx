@@ -6,29 +6,20 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   useRouteError,
-  useRouteLoaderData,
 } from 'react-router'
 import { type LinksFunction } from 'react-router'
 import stylesheet from '~/index.css?url'
-import { LessonProvider } from '~/state/LessonContext'
 import { CenterContent } from '~/components/CenterContent'
 import { Heading } from '~/components/Heading'
 import type { PropsWithChildren } from 'react'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
-export async function loader() {
-  const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
-  return { lesson }
-}
-
 export default function App() {
   return <Outlet />
 }
 
 export function Layout({ children }: PropsWithChildren) {
-  const { lesson } = useRouteLoaderData<typeof loader>('root')!
-
   return (
     <html lang="en">
       <head>
@@ -43,7 +34,7 @@ export function Layout({ children }: PropsWithChildren) {
         />
       </head>
       <body>
-        <LessonProvider selectedLesson={lesson}>{children}</LessonProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

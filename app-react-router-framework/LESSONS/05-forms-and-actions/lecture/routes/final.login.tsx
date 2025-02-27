@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import * as z from 'zod'
-import { data } from '@remix-run/node'
-import { Form, useActionData, type ActionFunctionArgs, redirect } from 'react-router'
+import { Form, data, useActionData, type ActionFunctionArgs, redirect } from 'react-router'
 import { verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
