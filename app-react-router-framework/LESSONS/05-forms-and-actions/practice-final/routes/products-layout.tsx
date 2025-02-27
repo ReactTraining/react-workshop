@@ -18,7 +18,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 }
 
-export type LoaderData = typeof loader
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
 export default function Products() {
   const { brands, categories } = useLoaderData<LoaderData>()

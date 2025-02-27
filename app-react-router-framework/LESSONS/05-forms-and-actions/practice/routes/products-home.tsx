@@ -3,8 +3,8 @@ import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
 import { addToCart, removeFromCart } from '~/utils/cart.server'
 import { AddToCart, RemoveFromCart } from '../components/CartButtons'
-import type { LoaderData as RootLoaderData } from '../root'
-import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
+import type { LoaderData as MainLayoutLoaderData } from './main-layout'
+import type { LoaderData as ProductsLayoutLoaderData } from './products-layout'
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
@@ -19,9 +19,9 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
-export default function ProductsIndex() {
-  const { cart } = useRouteLoaderData<RootLoaderData>('root')!
-  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/_products-layout')!
+export default function Page() {
+  const { cart } = useRouteLoaderData<MainLayoutLoaderData>('routes/main-layout')!
+  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/products-layout')!
 
   return (
     <Tiles>
