@@ -3,7 +3,7 @@ import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { ProductsSidebar } from '~/components/ProductsSidebar'
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export async function loader({ request }: LoaderFunctionArgs) {
   const searchParams = new URL(request.url).searchParams
   const [products, brands, categories] = await Promise.all([
     getProducts(searchParams),
@@ -18,7 +18,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 }
 
-export type LoaderData = typeof loader
+export type LoaderData = Awaited<ReturnType<typeof loader>>
 
 export default function Products() {
   const { brands, categories } = useLoaderData<LoaderData>()

@@ -1,12 +1,12 @@
 import { useRouteLoaderData } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { AddToCart, RemoveFromCart } from '../components/CartButtons'
-import type { LoaderData as RootLoaderData } from '../root'
-import type { LoaderData as ProductsLayoutLoaderData } from './_products-layout'
+import type { LoaderData as MainLayoutLoaderData } from './main-layout'
+import type { LoaderData as ProductsLayoutLoaderData } from './products-layout'
 
-export default function ProductsIndex() {
-  const { cart } = useRouteLoaderData<RootLoaderData>('root')!
-  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/_products-layout')!
+export default function Page() {
+  const { cart } = useRouteLoaderData<MainLayoutLoaderData>('routes/main-layout')!
+  const { products } = useRouteLoaderData<ProductsLayoutLoaderData>('routes/products-layout')!
 
   return (
     <Tiles>
