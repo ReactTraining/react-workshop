@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData, type LoaderFunctionArgs } from 'react-router'
+import { Link, Outlet, type LoaderFunctionArgs } from 'react-router'
 import { requireSessionUser } from '../utils/auth.server'
 import { getUserSettings } from '../utils/db.server'
 import { Avatar } from '~/components/Avatar'

@@ -11,7 +11,7 @@ You can use the real login page to log into a user with:
 username: admin
 password: admin
 
-If you need to remove a login session, you can do so in Chrome DevTools under Application > Cookies and remove the `react_training_remix_auth` cookie.
+If you need to remove a login session, you can do so in Chrome DevTools under Application > Cookies and remove the `react_training_auth` cookie.
 
 # Task 2
 

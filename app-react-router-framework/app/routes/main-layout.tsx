@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet, useLoaderData, type LoaderFunctionArgs } from 'react-router'
+import { Link, NavLink, Outlet, type LoaderFunctionArgs } from 'react-router'
 import { Logo } from '~/components/Logo'
 import { CenterContent } from '~/components/CenterContent'
 import { AuthenticatedUserNav } from '~/components/AuthenticatedUserNav'
@@ -7,16 +7,14 @@ import { getSessionUser } from '~/utils/auth.server'
 import { getCart } from '~/utils/cart.server'
 import { AuthProvider } from '~/state/AuthContext'
 import { CartProvider } from '~/state/CartContext'
+import type { Route } from './+types/main-layout'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
   return { sessionUser, cart }
 }
 
-type LoaderData = Awaited<ReturnType<typeof loader>>
-
-export default function MainLayout() {
-  const { sessionUser, cart } = useLoaderData<LoaderData>()
+export default function MainLayout({ loaderData: { sessionUser, cart } }: Route.ComponentProps) {
   const quantity = cart?.reduce((total, item) => total + item.quantity, 0) || 0
 
   return (

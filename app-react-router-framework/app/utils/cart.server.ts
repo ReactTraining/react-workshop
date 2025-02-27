@@ -4,7 +4,7 @@ const sessionSecret = 'superdupersecretdefault'
 
 const storage = createCookieSessionStorage({
   cookie: {
-    name: 'react_training_remix_cart',
+    name: 'react_training_cart',
     // normally you want this to be `secure: true`
     // but that doesn't work on localhost for Safari
     // https://web.dev/when-to-use-local-https/

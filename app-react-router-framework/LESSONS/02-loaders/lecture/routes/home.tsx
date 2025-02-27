@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useSearchParams, type LoaderFunctionArgs } from 'react-router'
+import { Link, useSearchParams, type LoaderFunctionArgs } from 'react-router'
 import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'

@@ -55,6 +55,4 @@ Use real cookie based `addToCart` and `removeFromCart`. Remember they setup the 
 
 ## Extra
 
-Talk about how our action could respond with `json()` data which we could pick up with `useActionData` similarly to `useLoaderData`.
-
-Lets say an action adds something like a new product to out list. We wouldn't have to query and return that new product from the action because after actions get called, Remix calls the loader to get any new data that may have occurred from the action's mutation of our data
+Lets say an action adds something like a new product to out list. We wouldn't have to query and return that new product from the action because after actions get called, RR calls the loader to get any new data that may have occurred from the action's mutation of our data

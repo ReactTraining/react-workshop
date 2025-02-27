@@ -1,15 +1,14 @@
-import { NavLink, Outlet, useLoaderData } from 'react-router'
+import { NavLink, Outlet } from 'react-router'
 import { Logo } from '~/components/Logo'
 import { CenterContent } from '~/components/CenterContent'
+import type { Route } from './+types/main-layout'
 
 export async function loader() {
   const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''
   return { lesson }
 }
 
-export default function MainLayout() {
-  const { lesson } = useLoaderData<typeof loader>()
-
+export default function MainLayout({ loaderData: { lesson } }: Route.ComponentProps) {
   return (
     <div>
       <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">

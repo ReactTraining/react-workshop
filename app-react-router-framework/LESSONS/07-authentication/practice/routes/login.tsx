@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import * as z from 'zod'
-import { data } from '@remix-run/node'
-import { Form, useActionData, type ActionFunctionArgs } from 'react-router'
+import { Form, data, type ActionFunctionArgs } from 'react-router'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
 import { createUserSession, verifyUser } from '../utils/auth.server'
+import type { Route } from './+types/login'
 
 // Needed for when you make register.tsx
 // import { usernameExists } from '~/utils/db.server'
@@ -33,9 +33,9 @@ export async function action({ request }: ActionFunctionArgs) {
   return createUserSession(userId, redirectPath)
 }
 
-export default function Login() {
+export default function Login({ actionData }: Route.ComponentProps) {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
-  const { error } = useActionData<typeof action>() || {}
+  const { error } = actionData || {}
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

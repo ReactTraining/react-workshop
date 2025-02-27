@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from 'react-router'
+import { Link } from 'react-router'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import type { ProductType } from '~/utils/db.server'

@@ -1,7 +1,8 @@
-import { useLoaderData, type LoaderFunctionArgs } from 'react-router'
+import { type LoaderFunctionArgs } from 'react-router'
 import { storage } from '../utils/auth.server'
+import type { Route } from './+types/home'
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export async function loader({ request }: LoaderFunctionArgs) {
   // Get the session from the cookie
   const session = await storage.getSession(request.headers.get('Cookie'))
 
@@ -11,7 +12,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return { userId: userId !== undefined && parseInt(userId) }
 }
 
-export default function Index() {
-  const { userId } = useLoaderData<typeof loader>()
+export default function Index({ loaderData: { userId } }: Route.ComponentProps) {
   return userId ? <div>User ID is {userId}</div> : <div>User is not logged in</div>
 }

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import * as z from 'zod'
-import { Form, data, useActionData, type ActionFunctionArgs, redirect } from 'react-router'
+import { Form, data, type ActionFunctionArgs, redirect } from 'react-router'
 import { verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
+import type { Route } from './+types/final.login'
 
 const formSchema = z.object({
   username: z.string().min(5, 'Must be at least 5 characters'),
@@ -29,9 +30,9 @@ export async function action({ request }: ActionFunctionArgs) {
   return redirect('/')
 }
 
-export default function Login() {
+export default function Login({ actionData }: Route.ComponentProps) {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
-  const { error } = useActionData<typeof action>() || {}
+  const { error } = actionData || {}
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

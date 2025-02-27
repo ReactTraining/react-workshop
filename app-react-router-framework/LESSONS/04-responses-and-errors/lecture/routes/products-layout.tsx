@@ -1,7 +1,8 @@
-import { Outlet, useLoaderData, type LoaderFunctionArgs } from 'react-router'
+import { Outlet, type LoaderFunctionArgs } from 'react-router'
 import { getBrands, getCategories, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { ProductsSidebar } from '~/components/ProductsSidebar'
+import type { Route } from './+types/products-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
@@ -22,9 +23,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export type LoaderData = typeof loader
 
-export default function Products() {
-  const { brands, categories } = useLoaderData<LoaderData>()
-
+export default function Products({ loaderData: { brands, categories } }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-6">

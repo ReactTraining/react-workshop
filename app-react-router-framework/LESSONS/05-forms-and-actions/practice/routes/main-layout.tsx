@@ -1,10 +1,10 @@
-import { NavLink, Outlet, useLoaderData } from 'react-router'
+import { NavLink, Outlet } from 'react-router'
+import { type LoaderFunctionArgs } from 'react-router'
 import { Logo } from '~/components/Logo'
 import { CenterContent } from '~/components/CenterContent'
 import { getCart } from '~/utils/cart.server'
-import { type LoaderFunctionArgs } from 'react-router'
-import type { Route } from './+types/main-layout'
 import { Icon } from '~/components/Icon'
+import type { Route } from './+types/main-layout'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const lesson = process.env.REMIX_APP_DIR?.split('/').slice(-2).join('/') || ''

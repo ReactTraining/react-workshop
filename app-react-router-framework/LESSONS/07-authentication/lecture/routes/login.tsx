@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { Form, data, redirect, type ActionFunctionArgs } from 'react-router'
 import * as z from 'zod'
-import { data, redirect } from '@remix-run/node'
-import { Form, useActionData, type ActionFunctionArgs } from 'react-router'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
-import { createUserSession, storage, verifyUser } from '../utils/auth.server'
+// import { createUserSession } from '../utils/auth.server'
+import { verifyUser } from '../utils/auth.server'
+import type { Route } from './+types/login'
 
 const formSchema = z.object({
   username: z.string().min(5, 'Must be at least 5 characters'),
@@ -31,9 +32,9 @@ export async function action({ request }: ActionFunctionArgs) {
   return redirect('/')
 }
 
-export default function Login() {
+export default function Page({ actionData }: Route.ComponentProps) {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
-  const { error } = useActionData<typeof action>() || {}
+  const { error } = actionData || {}
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

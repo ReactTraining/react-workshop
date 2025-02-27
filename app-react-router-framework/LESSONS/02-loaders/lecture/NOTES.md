@@ -3,7 +3,7 @@
 ## Products
 
 - Teach the basics of loaders
-- Show how to use TypeScript with loader data and `useLoaderData`
+- Show how to use TypeScript with loader data
 
 ```ts
 // These are same
@@ -52,7 +52,7 @@ export const meta: MetaFunction = () => {
 
 ```ts
 // Where the loader is (layout)
-useLoaderData()
+loaderData // props
 
 // In the child pages
 useRouteLoaderData('routes/account')

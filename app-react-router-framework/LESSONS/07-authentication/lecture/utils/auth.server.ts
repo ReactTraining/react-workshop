@@ -4,7 +4,7 @@ import { getUserPasswordHash } from '~/utils/db.server'
 
 export const storage = createCookieSessionStorage({
   cookie: {
-    name: 'react_training_remix_auth',
+    name: 'react_training_auth',
     // normally you want this to be `secure: true`
     // but that doesn't work on localhost for Safari
     // https://web.dev/when-to-use-local-https/

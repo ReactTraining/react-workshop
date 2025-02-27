@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import * as z from 'zod'
-import { data } from 'react-router'
-import { Form, Link, useActionData } from 'react-router'
+import { data, Form, Link, type ActionFunctionArgs } from 'react-router'
 import { createUserSession, verifyUser } from '~/utils/auth.server'
 import { FieldWrap } from '~/components/FormFields'
 import { Heading } from '~/components/Heading'
-import type { ActionFunctionArgs } from 'react-router'
+import type { Route } from './+types/login'
 
 const formSchema = z.object({
   username: z.string().min(5, 'Must be at least 5 characters'),
@@ -30,9 +29,9 @@ export async function action({ request }: ActionFunctionArgs) {
   return createUserSession(userId, '/')
 }
 
-export default function Page() {
+export default function Page({ actionData }: Route.ComponentProps) {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
-  const { error } = useActionData<typeof action>() || {}
+  const { error } = actionData || {}
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     const formValues = Object.fromEntries(new FormData(event.currentTarget))

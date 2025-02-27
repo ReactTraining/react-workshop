@@ -1,12 +1,5 @@
 import { useId } from 'react'
-import {
-  Link,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useSearchParams,
-  type LoaderFunctionArgs,
-} from 'react-router'
+import { Link, Outlet, useLocation, useSearchParams, type LoaderFunctionArgs } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'

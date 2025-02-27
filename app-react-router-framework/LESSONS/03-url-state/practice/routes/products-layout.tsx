@@ -1,17 +1,11 @@
 import { useId } from 'react'
-import {
-  Link,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useSearchParams,
-  type LoaderFunctionArgs,
-} from 'react-router'
+import { Link, Outlet, useLocation, useSearchParams, type LoaderFunctionArgs } from 'react-router'
 import { Heading } from '~/components/Heading'
 import { getBrands, getProducts } from '~/utils/db.server'
 import { sortLabel } from '~/utils/helpers'
 import { Icon } from '~/components/Icon'
 import type { Route } from './+types/products-layout'
+
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams
   const [products, brands] = await Promise.all([getProducts(searchParams), getBrands()])

@@ -13,11 +13,7 @@ export const loader = async () => {
   }
 }
 
-export default function Products({ loaderData: { brands } }: Route.ComponentProps) {
-  // Solution for task 2 (context)
-  // const { products, brands } = useLoaderData<LoaderData>()
-  // const context = useMemo(() => ({ products }), [products])
-
+export default function ProductsLayout({ loaderData: { brands } }: Route.ComponentProps) {
   // Solution for task 3: See products-home.tsx and home.tsx
 
   return (
@@ -38,6 +34,7 @@ export default function Products({ loaderData: { brands } }: Route.ComponentProp
         })}
       </aside>
       <main className="flex-1 space-y-3">
+        {/* Solution for task 2 (context) */}
         {/* <Outlet context={context} /> */}
         <Outlet />
       </main>

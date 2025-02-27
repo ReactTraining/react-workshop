@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from 'react-router'
+import { Link, Outlet } from 'react-router'
 import { getBrands } from '~/utils/db.server'
 import { Heading } from '~/components/Heading'
 import type { Route } from './+types/products-layout'
@@ -8,7 +8,7 @@ export const loader = async () => {
   return brands
 }
 
-export default function Products({ loaderData: brands }: Route.ComponentProps) {
+export default function ProductsLayout({ loaderData: brands }: Route.ComponentProps) {
   return (
     <div className="flex gap-6">
       <aside className="w-72 p-6 rounded-lg bg-white shadow-sm space-y-3">
