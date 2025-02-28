@@ -1,0 +1,251 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-textColor: var(--color-slate-500);
+  --color-anchorColor: var(--color-cyan-400);
+  --color-headingColor: var(--color-slate-700);
+  /* Brand */
+  --color-brandColor: var(--color-sky-600);
+}
+
+html,
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  color: var(--color-textColor);
+}
+
+body {
+  /* https://twitter.com/AllThingsSmitty/status/1254151507412496384 */
+  min-height: -webkit-fill-available;
+  background-image: linear-gradient(to bottom, var(--color-slate-200), var(--color-slate-100));
+  background-repeat: no-repeat;
+}
+
+/* Tailwind's default border color must be set starting in v4 */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+/****************************************
+  Headings
+*****************************************/
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Inter';
+    color: var(--color-headingColor);
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+}
+
+/****************************************
+  Anchors
+*****************************************/
+
+@layer base {
+  a {
+    color: var(--color-brandColor);
+    text-decoration: none;
+  }
+  a:focus {
+    outline-color: currentColor;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/****************************************
+  Lists
+*****************************************/
+
+@layer base {
+  /* Go back to User Agent Defaults (not the tailwind reset) */
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  /* Go back to User Agent Defaults (not the tailwind reset) */
+  ol {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+}
+
+/****************************************
+  Buttons
+*****************************************/
+
+@layer base {
+  .button,
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
+  /* Normalize anchors with .button to behave more like buttons */
+  a.button {
+    display: inline-block;
+    text-decoration: none !important;
+    white-space: nowrap;
+  }
+
+  /* Button Looking */
+  .button {
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+    line-height: 1.2em;
+    background-color: var(--color-brandColor);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .button:hover,
+  .button:focus {
+    background-color: var(--color-sky-700);
+  }
+
+  .button.button-outline {
+    border-color: currentColor;
+    background-color: #fff;
+    color: var(--color-brandColor);
+  }
+
+  .button[disabled] {
+    background-color: var(--color-slate-400);
+    color: #fff;
+  }
+}
+
+/****************************************
+  Form Fields
+*****************************************/
+
+@layer components {
+  .form-field {
+    width: 100%;
+    padding: 0.5em 0.7em;
+    background-color: #fff;
+    border: 1px solid var(--color-slate-300);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-slate-700);
+    border-radius: 5px;
+  }
+
+  .form-field:focus,
+  .form-field:focus-within {
+    outline: none;
+    border-color: var(--color-sky-400);
+  }
+
+  textarea.form-field {
+    resize: vertical;
+    max-height: 300px;
+  }
+
+  select.form-field {
+    appearance: none;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+');
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    padding-right: 1.5em;
+  }
+
+  .form-field-wrap.required > label.form-field-label {
+    position: relative;
+  }
+
+  .form-field-wrap.required > label.form-field-label::after {
+    content: '•';
+    position: absolute;
+    left: -0.7em;
+    top: -0.35em;
+    color: var(--red);
+    font-size: 1.4em;
+  }
+}
+
+@layer base {
+  input {
+    accent-color: var(--color-brandColor);
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 1em;
+
+    background: var(--color-slate-300);
+    height: 0.5rem;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-moz-range-track {
+    background: green;
+    height: 0.5rem;
+  }
+}
+
+/****************************************
+  Notice
+*****************************************/
+
+@layer components {
+  .notice {
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    background-color: var(--color-slate-300);
+    border: 1px solid var(--color-slate-400);
+    color: var(--color-slate-700);
+  }
+  .notice.error {
+    background-color: var(--color-rose-200);
+    border: 1px solid var(--color-rose-400);
+    color: var(--color-rose-700);
+  }
+}
+
+/****************************************
+  Primary Nav
+*****************************************/
+
+@layer components {
+  .primary-nav a.active {
+    border-color: var(--color-brandColor);
+  }
+}

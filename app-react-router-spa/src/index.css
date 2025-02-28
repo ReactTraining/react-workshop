@@ -12,6 +12,7 @@
   --color-brandPink: var(--color-purple-300);
 }
 
+/* Tailwind's default border color must be set starting in v4 */
 @layer base {
   *,
   ::after,
