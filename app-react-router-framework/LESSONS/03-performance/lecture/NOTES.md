@@ -6,6 +6,7 @@ MUST READ: https://remix.run/docs/en/main/guides/single-fetch
 
 ## Caching
 
+https://reactrouter.com/how-to/headers#from-loaders-and-actions
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 https://gist.github.com/kentcdodds/0c6f183531beeafe771eb48a3586707b
 
@@ -20,8 +21,8 @@ export async function loader() {
   })
 }
 
-export const headers = () => {
-  // Page Caching
-  return { 'Cache-Control': `public, max-age=${ONE_HOUR}, s-maxage=${ONE_HOUR}` }
+// REQUIRED to be here if we're doing loader or action caching
+export function headers({ loaderHeaders }: HeadersArgs) {
+  return loaderHeaders
 }
 ```
