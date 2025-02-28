@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import type { ProductType } from '~/utils/db.server'
-import type { Route } from './+types/final.home'
+import type { Route } from './+types/home'
 
 export async function loader() {
   const products = (await fetch('http://localhost:3333/products').then((res) =>
@@ -13,7 +13,6 @@ export async function loader() {
 }
 
 export default function Index({ loaderData: { products } }: Route.ComponentProps) {
-  // const product = useLoaderData<typeof loader>() // OLD REMIX WAY
   return (
     <Tiles>
       {products.map((product) => {
@@ -39,7 +38,10 @@ export default function Index({ loaderData: { products } }: Route.ComponentProps
                   </button>
                 </div>
                 <div className="w-full flex flex-col">
-                  <Link to={product.id.toString()} className="button">
+                  {/* prefetch="intent" */}
+                  {/* prefetch="viewport" */}
+                  {/* prefetch="render" */}
+                  <Link prefetch="intent" to={product.id.toString()} className="button">
                     View
                   </Link>
                 </div>

@@ -33,7 +33,7 @@ if (!preferences.framework) {
 }
 
 /****************************************
-  Choose Course From Framework
+  Choose Course From Framework Folder
 *****************************************/
 
 switch (framework.toLowerCase()) {
@@ -58,6 +58,13 @@ switch (framework.toLowerCase()) {
 
 function startReactRouterFramework(appPath: string) {
   const lessonsPath = path.resolve(appPath, 'LESSONS')
+
+  // Detect Node Version
+  const nodeMajor = process.version.replace('v', '').split('.')[0]
+  if (nodeMajor < '20') {
+    console.log('Node version must be 20.0.0 or higher')
+    process.exit(1)
+  }
 
   // Get the lesson path and create an environment variable for RR
   // config to use. No path means run full app
