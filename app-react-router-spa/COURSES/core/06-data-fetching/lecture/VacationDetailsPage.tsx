@@ -17,7 +17,7 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-// export async function loader({ params }: LoaderFunctionArgs) {
+// export async function clientLoader({ params }: LoaderFunctionArgs) {
 //   return api.vacations.getVacation(vacationId)
 // }
 

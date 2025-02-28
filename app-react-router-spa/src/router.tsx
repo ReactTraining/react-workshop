@@ -6,8 +6,8 @@ import { VacationsSubLayout } from '~/VacationsSubLayout'
 import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
-import { BrowseVacationsPage, loader as browseVacationsLoader } from '~/BrowseVacationsPage'
-import { VacationDetailsPage, loader as vacationDetailsLoader } from '~/VacationDetailsPage'
+import { BrowseVacationsPage, clientLoader as browseVacationsLoader } from '~/BrowseVacationsPage'
+import { VacationDetailsPage, clientLoader as vacationDetailsLoader } from '~/VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'

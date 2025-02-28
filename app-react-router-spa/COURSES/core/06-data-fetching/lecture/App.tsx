@@ -12,7 +12,7 @@ import { VacationsSubLayout } from '~/VacationsSubLayout'
 import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
-import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
+import { BrowseVacationsPage, clientLoader as browseVacationsLoader } from './BrowseVacationsPage'
 import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'

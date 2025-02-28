@@ -4,7 +4,7 @@ import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { queryClient } from './utils/queryClient'
 import { useLoaderData } from 'react-router'
 
-export async function loader() {
+export async function clientLoader() {
   const vacations = await queryClient.fetchQuery({
     queryKey: ['vacations'],
     queryFn: () => api.vacations.getAll(),
@@ -13,7 +13,7 @@ export async function loader() {
   return vacations
 }
 
-type LoaderData = Awaited<ReturnType<typeof loader>>
+type LoaderData = Awaited<ReturnType<typeof clientLoader>>
 
 export function BrowseVacationsPage() {
   const vacations = useLoaderData() as LoaderData

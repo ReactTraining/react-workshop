@@ -6,7 +6,7 @@ import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
 
 // 2: Finished with loader
-export async function loader() {
+export async function clientLoader() {
   return api.vacations.getAll()
 }
 

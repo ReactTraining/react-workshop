@@ -9,7 +9,7 @@ import type { Vacation } from '~/utils/types'
 // 2. Then refactor the code that was fetching within the component to fetch
 //    from this loader instead. Note that React Router is already importing this
 //    loading and attaching it to the correct route
-export async function loader() {
+export async function clientLoader() {
   return []
 }
 

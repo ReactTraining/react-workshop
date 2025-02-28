@@ -4,7 +4,7 @@ import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { queryClient } from '~/utils/queryClient'
 
-export async function loader() {
+export async function clientLoader() {
   const vacations = await queryClient.ensureQueryData({
     queryKey: ['vacations'],
     queryFn: () => api.vacations.getAll(),
@@ -14,7 +14,8 @@ export async function loader() {
 }
 
 export function BrowseVacationsPage() {
-  const vacations = useLoaderData() as Awaited<ReturnType<typeof loader>>
+  const vacations = useLoaderData() as Awaited<ReturnType<typeof clientLoader>>
+
   return (
     <div>
       {!vacations && <div>Loading...</div>}

@@ -7,7 +7,7 @@ import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 import { LoaderFunctionArgs, useLoaderData } from 'react-router'
 import { queryClient } from '~/utils/queryClient'
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function clientLoader({ params }: LoaderFunctionArgs) {
   const id = parseInt(params.vacationId!)
 
   const vacation = await queryClient.fetchQuery({
@@ -18,7 +18,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return vacation
 }
 
-type LoaderData = Awaited<ReturnType<typeof loader>>
+type LoaderData = Awaited<ReturnType<typeof clientLoader>>
 
 export function VacationDetailsPage() {
   const vacation = useLoaderData() as LoaderData
