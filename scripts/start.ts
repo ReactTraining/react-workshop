@@ -43,7 +43,7 @@ switch (framework.toLowerCase()) {
     break
   }
   case 'app-react-router-spa': {
-    const appPath = path.resolve(process.cwd(), 'app-react-router-spa', 'COURSES')
+    const appPath = path.resolve(process.cwd(), 'app-react-router-spa')
     startReactSPA(appPath)
     break
   }
