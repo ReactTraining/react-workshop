@@ -32,14 +32,16 @@ This repo contains the latest course material for [React Training](https://react
 
 Already have Node/NPM installed? Then start here. Otherwise we have some instructions below in this document if you don't.
 
+🚨 Be sure to be using at least Node v20
+
 **For React Workshops**
 
-- Do `npm install` first
-- Do `npm start`
-- Choose `app-react-router-spa` from the menu
-- You'll see a menu in the terminal. Choose "FULL APP"
-- You should be able to visit localhost:3000 in the browser and see the app
-- You're all set if you see the app.
+- Do `npm install` first.
+- Do `npm start`.
+- Choose `app-react-router-spa` from the menu.
+- You'll see a menu in the terminal. Choose "FULL APP".
+- You should be able to visit localhost:3000 in the browser and see the app.
+- If the app pulls up, you're all set for the workshop.
 
 Be sure to read this "JavaScript Primer" article if you think you'll need guidance on modern JavaScript: https://reacttraining.com/blog/javascript-the-react-parts/
 
@@ -56,12 +58,12 @@ Be sure to read this "JavaScript Primer" article if you think you'll need guidan
 
 That's totally okay if you don't know JS very well as long as you know how to program in any other language you'll do fine in the workshop. However, JavaScript has changed a lot since 2015 and if you're not used to its modern syntax, you might struggle a bit with React and our material **so please read** [this primer article](https://reacttraining.com/blog/javascript-the-react-parts/) that will get you ready. People often tell us the primer article was the thing that made the workshop successful for them.
 
-This workshop assumes you know how to program. Sometimes we'll get attendees who have the goal of knowing high level details about React so they can better communicate with their React developer co-workers. In that case, you're certainly welcome to attend, but the material is designed for programmers.
+Not a programmer? This workshop assumes you know how to program some. Sometimes we'll get attendees with a goal of knowing high level concepts and terms so they can better communicate with their team, even though they don't code much. That's totally fine just just keep in mind the workshop will be heavy in coding concepts.
 
-We presume you know:
+At the very least, we hope you already know:
 
-- How to write HTML
-- How to do Command Line
+- How to write some HTML
+- How to do Command Line stuff (whether you're on Windows/Mac/Linux)
 - What an API is (in general)
 - HTTP concepts like REST/GET/POST etc, and the general idea of AJAX requests
 
@@ -77,8 +79,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I use? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 20 (for example)
-$ nvm install 20
+# For Node 22 (for example)
+$ nvm install 22
 
 # See this page for more install options:
 # https://github.com/nvm-sh/nvm#usage
@@ -112,8 +114,8 @@ Note that **NPM (Node Package Manager)** is a command-line tool that will also b
 If you need to verify that you have NVM installed, do: `nvm version`. Then install Node. Which version of Node should I install? It probably won't matter much, but we try to use the [Active Version](https://nodejs.org/en/about/releases/).
 
 ```sh
-# For Node 20 (for example)
-$ nvm install 20
+# For Node 22 (for example)
+$ nvm install 22
 
 # IMPORTANT: You'll be also prompt to `nvm use`
 # the version number that you installed. You may
