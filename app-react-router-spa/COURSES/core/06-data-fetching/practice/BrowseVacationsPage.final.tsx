@@ -29,11 +29,11 @@ export function BrowseVacationsPage() {
   // }, [])
 
   // 1.B: With useQuery
-  // const { data: vacations } = useQuery({
-  //   queryKey: ['vacations'],
-  //   queryFn: () => api.vacations.getAll(),
-  //   staleTime: 1000 * 30 // 30 seconds
-  // })
+  const { data: vacations } = useQuery({
+    queryKey: ['vacations'],
+    queryFn: () => api.vacations.getAll(),
+    staleTime: 1000 * 30, // 30 seconds
+  })
 
   return (
     <div>

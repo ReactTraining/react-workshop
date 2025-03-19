@@ -1,3 +1,5 @@
+'use client'
+
 // import { useState } from 'react'
 import { login } from '@/utils/login'
 import { type ActionState, loginAction as serverLoginAction } from './loginAction'
@@ -26,21 +28,10 @@ export function LoginForm() {
   // const [pending, setPending] = useState(false)
   // const [error, setError] = useState('')
 
-  async function loginAction(formData: FormData) {
-    'use server'
-    const username = formData.get('username') as string
-    const password = formData.get('password') as string
-
-    try {
-      const user = await login(username, password)
-      console.log('Server', user)
-    } catch (err) {
-      console.log('ERR', err)
-    }
-  }
+  const [state, actionFn] = useActionState(serverLoginAction, { pending: false, error: '' })
 
   return (
-    <form action={loginAction} className="space-y-3 max-w-96">
+    <form action={actionFn} className="space-y-3 max-w-96">
       {/* {error && <div className="text-red-800">{error}</div>} */}
       <div>
         <label htmlFor="username">Username</label>
@@ -65,6 +56,7 @@ export function LoginForm() {
           required
         />
       </div>
+      <SubmitButton />
       {/* <button type="submit" className="button" disabled={pending}>
         {!pending ? 'Login' : '...'}
       </button> */}

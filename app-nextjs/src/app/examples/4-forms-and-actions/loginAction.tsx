@@ -1,7 +1,7 @@
+'use server'
 import { login } from '@/utils/login'
 
 export async function loginAction(formData: FormData) {
-  'use server' // <-- won't work here, move to top
   const username = formData.get('username') as string
   const password = formData.get('password') as string
 
