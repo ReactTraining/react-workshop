@@ -11,27 +11,24 @@ import type { Vacation } from '~/utils/types'
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
-
-// export async function clientLoader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
-
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function clientLoader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!)
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
+  return vacation
+}
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+  useLoaderData()
 
-  // api.vacations.getVacation(vacationId)
+  // const { data: vacation } = useQuery({
+  //   queryKey: ['vacation', vacationId],
+  //   queryFn: () => api.vacations.getVacation(vacationId),
+  //   staleTime: 1000 * 30,
+  // })
 
   if (!vacation) return <div>Loading...</div>
 
