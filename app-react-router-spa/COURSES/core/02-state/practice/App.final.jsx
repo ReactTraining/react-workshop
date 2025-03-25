@@ -3,13 +3,11 @@ import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
 
 export function App() {
-  const [vacations, setVacations] = useState([])
-  const [pending, setPending] = useState(false)
+  const [vacations, setVacations] = useState(null)
+  const pending = vacations === null
 
   function loadVacations() {
-    setPending(true)
     api.vacations.getAll().then((vacations) => {
-      setPending(false)
       setVacations(vacations)
     })
   }
