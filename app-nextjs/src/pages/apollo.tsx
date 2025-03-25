@@ -5,7 +5,7 @@ interface HomeProps {
   helloMessage: string
 }
 
-export default function Home({ helloMessage }: HomeProps) {
+export default function Page({ helloMessage }: HomeProps) {
   return (
     <div>
       <h1>{helloMessage}</h1>
