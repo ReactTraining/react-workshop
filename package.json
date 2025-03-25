@@ -22,9 +22,5 @@
     "semi": false,
     "singleQuote": true,
     "tabWidth": 2
-  },
-  "dependencies": {
-    "@apollo/server": "^4.11.3",
-    "@as-integrations/next": "^3.2.0"
   }
 }
