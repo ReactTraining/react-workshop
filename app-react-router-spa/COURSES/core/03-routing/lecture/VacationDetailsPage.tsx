@@ -8,7 +8,7 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export function VacationDetailsPage() {
+export default function VacationDetailsPage() {
   const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
@@ -22,7 +22,7 @@ export function VacationDetailsPage() {
     }
   }, [vacationId])
 
-  if (!vacation) return <div>Loading...</div>
+  if (!vacation) return <div>Loading data</div>
 
   return (
     <Card>

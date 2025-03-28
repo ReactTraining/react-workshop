@@ -11,11 +11,9 @@ export function App() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  // const x = slowFunction()
-
-  // const onUpdate = (name: string, tickets: number) => {
-  //   console.log(name, tickets)
-  // }
+  console.time()
+  const x = useMemo(() => slowFunction(), [])
+  console.timeEnd()
 
   return (
     <form className="space-y-6">
@@ -50,32 +48,7 @@ export function App() {
           // The "clear" button wants to use refs to clear the inputs
           // but we can't use useRef() dynamically
 
-          return (
-            <div key={number} className="flex items-center gap-2 bg-slate-100 p-2">
-              <div className="w-20">Ticket {number + 1}</div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  className="form-field"
-                  placeholder="Name"
-                  required
-                  aria-label={`Ticket ${number} Name`}
-                />
-              </div>
-              <div className="flex-1">
-                <input
-                  type="email"
-                  className="form-field"
-                  placeholder="Email"
-                  required
-                  aria-label={`Ticket ${number} Email`}
-                />
-              </div>
-              <button className="button" type="button">
-                Clear
-              </button>
-            </div>
-          )
+          return <AddAttendeeFields key={number} ticketNumber={number + 1} />
         })}
       </div>
     </form>
@@ -88,8 +61,13 @@ type AddAttendeeFieldsProps = {
 }
 
 const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
+  // console.log('render')
+
+  const nameRef = useRef<HTMLInputElement>(null!)
+
   function clear() {
-    // clear with refs
+    nameRef.current.value = ''
+    nameRef.current.focus()
   }
 
   return (
@@ -97,6 +75,7 @@ const AddAttendeeFields = ({ ticketNumber }: AddAttendeeFieldsProps) => {
       <div className="w-20">Ticket {ticketNumber}</div>
       <div className="flex-1">
         <input
+          ref={nameRef}
           type="text"
           className="form-field"
           placeholder="Name"

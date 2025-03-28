@@ -21,7 +21,11 @@ export function Groceries() {
   ])
 
   function addItem(item: Item) {
-    // Add item to items array
+    // make a copy of it
+    // change the copy, not the orig
+    // replace the orig with the copy
+    // setItems([...items, item])
+    setItems(items.concat(item))
   }
 
   // Without Cloning (Faster, More Difficult)
@@ -61,13 +65,13 @@ export function Groceries() {
                     <div className="flex-1 flex gap-2">
                       <button
                         className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-                        // onClick={() => subtractQuantity(item.id)}
+                        onClick={() => subtractQuantity(item.id)}
                       >
                         <Icon name="minus" size={0.6} />
                       </button>
                       <button
                         className="bg-white border-slate-300 border-solid aspect-square rounded-md px-3 py-1"
-                        // onClick={() => addQuantity(item.id)}
+                        onClick={() => addQuantity(item.id)}
                       >
                         <Icon name="plus" size={0.6} />
                       </button>
