@@ -1,12 +1,26 @@
-// import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime'
 import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
-import { Icon } from './examples/Icon'
+// import { Icon } from './examples/Icon'
 import { FaTrash } from 'react-icons/fa'
 
-function App() {
-  // Let's get started
+function Heading({ size, children }) {
+  return <h1 className={`heading heading-size-${size}`}>{children}</h1>
 }
 
-const el = document.getElementById('root')
+function App() {
+  return (
+    <LessonBody>
+      <LessonCard>
+        <Heading size={2}>
+          <FaTrash color="red"></FaTrash>
+          My Heading
+          <FaTrash color="blue"></FaTrash>
+        </Heading>
+      </LessonCard>
+    </LessonBody>
+  )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

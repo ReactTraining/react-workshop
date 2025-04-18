@@ -6,42 +6,53 @@ import { api } from '~/utils/api'
 // So you're doing JavaScript not TypeScript
 
 export function App() {
-  // 1. Setup an initial value
-  // 2. useState returns an array
-  useState(/* initialState */)
+  const [vacations, setVacations] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   function loadVacations() {
-    // The getAll() method will resolve an array of vacations. We nest our network API calls
-    // in objects like api.vacations.getAll() for convenience.
-    api.vacations.getAll().then((vacations) => {
-      console.log(vacations)
-    })
+    setIsLoading(true)
+    setError(null)
+
+    api.vacations
+      .getAll()
+      .then((vacations) => {
+        setVacations(vacations)
+      })
+      .catch((err) => {
+        setError('Failed to load vacations. Please try again.')
+        console.error('Error loading vacations:', err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (
     <div className="space-y-6 min-w-96">
-      <button className="button block" onClick={loadVacations}>
-        Load Vacations
+      <button className="button block" onClick={loadVacations} disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Load Vacations'}
       </button>
-      {/* Start Map */}
 
-      {/* <div className="p-3 overflow-hidden flex flex-col max-w-96">
-        <div className="h-52 -m-3 flex">
-          <VacationImage
-            vacationId={vacation.id}
-            alt={vacation.name}
-            className="block object-cover flex-1"
-          />
-        </div>
-        <div className="space-y-3 mt-3 border-t">
-          <div className="mt-3 flex justify-between items-center">
-            <div className="">{vacation.name}</div>
-            <b className="block">${vacation.price}</b>
+      {error && <div className="text-red-500">{error}</div>}
+
+      {vacations.map((vacation) => (
+        <div key={vacation.id} className="p-3 overflow-hidden flex flex-col max-w-96">
+          <div className="h-52 -m-3 flex">
+            <VacationImage
+              vacationId={vacation.id}
+              alt={vacation.name}
+              className="block object-cover flex-1"
+            />
+          </div>
+          <div className="space-y-3 mt-3 border-t">
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">{vacation.name}</div>
+              <b className="block">${vacation.price}</b>
+            </div>
           </div>
         </div>
-      </div> */}
-
-      {/* End Map */}
+      ))}
     </div>
   )
 }
