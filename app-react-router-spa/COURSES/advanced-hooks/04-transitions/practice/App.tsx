@@ -3,16 +3,24 @@ import { useState, useTransition } from 'react'
 export function App() {
   const [tabIndex, setTabIndex] = useState(0)
 
+  const [pending, startTransition] = useTransition()
+
+  function onClick(index: number) {
+    startTransition(() => {
+      setTabIndex(index)
+    })
+  }
+
   return (
     <div>
       <div className="bg-slate-100 rounded-md p-2 mb-5">
-        <Tab onClick={() => setTabIndex(0)} selected={tabIndex === 0}>
+        <Tab onClick={() => onClick(0)} selected={tabIndex === 0}>
           Tab
         </Tab>
-        <Tab onClick={() => setTabIndex(1)} selected={tabIndex === 1}>
+        <Tab onClick={() => onClick(1)} selected={tabIndex === 1}>
           Slow Tab
         </Tab>
-        <Tab onClick={() => setTabIndex(2)} selected={tabIndex === 2}>
+        <Tab onClick={() => onClick(2)} selected={tabIndex === 2}>
           Tab
         </Tab>
       </div>

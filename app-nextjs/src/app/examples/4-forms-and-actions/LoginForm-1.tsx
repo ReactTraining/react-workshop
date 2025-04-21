@@ -25,7 +25,7 @@ export function LoginForm() {
     setError('')
 
     try {
-      const user = await login(username, password)
+      const user = await login(username, password) // fetch from client to server
       console.log('client', user)
       setPending(false)
       setError('')

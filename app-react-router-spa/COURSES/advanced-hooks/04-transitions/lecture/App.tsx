@@ -6,7 +6,7 @@ import { Heading } from '~/Heading'
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function App() {
-  const allUsers = useUsers(5000)
+  const allUsers = useUsers(10000)
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
@@ -14,12 +14,13 @@ export function App() {
 
   function filterUsers(newMinLikes: number) {
     setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+    const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+
+    // ops-into concurrent mode (which allows for two parallel renders and the one
+    // in here can be interrupted)
+    startTransition(() => {
+      setUsers(filteredUsers)
+    })
   }
 
   return (
