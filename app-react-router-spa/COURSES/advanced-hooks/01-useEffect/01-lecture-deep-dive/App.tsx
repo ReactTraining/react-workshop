@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react'
 import {
   Navigate,
   Route,
@@ -13,11 +14,13 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+import { loader as vacationDetailsLoader } from './VacationDetailsPage'
+const VacationDetailsPage = React.lazy(() => import('./VacationDetailsPage'))
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,8 +35,12 @@ export const router = createBrowserRouter(
         <Route path="vacations">
           <Route
             path=":vacationId"
-            Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            element={
+              <Suspense fallback={<div>Loading more JS</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
+            loader={vacationDetailsLoader}
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
@@ -44,7 +51,6 @@ export const router = createBrowserRouter(
       <Route path="account" Component={AccountSubLayout}>
         <Route index Component={AccountHome} />
       </Route>
-      <Route path="*" Component={NotFoundPage} />
     </Route>
   )
 )

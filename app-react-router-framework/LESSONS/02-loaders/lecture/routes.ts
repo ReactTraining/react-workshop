@@ -8,10 +8,10 @@ export default [
       index('./routes/account-home.tsx'),
       route('settings', './routes/account-settings.tsx'),
     ]),
-    // Final
-    ...prefix('final', [
-      index('./routes/final.home.tsx'),
-      route(':productId', './routes/final.product-profile.tsx'),
-    ]),
+    // // Final
+    // ...prefix('final', [
+    //   index('./routes/final.home.tsx'),
+    //   route(':productId', './routes/final.product-profile.tsx'),
+    // ]),
   ]),
 ] satisfies RouteConfig

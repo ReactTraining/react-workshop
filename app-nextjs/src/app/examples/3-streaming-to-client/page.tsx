@@ -8,17 +8,19 @@ import { ListProducts } from './list-products'
 // 2. Wrap in suspense
 // 3. Remix did it first 😉
 
+// HTTP/v2
+
 export default async function ServerComp() {
-  const products = await query('SELECT * FROM product', 3000)
+  const productsPromise = query('SELECT * FROM product', 3000)
 
   return (
     <LessonBody>
       <LessonCard>
         <div className="max-w-56 space-y-3">
           <h1 className="font-bold">Hello RSC</h1>
-          {/* <Suspense fallback={<div>Loading...</div>}> */}
-          <ListProducts products={products} />
-          {/* </Suspense> */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <ListProducts productsPromise={productsPromise} />
+          </Suspense>
         </div>
       </LessonCard>
     </LessonBody>

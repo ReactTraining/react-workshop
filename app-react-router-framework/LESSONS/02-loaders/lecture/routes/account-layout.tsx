@@ -5,16 +5,15 @@ import { Avatar } from '~/components/Avatar'
 import type { Route } from './+types/account-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  // These are currently in serial!!
-  // That's okay in this case because we need the user before we get the settings
-  // But you'll need to know how to load things in parallel for the exercise
   const user = await requireSessionUser(request)
   const settings = await getUserSettings(user.id)
 
   return { user, settings }
 }
 
-export default function Account({ loaderData: { user } }: Route.ComponentProps) {
+export default function Account({ loaderData }: Route.ComponentProps) {
+  const { user } = loaderData
+
   return (
     <div className="flex gap-6">
       <div className="w-72 flex gap-6">

@@ -26,7 +26,6 @@ import type { Route } from './+types/products-home'
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
   const productId = formData.get('productId')
-  console.log('product', productId)
 
   // addToCart commits to the cookie so we need to return special headers.
   // Without the return, it wont work
@@ -43,16 +42,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/products-layout')!
-
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
 
   return (
     <Tiles>
@@ -76,17 +65,18 @@ export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                  aria-label="Add To Cart"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button className="button">Remove</button>
+                <Form method="post">
+                  <button
+                    className="button button-outline whitespace-nowrap"
+                    type="submit"
+                    aria-label="Add To Cart"
+                  >
+                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+                  </button>
+                </Form>
+                <Form method="DELETE">
+                  <button className="button">Remove</button>
+                </Form>
               </div>
             </div>
           </div>

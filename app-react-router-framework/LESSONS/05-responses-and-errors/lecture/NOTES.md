@@ -1,6 +1,10 @@
 # Lecture Notes
 
 ```ts
+function loader() {
+  return new Response()
+}
+
 // "RETURN" goes to component:
 return new Response('Invalid Data', { status: 400 })
 return json({ error: 'Invalid Data' }, { status: 400 })
