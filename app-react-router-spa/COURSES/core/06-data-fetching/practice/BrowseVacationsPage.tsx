@@ -19,6 +19,7 @@ export function BrowseVacationsPage() {
 
   // 1.A: You can skip 1.A if you would like.
   // Write a useEffect hook to fetch data and keep it in the above state
+
   // api.vacations.getAll().then()
 
   // 1.B: You can skip 1.A but you should try to do 1.B. Use "Tanstack Query" also known

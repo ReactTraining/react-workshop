@@ -1,4 +1,4 @@
-import { useState, createContext, use, useMemo, memo } from 'react'
+import { useState, createContext, use, useMemo, memo, useContext } from 'react'
 import { Icon } from '~/Icon'
 import { LessonBody, LessonCard } from '~/Lesson'
 import classnames from 'classnames'
@@ -6,6 +6,8 @@ import classnames from 'classnames'
 /****************************************
   App.js
 *****************************************/
+
+const FavContext = createContext()
 
 export function App() {
   const [favorites, setFavorites] = useState([])
@@ -22,12 +24,21 @@ export function App() {
     return favorites.includes(id)
   }
 
+  // useMemo
+  const context = {
+    favorites,
+    updateFavorite,
+    isFavorite,
+  }
+
   return (
-    <LessonBody>
-      <LessonCard>
-        <MainLayout favorites={favorites} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      </LessonCard>
-    </LessonBody>
+    <FavContext value={context}>
+      <LessonBody>
+        <LessonCard>
+          <MainLayout />
+        </LessonCard>
+      </LessonBody>
+    </FavContext>
   )
 }
 
@@ -35,29 +46,25 @@ export function App() {
   MainLayout.js
 *****************************************/
 
-function MainLayout({ favorites, isFavorite, updateFavorite }) {
-  return (
-    <BrowseVacationsPage
-      favorites={favorites}
-      isFavorite={isFavorite}
-      updateFavorite={updateFavorite}
-    />
-  )
-}
+const MainLayout = memo(() => {
+  return <BrowseVacationsPage />
+})
 
 /****************************************
  BrowseVacationsPage.js
  *****************************************/
 
-function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
+function BrowseVacationsPage() {
+  const { favorites } = use(FavContext)
+
   return (
     <div className="flex justify-between">
       <div>Favorites: {JSON.stringify(favorites)}</div>
       <div>
         <div className="flex flex-col gap-2">
-          <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+          <FavoriteVacationButton id={1} />
+          <FavoriteVacationButton id={2} />
+          <FavoriteVacationButton id={3} />
         </div>
       </div>
     </div>
@@ -68,7 +75,8 @@ function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
   FavoriteVacationButton.js
 *****************************************/
 
-function FavoriteVacationButton({ id, isFavorite, updateFavorite }) {
+function FavoriteVacationButton({ id }) {
+  const { isFavorite, updateFavorite } = useContext(FavContext)
   const vacationIsFavorite = isFavorite(id)
 
   return (
