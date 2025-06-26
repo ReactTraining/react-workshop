@@ -45,7 +45,7 @@ Already have Node/NPM installed? Then start here. Otherwise we have some instruc
 
 Be sure to read this "JavaScript Primer" article if you think you'll need guidance on modern JavaScript: https://reacttraining.com/blog/javascript-the-react-parts/
 
-## How to get ready for the workshop
+## How to get ready for the workshop.
 
 - [ ] Make sure you have Git and Node installed first. **Windows Users** see the special section below on this.
 - [ ] Install this code (instructions below)
