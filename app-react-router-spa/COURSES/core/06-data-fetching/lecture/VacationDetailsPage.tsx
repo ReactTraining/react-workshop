@@ -7,31 +7,41 @@ import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function clientLoader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!)
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
 
-// export async function clientLoader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
+  return { vacation }
+}
 
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+type LoaderType = Awaited<ReturnType<typeof clientLoader>>
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+  const { vacation } = useLoaderData() as LoaderType
 
-  // api.vacations.getVacation(vacationId)
+  const vacationId = parseInt(useParams().vacationId!)
+
+  // // What variables we close over, that CAN CHANGE
+  // useEffect(() => {
+  //   let isCurrent = true
+  //   api.vacations.getVacation(vacationId).then((vacation) => {
+  //     if (isCurrent) {
+  //       setVacation(vacation)
+  //     }
+  //   })
+  //   return () => {
+  //     isCurrent = false
+  //   }
+  // }, [vacationId])
 
   if (!vacation) return <div>Loading...</div>
 

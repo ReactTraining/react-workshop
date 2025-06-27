@@ -13,13 +13,20 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // const itemNameRef = useRef<HTMLInputElement>(null!)
+  const itemNameRef = useRef<HTMLInputElement>(null!)
+
+  useEffect(() => {
+    itemNameRef.current.focus()
+  }, [])
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
     const values = Object.fromEntries(formData)
+
+    itemNameRef.current.value = ''
+    itemNameRef.current.focus()
 
     const result = schema.safeParse(values)
     if (result.success) {
@@ -31,7 +38,14 @@ export function GroceryForm({ onSubmit }: Props) {
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="itemName">Item</label>
-        <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />
+        <input
+          ref={itemNameRef}
+          id="itemName"
+          type="text"
+          className="form-field"
+          autoComplete="off"
+          name="name"
+        />
       </div>
       <div>
         <label htmlFor="itemQuantity">Quantity</label>
