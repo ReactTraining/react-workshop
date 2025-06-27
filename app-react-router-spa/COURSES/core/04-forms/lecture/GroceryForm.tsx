@@ -1,25 +1,30 @@
 import { useState, useRef } from 'react'
+import { z } from 'zod'
 
-type Item = {
-  name: string
-  quantity: number
-}
+const schema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  quantity: z.string().transform((val) => parseInt(val)),
+})
+
+type Item = z.infer<typeof schema>
 
 type Props = {
   onSubmit(values: Item): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
-  // Teach React 19 actions
+  // const itemNameRef = useRef<HTMLInputElement>(null!)
 
-  function handleSubmit(event /* <---- TS has no idea what this is */) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // Three basic ways to get our form's fields
-    // 1. Scrape for it: ids (bad) refs (good)
-    // 2. Controlled with state
-    // 3. new FormData
-    onSubmit({ name: 'test', quantity: 1 })
+
+    const formData = new FormData(event.currentTarget)
+    const values = Object.fromEntries(formData)
+
+    const result = schema.safeParse(values)
+    if (result.success) {
+      onSubmit(result.data)
+    }
   }
 
   return (
