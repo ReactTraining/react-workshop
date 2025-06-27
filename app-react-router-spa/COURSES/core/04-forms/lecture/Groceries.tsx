@@ -21,7 +21,7 @@ export function Groceries() {
   ])
 
   function addItem(item: Item) {
-    // console.log(item)
+    //  console.log(item)
   }
 
   // Without Cloning (Faster, More Difficult)
