@@ -9,15 +9,19 @@ import { type ResponseData, updateDatabase } from './helpers/mockServer'
 
 export function App() {
   const [error, setError] = useState('')
-  const [likes, setLikes] = useState(0)
+  const [likes, setLikes] = useState(0) // real database data
 
-  async function submit(e: React.FormEvent) {
-    e.preventDefault()
+  const [opLikes, setOpLikes] = useOptimistic(likes, (currentState, nextLikes) => {
+    return nextLikes
+  })
 
-    const data = (await updateDatabase(likes + 1).then((r) => r.json())) as ResponseData
+  async function formAction() {
+    setOpLikes(opLikes + 1)
+
+    const data = (await updateDatabase(opLikes + 1).then((r) => r.json())) as ResponseData
     setLikes(data.likes)
 
-    console.log(data.likes)
+    // console.log('database data came back', data.likes)
 
     if (data.error) {
       setError(data.error)
@@ -25,10 +29,10 @@ export function App() {
   }
 
   return (
-    <form onSubmit={submit} className="space-y-6">
+    <form action={formAction} className="space-y-6">
       <div>
         <button type="submit" className="button text-xl">
-          Like My Post: {likes}
+          Like My Post: {opLikes}
         </button>
       </div>
       {error && <div className="text-red-800">{error}</div>}

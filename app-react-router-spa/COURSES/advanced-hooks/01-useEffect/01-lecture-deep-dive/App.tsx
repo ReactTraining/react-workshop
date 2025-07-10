@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router'
+import { lazy } from 'react'
 
 // Layouts
 import { MainLayout } from '~/MainLayout'
@@ -13,11 +14,14 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+// import { VacationDetailsPage, loader as vacationDetailsLoader } from './VacationDetailsPage'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
