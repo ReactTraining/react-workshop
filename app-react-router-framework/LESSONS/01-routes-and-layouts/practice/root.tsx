@@ -1,7 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
 import { type LinksFunction } from 'react-router'
 import stylesheet from '~/index.css?url'
-import { MainLayout } from './components/MainLayout'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
 
@@ -20,9 +19,7 @@ export default function App() {
         />
       </head>
       <body className="p-3">
-        <MainLayout>
-          <Outlet />
-        </MainLayout>
+        <Outlet />
 
         <ScrollRestoration />
         <Scripts />
