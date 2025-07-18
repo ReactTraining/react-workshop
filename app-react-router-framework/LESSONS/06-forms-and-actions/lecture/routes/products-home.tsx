@@ -8,32 +8,22 @@ import {
 } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import { getCart } from '~/utils/cart.server'
+import { addToCart, getCart, removeFromCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './products-layout'
 import { sleep } from '~/utils/helpers'
 import type { Route } from './+types/products-home'
 
-// async function addToCart(productId: number) {
-//   console.log('add product', productId)
-//   return Promise.resolve('').then(sleep(2000))
+// export async function action({ request }: ActionFunctionArgs) {
+//   const formData = await request.formData()
+//   const productId = parseInt(formData.get('productId') as string)
+//   const quantity = parseInt(formData.get('quantity') as string)
+
+//   if (request.method === 'POST') {
+//     return await addToCart(request, productId, quantity).then(sleep()) // latency
+//   } else if (request.method === 'DELETE') {
+//     return await removeFromCart(request, productId)
+//   }
 // }
-
-// async function removeFromCart(productId: number) {
-//   console.log('remove product', productId)
-//   return Promise.resolve('').then(sleep(3000))
-// }
-
-export async function action({ request }: ActionFunctionArgs) {
-  const formData = await request.formData()
-  const productId = formData.get('productId')
-  console.log('product', productId)
-
-  // addToCart commits to the cookie so we need to return special headers.
-  // Without the return, it wont work
-  // return await addToCart(request, productId, quantity)
-
-  return null
-}
 
 // ⭐️ Loader "Revalidates" After successful 200 Action
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -44,21 +34,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/products-layout')!
 
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
+  const addFetcher = useFetcher()
+  const removeFetcher = useFetcher()
 
   return (
     <Tiles>
       {products.map((product) => {
         const quantityInCart = cart?.find((c) => c.productId === product.id)?.quantity || 0
-        // const isSubmitting = navigation.state === 'submitting' && navigation?.formData?.get('productId') === product.id.toString()
+        // const isSubmitting =
+        //   navigation.state === 'submitting' &&
+        //   navigation?.formData?.get('productId') === product.id.toString()
 
         return (
           <div
@@ -76,17 +61,22 @@ export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                  aria-label="Add To Cart"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button className="button">Remove</button>
+                <addFetcher.Form method="POST">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <input type="hidden" name="quantity" value={quantityInCart + 1} />
+                  <button
+                    className="button button-outline whitespace-nowrap"
+                    type="submit"
+                    aria-label="Add To Cart"
+                  >
+                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+                    {/* {isSubmitting && '...'} */}
+                  </button>
+                </addFetcher.Form>
+                <removeFetcher.Form method="POST">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button className="button">Remove</button>
+                </removeFetcher.Form>
               </div>
             </div>
           </div>

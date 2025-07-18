@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { useRouteLoaderData } from 'react-router'
 
 export default function AccountSettings() {
-  const settings = { deals: 'weekly', delivery: 'door' }
+  const { settings } = useRouteLoaderData('routes/account-layout')
 
   return (
     <>

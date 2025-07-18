@@ -1,3 +1,5 @@
+'use client'
+
 import { LessonBody, LessonCard } from '@/components/Lesson'
 import { query } from '@/utils/database'
 

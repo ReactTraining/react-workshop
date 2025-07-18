@@ -12,6 +12,7 @@ const formSchema = z.object({
 })
 
 type FormDataType = z.infer<typeof formSchema>
+
 type FormErrorType = {
   [k in keyof FormDataType]?: string[] | undefined
 }

@@ -20,10 +20,6 @@ export function LoginForm() {
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
-    // WONT WORK
-    setPending(true)
-    setError('')
-
     try {
       const user = await login(username, password)
       console.log('client', user)

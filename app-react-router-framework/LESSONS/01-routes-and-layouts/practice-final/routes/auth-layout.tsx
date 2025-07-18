@@ -1,6 +1,7 @@
 import { redirect, type LoaderFunctionArgs } from 'react-router'
 import { Outlet } from 'react-router'
 
+// on the server
 export async function loader({ request }: LoaderFunctionArgs) {
   if (request.url.replace(/\/$/, '').endsWith('auth')) {
     return redirect('/auth/login')

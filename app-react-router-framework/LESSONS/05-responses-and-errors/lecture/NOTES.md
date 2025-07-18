@@ -3,7 +3,7 @@
 ```ts
 // "RETURN" goes to component:
 return new Response('Invalid Data', { status: 400 })
-return json({ error: 'Invalid Data' }, { status: 400 })
+return { error: 'Invalid Data' }, { status: 400 }
 
 // "THROW" goes to Error Boundary
 throw new Response('Not found', { status: 404 })
@@ -44,7 +44,7 @@ main()
 
 ```js
 // These are same
-return json({ user: 'brad' })
+return { user: 'brad' }
 return new Response(JSON.stringify({ user: 'brad' }), {
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
