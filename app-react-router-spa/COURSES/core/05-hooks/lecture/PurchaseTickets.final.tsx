@@ -9,7 +9,6 @@ export function App() {
   const ticketsId = useId()
   const commentsId = useId()
 
-  const x = useMemo(() => slowFunction(), [])
   const onUpdate = useCallback((name: string, tickets: number) => {
     console.log(name, tickets)
   }, [])
@@ -55,9 +54,11 @@ type AddAttendeeFieldsProps = {
   onUpdate(name: string, tickets: number): void
 }
 
-const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsProps) => {
+const AddAttendeeFields = ({ ticketNumber, onUpdate }: AddAttendeeFieldsProps) => {
   const nameRef = useRef<HTMLInputElement>(null!)
   const emailRef = useRef<HTMLInputElement>(null!)
+
+  console.log('render')
 
   function clear() {
     nameRef.current.value = ''
@@ -93,4 +94,4 @@ const AddAttendeeFields = memo(({ ticketNumber, onUpdate }: AddAttendeeFieldsPro
       </button>
     </div>
   )
-})
+}

@@ -12,7 +12,12 @@ function App() {
     <LessonBody>
       <Accordion onChange={setIndex} defaultIndex={0}>
         <AccordionItem>
-          <AccordionButton>
+          <AccordionButton
+            onClick={(event) => {
+              console.log('external event')
+              event.preventDefault()
+            }}
+          >
             {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
             <span>What is ARIA?</span>
           </AccordionButton>
@@ -20,6 +25,7 @@ function App() {
             A way to make web content more accessible: "Accessible Rich Internet Applications".
           </AccordionPanel>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionButton>
             {index === 1 ? <FaAngleDown /> : <FaAngleRight />}

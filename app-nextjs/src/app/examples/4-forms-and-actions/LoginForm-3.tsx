@@ -26,11 +26,15 @@ import { useState } from 'react'
 // https://react.dev/reference/react/useActionState
 
 export function LoginForm() {
-  const [pending, setPending] = useState(false)
-  const [error, setError] = useState('')
+  const [state, action, pending] = useActionState(serverLoginAction, {
+    error: '',
+    user: null,
+  })
+
+  const { user, error } = state
 
   return (
-    <form action={serverLoginAction} className="space-y-3 max-w-96">
+    <form action={action} className="space-y-3 max-w-96">
       {error && <div className="text-red-800">{error}</div>}
       <div>
         <label htmlFor="username">Username</label>
@@ -55,9 +59,9 @@ export function LoginForm() {
           required
         />
       </div>
-      {/* <button type="submit" className="button" disabled={pending}>
+      <button type="submit" className="button" disabled={pending}>
         {!pending ? 'Login' : '...'}
-      </button> */}
+      </button>
     </form>
   )
 }
