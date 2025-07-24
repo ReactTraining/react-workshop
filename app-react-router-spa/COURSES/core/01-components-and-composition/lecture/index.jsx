@@ -6,7 +6,8 @@ import { Icon } from './examples/Icon'
 import { FaTrash } from 'react-icons/fa'
 
 function App() {
-  // Let's get started
+  const message = 'hello'
+  return <div id="foo"></div>
 }
 
 const el = document.getElementById('root')
