@@ -26,13 +26,8 @@ import { Heading } from '~/components/Heading'
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
 
-  // Method One: It's difficult to get type-safety from Object.fromEntries
-  const formValues = Object.fromEntries(formData)
-  const { username, password } = formValues
-
-  // Method Two
-  // const username = formData.get('username') as string | null
-  // const password = formData.get('password') as string | null
+  const username = formData.get('username') as string | null
+  const password = formData.get('password') as string | null
 
   if (!username || !password) return data({ error: 'Invalid Data' }, { status: 400 })
 
@@ -44,22 +39,11 @@ export default function Page() {
   const usernameId = useId()
   const passwordId = useId()
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    // Three ways to collect form data
-    // 1. Controlled with state
-    // 2. Uncontrolled with Refs
-    // 3. Uncontrolled with FormData
-    // const formValues = Object.fromEntries(new FormData(event.currentTarget))
-    // console.log(formValues)
-  }
-
   return (
     <div className="ml-auto mr-auto max-w-[600px]">
       <div className="bg-white rounded-md shadow-md p-6 space-y-6">
         <Heading size={4}>Login</Heading>
-        <form onSubmit={onSubmit} method="post" className="space-y-3" autoComplete="off">
+        <Form method="post" className="space-y-3" autoComplete="off">
           <div className="form-field-wrap space-y-1 required">
             <label htmlFor={usernameId} className="text-lg text-headingColor">
               Username
@@ -83,7 +67,7 @@ export default function Page() {
               Login
             </button>
           </footer>
-        </form>
+        </Form>
       </div>
     </div>
   )

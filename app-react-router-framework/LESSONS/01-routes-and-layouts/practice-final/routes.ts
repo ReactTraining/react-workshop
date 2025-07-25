@@ -2,8 +2,10 @@ import { type RouteConfig, index, layout, route } from '@react-router/dev/routes
 
 export default [
   layout('./routes/main-layout.tsx', [
+    // loader
     layout('./routes/common-layout.tsx', [
-      index('./routes/home.tsx'),
+      // loader
+      index('./routes/home.tsx'), // loader
       route('contact', './routes/contact.tsx'),
     ]),
     route('auth', './routes/auth-layout.tsx', [

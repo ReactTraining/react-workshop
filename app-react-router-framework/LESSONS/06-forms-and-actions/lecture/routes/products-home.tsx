@@ -8,7 +8,7 @@ import {
 } from 'react-router'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
-import { getCart } from '~/utils/cart.server'
+import { addToCart, getCart } from '~/utils/cart.server'
 import type { LoaderData as RouteLoaderData } from './products-layout'
 import { sleep } from '~/utils/helpers'
 import type { Route } from './+types/products-home'
@@ -25,14 +25,12 @@ import type { Route } from './+types/products-home'
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData()
-  const productId = formData.get('productId')
-  console.log('product', productId)
+  const productId = parseInt(formData.get('productId') as string)
+  const quantity = parseInt(formData.get('quantity') as string)
 
   // addToCart commits to the cookie so we need to return special headers.
   // Without the return, it wont work
-  // return await addToCart(request, productId, quantity)
-
-  return null
+  return await addToCart(request, productId, quantity)
 }
 
 // ⭐️ Loader "Revalidates" After successful 200 Action
@@ -43,16 +41,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
   const { products } = useRouteLoaderData<RouteLoaderData>('routes/products-layout')!
-
-  function addToCart(productId: number) {
-    // fetch('/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ productId }),
-    // })
-  }
 
   return (
     <Tiles>
@@ -76,17 +64,21 @@ export default function Page({ loaderData: { cart } }: Route.ComponentProps) {
                 <b className="block">${product.price}</b>
               </div>
               <div className="flex gap-2">
-                <button
-                  // This is the more "SPA way" of doing things. We handle a
-                  // click and submit a XHR/fetch request
-                  onClick={() => addToCart(product.id)}
-                  className="button button-outline whitespace-nowrap"
-                  type="submit"
-                  aria-label="Add To Cart"
-                >
-                  <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
-                </button>
-                <button className="button">Remove</button>
+                <Form method="POST">
+                  <input type="hidden" name="quantity" value={quantityInCart + 1} />
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button
+                    className="button button-outline whitespace-nowrap"
+                    type="submit"
+                    aria-label="Add To Cart"
+                  >
+                    <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+                  </button>
+                </Form>
+                <Form method="DELETE">
+                  <input type="hidden" name="productId" value={product.id} />
+                  <button className="button">Remove</button>
+                </Form>
               </div>
             </div>
           </div>

@@ -12,12 +12,13 @@ import { VacationsSubLayout } from '~/VacationsSubLayout'
 import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
-import { BrowseVacationsPage, clientLoader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
+import { VacationDetailsPage, clientLoader as vacationDetailsLoader } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+import { BrowseVacationsPage, clientLoader as browseVacationsLoader } from './BrowseVacationsPage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
