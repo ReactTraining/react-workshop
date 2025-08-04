@@ -19,7 +19,7 @@ Keep in mind that when you send data to an action, you're also telling Remix to 
 
 When the app gets bigger, we'll want a more general route for the cart action -- not the file it's in now
 
-1. Move the action in `_products-layout._index.tsx` function and it's dependencies (imports) to a new file at `routes/cart.tsx`.
+1. Move the action in `products-home.tsx` and its dependencies (imports) to a new file at `routes/cart.tsx`.
 2. Refactor your `<Form>` components to have an action prop that points to this new path. By default, the lack of an action told Redux to send your data to the same path you're on which is why you didn't need an action before.
 3. Refactor the `<Form>`s to be `<fetcher.Form>` instead.
 4. You'll need to call `useFetcher` to get a `fetcher` object which replaces `useNavigation`
