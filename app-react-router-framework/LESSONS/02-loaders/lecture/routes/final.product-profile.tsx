@@ -9,7 +9,12 @@ export async function loader({ params }: LoaderFunctionArgs) {
     res.json()
   )) as ProductType
 
-  return product
+  return new Response(JSON.stringify(product), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'public, max-age=60', // cache for 60 seconds
+    },
+  })
 }
 
 export default function ProductProfile({ loaderData: product }: Route.ComponentProps) {

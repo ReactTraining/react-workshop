@@ -12,8 +12,6 @@ export function LoginForm() {
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
 
-  console.log('Where does this run?') // server and client
-
   // const [pending, startTransition] = useTransition()
 
   async function loginAction(formData: FormData) {

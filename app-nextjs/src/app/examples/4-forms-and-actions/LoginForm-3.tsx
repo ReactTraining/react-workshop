@@ -1,3 +1,5 @@
+'use client'
+
 // import { useState } from 'react'
 import { login } from '@/utils/login'
 import { type ActionState, loginAction as serverLoginAction } from './loginAction'
@@ -5,6 +7,7 @@ import { SubmitButton } from './SubmitButton'
 
 // Temp fix for Next
 import { useFormState as useActionState } from 'react-dom'
+import { useState } from 'react'
 
 // 1. Change to `use client`. The 'use server' action won't work
 // 2. Refactor to import action from `loginAction.tsx`
@@ -23,25 +26,17 @@ import { useFormState as useActionState } from 'react-dom'
 // https://react.dev/reference/react/useActionState
 
 export function LoginForm() {
-  // const [pending, setPending] = useState(false)
-  // const [error, setError] = useState('')
+  const [state, action, pending] = useActionState<ActionState>(serverLoginAction, {
+    user: null,
+    error: '',
+  })
 
-  async function loginAction(formData: FormData) {
-    'use server'
-    const username = formData.get('username') as string
-    const password = formData.get('password') as string
-
-    try {
-      const user = await login(username, password)
-      console.log('Server', user)
-    } catch (err) {
-      console.log('ERR', err)
-    }
-  }
+  console.log('client', state.user)
+  const { error } = state
 
   return (
-    <form action={loginAction} className="space-y-3 max-w-96">
-      {/* {error && <div className="text-red-800">{error}</div>} */}
+    <form action={action} className="space-y-3 max-w-96">
+      {error && <div className="text-red-800">{error}</div>}
       <div>
         <label htmlFor="username">Username</label>
         <input
@@ -65,9 +60,9 @@ export function LoginForm() {
           required
         />
       </div>
-      {/* <button type="submit" className="button" disabled={pending}>
+      <button type="submit" className="button" disabled={pending}>
         {!pending ? 'Login' : '...'}
-      </button> */}
+      </button>
     </form>
   )
 }

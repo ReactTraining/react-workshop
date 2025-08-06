@@ -7,7 +7,8 @@ import { Icon } from '~/components/Icon'
 import type { Route } from './+types/products-layout'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const [products, brands] = await Promise.all([getProducts(), getBrands()])
+  const params = new URL(request.url).searchParams
+  const [products, brands] = await Promise.all([getProducts(params), getBrands()])
 
   return {
     products,
@@ -44,11 +45,18 @@ export default function Products({ loaderData: { brands } }: Route.ComponentProp
 function FilterLink({ children, value }: { children: React.ReactNode; value: string }) {
   const id = useId()
 
-  // useSearchParams()
+  const [params] = useSearchParams()
+  const brand = params.get('brand')
 
-  const on = false
+  const on = brand === value
+  const nextSearch = new URLSearchParams(params.toString())
+  if (on) {
+    nextSearch.delete('brand')
+  } else {
+    nextSearch.set('brand', value)
+  }
   const url = useLocation().pathname
-  const to = url
+  const to = `${url}?${nextSearch.toString()}`
 
   return (
     <Link to={to} className="block">

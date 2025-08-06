@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useLoaderData } from 'react-router'
 import { api } from '~/utils/api'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
@@ -8,21 +7,10 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export function VacationDetailsPage() {
-  const vacationId = parseInt(useParams().vacationId!)
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+export default function VacationDetailsPage() {
+  const vacation = useLoaderData<typeof loader>()
 
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
-      if (isCurrent) setVacation(vacation)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [vacationId])
-
-  if (!vacation) return <div>Loading...</div>
+  if (!vacation) return <div>Loading Data...</div>
 
   return (
     <Card>

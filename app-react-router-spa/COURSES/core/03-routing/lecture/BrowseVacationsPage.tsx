@@ -4,6 +4,10 @@ import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import type { Vacation } from '~/utils/types'
 
+// export async function loader() {
+//   //
+// }
+
 export function BrowseVacationsPage() {
   const [vacations, setVacations] = useState<Vacation[] | null>(null)
 

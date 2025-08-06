@@ -1,15 +1,16 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
+// import { requireSessionUser } from '../utils/auth.server'
 import { useRouteLoaderData } from 'react-router'
-
-// useRouteLoaderData('routes/account-layout')
+import { loader as parentLoader } from './account-layout'
 
 export default function AccountIndex() {
-  const user = { firstName: 'Bruce', lastName: 'Lee', email: 'wrongemail@remix.run' }
+  const { user } = useRouteLoaderData<typeof parentLoader>('routes/account-layout')!
 
   return (
     <>
       <Heading size={3}>My Account</Heading>
+      Preload
       <form method="post" className="space-y-6" autoComplete="off">
         <FieldWrap label="First Name">
           {(field) => (

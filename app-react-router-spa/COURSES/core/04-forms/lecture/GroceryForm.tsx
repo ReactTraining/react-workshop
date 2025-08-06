@@ -10,20 +10,27 @@ type Props = {
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
-  // Teach React 19 actions
+  // function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault()
 
-  function handleSubmit(event /* <---- TS has no idea what this is */) {
-    event.preventDefault()
-    // Three basic ways to get our form's fields
-    // 1. Scrape for it: ids (bad) refs (good)
-    // 2. Controlled with state
-    // 3. new FormData
-    onSubmit({ name: 'test', quantity: 1 })
-  }
+  //   const formData = new FormData(event.currentTarget)
+
+  //   // Option One
+  //   const name = formData.get('name') as string
+  //   const quantity = parseInt(formData.get('quantity') as string)
+
+  //   // Option Two
+  //   // const formValues = Object.fromEntries(formData) // zod
+
+  //   onSubmit({ name, quantity })
+  // }
+
+  // While we can use these for SPAs (real benefit would just be that shortcut to formData)
+  // The real benefit for actions is RSC (the way you use them with NextJS)
+  function formAction(formData: FormData) {}
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form action={formAction} className="space-y-3">
       <div>
         <label htmlFor="itemName">Item</label>
         <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />

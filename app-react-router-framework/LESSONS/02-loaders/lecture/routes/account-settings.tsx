@@ -1,10 +1,10 @@
 import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
-import { Link } from 'react-router'
-import { useRouteLoaderData } from 'react-router'
+import { Link, useRouteLoaderData } from 'react-router'
+import { loader as parentLoader } from './account-layout'
 
 export default function AccountSettings() {
-  const settings = { deals: 'weekly', delivery: 'door' }
+  const { settings } = useRouteLoaderData<typeof parentLoader>('routes/account-layout')!
 
   return (
     <>

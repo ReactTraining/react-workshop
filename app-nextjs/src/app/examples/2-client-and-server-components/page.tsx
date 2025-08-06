@@ -17,12 +17,19 @@ import { ServerTwo } from './server-two'
 // and passed it as a prop to a server comp, how would that server
 // comp "re-render" when it doesn't run on the client
 
+// 1. Server Comp can own a Client Comp
+// 2. Server Comp can own Server Comp
+// 3. Client Comp can own a Client Comp
+// 4. Client Comp CAN NOT own a Server Comp
+
 export default function ServerOne() {
   return (
     <div className="bg-purple-200 p-4">
       <div>this is a server only component</div>
       <hr />
-      <ClientOne></ClientOne>
+      <ClientOne>
+        <ServerTwo />
+      </ClientOne>
     </div>
   )
 }

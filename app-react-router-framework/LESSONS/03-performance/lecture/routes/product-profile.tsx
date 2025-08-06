@@ -24,7 +24,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   if (!product) throw new Response('Not found', { status: 404 })
   const limit = 3
-  const relatedProductsPromise = getRelatedProducts(product.brand, limit, [productId]).then(sleep())
+  const relatedProductsPromise = getRelatedProducts(product.brand, limit, [productId]).then(
+    sleep(3000)
+  )
 
   return data(
     {

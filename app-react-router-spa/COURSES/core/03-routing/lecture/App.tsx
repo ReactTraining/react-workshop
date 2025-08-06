@@ -14,17 +14,17 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
 
-// Lazy Loading Options:
-// 1. React Way: https://react.dev/reference/react/lazy
-//    React.lazy()
-// 2. React Router Way: https://reactrouter.com/en/main/route/lazy
-//    <Route path="a" lazy={() => import("./a")} />
-//    Export names must match route props: Rename component to `export Component`
+async function loader({ params }) {
+  const vacationId = parseInt(params.vacationId!)
+  const vacation = await api.vacations.getVacation(vacationId)
+  return vacation
+}
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +32,15 @@ const router = createBrowserRouter(
       <Route element={<VacationsSubLayout />}>
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
-          <Route path=":vacationId" element={<VacationDetailsPage />} />
+          <Route
+            path=":vacationId"
+            loader={loader}
+            element={
+              <Suspense fallback={<div>Loading JS....</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
+          />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
           <Route index element={<Navigate to="/" />} />
         </Route>

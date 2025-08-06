@@ -41,7 +41,7 @@ export default function Index({ loaderData: { products } }: Route.ComponentProps
                   {/* prefetch="intent" */}
                   {/* prefetch="viewport" */}
                   {/* prefetch="render" */}
-                  <Link prefetch="none" to={product.id.toString()} className="button">
+                  <Link to={product.id.toString()} className="button">
                     View
                   </Link>
                 </div>

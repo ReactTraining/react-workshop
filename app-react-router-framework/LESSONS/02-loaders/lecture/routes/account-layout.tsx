@@ -11,10 +11,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await requireSessionUser(request)
   const settings = await getUserSettings(user.id)
 
-  return { user, settings }
+  return { user, settings, date: new Date() }
 }
 
-export default function Account({ loaderData: { user } }: Route.ComponentProps) {
+export default function Account({ loaderData }: Route.ComponentProps) {
+  const { user, date } = loaderData
+  console.log(date)
+
   return (
     <div className="flex gap-6">
       <div className="w-72 flex gap-6">
