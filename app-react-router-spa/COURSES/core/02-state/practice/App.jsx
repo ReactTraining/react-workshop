@@ -2,19 +2,16 @@ import { useState } from 'react'
 import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
 
-// Note that this is a JSX and not a TSX file
-// So you're doing JavaScript not TypeScript
-
 export function App() {
   // 1. Setup an initial value
   // 2. useState returns an array
-  useState(/* initialState */)
+  const [vacation, setVacations] = useState([])
 
   function loadVacations() {
     // The getAll() method will resolve an array of vacations. We nest our network API calls
     // in objects like api.vacations.getAll() for convenience.
     api.vacations.getAll().then((vacations) => {
-      console.log(vacations)
+      setVacations(vacation)
     })
   }
 

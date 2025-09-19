@@ -13,7 +13,7 @@ export function Icon({ name, className, size = 1.3, ...rest }) {
   if (!Component) return null
 
   const props = {
-    className: classnames('icon', className),
+    // className: classnames('icon', className),
     style: {
       display: 'inline',
       width: `${size}em`,
@@ -23,5 +23,5 @@ export function Icon({ name, className, size = 1.3, ...rest }) {
     },
   }
 
-  return <Component {...rest} {...props} />
+  return <Component {...rest} {...props} className={classnames('icon', className)} />
 }

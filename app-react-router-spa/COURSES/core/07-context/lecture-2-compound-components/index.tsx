@@ -7,8 +7,32 @@ function App() {
   return (
     <LessonBody>
       <LessonCard>
+        <Tabs>
+          <TabList>
+            <div>
+              <Tab>One</Tab>
+              <Tab>Two</Tab>
+              <Tab>Three</Tab>
+            </div>
+            <Tab>Three</Tab>
+            <Tab>Three</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <p>one!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>two!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>three!</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+
         <div className="text-lg space-x-2 p-2 bg-slate-100 w-fit m-auto rounded-sm -skew-x-6">
-          <DateDisplay>
+          <DateDisplay date="">
             <span className="bg-slate-300 py-1 px-2 rounded">
               <DateMonth format="MMMM" />
             </span>
