@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router'
 import { api } from '~/utils/api'
+import useSWR from 'swr'
 import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
@@ -26,6 +27,8 @@ import type { Vacation } from '~/utils/types'
 //   queryFn: () => api.vacations.getVacation(vacationId),
 //   staleTime: 1000 * 30,
 // })
+
+// const { data: vacation } = useSWR(String(vacationId), () => api.vacations.getVacation(vacationId))
 
 export function VacationDetailsPage() {
   const { vacationId } = useParams()

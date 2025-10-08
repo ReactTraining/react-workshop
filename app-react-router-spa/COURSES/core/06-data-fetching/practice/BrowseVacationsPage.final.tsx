@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
 import { useLoaderData } from 'react-router'
+import useSWR from 'swr'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import { Tiles } from '~/Tiles'
 import { api } from '~/utils/api'
@@ -29,11 +29,7 @@ export function BrowseVacationsPage() {
   // }, [])
 
   // 1.B: With useQuery
-  // const { data: vacations } = useQuery({
-  //   queryKey: ['vacations'],
-  //   queryFn: () => api.vacations.getAll(),
-  //   staleTime: 1000 * 30 // 30 seconds
-  // })
+  // const { data: vacations } = useSWR('vacations', () => api.vacations.getAll())
 
   return (
     <div>

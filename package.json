@@ -22,5 +22,8 @@
     "semi": false,
     "singleQuote": true,
     "tabWidth": 2
+  },
+  "dependencies": {
+    "swr": "^2.3.6"
   }
 }
