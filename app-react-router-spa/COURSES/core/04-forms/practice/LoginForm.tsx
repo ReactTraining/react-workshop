@@ -7,11 +7,6 @@ export function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  // Replace this "controlled form" state with `new FormData()` in the event
-  // See the GUIDE.md
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
   // ✨ This is a little note to remind the instructor to demo the final and
   //    React's new form actions feature
 

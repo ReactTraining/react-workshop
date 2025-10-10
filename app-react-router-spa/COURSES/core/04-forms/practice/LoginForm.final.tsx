@@ -7,52 +7,52 @@ export function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+  // function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault()
+  //   const formData = new FormData(event.currentTarget)
 
-    const username = formData.get('username') as string
-    const password = formData.get('password') as string
-
-    setPending(true)
-    setError('')
-
-    login(username, password)
-      .then((user) => {
-        console.log(user)
-        navigate('/account')
-      })
-      .catch((err) => {
-        setError(err)
-        setPending(false)
-      })
-  }
-
-  // // React 19 actions
-  // // NOTE: We'll have to show useTransition for pending state
-  // // This setPending(true) will NOT work without it
-  // async function loginAction(formData: FormData) {
   //   const username = formData.get('username') as string
   //   const password = formData.get('password') as string
 
   //   setPending(true)
   //   setError('')
 
-  //   try {
-  //     const user = await login(username, password)
-  //     console.log(user)
-  //     navigate('/account')
-  //   } catch (err) {
-  //     if (typeof err === 'string') {
-  //       setPending(false)
+  //   login(username, password)
+  //     .then((user) => {
+  //       console.log(user)
+  //       navigate('/account')
+  //     })
+  //     .catch((err) => {
   //       setError(err)
-  //     }
-  //   }
+  //       setPending(false)
+  //     })
   // }
+
+  // // React 19 actions
+  // // NOTE: We'll have to show useTransition for pending state
+  // // This setPending(true) will NOT work without it
+  async function loginAction(formData: FormData) {
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
+
+    setPending(true)
+    setError('')
+
+    try {
+      const user = await login(username, password)
+      console.log(user)
+      navigate('/account')
+    } catch (err) {
+      if (typeof err === 'string') {
+        setPending(false)
+        setError(err)
+      }
+    }
+  }
 
   return (
     <LessonCard>
-      <form onSubmit={handleLogin} className="space-y-3 max-w-96">
+      <form action={loginAction} className="space-y-3 max-w-96">
         {error && <div className="text-red-800">{error}</div>}
         <div>
           <label htmlFor="username">Username</label>
