@@ -5,7 +5,7 @@ import { api } from '~/utils/api'
 import type { Vacation } from '~/utils/types'
 
 export function AccountFavorites() {
-  const { favorites, updateFavorite } = useFavoriteContext()
+  const favorites = [1, 2, 3]
 
   const vacations = useQueries({
     queries: favorites.map((id) => {
