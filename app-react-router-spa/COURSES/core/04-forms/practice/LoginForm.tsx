@@ -15,8 +15,7 @@ export function LoginForm() {
   // ✨ This is a little note to remind the instructor to demo the final and
   //    React's new form actions feature
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  function formAction(formData: FormData) {
     setPending(true)
     login(username, password)
       .then((user) => {
@@ -31,7 +30,7 @@ export function LoginForm() {
 
   return (
     <LessonCard>
-      <form onSubmit={handleLogin} className="space-y-3 max-w-96">
+      <form action={formAction} className="space-y-3 max-w-96">
         {error && <div className="text-red-800">{error}</div>}
         <div>
           <label htmlFor="username">Username</label>

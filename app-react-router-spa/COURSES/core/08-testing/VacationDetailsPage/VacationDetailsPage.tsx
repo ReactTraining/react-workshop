@@ -37,6 +37,7 @@ export function VacationDetailsPage() {
               className="block object-cover aspect-video"
             />
           </div>
+
           <div className="flex-1 space-y-6">
             <header>
               <Heading>{vacation.name}</Heading>

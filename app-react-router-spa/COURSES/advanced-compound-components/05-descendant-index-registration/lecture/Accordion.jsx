@@ -24,28 +24,32 @@ export const Accordion = ({
     console.warn('Cannot change from controlled to uncontrolled or vice versa.')
   }
 
-  children = React.Children.map(children, (child, index) => {
-    const panelId = `accordion-${accordionId}-panel-${index}`
-    const buttonId = `accordion-${accordionId}-button-${index}`
+  const indexRef = useRef(-1)
 
-    const context = {
-      buttonId,
-      panelId,
-      selected: isControlled ? controlledIndex === index : selectedIndex === index,
-      selectPanel: () => {
-        onChange && onChange(index)
-        if (!isControlled) {
-          setSelectedIndex(index)
-        }
-      },
-    }
-    return <AccordionContext value={context} children={child} />
-  })
+  const context = {
+    accordionId,
+    register: (ref) => {
+      if (!ref.current) {
+        ref.current = ++indexRef.current
+      }
+
+      return ref.current
+    },
+    isSelected: (index) => (isControlled ? controlledIndex === index : selectedIndex === index),
+    selectPanel: (index) => {
+      onChange && onChange(index)
+      if (!isControlled) {
+        setSelectedIndex(index)
+      }
+    },
+  }
 
   return (
-    <div data-accordion="" {...props}>
-      {children}
-    </div>
+    <AccordionContext.Provider value={context}>
+      <div data-accordion="" {...props}>
+        {children}
+      </div>
+    </AccordionContext.Provider>
   )
 }
 
@@ -53,13 +57,31 @@ export const Accordion = ({
  * Accordion Item
  */
 
+const ItemContext = createContext()
+
 export const AccordionItem = ({ children, ...props }) => {
-  const { selected } = use(AccordionContext)
+  const { isSelected, register, accordionId, selectPanel } = use(AccordionContext)
+
+  const indexRef = useRef()
+  const index = register(indexRef)
+
+  const panelId = `accordion-${accordionId}-panel-${index}`
+  const buttonId = `accordion-${accordionId}-button-${index}`
+  const selected = isSelected(index)
+
+  const context = {
+    buttonId,
+    panelId,
+    selected,
+    selectPanel: () => selectPanel(index),
+  }
 
   return (
-    <div {...props} data-accordion-item="" data-state={selected ? 'open' : 'collapsed'}>
-      {children}
-    </div>
+    <ItemContext.Provider value={context}>
+      <div {...props} data-accordion-item="" data-state={selected ? 'open' : 'collapsed'}>
+        {children}
+      </div>
+    </ItemContext.Provider>
   )
 }
 
@@ -68,7 +90,7 @@ export const AccordionItem = ({ children, ...props }) => {
  */
 
 export const AccordionButton = ({ children, onClick, ...props }) => {
-  const { buttonId, panelId, selected, selectPanel } = use(AccordionContext)
+  const { buttonId, panelId, selected, selectPanel } = use(ItemContext)
 
   return (
     <button
@@ -90,7 +112,7 @@ export const AccordionButton = ({ children, onClick, ...props }) => {
  */
 
 export const AccordionPanel = ({ children, ...props }) => {
-  const { buttonId, panelId, selected } = use(AccordionContext)
+  const { buttonId, panelId, selected } = use(ItemContext)
 
   return (
     <div
