@@ -13,10 +13,12 @@ export async function loginAction(formData: FormData) {
   }
 }
 
-// export type ActionState = {
-//   user: null | Awaited<ReturnType<typeof login>>
-//   error: string
-// }
+// After refactoring to useActionState
+
+export type ActionState = {
+  user: null | Awaited<ReturnType<typeof login>>
+  error: string
+}
 
 // export async function loginAction(prevState: ActionState, formData: FormData) {
 //   'use server'

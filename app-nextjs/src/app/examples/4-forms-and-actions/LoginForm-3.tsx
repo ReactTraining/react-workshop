@@ -1,10 +1,7 @@
-// import { useState } from 'react'
+import { useState, useActionState } from 'react'
 import { login } from '@/utils/login'
 import { type ActionState, loginAction as serverLoginAction } from './loginAction'
 import { SubmitButton } from './SubmitButton'
-
-// Temp fix for Next
-import { useFormState as useActionState } from 'react-dom'
 
 // 1. Change to `use client`. The 'use server' action won't work
 // 2. Refactor to import action from `loginAction.tsx`
