@@ -4,14 +4,6 @@ Be sure to also checkout https://reacttraining.com/public-workshops to see our s
 
 This repo contains the latest course material for [React Training](https://reacttraining.com/). You are permitted to use any code or ideas you find here for any of your projects. However, you cannot copy this material to create paid trainings.
 
-## Workshops Contained
-
-- React Core
-- Advanced Component Design
-- Advanced Compound Components
-- Advanced Hooks
-- Remix
-
 ## README Table of Contents
 
 - [Quick Install Setup](#quick-install-setup)

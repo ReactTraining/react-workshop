@@ -36,6 +36,11 @@ export function LoginForm() {
     }
   }
 
+  // const [state, loginAction, pending] = useActionState<ActionState, FormData>(serverLoginAction, {
+  //   user: null,
+  //   error: '',
+  // })
+
   return (
     <form action={loginAction} className="space-y-3 max-w-96">
       {/* {error && <div className="text-red-800">{error}</div>} */}
@@ -65,49 +70,7 @@ export function LoginForm() {
       {/* <button type="submit" className="button" disabled={pending}>
         {!pending ? 'Login' : '...'}
       </button> */}
+      {/* <SubmitButton>Login</SubmitButton> */}
     </form>
   )
 }
-
-/**
- * End Goal:
- */
-
-// export function LoginForm() {
-//   const [state, loginAction] = useActionState<ActionState>(serverLoginAction, {
-//     user: null,
-//     error: '',
-//   })
-
-//   console.log('client', state.user)
-
-//   return (
-//     <form action={loginAction} className="space-y-3 max-w-96">
-//       {state.error && <div className="text-red-800">{state.error}</div>}
-//       <div>
-//         <label htmlFor="username">Username</label>
-//         <input
-//           name="username"
-//           id="username"
-//           type="text"
-//           className="form-field"
-//           autoComplete="off"
-//           placeholder="username: user"
-//           required
-//         />
-//       </div>
-//       <div>
-//         <label htmlFor="password">Password</label>
-//         <input
-//           name="password"
-//           id="password"
-//           type="password"
-//           className="form-field"
-//           placeholder="password: user"
-//           required
-//         />
-//       </div>
-//       <SubmitButton>Login</SubmitButton>
-//     </form>
-//   )
-// }
