@@ -12,7 +12,12 @@ function App() {
     <LessonBody>
       <Accordion onChange={setIndex} defaultIndex={0}>
         <AccordionItem>
-          <AccordionButton>
+          <AccordionButton
+            onClick={(event) => {
+              console.log('outer')
+              // event.preventDefault()
+            }}
+          >
             {index === 0 ? <FaAngleDown /> : <FaAngleRight />}
             <span>What is ARIA?</span>
           </AccordionButton>

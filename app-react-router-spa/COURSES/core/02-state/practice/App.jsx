@@ -8,13 +8,13 @@ import { api } from '~/utils/api'
 export function App() {
   // 1. Setup an initial value
   // 2. useState returns an array
-  useState(/* initialState */)
+  const [vacations, setVacations] = useState([])
 
   function loadVacations() {
     // The getAll() method will resolve an array of vacations. We nest our network API calls
     // in objects like api.vacations.getAll() for convenience.
     api.vacations.getAll().then((vacations) => {
-      console.log(vacations)
+      setVacations(vacations)
     })
   }
 
@@ -25,21 +25,25 @@ export function App() {
       </button>
       {/* Start Map */}
 
-      {/* <div className="p-3 overflow-hidden flex flex-col max-w-96">
-        <div className="h-52 -m-3 flex">
-          <VacationImage
-            vacationId={vacation.id}
-            alt={vacation.name}
-            className="block object-cover flex-1"
-          />
-        </div>
-        <div className="space-y-3 mt-3 border-t">
-          <div className="mt-3 flex justify-between items-center">
-            <div className="">{vacation.name}</div>
-            <b className="block">${vacation.price}</b>
+      {vacations.map(() => {
+        return (
+          <div className="p-3 overflow-hidden flex flex-col max-w-96">
+            <div className="h-52 -m-3 flex">
+              <VacationImage
+                vacationId={vacation.id}
+                alt={vacation.name}
+                className="block object-cover flex-1"
+              />
+            </div>
+            <div className="space-y-3 mt-3 border-t">
+              <div className="mt-3 flex justify-between items-center">
+                <div className="">{vacation.name}</div>
+                <b className="block">${vacation.price}</b>
+              </div>
+            </div>
           </div>
-        </div>
-      </div> */}
+        )
+      })}
 
       {/* End Map */}
     </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ServerTwo } from './server-two'
 
 type Props = {
   children?: React.ReactNode
