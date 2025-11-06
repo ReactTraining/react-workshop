@@ -15,13 +15,12 @@ export function LoginForm() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = Object.fromEntries(new FormData(event.currentTarget))
+
     const results = formSchema.safeParse(formValues)
 
     if (!results.success) {
       console.error(results.error.flatten().fieldErrors)
     } else {
-      // Notice the "type" difference
-      console.log(formValues)
       console.log(results.data)
     }
   }

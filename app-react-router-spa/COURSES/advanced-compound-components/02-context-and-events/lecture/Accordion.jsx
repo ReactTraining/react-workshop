@@ -5,6 +5,10 @@ import { wrapEvent } from '../../utils'
  * Accordion
  */
 
+const AccordionContext = createContext()
+
+// useContext(AccordionContext)
+
 export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }) => {
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
   const accordionId = useId(id)
@@ -13,15 +17,18 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
     const panelId = `accordion-${accordionId}-panel-${index}`
     const buttonId = `accordion-${accordionId}-button-${index}`
 
-    return React.cloneElement(child, {
+    const context = {
       buttonId,
       panelId,
       selected: selectedIndex === index,
       selectPanel: () => {
+        console.log('Inner')
         onChange && onChange(index)
         setSelectedIndex(index)
       },
-    })
+    }
+
+    return <AccordionContext.Provider value={context}>{child}</AccordionContext.Provider>
   })
 
   return (
@@ -35,15 +42,8 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
  * Accordion Item
  */
 
-export const AccordionItem = ({ children, buttonId, panelId, selected, selectPanel, ...props }) => {
-  children = React.Children.map(children, (child) => {
-    return React.cloneElement(child, {
-      buttonId,
-      panelId,
-      selected,
-      selectPanel,
-    })
-  })
+export const AccordionItem = ({ children, ...props }) => {
+  const { selected } = use(AccordionContext)
 
   return (
     <div {...props} data-accordion-item="" data-state={selected ? 'open' : 'collapsed'}>
@@ -56,19 +56,13 @@ export const AccordionItem = ({ children, buttonId, panelId, selected, selectPan
  * Accordion Button
  */
 
-export const AccordionButton = ({
-  children,
-  buttonId,
-  panelId,
-  selected,
-  selectPanel,
-  ...props
-}) => {
+export const AccordionButton = ({ children, onClick, ...props }) => {
+  const { buttonId, panelId, selected, selectPanel } = use(AccordionContext)
   return (
     <button
       {...props}
       id={buttonId}
-      onClick={selectPanel}
+      onClick={wrapEvent(onClick, selectPanel)}
       data-accordion-button=""
       data-state={selected ? 'open' : 'collapsed'}
       aria-expanded={selected}
@@ -83,10 +77,8 @@ export const AccordionButton = ({
  * Accordion Panel
  */
 
-export const AccordionPanel = ({ children, buttonId, panelId, selected, ...props }) => {
-  // Since we're passing our internal implementations down through props,
-  // and then also forwarding props, some unneeded things are being passed
-  // to the DOM, like props.selectPanel in this case.
+export const AccordionPanel = ({ children, ...props }) => {
+  const { buttonId, panelId, selected } = use(AccordionContext)
   return (
     <div
       role="region"

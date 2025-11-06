@@ -12,7 +12,6 @@
   gap: 0.3em;
 }
 
-.disclosure-button,
 [data-disclosure-button] {
   all: unset;
   background-color: #d1deed;

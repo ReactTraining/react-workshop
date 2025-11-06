@@ -10,8 +10,9 @@ export default function Page() {
 //   }
 // }
 
-// // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
+// // // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
 // export async function getServerSideProps() {
+//   // data fetches
 //   return {
 //     props: {}
 //   }
