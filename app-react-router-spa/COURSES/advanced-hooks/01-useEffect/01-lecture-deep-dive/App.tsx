@@ -33,7 +33,7 @@ export const router = createBrowserRouter(
           <Route
             path=":vacationId"
             Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            loader={vacationDetailsLoader}
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />

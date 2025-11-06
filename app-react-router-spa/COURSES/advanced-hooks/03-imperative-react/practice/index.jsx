@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as ReactDOM from 'react-dom/client'
-// import { Page } from './TwitterFeed.final'
-import { Page } from './TwitterFeed'
+import { Page } from './TwitterFeed.final'
+// import { Page } from './TwitterFeed'
 import { LessonBody, LessonCard } from '~/Lesson'
 
 function App() {

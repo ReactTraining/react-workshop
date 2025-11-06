@@ -5,10 +5,11 @@ export function App() {
   const [tabIndex, setTabIndex] = useState(0)
 
   const [pending, start] = useTransition()
+
   function onChange(index: number) {
-    setNextTabIndex(index)
+    setNextTabIndex(index) // high
     start(() => {
-      setTabIndex(index)
+      setTabIndex(index) // low
     })
   }
 
@@ -42,7 +43,12 @@ export function App() {
 
 function Tab({ children, selected, onClick }: any) {
   return (
-    <button className={selected ? 'py-3 px-5 bg-slate-300' : 'py-3 px-5'} onClick={onClick}>
+    <button
+      className={
+        selected ? 'py-3 px-5 bg-slate-300 hover:bg-amber-400' : 'py-3 px-5 hover:bg-lime-600'
+      }
+      onClick={onClick}
+    >
       {children}
     </button>
   )
