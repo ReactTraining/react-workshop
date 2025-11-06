@@ -1,5 +1,8 @@
 import { Link } from 'react-router'
+import classnames from 'classnames'
 import { VacationImage } from '~/VacationImage'
+import { Icon } from '~/Icon'
+import { useFavoriteContext } from '~/FavoriteContext'
 import type { Vacation } from '~/utils/types'
 
 type Props = {
@@ -7,6 +10,8 @@ type Props = {
 }
 
 export function BrowseVacationsItem({ vacation }: Props) {
+  const { favorites, updateFavorite } = useFavoriteContext()
+  const vacationIsFavorite = favorites.includes(vacation.id)
   return (
     <div className="p-3 overflow-hidden flex flex-col">
       <div className="h-52 -m-3 flex">
@@ -22,10 +27,20 @@ export function BrowseVacationsItem({ vacation }: Props) {
           <b className="block">${vacation.price}</b>
         </div>
         <div className="flex gap-2">
-          <div className="w-full flex flex-col">
-            <Link to={`/vacations/${vacation.id}`} className="button">
+          <div className="w-full flex gap-2">
+            <Link to={`/vacations/${vacation.id}`} className="button flex-1">
               View
             </Link>
+            <button
+              className="button"
+              onClick={() => {
+                updateFavorite(vacation.id)
+              }}
+            >
+              <span className={classnames({ 'text-yellow-500': vacationIsFavorite })}>
+                <Icon name="star" />
+              </span>
+            </button>
           </div>
         </div>
       </div>
