@@ -38,56 +38,59 @@ type Message = {
 
 // Add transitions to manage pending status...
 
-export function App() {
-  const messageRef = useRef<HTMLInputElement>(null!)
-  const [messages, setMessages] = useState<Message[]>([])
-  const [pending, setPending] = useState(false)
+// export function App() {
+//   const messageRef = useRef<HTMLInputElement>(null!)
+//   const [messages, setMessages] = useState<Message[]>([])
 
-  // const [pending, startTransition] = useTransition()
+//   const [pending, startTransition] = useTransition()
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setPending(true)
-    const formData = new FormData(e.currentTarget)
-    messageRef.current.value = ''
-    messageRef.current.focus()
-    console.log('start')
+//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+//     e.preventDefault()
 
-    const res = await addMessage(formData.get('messageText') as string)
-    const { message: newMessage } = await res.json()
-    console.log('resolve', messages)
-    setMessages(messages.concat(newMessage))
-    setPending(false)
-  }
+//     const formData = new FormData(e.currentTarget)
+//     messageRef.current.value = ''
+//     messageRef.current.focus()
+//     console.log('start')
 
-  return (
-    <>
-      <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
-        <input
-          type="text"
-          ref={messageRef}
-          className="form-field"
-          name="messageText"
-          placeholder="Message"
-          aria-label="Message"
-          autoComplete="off"
-          required
-        />
-        <div className="flex gap-3 items-center">
-          <button className="button" type="submit">
-            Submit
-          </button>
-          {pending && <div>Pending...</div>}
-        </div>
-      </form>
-      {messages.map((message) => (
-        <div key={message.id} className="border-b">
-          {message.messageText}
-        </div>
-      ))}
-    </>
-  )
-}
+//     startTransition(async () => {
+//       const res = await addMessage(formData.get('messageText') as string)
+//       const { message: newMessage } = await res.json()
+//       console.log('resolve', messages)
+
+//       setMessages((currentMessages) => {
+//         return currentMessages.concat(newMessage)
+//       })
+//     })
+//   }
+
+//   return (
+//     <>
+//       <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
+//         <input
+//           type="text"
+//           ref={messageRef}
+//           className="form-field"
+//           name="messageText"
+//           placeholder="Message"
+//           aria-label="Message"
+//           autoComplete="off"
+//           required
+//         />
+//         <div className="flex gap-3 items-center">
+//           <button className="button" type="submit">
+//             Submit
+//           </button>
+//           {pending && <div>Pending...</div>}
+//         </div>
+//       </form>
+//       {messages.map((message) => (
+//         <div key={message.id} className="border-b">
+//           {message.messageText}
+//         </div>
+//       ))}
+//     </>
+//   )
+// }
 
 /**
  * Example 1: Finished
@@ -156,61 +159,49 @@ export function App() {
 // By convention, functions that use async transitions are called "Actions".
 // https://react.dev/blog/2024/04/25/react-19#by-convention-functions-that-use-async-transitions-are-called-actions
 
-// export function App() {
-//   const messageRef = useRef<HTMLInputElement>(null!)
-//   const [messages, setMessages] = useState<Message[]>([])
-//   const [pending, startTransition] = useTransition()
+export function App() {
+  const messageRef = useRef<HTMLInputElement>(null!)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [_, startTransition] = useTransition()
 
-//   // async function formAction(formData: FormData) {
-//   //   messageRef.current.value = ''
-//   //   messageRef.current.focus()
-//   //   startTransition(async () => {
-//   //     const res = await addMessage(formData.get('messageText') as string)
-//   //     const { message: newMessage } = await res.json()
-//   //     setMessages((messages) => messages.concat(newMessage))
-//   //   })
-//   // }
+  async function action(formData: FormData) {
+    messageRef.current.value = ''
+    messageRef.current.focus()
+    startTransition(async () => {
+      const res = await addMessage(formData.get('messageText') as string)
+      const { message: newMessage } = await res.json()
+      setMessages((messages) => messages.concat(newMessage))
+    })
+  }
 
-//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-//     e.preventDefault()
-//     const formData = new FormData(e.currentTarget)
-//     messageRef.current.value = ''
-//     messageRef.current.focus()
-//     startTransition(async () => {
-//       const res = await addMessage(formData.get('messageText') as string)
-//       const { message: newMessage } = await res.json()
-//       setMessages((messages) => messages.concat(newMessage))
-//     })
-//   }
-
-//   return (
-//     <>
-//       <form onSubmit={handleSubmit} className="max-w-96 space-y-3">
-//         <input
-//           type="text"
-//           ref={messageRef}
-//           className="form-field"
-//           name="messageText"
-//           placeholder="Message"
-//           aria-label="Message"
-//           autoComplete="off"
-//           required
-//         />
-//         <div className="flex gap-3 items-center">
-//           <button className="button" type="submit">
-//             Submit
-//           </button>
-//           {pending && <div>Pending...</div>}
-//         </div>
-//       </form>
-//       {messages.map((message) => (
-//         <div key={message.id} className="border-b">
-//           {message.messageText}
-//         </div>
-//       ))}
-//     </>
-//   )
-// }
+  return (
+    <>
+      <form action={action} className="max-w-96 space-y-3">
+        <input
+          type="text"
+          ref={messageRef}
+          className="form-field"
+          name="messageText"
+          placeholder="Message"
+          aria-label="Message"
+          autoComplete="off"
+          required
+        />
+        <div className="flex gap-3 items-center">
+          <button className="button" type="submit">
+            Submit
+          </button>
+          <Pending>Pending...</Pending>
+        </div>
+      </form>
+      {messages.map((message) => (
+        <div key={message.id} className="border-b">
+          {message.messageText}
+        </div>
+      ))}
+    </>
+  )
+}
 
 function Pending({ children }: { children: React.ReactNode }) {
   const { pending } = useFormStatus()

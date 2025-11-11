@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import {
   Navigate,
   Route,
@@ -13,11 +14,16 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
+
+import { clientLoader as vacationDetailsLoader } from './VacationDetailsPage'
+
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage')) // <<-- in there
+
+// When I navigate to a new page, I need to get JS code and Data (ideally in parallel)
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,8 +38,12 @@ export const router = createBrowserRouter(
         <Route path="vacations">
           <Route
             path=":vacationId"
-            Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            loader={vacationDetailsLoader}
+            element={
+              <Suspense fallback={<div>Loading JavaScript....</div>}>
+                <VacationDetailsPage />
+              </Suspense>
+            }
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />

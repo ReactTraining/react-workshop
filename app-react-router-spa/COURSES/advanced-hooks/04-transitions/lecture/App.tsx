@@ -14,12 +14,12 @@ export function App() {
 
   function filterUsers(newMinLikes: number) {
     setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+
+    const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+
+    startTransition(() => {
+      setUsers(filteredUsers) // low
+    })
   }
 
   return (
@@ -62,7 +62,7 @@ type Props = {
 
 // See with and without memoization (and auto-memoization ✨)
 const UserList = ({ users }: Props) => {
-  console.log('Re-render UserList')
+  // console.log('Re-render UserList')
   return (
     <>
       {users.map((user) => {
