@@ -26,7 +26,11 @@ export default function MainLayout({ loaderData: { lesson } }: Route.ComponentPr
           <NavLink to="/" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
             Home
           </NavLink>
-          <NavLink to="/products" className="inline-block py-3 px-5 -mb-[1px] border-b-2">
+          <NavLink
+            to="/products"
+            prefetch="intent"
+            className="inline-block py-3 px-5 -mb-[1px] border-b-2"
+          >
             Products
           </NavLink>
         </nav>

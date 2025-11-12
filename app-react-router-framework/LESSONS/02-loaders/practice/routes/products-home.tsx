@@ -1,4 +1,5 @@
 import { useOutletContext, useRouteLoaderData } from 'react-router'
+import { data } from 'react-router'
 import { getProducts, type ProductType } from '~/utils/db.server'
 import { Tiles } from '~/components/Tiles'
 import { Icon } from '~/components/Icon'
@@ -7,7 +8,11 @@ import type { Route } from './+types/products-home'
 
 export const loader = async () => {
   const products = await getProducts()
-  return products
+  return data(products, {
+    headers: {
+      'Cache-Control': 'public, max-age=10',
+    },
+  })
 }
 
 export default function ProductsPage({ loaderData: products }: Route.ComponentProps) {

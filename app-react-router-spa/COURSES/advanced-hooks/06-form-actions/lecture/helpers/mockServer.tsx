@@ -5,7 +5,7 @@ type Message = {
 let messageCount = 0
 
 export async function addMessage(messageText: string) {
-  await new Promise((res) => setTimeout(res, 1500))
+  await new Promise((res) => setTimeout(res, 3000))
   let status = 200
   type ResponseType = { message?: Message; error?: string }
   let responseData: ResponseType = { message: { id: ++messageCount, messageText } }
