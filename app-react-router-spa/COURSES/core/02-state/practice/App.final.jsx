@@ -19,6 +19,7 @@ export function App() {
       <button className="button block" onClick={loadVacations}>
         Load Vacations
       </button>
+
       {pending && <div>Loading...</div>}
       {!pending &&
         vacations.length > 0 &&

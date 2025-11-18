@@ -21,7 +21,9 @@ export function Groceries() {
   ])
 
   function addItem(item: Item) {
-    // Add item to items array
+    // setItems([...items, item])
+
+    setItems(items.concat(item))
   }
 
   // Without Cloning (Faster, More Difficult)

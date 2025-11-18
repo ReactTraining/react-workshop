@@ -24,7 +24,7 @@ export function App() {
         Load Vacations
       </button>
       {/* Start Map */}
-
+      vacation.map()
       {/* <div className="p-3 overflow-hidden flex flex-col max-w-96">
         <div className="h-52 -m-3 flex">
           <VacationImage
@@ -40,7 +40,6 @@ export function App() {
           </div>
         </div>
       </div> */}
-
       {/* End Map */}
     </div>
   )

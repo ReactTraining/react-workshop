@@ -1,4 +1,5 @@
 import { Suspense, lazy } from 'react'
+
 import {
   Navigate,
   Route,
@@ -14,17 +15,11 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
 
-// Lazy Loading Options:
-// 1. React Way: https://react.dev/reference/react/lazy
-//    React.lazy()
-// 2. React Router Way: https://reactrouter.com/en/main/route/lazy
-//    <Route path="a" lazy={() => import("./a")} />
-//    Export names must match route props: Rename component to `export Component`
+const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +28,7 @@ const router = createBrowserRouter(
         <Route index element={<BrowseVacationsPage />} />
         <Route path="vacations">
           <Route path=":vacationId" element={<VacationDetailsPage />} />
-          <Route path="deal-of-the-day" element={<Navigate to="../3" />} />
+          <Route path="deal-of-the-day" element={<Navigate to="/3" />} />
           <Route index element={<Navigate to="/" />} />
         </Route>
       </Route>
