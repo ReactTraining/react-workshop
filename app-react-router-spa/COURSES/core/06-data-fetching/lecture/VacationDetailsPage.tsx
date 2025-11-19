@@ -1,25 +1,16 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router'
 import { api } from '~/utils/api'
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
+import { queryClient } from '~/utils/queryClient'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
-
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
-
-// export async function clientLoader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
 
 // const { data: vacation } = useQuery({
 //   queryKey: ['vacation', vacationId],
@@ -27,17 +18,45 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
+// function useVacation(vacationId: number) {
+//   const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  // api.vacations.getVacation(vacationId)
+//   useEffect(() => {
+//     let isCurrent = true
+//     api.vacations.getVacation(vacationId).then((vacation) => {
+//       if (isCurrent) {
+//         setVacation(vacation)
+//       }
+//     })
+//     return () => {
+//       isCurrent = false
+//     }
+//   }, [vacationId])
+
+//   return vacation
+// }
+
+export async function clientLoader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!) // subscriber to the URL + useState
+
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
+
+  return vacation
+}
+
+export function VacationDetailsPage() {
+  const vacation = useLoaderData()
 
   if (!vacation) return <div>Loading...</div>
 
   return (
     <Card>
       <main className="space-y-6">
+        <input type="text" />
         <div className="flex gap-6">
           <div className="w-80 relative group">
             <span className="bg-slate-800 text-white text-xs absolute top-0 right-0 py-1 px-2 hidden group-hover:block">

@@ -15,10 +15,7 @@ type Props = {
 export function GroceryForm({ onSubmit }: Props) {
   // const nameRef = useRef<HTMLInputElement>(null!)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-
+  function handleSubmit(formData: FormData) {
     const values = Object.fromEntries(formData)
     const results = formSchema.safeParse(values)
     if (results.success) {
@@ -29,7 +26,7 @@ export function GroceryForm({ onSubmit }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form action={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="itemName">Item</label>
         <input
