@@ -17,6 +17,7 @@ export function LoginForm() {
   // const [pending, startTransition] = useTransition()
 
   async function loginAction(formData: FormData) {
+    'use server'
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
