@@ -1,24 +1,39 @@
 import { useState, useRef } from 'react'
+import { z } from 'zod'
 
-type Item = {
-  name: string
-  quantity: number
-}
+const formSchema = z.object({
+  name: z.string().min(1),
+  quantity: z
+    .string()
+    .min(1)
+    .transform((num) => parseInt(num)),
+})
+
+type Item = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit(values: Item): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  const nameRef = useRef()
-  console.log(nameRef) // { current: undefined  }
+  const nameRef = useRef<HTMLInputElement>(null!)
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    console.log(nameRef) // { current: input }
+    const formData = new FormData(event.currentTarget)
+    const formValues = Object.fromEntries(formData)
+    const results = formSchema.safeParse(formValues)
+    if (results.success) {
+      onSubmit(results.data)
+      nameRef.current.value = ''
+      nameRef.current.focus()
+    } else {
+      // set state
+    }
 
-    onSubmit({ name: nameRef.current.value, quantity: 1 })
+    // const name = formData.get('name') as string
+    // const quantity = parseInt(formData.get('quantity') as string)
   }
 
   return (
