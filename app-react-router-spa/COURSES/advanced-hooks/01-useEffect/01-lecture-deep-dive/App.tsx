@@ -1,3 +1,4 @@
+import { lazy } from 'react'
 import {
   Navigate,
   Route,
@@ -13,19 +14,23 @@ import { AccountSubLayout } from '~/AccountSubLayout'
 
 // Pages
 import { BrowseVacationsPage, loader as browseVacationsLoader } from './BrowseVacationsPage'
-import { VacationDetailsPage } from './VacationDetailsPage'
 import { LoginPage } from '~/LoginPage'
 import { ErrorPage } from '~/ErrorPage'
 import { NotFoundPage } from '~/NotFoundPage'
 import { AccountHome } from '~/AccountHome'
 
+import { VacationDetailsPage, loader as vacationDetailsLoader } from './VacationDetailsPage'
+
+// const VacationDetailsPage = lazy(() => import('./VacationDetailsPage'))
+
 export const router = createBrowserRouter(
+  // <-- enable loaders
   createRoutesFromElements(
     <Route Component={MainLayout}>
       <Route Component={VacationsSubLayout}>
         <Route
           index
-          Component={BrowseVacationsPage}
+          element={<BrowseVacationsPage />}
           loader={browseVacationsLoader}
           errorElement={<ErrorPage />}
         />
@@ -33,7 +38,7 @@ export const router = createBrowserRouter(
           <Route
             path=":vacationId"
             Component={VacationDetailsPage}
-            // loader={vacationDetailsLoader}
+            loader={vacationDetailsLoader}
             errorElement={<ErrorPage />}
           />
           <Route path="deal-of-the-day" element={<Navigate to="../3" />} />

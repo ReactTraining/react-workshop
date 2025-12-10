@@ -1,4 +1,5 @@
 'use client'
+import { ServerTwo } from './server-two'
 
 import { useState } from 'react'
 import { ClientTwo } from './client-two'
