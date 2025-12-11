@@ -1,4 +1,5 @@
-'use server' // <-- won't work here, move to top
+'use server'
+
 import { login } from '@/utils/login'
 
 // After refactoring to useActionState
