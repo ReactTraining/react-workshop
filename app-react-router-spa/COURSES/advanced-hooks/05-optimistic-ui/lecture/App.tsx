@@ -9,24 +9,21 @@ import { type ResponseData, updateDatabase } from './helpers/mockServer'
 
 // Golden rule: React flushes state queues to be a re-render based on event loops
 
-// Start op: 1 -------------------------> Resolve
-//    Start: op: 2 -------------------------> Resolve
+// Start op: 1 -------------------------> Resolve: set real likes 1
+//    Start: op: 2 -------------------------> Resolve: set real likes 2
 //       Start: op: 3 -------------------------> Resolve
 
 export function App() {
   const [error, setError] = useState('')
 
-  const [likes, setLikes] = useState(0) // reality
-
-  const [opLikes, setOpLikes] = useOptimistic(likes, (_, nextValue: number) => {
-    return nextValue
+  const [likes, setLikes] = useState(0)
+  const [opLikes, setOpLikes] = useOptimistic(likes, (current, nextLikes) => {
+    return nextLikes
   })
 
   async function action() {
-    setOpLikes(opLikes + 1) // flushes to a re-render before the action is finished
-
+    setOpLikes(opLikes + 1)
     const data = (await updateDatabase(opLikes + 1).then((r) => r.json())) as ResponseData
-    console.log(data.likes)
     setLikes(data.likes)
 
     if (data.error) {

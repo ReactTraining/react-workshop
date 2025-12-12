@@ -39,7 +39,7 @@ function ProductDetails({ productId }: Props) {
       <button className={classnames('button', { 'bg-red-600': inCart })} onClick={onClick}>
         {!inCart ? 'Add To Cart' : 'Remove From Cart'}
       </button>
-      {/* <DialogConfirm
+      <DialogConfirm
         title="Remove from Cart"
         onConfirm={() => {
           // Your code here
@@ -50,7 +50,7 @@ function ProductDetails({ productId }: Props) {
         isOpen={false}
       >
         Are you sure you want to remove this item from the cart?
-      </DialogConfirm> */}
+      </DialogConfirm>
     </div>
   )
 }

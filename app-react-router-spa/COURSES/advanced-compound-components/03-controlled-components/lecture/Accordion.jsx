@@ -1,4 +1,4 @@
-import React, { useState, useId, use, createContext } from 'react'
+import React, { useState, useId, use, createContext, useRef } from 'react'
 import { wrapEvent } from '../../utils'
 
 const AccordionContext = createContext()
@@ -7,9 +7,22 @@ const AccordionContext = createContext()
  * Accordion
  */
 
-export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }) => {
+export const Accordion = ({
+  children,
+  index: controlledIndex,
+  onChange,
+  defaultIndex = 0,
+  id,
+  ...props
+}) => {
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
   const accordionId = useId(id)
+
+  const isControlled = controlledIndex != null
+  const { current: startedControlled } = useRef(isControlled)
+  if (isControlled !== startedControlled) {
+    console.warn('You cannot change between controlled and uncontrolled and vice versa')
+  }
 
   children = React.Children.map(children, (child, index) => {
     const panelId = `accordion-${accordionId}-panel-${index}`
@@ -18,7 +31,7 @@ export const Accordion = ({ children, onChange, defaultIndex = 0, id, ...props }
     const context = {
       buttonId,
       panelId,
-      selected: selectedIndex === index,
+      selected: isControlled ? controlledIndex === index : selectedIndex === index,
       selectPanel: () => {
         onChange && onChange(index)
         setSelectedIndex(index)

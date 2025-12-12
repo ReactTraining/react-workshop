@@ -9,17 +9,18 @@ function useQuery(query: string) {
   // 1. Auto-Memoization
   // 2. useCallback
 
-  const sub = (cb: any) => {
-    const media = window.matchMedia(query)
-    media.addEventListener('change', cb)
-    console.log('subscribe')
-    return () => {
-      console.log('unsubscribe')
-      media.removeEventListener('change', cb)
-    }
-  }
-
-  console.log('re-render')
+  const sub = useCallback(
+    (cb: any) => {
+      const media = window.matchMedia(query)
+      media.addEventListener('change', cb)
+      console.log('subscribe')
+      return () => {
+        console.log('unsubscribe')
+        media.removeEventListener('change', cb)
+      }
+    },
+    [query]
+  )
 
   function getSnapshot() {
     return window.matchMedia(query).matches

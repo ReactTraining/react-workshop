@@ -1,5 +1,7 @@
 import { type RouteConfig, index, layout, route } from '@react-router/dev/routes'
 
+// site.com
+
 export default [
   layout('./routes/main-layout.tsx', [
     layout('./routes/common-layout.tsx', [

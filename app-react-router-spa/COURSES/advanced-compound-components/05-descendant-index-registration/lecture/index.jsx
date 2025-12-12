@@ -10,40 +10,40 @@ function App() {
         <AccordionItem>
           <AccordionButton>What is ARIA?</AccordionButton>
           <AccordionPanel>
-            A way to make web content more accessible: "Accessible Rich Internet Applications".
+            <Accordion>
+              <AccordionItem>
+                <AccordionButton>What is ARIA?</AccordionButton>
+                <AccordionPanel>
+                  A way to make web content more accessible: "Accessible Rich Internet
+                  Applications".
+                </AccordionPanel>
+              </AccordionItem>
+              <CustomAccordionItems />
+            </Accordion>
           </AccordionPanel>
         </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>What does "a11y" stand for?</AccordionButton>
-          <AccordionPanel>
-            A11y is short for "accessibility" since there are 11 characters between "a" and "y".
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Other</AccordionButton>
-          <AccordionPanel>Other Content</AccordionPanel>
-        </AccordionItem>
+        <CustomAccordionItems />
       </Accordion>
     </LessonBody>
   )
 }
 
-// function CustomAccordionItems() {
-//   return (
-//     <>
-//       <AccordionItem>
-//         <AccordionButton>What does "a11y" stand for?</AccordionButton>
-//         <AccordionPanel>
-//           A11y is short for "accessibility" since there are 11 characters between "a" and "y".
-//         </AccordionPanel>
-//       </AccordionItem>
-//       <AccordionItem>
-//         <AccordionButton>Other</AccordionButton>
-//         <AccordionPanel>Other Content</AccordionPanel>
-//       </AccordionItem>
-//     </>
-//   )
-// }
+function CustomAccordionItems() {
+  return (
+    <>
+      <AccordionItem>
+        <AccordionButton>What does "a11y" stand for?</AccordionButton>
+        <AccordionPanel>
+          A11y is short for "accessibility" since there are 11 characters between "a" and "y".
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Other</AccordionButton>
+        <AccordionPanel>Other Content</AccordionPanel>
+      </AccordionItem>
+    </>
+  )
+}
 
 /*
 ✅ It works, but needs some improvements...

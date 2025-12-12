@@ -15,7 +15,7 @@ import { LessonBody, LessonCard } from '~/Lesson'
 import { queryClient } from '~/utils/queryClient'
 
 // Start Here
-import { AccountSidebar } from './AccountSidebar'
+import { AccountSidebar } from './AccountSidebar.final2'
 
 // With useLayoutEffect
 // import { AccountSidebar } from './AccountSidebar.final'

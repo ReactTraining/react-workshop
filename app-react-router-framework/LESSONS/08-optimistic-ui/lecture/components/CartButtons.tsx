@@ -9,12 +9,18 @@ type AddProps = {
 export function AddToCart({ productId, quantityInCart }: AddProps) {
   const fetcher = useFetcher()
 
+  // Optimistic UI
+  let quantity = quantityInCart
+  if (fetcher.formData) {
+    quantity = parseInt(fetcher.formData.get('quantity') as string)
+  }
+
   return (
     <fetcher.Form method="post" action="/cart">
       <input type="hidden" name="productId" value={productId} />
-      <input type="hidden" name="quantity" value={quantityInCart + 1} />
+      <input type="hidden" name="quantity" value={quantity + 1} />
       <button type="submit" className="button button-outline whitespace-nowrap">
-        <Icon name="cart" /> {quantityInCart > 0 && quantityInCart}
+        <Icon name="cart" /> {quantity > 0 && quantity}
       </button>
     </fetcher.Form>
   )

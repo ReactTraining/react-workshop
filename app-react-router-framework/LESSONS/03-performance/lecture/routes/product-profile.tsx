@@ -32,43 +32,17 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       brands: brands.sort(sortLabel),
       categories: categories.sort(sortLabel),
       relatedProductsPromise,
-    },
-    {
-      headers: {
-        'Cache-Control': `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`,
-      },
     }
+    // {
+    //   headers: {
+    //     'Cache-Control': `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`,
+    //   },
+    // }
   )
 }
 
-export function headers({ loaderHeaders }: HeadersArgs) {
-  return loaderHeaders
-}
-
-// export const loader = async ({ params }: LoaderFunctionArgs) => {
-//   const productId = parseInt(params.productId!)
-//   if (!productId) throw new Response('Invalid Product ID', { status: 404 })
-
-//   const [product, brands, categories] = await Promise.all([
-//     getProduct(productId),
-//     getBrands(),
-//     getCategories(),
-//   ])
-
-//   if (!product) throw new Response('Not found', { status: 404 })
-
-//   // NOTICE: This is an unresolved promise. The lack of await means that
-//   // `relatedProductsPromise` is a promise variable being returned from
-//   // the loader to the client
-//   const limit = 3
-//   const relatedProductsPromise = getRelatedProducts(product.brand, limit, [productId]).then(sleep())
-
-//   return {
-//     product,
-//     brands: brands.sort(sortLabel),
-//     categories: categories.sort(sortLabel),
-//     relatedProductsPromise,
-//   }
+// export function headers({ loaderHeaders }: HeadersArgs) {
+//   return loaderHeaders
 // }
 
 export default function Page({ loaderData }: Route.ComponentProps) {

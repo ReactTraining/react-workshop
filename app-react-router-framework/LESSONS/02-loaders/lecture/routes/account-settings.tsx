@@ -2,9 +2,11 @@ import { Heading } from '~/components/Heading'
 import { FieldWrap } from '~/components/FormFields'
 import { Link } from 'react-router'
 import { useRouteLoaderData } from 'react-router'
+import { type LoaderType } from './account-layout'
 
 export default function AccountSettings() {
-  const settings = { deals: 'weekly', delivery: 'door' }
+  const { settings } = useRouteLoaderData<LoaderType>('routes/account-layout')!
+  const someState = useOutletContext<>()
 
   return (
     <>

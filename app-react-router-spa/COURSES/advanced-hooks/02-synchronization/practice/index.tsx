@@ -2,12 +2,12 @@ import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
 
 // Practice 1
-// import { Clipboard } from './Clipboard.final'
-import { Clipboard } from './Clipboard'
+import { Clipboard } from './Clipboard.final'
+// import { Clipboard } from './Clipboard'
 
 // Practice 2
-// import { LocalStorage } from './LocalStorage.final'
-import { LocalStorage } from './LocalStorage'
+import { LocalStorage } from './LocalStorage.final'
+// import { LocalStorage } from './LocalStorage'
 
 function App() {
   return (
