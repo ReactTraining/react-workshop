@@ -6,19 +6,16 @@ export function App() {
   const [vacations, setVacations] = useState([])
   const [pending, setPending] = useState(false)
 
-  function loadVacations() {
+  useEffect(() => {
     setPending(true)
     api.vacations.getAll().then((vacations) => {
       setPending(false)
       setVacations(vacations)
     })
-  }
+  }, [])
 
   return (
     <div className="space-y-6 min-w-96">
-      <button className="button block" onClick={loadVacations}>
-        Load Vacations
-      </button>
       {pending && <div>Loading...</div>}
       {!pending &&
         vacations.length > 0 &&
