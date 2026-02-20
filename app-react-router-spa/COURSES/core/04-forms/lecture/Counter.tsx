@@ -22,7 +22,11 @@ export function Counter({ count, setCount, minCount = 0 }: Props) {
       <button onClick={subtract} className="button flex-1">
         <Icon name="minus" />
       </button>
-      <input className="form-field align-middle px-6 w-24 text-center" />
+      <input
+        value={count}
+        onChange={(e) => setCount(parseInt(e.target.value))}
+        className="form-field align-middle px-6 w-24 text-center"
+      />
       <button onClick={add} className="button flex-1">
         <Icon name="plus" />
       </button>
