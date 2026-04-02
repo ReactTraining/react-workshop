@@ -6,12 +6,12 @@ export function App() {
   const [vacations, setVacations] = useState([])
   const [pending, setPending] = useState(false)
 
-  function loadVacations() {
+  async function loadVacations() {
     setPending(true)
-    api.vacations.getAll().then((vacations) => {
-      setPending(false)
-      setVacations(vacations)
-    })
+
+    const vacations = await api.vacations.getAll()
+    setPending(false)
+    setVacations(vacations)
   }
 
   return (

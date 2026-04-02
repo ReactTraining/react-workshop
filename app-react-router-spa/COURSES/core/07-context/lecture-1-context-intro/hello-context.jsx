@@ -7,27 +7,44 @@ import classnames from 'classnames'
   App.js
 *****************************************/
 
+const FavContext = createContext()
+
 export function App() {
   const [favorites, setFavorites] = useState([])
 
-  function updateFavorite(id) {
-    if (isFavorite(id)) {
-      setFavorites(favorites.filter((favId) => favId !== id))
-    } else {
-      setFavorites(favorites.concat(id))
+  const context = useMemo(() => {
+    function updateFavorite(id) {
+      if (isFavorite(id)) {
+        setFavorites(favorites.filter((favId) => favId !== id))
+      } else {
+        setFavorites(favorites.concat(id))
+      }
     }
-  }
 
-  function isFavorite(id) {
-    return favorites.includes(id)
-  }
+    function isFavorite(id) {
+      return favorites.includes(id)
+    }
+    return {
+      favorites,
+      updateFavorite,
+      isFavorite,
+    }
+  }, [favorites])
 
   return (
-    <LessonBody>
-      <LessonCard>
-        <MainLayout favorites={favorites} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-      </LessonCard>
-    </LessonBody>
+    <StripeProvider>
+      <ReactQueryProvider>
+        <AuthProvider>
+          <FavContext.Provider value={context}>
+            <LessonBody>
+              <LessonCard>
+                <MainLayout />
+              </LessonCard>
+            </LessonBody>
+          </FavContext.Provider>
+        </AuthProvider>
+      </ReactQueryProvider>
+    </StripeProvider>
   )
 }
 
@@ -35,29 +52,24 @@ export function App() {
   MainLayout.js
 *****************************************/
 
-function MainLayout({ favorites, isFavorite, updateFavorite }) {
-  return (
-    <BrowseVacationsPage
-      favorites={favorites}
-      isFavorite={isFavorite}
-      updateFavorite={updateFavorite}
-    />
-  )
-}
+const MainLayout = memo(() => {
+  return <BrowseVacationsPage />
+})
 
 /****************************************
  BrowseVacationsPage.js
  *****************************************/
 
-function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
+function BrowseVacationsPage() {
+  const { favorites } = useContext(FavContext)
   return (
     <div className="flex justify-between">
       <div>Favorites: {JSON.stringify(favorites)}</div>
       <div>
         <div className="flex flex-col gap-2">
-          <FavoriteVacationButton id={1} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={2} isFavorite={isFavorite} updateFavorite={updateFavorite} />
-          <FavoriteVacationButton id={3} isFavorite={isFavorite} updateFavorite={updateFavorite} />
+          <FavoriteVacationButton id={1} />
+          <FavoriteVacationButton id={2} />
+          <FavoriteVacationButton id={3} />
         </div>
       </div>
     </div>
@@ -68,7 +80,8 @@ function BrowseVacationsPage({ favorites, isFavorite, updateFavorite }) {
   FavoriteVacationButton.js
 *****************************************/
 
-function FavoriteVacationButton({ id, isFavorite, updateFavorite }) {
+function FavoriteVacationButton({ id }) {
+  const { isFavorite, updateFavorite } = useContext(FavContext)
   const vacationIsFavorite = isFavorite(id)
 
   return (
