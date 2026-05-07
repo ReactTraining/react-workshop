@@ -31,7 +31,7 @@ export function FavProvider({ children }) {
     }
   }, [favorites])
 
-  return <FavContext.Provider value={context}>{children}</FavContext.Provider>
+  return <FavContext value={context}>{children}</FavContext>
 }
 
 /****************************************
@@ -83,7 +83,7 @@ function BrowseVacationsPage() {
 *****************************************/
 
 function FavoriteVacationButton({ id }) {
-  const { updateFavorite, isFavorite } = useContext(FavContext)
+  const { updateFavorite, isFavorite } = use(FavContext)
   const vacationIsFavorite = isFavorite(id)
 
   return (

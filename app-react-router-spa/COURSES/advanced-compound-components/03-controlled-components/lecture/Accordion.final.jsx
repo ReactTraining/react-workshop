@@ -31,7 +31,7 @@ export const Accordion = ({
     const context = {
       buttonId,
       panelId,
-      selected: isControlled ? controlledIndex === index : selectedIndex === index,
+      selected: isControlled ? externalIndex === index : selectedIndex === index,
       selectPanel: () => {
         onChange && onChange(index)
         if (!isControlled) {

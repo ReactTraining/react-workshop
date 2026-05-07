@@ -5,11 +5,12 @@ export function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState<string | null>(null)
 
+  const countRef = useRef(0)
+  countRef.current = count
+
   function saveToDatabase() {
     setTimeout(() => {
-      setMessage(
-        `We saved a count of ${count}, but it is stale since the count state may have changed`
-      )
+      setMessage(`We saved a count of ${count}, but the latest state is ${countRef.current}`)
     }, 3000)
   }
 

@@ -7,5 +7,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <LessonCard>
       <App />
     </LessonCard>
-  </LessonBody>
+  </LessonBody>,
 )

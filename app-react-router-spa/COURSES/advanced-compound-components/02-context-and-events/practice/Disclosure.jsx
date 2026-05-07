@@ -7,11 +7,7 @@ export function Disclosure({ children, defaultOpen = false, ...props }) {
   const panelId = `panel-${id}`
 
   children = React.Children.map(children, (child) => {
-    return React.cloneElement(child, {
-      isOpen,
-      panelId,
-      onSelect: () => setIsOpen(!isOpen),
-    })
+    return React.cloneElement(child)
   })
 
   return (
