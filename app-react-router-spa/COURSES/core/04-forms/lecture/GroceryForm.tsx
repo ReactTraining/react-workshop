@@ -1,32 +1,44 @@
 import { useState, useRef } from 'react'
+import z from 'zod'
 
-type Item = {
-  name: string
-  quantity: number
-}
+const formSchema = z.object({
+  name: z.string(),
+  quantity: z
+    .string()
+    .min(1)
+    .max(100)
+    .transform((v) => parseInt(v)),
+})
+
+type Item = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit(values: Item): void
 }
 
 export function GroceryForm({ onSubmit }: Props) {
-  // Teach refs with typescript
-  // Teach React 19 actions
+  const [nameInput, setNameInput] = useState()
 
-  function handleSubmit(event /* <---- TS has no idea what this is */) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // Three basic ways to get our form's fields
-    // 1. Scrape for it: ids (bad) refs (good)
-    // 2. Controlled with state
-    // 3. new FormData
-    onSubmit({ name: 'test', quantity: 1 })
+
+    const formData = new FormData(event.currentTarget)
+    // const name = formData.get('name') as string
+    // const quantity = parseInt(formData.get('quantity') as string)
+
+    const formValues = Object.fromEntries(formData)
+    const results = formSchema.safeParse(formValues)
+    if (results.success) {
+      onSubmit(results.data)
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3" noValidate>
       <div>
         <label htmlFor="itemName">Item</label>
         <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />
+        <span></span>
       </div>
       <div>
         <label htmlFor="itemQuantity">Quantity</label>
