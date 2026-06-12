@@ -23,7 +23,6 @@ export function App() {
       <button className="button block" onClick={loadVacations}>
         Load Vacations
       </button>
-      {/* Start Map */}
 
       {/* <div className="p-3 overflow-hidden flex flex-col max-w-96">
         <div className="h-52 -m-3 flex">
@@ -40,8 +39,6 @@ export function App() {
           </div>
         </div>
       </div> */}
-
-      {/* End Map */}
     </div>
   )
 }

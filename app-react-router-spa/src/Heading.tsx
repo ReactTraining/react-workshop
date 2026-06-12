@@ -18,7 +18,7 @@ export function Heading({ as: El = 'h1', size = 1, className, ...props }: Props)
           'text-xl': size === 3,
           'text-lg': size === 4,
         },
-        className
+        className,
       )}
     />
   )

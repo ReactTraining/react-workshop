@@ -16,12 +16,12 @@ export default tseslint.config(
     },
     plugins: {
       'react-hooks': reactHooks,
-      'react-compiler': reactCompiler,
+      // 'react-compiler': reactCompiler,
     },
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'react-compiler/react-compiler': 'error',
+      // 'react-compiler/react-compiler': 'error',
       'no-unused-vars': 'off',
       'no-constant-condition': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
@@ -29,5 +29,5 @@ export default tseslint.config(
       'prefer-const': 'off',
       'no-extra-semi': 'off',
     },
-  }
+  },
 )
