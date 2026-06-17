@@ -10,6 +10,7 @@ export function LoginForm() {
 
   async function loginAction(formData: FormData) {
     'use server'
+    console.log('here') // node
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 

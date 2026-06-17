@@ -6,20 +6,19 @@ import { Heading } from '~/Heading'
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
 export function App() {
-  const allUsers = useUsers(5000)
+  const allUsers = useUsers(10000)
   const [users, setUsers] = useState(allUsers)
   const [minLikes, setMinLikes] = useState(0)
 
   const [pending, startTransition] = useTransition()
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
+    setMinLikes(newMinLikes) // fast high
+
+    startTransition(() => {
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+      setUsers(filteredUsers) // slow low
+    })
   }
 
   return (
@@ -60,9 +59,10 @@ type Props = {
   users: UserType[]
 }
 
-// See with and without memoization (and auto-memoization ✨)
-const UserList = ({ users }: Props) => {
+// Memoization means to cache the output of a fn
+const UserList = memo(({ users }: Props) => {
   console.log('Re-render UserList')
+
   return (
     <>
       {users.map((user) => {
@@ -76,4 +76,4 @@ const UserList = ({ users }: Props) => {
       })}
     </>
   )
-}
+})

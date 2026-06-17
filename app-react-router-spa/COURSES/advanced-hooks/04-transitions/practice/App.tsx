@@ -3,6 +3,8 @@ import { useState, useTransition } from 'react'
 export function App() {
   const [tabIndex, setTabIndex] = useState(0)
 
+  const [pending, startTransition] = useTransition()
+
   return (
     <div>
       <div className="bg-slate-100 rounded-md p-2 mb-5">
