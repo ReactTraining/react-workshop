@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router'
+import { NavLink, Outlet, useNavigation } from 'react-router'
 import { Logo } from '~/components/Logo'
 import { CenterContent } from '~/components/CenterContent'
 import type { Route } from './+types/main-layout'
@@ -9,14 +9,14 @@ export async function loader() {
 }
 
 export default function MainLayout({ loaderData: { lesson } }: Route.ComponentProps) {
+  const nav = useNavigation()
+  nav.state
   return (
     <div>
       <header className="d bg-gradient-to-r from-sky-400 to-indigo-950">
         <CenterContent className="border-b py-3">
           <div className="flex justify-between items-center">
-            <div className="">
-              <Logo />
-            </div>
+            <div className="">{nav.state === 'idle' ? <Logo /> : <div>Loader for Aaron</div>}</div>
             <div className="text-white/60">{lesson}</div>
           </div>
         </CenterContent>

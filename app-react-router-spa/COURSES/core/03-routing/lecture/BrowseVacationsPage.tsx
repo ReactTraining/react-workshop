@@ -4,19 +4,7 @@ import { api } from '~/utils/api'
 import { BrowseVacationsItem } from '~/BrowseVacationsItem'
 import type { Vacation } from '~/utils/types'
 
-export function BrowseVacationsPage() {
-  const [vacations, setVacations] = useState<Vacation[] | null>(null)
-
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getAll().then((vacations) => {
-      if (isCurrent) setVacations(vacations)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
-
+export function BrowseVacationsPage({ loaderData }) {
   return (
     <div>
       {!vacations && <div>Loading...</div>}

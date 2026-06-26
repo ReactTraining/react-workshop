@@ -11,6 +11,7 @@ import type { Route } from './+types/main-layout'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const [sessionUser, cart] = await Promise.all([getSessionUser(request), getCart(request)])
+  console.log('THE LOADER WAS CALLED')
   return { sessionUser, cart }
 }
 

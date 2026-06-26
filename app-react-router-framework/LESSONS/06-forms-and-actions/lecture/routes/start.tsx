@@ -3,7 +3,12 @@ import { Form, Link, type ActionFunctionArgs, type LoaderFunctionArgs } from 're
 export default function Page() {
   return (
     <div>
-      👋 Let's start here. Did you know a form and an anchor are essentially the same thing?
+      <a href="/somepath?hello=world">Word</a>
+
+      <Form method="GET">
+        <input type="text" name="hello" value="world" />
+        <button type="submit">Submit</button>
+      </Form>
     </div>
   )
 }

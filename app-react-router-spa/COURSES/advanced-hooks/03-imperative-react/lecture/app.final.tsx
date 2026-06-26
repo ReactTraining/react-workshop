@@ -61,6 +61,7 @@ function Popover({ children, targetRef, ...props }: PopoverProps) {
 }
 
 type DefineProps = { children: React.ReactNode }
+
 function Define({ children }: DefineProps) {
   const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null!)

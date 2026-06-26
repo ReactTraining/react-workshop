@@ -9,23 +9,26 @@ function useQuery(query: string) {
   // 1. Auto-Memoization
   // 2. useCallback
 
-  const sub = (cb: any) => {
-    const media = window.matchMedia(query)
-    media.addEventListener('change', cb)
-    console.log('subscribe')
-    return () => {
-      console.log('unsubscribe')
-      media.removeEventListener('change', cb)
-    }
-  }
+  const sub = useCallback(
+    (snap: any) => {
+      const media = window.matchMedia(query)
+      media.addEventListener('change', snap)
+      console.log('subscribe')
+      return () => {
+        console.log('unsubscribe')
+        media.removeEventListener('change', snap)
+      }
+    },
+    [query],
+  )
 
   console.log('re-render')
 
-  function getSnapshot() {
+  function getClientSnapshot() {
     return window.matchMedia(query).matches
   }
 
-  return useSyncExternalStore(sub, getSnapshot)
+  return useSyncExternalStore(sub, getClientSnapshot)
 }
 
 type Props = { width: number }

@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom/client'
 import { LessonBody, LessonCard } from '~/Lesson'
-// import { App } from './app.final'
+import { App } from './app.final'
 // import { App } from './app.popover.final'
-import { App } from './app'
+// import { App } from './app'
 import './styles.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -10,5 +10,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <LessonCard>
       <App />
     </LessonCard>
-  </LessonBody>
+  </LessonBody>,
 )

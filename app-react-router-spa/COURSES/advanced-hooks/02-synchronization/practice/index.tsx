@@ -7,7 +7,7 @@ import { Clipboard } from './Clipboard'
 
 // Practice 2
 // import { LocalStorage } from './LocalStorage.final'
-import { LocalStorage } from './LocalStorage'
+import { LocalStorage } from './LocalStorage.final'
 
 function App() {
   return (
@@ -25,5 +25,5 @@ function App() {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <LessonBody>
     <App />
-  </LessonBody>
+  </LessonBody>,
 )

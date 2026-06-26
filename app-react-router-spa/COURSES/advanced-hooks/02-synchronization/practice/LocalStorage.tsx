@@ -36,7 +36,7 @@ export function LocalStorage() {
     dispatchEvent(
       new CustomEvent('STORAGE_EVENT', {
         detail: text,
-      })
+      }),
     )
   }
 

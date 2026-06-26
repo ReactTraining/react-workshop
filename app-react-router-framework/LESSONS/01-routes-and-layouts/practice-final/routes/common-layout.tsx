@@ -2,7 +2,7 @@ import { Outlet } from 'react-router'
 
 export default function CommonLayout() {
   return (
-    <div className="p-3 bg-slate-300 border rounded space-y-3">
+    <div className="p-3 bg-pink-400 border rounded space-y-3">
       <div className="p-3 bg-slate-200 rounded">
         <h1>Common Layout</h1>
       </div>

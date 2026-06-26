@@ -1,15 +1,22 @@
 import { useState, useRef, useEffect } from 'react'
 import { LessonBody, LessonCard } from '~/Lesson'
 
+// App() count: 1   { current: 7 }
+// App() count: 2   { current: 7 }
+// App() count: 3 <-- close over   { current: 7 }
+
+// App() count: 7    { current: 7 }
+
 export function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState<string | null>(null)
 
+  const myRef = useRef(0) // { current: 0 }
+  myRef.current = count
+
   function saveToDatabase() {
     setTimeout(() => {
-      setMessage(
-        `We saved a count of ${count}, but it is stale since the count state may have changed`
-      )
+      setMessage(`We saved a count of ${count}, but the latest count is ${myRef.current}`)
     }, 3000)
   }
 

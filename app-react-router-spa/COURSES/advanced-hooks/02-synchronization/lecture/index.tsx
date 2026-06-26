@@ -57,8 +57,8 @@ export const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<BrowseVacationsPage />} loader={clientLoader} />
       <Route path="*" element={<Navigate to="/" />} />
-    </Route>
-  )
+    </Route>,
+  ),
 )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -66,5 +66,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <FavoriteProvider>
       <RouterProvider router={router} />
     </FavoriteProvider>
-  </QueryClientProvider>
+  </QueryClientProvider>,
 )
