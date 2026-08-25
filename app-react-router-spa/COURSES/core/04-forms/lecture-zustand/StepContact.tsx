@@ -1,5 +1,6 @@
 import { FormEvent } from 'react'
 import { useCheckoutStore } from './checkoutStore'
+import { Input } from './Input'
 
 export function StepContact() {
   const { data, setField, nextStep } = useCheckoutStore()
@@ -11,7 +12,7 @@ export function StepContact() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3 max-w-96">
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="First Name"
@@ -20,7 +21,7 @@ export function StepContact() {
         value={data.firstName}
         onChange={(e) => setField('firstName', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Last Name"
@@ -29,7 +30,7 @@ export function StepContact() {
         value={data.lastName}
         onChange={(e) => setField('lastName', e.target.value)}
       />
-      <input
+      <Input
         type="email"
         className="form-field"
         aria-label="Email"
@@ -38,7 +39,7 @@ export function StepContact() {
         value={data.email}
         onChange={(e) => setField('email', e.target.value)}
       />
-      <input
+      <Input
         type="tel"
         className="form-field"
         aria-label="Phone"

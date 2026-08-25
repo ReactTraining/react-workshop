@@ -1,5 +1,6 @@
 import { FormEvent } from 'react'
 import { useCheckoutStore } from './checkoutStore'
+import { Input } from './Input'
 
 export function StepShipping() {
   const { data, setField, nextStep, prevStep } = useCheckoutStore()
@@ -11,7 +12,7 @@ export function StepShipping() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3 max-w-96">
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Address"
@@ -20,7 +21,7 @@ export function StepShipping() {
         value={data.address}
         onChange={(e) => setField('address', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="City"
@@ -29,7 +30,7 @@ export function StepShipping() {
         value={data.city}
         onChange={(e) => setField('city', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="State"
@@ -38,7 +39,7 @@ export function StepShipping() {
         value={data.state}
         onChange={(e) => setField('state', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Zip"

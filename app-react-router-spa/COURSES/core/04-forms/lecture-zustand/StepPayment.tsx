@@ -1,5 +1,6 @@
 import { FormEvent } from 'react'
 import { useCheckoutStore } from './checkoutStore'
+import { Input } from './Input'
 
 export function StepPayment() {
   const { data, setField, prevStep } = useCheckoutStore()
@@ -11,7 +12,7 @@ export function StepPayment() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-3 max-w-96">
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Name on Card"
@@ -20,7 +21,7 @@ export function StepPayment() {
         value={data.cardName}
         onChange={(e) => setField('cardName', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Card Number"
@@ -29,7 +30,7 @@ export function StepPayment() {
         value={data.cardNumber}
         onChange={(e) => setField('cardNumber', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="Expiration"
@@ -38,7 +39,7 @@ export function StepPayment() {
         value={data.expiration}
         onChange={(e) => setField('expiration', e.target.value)}
       />
-      <input
+      <Input
         type="text"
         className="form-field"
         aria-label="CVV"
