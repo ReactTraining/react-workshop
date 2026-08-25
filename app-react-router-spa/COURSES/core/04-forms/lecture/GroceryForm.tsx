@@ -13,13 +13,17 @@ export function GroceryForm({ onSubmit }: Props) {
   // Teach refs with typescript
   // Teach React 19 actions
 
-  function handleSubmit(event /* <---- TS has no idea what this is */) {
+  // const nameRef = useRef<HTMLInputElement>(null!)
+
+  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    // Three basic ways to get our form's fields
-    // 1. Scrape for it: ids (bad) refs (good)
-    // 2. Controlled with state
-    // 3. new FormData
-    onSubmit({ name: 'test', quantity: 1 })
+
+    const formData = new FormData(event.target)
+
+    const formValues = Object.fromEntries(formData)
+    console.log(formValues)
+
+    onSubmit({ name: '', quantity: 1 })
   }
 
   return (
