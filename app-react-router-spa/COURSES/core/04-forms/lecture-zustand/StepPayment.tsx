@@ -1,11 +1,10 @@
-import { FormEvent } from 'react'
 import { useCheckoutStore } from './checkoutStore'
 import { Input } from './Input'
 
 export function StepPayment() {
   const { data, setField, prevStep } = useCheckoutStore()
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     console.log(data)
   }

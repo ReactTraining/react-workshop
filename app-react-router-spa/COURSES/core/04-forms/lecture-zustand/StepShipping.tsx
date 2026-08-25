@@ -1,11 +1,10 @@
-import { FormEvent } from 'react'
 import { useCheckoutStore } from './checkoutStore'
 import { Input } from './Input'
 
 export function StepShipping() {
   const { data, setField, nextStep, prevStep } = useCheckoutStore()
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     nextStep()
   }
