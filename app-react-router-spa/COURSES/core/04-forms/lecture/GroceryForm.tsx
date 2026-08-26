@@ -1,9 +1,12 @@
 import { useState, useRef } from 'react'
+import * as z from 'zod'
 
-type Item = {
-  name: string
-  quantity: number
-}
+const formSchema = z.object({
+  name: z.string(),
+  quantity: z.string().transform((val) => parseInt(val)),
+})
+
+type Item = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit(values: Item): void
@@ -20,17 +23,27 @@ export function GroceryForm({ onSubmit }: Props) {
 
     const formData = new FormData(event.target)
 
-    const formValues = Object.fromEntries(formData)
-    console.log(formValues)
+    const rawFormValues = Object.fromEntries(formData)
 
-    onSubmit({ name: '', quantity: 1 })
+    const results = formSchema.safeParse(rawFormValues)
+    if (results.success) {
+      const data = results.data
+      onSubmit(data)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
         <label htmlFor="itemName">Item</label>
-        <input id="itemName" type="text" className="form-field" autoComplete="off" name="name" />
+        <input
+          autoFocus
+          id="itemName"
+          type="text"
+          className="form-field"
+          autoComplete="off"
+          name="name"
+        />
       </div>
       <div>
         <label htmlFor="itemQuantity">Quantity</label>
