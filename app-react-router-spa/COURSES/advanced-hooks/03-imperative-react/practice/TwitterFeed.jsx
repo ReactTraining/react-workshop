@@ -1,5 +1,7 @@
 import { useRef, useEffect, useMemo } from 'react'
 
+const queueRenders = []
+
 function Tweet({ id }) {
   const tweetRef = useRef()
 
@@ -9,11 +11,18 @@ function Tweet({ id }) {
       window.twttr.widgets.createTweetEmbed(id, tweetRef.current, options)
     }
 
-    let script = document.createElement('script')
-    script.setAttribute('src', '//platform.twitter.com/widgets.js')
-    document.body.appendChild(script)
-    // When this script loads, the twitter API will be at `window.twttr`
-    script.onload = () => {
+    if (!window.twttr) {
+      if (queueRenders.length === 0) {
+        let script = document.createElement('script')
+        script.setAttribute('src', '//platform.twitter.com/widgets.js')
+        document.body.appendChild(script)
+        // When this script loads, the twitter API will be at `window.twttr`
+        script.onload = () => {
+          queueRenders.forEach((cb) => cb())
+        }
+      }
+      queueRenders.push(renderTweet)
+    } else {
       renderTweet()
     }
   }, [id])

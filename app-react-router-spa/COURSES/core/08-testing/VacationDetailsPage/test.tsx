@@ -29,7 +29,7 @@ vi.mock('~/SimilarVacations', () => ({
 
 // If we want a wrapper to no do anything but be an empty shell
 vi.mock('~/Card', () => ({
-  Card: (props: PropsWithChildren) => props.children,
+  Card: ({ children }) => children,
 }))
 
 // If we want to mock something like our promise-based data-fetches
