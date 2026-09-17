@@ -1,37 +1,30 @@
 import { useEffect, useState } from 'react'
 import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router'
 import { api } from '~/utils/api'
-import { useQuery } from '@tanstack/react-query'
 import { VacationImage } from '~/VacationImage'
 import { Heading } from '~/Heading'
 import { SimilarVacations } from './SimilarVacations'
 import { Card } from '~/Card'
+import { queryClient } from '~/utils/queryClient'
 import type { Vacation } from '~/utils/types'
 
 // Setting state on unmounted components
 // https://github.com/facebook/react/pull/22114
 
-// const vacation = await queryClient.ensureQueryData({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+export async function clientLoader({ params }: LoaderFunctionArgs) {
+  const vacationId = parseInt(params.vacationId!) // subscriber to the URL, useState
 
-// export async function clientLoader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
+  const vacation = await queryClient.ensureQueryData({
+    queryKey: ['vacation', vacationId],
+    queryFn: () => api.vacations.getVacation(vacationId),
+    staleTime: 1000 * 30,
+  })
 
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
+  return { vacation }
+}
 
 export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
-
-  // api.vacations.getVacation(vacationId)
+  const { vacation } = useLoaderData<typeof clientLoader>()
 
   if (!vacation) return <div>Loading...</div>
 

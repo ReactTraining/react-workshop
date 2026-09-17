@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { VacationImage } from '~/VacationImage'
 import { api } from '~/utils/api'
 
+// pending: true
+
 export function App() {
   const [vacations, setVacations] = useState([])
   const [pending, setPending] = useState(false)
