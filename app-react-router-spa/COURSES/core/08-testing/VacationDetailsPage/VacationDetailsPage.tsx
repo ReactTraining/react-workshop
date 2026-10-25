@@ -8,12 +8,12 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 
 export function VacationDetailsPage() {
-  const vacationId = parseInt(useParams().vacationId!)
+  const { vacationId } = useParams()
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
   useEffect(() => {
     let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
+    api.vacations.getVacation(Number(vacationId)).then((vacation) => {
       if (isCurrent) setVacation(vacation)
     })
     return () => {
@@ -21,7 +21,7 @@ export function VacationDetailsPage() {
     }
   }, [vacationId])
 
-  if (!vacation) return <div>Loading...</div>
+  if (!vacation) return <div role="status">Loading...</div>
 
   return (
     <Card>

@@ -27,7 +27,7 @@ JSX Confusing Parts: https://reacttraining.com/blog/jsx-the-confusing-parts/
 - State can be considered any variable that changes over time in the component.
 - `useState` Format: `const [value, setValue] = useState(defaultValue)`.
 - The entire component re-renders (the component function gets called again) each time state changes.
-- Multiple state values are done with multiple `useState` or can combined into one ` useState`` if we want to use an object like this:  `useState({ name: 'Dave', age: 40 })`
+- Multiple state values are done with multiple `useState` or can combined into one `useState`` if we want to use an object like this: `useState({ name: 'Dave', age: 40 })`
 - We can provide an array of JSX but we have to supply a "key" prop
 - We can use [].map to iterate over arrays to make arrays of JSX
 - The order of hook declarations matters to React, so we can't "conditionalize" calls to `useState`
@@ -193,7 +193,10 @@ function useUsers() {
 
 ## Lesson 8: Testing
 
-- Be sure to see the GUIDE.md in the testing folder for information on setting up unit testing
-- The main principal of React unit testing is - Test the component the way the user uses it, not the implementation details of the component.
-- In other words, `render(<Comp />)` render the component in the test and issue events onto the component similarly to how the user clicks, submits forms, or uses keyboard events on the component. Then observe the fake DOM in the unit test to see if the component renders what you'd expect. The "fake DOM" is orchestrated through Jest and JSDOM.
-- Mock out (with Jest) the React-tree architecture above your component (Context, Redux, etc) or environmental things like the URL, and mock out sub (child) components. This allows you to test your component in isolation.
+- Setup for your own app is in `COURSES/core/08-testing/TESTING SETUP.md`. This repo already has Vitest configured. From `app-react-router-spa`, run `npm test`.
+- Test the component the way a person uses it. Render it, interact with `userEvent` (click, type, keyboard), and assert on what is on the screen.
+- Query the way assistive tech does: `getByRole` and `getByLabelText` first. Use `findBy*` when the UI shows up after a promise. `getByTestId` is a last resort.
+- `userEvent` performs the event sequence a browser would. `fireEvent` only dispatches the one event you name.
+- These tests run in happy-dom, a browser approximation inside Node. That is enough for component tests. A real browser (Playwright, or Vitest Browser Mode) is a separate layer.
+- For the URL, render with React Router's `createMemoryRouter` instead of mocking `useParams`.
+- Mock the edges: network calls (`vi.fn()` / `vi.mock`) and child components that fetch their own data. Type a mock with `vi.mocked()`.

@@ -20,19 +20,28 @@ export function Counter({ count, setCount, min = 0 }: CounterProps) {
   return (
     <div className="inline-flex flex-gap items-center">
       <div>
-        <button onClick={subtract} className="button button-small" data-testid="subtract">
+        <button
+          type="button"
+          onClick={subtract}
+          className="button button-small"
+          aria-label="Subtract"
+          disabled={count <= min}
+        >
           <Icon name="minus" />
         </button>
       </div>
       <input
         className="form-field w-15 text-center"
         type="text"
+        aria-label="Count"
         value={count}
-        onChange={(event) => setCount(parseInt(event.target.value))}
-        data-testid="input"
+        onChange={(event) => {
+          const next = parseInt(event.target.value, 10)
+          if (!Number.isNaN(next)) setCount(next)
+        }}
       />
       <div>
-        <button onClick={add} className="button button-small" data-testid="add">
+        <button type="button" onClick={add} className="button button-small" aria-label="Add">
           <Icon name="plus" />
         </button>
       </div>

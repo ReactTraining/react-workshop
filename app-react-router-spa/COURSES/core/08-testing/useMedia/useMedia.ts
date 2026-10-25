@@ -1,16 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
-export function useMedia(query) {
-  const [matches, setMatches] = useState(() => {
-    return window && window.matchMedia(query).matches
-  })
+function getServerSnapshot() {
+  return false
+}
 
-  useEffect(() => {
-    const media = window.matchMedia(query)
-    const listener = (e) => setMatches(e.matches)
-    media.addEventListener('change', listener)
-    return () => media.removeEventListener('change', listener)
-  }, [query])
+// useSyncExternalStore is the current way to subscribe to a browser API.
+// The snapshot is read during render, and React re-renders when matchMedia
+// fires a change event.
+export function useMedia(query: string) {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const media = window.matchMedia(query)
+      media.addEventListener('change', onStoreChange)
+      return () => media.removeEventListener('change', onStoreChange)
+    },
+    [query],
+  )
 
-  return matches
+  const getSnapshot = useCallback(() => window.matchMedia(query).matches, [query])
+
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }

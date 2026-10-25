@@ -1,62 +1,56 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import { PropsWithChildren } from 'react'
-import { vi, type Mock } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { createMemoryRouter, RouterProvider } from 'react-router'
+import { vi } from 'vitest'
 
-// Test Component
 import { VacationDetailsPage } from './VacationDetailsPage'
-
-// Mock modules
 import { api } from '~/utils/api'
+import type { Vacation } from '~/utils/types'
 
-/**
- * Mocks
- */
-
-vi.mock('react-router', async () => ({
-  // use actual library code for all non-hook parts
-  ...(await vi.importActual('react-router')),
-  Link: ({ children }: PropsWithChildren) => <a href="/">{children}</a>,
-  useParams: () => ({
-    // arbitrary value to mock the URL
-    vacationId: '1',
-  }),
-}))
-
-// If we want to completely eliminate a sub-tree of components
+// SimilarVacations loads its own data. Replace that subtree so this file
+// only covers VacationDetailsPage.
 vi.mock('~/SimilarVacations', () => ({
   SimilarVacations: () => null,
 }))
 
-// If we want a wrapper to no do anything but be an empty shell
-vi.mock('~/Card', () => ({
-  Card: (props: PropsWithChildren) => props.children,
-}))
-
-// If we want to mock something like our promise-based data-fetches
-// but we don't know how yet so we'll do more specifics in the actual
-// tests below
 vi.mock('~/utils/api', () => ({
-  // mock values setup in tests:
   api: { vacations: { getVacation: vi.fn() } },
 }))
 
-/**
- * Tests
- */
+const getVacation = vi.mocked(api.vacations.getVacation)
+
+// Put the page on a real route instead of mocking useParams.
+function renderPage(vacationId = '1') {
+  const router = createMemoryRouter(
+    [{ path: '/vacations/:vacationId', element: <VacationDetailsPage /> }],
+    { initialEntries: [`/vacations/${vacationId}`] },
+  )
+
+  return render(<RouterProvider router={router} />)
+}
+
+const vacation: Vacation = {
+  id: 1,
+  name: 'Costa Rica',
+  price: 999,
+  related: [],
+}
 
 describe('VacationDetailsPage', () => {
-  it("should show loading indicator when data isn't resolved", () => {
-    ;(api.vacations.getVacation as Mock).mockResolvedValue(null)
-    render(<VacationDetailsPage />)
-    screen.getByText('Loading...')
+  beforeEach(() => {
+    getVacation.mockReset()
   })
-  it('should show some of the results when the data resolves', async () => {
-    ;(api.vacations.getVacation as Mock).mockResolvedValue({
-      vacationId: 1,
-      name: 'testName',
-      related: [],
-    })
-    render(<VacationDetailsPage />)
-    await waitFor(() => screen.getByText('testName'))
+
+  it('shows a loading indicator until the vacation resolves', () => {
+    getVacation.mockReturnValue(new Promise<Vacation>(() => {}))
+    renderPage()
+    expect(screen.getByRole('status')).toHaveTextContent(/loading/i)
+  })
+
+  it('shows the vacation when the request resolves', async () => {
+    getVacation.mockResolvedValue(vacation)
+    renderPage()
+
+    expect(await screen.findByRole('heading', { name: vacation.name })).toBeInTheDocument()
+    expect(getVacation).toHaveBeenCalledWith(1)
   })
 })
