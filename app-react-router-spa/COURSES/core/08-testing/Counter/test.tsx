@@ -42,7 +42,13 @@ describe('Counter', () => {
   it('does not go below the minimum', async () => {
     const user = userEvent.setup()
     renderCounter(0)
-    const subtract = screen.getByRole('button', { name: /subtract/i })
+
+    // Ways to "select" something from our DOM (happy dom in Node)
+    const subtract = screen.getByTestId('subtract') // data-testid="subtract"
+    // const subtract = screen.getByRole('button', { name: /subtract/i })
+    // const subtract = screen.getByLabelText(/subtract/i) // aria-label
+    // const subtract = screen.getByText(/subtract/i) // visible text (if it had any)
+    // const subtract = screen.getByTitle(/subtract/i) // title attribute
 
     expect(subtract).toBeDisabled()
 

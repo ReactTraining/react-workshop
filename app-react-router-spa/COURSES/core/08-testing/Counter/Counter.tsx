@@ -23,6 +23,8 @@ export function Counter({ count, setCount, min = 0 }: CounterProps) {
         <button
           type="button"
           onClick={subtract}
+          // Data attributes used for testing
+          data-testid="subtract"
           className="button button-small"
           aria-label="Subtract"
           disabled={count <= min}
