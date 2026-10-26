@@ -17,17 +17,17 @@ const initialState = { count: 0 }
 
 // do this...
 
-// https://redux-toolkit.js.org/usage/usage-guide#using-action-creators-as-action-types
+// https://redux.js.org/toolkit/api/createReducer
 const increment = createAction('INCREMENT')
 const decrement = createAction('DECREMENT')
 
-const counterReducer = createReducer(initialState, {
-  [increment]: (state, action) => {
+const counterReducer = createReducer(initialState, (builder) => {
+  builder.addCase(increment, (state, action) => {
     return { ...state, count: state.count + 1 }
-  },
-  [decrement]: (state, action) => {
+  })
+  builder.addCase(decrement, (state, action) => {
     return { ...state, count: state.count - 1 }
-  },
+  })
 })
 
 // instead of this...

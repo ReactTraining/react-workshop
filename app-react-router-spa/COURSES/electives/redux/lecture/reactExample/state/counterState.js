@@ -7,11 +7,11 @@ export const actions = {
 
 const initialState = { count: 0 }
 
-export const counterReducer = createReducer(initialState, {
-  [actions.increment]: (state, action) => {
+export const counterReducer = createReducer(initialState, (builder) => {
+  builder.addCase(actions.increment, (state, action) => {
     return { ...state, count: state.count + 1 }
-  },
-  [actions.decrement]: (state, action) => {
+  })
+  builder.addCase(actions.decrement, (state, action) => {
     return { ...state, count: state.count - 1 }
-  },
+  })
 })

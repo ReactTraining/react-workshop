@@ -22,4 +22,6 @@ function Counter({ dispatch }) {
   )
 }
 
+// React-Redux 9.3 marks connect as @deprecated. The strikethrough is visual
+// only, same as createStore. It still works. Prefer useSelector and useDispatch.
 export default connect()(Counter)
