@@ -27,7 +27,8 @@ export function Page({ theme }) {
   return (
     <div className="flex gap-6">
       <Tweet id="1274126046648864768" />
-      <Tweet id="1294327194009952256" />
+
+      <Tweet id="2115442777647726835" />
     </div>
   )
 }

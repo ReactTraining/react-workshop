@@ -1,8 +1,10 @@
 import * as React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actions } from './state/counterState'
 
-function Counter({ dispatch }) {
+export function Counter() {
+  const dispatch = useDispatch()
+
   function decrement() {
     dispatch(actions.decrement())
   }
@@ -21,7 +23,3 @@ function Counter({ dispatch }) {
     </div>
   )
 }
-
-// React-Redux 9.3 marks connect as @deprecated. The strikethrough is visual
-// only, same as createStore. It still works. Prefer useSelector and useDispatch.
-export default connect()(Counter)

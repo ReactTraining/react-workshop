@@ -1,8 +1,10 @@
 import { connect, useSelector } from 'react-redux'
-import Counter from './Counter'
+import { Counter } from './Counter'
 
 function PrimaryLayout() {
-  const count = 0
+  const count = useSelector((store) => {
+    return store.counterState.count
+  })
 
   return (
     <div className="space-y-3">
