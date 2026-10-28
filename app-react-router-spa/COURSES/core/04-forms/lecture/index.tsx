@@ -16,12 +16,13 @@ const router = createBrowserRouter(
       <Route index element={<Groceries />} />
       <Route path="checkout" element={<Checkout />} />
       <Route path="*" element={<Navigate to="/" />} />
-    </Route>
-  )
+    </Route>,
+  ),
 )
 
 export function App() {
   return <RouterProvider router={router} />
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+const el = document.getElementById('root')
+ReactDOM.createRoot(el!).render(<App />)

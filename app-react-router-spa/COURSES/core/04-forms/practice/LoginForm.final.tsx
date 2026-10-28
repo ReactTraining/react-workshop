@@ -7,9 +7,9 @@ export function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  function handleLogin(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    const formData = new FormData(event.target)
 
     const username = formData.get('username') as string
     const password = formData.get('password') as string
