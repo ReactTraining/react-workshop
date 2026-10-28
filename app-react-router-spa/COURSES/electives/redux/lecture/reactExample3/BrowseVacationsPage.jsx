@@ -1,5 +1,4 @@
-import { Link } from 'react-router'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { Link, useLoaderData } from 'react-router'
 import { Tiles } from '~/Tiles'
 import { VacationImage } from '~/VacationImage'
 import { queryClient } from './queryClient'
@@ -12,9 +11,7 @@ export function loader() {
 }
 
 function BrowseVacationsPage() {
-  // The loader already put the data in the cache, so this never suspends.
-  // Subscribing with useSuspenseQuery keeps the UI in sync if it's refetched
-  const { data: vacations } = useSuspenseQuery(vacationsQuery())
+  const vacations = useLoaderData()
 
   return (
     <Tiles minSize={15}>

@@ -1,5 +1,4 @@
-import { Link, useLocation, useParams, useRouteError } from 'react-router'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { Link, useLoaderData, useLocation, useRouteError } from 'react-router'
 import { Heading } from '~/Heading'
 import { VacationImage } from '~/VacationImage'
 import { useAuth } from './AuthContext'
@@ -11,10 +10,9 @@ export function loader({ params }) {
 }
 
 function VacationDetailsPage() {
-  const vacationId = Number(useParams().vacationId)
+  const vacation = useLoaderData()
   const location = useLocation()
   const { authenticated, user } = useAuth()
-  const { data: vacation } = useSuspenseQuery(vacationQuery(vacationId))
 
   return (
     <div className="flex flex-wrap gap-6">
