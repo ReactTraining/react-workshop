@@ -14,9 +14,9 @@ type FormErrorType = {
 export function LoginForm() {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    const formValues = Object.fromEntries(new FormData(event.currentTarget))
+    const formValues = Object.fromEntries(new FormData(event.target))
     const results = formSchema.safeParse(formValues)
 
     if (!results.success) {

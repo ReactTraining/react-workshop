@@ -4,7 +4,7 @@ export function LoginForm() {
   const emailId = useId()
   const passwordId = useId()
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     // Get Data
   }

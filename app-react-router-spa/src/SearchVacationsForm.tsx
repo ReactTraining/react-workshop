@@ -33,9 +33,9 @@ export function SearchVacationsForm() {
     setEndDate(end)
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    const search = new URLSearchParams(new FormData(event.currentTarget) as any)
+    const search = new URLSearchParams(new FormData(event.target) as any)
 
     if (startDate && endDate) {
       search.set('startDate', startDate)

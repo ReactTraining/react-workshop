@@ -17,11 +17,11 @@ export function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  function handleLogin(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     setLoading(true)
 
-    const data = new FormData(event.currentTarget)
+    const data = new FormData(event.target)
     const username = (data.get('username') || '').toString()
     const password = (data.get('password') || '').toString()
 

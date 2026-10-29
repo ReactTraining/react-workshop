@@ -37,8 +37,8 @@ export default function Page({ actionData }: Route.ComponentProps) {
   const [formErrors, setFormErrors] = useState<FormErrorType>()
   const { error } = actionData || {}
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const formValues = Object.fromEntries(new FormData(event.currentTarget))
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+    const formValues = Object.fromEntries(new FormData(event.target))
     const results = formSchema.safeParse(formValues)
     if (!results.success) {
       event.preventDefault()

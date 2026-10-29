@@ -1,9 +1,9 @@
 import { useId } from 'react'
 
 export function LoginForm() {
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    const formData = new FormData(event.target)
     const values = Object.fromEntries(formData)
     console.log(values)
   }

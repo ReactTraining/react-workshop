@@ -15,7 +15,7 @@ export function LoginForm() {
   // ✨ This is a little note to remind the instructor to demo the final and
   //    React's new form actions feature
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  function handleLogin(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     setPending(true)
     login(username, password)

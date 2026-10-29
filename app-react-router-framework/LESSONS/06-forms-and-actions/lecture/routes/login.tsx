@@ -44,14 +44,14 @@ export default function Page() {
   const usernameId = useId()
   const passwordId = useId()
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
 
     // Three ways to collect form data
     // 1. Controlled with state
     // 2. Uncontrolled with Refs
     // 3. Uncontrolled with FormData
-    // const formValues = Object.fromEntries(new FormData(event.currentTarget))
+    // const formValues = Object.fromEntries(new FormData(event.target))
     // console.log(formValues)
   }
 

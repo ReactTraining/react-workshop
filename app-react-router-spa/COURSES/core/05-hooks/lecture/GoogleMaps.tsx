@@ -13,7 +13,7 @@ export function App() {
   const [lat, setLat] = useState(40.712)
   const [lng, setLng] = useState(-74.006)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const pos = { lat, lng }
 

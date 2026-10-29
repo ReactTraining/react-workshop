@@ -1,5 +1,5 @@
 import {
-  type FormEvent,
+  type SubmitEvent,
   useState,
   useTransition,
   useActionState,
@@ -45,10 +45,10 @@ export function App() {
 
   // const [pending, startTransition] = useTransition()
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     setPending(true)
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.target)
     messageRef.current.value = ''
     messageRef.current.focus()
     console.log('start')
@@ -102,10 +102,10 @@ export function App() {
 //   const [messages, setMessages] = useState<Message[]>([])
 //   const [pending, startTransition] = useTransition()
 
-//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+//   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 //     e.preventDefault()
 
-//     const formData = new FormData(e.currentTarget)
+//     const formData = new FormData(e.target)
 //     messageRef.current.value = ''
 //     messageRef.current.focus()
 //     startTransition(async () => {
@@ -171,9 +171,9 @@ export function App() {
 //   //   })
 //   // }
 
-//   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+//   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
 //     e.preventDefault()
-//     const formData = new FormData(e.currentTarget)
+//     const formData = new FormData(e.target)
 //     messageRef.current.value = ''
 //     messageRef.current.focus()
 //     startTransition(async () => {

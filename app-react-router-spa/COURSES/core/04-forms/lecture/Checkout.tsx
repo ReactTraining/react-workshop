@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { SubmitEvent, useState } from 'react'
 import { Heading } from '~/Heading'
 import { LessonCard } from '~/Lesson'
 
@@ -9,7 +9,7 @@ export function Checkout() {
   const [shippingAddress, setShippingAddress] = useState('')
   const [sameAsBilling, setSameAsBilling] = useState(true)
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formValues = {
       billingName,
