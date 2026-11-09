@@ -1,3 +1,4 @@
+import { ViewTransition } from 'react'
 import { NavLink, Outlet } from 'react-router'
 import { AuthenticatedUserNav } from '~/AuthenticatedUserNav'
 import { useAuthContext } from '~/AuthContext'
@@ -52,7 +53,9 @@ export function MainLayout() {
       </div>
       {/* Flex for full height children, child needs to be flex: 1 */}
       <div className="flex-1 flex [&>div]:flex-1 p-3 bg-gradient-to-b from-gray-50 to-white">
-        <Outlet />
+        <ViewTransition default="page">
+          <Outlet />
+        </ViewTransition>
       </div>
     </div>
   )

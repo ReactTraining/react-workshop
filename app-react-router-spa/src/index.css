@@ -422,3 +422,20 @@ svg {
   background-color: var(--color-brandBlue);
   color: white;
 }
+
+/****************************************
+  Page view transitions
+*****************************************/
+
+::view-transition-old(.page),
+::view-transition-new(.page) {
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.page),
+  ::view-transition-new(.page) {
+    animation: none;
+  }
+}

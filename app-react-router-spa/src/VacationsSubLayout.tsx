@@ -1,3 +1,4 @@
+import { ViewTransition } from 'react'
 import { Outlet } from 'react-router'
 import { SearchVacationsForm } from '~/SearchVacationsForm'
 import { Heading } from '~/Heading'
@@ -17,7 +18,9 @@ export function VacationsSubLayout() {
         </section>
       </aside>
       <div className="flex-1 p-3">
-        <Outlet />
+        <ViewTransition default="page">
+          <Outlet />
+        </ViewTransition>
       </div>
     </div>
   )
