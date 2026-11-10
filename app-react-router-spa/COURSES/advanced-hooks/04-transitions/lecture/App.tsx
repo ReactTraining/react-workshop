@@ -13,13 +13,12 @@ export function App() {
   const [pending, startTransition] = useTransition()
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
+    setMinLikes(newMinLikes) // high
+
+    startTransition(() => {
       const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+      setUsers(filteredUsers)
+    })
   }
 
   return (
@@ -49,6 +48,7 @@ export function App() {
         </div>
       </header>
       <hr />
+
       <div className="space-y-3 max-h-96 overflow-scroll">
         <UserList users={users} />
       </div>

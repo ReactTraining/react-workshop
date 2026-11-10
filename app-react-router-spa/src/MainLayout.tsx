@@ -53,9 +53,9 @@ export function MainLayout() {
       </div>
       {/* Flex for full height children, child needs to be flex: 1 */}
       <div className="flex-1 flex [&>div]:flex-1 p-3 bg-gradient-to-b from-gray-50 to-white">
-        <ViewTransition default="page">
-          <Outlet />
-        </ViewTransition>
+        {/* <ViewTransition default="page"> */}
+        <Outlet />
+        {/* </ViewTransition> */}
       </div>
     </div>
   )

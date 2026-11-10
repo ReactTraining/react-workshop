@@ -3,33 +3,18 @@ import { useEffect, useState } from 'react'
 import { Icon } from '~/components/Icon'
 import { Tiles } from '~/components/Tiles'
 import type { ProductType } from '~/utils/db.server'
+import type { Route } from './+types/home'
 
-/**** Pretend Express Server***/
+export async function loader() {
+  const products = (await fetch('http://localhost:3333/products').then((res) =>
+    res.json(),
+  )) as ProductType[]
 
-// const app = express()
+  return { products }
+}
 
-// app.get('/products', (req, res) => {
-//   res.json(getProducts())
-// })
-
-/******************************/
-
-export default function Index() {
-  const [products, setProducts] = useState<any[]>([])
-
-  useEffect(() => {
-    let isCurrent = true
-    fetch('http://localhost:3333/products')
-      .then((res) => res.json())
-      .then((products) => {
-        if (isCurrent) {
-          setProducts(products)
-        }
-      })
-    return () => {
-      isCurrent = false
-    }
-  }, [])
+export default function Page({ loaderData }: Route.ComponentProps) {
+  const { products } = loaderData
 
   return (
     <Tiles>

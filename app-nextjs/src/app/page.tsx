@@ -1,3 +1,14 @@
+'use client'
+
 export default function Home() {
-  return <div>Hello World: A NextJS Project</div>
+  console.log('here')
+  return (
+    <div
+      onClick={() => {
+        //
+      }}
+    >
+      Hello World: A NextJS Project
+    </div>
+  )
 }
