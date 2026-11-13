@@ -8,21 +8,21 @@ import { Card } from '~/Card'
 import type { Vacation } from '~/utils/types'
 import { FavoriteVacationButton } from '~/FavoriteVacationButton'
 
-export function VacationDetailsPage() {
+export default function VacationDetailsPage() {
   const vacationId = parseInt(useParams().vacationId!)
   const [vacation, setVacation] = useState<Vacation | null>(null)
 
-  useEffect(() => {
-    let isCurrent = true
-    api.vacations.getVacation(vacationId).then((vacation) => {
-      if (isCurrent) setVacation(vacation)
-    })
-    return () => {
-      isCurrent = false
-    }
-  }, [vacationId])
+  // useEffect(() => {
+  //   let isCurrent = true
+  //   api.vacations.getVacation(vacationId).then((vacation) => {
+  //     if (isCurrent) setVacation(vacation)
+  //   })
+  //   return () => {
+  //     isCurrent = false
+  //   }
+  // }, [vacationId])
 
-  if (!vacation) return <div>Loading...</div>
+  if (!vacation) return <div>Loading Data...</div>
 
   return (
     <Card>

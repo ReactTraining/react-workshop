@@ -3,14 +3,13 @@ import { LessonCard } from '~/Lesson'
 import { useNavigate } from 'react-router'
 
 export function LoginForm() {
+  const { setLoggedUser } = useContext()
+
   const [pending, setPending] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  function handleLogin(event: React.SubmitEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-
+  function handleLogin(formData: FormData) {
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
@@ -19,7 +18,7 @@ export function LoginForm() {
 
     login(username, password)
       .then((user) => {
-        console.log(user)
+        setLoggedUser(user)
         navigate('/account')
       })
       .catch((err) => {
@@ -28,31 +27,9 @@ export function LoginForm() {
       })
   }
 
-  // // React 19 actions
-  // // NOTE: We'll have to show useTransition for pending state
-  // // This setPending(true) will NOT work without it
-  // async function loginAction(formData: FormData) {
-  //   const username = formData.get('username') as string
-  //   const password = formData.get('password') as string
-
-  //   setPending(true)
-  //   setError('')
-
-  //   try {
-  //     const user = await login(username, password)
-  //     console.log(user)
-  //     navigate('/account')
-  //   } catch (err) {
-  //     if (typeof err === 'string') {
-  //       setPending(false)
-  //       setError(err)
-  //     }
-  //   }
-  // }
-
   return (
     <LessonCard>
-      <form onSubmit={handleLogin} className="space-y-3 max-w-96">
+      <form action={handleLogin} className="space-y-3 max-w-96">
         {error && <div className="text-red-800">{error}</div>}
         <div>
           <label htmlFor="username">Username</label>
