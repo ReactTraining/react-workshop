@@ -2,6 +2,7 @@ type Message = {
   id: number
   messageText: string
 }
+
 let messageCount = 0
 
 export async function addMessage(messageText: string) {

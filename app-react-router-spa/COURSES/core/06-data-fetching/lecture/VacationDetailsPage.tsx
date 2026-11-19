@@ -17,21 +17,10 @@ import type { Vacation } from '~/utils/types'
 //   staleTime: 1000 * 30,
 // })
 
-// export async function clientLoader({ params }: LoaderFunctionArgs) {
-//   return api.vacations.getVacation(vacationId)
-// }
+export default function VacationDetailsPage() {
+  const vacation = useLoaderData()
 
-// const { data: vacation } = useQuery({
-//   queryKey: ['vacation', vacationId],
-//   queryFn: () => api.vacations.getVacation(vacationId),
-//   staleTime: 1000 * 30,
-// })
-
-export function VacationDetailsPage() {
-  const { vacationId } = useParams()
-  const [vacation, setVacation] = useState<Vacation | null>(null)
-
-  // api.vacations.getVacation(vacationId)
+  // data fetching here
 
   if (!vacation) return <div>Loading...</div>
 

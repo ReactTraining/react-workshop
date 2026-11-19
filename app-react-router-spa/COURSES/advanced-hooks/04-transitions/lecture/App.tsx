@@ -5,6 +5,11 @@ import { Heading } from '~/Heading'
 // https://github.com/reactwg/react-18/discussions/41
 // https://vercel.com/blog/how-react-18-improves-application-performance
 
+// App()
+
+// App() high (fast) <---
+// App() low (slow) <---
+
 export function App() {
   const allUsers = useUsers(5000)
   const [users, setUsers] = useState(allUsers)
@@ -13,13 +18,12 @@ export function App() {
   const [pending, startTransition] = useTransition()
 
   function filterUsers(newMinLikes: number) {
-    setMinLikes(newMinLikes)
-    if (newMinLikes !== minLikes) {
-      console.time()
-      const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
-      console.timeEnd()
-      // setUsers(filteredUsers)
-    }
+    setMinLikes(newMinLikes) // fast (high)
+
+    const filteredUsers = allUsers?.filter((u) => u.likes >= newMinLikes)
+    startTransition(() => {
+      setUsers(filteredUsers) // slow (low)
+    })
   }
 
   return (
@@ -62,7 +66,7 @@ type Props = {
 
 // See with and without memoization (and auto-memoization ✨)
 const UserList = ({ users }: Props) => {
-  console.log('Re-render UserList')
+  // console.log('Re-render UserList')
   return (
     <>
       {users.map((user) => {

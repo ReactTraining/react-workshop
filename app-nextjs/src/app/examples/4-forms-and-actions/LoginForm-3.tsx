@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useActionState } from 'react'
 import { login } from '@/utils/login'
 import { type ActionState, loginAction as serverLoginAction } from './loginAction'
@@ -23,23 +25,12 @@ export function LoginForm() {
   // const [pending, setPending] = useState(false)
   // const [error, setError] = useState('')
 
-  async function loginAction(formData: FormData) {
-    'use server'
-    const username = formData.get('username') as string
-    const password = formData.get('password') as string
+  // like a reducer, but could not be used for "overlapping" rapid-file style forms
 
-    try {
-      const user = await login(username, password)
-      console.log('Server', user)
-    } catch (err) {
-      console.log('ERR', err)
-    }
-  }
-
-  // const [state, loginAction, pending] = useActionState<ActionState, FormData>(serverLoginAction, {
-  //   user: null,
-  //   error: '',
-  // })
+  const [state, loginAction, pending] = useActionState<ActionState, FormData>(serverLoginAction, {
+    user: null,
+    error: '',
+  })
 
   return (
     <form action={loginAction} className="space-y-3 max-w-96">
